@@ -1,0 +1,47 @@
+default :
+{
+    name : "metis"
+    build_source : "script"
+    compil_script :  $name + $VARS.scriptExtension
+    get_source : "archive"
+    system_info :
+    {
+       rpm : []
+       rpm_dev : ["metis-devel"]
+       apt : []
+       apt_dev : ["libmetis-dev"]
+    }
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : []
+    build_depend : ["cmake"]
+    patches : [ ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+       incremental : "yes"
+    }
+}
+
+version_5_1_0  :
+{
+    compil_script :  "metis-5.1.0" + $VARS.scriptExtension
+    patches : [ "metis-use_cat_not_more.patch" ]
+}
+
+version_5_1_0_win  :
+{
+    patches: [ 'metis-use_cat_not_more.patch','metis-5.1.0_windows.patch']
+}
+
+version_5_0_2  :
+{
+    name : "metis"
+    build_source : "script"
+    compil_script :  "metis_5_0_2.sh"
+    patches : [ "metis-use_cat_not_more.patch" ]
+}

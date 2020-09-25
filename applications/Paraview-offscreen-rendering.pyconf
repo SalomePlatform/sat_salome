@@ -1,0 +1,50 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+APPLICATION :
+{
+    name : 'Paraview-offscreen-rendering'
+    workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
+    #tag : 'V8_2_0'
+    #base : 'no'
+    environ :
+    {
+        OMNIORB_USER_PATH : '/tmp'
+        #_PATH : '/usr/sbin:/sbin'
+    }
+    products :
+    {
+        # PREREQUISITES :
+        cmake : '3.5.2'
+        Python : '2.7.10'
+# OP 18/04/2017 Artifact 8498 : Passage de la compilation de hdf5 a cmake
+#                               La section CMake devient la section par defaut
+        #hdf5 : { section : 'default_CMake', tag : '1.8.14'}
+        hdf5 : '1.8.14'
+        qt : '5.6.1-1'
+        boost : '1.58.0'
+        gl2ps : '1.3.9p1'
+        libxml2 : '2.9.0'
+        freetype : '2.4.11'
+        PyQt : '5.6'
+        numpy : '1.9.2'
+        six : '1.9.0'
+        pytz : '2014.10'
+        distribute : '0.6.28'
+        pyparsing : '1.5.6'
+        dateutil : '2.4.0'
+        setuptools : '0.6c11'
+        matplotlib : '1.4.3'
+        sip : '4.18'
+        llvm : '3.9.1'
+        mesa : '13.0.5'
+        glu : '9.0.0'
+        ParaView : {section : 'version_5_1_2plus_820_offscreen_rendering', tag : '5.1.2plus'}
+        openmpi : "1.8.5"
+
+    }
+    test_base : 
+    {
+    }
+}
+

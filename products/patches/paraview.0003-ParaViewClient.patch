@@ -1,0 +1,10 @@
+--- ParaView-5.8.0-RC2.orig/CMake/ParaViewClient.cmake	2020-03-02 15:38:53.791382799 +0300
++++ ParaView-5.8.0-RC2.new/CMake/ParaViewClient.cmake	2020-03-02 18:31:04.304698442 +0300
+@@ -516,6 +516,7 @@
+     NAMES xmlpatterns-qt5 xmlpatterns
+     HINTS "${Qt5_DIR}/../../../bin"
+           "${Qt5_DIR}/../../../libexec/qt5/bin"
++    NO_CMAKE_PATH
+     DOC   "Path to xmlpatterns")
+   mark_as_advanced(qt_xmlpatterns_executable)
+ 

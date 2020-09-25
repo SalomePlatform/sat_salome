@@ -1,0 +1,15 @@
+diff --git a/src/Plugins/MEDReader/CMakeLists.txt b/src/Plugins/MEDReader/CMakeLists.txt
+index 99d2cac..9fa9d4b 100644
+--- a/src/Plugins/MEDReader/CMakeLists.txt
++++ b/src/Plugins/MEDReader/CMakeLists.txt
+@@ -22,6 +22,10 @@ project(MEDReader)
+ 
+ find_package(ParaView REQUIRED)
+ 
++IF(SALOME_USE_MPI)
++    ADD_DEFINITIONS(-DMEDREADER_USE_MPI)
++ENDIF(SALOME_USE_MPI)
++
+ option(BUILD_SHARED_LIBS "Build shared libraries" ON)
+ enable_testing()
+ 

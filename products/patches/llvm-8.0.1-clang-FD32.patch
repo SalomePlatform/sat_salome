@@ -1,0 +1,18 @@
+--- llvm_ref/include/llvm/Demangle/MicrosoftDemangleNodes.h	2019-01-08 22:05:51.000000000 +0100
++++ llvm/include/llvm/Demangle/MicrosoftDemangleNodes.h	2020-09-04 17:01:15.736563484 +0200
+@@ -4,6 +4,8 @@
+ #include "llvm/Demangle/Compiler.h"
+ #include "llvm/Demangle/StringView.h"
+ #include <array>
++#include <cstdint>
++#include <string>
+ 
+ class OutputStream;
+ 
+@@ -602,4 +604,4 @@
+ } // namespace ms_demangle
+ } // namespace llvm
+ 
+-#endif
+\ Pas de fin de ligne à la fin du fichier
++#endif

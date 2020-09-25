@@ -1,0 +1,555 @@
+diff -rupN MEDCOUPLING_ori/adm_local/CMakeLists.txt MEDCOUPLING_new/adm_local/CMakeLists.txt
+--- MEDCOUPLING_ori/adm_local/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
++++ MEDCOUPLING_new/adm_local/CMakeLists.txt	2017-01-04 16:00:47.096478000 +0100
+@@ -0,0 +1,20 @@
++# Copyright (C) 2012-2016  CEA/DEN, EDF R&D
++#
++# This library is free software; you can redistribute it and/or
++# modify it under the terms of the GNU Lesser General Public
++# License as published by the Free Software Foundation; either
++# version 2.1 of the License, or (at your option) any later version.
++#
++# This library is distributed in the hope that it will be useful,
++# but WITHOUT ANY WARRANTY; without even the implied warranty of
++# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++# Lesser General Public License for more details.
++#
++# You should have received a copy of the GNU Lesser General Public
++# License along with this library; if not, write to the Free Software
++# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
++#
++# See http://www.salome-platform.org/ or email : webmaster.salome@opencascade.com
++#
++
++ADD_SUBDIRECTORY(unix)
+diff -rupN MEDCOUPLING_ori/adm_local/unix/CMakeLists.txt MEDCOUPLING_new/adm_local/unix/CMakeLists.txt
+--- MEDCOUPLING_ori/adm_local/unix/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
++++ MEDCOUPLING_new/adm_local/unix/CMakeLists.txt	2017-01-04 16:00:47.099483000 +0100
+@@ -0,0 +1,20 @@
++# Copyright (C) 2012-2016  CEA/DEN, EDF R&D
++#
++# This library is free software; you can redistribute it and/or
++# modify it under the terms of the GNU Lesser General Public
++# License as published by the Free Software Foundation; either
++# version 2.1 of the License, or (at your option) any later version.
++#
++# This library is distributed in the hope that it will be useful,
++# but WITHOUT ANY WARRANTY; without even the implied warranty of
++# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++# Lesser General Public License for more details.
++#
++# You should have received a copy of the GNU Lesser General Public
++# License along with this library; if not, write to the Free Software
++# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
++#
++# See http://www.salome-platform.org/ or email : webmaster.salome@opencascade.com
++#
++
++ADD_SUBDIRECTORY(config_files)
+diff -rupN MEDCOUPLING_ori/adm_local/unix/config_files/check_MEDCOUPLING.m4 MEDCOUPLING_new/adm_local/unix/config_files/check_MEDCOUPLING.m4
+--- MEDCOUPLING_ori/adm_local/unix/config_files/check_MEDCOUPLING.m4	1970-01-01 01:00:00.000000000 +0100
++++ MEDCOUPLING_new/adm_local/unix/config_files/check_MEDCOUPLING.m4	2017-01-04 16:00:47.105477000 +0100
+@@ -0,0 +1,71 @@
++dnl Copyright (C) 2007-2016  CEA/DEN, EDF R&D, OPEN CASCADE
++dnl
++dnl Copyright (C) 2003-2007  OPEN CASCADE, EADS/CCR, LIP6, CEA/DEN,
++dnl CEDRAT, EDF R&D, LEG, PRINCIPIA R&D, BUREAU VERITAS
++dnl
++dnl This library is free software; you can redistribute it and/or
++dnl modify it under the terms of the GNU Lesser General Public
++dnl License as published by the Free Software Foundation; either
++dnl version 2.1 of the License, or (at your option) any later version.
++dnl
++dnl This library is distributed in the hope that it will be useful,
++dnl but WITHOUT ANY WARRANTY; without even the implied warranty of
++dnl MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++dnl Lesser General Public License for more details.
++dnl
++dnl You should have received a copy of the GNU Lesser General Public
++dnl License along with this library; if not, write to the Free Software
++dnl Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
++dnl
++dnl See http://www.salome-platform.org/ or email : webmaster.salome@opencascade.com
++dnl
++
++# Check availability of MEDCOUPLING binary distribution
++#
++# Author : Roman NIKOLAEV (OPEN CASCADE, 2016)
++#
++
++AC_DEFUN([CHECK_MEDCOUPLING],[
++AC_REQUIRE([AC_LINKER_OPTIONS])dnl
++
++AC_CHECKING(for MEDCOUPLING)
++
++MEDCOUPLING_ok=no
++
++MEDCOUPLING_LDFLAGS=""
++MEDCOUPLING_CXXFLAGS=""
++
++AC_ARG_WITH(medcoupling,
++	    [  --with-medcoupling=DIR root directory path of MEDCOUPLING installation ],
++	    MEDCOUPLING_DIR="$withval",MEDCOUPLING_DIR="")
++
++if test "x${MEDCOUPLING_DIR}" == "x" ; then
++  AC_MSG_RESULT(for \${MEDCOUPLING_ROOT_DIR}: ${MEDCOUPLING_ROOT_DIR})
++
++   # --with-medcoupling option is not used
++   if test "x${MEDCOUPLING_ROOT_DIR}" != "x" ; then
++    # MEDCOUPLING_ROOT_DIR environment variable defined
++      MEDCOUPLING_DIR=${MEDCOUPLING_ROOT_DIR}
++   fi
++
++fi
++
++if test -f ${MEDCOUPLING_DIR}/include/InterpKernelValue.hxx ; then
++   AC_MSG_RESULT(Using MEDCOUPLING module distribution in ${MEDCOUPLING_DIR})
++   MEDCOUPLING_ok=yes
++
++   AC_SUBST(MEDCOUPLING_ROOT_DIR)
++
++   MEDCOUPLING_LDFLAGS=-L${MEDCOUPLING_DIR}/lib${LIB_LOCATION_SUFFIX}
++   MEDCOUPLING_CXXFLAGS=-I${MEDCOUPLING_DIR}/include
++
++   AC_SUBST(MEDCOUPLING_LDFLAGS)
++   AC_SUBST(MEDCOUPLING_CXXFLAGS)
++
++else
++   AC_MSG_WARN("Cannot find MCOUPLING module sources")
++fi
++
++AC_MSG_RESULT(for MEDCOUPLING: $MEDCOUPLING_ok)
++
++])dnl
+diff -rupN MEDCOUPLING_ori/adm_local/unix/config_files/check_parmetis.m4 MEDCOUPLING_new/adm_local/unix/config_files/check_parmetis.m4
+--- MEDCOUPLING_ori/adm_local/unix/config_files/check_parmetis.m4	1970-01-01 01:00:00.000000000 +0100
++++ MEDCOUPLING_new/adm_local/unix/config_files/check_parmetis.m4	2017-01-04 16:00:47.108474000 +0100
+@@ -0,0 +1,225 @@
++dnl Copyright (C) 2007-2016  CEA/DEN, EDF R&D, OPEN CASCADE
++dnl
++dnl Copyright (C) 2003-2007  OPEN CASCADE, EADS/CCR, LIP6, CEA/DEN,
++dnl CEDRAT, EDF R&D, LEG, PRINCIPIA R&D, BUREAU VERITAS
++dnl
++dnl This library is free software; you can redistribute it and/or
++dnl modify it under the terms of the GNU Lesser General Public
++dnl License as published by the Free Software Foundation; either
++dnl version 2.1 of the License, or (at your option) any later version.
++dnl
++dnl This library is distributed in the hope that it will be useful,
++dnl but WITHOUT ANY WARRANTY; without even the implied warranty of
++dnl MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++dnl Lesser General Public License for more details.
++dnl
++dnl You should have received a copy of the GNU Lesser General Public
++dnl License along with this library; if not, write to the Free Software
++dnl Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
++dnl
++dnl See http://www.salome-platform.org/ or email : webmaster.salome@opencascade.com
++dnl
++
++#for a future use...see further down AC_DEFUN([CHECK_PARMETISV4]
++
++#for use with ParMETIS V3
++AC_DEFUN([CHECK_PARMETIS],[
++AC_REQUIRE([AC_PROG_CC])dnl
++AC_REQUIRE([AC_PROG_CPP])dnl
++AC_REQUIRE([CHECK_MPI])dnl
++
++AC_CHECKING(for ParMETIS V3 Library)
++
++AC_LANG_SAVE
++AC_LANG_C
++
++PARMETIS_CPPFLAGS=""
++PARMETIS_LIBS=""
++ENABLE_PARMETIS="no"
++
++AC_CHECKING(for ParMETIS location)
++AC_ARG_WITH(parmetis,
++            [  --with-parmetis=DIR      root directory path to ParMETIS library installation ],
++            [PARMETISDIR="$withval"
++             AC_MSG_RESULT("select $withval as path to ParMETIS library")])
++
++if test "x${PARMETISDIR}" == "x" ; then
++  AC_MSG_RESULT(for \${PARMETIS_ROOT_DIR}: ${PARMETIS_ROOT_DIR})
++   # --with-parmetis option is not used
++   if test "x${PARMETIS_ROOT_DIR}" != "x" ; then
++      PARMETISDIR=${PARMETIS_ROOT_DIR}
++   fi
++fi
++
++AC_MSG_RESULT(\$PARMETISDIR = ${PARMETISDIR})
++
++CPPFLAGS_old="${CPPFLAGS}"
++LIBS_old=$LIBS
++
++if test "x${PARMETISDIR}" != "x" ; then
++  PARMETIS_CPPFLAGS="-DMED_ENABLE_PARMETIS -I${PARMETISDIR} ${MPI_INCLUDES}"
++  PARMETIS_LIBS="-L${PARMETISDIR} -lparmetis -lmetis ${MPI_LIBS}"
++fi
++
++parmetis_ok=no
++parmetis_headers_ok=no
++parmetis_binaries_ok=no
++
++dnl ParMETIS headers
++AC_CHECKING(for ParMETIS headers)
++CPPFLAGS="${CPPFLAGS_old} ${PARMETIS_CPPFLAGS}"
++
++parmetis_include_dir_ok=yes
++if test "x${PARMETISDIR}" != "x" ; then
++  AC_CHECK_FILE(${PARMETISDIR}/parmetis.h,
++                parmetis_include_dir_ok=yes,
++                parmetis_include_dir_ok=no)
++fi
++
++if test "x${parmetis_include_dir_ok}" = "xyes" ; then
++  AC_TRY_COMPILE([#include <parmetis.h>],
++                 [ParMETIS_V3_PartGeom(0,0,0,0,0)],
++                 parmetis_headers_ok=yes,
++                 parmetis_headers_ok=no)
++fi
++
++if test "x${parmetis_headers_ok}" = "xyes" ; then
++  AC_MSG_RESULT(\$PARMETIS_CPPFLAGS = ${PARMETIS_CPPFLAGS})
++fi
++AC_MSG_RESULT(for ParMETIS headers: $parmetis_headers_ok)
++
++if test "x${parmetis_headers_ok}" = "xyes" ; then
++  dnl ParMETIS binaries
++  AC_CHECKING(for ParMETIS binaries)
++  parmetis_lib_dir_ok=yes
++  AC_CHECK_FILE(${PARMETISDIR}/libparmetis.a,
++                parmetis_lib_dir_ok=yes,
++                parmetis_lib_dir_ok=no)
++
++  if test "x${parmetis_lib_dir_ok}" = "xyes" ; then
++    LIBS="${LIBS_old} ${PARMETIS_LIBS}"
++    AC_TRY_LINK([#include <parmetis.h>],
++                [ParMETIS_V3_PartGeom(0,0,0,0,0)],
++                parmetis_binaries_ok=yes,
++                parmetis_binaries_ok=no)
++  fi
++fi
++
++if test "x${parmetis_binaries_ok}" = "xyes" ; then
++  AC_MSG_RESULT(\$PARMETIS_LIBS = ${PARMETIS_LIBS})
++fi
++AC_MSG_RESULT(for ParMETIS binaries: $parmetis_binaries_ok)
++
++CPPFLAGS="${CPPFLAGS_old}"
++LIBS="${LIBS_old}"
++
++if test "x${parmetis_headers_ok}" = "xyes" ; then
++  if test "x${parmetis_binaries_ok}" = "xyes" ; then
++    parmetis_ok=yes
++    ENABLE_PARMETIS="yes"
++    # ParMETIS includes METIS, so we redefine METIS cppflags and libs
++    # And metis.h #include parmetis.h + mpi.h
++    metis_ok=yes
++    ENABLE_METIS="yes"
++    METISDIR=${PARMETISDIR}
++    METIS_CPPFLAGS="-DMED_ENABLE_METIS -I${METISDIR}/METISLib ${PARMETIS_CPPFLAGS}"
++    METIS_LIBS="-L${METISDIR} -lmetis ${MPI_LIBS}"
++  fi
++fi
++
++AC_MSG_RESULT(for ParMETIS: $parmetis_ok)
++
++AC_SUBST(ENABLE_PARMETIS)
++AC_SUBST(PARMETIS_CPPFLAGS)
++AC_SUBST(PARMETIS_LIBS)
++AC_SUBST(ENABLE_METIS)
++AC_SUBST(METIS_CPPFLAGS)
++AC_SUBST(METIS_LIBS)
++
++AC_LANG_RESTORE
++
++])dnl
++
++#for a future use...
++AC_DEFUN([CHECK_PARMETISV4],[
++AC_REQUIRE([AC_PROG_CC])dnl
++AC_REQUIRE([AC_PROG_CPP])dnl
++AC_REQUIRE([CHECK_MPI])dnl
++
++AC_CHECKING(for ParMETIS V4 Library)
++
++AC_LANG_SAVE
++AC_LANG_C
++
++PARMETIS_CPPFLAGS=""
++PARMETIS_LIBS=""
++ENABLE_PARMETIS="no"
++
++AC_CHECKING(for ParMETIS location)
++AC_ARG_WITH(parmetis,
++            [  --with-parmetis=DIR      root directory path to ParMETIS library installation ],
++            [PARMETISDIR="$withval"
++             AC_MSG_RESULT("select $withval as path to ParMETIS library")])
++
++AC_MSG_RESULT(\$PARMETISDIR = ${PARMETISDIR})
++
++CPPFLAGS_old="${CPPFLAGS}"
++LIBS_old=$LIBS
++
++if test "x${PARMETISDIR}" != "x" ; then
++  PARMETIS_CPPFLAGS="-DMED_ENABLE_PARMETIS -I${PARMETISDIR}/include ${MPI_INCLUDES}"
++  PARMETIS_LIBS="-L${PARMETISDIR}/lib -lparmetis -lmetis ${MPI_LIBS}"
++fi
++
++parmetis_ok=no
++parmetis_headers_ok=no
++parmetis_binaries_ok=no
++
++dnl ParMETIS headers
++AC_CHECKING(for ParMETIS headers)
++CPPFLAGS="${CPPFLAGS_old} ${PARMETIS_CPPFLAGS}"
++
++parmetis_include_dir_ok=yes
++if test "x${PARMETISDIR}" != "x" ; then
++  AC_CHECK_FILE(${PARMETISDIR}/include/parmetis.h,
++                parmetis_headers_ok=yes,
++                parmetis_headers_ok=no)
++fi
++
++if test "x${parmetis_headers_ok}" = "xyes" ; then
++  AC_MSG_RESULT(\$PARMETIS_CPPFLAGS = ${PARMETIS_CPPFLAGS})
++fi
++AC_MSG_RESULT(for ParMETIS headers: $parmetis_headers_ok)
++
++if test "x${parmetis_headers_ok}" = "xyes" ; then
++  dnl ParMETIS binaries
++  AC_CHECKING(for ParMETIS binaries)
++  AC_CHECK_FILE(${PARMETISDIR}/lib/libparmetis.a,
++                parmetis_binaries_ok=yes,
++                parmetis_binaries_ok=no)
++fi
++
++if test "x${parmetis_binaries_ok}" = "xyes" ; then
++  AC_MSG_RESULT(\$PARMETIS_LIBS = ${PARMETIS_LIBS})
++fi
++AC_MSG_RESULT(for ParMETIS binaries: $parmetis_binaries_ok)
++
++CPPFLAGS="${CPPFLAGS_old}"
++LIBS="${LIBS_old}"
++
++if test "x${parmetis_headers_ok}" = "xyes" ; then
++  if test "x${parmetis_binaries_ok}" = "xyes" ; then
++    parmetis_ok=yes
++    ENABLE_PARMETIS="yes"
++  fi
++fi
++
++AC_MSG_RESULT(for ParMETIS: $parmetis_ok)
++
++AC_SUBST(ENABLE_PARMETIS)
++AC_SUBST(PARMETIS_CPPFLAGS)
++AC_SUBST(PARMETIS_LIBS)
++
++AC_LANG_RESTORE
++
++])dnl
+diff -rupN MEDCOUPLING_ori/adm_local/unix/config_files/check_scotch.m4 MEDCOUPLING_new/adm_local/unix/config_files/check_scotch.m4
+--- MEDCOUPLING_ori/adm_local/unix/config_files/check_scotch.m4	1970-01-01 01:00:00.000000000 +0100
++++ MEDCOUPLING_new/adm_local/unix/config_files/check_scotch.m4	2017-01-04 16:00:47.110484000 +0100
+@@ -0,0 +1,155 @@
++dnl Copyright (C) 2007-2016  CEA/DEN, EDF R&D, OPEN CASCADE
++dnl
++dnl Copyright (C) 2003-2007  OPEN CASCADE, EADS/CCR, LIP6, CEA/DEN,
++dnl CEDRAT, EDF R&D, LEG, PRINCIPIA R&D, BUREAU VERITAS
++dnl
++dnl This library is free software; you can redistribute it and/or
++dnl modify it under the terms of the GNU Lesser General Public
++dnl License as published by the Free Software Foundation; either
++dnl version 2.1 of the License, or (at your option) any later version.
++dnl
++dnl This library is distributed in the hope that it will be useful,
++dnl but WITHOUT ANY WARRANTY; without even the implied warranty of
++dnl MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++dnl Lesser General Public License for more details.
++dnl
++dnl You should have received a copy of the GNU Lesser General Public
++dnl License along with this library; if not, write to the Free Software
++dnl Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
++dnl
++dnl See http://www.salome-platform.org/ or email : webmaster.salome@opencascade.com
++dnl
++
++AC_DEFUN([CHECK_SCOTCH],[
++
++AC_CHECKING(for scotch)
++
++AC_LANG_SAVE
++AC_LANG_C
++
++dnl
++dnl default values
++dnl
++SCOTCH_CPPFLAGS="SCOTCH_CPPFLAGS_NOT_DEFINED"
++SCOTCH_LIBS="SCOTCH_LIBS_NOT_FOUND"
++SCOTCH_LIBSUFFIX="-not-defined"
++
++ENABLE_SCOTCH="no"
++
++AC_CHECKING(for scotch location)
++
++AC_ARG_WITH(scotch,
++            [  --with-scotch=DIR      root directory path to SCOTCH library installation ],
++            [SCOTCHDIR="$withval"
++             AC_MSG_RESULT([Select $withval as path to SCOTCH library])])
++
++if test "x${SCOTCHDIR}" == "x" ; then
++  AC_MSG_RESULT(for \${SCOTCH_ROOT_DIR}: ${SCOTCH_ROOT_DIR})
++   # --with-scotch option is not used
++   if test "x${SCOTCH_ROOT_DIR}" != "x" ; then
++      SCOTCHDIR=${SCOTCH_ROOT_DIR}
++   fi
++fi
++
++if test "x${SCOTCHDIR}" = "x" ; then
++  AC_MSG_WARN(SCOTCHDIR is not specified)
++  AC_MSG_NOTICE(Trying native scotch...)
++  SCOTCHDIR=/usr
++fi
++
++CPPFLAGS_old="${CPPFLAGS}"
++LIBS_old=$LIBS
++
++scotch_ok=no
++scotch_headers_ok=no
++scotch_binaries_ok=no
++
++dnl
++dnl SCOTCH headers
++dnl
++AC_CHECKING(for SCOTCH headers)
++
++for d in ${SCOTCHDIR}/include ${SCOTCHDIR}/include/scotch ${SCOTCHDIR}/bin ${SCOTCHDIR} ; do
++  dnl
++  dnl check scotch.h file availability
++  dnl
++  AC_CHECK_FILE([${d}/scotch.h],
++                [scotch_include_dir_ok=yes],
++                [scotch_include_dir_ok=no])
++
++  if test "x${scotch_include_dir_ok}" = "xyes" ; then
++    LOCAL_INCLUDES="-DMED_ENABLE_SCOTCH -I${d} ${MPI_INCLUDES}"
++    CPPFLAGS="${CPPFLAGS_old} ${LOCAL_INCLUDES} -std=c99"
++    AC_TRY_COMPILE([
++      #include <stdio.h>
++      #include <scotch.h>
++      ],
++      [SCOTCH_Graph* graph; SCOTCH_graphInit(graph)],
++      [scotch_headers_ok=yes],
++      [scotch_headers_ok=no])
++    if test "x${scotch_headers_ok}" = "xyes" ; then
++      break;
++    fi
++  fi
++done
++
++dnl
++dnl result for headers
++dnl
++AC_MSG_RESULT(for scotch headers: $scotch_headers_ok)
++
++dnl
++dnl SCOTCH libraries
++dnl
++if test "x${scotch_headers_ok}" = "xyes" ; then
++  AC_CHECKING(for scotch libraries)
++
++  for d in ${SCOTCHDIR}/lib ${SCOTCHDIR}/lib64 ${SCOTCHDIR}/lib/scotch ${SCOTCHDIR}/lib64/scotch ${SCOTCHDIR}/bin ${SCOTCHDIR} ; do
++    LOCAL_LIBS="-L${d} -lscotch -lscotcherr"
++    LIBS="${LIBS_old} ${LOCAL_LIBS}"
++    AC_TRY_LINK([
++      #include <stdio.h>
++      #include <scotch.h>
++      ],
++      [SCOTCH_Graph* graph; SCOTCH_graphInit(graph)],
++      [scotch_binaries_ok=yes],
++      [scotch_binaries_ok=no])
++    if test "x${scotch_binaries_ok}" = "xyes" ; then
++      break;
++    fi
++  done
++fi
++
++dnl
++dnl result for libraries
++dnl
++AC_MSG_RESULT(for scotch libraries: $scotch_binaries_ok)
++
++dnl
++dnl summary
++dnl
++if test "x${scotch_binaries_ok}" = "xyes" ; then
++  SCOTCH_CPPFLAGS=${LOCAL_INCLUDES}
++  SCOTCH_LIBS=${LOCAL_LIBS}
++  SCOTCH_LIBSUFFIX=""
++  ENABLE_SCOTCH="yes"
++  scotch_ok=yes
++  AC_MSG_RESULT(\$SCOTCH_CPPFLAGS  = ${SCOTCH_CPPFLAGS})
++  AC_MSG_RESULT(\$SCOTCH_LIBS      = ${SCOTCH_LIBS})
++  AC_MSG_RESULT(\$SCOTCH_LIBSUFFIX = ${SCOTCH_LIBSUFFIX})
++fi
++AC_MSG_RESULT(for scotch: $scotch_ok)
++
++CPPFLAGS="${CPPFLAGS_old}"
++LIBS="${LIBS_old}"
++
++AC_SUBST(SCOTCH_CPPFLAGS)
++AC_SUBST(SCOTCH_LIBSUFFIX)
++AC_SUBST(SCOTCH_LIBS)
++AC_SUBST(ENABLE_SCOTCH)
++
++AC_LANG_RESTORE
++
++])dnl
++
++
+diff -rupN MEDCOUPLING_ori/adm_local/unix/config_files/CMakeLists.txt MEDCOUPLING_new/adm_local/unix/config_files/CMakeLists.txt
+--- MEDCOUPLING_ori/adm_local/unix/config_files/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
++++ MEDCOUPLING_new/adm_local/unix/config_files/CMakeLists.txt	2017-01-04 16:00:47.102538000 +0100
+@@ -0,0 +1,29 @@
++# Copyright (C) 2012-2016  CEA/DEN, EDF R&D
++#
++# This library is free software; you can redistribute it and/or
++# modify it under the terms of the GNU Lesser General Public
++# License as published by the Free Software Foundation; either
++# version 2.1 of the License, or (at your option) any later version.
++#
++# This library is distributed in the hope that it will be useful,
++# but WITHOUT ANY WARRANTY; without even the implied warranty of
++# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++# Lesser General Public License for more details.
++#
++# You should have received a copy of the GNU Lesser General Public
++# License along with this library; if not, write to the Free Software
++# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
++#
++# See http://www.salome-platform.org/ or email : webmaster.salome@opencascade.com
++#
++
++SET(dist_admlocalm4_DATA
++    check_MEDCOUPLING.m4
++    check_parmetis.m4
++    check_scotch.m4
++)
++
++FOREACH(f ${dist_admlocalm4_DATA})
++  SET(DEST adm_local/unix/config_files)
++  INSTALL(FILES ${f} DESTINATION ${DEST})
++ENDFOREACH(f ${dist_admlocalm4_DATA})
+diff -rupN MEDCOUPLING_ori/CMakeLists.txt MEDCOUPLING_new/CMakeLists.txt
+--- MEDCOUPLING_ori/CMakeLists.txt	2017-01-17 09:39:14.489728365 +0100
++++ MEDCOUPLING_new/CMakeLists.txt	2017-01-04 16:25:17.608100119 +0100
+@@ -214,6 +214,7 @@ IF(WIN32)
+ ENDIF(WIN32)
+ 
+ ADD_SUBDIRECTORY(src)
++ADD_SUBDIRECTORY(adm_local)
+ ADD_SUBDIRECTORY(cmake_files)
+ 
+ IF(MEDCOUPLING_BUILD_DOC)

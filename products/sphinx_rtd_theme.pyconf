@@ -1,0 +1,38 @@
+default :
+{
+    name : "sphinx_rtd_theme"
+    build_source : "script"
+    compil_script :  $name + ".sh"
+    get_source : "archive"
+    system_info : 
+    {
+        rpm : ["python3-sphinx_rtd_theme"]
+        rpm_dev : []
+        apt : ["python3-sphinx-rtd-theme"]
+        apt_dev : []
+    }
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : ['Python', 'Sphinx']
+    patches : []
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties:
+    {
+      incremental : "yes"
+      pip : "yes"
+    }
+}
+
+version_0_1_9:
+{
+    patches : [ 'sphinx_rtd_theme-0.1.9_no_dependence_sphinx.patch']
+    properties:
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+}

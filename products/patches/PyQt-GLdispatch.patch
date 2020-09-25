@@ -1,0 +1,21 @@
+--- PyQt_ref/configure.py	2019-06-17 13:05:36.317488870 +0200
++++ PyQt/configure.py	2019-06-18 10:04:22.726188342 +0200
+@@ -1901,6 +1901,18 @@
+ 
+         return False
+ 
++    ldout=get_command_output("ldconfig -p| grep 'libGLdispatch.so$'")
++    gld= ldout.read().strip().decode("utf-8") 
++    if not gld:
++      print("INFO: fine no need to link against libGLdispatch.so")
++    else:
++      print("INFO: adding libGLdispatch.so to the list of libraries...")
++      with open(mf, 'r') as f :
++        d = f.read()
++      d = d.replace('-lGL', '-lGL -lGLdispatch')
++      with open(mf, 'w') as f:
++        f.write(d)
++
+     # Restore the current directory.
+     if cwd is not None:
+         os.chdir(cwd)

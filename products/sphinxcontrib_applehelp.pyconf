@@ -1,0 +1,26 @@
+default :
+{
+    name : "sphinxcontrib-applehelp"
+    build_source : "script"
+    compil_script :  'pip_install' + $VARS.scriptExtension
+    get_source : "archive"
+    environ :
+    {
+       env_script : "sphinxcontrib_applehelp.py"
+    }
+    depend : ['Python','setuptools']
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + "sphinxcontrib_applehelp"
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + "sphinxcontrib_applehelp"
+    install_dir : 'base'
+    properties:
+    {
+      incremental : "yes"
+      pip : "yes"
+    }
+}
+
+default_win :
+{
+   compil_script :  'pip_install_whl' + $VARS.scriptExtension
+   archive_info : {archive_name : "sphinxcontrib_applehelp-" + $APPLICATION.products.sphinxcontrib_applehelp + "_windows.tar.gz"}
+}

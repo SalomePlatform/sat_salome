@@ -1,0 +1,12 @@
+diff -pruN CAS-6.7.1-orig/configure.ac CAS-6.7.1/configure.ac
+--- CAS-6.7.1-orig/configure.ac	2014-05-13 17:19:43.692323453 +0200
++++ CAS-6.7.1/configure.ac	2014-05-13 17:20:38.807993144 +0200
+@@ -10,7 +10,7 @@ CXXFLAGS="$CXXFLAGS"
+ 
+ AC_PROG_CC
+ 
+-AM_CONFIG_HEADER(config.h)
++AC_CONFIG_HEADERS(config.h)
+ 
+ dnl AM_MAINTAINER_MODE
+ 

@@ -1,0 +1,31 @@
+--- gl2ps-1.3.5_ori/CMakeLists.txt	2011-09-13 13:23:12.000000000 +0200
++++ gl2ps-1.3.5_new/CMakeLists.txt	2017-08-03 15:01:39.968786620 +0200
+@@ -76,11 +76,14 @@ if(OPENGL_FOUND)
+   list(APPEND EXTERNAL_LIBRARIES ${OPENGL_LIBRARIES})
+ endif(OPENGL_FOUND)
+ 
+-find_package(GLUT)
+-if(GLUT_FOUND)
+-  list(APPEND EXTERNAL_INCLUDES ${GLUT_INCLUDE_DIR})
+-  list(APPEND EXTERNAL_LIBRARIES ${GLUT_LIBRARIES})
+-endif(GLUT_FOUND)
++# Add ENABLE_GLUT option
++if(ENABLE_GLUT)
++  find_package(GLUT)
++  if(GLUT_FOUND)
++    list(APPEND EXTERNAL_INCLUDES ${GLUT_INCLUDE_DIR})
++    list(APPEND EXTERNAL_LIBRARIES ${GLUT_LIBRARIES})
++  endif(GLUT_FOUND)
++endif(ENABLE_GLUT)
+ 
+ if(ENABLE_ZLIB)
+   find_package(ZLIB)
+@@ -100,6 +103,8 @@ if(ENABLE_PNG)
+   endif(PNG_FOUND)
+ endif(ENABLE_PNG)
+ 
++list(APPEND EXTERNAL_LIBRARIES "m")
++
+ include_directories(${EXTERNAL_INCLUDES})
+ 
+ if(OPENGL_FOUND)

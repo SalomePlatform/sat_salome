@@ -1,0 +1,24 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+APPLICATION :
+{
+    name : 'GCC-6.3.0'
+    workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
+    dev : 'no'
+    verbose :'no'
+    debug : 'no'
+    base : 'no'
+    environ :
+    {
+    }
+    products :
+    {
+        # PREREQUISITES :
+        gcc : '6.3.0'
+    }
+    test_base : 
+    {
+    }
+}
+

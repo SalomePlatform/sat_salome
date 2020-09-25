@@ -1,0 +1,59 @@
+default : 
+{
+    name : "qwt"
+    build_source : "script"
+    compil_script :  $name + $VARS.scriptExtension
+    get_source : "archive"
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : ['qt']
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+      incremental : "yes"
+    }
+}
+
+version_6_1_0 :
+{
+    compil_script :  "qwt-6.1.0.sh"
+    archive_info:
+    {
+        archive_name : "qwt-6.1.0.tar.bz2"
+    }
+}
+
+version_6_1_2 :
+{
+    compil_script :  "qwt-6.1.0.sh"
+    archive_info:
+    {
+        archive_name : "qwt-6.1.2.tar.bz2"
+    }
+    properties :
+    {
+      incremental : "yes"
+      single_install_dir : "no"
+    }
+}
+
+version_6_1_2_win :
+{
+    compil_script :  "qwt-6.1.0.bat"
+    archive_info:
+    {
+           archive_name : "qwt-6.1.2.tar.gz"
+    }
+}
+
+version_5_2_1 :
+{
+    archive_info:
+    {
+        archive_name : "qwt-5.2.1.tar.bz2"
+    }
+}

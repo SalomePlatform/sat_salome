@@ -1,0 +1,882 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+MONDAY    : 0
+TUESDAY   : 1
+WEDNESDAY : 2
+THURSDAY  : 3
+FRIDAY    : 4
+SATURDAY  : 5
+SUNDAY    : 6
+
+LUNDI     : 0
+MARDI     : 1
+MERCREDI  : 2
+JEUDI     : 3
+VENDREDI  : 4
+SAMEDI    : 5
+DIMANCHE  : 6
+
+m : 60
+
+h : 60 * $m
+
+# OP 30/11/2017 Machine display partie -> on bascule sur la UB16 pour test
+#               mais ce n'est pas vraiment concluant (privilegier display local)
+display : 'is232975.intra.cea.fr:0.0'
+
+
+####################################################
+# Liste des machines pour les constructions SALOME #
+####################################################
+machines:
+[
+    {
+        name : "CO6.4 virtuelle"
+        host : isv20844
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+
+    # nouveau master CENTOS6.4 LGLS situe dans le bureau de Gilles
+    {
+        name : "CO6.4 physique"
+        host : is212800
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+
+    # OP 17/07/2017 machine inutilisee pour les constructions SALOME
+    #               car packages manquants - Attente VM master CO7
+    {
+        name : "CO7.3 virtuelle"
+        host : isv20845
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+
+    # OP 17/07/2017 machine Christian
+    {
+        name : "CO7.3 Christian"
+        host : is231761
+        user : salome
+        sat_path : '/volatile/salome/salomeTools-5-jobs'
+    }
+
+    # OP 22/12/2017 machine Alexandre qui lance la crontab
+    {
+        name : "CO7.3 physique A"
+        host : is228818
+        user : salome
+        sat_path : '/volatile/salome/salomeTools-5-jobs'
+    }
+
+    # OP 04/07/2018 machine Clarisse 
+    {
+        name : "CO7.3 Clarisse"
+        host : is221560
+        user : salome
+        sat_path : '/volatile/home/salome/salomeTools-5-jobs'
+    }
+
+    {
+        name : "DB07 virtuelle"
+        host : isv20847
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+
+    {
+        name : "DB08 virtuelle"
+        host : isv20848
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+
+    # OP 22/12/2017 Utilisee pour les constructions CO7
+    #               en attendant VM infogeree
+    {
+        name : "CO7.4 physique S"
+        host : is234638
+        user : salome
+        sat_path : '/volatile/salome/salomeTools-5-jobs'
+    }
+
+# 07/03/2018 AC Suppression de la FD18 en vue de la remplacer par FD26
+#    {
+#        name : "FD18 virtuelle"
+#        host : isv20852
+#        user : salome
+#        sat_path : '/export/home/salome/salomeTools-5-jobs'
+#    }
+
+    {
+        name : "FD20 virtuelle"
+        host : isv20849
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+
+# OP 22/12/2017 Supprimee car arretee visiblement - utilisee pour packages
+#    {
+#        name : "FD20 physique"
+#        host : is228817
+#        user : salome
+#        sat_path : '/export/home/salome/salomeTools-5-jobs'
+#    }
+
+    {
+        name : "FD22 virtuelle"
+        host : isv20850
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+
+# OP 19/05/2017 Artifact 8628 : le repertoire local n'est pas bon
+#                               et le montage de /volatile/home/salome
+#                               n'est pas automatique
+#    {
+#        name : "DB08 physique"
+#        host : is223287
+#        user : salome
+#        sat_path : '/export/home/salome/salomeTools-5-jobs'
+#    }
+
+    {
+        name : "FD24 virtuelle"
+        host : isv20843
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+
+    {
+        name : "UB14.04 virtuelle"
+        host : isv20851
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+
+    # OP 22/12/2017 Utilisee en attendant VM master UB16.04
+    {
+        name : "UB16.04 physique" 
+        host : is232975
+        user : salome
+        sat_path : '/volatile/home/salome/salomeTools-5-jobs'
+    }
+
+# AC 22/03/2018 Remplacee par VM FD26
+#    {
+#        name : "FD26 physique STMF"
+#        host : is221714
+#        user : salome
+#        sat_path : '/export/home/salome/salomeTools-5-jobs'
+#    }
+
+# AC 22/03/2018 Ajout de la machine virtuelle FD26
+#               (en remplacement de celle physique)
+    {
+        name : "FD26 virtuelle"
+        host : isv20852
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+]
+
+
+##########################
+# Liste des applications #
+##########################
+
+# Versions SALOME master (future V9)
+salome_master             : "SALOME-master"
+salome_master_native      : "SALOME-master-native"
+salome_master_test        : "SALOME-master_test"
+salome_master_native_test : "SALOME-master-native_test"
+
+# Versions SALOME 8.5.0
+# TA 16-04-2018 Ajout de SHAPER dans SALOME avec l'appli SALOME-S
+salome_8_5_0              : "SALOME-8.5.0"
+salome_8_5_0_shaper       : "SALOME-8.5.0-S"
+salome_8_5_0_native       : "SALOME-8.5.0-native"
+salome_8_5_0_MPI          : "SALOME-8.5.0-MPI"
+salome_8_5_0_test         : "SALOME-8.5.0_test"
+salome_8_5_0_shaper_test  : "SALOME-8.5.0-S_test"
+salome_8_5_0_native_test  : "SALOME-8.5.0-native_test"
+salome_8_5_0_MPI_test     : "SALOME-8.5.0-MPI_test"
+archives_8_5_0            : "Archives-8.5.0"
+archives_8_5_0_shaper     : "Archives-8.5.0-S"
+archives_8_5_0_native     : "Archives-8.5.0-native"
+archives_8_5_0_MPI        : "Archives-8.5.0-MPI"
+archives_8_5_0_SRC        : "Archives-8.5.0-SRC"
+archives_8_5_0_shaper_SRC : "Archives-8.5.0-S-SRC"
+archives_8_5_0_native_SRC : "Archives-8.5.0-native-SRC"
+archives_8_5_0_MPI_SRC    : "Archives-8.5.0-MPI-SRC"
+
+# Versions SALOME 8.4.0
+salome_8_4_0              : "SALOME-8.4.0"
+salome_8_4_0_native       : "SALOME-8.4.0-native"
+salome_8_4_0_MPI          : "SALOME-8.4.0-MPI"
+salome_8_4_0_test         : "SALOME-8.4.0_test"
+archives_8_4_0            : "Archives-8.4.0"
+archives_8_4_0_SRC        : "Archives-8.4.0-SRC"
+
+# Versions SALOME anciennes
+salome_7_8_2              : "SALOME-7.8.2"
+salome_6_6_0              : "SALOME-6.6.0"
+
+# Versions MEDCOUPLING master
+# OP 04/07/2018 Comme la master SALOME est relative a la V9,
+#               que fait-on pour MEDCOUPLING master ?
+medcoupling               : "MEDCOUPLING"
+medcoupling_native        : "MEDCOUPLING-native"
+medcoupling_micro         : "MEDCOUPLING-Micro"
+medcoupling_mpi           : "MEDCOUPLING-MPI"
+
+# TA 21/03/2018 Ajout MEDCOUPLING-8.5.0
+medcoupling_8_5_0         : "MEDCOUPLING-8.5.0"
+
+# OP 19/10/2017 Ajout MEDCOUPLING-8.4.0
+medcoupling_8_4_0         : "MEDCOUPLING-8.4.0"
+
+medcoupling_7_8_2         : "MEDCOUPLING-7.8.2"
+
+# Applications
+alamos_7_8_0              : "ALAMOS-7.8.0-master"  
+coreflows                 : "COREFLOWS"
+corpus_2_0                : "CORPUS-2.0"
+corpus_archives           : "CORPUS-ARCHIVES"
+formation                 : "FORMATION"
+matix                     : "MATIX"
+monte_carlo               : "MONTE-CARLO"
+oscar                     : "OSCAR"
+ppgp_1_2beta              : "PPGP-1.2beta-7.8.0"
+
+# AC 30/01/2018 Ajout de SHAPER-3.0.0 qui remplace respectivement
+#               SHAPER 2.9.1, 2.10.0 et 2.10.1
+shaper_3_00               : "SHAPER-3.0.0"
+
+# OP 31/07/2017 Ajout de SHAPER-master sur CO7 et UB16
+shaper_master             : "SHAPER-master"
+
+tutorial_coupling_782     : "TUTORIAL_COUPLING-7.8.2"
+tutorial_coupling_master  : "TUTORIAL_COUPLING-master"
+wprocess                  : "WPROCESS"
+nuresim_2_1               : "NURESIM-2.1"
+
+
+
+jobs :
+[
+    ########################################################################### 
+    ############################## CLEAN DU VENDREDI ##########################
+    ###########################################################################
+    {
+        name : 'CLEAN'
+        when : [$FRIDAY]
+        application : "CLEAN"
+        machine : ["CO6.4 virtuelle", "CO6.4 physique", "CO7.4 physique S",
+                   "DB07 virtuelle", "DB08 virtuelle", "FD20 virtuelle",
+                   "FD22 virtuelle", "FD24 virtuelle", "FD26 virtuelle",
+                   "UB14.04 virtuelle", "UB16.04 physique"]
+        board : "CLEAN ALL"
+        timeout : 10 * $h
+        commands :
+        [
+            # Versions SALOME
+            # OP 19/10/2017 Clean des archives SALOME realise autrement
+
+            'sat clean ' + $salome_master  + ' --all'
+            'sat clean ' + $salome_master_native  + ' --all'
+
+            #'sat clean ' + $salome_8_5_0  + ' --all'
+            'sat clean ' + $salome_8_5_0_shaper  + ' --all'
+            'sat clean ' + $salome_8_5_0_native  + ' --all'
+            'sat clean ' + $salome_8_5_0_MPI  + ' --all'
+
+            'sat clean ' + $salome_8_4_0  + ' --all'
+            'sat clean ' + $salome_8_4_0_native  + ' --all'
+            'sat clean ' + $salome_8_4_0_MPI  + ' --all'
+
+            #'sat clean ' + $salome_7_8_2  + ' --all'
+            #'sat clean ' + $salome_6_6_0  + ' --all'
+
+            # Versions MEDCOUPLING
+            'sat clean ' + $medcoupling + ' --all'
+            'sat clean ' + $medcoupling_native + ' --all'
+            'sat clean ' + $medcoupling_micro + ' --all'
+            'sat clean ' + $medcoupling_mpi + ' --all'
+
+# OP 04/07/2018 Ajout MEDCOUPLING 8.5.0
+            'sat clean ' + $medcoupling_8_5_0 + ' --all'
+
+# OP 19/10/2017 Ajout MEDCOUPLING 8.4.0
+            'sat clean ' + $medcoupling_8_4_0 + ' --all'
+
+            'sat clean ' + $medcoupling_7_8_2 + ' --all'
+
+            # Applications
+            # OP 03/08/2017 applications suivantes pas encore operationnelles :
+            # - COREFLOWS
+            # - FORMATION
+            # - MATIX
+            # - MONTE-CARLO
+            # - OSCAR
+            # - WPROCESS
+            'sat clean ' + $alamos_7_8_0 + ' --all'
+            #'sat clean ' + $coreflows + ' --all'
+            'sat clean ' + $corpus_2_0 + ' --all'
+            'sat clean ' + $corpus_archives + ' --all'
+            #'sat clean ' + $formation + ' --all'
+            #'sat clean ' + $matix + ' --all'
+            #'sat clean ' + $monte_carlo + ' --all'
+            #'sat clean ' + $oscar + ' --all'
+            'sat clean ' + $ppgp_1_2beta + ' --all'
+
+            'sat clean ' + $shaper_3_00 + ' --all'
+            'sat clean ' + $shaper_master + ' --all'
+
+            'sat clean ' + $tutorial_coupling_782 + ' --all'
+            'sat clean ' + $tutorial_coupling_master + ' --all'
+            #'sat clean ' + $wprocess + ' --all'
+            'sat clean ' + $nuresim_2_1 + ' --all'
+        ]
+    }
+
+
+    ##############################################################
+    ################# SALOME master ##############################
+    ##############################################################
+
+
+
+    #####################################################################
+    ################# SALOME master native ##############################
+    #####################################################################
+
+    
+
+    #############################################################
+    ################# SALOME master test ########################
+    #############################################################
+    
+
+
+    #############################################################
+    ################# SALOME master native test #################
+    #############################################################
+
+
+
+    #############################################################
+    ################# SALOME 8.5.0 ##############################
+    #############################################################
+
+
+
+    #############################################################
+    ################# SALOME Shaper 8.5.0 #######################
+    #############################################################
+
+
+
+    #####################################################################
+    ################# SALOME 8.5.0 native ###############################
+    #####################################################################
+    
+
+
+    #################################################################
+    ################# SALOME 8.5.0 MPI ##############################
+    #################################################################
+    {
+        name : 'SALOME 8.5.0 MPI CO6.4'
+        when : [$FRIDAY]
+        application : $salome_8_5_0_MPI
+        machine : "CO6.4 virtuelle"
+        board : "SALOME"
+        timeout : 12 * $h
+        prefix : "scl enable devtoolset-2"
+# OP 24/05/2017 Suite aux problemes de blocage sur les checks des modules
+#               GEOM et SMESH, on supprime les checks
+        commands :
+        [
+            # TA 19-06-2018 : On garde le clean total de la version MPI tant que
+            #  la construction ne se passe pas sans probleme
+            'sat clean ' + $application + ' --all'
+            'sat prepare ' + $application + ' --force_patch -f'
+            'sat compile ' + $application + ' --clean_build_after'
+            'sat launcher ' + $application
+            'sat launcher ' + $application + ' --use_mesa -n salome_mesa'
+            'mv /export/home/salome/schung/llvm-3.9.1_moved /export/home/salome/schung/llvm-3.9.1'
+            'mv /export/home/salome/schung/mesa-13.0.6-gallium_moved /export/home/salome/schung/mesa-13.0.6-gallium'
+            'sat test ' + $application + ' --display :0'
+            'mv /export/home/salome/schung/mesa-13.0.6-gallium /export/home/salome/schung/mesa-13.0.6-gallium_moved'
+            'mv /export/home/salome/schung/llvm-3.9.1 /export/home/salome/schung/llvm-3.9.1_moved'
+            'sat package ' + $application + ' --binaries --sources --add_files /data/tmpsalome/salome/targz/SALOME-V8/SALOME-8.5.0/SALOME_8_5_0_Release_Notes.pdf,/home/salome/SPN_PRIVATE/SAT5/MAINTENANCE/dependances_salome/co6_dep_sys_rpms.txt'
+            'sat package ' + $application + ' --sources --with_vcs'
+        ]
+    }
+
+
+    #############################################################
+    ################# SALOME 8.5.0 test #########################
+    #############################################################
+
+
+
+    #############################################################
+    ################# SALOME 8.5.0 shaper test ##################
+    #############################################################
+
+
+
+    #############################################################
+    ################# SALOME 8.5.0 native test ##################
+    #############################################################
+
+
+
+    #############################################################
+    ################# SALOME 8.5.0 MPI test #####################
+    #############################################################
+    {
+        name : 'SALOME 8.5.0 MPI test CO6.4'
+        when : [$FRIDAY]
+        application : $salome_8_5_0_MPI_test
+        prefix : "scl enable devtoolset-2"
+        machine : ["CO6.4 virtuelle"]
+        board : "SALOME"
+        timeout : 3 * $h
+        commands :
+        [
+            'sat application ' + $salome_8_5_0_MPI
+            '/export/home/salome/SALOME-8.5.0-MPI-CO6/salome test -E "KERNEL_Launcher|MEDREADER"'
+            'export DISPLAY=:0 ; /export/home/salome/SALOME-8.5.0-MPI-CO6/salome_mesa test -R MEDREADER'
+        ]
+    }
+
+
+    ###############################################################
+    ################# ARCHIVES SALOME 8.5.0 #######################
+    ###############################################################
+
+
+
+    ###############################################################
+    ################# ARCHIVES SALOME 8.5.0 Shaper ################
+    ###############################################################
+
+
+
+    ###############################################################
+    ################# ARCHIVES SALOME 8.5.0 native ################
+    ###############################################################
+
+
+
+    ###############################################################
+    ################# ARCHIVES SALOME 8.5.0 MPI ###################
+    ###############################################################
+    {
+        name : 'ARCHIVE 8.5.0 MPI CO6.4'
+        when : [$FRIDAY]
+        application : $archives_8_5_0_MPI
+        machine : "CO6.4 virtuelle"
+        board : "SALOME"
+        timeout : 3 * $h
+        cd_wd : "cd /export/home/salome"
+        commands :
+        [
+#           OP 04-07-2018 : On garde le dossier Test_Archives pour ne pas
+#                           effacer le package du job ARCHIVE 8.5.0 CO6
+#            $cd_wd + '; if [ -d Test_Archives ];then rm -rf  Test_Archives; fi'
+            $cd_wd + '; if [ ! -d Test_Archives ];then mkdir Test_Archives; fi; cd Test_Archives; cp /export/home/salome/SALOME-8.5.0-MPI-CO6/PACKAGE/SALOME-8.5.0-MPI-CO6-SRC.tgz .'
+            $cd_wd + '/Test_Archives; if [ -d SALOME-8.5.0-MPI-CO6-SRC ];then rm -rf SALOME-8.5.0-MPI-CO6-SRC ; fi; tar xfz SALOME-8.5.0-MPI-CO6-SRC.tgz'
+            'mv /export/home/salome/schung/llvm-3.9.1_moved /export/home/salome/schung/llvm-3.9.1'
+            'mv /export/home/salome/schung/mesa-13.0.6-gallium_moved /export/home/salome/schung/mesa-13.0.6-gallium'
+            'sat test SALOME-8.5.0-MPI -l /export/home/salome/Test_Archives/SALOME-8.5.0-MPI-CO6-SRC/salome --display :0'
+            'mv /export/home/salome/schung/mesa-13.0.6-gallium /export/home/salome/schung/mesa-13.0.6-gallium_moved'
+            'mv /export/home/salome/schung/llvm-3.9.1 /export/home/salome/schung/llvm-3.9.1_moved'
+        ]
+    }
+
+
+    ###############################################################
+    ######## ARCHIVES SALOME 8.5.0 : recompilation SOURCES ########
+    #   doit etre realise apres les jobs ARCHIVES SALOME 8.5.0    #
+    ###############################################################
+
+
+
+    ########################################################################
+    ######## ARCHIVES SALOME 8.5.0 Shaper : recompilation SOURCES ##########
+    ######## doit etre realise apres les jobs ARCHIVES SALOME 8.5.0 Shaper #
+    ########################################################################
+
+
+
+    ########################################################################
+    ######## ARCHIVES SALOME 8.5.0 native : recompilation SOURCES ##########
+    ######## doit etre realise apres les jobs ARCHIVES SALOME 8.5.0 native #
+    ########################################################################
+
+
+
+    #####################################################################
+    ######## ARCHIVES SALOME 8.5.0 MPI : recompilation SOURCES ##########
+    ######## doit etre realise apres les jobs ARCHIVES SALOME 8.5.0 MPI #
+    #####################################################################
+    {
+        name : 'ARCHIVE 8.5.0 MPI CO6.4 SRC'
+        when : [$FRIDAY]
+        application : $archives_8_5_0_MPI_SRC
+        prefix : "scl enable devtoolset-2"
+        machine : "CO6.4 virtuelle"
+        board : "SALOME"
+        timeout : 8 * $h
+        sat_arch : "/export/home/salome/Test_Archives/SALOME-8.5.0-MPI-CO6-SRC/salomeTools/sat "
+        sat_appli : $salome_8_5_0_MPI
+        commands :
+        [
+            $sat_arch + 'prepare ' + $sat_appli
+            $sat_arch + 'compile ' + $sat_appli + ' --check --clean_build_after'
+            $sat_arch + 'launcher ' + $sat_appli
+            'mv /export/home/salome/schung/llvm-3.9.1_moved /export/home/salome/schung/llvm-3.9.1'
+            'mv /export/home/salome/schung/mesa-13.0.6-gallium_moved /export/home/salome/schung/mesa-13.0.6-gallium'
+            'sat test ' + $sat_appli + ' -l /export/home/salome/Test_Archives/SALOME-8.5.0-MPI-CO6-SRC/salome --display :0'
+            'mv /export/home/salome/schung/mesa-13.0.6-gallium /export/home/salome/schung/mesa-13.0.6-gallium_moved'
+            'mv /export/home/salome/schung/llvm-3.9.1 /export/home/salome/schung/llvm-3.9.1_moved'
+        ]
+    }
+
+
+    #############################################################
+    ################# SALOME 8.4.0 ##############################
+    #############################################################
+
+
+
+    #####################################################################
+    ################# SALOME 8.4.0 native ###############################
+    #####################################################################
+    
+
+
+    #################################################################
+    ################# SALOME 8.4.0 MPI ##############################
+    #################################################################
+
+ 
+
+    #############################################################
+    ################# SALOME 8.4.0 test #########################
+    #############################################################
+
+
+
+    ###############################################################
+    ################# ARCHIVES SALOME 8.4.0 #######################
+    ###############################################################
+
+
+
+    ###############################################################
+    ######## ARCHIVES SALOME 8.4.0 : recompilation SOURCES ########
+    #   doit etre realise apres les jobs ARCHIVES SALOME 8.4.0    #
+    ###############################################################
+
+
+
+    #############################################################
+    ################# SALOME 7.8.2 ##############################
+    #############################################################
+
+
+    
+    #############################################################
+    ################# SALOME 6.6.0 ##############################
+    #############################################################
+
+
+    
+    ###################################################################
+    ################# MEDCOUPLING master ##############################
+    ###################################################################
+
+    
+
+    ###################################################################
+    ################# MEDCOUPLING native ##############################
+    ###################################################################
+
+    
+
+    ##################################################################
+    ################# MEDCOUPLING Micro ##############################
+    ##################################################################
+
+    
+    
+    ######################################################################
+    ################# MEDCOUPLING MPI Metis ##############################
+    ######################################################################
+
+
+
+    ##################################################################
+    ################# MEDCOUPLING 8.5.0 ##############################
+    ##################################################################
+
+
+
+    ##################################################################
+    ################# MEDCOUPLING 8.4.0 ##############################
+    ##################################################################
+
+
+    
+    ##################################################################
+    ################# MEDCOUPLING 7.8.2 ##############################
+    ##################################################################
+
+
+
+    ######################################################################
+    #################  ALAMOS-7.8.0-master  ##############################
+    ######################################################################
+    {
+        name : 'ALAMOS 7.8.0 master CO6.4'
+        when : [$FRIDAY]
+        application : $alamos_7_8_0
+        prefix : "scl enable devtoolset-2"
+        machine : "CO6.4 virtuelle"
+        board : "APPLICATIONS"
+        timeout : 10 * $h
+        commands :
+        [
+            # AC 15-05-2018 Ajout de l'option -f au prepare pour forcer le patch au
+            # cas ou les sources n'ont pas ete nettoyees
+            'sat prepare ' + $application + ' --force_patch -f'
+            'sat compile ' + $application + ' --check --clean_build_after'
+            'sat launcher ' + $application
+            # OP 03/08/2017 pas de tests pour l'instant,
+            #               on fait juste un make test
+            #'mv /export/home/salome/schung/llvm-3.9.1_moved /export/home/salome/schung/llvm-3.9.1'
+            #'mv /export/home/salome/schung/mesa-13.0.6-gallium_moved /export/home/salome/schung/mesa-13.0.6-gallium'
+            #'sat test ' + $application + ' --display :0'
+            #'mv /export/home/salome/schung/mesa-13.0.6-gallium /export/home/salome/schung/mesa-13.0.6-gallium_moved'
+            #'mv /export/home/salome/schung/llvm-3.9.1 /export/home/salome/schung/llvm-3.9.1_moved'
+            'sat package ' + $application + ' --binaries --sources'
+            'sat package ' + $application + ' --sources --with_vcs'
+        ]
+    }
+
+    {
+        name : 'ALAMOS 7.8.0 master DB08'
+        when : [$FRIDAY]
+        application : $alamos_7_8_0
+        machine : "DB08 virtuelle"
+        board : "APPLICATIONS"
+        timeout : 10 * $h
+        commands :
+        [
+            # AC 15-05-2018 Ajout de l'option -f au prepare pour forcer le patch au
+            # cas ou les sources n'ont pas ete nettoyees
+            'sat prepare ' + $application + ' --force_patch -f'
+            'sat compile ' + $application + ' --check --clean_build_after'
+            'sat launcher ' + $application
+            # OP 03/08/2017 pas de tests pour l'instant,
+            #               on fait juste un make test
+            #'sat test ' + $application + ' --display ' + $display
+            'sat package ' + $application + ' --binaries --sources'
+            'sat package ' + $application + ' --sources --with_vcs'
+        ]
+    }
+
+
+    ######################################################################
+    #################  Archives ALAMOS 7.8.0_V7_dev  #####################
+    ######################################################################
+
+    # OP 04/08/2017 Voir si on ajoute des tests d'archives ALAMOS ???
+    
+    
+    ############################################################
+    #################  COREFLOWS  ##############################
+    ############################################################
+
+    # OP 18/07/2017 A mettre en place :
+    #               - Pour CO6.4, prefix inutile sinon CDMATH ne compile pas
+    #               - Voir quelles sont les taches a lancer
+    #               - Attention aux manips mesa avant les tests
+#    {
+#        name : 'COREFLOWS 7.8 CO+DB08+FD18+UB14'
+#        application : $coreflows
+#        machine : [["CO6.4 virtuelle", $FRIDAY], ["CO7.4 physique S", $FRIDAY],
+#                   ["DB08 virtuelle", $WEDNESDAY],
+#                   ["FD18 virtuelle", $THURSDAY],
+#                   ["UB14.04 virtuelle", $FRIDAY]]
+#        board : "APPLICATIONS"
+#        timeout : 10 * $h
+#        commands :
+#        [
+#            'sat prepare ' + $application
+#            'sat compile ' + $application + ' --check --clean_build_after'
+#            'sat launcher ' + $application
+#            'sat test ' + $application + ' --display :0'
+#            'sat package ' + $application + ' --binaries --sources'
+#            'sat package ' + $application + ' --sources --with_vcs'
+#        ]
+#    }
+    
+ 
+    #############################################################
+    #################  CORPUS 2.0  ##############################
+    #############################################################
+    {
+        name : 'CORPUS 2.0 CO6'
+        application : $corpus_2_0
+        machine : [["CO6.4 virtuelle", $FRIDAY]]
+        board : "APPLICATIONS"
+        timeout : 8 * $h
+        commands :
+        [
+            'sat clean ' + $application + ' --install --build --properties corpus:yes'
+            'sat clean ' + $application + ' --install --build --properties is_SALOME_module:yes'
+            'sat prepare ' + $application
+            'sat compile ' + $application
+            'sat generate ' + $application
+            'sat application ' + $application
+            'mv /export/home/salome/schung/llvm-3.9.1_moved /export/home/salome/schung/llvm-3.9.1'
+            'mv /export/home/salome/schung/mesa-13.0.6-gallium_moved /export/home/salome/schung/mesa-13.0.6-gallium'
+            'sat test ' + $application + ' --display :0'
+            'mv /export/home/salome/schung/mesa-13.0.6-gallium /export/home/salome/schung/mesa-13.0.6-gallium_moved'
+            'mv /export/home/salome/schung/llvm-3.9.1 /export/home/salome/schung/llvm-3.9.1_moved'
+            'sat package ' + $application + ' --binaries --sources --with_vcs'
+        ]
+    }
+
+
+    #############################################################
+    ################ ARCHIVES CORPUS 2.0  #######################
+    #############################################################
+
+    {
+        name : 'ARCHIVE CORPUS 2.0 CO6.4'
+        when : [$FRIDAY]
+        application : $corpus_archives
+        machine : "CO6.4 physique"
+        board : "APPLICATIONS"
+        timeout : 2 * $h
+        cd_wd : "cd /export/home/salome"
+        sat_appli : $corpus_2_0
+        commands :
+        [
+            $cd_wd + '; if [ -d Test_Archives ];then rm -rf  Test_Archives ; fi'
+            $cd_wd + '; mkdir Test_Archives; cd Test_Archives; scp isv20844:/export/home/salome/CORPUS-2.0-CO6/PACKAGE/CORPUS-2.0-CO6-SRC-VCS.tgz .'
+            $cd_wd + '/Test_Archives; if [ -d CORPUS-2.0-CO6-SRC-VCS ];then rm -rf CORPUS-2.0-CO6-SRC-VCS ; fi; tar xfz CORPUS-2.0-CO6-SRC-VCS.tgz'
+            $cd_wd + '/Test_Archives/CORPUS-2.0-CO6-SRC-VCS; ./install_bin.sh'  
+            $cd_wd + '/Test_Archives/CORPUS-2.0-CO6-SRC-VCS; ./sat prepare ' + $sat_appli  
+            $cd_wd + '/Test_Archives/CORPUS-2.0-CO6-SRC-VCS; ./sat compile ' + $sat_appli + ' --clean_all -p CRONOSCPP'  
+            $cd_wd + '/Test_Archives/CORPUS-2.0-CO6-SRC-VCS; ./sat environ ' + $sat_appli  
+            $cd_wd + '/Test_Archives/CORPUS-2.0-CO6-SRC-VCS; ./sat application ' + $sat_appli  
+            # OP 22/12/2017 Tests non lances car pas de display local
+            #'mv /export/home/salome/schung/llvm-3.9.1_moved /export/home/salome/schung/llvm-3.9.1'
+            #'mv /export/home/salome/schung/mesa-13.0.6-gallium_moved /export/home/salome/schung/mesa-13.0.6-gallium'
+            #'sat test ' + $sat_appli + ' -l /export/home/salome/Test_Archives/CORPUS-2.0-CO6-SRC-VCS/APPLI/runAppli --display :0'
+            #'mv /export/home/salome/schung/mesa-13.0.6-gallium /export/home/salome/schung/mesa-13.0.6-gallium_moved'
+            #'mv /export/home/salome/schung/llvm-3.9.1 /export/home/salome/schung/llvm-3.9.1_moved'
+        ]
+    }
+
+    
+    ############################################################
+    #################  FORMATION  ##############################
+    ############################################################
+
+    # OP 18/07/2017 A mettre en place :
+    # application : $formation
+    # machine : [["FD18 virtuelle", $FRIDAY], ["FD24 virtuelle", $WEDNESDAY]]
+    
+    
+    ########################################################
+    #################  MATIX  ##############################
+    ########################################################
+
+    # OP 18/07/2017 A mettre en place :
+    # application : $matix
+    
+
+    ##############################################################
+    #################  MONTE-CARLO  ##############################
+    ##############################################################
+
+    # OP 18/07/2017 A mettre en place :
+    # application : $monte_carlo
+    # machine : [["CO6.4 virtuelle", $FRIDAY], ["CO7.4 physique S", $THURSDAY]]
+    # Pour CO6.4, voir si prefix necessaire ou pas
+    
+
+    ########################################################
+    #################  OSCAR  ##############################
+    ########################################################
+
+    # OP 18/07/2017 A mettre en place :
+    # application : $oscar
+    
+
+    #####################################################
+    ################# PPGP ##############################
+    #####################################################
+    {
+        name : 'PPGP CO6+FD20'
+        application : $ppgp_1_2beta
+        machine : [["CO6.4 virtuelle", $FRIDAY],
+                   ["FD20 virtuelle", $FRIDAY]]
+        board : "APPLICATIONS"
+        timeout : 10 * $h
+        commands :
+        [
+            'sat clean ' + $application + ' --install --build --properties is_SALOME_module:yes'
+            'sat prepare ' + $application
+            'sat compile ' + $application
+            'sat launcher ' + $application
+            'sat package ' + $application + ' --binaries --sources'
+            'sat package ' + $application + ' --sources --with_vcs'
+        ]
+    }
+
+
+    #################################################################
+    ################# SHAPER 3.0.0 ##################################
+    #################################################################
+
+
+
+    ##############################################################
+    ################# SHAPER master ##############################
+    ##############################################################
+
+
+
+    ####################################################################
+    ###########  TUTORIAL COUPLAGE 7.8.2  ##############################
+    ####################################################################
+
+
+
+    #####################################################################
+    ###########  TUTORIAL COUPLAGE master  ##############################
+    #####################################################################
+
+    
+    
+    ###########################################################
+    #################  WPROCESS  ##############################
+    ###########################################################
+
+    # OP 18/07/2017 A mettre en place :
+    # application : $wprocess
+
+]
+

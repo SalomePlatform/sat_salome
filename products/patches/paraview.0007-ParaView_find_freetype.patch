@@ -1,0 +1,15 @@
+diff -Naur ParaView-5.8.0_SRC_orig/VTK/CMake/FindFreetype.cmake ParaView-5.8.0_SRC_modif/VTK/CMake/FindFreetype.cmake
+--- ParaView-5.8.0_SRC_orig/VTK/CMake/FindFreetype.cmake	2020-03-23 13:31:26.000000000 +0300
++++ ParaView-5.8.0_SRC_modif/VTK/CMake/FindFreetype.cmake	2020-04-10 22:27:24.194525121 +0300
+@@ -63,6 +63,11 @@
+ # I'm going to attempt to cut out the middleman and hope
+ # everything still works.
+ 
++SET(FREETYPE_ROOT_DIR $ENV{FREETYPE_ROOT_DIR} CACHE PATH "Path to the FreeType.")
++IF(FREETYPE_ROOT_DIR)
++  LIST(APPEND CMAKE_PREFIX_PATH "${FREETYPE_ROOT_DIR}")
++ENDIF(FREETYPE_ROOT_DIR)
++
+ set(FREETYPE_FIND_ARGS
+   HINTS
+     ENV FREETYPE_DIR

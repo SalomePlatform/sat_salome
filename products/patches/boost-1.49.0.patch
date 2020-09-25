@@ -1,0 +1,260 @@
+diff -pruN boost-1.49.0_orig/boost/thread/xtime.hpp boost-1.49.0_new/boost/thread/xtime.hpp
+--- boost-1.49.0_orig/boost/thread/xtime.hpp	2008-06-18 15:01:08.000000000 +0200
++++ boost-1.49.0_new/boost/thread/xtime.hpp	2013-03-07 14:02:31.518463216 +0100
+@@ -20,7 +20,7 @@ namespace boost {
+ 
+ enum xtime_clock_types
+ {
+-    TIME_UTC=1
++    TIME_UTC_=1
+ //    TIME_TAI,
+ //    TIME_MONOTONIC,
+ //    TIME_PROCESS,
+@@ -68,7 +68,7 @@ inline xtime get_xtime(boost::system_tim
+ 
+ inline int xtime_get(struct xtime* xtp, int clock_type)
+ {
+-    if (clock_type == TIME_UTC)
++    if (clock_type == TIME_UTC_)
+     {
+         *xtp=get_xtime(get_system_time());
+         return clock_type;
+diff -pruN boost-1.49.0_orig/libs/container/test/util.hpp boost-1.49.0_new/libs/container/test/util.hpp
+--- boost-1.49.0_orig/libs/container/test/util.hpp	2011-08-26 20:26:44.000000000 +0200
++++ boost-1.49.0_new/libs/container/test/util.hpp	2013-03-07 14:13:49.056883734 +0100
+@@ -71,7 +71,7 @@ inline bool in_range(const boost::posix_
+ boost::xtime xsecs(int secs)
+ {
+    boost::xtime ret;
+-   boost::xtime_get(&ret, boost::TIME_UTC);
++   boost::xtime_get(&ret, boost::TIME_UTC_);
+    ret.sec += secs;
+    return ret;
+ }
+diff -pruN boost-1.49.0_orig/libs/interprocess/test/condition_test_template.hpp boost-1.49.0_new/libs/interprocess/test/condition_test_template.hpp
+--- boost-1.49.0_orig/libs/interprocess/test/condition_test_template.hpp	2011-12-26 18:39:43.000000000 +0100
++++ boost-1.49.0_new/libs/interprocess/test/condition_test_template.hpp	2013-03-07 14:16:06.196328748 +0100
+@@ -47,8 +47,8 @@ inline boost::xtime delay(int secs, int
+     const int NANOSECONDS_PER_MILLISECOND = 1000000;
+ 
+     boost::xtime xt;
+-    int ret = boost::xtime_get(&xt, boost::TIME_UTC);
+-    BOOST_INTERPROCES_CHECK(ret == static_cast<int>(boost::TIME_UTC));(void)ret;
++    int ret = boost::xtime_get(&xt, boost::TIME_UTC_);
++    BOOST_INTERPROCES_CHECK(ret == static_cast<int>(boost::TIME_UTC_));(void)ret;
+     nsecs += xt.nsec;
+     msecs += nsecs / NANOSECONDS_PER_MILLISECOND;
+     secs += msecs / MILLISECONDS_PER_SECOND;
+diff -pruN boost-1.49.0_orig/libs/interprocess/test/util.hpp boost-1.49.0_new/libs/interprocess/test/util.hpp
+--- boost-1.49.0_orig/libs/interprocess/test/util.hpp	2011-12-26 18:39:43.000000000 +0100
++++ boost-1.49.0_new/libs/interprocess/test/util.hpp	2013-03-07 14:15:10.436555867 +0100
+@@ -63,7 +63,7 @@ inline bool in_range(const boost::posix_
+ boost::xtime xsecs(int secs)
+ {
+    boost::xtime ret;
+-   boost::xtime_get(&ret, boost::TIME_UTC);
++   boost::xtime_get(&ret, boost::TIME_UTC_);
+    ret.sec += secs;
+    return ret;
+ }
+diff -pruN boost-1.49.0_orig/libs/spirit/classic/test/grammar_mt_tests.cpp boost-1.49.0_new/libs/spirit/classic/test/grammar_mt_tests.cpp
+--- boost-1.49.0_orig/libs/spirit/classic/test/grammar_mt_tests.cpp	2008-06-22 17:05:38.000000000 +0200
++++ boost-1.49.0_new/libs/spirit/classic/test/grammar_mt_tests.cpp	2013-03-07 14:19:10.475634881 +0100
+@@ -70,7 +70,7 @@ milli_sleep(unsigned long milliseconds)
+ {
+     static long const nanoseconds_per_second = 1000L*1000L*1000L;
+     boost::xtime xt;
+-    boost::xtime_get(&xt, boost::TIME_UTC);
++    boost::xtime_get(&xt, boost::TIME_UTC_);
+     xt.nsec+=1000*1000*milliseconds;
+     while (xt.nsec > nanoseconds_per_second)
+     {
+diff -pruN boost-1.49.0_orig/libs/spirit/classic/test/owi_mt_tests.cpp boost-1.49.0_new/libs/spirit/classic/test/owi_mt_tests.cpp
+--- boost-1.49.0_orig/libs/spirit/classic/test/owi_mt_tests.cpp	2008-06-22 17:05:38.000000000 +0200
++++ boost-1.49.0_new/libs/spirit/classic/test/owi_mt_tests.cpp	2013-03-07 14:19:37.571527875 +0100
+@@ -86,7 +86,7 @@ struct test_task
+             return test_size;
+ 
+         boost::xtime now;
+-        boost::xtime_get(&now, boost::TIME_UTC);
++        boost::xtime_get(&now, boost::TIME_UTC_);
+         unsigned long seconds = now.sec - start_time.sec;
+         if (seconds < 4)
+         {
+@@ -187,7 +187,7 @@ check_not_contained_in(
+ void concurrent_creation_of_objects()
+ {
+     {
+-        boost::xtime_get(&start_time, boost::TIME_UTC);
++        boost::xtime_get(&start_time, boost::TIME_UTC_);
+         boost::thread thread1(callable_ref(test1));
+         boost::thread thread2(callable_ref(test2));
+         boost::thread thread3(callable_ref(test3));
+diff -pruN boost-1.49.0_orig/libs/thread/example/starvephil.cpp boost-1.49.0_new/libs/thread/example/starvephil.cpp
+--- boost-1.49.0_orig/libs/thread/example/starvephil.cpp	2006-09-14 23:51:01.000000000 +0200
++++ boost-1.49.0_new/libs/thread/example/starvephil.cpp	2013-03-07 14:17:48.671959849 +0100
+@@ -50,7 +50,7 @@ public:
+                       << "very hot ..." << std::endl;
+         }
+         boost::xtime xt;
+-        boost::xtime_get(&xt, boost::TIME_UTC);
++        boost::xtime_get(&xt, boost::TIME_UTC_);
+         xt.sec += 3;
+         boost::thread::sleep(xt);
+         m_chickens += value;
+@@ -85,7 +85,7 @@ void chef()
+             std::cout << "(" << clock() << ") Chef: cooking ..." << std::endl;
+         }
+         boost::xtime xt;
+-        boost::xtime_get(&xt, boost::TIME_UTC);
++        boost::xtime_get(&xt, boost::TIME_UTC_);
+         xt.sec += 2;
+         boost::thread::sleep(xt);
+         {
+@@ -111,7 +111,7 @@ struct phil
+             if (m_id > 0)
+             {
+                 boost::xtime xt;
+-                boost::xtime_get(&xt, boost::TIME_UTC);
++                boost::xtime_get(&xt, boost::TIME_UTC_);
+                 xt.sec += 3;
+                 boost::thread::sleep(xt);
+             }
+diff -pruN boost-1.49.0_orig/libs/thread/example/tennis.cpp boost-1.49.0_new/libs/thread/example/tennis.cpp
+--- boost-1.49.0_orig/libs/thread/example/tennis.cpp	2009-10-19 11:18:13.000000000 +0200
++++ boost-1.49.0_new/libs/thread/example/tennis.cpp	2013-03-07 14:18:16.191855733 +0100
+@@ -104,7 +104,7 @@ int main(int argc, char* argv[])
+     boost::thread thrdb(thread_adapter(&player, (void*)PLAYER_B));
+ 
+     boost::xtime xt;
+-    boost::xtime_get(&xt, boost::TIME_UTC);
++    boost::xtime_get(&xt, boost::TIME_UTC_);
+     xt.sec += 1;
+     boost::thread::sleep(xt);
+     {
+diff -pruN boost-1.49.0_orig/libs/thread/example/xtime.cpp boost-1.49.0_new/libs/thread/example/xtime.cpp
+--- boost-1.49.0_orig/libs/thread/example/xtime.cpp	2006-09-14 23:51:01.000000000 +0200
++++ boost-1.49.0_new/libs/thread/example/xtime.cpp	2013-03-07 14:18:44.335741343 +0100
+@@ -10,7 +10,7 @@
+ int main(int argc, char* argv[])
+ {
+     boost::xtime xt;
+-    boost::xtime_get(&xt, boost::TIME_UTC);
++    boost::xtime_get(&xt, boost::TIME_UTC_);
+     xt.sec += 1;
+     boost::thread::sleep(xt); // Sleep for 1 second
+ }
+diff -pruN boost-1.49.0_orig/libs/thread/src/pthread/thread.cpp boost-1.49.0_new/libs/thread/src/pthread/thread.cpp
+--- boost-1.49.0_orig/libs/thread/src/pthread/thread.cpp	2012-01-03 18:31:50.000000000 +0100
++++ boost-1.49.0_new/libs/thread/src/pthread/thread.cpp	2013-03-07 14:17:25.457043685 +0100
+@@ -354,7 +354,7 @@ namespace boost
+                     cond.timed_wait(lock, xt);
+ #   endif
+                     xtime cur;
+-                    xtime_get(&cur, TIME_UTC);
++                    xtime_get(&cur, TIME_UTC_);
+                     if (xtime_cmp(xt, cur) <= 0)
+                         return;
+                 }
+@@ -369,7 +369,7 @@ namespace boost
+             BOOST_VERIFY(!pthread_yield());
+ #   else
+             xtime xt;
+-            xtime_get(&xt, TIME_UTC);
++            xtime_get(&xt, TIME_UTC_);
+             sleep(xt);
+ #   endif
+         }
+diff -pruN boost-1.49.0_orig/libs/thread/src/pthread/timeconv.inl boost-1.49.0_new/libs/thread/src/pthread/timeconv.inl
+--- boost-1.49.0_orig/libs/thread/src/pthread/timeconv.inl	2012-01-03 18:31:50.000000000 +0100
++++ boost-1.49.0_new/libs/thread/src/pthread/timeconv.inl	2013-03-07 14:07:58.805162006 +0100
+@@ -20,8 +20,8 @@ const int NANOSECONDS_PER_MICROSECOND =
+ inline void to_time(int milliseconds, boost::xtime& xt)
+ {
+     int res = 0;
+-    res = boost::xtime_get(&xt, boost::TIME_UTC);
+-    BOOST_ASSERT(res == boost::TIME_UTC); (void)res;
++    res = boost::xtime_get(&xt, boost::TIME_UTC_);
++    BOOST_ASSERT(res == boost::TIME_UTC_); (void)res;
+ 
+     xt.sec += (milliseconds / MILLISECONDS_PER_SECOND);
+     xt.nsec += ((milliseconds % MILLISECONDS_PER_SECOND) *
+@@ -56,8 +56,8 @@ inline void to_timespec_duration(const b
+ {
+     boost::xtime cur;
+     int res = 0;
+-    res = boost::xtime_get(&cur, boost::TIME_UTC);
+-    BOOST_ASSERT(res == boost::TIME_UTC); (void)res;
++    res = boost::xtime_get(&cur, boost::TIME_UTC_);
++    BOOST_ASSERT(res == boost::TIME_UTC_); (void)res;
+ 
+     if (boost::xtime_cmp(xt, cur) <= 0)
+     {
+@@ -87,8 +87,8 @@ inline void to_duration(boost::xtime xt,
+ {
+     boost::xtime cur;
+     int res = 0;
+-    res = boost::xtime_get(&cur, boost::TIME_UTC);
+-    BOOST_ASSERT(res == boost::TIME_UTC); (void)res;
++    res = boost::xtime_get(&cur, boost::TIME_UTC_);
++    BOOST_ASSERT(res == boost::TIME_UTC_); (void)res;
+ 
+     if (boost::xtime_cmp(xt, cur) <= 0)
+         milliseconds = 0;
+@@ -109,8 +109,8 @@ inline void to_microduration(boost::xtim
+ {
+     boost::xtime cur;
+     int res = 0;
+-    res = boost::xtime_get(&cur, boost::TIME_UTC);
+-    BOOST_ASSERT(res == boost::TIME_UTC); (void)res;
++    res = boost::xtime_get(&cur, boost::TIME_UTC_);
++    BOOST_ASSERT(res == boost::TIME_UTC_); (void)res;
+ 
+     if (boost::xtime_cmp(xt, cur) <= 0)
+         microseconds = 0;
+diff -pruN boost-1.49.0_orig/libs/thread/test/test_xtime.cpp boost-1.49.0_new/libs/thread/test/test_xtime.cpp
+--- boost-1.49.0_orig/libs/thread/test/test_xtime.cpp	2012-01-03 18:31:50.000000000 +0100
++++ boost-1.49.0_new/libs/thread/test/test_xtime.cpp	2013-03-07 14:16:32.014227186 +0100
+@@ -17,8 +17,8 @@ void test_xtime_cmp()
+ {
+     boost::xtime xt1, xt2, cur;
+     BOOST_CHECK_EQUAL(
+-        boost::xtime_get(&cur, boost::TIME_UTC),
+-        static_cast<int>(boost::TIME_UTC));
++        boost::xtime_get(&cur, boost::TIME_UTC_),
++        static_cast<int>(boost::TIME_UTC_));
+ 
+     xt1 = xt2 = cur;
+     xt1.nsec -= 1;
+@@ -42,14 +42,14 @@ void test_xtime_get()
+     boost::xtime orig, cur, old;
+     BOOST_CHECK_EQUAL(
+         boost::xtime_get(&orig,
+-            boost::TIME_UTC), static_cast<int>(boost::TIME_UTC));
++            boost::TIME_UTC_), static_cast<int>(boost::TIME_UTC_));
+     old = orig;
+ 
+     for (int x=0; x < 100; ++x)
+     {
+         BOOST_CHECK_EQUAL(
+-            boost::xtime_get(&cur, boost::TIME_UTC),
+-            static_cast<int>(boost::TIME_UTC));
++            boost::xtime_get(&cur, boost::TIME_UTC_),
++            static_cast<int>(boost::TIME_UTC_));
+         BOOST_CHECK(boost::xtime_cmp(cur, orig) >= 0);
+         BOOST_CHECK(boost::xtime_cmp(cur, old) >= 0);
+         old = cur;
+diff -pruN boost-1.49.0_orig/libs/thread/test/util.inl boost-1.49.0_new/libs/thread/test/util.inl
+--- boost-1.49.0_orig/libs/thread/test/util.inl	2008-11-03 23:29:39.000000000 +0100
++++ boost-1.49.0_new/libs/thread/test/util.inl	2013-03-07 14:17:01.047124728 +0100
+@@ -28,8 +28,8 @@ inline boost::xtime delay(int secs, int
+     const int NANOSECONDS_PER_MILLISECOND = 1000000;
+ 
+     boost::xtime xt;
+-    if (boost::TIME_UTC != boost::xtime_get (&xt, boost::TIME_UTC))
+-        BOOST_ERROR ("boost::xtime_get != boost::TIME_UTC");
++    if (boost::TIME_UTC_ != boost::xtime_get (&xt, boost::TIME_UTC_))
++        BOOST_ERROR ("boost::xtime_get != boost::TIME_UTC_");
+ 
+     nsecs += xt.nsec;
+     msecs += nsecs / NANOSECONDS_PER_MILLISECOND;

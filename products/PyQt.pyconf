@@ -1,0 +1,64 @@
+default :
+{
+    name : "PyQt"
+    build_source : "script"
+    compil_script :  $name + $VARS.scriptExtension
+    get_source : "archive"
+    system_info : 
+    {
+        rpm : ["python3-qt5"]
+        rpm_dev : []
+        apt : ["python3-pyqt5"]
+        apt_dev : []
+    }
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : ['Python', 'qt', 'sip']
+    patches : []
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+      incremental : "yes"
+      single_install_dir : "no"
+    }
+}
+
+version_5_6 :
+{
+    compil_script :  "PyQt-5.6" + $VARS.scriptExtension
+}
+
+version_5_7 :
+{
+    compil_script :  "PyQt-5.7" + $VARS.scriptExtension
+}
+
+version_5_9 :
+{
+    compil_script :  "PyQt-5.9" + $VARS.scriptExtension
+    check_install : ["lib/python[23].[0-9]/site-packages/PyQt5/QtGui.so"]
+}
+
+version_5_9_win :
+{
+    check_install : ['lib' + $VARS.sep + 'python3.6' + $VARS.sep + 'site-packages' + $VARS.sep + 'PyQt5' + $VARS.sep + 'QtGui.pyd']
+}
+
+version_5_5_1_to_5_6_0 :
+{
+    compil_script :  "PyQt_5_5_1" + $VARS.scriptExtension
+}
+
+version_4_9_6 :
+{
+    patches : ["patchPyQt496noPhonon.patch"]
+}
+
+version_4_9_1 :
+{
+    patches : ["PyQt-4.9.1.patch"]
+}

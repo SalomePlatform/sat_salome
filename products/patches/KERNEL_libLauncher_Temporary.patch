@@ -1,0 +1,17 @@
+diff -Naur kernel_ori/src/Launcher/CMakeLists.txt kernel_new/src/Launcher/CMakeLists.txt
+--- kernel_ori/src/Launcher/CMakeLists.txt	2018-04-03 16:05:11.248706967 +0200
++++ kernel_new/src/Launcher/CMakeLists.txt	2018-04-03 16:14:49.988153390 +0200
+@@ -79,7 +79,12 @@
+ )
+ 
+ ADD_LIBRARY(Launcher ${Launcher_SOURCES})
+-TARGET_LINK_LIBRARIES(Launcher ResourcesManager ${LIBBATCH_LIBRARIES} ${LIBXML2_LIBS})
++
++# OP 03/04/2018 add the dependency to ${Boost_SYSTEM_LIBRARY}
++#TARGET_LINK_LIBRARIES(Launcher ResourcesManager ${LIBBATCH_LIBRARIES} ${LIBXML2_LIBS})
++TARGET_LINK_LIBRARIES(Launcher ResourcesManager ${LIBBATCH_LIBRARIES} ${LIBXML2_LIBS} ${Boost_SYSTEM_LIBRARY})
++# END OP
++
+ INSTALL(TARGETS Launcher EXPORT ${PROJECT_NAME}TargetGroup DESTINATION ${SALOME_INSTALL_LIBS})
+ 
+ SET(TestLauncher_LIBS

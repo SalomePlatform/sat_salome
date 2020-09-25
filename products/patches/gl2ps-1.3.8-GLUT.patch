@@ -1,0 +1,34 @@
+--- gl2ps-1.3.8_ori/CMakeLists.txt	2012-11-27 20:41:06.000000000 +0100
++++ gl2ps-1.3.8_new/CMakeLists.txt	2017-08-03 15:16:23.254816871 +0200
+@@ -82,11 +82,14 @@ if(OPENGL_FOUND)
+   list(APPEND EXTERNAL_LIBRARIES ${OPENGL_LIBRARIES})
+ endif(OPENGL_FOUND)
+ 
+-find_package(GLUT)
+-if(GLUT_FOUND)
+-  list(APPEND EXTERNAL_INCLUDES ${GLUT_INCLUDE_DIR})
+-  list(APPEND EXTERNAL_LIBRARIES ${GLUT_LIBRARIES})
+-endif(GLUT_FOUND)
++# Add ENABLE_GLUT option
++if(ENABLE_GLUT)
++  find_package(GLUT)
++  if(GLUT_FOUND)
++    list(APPEND EXTERNAL_INCLUDES ${GLUT_INCLUDE_DIR})
++    list(APPEND EXTERNAL_LIBRARIES ${GLUT_LIBRARIES})
++  endif(GLUT_FOUND)
++endif(ENABLE_GLUT)
+ 
+ if(ENABLE_ZLIB)
+   find_package(ZLIB)
+@@ -140,9 +143,9 @@ install(FILES ${CMAKE_SOURCE_DIR}/gl2psT
+ 
+ if(GLUT_FOUND)
+   add_executable(gl2psTest WIN32 gl2psTest.c)
+-  target_link_libraries(gl2psTest lib ${EXTERNAL_LIBRARIES})
++  target_link_libraries(gl2psTest lib ${EXTERNAL_LIBRARIES} -lm)
+   add_executable(gl2psTestSimple WIN32 gl2psTestSimple.c)
+-  target_link_libraries(gl2psTestSimple lib ${EXTERNAL_LIBRARIES})
++  target_link_libraries(gl2psTestSimple lib ${EXTERNAL_LIBRARIES} -lm)
+ endif(GLUT_FOUND)
+ 
+ find_package(LATEX)

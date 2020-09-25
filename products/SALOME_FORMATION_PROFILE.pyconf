@@ -1,0 +1,25 @@
+default :
+{
+    name : "SALOME_FORMATION_PROFILE"
+    build_source : "cmake"
+    get_source : "git"
+    git_info:
+    {
+        repo : "/home/salome/GitRepo/" + $name + ".git"
+        repo_dev : $repo
+    }
+    environ :
+    {
+        launch : {
+                    "SalomeAppConfig" : $install_dir + $VARS.sep + "share" + $VARS.sep + "salome" + $VARS.sep + "resources" + $VARS.sep + "salome_formation_profile"
+                 }
+    }
+    depend : ["KERNEL", "GUI", "Python", "Sphinx", "qt"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        is_SALOME_module : "yes"
+        has_gui : "yes"
+    }
+}

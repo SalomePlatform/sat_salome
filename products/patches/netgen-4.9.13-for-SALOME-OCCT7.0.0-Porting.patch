@@ -1,0 +1,434 @@
+diff -Naur netgen-4.9.13_SRC/libsrc/occ/occgeom.cpp netgen-4.9.13_SRC_new/libsrc/occ/occgeom.cpp
+--- netgen-4.9.13_SRC/libsrc/occ/occgeom.cpp	2016-02-15 09:50:31.000000000 +0300
++++ netgen-4.9.13_SRC_new/libsrc/occ/occgeom.cpp	2016-02-05 16:44:26.000000000 +0300
+@@ -121,7 +121,7 @@
+       double surfacecont = 0;
+ 
+       {
+-         Handle_ShapeBuild_ReShape rebuild = new ShapeBuild_ReShape;
++         Handle(ShapeBuild_ReShape) rebuild = new ShapeBuild_ReShape;
+          rebuild->Apply(shape);
+          for (exp1.Init (shape, TopAbs_EDGE); exp1.More(); exp1.Next())
+          {
+@@ -152,7 +152,7 @@
+          cout << endl << "- repairing faces" << endl;
+ 
+          Handle(ShapeFix_Face) sff;
+-         Handle_ShapeBuild_ReShape rebuild = new ShapeBuild_ReShape;
++         Handle(ShapeBuild_ReShape) rebuild = new ShapeBuild_ReShape;
+          rebuild->Apply(shape);
+ 
+ 
+@@ -209,7 +209,7 @@
+ 
+ 
+       {
+-         Handle_ShapeBuild_ReShape rebuild = new ShapeBuild_ReShape;
++         Handle(ShapeBuild_ReShape) rebuild = new ShapeBuild_ReShape;
+          rebuild->Apply(shape);
+          for (exp1.Init (shape, TopAbs_EDGE); exp1.More(); exp1.Next())
+          {
+@@ -226,7 +226,7 @@
+          cout << endl << "- fixing small edges" << endl;
+ 
+          Handle(ShapeFix_Wire) sfw;
+-         Handle_ShapeBuild_ReShape rebuild = new ShapeBuild_ReShape;
++         Handle(ShapeBuild_ReShape) rebuild = new ShapeBuild_ReShape;
+          rebuild->Apply(shape);
+ 
+ 
+@@ -293,7 +293,7 @@
+ 
+          {
+             BuildFMap();
+-            Handle_ShapeBuild_ReShape rebuild = new ShapeBuild_ReShape;
++            Handle(ShapeBuild_ReShape) rebuild = new ShapeBuild_ReShape;
+             rebuild->Apply(shape);
+ 
+             for (exp1.Init (shape, TopAbs_EDGE); exp1.More(); exp1.Next())
+@@ -321,7 +321,7 @@
+ 
+ 
+          {
+-            Handle_ShapeBuild_ReShape rebuild = new ShapeBuild_ReShape;
++            Handle(ShapeBuild_ReShape) rebuild = new ShapeBuild_ReShape;
+             rebuild->Apply(shape);
+             for (exp1.Init (shape, TopAbs_EDGE); exp1.More(); exp1.Next())
+             {
+@@ -447,7 +447,7 @@
+ 
+ 
+       {
+-         Handle_ShapeBuild_ReShape rebuild = new ShapeBuild_ReShape;
++         Handle(ShapeBuild_ReShape) rebuild = new ShapeBuild_ReShape;
+          rebuild->Apply(shape);
+          for (exp1.Init (shape, TopAbs_EDGE); exp1.More(); exp1.Next())
+          {
+@@ -492,7 +492,7 @@
+                   TopoDS_Solid solid = TopoDS::Solid(exp0.Current());
+                   TopoDS_Solid newsolid = solid;
+                   BRepLib::OrientClosedSolid (newsolid);
+-                  Handle_ShapeBuild_ReShape rebuild = new ShapeBuild_ReShape;
++                  Handle(ShapeBuild_ReShape) rebuild = new ShapeBuild_ReShape;
+                   //		  rebuild->Apply(shape);
+                   rebuild->Replace(solid, newsolid, Standard_False);
+                   TopoDS_Shape newshape = rebuild->Apply(shape, TopAbs_COMPSOLID);//, 1);
+@@ -915,7 +915,7 @@
+             TopoDS_Solid solid = TopoDS::Solid(exp0.Current());
+             TopoDS_Solid newsolid = solid;
+             BRepLib::OrientClosedSolid (newsolid);
+-            Handle_ShapeBuild_ReShape rebuild = new ShapeBuild_ReShape;
++            Handle(ShapeBuild_ReShape) rebuild = new ShapeBuild_ReShape;
+             rebuild->Replace(solid, newsolid, Standard_False);
+ 
+             TopoDS_Shape newshape = rebuild->Apply(shape, TopAbs_SHAPE, 1);
+@@ -1116,10 +1116,10 @@
+       occgeo = new OCCGeometry;
+ 
+       // Initiate a dummy XCAF Application to handle the IGES XCAF Document
+-      static Handle_XCAFApp_Application dummy_app = XCAFApp_Application::GetApplication();
++      static Handle(XCAFApp_Application) dummy_app = XCAFApp_Application::GetApplication();
+ 
+       // Create an XCAF Document to contain the IGES file itself
+-      Handle_TDocStd_Document iges_doc;
++      Handle(TDocStd_Document) iges_doc;
+ 
+       // Check if a IGES File is already open under this handle, if so, close it to prevent
+       // Segmentation Faults when trying to create a new document
+@@ -1146,8 +1146,8 @@
+       reader.Transfer(iges_doc);
+ 
+       // Read in the shape(s) and the colours present in the IGES File
+-      Handle_XCAFDoc_ShapeTool iges_shape_contents = XCAFDoc_DocumentTool::ShapeTool(iges_doc->Main());
+-      Handle_XCAFDoc_ColorTool iges_colour_contents = XCAFDoc_DocumentTool::ColorTool(iges_doc->Main());
++      Handle(XCAFDoc_ShapeTool) iges_shape_contents = XCAFDoc_DocumentTool::ShapeTool(iges_doc->Main());
++      Handle(XCAFDoc_ColorTool) iges_colour_contents = XCAFDoc_DocumentTool::ColorTool(iges_doc->Main());
+ 
+       TDF_LabelSequence iges_shapes;
+       iges_shape_contents->GetShapes(iges_shapes);
+@@ -1194,10 +1194,10 @@
+       occgeo = new OCCGeometry;
+ 
+       // Initiate a dummy XCAF Application to handle the STEP XCAF Document
+-      static Handle_XCAFApp_Application dummy_app = XCAFApp_Application::GetApplication();
++      static Handle(XCAFApp_Application) dummy_app = XCAFApp_Application::GetApplication();
+ 
+       // Create an XCAF Document to contain the STEP file itself
+-      Handle_TDocStd_Document step_doc;
++      Handle(TDocStd_Document) step_doc;
+ 
+       // Check if a STEP File is already open under this handle, if so, close it to prevent
+       // Segmentation Faults when trying to create a new document
+@@ -1224,8 +1224,8 @@
+       reader.Transfer(step_doc);
+ 
+       // Read in the shape(s) and the colours present in the STEP File
+-      Handle_XCAFDoc_ShapeTool step_shape_contents = XCAFDoc_DocumentTool::ShapeTool(step_doc->Main());
+-      Handle_XCAFDoc_ColorTool step_colour_contents = XCAFDoc_DocumentTool::ColorTool(step_doc->Main());
++      Handle(XCAFDoc_ShapeTool) step_shape_contents = XCAFDoc_DocumentTool::ShapeTool(step_doc->Main());
++      Handle(XCAFDoc_ColorTool) step_colour_contents = XCAFDoc_DocumentTool::ColorTool(step_doc->Main());
+ 
+       TDF_LabelSequence step_shapes;
+       step_shape_contents->GetShapes(step_shapes);
+@@ -1278,7 +1278,7 @@
+       // Fixed a bug in the OpenCascade XDE Colour handling when 
+       // opening BREP Files, since BREP Files have no colour data.
+       // Hence, the face_colours Handle needs to be created as a NULL handle.
+-      occgeo->face_colours = Handle_XCAFDoc_ColorTool();
++      occgeo->face_colours = Handle(XCAFDoc_ColorTool)();
+       occgeo->face_colours.Nullify();
+       occgeo->changed = 1;
+       occgeo->BuildFMap();
+diff -Naur netgen-4.9.13_SRC/libsrc/occ/occgeom.hpp netgen-4.9.13_SRC_new/libsrc/occ/occgeom.hpp
+--- netgen-4.9.13_SRC/libsrc/occ/occgeom.hpp	2016-02-15 09:50:31.000000000 +0300
++++ netgen-4.9.13_SRC_new/libsrc/occ/occgeom.hpp	2016-02-05 16:44:26.000000000 +0300
+@@ -86,7 +86,7 @@
+ 
+ // -- Optimization: to use cached projector and classifier
+ #include <NCollection_DataMap.hxx>
+-class Handle_ShapeAnalysis_Surface;
++class ShapeAnalysis_Surface;
+ class BRepTopAdaptor_FClass2d;
+ 
+ // Philippose - 29/01/2009
+@@ -199,7 +199,7 @@
+    {
+       Point<3> center;
+       // -- Optimization: to use cached projector and classifier
+-      mutable NCollection_DataMap<int,Handle_ShapeAnalysis_Surface> fprjmap;
++      mutable NCollection_DataMap<int,Handle(ShapeAnalysis_Surface)> fprjmap;
+       mutable NCollection_DataMap<int,BRepTopAdaptor_FClass2d*> fclsmap;
+ 
+    public:
+@@ -212,7 +212,7 @@
+       // OpenCascade XDE Support
+       // XCAF Handle to make the face colours available to the rest of
+       // the system
+-      Handle_XCAFDoc_ColorTool face_colours;
++      Handle(XCAFDoc_ColorTool) face_colours;
+ 
+       int changed;
+       Array<int> facemeshstatus;
+diff -Naur netgen-4.9.13_SRC/libsrc/occ/Partition_Inter2d.cxx netgen-4.9.13_SRC_new/libsrc/occ/Partition_Inter2d.cxx
+--- netgen-4.9.13_SRC/libsrc/occ/Partition_Inter2d.cxx	2009-08-24 06:12:24.000000000 +0400
++++ netgen-4.9.13_SRC_new/libsrc/occ/Partition_Inter2d.cxx	2016-02-12 14:47:51.000000000 +0300
+@@ -47,9 +47,7 @@
+ #include <TopOpeBRep_EdgesIntersector.hxx>
+ #include <TopOpeBRep_Point2d.hxx>
+ #include <TopTools_ListIteratorOfListOfShape.hxx>
+-#include <TopTools_ListOfShape.hxx>
+ #include <TopTools_MapIteratorOfMapOfShape.hxx>
+-#include <TopTools_MapOfShape.hxx>
+ #include <TopoDS.hxx>
+ #include <TopoDS_Edge.hxx>
+ #include <TopoDS_Vertex.hxx>
+diff -Naur netgen-4.9.13_SRC/libsrc/occ/Partition_Inter2d.hxx netgen-4.9.13_SRC_new/libsrc/occ/Partition_Inter2d.hxx
+--- netgen-4.9.13_SRC/libsrc/occ/Partition_Inter2d.hxx	2009-08-24 06:12:24.000000000 +0400
++++ netgen-4.9.13_SRC_new/libsrc/occ/Partition_Inter2d.hxx	2016-02-12 15:29:02.000000000 +0300
+@@ -27,8 +27,10 @@
+ #ifndef _Partition_Inter2d_HeaderFile
+ #define _Partition_Inter2d_HeaderFile
+ 
+-#ifndef _Handle_BRepAlgo_AsDes_HeaderFile
+-#include <Handle_BRepAlgo_AsDes.hxx>
++#include <Standard_Version.hxx>
++
++#if OCC_VERSION_MAJOR < 7
++  #include <Handle_BRepAlgo_AsDes.hxx>
+ #endif
+ #ifndef _Standard_Real_HeaderFile
+ #include <Standard_Real.hxx>
+@@ -36,11 +38,13 @@
+ #ifndef _Standard_Boolean_HeaderFile
+ #include <Standard_Boolean.hxx>
+ #endif
++
++#include <TopTools_MapOfShape.hxx>
++#include <TopTools_ListOfShape.hxx>
++
+ class BRepAlgo_AsDes;
+ class TopoDS_Face;
+-class TopTools_MapOfShape;
+ class TopoDS_Vertex;
+-class TopTools_ListOfShape;
+ class TopoDS_Edge;
+ 
+ 
+diff -Naur netgen-4.9.13_SRC/libsrc/occ/Partition_Inter3d.cxx netgen-4.9.13_SRC_new/libsrc/occ/Partition_Inter3d.cxx
+--- netgen-4.9.13_SRC/libsrc/occ/Partition_Inter3d.cxx	2016-02-15 09:50:31.000000000 +0300
++++ netgen-4.9.13_SRC_new/libsrc/occ/Partition_Inter3d.cxx	2016-02-05 16:44:26.000000000 +0300
+@@ -48,7 +48,6 @@
+ #include <TopOpeBRepTool_BoxSort.hxx>
+ #include <TopTools_DataMapIteratorOfDataMapOfShapeListOfShape.hxx>
+ #include <TopTools_ListIteratorOfListOfShape.hxx>
+-#include <TopTools_ListOfShape.hxx>
+ #include <TopoDS.hxx>
+ #include <TopoDS_Compound.hxx>
+ #include <TopoDS_Edge.hxx>
+@@ -209,7 +208,7 @@
+   Handle (Geom_Surface) S   = BRep_Tool::Surface(F,L);
+ 
+   if (S->IsKind(STANDARD_TYPE(Geom_RectangularTrimmedSurface))) {
+-    S = (*(Handle_Geom_RectangularTrimmedSurface*)&S)->BasisSurface();
++    S = Handle(Geom_RectangularTrimmedSurface)::DownCast (S)->BasisSurface();
+   }
+   if (!S->IsUPeriodic() && !S->IsVPeriodic())
+     return;
+diff -Naur netgen-4.9.13_SRC/libsrc/occ/Partition_Inter3d.hxx netgen-4.9.13_SRC_new/libsrc/occ/Partition_Inter3d.hxx
+--- netgen-4.9.13_SRC/libsrc/occ/Partition_Inter3d.hxx	2009-08-24 06:12:24.000000000 +0400
++++ netgen-4.9.13_SRC_new/libsrc/occ/Partition_Inter3d.hxx	2016-02-12 15:29:36.000000000 +0300
+@@ -27,8 +27,10 @@
+ #ifndef _Partition_Inter3d_HeaderFile
+ #define _Partition_Inter3d_HeaderFile
+ 
+-#ifndef _Handle_BRepAlgo_AsDes_HeaderFile
+-#include <Handle_BRepAlgo_AsDes.hxx>
++#include <Standard_Version.hxx>
++
++#if OCC_VERSION_MAJOR < 7
++  #include <Handle_BRepAlgo_AsDes.hxx>
+ #endif
+ #ifndef _TopTools_DataMapOfShapeListOfShape_HeaderFile
+ #include <TopTools_DataMapOfShapeListOfShape.hxx>
+@@ -36,6 +38,9 @@
+ #ifndef _TopTools_MapOfShape_HeaderFile
+ #include <TopTools_MapOfShape.hxx>
+ #endif
++#ifndef _TopTools_ListOfShape_HeaderFile
++#include <TopTools_ListOfShape.hxx>
++#endif
+ #ifndef _TopTools_DataMapOfShapeShape_HeaderFile
+ #include <TopTools_DataMapOfShapeShape.hxx>
+ #endif
+@@ -43,10 +48,7 @@
+ #include <Standard_Boolean.hxx>
+ #endif
+ class BRepAlgo_AsDes;
+-class TopTools_ListOfShape;
+-class TopTools_DataMapOfShapeShape;
+ class TopoDS_Face;
+-class TopTools_MapOfShape;
+ class TopoDS_Shape;
+ class TopoDS_Vertex;
+ class TopoDS_Edge;
+@@ -83,13 +85,13 @@
+    void FacesPartition(const TopoDS_Face& F1,const TopoDS_Face& F2) ;
+    Standard_Boolean IsDone(const TopoDS_Face& F1,const TopoDS_Face& F2) const;
+    TopTools_MapOfShape& TouchedFaces() ;
+-   Handle_BRepAlgo_AsDes AsDes() const;
++   Handle(BRepAlgo_AsDes) AsDes() const;
+    TopTools_MapOfShape& NewEdges() ;
+    Standard_Boolean HasSameDomainF(const TopoDS_Shape& F) const;
+    Standard_Boolean IsSameDomainF(const TopoDS_Shape& F1,const TopoDS_Shape& F2) const;
+    const TopTools_ListOfShape& SameDomain(const TopoDS_Face& F) const;
+    TopoDS_Vertex ReplaceSameDomainV(const TopoDS_Vertex& V,const TopoDS_Edge& E) const;
+-   Handle_BRepAlgo_AsDes SectionEdgesAD() const;
++   Handle(BRepAlgo_AsDes) SectionEdgesAD() const;
+    Standard_Boolean IsSectionEdge(const TopoDS_Edge& E) const;
+    Standard_Boolean HasSectionEdge(const TopoDS_Face& F) const;
+    Standard_Boolean IsSplitOn(const TopoDS_Edge& NewE,const TopoDS_Edge& OldE,const TopoDS_Face& F) const;
+@@ -121,11 +123,11 @@
+ 
+    // Fields PRIVATE
+    //
+-   Handle_BRepAlgo_AsDes myAsDes;
++   Handle(BRepAlgo_AsDes) myAsDes;
+    TopTools_DataMapOfShapeListOfShape myDone;
+    TopTools_MapOfShape myTouched;
+    TopTools_MapOfShape myNewEdges;
+-   Handle_BRepAlgo_AsDes mySectionEdgesAD;
++   Handle(BRepAlgo_AsDes) mySectionEdgesAD;
+    TopTools_DataMapOfShapeListOfShape mySameDomainFM;
+    TopTools_DataMapOfShapeShape mySameDomainVM;
+ 
+diff -Naur netgen-4.9.13_SRC/libsrc/occ/Partition_Loop2d.hxx netgen-4.9.13_SRC_new/libsrc/occ/Partition_Loop2d.hxx
+--- netgen-4.9.13_SRC/libsrc/occ/Partition_Loop2d.hxx	2009-08-24 06:12:24.000000000 +0400
++++ netgen-4.9.13_SRC_new/libsrc/occ/Partition_Loop2d.hxx	2016-02-05 16:44:26.000000000 +0300
+@@ -24,7 +24,6 @@
+ #endif
+ class TopoDS_Face;
+ class TopoDS_Edge;
+-class TopTools_ListOfShape;
+ class BRepAlgo_Image;
+ 
+ 
+diff -Naur netgen-4.9.13_SRC/libsrc/occ/Partition_Loop3d.hxx netgen-4.9.13_SRC_new/libsrc/occ/Partition_Loop3d.hxx
+--- netgen-4.9.13_SRC/libsrc/occ/Partition_Loop3d.hxx	2009-08-24 06:12:24.000000000 +0400
++++ netgen-4.9.13_SRC_new/libsrc/occ/Partition_Loop3d.hxx	2016-02-05 16:44:26.000000000 +0300
+@@ -13,6 +13,9 @@
+ #ifndef _TopTools_ListOfShape_HeaderFile
+ #include <TopTools_ListOfShape.hxx>
+ #endif
++#ifndef _TopTools_MapOfOrientedShape_HeaderFile
++#include <TopTools_MapOfOrientedShape.hxx>
++#endif
+ #ifndef _TopTools_IndexedDataMapOfShapeListOfShape_HeaderFile
+ #include <TopTools_IndexedDataMapOfShapeListOfShape.hxx>
+ #endif
+@@ -23,8 +26,6 @@
+ #include <Standard_Real.hxx>
+ #endif
+ class TopoDS_Shape;
+-class TopTools_ListOfShape;
+-class TopTools_MapOfOrientedShape;
+ class TopoDS_Edge;
+ class TopoDS_Face;
+ class gp_Vec;
+diff -Naur netgen-4.9.13_SRC/libsrc/occ/Partition_Loop.hxx netgen-4.9.13_SRC_new/libsrc/occ/Partition_Loop.hxx
+--- netgen-4.9.13_SRC/libsrc/occ/Partition_Loop.hxx	2009-08-24 06:12:24.000000000 +0400
++++ netgen-4.9.13_SRC_new/libsrc/occ/Partition_Loop.hxx	2016-02-05 16:44:26.000000000 +0300
+@@ -38,8 +38,6 @@
+ #endif
+ class TopoDS_Face;
+ class TopoDS_Edge;
+-class TopTools_ListOfShape;
+-
+ 
+ #ifndef _Standard_HeaderFile
+ #include <Standard.hxx>
+diff -Naur netgen-4.9.13_SRC/libsrc/occ/Partition_Spliter.cxx netgen-4.9.13_SRC_new/libsrc/occ/Partition_Spliter.cxx
+--- netgen-4.9.13_SRC/libsrc/occ/Partition_Spliter.cxx	2016-02-15 09:50:31.000000000 +0300
++++ netgen-4.9.13_SRC_new/libsrc/occ/Partition_Spliter.cxx	2016-02-05 16:44:26.000000000 +0300
+@@ -48,7 +48,6 @@
+ #include <TopTools_IndexedDataMapOfShapeListOfShape.hxx>
+ #include <TopTools_IndexedMapOfShape.hxx>
+ #include <TopTools_ListIteratorOfListOfShape.hxx>
+-#include <TopTools_ListOfShape.hxx>
+ #include <TopTools_MapIteratorOfMapOfShape.hxx>
+ #include <TopTools_SequenceOfShape.hxx>
+ 
+diff -Naur netgen-4.9.13_SRC/libsrc/occ/Partition_Spliter.hxx netgen-4.9.13_SRC_new/libsrc/occ/Partition_Spliter.hxx
+--- netgen-4.9.13_SRC/libsrc/occ/Partition_Spliter.hxx	2009-08-24 06:12:24.000000000 +0400
++++ netgen-4.9.13_SRC_new/libsrc/occ/Partition_Spliter.hxx	2016-02-05 16:44:26.000000000 +0300
+@@ -28,9 +28,6 @@
+ #ifndef _TopTools_DataMapOfShapeShape_HeaderFile
+ #include <TopTools_DataMapOfShapeShape.hxx>
+ #endif
+-#ifndef _Handle_BRepAlgo_AsDes_HeaderFile
+-#include <Handle_BRepAlgo_AsDes.hxx>
+-#endif
+ #ifndef _BRepAlgo_Image_HeaderFile
+ #include <BRepAlgo_Image.hxx>
+ #endif
+@@ -45,7 +42,6 @@
+ #endif
+ class BRepAlgo_AsDes;
+ class TopoDS_Shape;
+-class TopTools_ListOfShape;
+ class TopoDS_Edge;
+ 
+ 
+@@ -129,7 +125,7 @@
+    TopTools_DataMapOfShapeShape myFaceShapeMap;
+    TopTools_DataMapOfShapeShape myInternalFaces;
+    TopTools_DataMapOfShapeShape myIntNotClFaces;
+-   Handle_BRepAlgo_AsDes myAsDes;
++   Handle(BRepAlgo_AsDes) myAsDes;
+    BRepAlgo_Image myImagesFaces;
+    BRepAlgo_Image myImagesEdges;
+    BRepAlgo_Image myImageShape;
+diff -Naur netgen-4.9.13_SRC/libsrc/visualization/mvdraw.cpp netgen-4.9.13_SRC_new/libsrc/visualization/mvdraw.cpp
+--- netgen-4.9.13_SRC/libsrc/visualization/mvdraw.cpp	2010-03-04 16:03:16.000000000 +0300
++++ netgen-4.9.13_SRC_new/libsrc/visualization/mvdraw.cpp	2016-02-05 16:44:26.000000000 +0300
+@@ -28,7 +28,7 @@
+ {
+   Point3d VisualScene :: center;
+   double VisualScene :: rad;
+-  GLdouble VisualScene :: backcolor;
++  GLfloat VisualScene :: backcolor;
+ 
+   /*
+ #if TOGL_MAJOR_VERSION!=2
+diff -Naur netgen-4.9.13_SRC/libsrc/visualization/mvdraw.hpp netgen-4.9.13_SRC_new/libsrc/visualization/mvdraw.hpp
+--- netgen-4.9.13_SRC/libsrc/visualization/mvdraw.hpp	2009-09-07 22:28:44.000000000 +0400
++++ netgen-4.9.13_SRC_new/libsrc/visualization/mvdraw.hpp	2016-02-05 16:44:26.000000000 +0300
+@@ -32,7 +32,7 @@
+     GLdouble clipplane[4];
+ 
+     int changeval;
+-    static GLdouble backcolor;
++    static GLfloat backcolor;
+ 
+     static int selface;
+     static int selelement;
+diff -Naur netgen-4.9.13_SRC/libsrc/visualization/vscsg.cpp netgen-4.9.13_SRC_new/libsrc/visualization/vscsg.cpp
+--- netgen-4.9.13_SRC/libsrc/visualization/vscsg.cpp	2009-08-10 15:40:50.000000000 +0400
++++ netgen-4.9.13_SRC_new/libsrc/visualization/vscsg.cpp	2016-02-05 16:44:26.000000000 +0300
+@@ -85,7 +85,7 @@
+       const TopLevelObject * tlo = geometry -> GetTopLevelObject (i);
+       if (tlo->GetVisible() && !tlo->GetTransparent())
+ 	{
+-	  float mat_col[] = { tlo->GetRed(), tlo->GetGreen(), tlo->GetBlue(), 1 };
++	  float mat_col[] = { float(tlo->GetRed()), float(tlo->GetGreen()), float(tlo->GetBlue()), 1 };
+ 	  glMaterialfv (GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, mat_col);
+ 	  
+ 	  glCallList (trilists[i]);
+@@ -102,7 +102,7 @@
+       const TopLevelObject * tlo = geometry -> GetTopLevelObject (i);
+       if (tlo->GetVisible() && tlo->GetTransparent())
+ 	{
+-	  float mat_col[] = { tlo->GetRed(), tlo->GetGreen(), tlo->GetBlue(), transp };
++	  float mat_col[] = { float(tlo->GetRed()), float(tlo->GetGreen()), float(tlo->GetBlue()), float(transp) };
+ 
+ 	  glMaterialfv (GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, mat_col);
+ 	  

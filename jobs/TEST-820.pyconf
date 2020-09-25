@@ -1,0 +1,350 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+MONDAY    : 0
+TUESDAY   : 1
+WEDNESDAY : 2
+THURSDAY  : 3
+FRIDAY    : 4
+SATURDAY  : 5
+SUNDAY    : 6
+
+LUNDI     : 0
+MARDI     : 1
+MERCREDI  : 2
+JEUDI     : 3
+VENDREDI  : 4
+SAMEDI    : 5
+DIMANCHE  : 6
+
+m : 60
+
+h : 60 * $m
+
+display : 'is225302.intra.cea.fr:0.0'
+
+machines:
+[
+    {
+        name : "CO7.2 info"
+        host : is231761 #is223284
+        user : salome
+        sat_path : '/volatile/salome/salomeTools-5-jobs'
+    }
+    {
+        name : "FD18 physique"
+        host : is221713
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+    {
+        name : "FD18 virtuelle"
+        host : isv20852
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+    {
+        name : "CO7.2 physique"
+        host : is228818
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+    {
+        name : "CO7.2 virtuelle"
+        host : isv20845
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+    {
+        name : "DB08 virtuelle"
+        host : isv20848
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+    {
+        name : "UB16.04 physique" ###master Clarisse
+        host : is221556 ###anciennement is212797
+        user : salome
+        sat_path : '/volatile/salome/salomeTools-5-jobs'
+    }
+    {
+        name : "UB14.04 virtuelle"
+        host : isv20851
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+    {
+        name : "FD20 physique"
+        host : is228817
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+    {
+        name : "FD20 virtuelle"
+        host : isv20849
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+    {
+        name : "FD22 physique"
+        host : is223287
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+    {
+        name : "FD22 virtuelle"
+        host : isv20850
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+    {
+        name : "FD24 virtuelle"
+        host : isv20843
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+    {
+        name : "CO6.4 physique"
+        host : is225299
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+    {
+        name : "CO6.4 physique corpus"
+        host : is221049
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+    {
+        name : "CO6.4 virtuelle"
+        host : isv20844 #isv20853
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+    {
+        name : "MG05 physique"
+        host : is221560
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+]
+
+jobs :
+[
+
+    ################# SALOME 8.2.0 ##############################
+    
+    {
+        name : 'SALOME 820 DB08'
+        when : [$MARDI] #[$FRIDAY]
+        application : "SALOME-8.2.0"
+        machine : "DB08 virtuelle"
+        board : "TEST_QT_SALOME_8.2.0"
+        timeout : 10 * $h
+        commands :
+        [
+            #'sat clean ' + $application + ' --install --build --properties is_SALOME_module:yes'
+            'sat compile ' + $application + ' --check -p NETGENPLUGIN --clean_all'
+            'sat launcher ' + $application
+            'sat test ' + $application + ' --display ' + $display
+            #'sat package ' + $application + ' --binaries --add_files /data/tmpsalome/salome/targz/SALOME-V8/SALOME-8.2.0/SALOME_8_2_0_Release_Notes.pdf'
+            #'sat package ' + $application + ' --sources'
+            #'sat package ' + $application + ' --sources --with_vcs'
+        ]
+    }
+    {
+        name : 'SALOME 820 UB14.04'
+        when : [$MARDI] #[$FRIDAY]
+        application : "SALOME-8.2.0"
+        machine : "UB14.04 virtuelle"
+        board : "TEST_QT_SALOME_8.2.0"
+        timeout : 10 * $h
+        commands :
+        [
+            #'sat clean ' + $application + ' --install --build --properties is_SALOME_module:yes'
+
+            'sat compile ' + $application + ' --check -p NETGENPLUGIN --clean_all'
+            'sat launcher ' + $application
+            'sat test ' + $application + ' --display ' + $display
+            #'sat package ' + $application + ' --binaries --add_files /data/tmpsalome/salome/targz/SALOME-V8/SALOME-8.2.0/SALOME_8_2_0_Release_Notes.pdf'
+            #'sat package ' + $application + ' --sources'
+            #'sat package ' + $application + ' --sources --with_vcs'
+        ]
+    }
+    {
+        name : 'SALOME 820 UB16.04'
+        when : [$MARDI] #[$FRIDAY]
+        application : "SALOME-8.2.0"
+        machine : "UB16.04 physique"
+        board : "TEST_QT_SALOME_8.2.0"
+        timeout : 10 * $h
+        commands :
+        [
+            #'sat clean ' + $application + ' --install --build --properties is_SALOME_module:yes'
+
+            'sat compile ' + $application + ' --check -p NETGENPLUGIN --clean_all'
+            'sat launcher ' + $application
+            'sat test ' + $application + ' --display ' + $display
+            #'sat package ' + $application + ' --binaries --add_files /data/tmpsalome/salome/targz/SALOME-V8/SALOME-8.2.0/SALOME_8_2_0_Release_Notes.pdf'
+            #'sat package ' + $application + ' --sources'
+            #'sat package ' + $application + ' --sources --with_vcs'
+        ]
+    }
+    {
+        name : 'SALOME 820 CO7.2'
+        when : [$MARDI] #[$FRIDAY]
+        application : "SALOME-8.2.0"
+        machine : "CO7.2 physique"
+        board : "TEST_QT_SALOME_8.2.0"
+        timeout : 10 * $h
+        commands :
+        [
+            #'sat clean ' + $application + ' --install --build --properties is_SALOME_module:yes'
+
+            'sat compile ' + $application + ' --check -p NETGENPLUGIN --clean_all'
+            'sat launcher ' + $application
+            'sat test ' + $application + ' --display ' + $display
+            #'sat package ' + $application + ' --binaries --add_files /data/tmpsalome/salome/targz/SALOME-V8/SALOME-8.2.0/SALOME_8_2_0_Release_Notes.pdf'
+            #'sat package ' + $application + ' --sources'
+            #'sat package ' + $application + ' --sources --with_vcs'
+        ]
+    }
+    {
+        name : 'SALOME 820 CO7.3'
+        when : [$MARDI, $TUESDAY, $WEDNESDAY, $THURSDAY, $FRIDAY]
+        application : "SALOME-8.2.0"
+        machine : "CO7.2 info"
+        board : "TEST_QT_SALOME_8.2.0"
+        timeout : 10 * $h
+        commands :
+        [
+            #'sat clean ' + $application + ' --install --build --properties is_SALOME_module:yes'
+
+            'sat compile ' + $application + ' --check -p NETGENPLUGIN --clean_all'
+            'sat launcher ' + $application
+            'sat test ' + $application + ' --display ' + $display
+            #'sat package ' + $application + ' --binaries --add_files /data/tmpsalome/salome/targz/SALOME-V8/SALOME-8.2.0/SALOME_8_2_0_Release_Notes.pdf'
+            #'sat package ' + $application + ' --sources'
+            #'sat package ' + $application + ' --sources --with_vcs'
+        ]
+    }
+    {
+        name : 'SALOME 820 FD18'
+        when : [$MARDI] #[$FRIDAY]
+        application : "SALOME-8.2.0"
+        machine : "FD18 virtuelle"
+        board : "TEST_QT_SALOME_8.2.0"
+        timeout : 10 * $h
+        commands :
+        [
+            #'sat clean ' + $application + ' --install --build --properties is_SALOME_module:yes'
+
+            'sat compile ' + $application + ' --check -p NETGENPLUGIN --clean_all'
+            'sat launcher ' + $application
+            'sat test ' + $application + ' --display ' + $display
+            #'sat package ' + $application + ' --binaries --add_files /data/tmpsalome/salome/targz/SALOME-V8/SALOME-8.2.0/SALOME_8_2_0_Release_Notes.pdf'
+            #'sat package ' + $application + ' --sources'
+            #'sat package ' + $application + ' --sources --with_vcs'
+        ]
+    }
+    {
+        name : 'SALOME 820 FD20'
+        when : [$MARDI] #[$FRIDAY]
+        application : "SALOME-8.2.0"
+        machine : "FD20 virtuelle"
+        board : "TEST_QT_SALOME_8.2.0"
+        timeout : 10 * $h
+        commands :
+        [
+            #'sat clean ' + $application + ' --install --build --properties is_SALOME_module:yes'
+
+            'sat compile ' + $application + ' --check -p NETGENPLUGIN --clean_all'
+            'sat launcher ' + $application
+            'sat test ' + $application + ' --display ' + $display
+            #'sat package ' + $application + ' --binaries --add_files /data/tmpsalome/salome/targz/SALOME-V8/SALOME-8.2.0/SALOME_8_2_0_Release_Notes.pdf'
+            #'sat package ' + $application + ' --sources'
+            #'sat package ' + $application + ' --sources --with_vcs'
+        ]
+    }
+    {
+        name : 'SALOME 820 FD22'
+        when : [$MARDI] #[$FRIDAY]
+        application : "SALOME-8.2.0"
+        machine : "FD22 virtuelle"
+        board : "TEST_QT_SALOME_8.2.0"
+        timeout : 10 * $h
+        commands :
+        [
+            #'sat clean ' + $application + ' --install --build --properties is_SALOME_module:yes'
+
+            'sat compile ' + $application + ' --check -p NETGENPLUGIN --clean_all'
+            'sat launcher ' + $application
+            'sat test ' + $application + ' --display ' + $display
+            #'sat package ' + $application + ' --binaries --add_files /data/tmpsalome/salome/targz/SALOME-V8/SALOME-8.2.0/SALOME_8_2_0_Release_Notes.pdf'
+            #'sat package ' + $application + ' --sources'
+            #'sat package ' + $application + ' --sources --with_vcs'
+        ]
+    }
+    {
+        name : 'SALOME 820 FD24'
+        when : [$MARDI] #[$FRIDAY]
+        application : "SALOME-8.2.0"
+        machine : "FD24 virtuelle"
+        board : "TEST_QT_SALOME_8.2.0"
+        timeout : 10 * $h
+        commands :
+        [
+            #'sat clean ' + $application + ' --install --build --properties is_SALOME_module:yes'
+
+            'sat compile ' + $application + ' --check -p NETGENPLUGIN --clean_all'
+            'sat launcher ' + $application
+            'sat test ' + $application + ' --display ' + $display
+            #'sat package ' + $application + ' --binaries --add_files /data/tmpsalome/salome/targz/SALOME-V8/SALOME-8.2.0/SALOME_8_2_0_Release_Notes.pdf'
+            #'sat package ' + $application + ' --sources'
+            #'sat package ' + $application + ' --sources --with_vcs'
+        ]
+    }
+    {
+        name : 'SALOME 820 CO6.4'
+        when : [$MARDI] #[$FRIDAY]
+        application : "SALOME-8.2.0"
+        machine : "CO6.4 virtuelle"
+        board : "TEST_QT_SALOME_8.2.0"
+        timeout : 10 * $h
+        prefix : "scl enable devtoolset-2"
+        commands :
+        [
+            #'sat clean ' + $application + ' --install --build --properties is_SALOME_module:yes'
+
+            'sat compile ' + $application + ' --check -p NETGENPLUGIN --clean_all'
+            'sat launcher ' + $application
+            'sat test ' + $application + ' --display ' + $display
+            #'sat package ' + $application + ' --binaries --add_files /data/tmpsalome/salome/targz/SALOME-V8/SALOME-8.2.0/SALOME_8_2_0_Release_Notes.pdf'
+            #'sat package ' + $application + ' --sources'
+            #'sat package ' + $application + ' --sources --with_vcs'
+        ]
+    }
+    {
+        name : 'SALOME 820 MG05'
+        when : [$MARDI] #[$FRIDAY]
+        application : "SALOME-8.2.0"
+        machine : "MG05 physique"
+        board : "TEST_QT_SALOME_8.2.0"
+        timeout : 10 * $h
+        commands :
+        [
+            #'sat clean ' + $application + ' --install --build --properties is_SALOME_module:yes'
+
+            'sat compile ' + $application + ' --check -p NETGENPLUGIN --clean_all'
+            'sat launcher ' + $application
+            'sat test ' + $application + ' --display ' + $display
+            #'sat package ' + $application + ' --binaries --add_files /data/tmpsalome/salome/targz/SALOME-V8/SALOME-8.2.0/SALOME_8_2_0_Release_Notes.pdf'
+            #'sat package ' + $application + ' --sources'
+            #'sat package ' + $application + ' --sources --with_vcs'
+        ]
+    }
+
+    #############################################################
+
+]
+

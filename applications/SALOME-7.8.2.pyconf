@@ -1,0 +1,124 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+APPLICATION :
+{
+    name : 'SALOME-7.8.2'
+    workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
+    tag : 'V7_8_0'
+    base : 'no'
+    environ :
+    {
+    }
+    products :
+    {
+        # PREREQUISITES :
+        Python : '2.7.10'
+        Cython : '0.23.2'
+        numpy : '1.9.2'
+        scipy : '0.15.1'
+        lapack : '3.5.0'
+        cmake : '3.5.2'
+        pyreadline : '2.0'
+        setuptools : '0.6c11'
+        markupsafe : '0.23'
+        Jinja2 : '2.7.3'
+        six : '1.9.0'
+        distribute : '0.6.28'
+        pytz : '2014.10'
+        pyparsing : '1.5.6'
+        dateutil : '2.4.0'
+        freetype : '2.4.11'
+        matplotlib : '1.4.3'
+        cppunit : '1.12.1'
+        qt : '4.8.4'
+        PyQt : '4.9.6'
+        qwt : '6.1.0'
+        sip : '4.14.2'
+        omniORB : '4.1.6'
+        omniORBpy : '3.6'
+        boost : '1.58.0'
+        swig : '2.0.8'
+        gl2ps : '1.3.8'
+        freeimage : '3.16.0'
+        tcl : '8.6.0'
+        tk : '8.6.0'
+        libxml2 : '2.9.0'
+        CAS : {tag : '6.9.1p1', section : version_6_0_0_to_7_0_0}
+        hdf5 : '1.8.14'
+        ParaView : '5.0.1p1'
+        metis : '5.1.0'
+#        ParMetis : '3.1.1'
+        scotch : '5.1.12b'
+        medfile : '3.2.0'
+        graphviz : '2.38.0'
+        doxygen : '1.8.3.1'
+        docutils : '0.12'
+        Sphinx : '1.2.3'
+        Pygments : '2.0.2'
+        opencv : '2.4.6.1'
+        homard_bin : {section : 'version_6_6_0_to_8_5_0', tag : '11.7'}
+        netgen : '4.9.13'
+        MeshGems : '2.1-11'
+        cgns : '3.1.3-4'
+#        fftw : '3.3.4'
+#        root : '5.34.32'
+#        nlopt : '2.2.4'
+#        pcl : '1.10'
+#        uranie : '3.6.0'
+#        lata : '1.3p2'
+        gmsh : '2.12.0'
+
+        # SALOME MODULES :
+        'SALOME_PROFILE' : "7.8.0"
+
+        'LIBBATCH' : "V2_3_0"
+        'JOBMANAGER'
+        'KERNEL'
+        'GUI'
+
+        'GEOM'
+
+        'SMESH'
+        'NETGENPLUGIN'
+        'GHS3DPLUGIN'
+        'HYBRIDPLUGIN'
+        'BLSURFPLUGIN'
+        'HexoticPLUGIN'
+        'GHS3DPRLPLUGIN' #ne pas livrer le plugin GHS3DPRLPLUGIN dans les versions opensource
+        'HEXABLOCK'
+        'HEXABLOCKPLUGIN'
+        'MED'
+        'GMSHPLUGIN' 
+        'HOMARD'
+        'MEDCOUPLING' : {section: 'version_V7_8_0', tag : 'V7_8_2'}
+        'YACS'
+        'YACSGEN' : {tag : 'V7_8_2'}
+        'XDATA' : "0.9.11"
+        'HXX2SALOME'
+        'PARAVIS'
+        'SAMPLES'
+        'COMPONENT'
+        'PYCALCULATOR'
+        'CALCULATOR'
+        'HELLO'
+        'PYHELLO'
+
+        'DOCUMENTATION'
+    }
+    profile :
+    {
+        product : "SALOME_PROFILE"
+    }
+    virtual_app:
+    {
+        name : "salome"
+        application_name : "APPLI"
+    }
+    test_base : 
+    {
+        name : "SALOME"
+        tag : "7.8.0"
+    }
+}
+

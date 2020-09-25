@@ -1,0 +1,87 @@
+default :
+{
+    name : "gl2ps"
+    build_source : "cmake"
+    # Add the '-DENABLE_GLUT=OFF' option with CMakeLists.txt patch
+    # to disable link with GLUT library and suppress '-DGLUT_FOUND=OFF' option
+    cmake_options : "-DCMAKE_BUILD_TYPE=Release -DENABLE_PNG=ON -DENABLE_ZLIB=ON -DENABLE_GLUT=OFF"
+    get_source : "archive"
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : []
+    build_depend : ["cmake"]
+    patches : []
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties:
+    {
+      incremental : "yes"
+    }
+}
+
+default_win :
+{
+   depend : ["zlib","libpng"]
+    properties:
+    {
+      incremental : "yes"
+      single_install_dir : "yes"
+    }
+}
+
+version_1_3_5 :
+{
+    # Add the '-DENABLE_GLUT=OFF' option with CMakeLists.txt patch
+    # to disable link with GLUT library
+    cmake_options : "-DCMAKE_BUILD_TYPE=Release -DENABLE_ZLIB=OFF -DENABLE_PNG=OFF -DENABLE_GLUT=OFF"
+    archive_info:
+    {
+       archive_name : "gl2ps-1.3.5.tar.gz"
+    }
+    patches : ["gl2ps-1.3.5-GLUT.patch"]
+}
+
+version_1_3_8 :
+{
+    # Add the '-DENABLE_GLUT=OFF' option with CMakeLists.txt patch
+    # to disable link with GLUT library
+    cmake_options : "-DCMAKE_BUILD_TYPE=Release -DENABLE_ZLIB=OFF -DENABLE_PNG=OFF -DENABLE_GLUT=OFF"
+    archive_info:
+    {
+       archive_name : "gl2ps-1.3.8.tar.gz"
+    }
+    patches : ["gl2ps-1.3.8-GLUT.patch"]
+}
+
+version_1_3_9p1 :
+{
+    # Add the '-DENABLE_GLUT=OFF' option with CMakeLists.txt patch
+    # to disable link with GLUT library and suppress '-DGLUT_FOUND=OFF' option
+    cmake_options : "-DCMAKE_BUILD_TYPE=Release -DENABLE_PNG=ON -DENABLE_ZLIB=ON -DENABLE_GLUT=OFF"
+    archive_info:
+    {
+       archive_name : "gl2ps-1.3.9p1.tar.gz"
+    }
+    patches : ["gl2ps-1.3.9p1-GLUT.patch"]
+}
+
+version_1_4_0_4037312 :
+{
+    # Add the '-DENABLE_GLUT=OFF' option with CMakeLists.txt patch
+    # to disable link with GLUT library and suppress '-DGLUT_FOUND=OFF' option
+    cmake_options : "-DCMAKE_BUILD_TYPE=Release -DENABLE_PNG=ON -DENABLE_ZLIB=ON -DENABLE_GLUT=OFF"
+    archive_info:
+    {
+       archive_name : "gl2ps-1.4.0_4037312.tar.gz"
+    }
+    patches : ["gl2ps-1.4.0-GLUT.patch"]
+}
+
+version_1_4_0_4037312_win :
+{
+   build_source : "script"
+   compil_script : "gl2ps.bat"
+}

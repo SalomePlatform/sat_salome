@@ -1,0 +1,28 @@
+--- orig/ParaView-5.4.0-463c0633_SRC/VTK/Rendering/OpenGL2/vtkXOpenGLRenderWindow.cxx	2017-09-13 10:51:02.000000000 +0300
++++ ParaView-5.4.0-463c0633_SRC/VTK/Rendering/OpenGL2/vtkXOpenGLRenderWindow.cxx	2017-11-14 16:15:29.312760666 +0300
+@@ -402,10 +402,13 @@
+   }
+ }
+ 
++static bool ctxErrorOccurred = false;
++
+ extern "C"
+ {
+   int vtkXOGLContextCreationErrorHandler(Display*, XErrorEvent*)
+   {
++    ctxErrorOccurred = true;
+     return 1;
+   }
+ }
+@@ -584,6 +587,11 @@
+             GL_TRUE, context_attribs );
+         // Sync to ensure any errors generated are processed.
+         XSync( this->DisplayId, False );
++        if(ctxErrorOccurred)
++        {
++          this->Internal->ContextId = nullptr;
++          ctxErrorOccurred = false;
++        }
+       }
+       XSetErrorHandler(previousHandler);
+       if ( this->Internal->ContextId )

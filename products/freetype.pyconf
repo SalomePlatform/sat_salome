@@ -1,0 +1,67 @@
+default :
+{
+    name : "freetype"
+    build_source : "script"
+    compil_script :  $name + $VARS.scriptExtension
+    get_source : "archive"
+    system_info : 
+    {
+        rpm : ["freetype"]
+        rpm_dev : ["freetype-devel"]
+        apt : ["libfreetype"]
+        apt_dev : ["libfreetype6-dev"]
+    }
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : []
+    build_depend : ["cmake"]
+    patches : []
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    check_install : ["lib/pkgconfig/freetype2.pc"]
+    properties :
+    {
+      incremental : "yes"
+      single_install_dir : "no"
+    }
+}
+
+default_win :
+{
+    build_source : "script"
+    archive_info : {archive_name : "freetype-" + $APPLICATION.products.freetype + "_windows.tar.gz"}
+    depend : []
+    check_install : []
+    properties :
+    {
+      incremental : "yes"
+      single_install_dir : "yes"
+    }
+}
+
+
+# needed in order to screen with windows version - see below
+version_2_9_1 :
+{
+  patches : []
+}
+
+version_2_9_1_win :
+{
+  patches : ["freetype-2.9.1_windows.patch"]
+}
+
+
+version_2_4_11 :
+{
+    compil_script : "freetype-2.3" + $VARS.scriptExtension
+    patches : [ "freetype-2.4.11_ft_export_FD20.patch" ]
+}
+
+version_2_3_7 :
+{
+    compil_script : "freetype-2.3" + $VARS.scriptExtension
+}

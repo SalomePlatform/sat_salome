@@ -1,0 +1,35 @@
+default :
+{
+    name : "PY2CPP"
+    build_source : "cmake"
+
+    get_source : "git"
+    git_info:
+    {
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "py2cpp.git"
+        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "py2cpp.git"
+    }
+    environ :
+    {
+        PY2CPP_ROOT_DIR : $install_dir
+    }
+    depend : [
+              "CONFIGURATION",
+              "Python",
+              "KERNEL"
+             ]
+    build_depend : ["cmake", "cppunit"]
+
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+      incremental : "yes"
+    }
+}
+
+default_win :
+{
+#    cmake_options : " -DPYTHON_ROOT_DIR=%PYTHON_ROOT_DIR:\=/% -DPYTHON_EXECUTABLE=%PYTHONBIN:\=/% -DPYTHON_INCLUDE_PATH=%PYTHON_INCLUDE:\=/% -DPYTHON_LIBRARY=%PYTHON_ROOT_DIR:\=/%/lib/libpython%PYTHON_VERSION%.lib"
+    cmake_options : " -DPYTHON_EXECUTABLE=%PYTHONBIN:\=/% -DPYTHON_INCLUDE_PATH=%PYTHON_INCLUDE:\=/% -DPYTHON_LIBRARY=%PYTHON_ROOT_DIR:\=/%/libs/libpython%PYTHON_VERSION%.lib"
+}

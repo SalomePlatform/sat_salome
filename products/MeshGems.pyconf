@@ -1,0 +1,45 @@
+default :
+{
+    name : "MeshGems"
+    build_source : "script"
+    compil_script :  $name + $VARS.scriptExtension
+    get_source : "archive"
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : []
+    opt_depend : ['openmpi']
+    patches : []
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+      is_distene : "yes"
+      licence : "dlim8.var.py"
+      incremental : "yes"
+    }
+}
+
+
+default_win :
+{
+   archive_info : {archive_name : "MeshGems-" + $APPLICATION.products.MeshGems + "_windows.tar.gz"}
+    properties :
+    {
+      is_distene : "yes"
+      licence : "dlim8.var.py"
+      incremental : "yes"
+      single_install_dir : "yes" # aimed to solve sat #18914
+    }
+}
+
+version_2_9_6 :
+{
+}
+
+version_2_9_6_win :
+{
+   archive_info : {archive_name : "MeshGems_V2.9.6_windows.tar.gz"}
+}

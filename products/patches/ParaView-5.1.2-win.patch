@@ -1,0 +1,34 @@
+diff -rupN ParaView/ParaViewCore/ServerManager/Rendering/vtkSMTransferFunctionProxy.h ParaView_new/ParaViewCore/ServerManager/Rendering/vtkSMTransferFunctionProxy.h
+--- ParaView/ParaViewCore/ServerManager/Rendering/vtkSMTransferFunctionProxy.h	Mon Nov  7 08:53:30 2016
++++ ParaView_new/ParaViewCore/ServerManager/Rendering/vtkSMTransferFunctionProxy.h	Wed May 31 14:29:46 2017
+@@ -25,6 +25,13 @@
+ #include "vtkPVServerManagerRenderingModule.h" // needed for export macro
+ #include "vtkSMProxy.h"
+ 
++#ifndef nextafter_definition_h
++#define nextafter_definition_h
++#if _MSC_VER < 1800
++inline double nextafter(double x, double y) { return _nextafter(x, y); }
++#endif
++#endif
++
+ namespace Json
+ {
+   class Value;
+diff -rupN ParaView/Qt/Components/pqProxyWidget.h ParaView_new/Qt/Components/pqProxyWidget.h
+--- ParaView/Qt/Components/pqProxyWidget.h	Mon Nov  7 08:53:30 2016
++++ ParaView_new/Qt/Components/pqProxyWidget.h	Wed May 31 14:29:56 2017
+@@ -35,6 +35,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBI
+ #include "pqComponentsModule.h"
+ #include <QWidget>
+ 
++#ifndef nextafter_definition_h
++#define nextafter_definition_h
++#if _MSC_VER < 1800
++inline double nextafter(double x, double y) { return _nextafter(x, y); }
++#endif
++#endif
++
+ class pqPropertyWidget;
+ class pqView;
+ class vtkSMProperty;

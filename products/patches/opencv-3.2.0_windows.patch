@@ -1,0 +1,22 @@
+--- opencv_ref/cmake/OpenCVDetectCXXCompiler.cmake
++++ opencv/cmake/OpenCVDetectCXXCompiler.cmake
+@@ -162,6 +162,8 @@
+     set(OpenCV_RUNTIME vc14)
+   elseif(MSVC_VERSION EQUAL 1910)
+     set(OpenCV_RUNTIME vc15)
++  elseif(MSVC_VERSION EQUAL 1916)
++    set(OpenCV_RUNTIME vc15)
+   endif()
+ elseif(MINGW)
+   set(OpenCV_RUNTIME mingw)
+--- opencv_ref/cmake/templates/OpenCVConfig.root-WIN32.cmake.in
++++ opencv/cmake/templates/OpenCVConfig.root-WIN32.cmake.in
+@@ -80,6 +80,8 @@
+     set(OpenCV_RUNTIME vc14)
+   elseif(MSVC_VERSION EQUAL 1910)
+     set(OpenCV_RUNTIME vc15)
++  elseif(MSVC_VERSION EQUAL 1916)
++    set(OpenCV_RUNTIME vc15)
+   endif()
+ elseif(MINGW)
+   set(OpenCV_RUNTIME mingw)

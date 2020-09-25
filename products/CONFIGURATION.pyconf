@@ -1,0 +1,23 @@
+default :
+{
+    name : "CONFIGURATION"
+    get_source : "git"
+    git_info:
+    {
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "tools/configuration.git"
+        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "configuration.git"
+    }
+    environ :
+    {
+        build : {CONFIGURATION_ROOT_DIR : $source_dir}
+    }
+    depend : [ ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    properties :
+    {
+        compilation : "no"
+        configure_dependency : "yes"  # the source of this module is required for the configuration of salome
+        is_SALOME_module : "yes"
+    }
+    patches : []
+}

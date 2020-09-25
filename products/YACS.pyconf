@@ -1,0 +1,78 @@
+default :
+{
+    name : "YACS"
+    build_source : "cmake"
+    get_source : "git"
+    git_info:
+    {
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/yacs.git"
+        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "yacs.git"
+    }
+    environ :
+    {
+        SalomeAppConfig_ : $install_dir + $VARS.sep + "share" + $VARS.sep + "salome" + $VARS.sep + "resources" + $VARS.sep + "yacs"
+    }
+    depend : [
+              "KERNEL",
+              "GUI", 
+              "Python", 
+              "qt", 
+              "boost", 
+              "omniORB", 
+              "docutils",
+              "graphviz",
+              "libxml2", 
+              "Sphinx", 
+              "Jinja2", 
+              "setuptools", 
+              "Pygments", 
+              "six", 
+              "pytz", 
+              "markupsafe"  
+              ]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+
+    patches : [
+               "yacs_cea_v2.patch" 
+              ]
+
+    nb_proc : 4
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        has_salome_gui : "yes"
+        is_SALOME_module : "yes"
+        has_unit_tests
+        incremental : "yes"
+    }
+} 
+
+# bug in cmake for multi proc compilation
+from_7_7_0_to_8_5_0 :
+{
+    nb_proc : 1
+} 
+
+# autotools are used for version 6
+# do not depend upon six, pytz, markupsafe
+version_V6_6_0 :
+{
+    build_source : "autotools"
+    depend : [
+              "KERNEL",
+              "GUI", 
+              "Python", 
+              "qt", 
+              "boost", 
+              "omniORB", 
+              "docutils", 
+              "graphviz",
+              "libxml2", 
+              "Sphinx", 
+              "Jinja2", 
+              "setuptools", 
+              "Pygments"
+              ]
+    build_depend : ["swig", "doxygen", "cppunit"]
+} 

@@ -1,0 +1,32 @@
+default :
+{
+    name : "TECHOBJ_ROOT"
+    build_source : "autotools"
+    get_source : "git"
+    git_info:
+    {
+        repo : "/home/salome/GitRepo/TECHOBJ_ROOT.git"
+    }
+    environ :
+    {
+        TECHOBJ_ROOT_DIR : $install_dir
+    }
+    depend : [
+              'Python',
+              'XDATA',
+              'omniORB',
+              'boost',
+              'PyQt',
+              'ParaView'
+             ]
+    opt_depend : [LIBBATCH, CALCULATOR, MED, GUI]
+    build_depend : ["swig", "cppunit"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        has_salome_gui : "yes"
+        is_SALOME_module : "yes"
+        has_unit_tests
+    }
+}

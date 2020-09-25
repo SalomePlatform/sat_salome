@@ -1,0 +1,11 @@
+--- tk_ref/win/rules.vc
++++ tk/win/rules.vc
+@@ -992,7 +992,7 @@
+ # PRJSTUBLIB - output path of the generated project stubs library
+ # RESFILE - output resource file (only if not static build)
+ 
+-SUFX	    = tsgx
++SUFX	    = 
+ 
+ !if $(DEBUG)
+ BUILDDIRTOP = Debug

@@ -1,0 +1,134 @@
+default :
+{
+    name : "MEDCOUPLING"
+    build_source : "cmake"
+    cmake_options : "-DMEDCOUPLING_ENABLE_PYTHON=ON -DMEDCOUPLING_ENABLE_PARTITIONER=ON -DMEDCOUPLING_ENABLE_RENUMBER=ON -DMEDCOUPLING_PARTITIONER_METIS=ON -DMEDCOUPLING_PARTITIONER_SCOTCH=ON -DMEDCOUPLING_PARTITIONER_PARMETIS=OFF -DMEDCOUPLING_MICROMED=OFF -DMEDCOUPLING_USE_MPI=OFF"
+    get_source : "git"
+    git_info:
+    {
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "tools/medcoupling.git"
+        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "medcoupling.git"
+    }
+    depend : [
+              "boost",
+              "cppunit",
+              "Python",
+              "hdf5",
+              "medfile",
+              "scotch",
+              "metis",
+              "docutils",
+              "libxml2",
+              "Sphinx",
+              "sphinxintl",
+              "setuptools",
+              "six",
+              "pytz",
+              "numpy",
+              "scipy",
+              "lapack",
+              "CONFIGURATION"
+              ]
+    build_depend : ["cmake", "swig", "doxygen", "graphviz", "cppunit"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        is_SALOME_module : "yes"
+        has_unit_tests
+        fhs : "yes"
+        incremental : "yes"
+    }
+}
+
+
+default_win :
+{
+    cmake_options : ' -DMEDCOUPLING_ENABLE_PYTHON=ON -DMEDCOUPLING_ENABLE_PARTITIONER=OFF -DMEDCOUPLING_ENABLE_RENUMBER=ON -DMEDCOUPLING_PARTITIONER_METIS=ON -DMEDCOUPLING_PARTITIONER_SCOTCH=OFF -DMEDCOUPLING_PARTITIONER_PARMETIS=OFF -DMEDCOUPLING_MICROMED=OFF -DMEDCOUPLING_USE_MPI=OFF '
+    depend : [
+              "boost",
+              "Python",
+              "hdf5",
+              "medfile",
+              "metis",
+              "docutils",
+              "libxml2",
+              "Sphinx",
+              "sphinxintl",
+              "setuptools",
+              "six",
+              "pytz",
+              "numpy",
+              "CONFIGURATION"
+              ]
+}
+
+default_int64:
+{ 
+    cmake_options : "-DMEDCOUPLING_ENABLE_PYTHON=ON -DMEDCOUPLING_ENABLE_PARTITIONER=ON -DMEDCOUPLING_ENABLE_RENUMBER=ON -DMEDCOUPLING_PARTITIONER_METIS=ON -DMEDCOUPLING_PARTITIONER_SCOTCH=ON -DMEDCOUPLING_PARTITIONER_PARMETIS=OFF -DMEDCOUPLING_MICROMED=OFF -DMEDCOUPLING_USE_MPI=OFF -DMEDCOUPLING_USE_64BIT_IDS=ON"
+
+}
+
+version_7_8_2_to_8_4_0 :
+{
+    depend : [
+              "boost",
+              "Python",
+              "hdf5",
+              "medfile",
+              "scotch",
+              "metis",
+              "docutils",
+              "libxml2",
+              "Sphinx",
+              "setuptools",
+              "numpy",
+              "scipy",
+              "lapack"
+              "CONFIGURATION"
+              ]
+}
+
+# Default section for MPI version, for SALOME-8.5.0-MPI and later
+default_MPI :
+{
+    cmake_options : "-DMEDCOUPLING_ENABLE_PYTHON=ON -DMEDCOUPLING_ENABLE_PARTITIONER=OFF -DMEDCOUPLING_ENABLE_RENUMBER=ON -DMEDCOUPLING_PARTITIONER_METIS=OFF -DMEDCOUPLING_PARTITIONER_SCOTCH=ON -DMEDCOUPLING_PARTITIONER_PARMETIS=ON -DMEDCOUPLING_MICROMED=OFF -DMEDCOUPLING_USE_MPI=ON -DSALOME_USE_MPI=ON -DMEDCOUPLING_USE_64BIT_IDS=ON -DCMAKE_CXX_COMPILER:STRING=${MPI_ROOT_DIR}/bin/mpic++ DCMAKE_C_COMPILER:STRING=${MPI_ROOT_DIR}/bin/mpicc"
+    depend : [
+              "boost",
+              "Python",
+              "hdf5",
+              "medfile",
+              "scotch",
+              "docutils",
+              "libxml2",
+              "ParMetis",
+              "Sphinx",
+              "sphinxintl",
+              "setuptools",
+              "six",
+              "pytz",
+              "numpy",
+              "scipy",
+              "lapack",
+              "openmpi",
+              "cppunit",
+              "CONFIGURATION"
+              ]
+}
+
+version_V7_8_0 :
+{
+    cmake_options : "-DMEDCOUPLING_ENABLE_PARTITIONER=OFF -DMEDCOUPLING_PARTITIONER_METIS=OFF -DMEDCOUPLING_PARTITIONER_SCOTCH=OFF"
+    depend : [
+              "boost",
+              "Python",
+              "hdf5",
+              "medfile",
+              "libxml2",
+              "Sphinx",
+              "setuptools",
+              "numpy",
+              "scipy",
+              "lapack"
+              ]
+}

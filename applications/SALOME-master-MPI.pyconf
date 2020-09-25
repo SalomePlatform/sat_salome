@@ -1,0 +1,196 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+APPLICATION :
+{
+    name : 'SALOME-master-MPI'
+    workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
+    tag : 'master'
+    dev : 'no'
+    verbose :'no'
+    debug : 'no'
+    base : 'no'
+    python3 : 'yes'
+    environ :
+    {
+        build : 
+        {
+           CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
+           RESTRICTED_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "RESTRICTED"
+           SALOME_USE_64BIT_IDS : '1'
+        }
+        launch : {PYTHONIOENCODING:"UTF_8", SALOME_MODULES_ORDER:"SHAPER:SHAPERSTUDY:GEOM:SMESH"}
+        SALOME_trace : "local" # local/file:.../with_logger
+        SALOME_MODULES : "SHAPER,SHAPERSTUDY,GEOM,SMESH,PARAVIS,YACS,JOBMANAGER"  # specify the first modules to display in gui
+    }
+    products :
+    {
+        # PREREQUISITES :
+        alabaster : '0.7.6'
+        Babel : '2.7.0'
+        boost : '1.58.0'
+        CAS : 'CR740-SALOME-PATCH'
+        certifi : '2018.8.24'
+        cgns : {tag : '3.3.1', hpc : 'yes'}
+        chardet : '3.0.4'
+        click : '6.7'
+        cmake : '3.12.1'
+        cppunit : '1.13.2'
+        cycler : '0.10.0'
+        Cython : '0.25.2'
+        dateutil : '2.4.2'
+        docutils : '0.12'
+        doxygen : '1.8.14'
+        eigen : '3.3.4'
+        embree : '3.3.0'
+        freeimage : '3.16.0'
+        freetype : '2.9.1'
+        gmsh : '4.1.4'
+        graphviz : '2.38.0'
+        hdf5 : {tag : '1.10.3', hpc : 'yes'}
+        #hdf5 : {tag : '1.10.3', hpc : 'yes', section : 'default_Autotools'}
+        homard_bin : '11.12_hdf51103med410'
+        idna : '2.7'
+        imagesize : '1.0.0'
+        ispc : '1.9.2'
+        Jinja2 : '2.7.3'
+        kiwisolver : '1.0.1'
+        lapack : '3.8.0'
+        libxml2 : '2.9.1'
+        llvm : '8.0.1-clang'
+        markupsafe : '0.23'
+        matplotlib : '2.2.2'
+        medfile : {tag : '4.1.0', hpc : 'yes', section : 'default_Autotools' }
+        mesa : '19.0.8'
+        MeshGems : {tag : '2.10-4', hpc : 'yes'}
+        #metis : '5.1.0'
+        ParMetis : '3.1.1'
+        netgen : '5.3.1_with_CAS_7.2'
+        nlopt : '2.4.2'
+        numpy : '1.15.1'
+        omniORB : '4.2.2'
+        omniORBpy : '4.2.2'
+        opencv : '3.2.0'
+        openmpi : '2.1.6'
+        openssl : "native"
+        ospray : '1.8.4'
+        packaging : '17.1'
+        ParaView : {tag : '5.8.0', hpc : 'yes', section: 'version_5_8_0_MPI'}
+        Pillow : '7.1.1'
+        planegcs : '0.18-3cb6890'
+        pockets : '0.6.2'
+        Pygments : '2.0.2'
+        pyparsing : '2.0.3'
+        PyQt : '5.9'
+        pyreadline : '2.0'
+        Python : '3.6.5'
+        pytz : '2015.7'
+        qt : '5.9.1'
+        qwt : '6.1.2'
+        requests : '2.19.1'
+        scipy : '0.19.1'
+        scotch : '6.0.4'
+        setuptools : '38.4.0'
+        sip : '4.19.3'
+        six : '1.10.0'
+        snowballstemmer : '1.2.1'
+        Sphinx : '1.7.6'
+        sphinxcontrib_napoleon : '0.6.1'
+        sphinxcontrib_websupport : '1.1.0'
+        sphinx_rtd_theme : '0.4.3'
+        sphinxintl: '0.9.10'
+        swig : '3.0.12'
+        tbb : 'native'
+        tcl : '8.6.0'
+        tk : '8.6.0'
+        urllib3 : '1.23'
+
+        # SALOME MODULES :
+        'CONFIGURATION'
+        'SALOME'
+        'SHAPER'
+        'SHAPERSTUDY'
+        'RESTRICTED'
+        'LIBBATCH' : {tag :'V2_4_3rc2'}
+        'KERNEL' : {section : 'default_MPI', verbose : 'yes'}
+        'MEDCOUPLING' : {section : 'default_MPI', verbose : 'yes'}
+        'GUI' : {verbose : 'yes'}
+        'GEOM'
+        'SMESH'
+        'NETGENPLUGIN'
+        'BLSURFPLUGIN'
+        'GHS3DPLUGIN'
+        'GHS3DPRLPLUGIN'
+        'HYBRIDPLUGIN'
+        'HexoticPLUGIN'
+        'GMSHPLUGIN'
+        'HEXABLOCK'
+        'HEXABLOCKPLUGIN'
+        'HOMARD'
+        'FIELDS'
+        'PARAVIS'
+        'JOBMANAGER'
+        'YACS'
+        'YACSGEN'
+        'DOCUMENTATION'
+        'SAMPLES'
+        'COMPONENT'
+        'PYCALCULATOR'
+        'CALCULATOR'
+        'HELLO'
+        'PYHELLO'
+        'EFICAS'
+        'EFICAS_TOOLS'
+        'PY2CPP' : {tag: 'v2.0'}
+        'ADAO'
+        'ADAO_INTERFACE'
+        'CEATESTBASE' : {tag: 'SalomeV9'}
+    }
+    profile :
+    {
+        launcher_name : "salome"
+    }
+    virtual_app:
+    {
+        name : "salome"
+        application_name : "APPLI"
+    }
+    test_base : 
+    {
+        name : "SALOME"
+        tag : "SalomeV9"
+    }
+    properties :
+    {
+        mesa_launcher_in_package : "yes"
+        repo_dev : "yes"
+        pip : 'yes'
+        pip_install_dir : 'python'
+        single_install_dir : "yes"
+    }
+}
+__overwrite__ :
+[
+  {
+   # GTK  compilation issue
+    __condition__ : "VARS.dist in ['CO6']"
+    'APPLICATION.products.opencv' : '2.4.13.5'
+    'APPLICATION.products.tbb' : '4.4'
+    'APPLICATION.products.llvm' : '3.9.1-clang'
+    'APPLICATION.products.mesa' : '13.0.6'
+    'PRODUCTS.embree.default.patches' : ['embree-3.5.2-centos6.patch']
+   }
+
+  {
+   # tbb as a mandatory native product since SMESH with tbb, not installed on DB8 (temporary)
+    __condition__ : "VARS.dist in ['DB08']"
+    'APPLICATION.products.tbb' : '4.4'
+  }
+
+  {
+    #
+    __condition__ : "VARS.dist in ['FD26']"
+    'APPLICATION.products.tbb'    : '2017-7'
+    'APPLICATION.products.embree' : '3.5.2'
+   }
+]

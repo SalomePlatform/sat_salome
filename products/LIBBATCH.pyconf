@@ -1,0 +1,31 @@
+default :
+{
+    name : "LIBBATCH"
+    build_source : "cmake"
+    cmake_options : "-DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig"
+    get_source : "git"
+    git_info:
+    {
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "tools/libbatch.git"
+        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "libbatch.git"
+    }
+    environ :
+    {
+        env_script : $name + ".py"
+    }
+    depend : [ "Python"]
+    build_depend : ["cmake", "swig", "cppunit"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : "base"
+    properties:
+    {
+        incremental : "yes"
+    }
+}
+
+default_win :
+{
+    cmake_options : '-DCMAKE_GENERATOR="Visual Studio 15 2017 Win64" -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR:\=/%/bin/swig.exe'
+    depend : [ "Python", "pthreads" ]
+}

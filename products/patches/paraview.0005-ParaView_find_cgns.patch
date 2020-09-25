@@ -1,0 +1,15 @@
+diff -Naur ParaView-5.8.0_SRC_orig/CMake/FindCGNS.cmake ParaView-5.8.0_SRC_modif/CMake/FindCGNS.cmake
+--- ParaView-5.8.0_SRC_orig/CMake/FindCGNS.cmake	2020-03-23 13:27:34.000000000 +0300
++++ ParaView-5.8.0_SRC_modif/CMake/FindCGNS.cmake	2020-04-09 16:21:57.263362265 +0300
+@@ -5,6 +5,11 @@
+ # CGNS_LIBRARIES   - List of fully qualified libraries to link against when using CGNS.
+ # CGNS_FOUND       - Do not attempt to use CGNS if "no" or undefined.
+ 
++SET(CGNS_ROOT_DIR $ENV{CGNS_ROOT_DIR} CACHE PATH "Path to the CGNS.")
++IF(CGNS_ROOT_DIR)
++  LIST(APPEND CMAKE_PREFIX_PATH "${CGNS_ROOT_DIR}")
++ENDIF(CGNS_ROOT_DIR)
++
+ find_path(CGNS_INCLUDE_DIR
+   NAMES
+     cgnslib.h

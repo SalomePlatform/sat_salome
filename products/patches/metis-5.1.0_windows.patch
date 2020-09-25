@@ -1,0 +1,11 @@
+--- metis_ref/GKlib/gk_arch.h
++++ metis/GKlib/gk_arch.h
+@@ -58,7 +58,7 @@
+ #define PTRDIFF_MAX  INT64_MAX
+ #endif
+ 
+-#ifdef __MSC__
++#if defined(__MSC__) && !defined(WIN32)
+ /* MSC does not have rint() function */
+ #define rint(x) ((int)((x)+0.5))  
+ 

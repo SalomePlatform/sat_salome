@@ -1,0 +1,79 @@
+default :
+{
+    name : "netgen"
+    build_source : "script"
+    compil_script :  $name + $VARS.scriptExtension
+    get_source : "archive"
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : ['CAS', 'tcl', 'tk']
+    patches : [ ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+      incremental : "yes"
+    }
+}
+
+default_win:
+{
+   depend : ['CAS','zlib','tcltk']
+}
+
+version_5_3_1_with_CAS_7_2 :
+{
+    archive_info : {archive_name : "netgen-5.3.1.tar.gz"}
+    compil_script :  'netgen_5_3_1' + $VARS.scriptExtension
+    patches : ["netgen-5.3.1-for-SALOME-OCCT-7.2.0.patch"]
+}
+
+version_5_3_1_with_CAS_7_2_win :
+{
+   compil_script :  'netgen.bat'
+   patches :  ['netgen53ForSalomeOCCT730.patch','netgen53ForWindows.patch','netgen53ForSalomeVisualStudio2017.patch']
+   properties :
+   {
+     incremental : "yes"
+     single_install_dir : "yes"
+   }
+}
+
+version_5_3_1 :
+{
+    compil_script :  "netgen_5_3_1.sh"
+    archive_info: {archive_name : "netgen-5.3.1.tar.gz"}
+    patches : [ "netgen53ForSalome.patch"]
+}
+
+version_4_9_13 :
+{
+    archive_info:
+    {
+        archive_name : "netgen-4.9.13.tar.gz"
+    }
+    depend : ['CAS', 'tcl', 'tk', "freetype"]
+    patches : [
+                  "netgen49ForSalome.patch"
+                  "netgen-4.9.13_without_togl.patch"
+              ]
+}
+
+version_4_9_13_with_CAS7 :
+{
+    compil_script :  "netgen_CAS7.sh"
+    archive_info:
+    {
+        archive_name : "netgen-4.9.13.tar.gz"
+    }
+    depend : ['CAS', 'tcl', 'tk', "freetype"]
+    patches : [
+                "netgen-4.9.13_without_togl.patch",
+                "netgen-4.9.13-for-SALOME_v2.patch",
+                "netgen-4.9.13-for-SALOME-OCCT7.0.0-Porting.patch",
+                "netgen-4.9.13-for-OCCT7.0.0-includes.patch"
+              ]
+}

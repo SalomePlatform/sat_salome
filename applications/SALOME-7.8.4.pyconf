@@ -1,0 +1,129 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+APPLICATION :
+{
+    name : 'SALOME-7.8.4'
+    workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
+    tag : 'V7_8_0'
+    base : 'no'
+    environ :
+    {
+    }
+    products :
+    {
+        # PREREQUISITES :
+        alabaster : '0.7.6'
+        Babel : '2.6.0'
+        boost : '1.58.0'
+        CAS : {tag : '6.9.1p1', section : version_6_0_0_to_7_0_0}
+        certifi : '2018.8.24'
+        cgns : '3.1.3-4'
+        chardet : '3.0.4'
+        click : '6.7'
+        cmake : '3.5.2'
+        cppunit : '1.12.1'
+        Cython : '0.23.2'
+        dateutil : '2.4.0'
+        distribute : '0.6.28'
+        docutils : '0.12'
+        doxygen : '1.8.3.1'
+        freeimage : '3.16.0'
+        freetype : '2.4.11'
+        gl2ps : '1.3.8'
+        gmsh : '2.12.0'
+        graphviz : '2.38.0'
+        hdf5 : '1.8.14'
+        homard_bin : {section : 'version_6_6_0_to_8_5_0', tag : '11.7'}
+        idna : '2.7'
+        imagesize : '1.0.0'
+        Jinja2 : '2.7.3'
+        lapack : '3.5.0'
+        libxml2 : '2.9.0'
+        markupsafe : '0.23'
+        matplotlib : '1.4.3'
+        medfile : '3.2.0'
+        MeshGems : '2.1-11'
+        metis : '5.1.0'
+        netgen : '4.9.13'
+        numpy : '1.9.2'
+        omniORB : '4.1.6'
+        omniORBpy : '3.6'
+        opencv : '2.4.6.1'
+        packaging : '17.1'
+        ParaView : '5.0.1p1'
+        pockets : '0.6.2'
+        Pygments : '2.0.2'
+        pyparsing : '1.5.6'
+        PyQt : '4.9.6'
+        pyreadline : '2.0'
+        Python : '2.7.10'
+        pytz : '2014.10'
+        qt : '4.8.4'
+        qwt : '6.1.0'
+        requests : '2.19.1'
+        scipy : '0.15.1'
+        scotch : '5.1.12b'
+        setuptools : '0.6c11'
+        sip : '4.14.2'
+        six : '1.9.0'
+        snowballstemmer : '1.2.1'
+        Sphinx : {section: 'version_1_7_6_py2', tag:'1.7.6'}
+        sphinxcontrib_napoleon : '0.6.1'
+        sphinxcontrib_websupport : '1.1.0'
+        sphinxintl: '0.9.10'
+        swig : '2.0.8'
+        tcl : '8.6.0'
+        tk : '8.6.0'
+        typing : '3.6.6'
+        urllib3 : '1.23'
+
+        # SALOME MODULES :
+        'BLSURFPLUGIN'
+        'CALCULATOR'
+        'COMPONENT'
+        'DOCUMENTATION'
+        'GEOM'
+        'GHS3DPLUGIN'
+        'GHS3DPRLPLUGIN'
+        'GMSHPLUGIN' 
+        'GUI'
+        'HELLO'
+        'HEXABLOCK'
+        'HEXABLOCKPLUGIN'
+        'HOMARD'
+        'HXX2SALOME'
+        'HYBRIDPLUGIN'
+        'HexoticPLUGIN'
+        'JOBMANAGER'
+        'KERNEL'
+        'LIBBATCH' : "V2_3_0"
+        'MED'
+        'MEDCOUPLING' : {section: 'version_V7_8_0', tag : 'V7_8_2'}
+        'NETGENPLUGIN'
+        'PARAVIS'
+        'PYCALCULATOR'
+        'PYHELLO'
+        'SALOME_PROFILE' : "7.8.0"
+        'SAMPLES'
+        'SMESH'
+        'XDATA' : "0.9.11"
+        'YACS'
+        'YACSGEN' : {tag : 'V7_8_2'}
+    }
+    profile :
+    {
+        product : "SALOME_PROFILE"
+    }
+    virtual_app:
+    {
+        name : "salome"
+        application_name : "APPLI"
+    }
+    test_base : 
+    {
+        name : "SALOME"
+        tag : "7.8.0"
+    }
+}
+

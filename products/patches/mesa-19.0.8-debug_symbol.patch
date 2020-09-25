@@ -1,0 +1,12 @@
+diff -rupN mesa_ref/src/gallium/auxiliary/util/u_debug_symbol.c mesa/src/gallium/auxiliary/util/u_debug_symbol.c
+--- mesa_ref/src/gallium/auxiliary/util/u_debug_symbol.c	2019-06-26 22:14:08.000000000 +0200
++++ mesa/src/gallium/auxiliary/util/u_debug_symbol.c	2020-09-21 12:25:09.031462169 +0200
+@@ -270,7 +270,7 @@ debug_symbol_print(const void *addr)
+    debug_printf("\t%s\n", buf);
+ }
+ 
+-struct util_hash_table* symbols_hash;
++extern struct util_hash_table* symbols_hash;
+ static mtx_t symbols_mutex = _MTX_INITIALIZER_NP;
+ 
+ static unsigned hash_ptr(void* p)

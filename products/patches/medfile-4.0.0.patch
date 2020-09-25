@@ -1,0 +1,10 @@
+--- medfile_ref/src/ci/MEDmeshUniversalNameWr.c
++++ medfile/src/ci/MEDmeshUniversalNameWr.c
+@@ -29,6 +29,7 @@
+ #include <windows.h>
+ #include <Lmcons.h>
+ #include <sys/timeb.h>
++#include <time.h>
+ #else
+ 
+ #if TIME_WITH_SYS_TIME

@@ -1,0 +1,94 @@
+default :
+{
+    name : "SALOME_PROFILE"
+    build_source : "cmake"
+    get_source : "git"
+    git_info:
+    {
+        repo : "/home/salome/GitRepo/" + $name + ".git"
+        repo_dev : $repo
+    }
+    environ :
+    {
+    }
+    depend : ["KERNEL", "GUI", "Python", "Sphinx", "qt"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        is_SALOME_module : "yes"
+    }
+}
+
+version_Vmaster :
+{
+    name : "SALOME_PROFILE"
+    build_source : "cmake"
+    get_source : "git"
+    git_info:
+    {
+        repo : "/home/salome/GitRepo/" + $name + ".git"
+        repo_dev : $repo
+    }
+    environ :
+    {
+    }
+    depend : ["KERNEL", "GUI", "Python", "Sphinx", "qt"]
+    patches : ["SALOME_PROFILE_NO_ENV_master_V2.patch"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        is_SALOME_module : "yes"
+    }
+}
+
+version_8_0_0_to_8_1_0 :
+{
+    name : "SALOME_PROFILE"
+    build_source : "cmake"
+    get_source : "git"
+    git_info:
+    {
+        repo : "/home/salome/GitRepo/" + $name + ".git"
+        repo_dev : $repo
+    }
+    environ :
+    {
+    }
+    depend : ["KERNEL", "GUI", "Python", "Sphinx", "qt"]
+    patches : ["SALOME_PROFILE_NO_ENV_master_V2.patch"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        is_SALOME_module : "yes"
+    }
+}
+
+
+
+version_6_6_0_to_7_8_0 :
+{
+    name : "SALOME_PROFILE"
+    build_source : "cmake"
+    get_source : "git"
+    git_info:
+    {
+        repo : "/home/salome/GitRepo/" + $name + ".git"
+        repo_dev : $repo
+    }
+    environ :
+    {
+    }
+    depend : ["KERNEL", "GUI", "Python", "Sphinx", "qt"]
+    patches : ["SALOME_PROFILE_NO_ENV.patch"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        is_SALOME_module : "yes"
+    }
+}
+
+

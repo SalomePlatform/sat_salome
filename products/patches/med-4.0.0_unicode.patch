@@ -1,0 +1,260 @@
+diff -Naur med-4.0.0_orig/CMakeLists.txt med-4.0.0_modif/CMakeLists.txt
+--- med-4.0.0_orig/CMakeLists.txt	2018-12-10 20:41:59.000000000 +0300
++++ med-4.0.0_modif/CMakeLists.txt	2019-02-26 19:14:45.310698300 +0300
+@@ -35,6 +35,7 @@
+ OPTION (MEDFILE_BUILD_STATIC_LIBS "Build MED-file static libraries" OFF)
+ OPTION (MEDFILE_INSTALL_DOC "Install pre-built documentation" ON)
+ OPTION (MEDFILE_BUILD_PYTHON "Build Python bindings (needs SWIG)" OFF)
++OPTION (MEDFILE_USE_UNICODE "Use unicode filenames" ON)
+ 
+ #-- Add an Option to toggle the generation of the API documentation
+ #-- Embedded documentation contains patched doxygen generated fortran documention
+@@ -50,6 +51,10 @@
+   ADD_SUBDIRECTORY(doc)
+ endif()
+ 
++IF(MEDFILE_USE_UNICODE)
++  ADD_DEFINITIONS(-DUNICODE)
++ENDIF()
++
+ # Option checking.
+ IF(MEDFILE_BUILD_SHARED_LIBS AND MEDFILE_BUILD_STATIC_LIBS)
+   MESSAGE(FATAL_ERROR "You can not build shared and static libraries at the same time! ")
+diff -Naur med-4.0.0_orig/include/med_misc.h med-4.0.0_modif/include/med_misc.h
+--- med-4.0.0_orig/include/med_misc.h	2018-12-10 13:17:52.000000000 +0300
++++ med-4.0.0_modif/include/med_misc.h	2019-02-26 18:05:01.054155600 +0300
+@@ -149,6 +149,9 @@
+ 				       med_geometry_type * const smeshgeotype,
+ 				       char * const              smeshgeotypename,
+ 				       med_int * const           smeshnentity);
++extern MEDC_EXPORT
++int med_access(const char * const fichier, int mode);
++
+ 
+ /* Gestion des messages d'erreur */
+ /* extern MEDC_EXPORT */
+diff -Naur med-4.0.0_orig/src/2.3.6/ci/MEDmonter.c med-4.0.0_modif/src/2.3.6/ci/MEDmonter.c
+--- med-4.0.0_orig/src/2.3.6/ci/MEDmonter.c	2018-12-10 13:17:55.000000000 +0300
++++ med-4.0.0_modif/src/2.3.6/ci/MEDmonter.c	2019-02-26 18:15:57.706349300 +0300
+@@ -47,7 +47,7 @@
+    * On regarde si le fichier de nom "acces" existe
+    * Si ce n'est pas le cas => erreur
+    */
+-  if (access(acces,F_OK))
++  if (med_access(acces,F_OK))
+     return -1;
+ 
+   if ( (MED_MODE_ACCES = _MEDmodeAcces(fid) ) == MED_UNDEF_MODE_ACCES ) {
+diff -Naur med-4.0.0_orig/src/2.3.6/ci/MEDouvrir.c med-4.0.0_modif/src/2.3.6/ci/MEDouvrir.c
+--- med-4.0.0_orig/src/2.3.6/ci/MEDouvrir.c	2018-12-10 13:17:55.000000000 +0300
++++ med-4.0.0_modif/src/2.3.6/ci/MEDouvrir.c	2019-02-26 18:16:21.655051700 +0300
+@@ -49,7 +49,7 @@
+   switch(mode_acces)
+     {
+     case MED_LECTURE :
+-      if (access(nom,F_OK)) {
++      if (med_access(nom,F_OK)) {
+ 
+ 	MESSAGE("Impossible d'accéder aux fichier :");
+ 	SSCRUTE(nom);
+@@ -62,7 +62,7 @@
+       break;
+ 
+     case MED_LECTURE_ECRITURE : 
+-      if (access(nom,F_OK)) {
++      if (med_access(nom,F_OK)) {
+ 	  if ((fid = _MEDfichierCreer(nom,mode_acces)) < 0)
+ 	    return -1;
+       } else 
+@@ -71,7 +71,7 @@
+       break;
+ 
+     case MED_LECTURE_AJOUT    :
+-      if (access(nom,F_OK))
++      if (med_access(nom,F_OK))
+ 	{
+ 	  if ((fid = _MEDfichierCreer(nom,mode_acces)) < 0)
+ 	    return -1;
+diff -Naur med-4.0.0_orig/src/ci/MEDfileExist.c med-4.0.0_modif/src/ci/MEDfileExist.c
+--- med-4.0.0_orig/src/ci/MEDfileExist.c	2017-07-10 17:25:29.000000000 +0300
++++ med-4.0.0_modif/src/ci/MEDfileExist.c	2019-02-26 18:16:44.260571900 +0300
+@@ -74,7 +74,7 @@
+   /*
+    * On ouvre le fichier MED sous HDF
+    */ 
+-  if ( access(filename,F_OK) ) {
++  if ( med_access(filename,F_OK) ) {
+     
+     *fileexist = MED_FALSE;
+     *accessok  = MED_FALSE;
+@@ -107,13 +107,13 @@
+     // Join drive letter and directory name:
+     _makepath(_dirname, _drive, _direc, NULL, NULL);
+ #endif
+-    if ( access(_dirname,_mode) )  *accessok = MED_FALSE; else *accessok = MED_TRUE;
++    if ( med_access(_dirname,_mode) )  *accessok = MED_FALSE; else *accessok = MED_TRUE;
+     
+   } else {
+     
+     *fileexist = MED_TRUE;
+     (accessmode!=MED_ACC_RDONLY) && (_mode=_mode|W_OK);
+-    if ( access(filename,_mode) ) *accessok = MED_FALSE; else *accessok = MED_TRUE;
++    if ( med_access(filename,_mode) ) *accessok = MED_FALSE; else *accessok = MED_TRUE;
+     
+   }
+   
+diff -Naur med-4.0.0_orig/src/ci/MEDfileVersionOpen.c med-4.0.0_modif/src/ci/MEDfileVersionOpen.c
+--- med-4.0.0_orig/src/ci/MEDfileVersionOpen.c	2018-12-10 13:17:55.000000000 +0300
++++ med-4.0.0_modif/src/ci/MEDfileVersionOpen.c	2019-02-26 18:17:50.884971000 +0300
+@@ -62,7 +62,7 @@
+   switch(accessmode)
+     {
+     case MED_ACC_RDONLY :
+-      if (access(filename,F_OK)) {
++      if (med_access(filename,F_OK)) {
+ 	MED_ERR_(_ret,MED_ERR_EXIST,MED_ERR_FILE,filename);
+ 	goto ERROR;
+ 
+@@ -75,7 +75,7 @@
+       break;
+ 
+     case MED_ACC_RDWR :
+-      if (access(filename,F_OK)) {
++      if (med_access(filename,F_OK)) {
+ 	if ((_fid = _MEDfileCreate((char*) filename,accessmode,major,minor,release)) < 0) {
+ 	  MED_ERR_(_ret,MED_ERR_CREATE,MED_ERR_FILE,filename);
+ 	  goto ERROR;
+@@ -88,7 +88,7 @@
+       break;
+ 
+     case MED_ACC_RDEXT :
+-      if (access(filename,F_OK))
++      if (med_access(filename,F_OK))
+ 	{
+ 	  if ((_fid = _MEDfileCreate((char*) filename,accessmode,major,minor,release)) < 0) {
+ 	    MED_ERR_(_ret,MED_ERR_CREATE,MED_ERR_FILE,filename);
+diff -Naur med-4.0.0_orig/src/ci/MEDparFileOpen.c med-4.0.0_modif/src/ci/MEDparFileOpen.c
+--- med-4.0.0_orig/src/ci/MEDparFileOpen.c	2018-12-10 13:17:53.000000000 +0300
++++ med-4.0.0_modif/src/ci/MEDparFileOpen.c	2019-02-26 18:18:10.362058500 +0300
+@@ -62,7 +62,7 @@
+   switch(accessmode)
+     {
+     case MED_ACC_RDONLY :
+-      if (access(filename,F_OK)) {
++      if (med_access(filename,F_OK)) {
+ 	MED_ERR_(_fid,MED_ERR_DOESNTEXIST,MED_ERR_FILE,filename);
+ 	goto ERROR;
+ 
+@@ -75,7 +75,7 @@
+       break;
+ 
+     case MED_ACC_RDWR :
+-      if (access(filename,F_OK)) {
++      if (med_access(filename,F_OK)) {
+ 	if ((_fid = _MEDparFileCreate((char*) filename,accessmode, comm, info)) < 0) {
+ 	  MED_ERR_(_fid,MED_ERR_CREATE,MED_ERR_FILE,filename);
+ 	  goto ERROR;
+@@ -88,7 +88,7 @@
+       break;
+ 
+     case MED_ACC_RDEXT :
+-      if (access(filename,F_OK))
++      if (med_access(filename,F_OK))
+ 	{
+ 	  if ((_fid = _MEDparFileCreate((char*) filename,accessmode, comm, info)) < 0) {
+ 	    MED_ERR_(_fid,MED_ERR_CREATE,MED_ERR_FILE,filename);
+diff -Naur med-4.0.0_orig/src/ci/_MEDfileObjectsMount236.c med-4.0.0_modif/src/ci/_MEDfileObjectsMount236.c
+--- med-4.0.0_orig/src/ci/_MEDfileObjectsMount236.c	2018-12-10 13:17:54.000000000 +0300
++++ med-4.0.0_modif/src/ci/_MEDfileObjectsMount236.c	2019-02-26 18:18:20.374401600 +0300
+@@ -73,7 +73,7 @@
+   /*
+    * does the file exist ?
+    */
+-  if (access(mountfilename,F_OK)) {
++  if (med_access(mountfilename,F_OK)) {
+     MED_ERR_(_ret,MED_ERR_EXIST,MED_ERR_FILE,mountfilename);
+     goto ERROR;
+   }
+diff -Naur med-4.0.0_orig/src/ci/_MEDfileObjectsMount30.c med-4.0.0_modif/src/ci/_MEDfileObjectsMount30.c
+--- med-4.0.0_orig/src/ci/_MEDfileObjectsMount30.c	2018-12-10 13:17:55.000000000 +0300
++++ med-4.0.0_modif/src/ci/_MEDfileObjectsMount30.c	2019-02-26 18:18:29.115797700 +0300
+@@ -86,7 +86,7 @@
+     _id=chfid;
+   } else {
+     /* does the file exist ? */
+-    if (access(mountfilename,F_OK)) {
++    if (med_access(mountfilename,F_OK)) {
+       MED_ERR_(_ret,MED_ERR_EXIST,MED_ERR_FILE,mountfilename);
+       goto ERROR;
+     }
+diff -Naur med-4.0.0_orig/src/hdfi/_MEDmemFileOpen.c med-4.0.0_modif/src/hdfi/_MEDmemFileOpen.c
+--- med-4.0.0_orig/src/hdfi/_MEDmemFileOpen.c	2017-07-26 16:45:49.000000000 +0300
++++ med-4.0.0_modif/src/hdfi/_MEDmemFileOpen.c	2019-02-26 18:18:40.606423800 +0300
+@@ -421,7 +421,7 @@
+ 					    (void *)(memfile)};
+   memfile->flags = accessmode;
+ 
+-  file_exist=!access(filename,F_OK);
++  file_exist=!med_access(filename,F_OK);
+ 
+   /*
+    * On inhibe le gestionnaire d'erreur HDF 5
+diff -Naur med-4.0.0_orig/src/misc/CMakeLists.txt med-4.0.0_modif/src/misc/CMakeLists.txt
+--- med-4.0.0_orig/src/misc/CMakeLists.txt	2017-11-06 19:19:17.000000000 +0300
++++ med-4.0.0_modif/src/misc/CMakeLists.txt	2019-02-26 19:19:26.331544200 +0300
+@@ -1,4 +1,5 @@
+ SET(misc_SOURCES
++  MEDaccess.c 
+   MEDsetFilter.c
+   MEDcstring.c
+   MED1cstring.c
+diff -Naur med-4.0.0_orig/src/misc/MEDaccess.c med-4.0.0_modif/src/misc/MEDaccess.c
+--- med-4.0.0_orig/src/misc/MEDaccess.c	1970-01-01 03:00:00.000000000 +0300
++++ med-4.0.0_modif/src/misc/MEDaccess.c	2019-03-07 15:15:56.880252400 +0300
+@@ -0,0 +1,46 @@
++/*  This file is part of MED.
++ *
++ *  COPYRIGHT (C) 1999 - 2019  EDF R&D, CEA/DEN
++ *  MED is free software: you can redistribute it and/or modify
++ *  it under the terms of the GNU Lesser General Public License as published by
++ *  the Free Software Foundation, either version 3 of the License, or
++ *  (at your option) any later version.
++ *
++ *  MED is distributed in the hope that it will be useful,
++ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
++ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ *  GNU Lesser General Public License for more details.
++ *
++ *  You should have received a copy of the GNU Lesser General Public License
++ *  along with MED.  If not, see <http://www.gnu.org/licenses/>.
++ */
++
++#if defined(WIN32)
++#include <windows.h>
++#endif
++
++/******************************************************************************
++ *
++ * - Nom de la fonction : med_access
++ * - Description : 
++ * - Parametres :
++ *     - fichier    (IN) : nom du fichier.
++ *     - mode       (IN) : 
++ *
++ ******************************************************************************/
++int med_access(const char * const fichier, int mode) {
++  int ret;
++#if defined(WIN32) && defined(UNICODE)
++  int size_needed;
++  wchar_t* afilename = NULL;
++  size_needed = MultiByteToWideChar(CP_UTF8, 0, fichier, strlen(fichier), NULL, 0);
++  afilename = malloc((size_needed+1)*sizeof(wchar_t));
++  MultiByteToWideChar(CP_UTF8, 0, fichier, strlen(fichier), afilename, size_needed);
++  afilename[size_needed] = '\0';
++  ret = _waccess(afilename, mode);
++  free(afilename);
++#else
++  ret = access(fichier, mode);
++#endif 
++  return ret;
++}

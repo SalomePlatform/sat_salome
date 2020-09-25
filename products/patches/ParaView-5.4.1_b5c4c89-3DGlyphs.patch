@@ -1,0 +1,140 @@
+diff -Naur ParaView_ori/CMakeLists.txt ParaView_new/CMakeLists.txt
+--- ParaView_ori/CMakeLists.txt	2018-01-11 09:32:16.000000000 +0100
++++ ParaView_new/CMakeLists.txt	2018-04-13 13:30:54.503629695 +0200
+@@ -213,6 +213,9 @@
+ option(PARAVIEW_USE_VISITBRIDGE "Build ParaView with VisIt readers." OFF)
+ option(PARAVIEW_USE_OPENTURNS "Build ParaView with OpenTURNS filters and density maps" OFF)
+ 
++# AC - OP spns 7810 Add option to disable 3D Glyphs representation
++option(PARAVIEW_USE_3DGLYPH "Build ParaView with 3D Glyph presentation" ON)
++
+ # NvPipe requires an NVIDIA GPU.
+ option(PARAVIEW_ENABLE_NVPIPE
+        "Build ParaView with NvPipe remoting. Requires CUDA and an NVIDIA GPU" OFF)
+diff -Naur ParaView_ori/ParaViewCore/ClientServerCore/Default/Testing/Cxx/ParaViewCoreClientServerCorePrintSelf.cxx ParaView_new/ParaViewCore/ClientServerCore/Default/Testing/Cxx/ParaViewCoreClientServerCorePrintSelf.cxx
+--- ParaView_ori/ParaViewCore/ClientServerCore/Default/Testing/Cxx/ParaViewCoreClientServerCorePrintSelf.cxx	2018-01-11 09:32:03.000000000 +0100
++++ ParaView_new/ParaViewCore/ClientServerCore/Default/Testing/Cxx/ParaViewCoreClientServerCorePrintSelf.cxx	2018-04-13 13:34:01.726070038 +0200
+@@ -9,7 +9,12 @@
+ #include "vtkDataLabelRepresentation.h"
+ #include "vtkGeometryRepresentation.h"
+ #include "vtkGeometryRepresentationWithFaces.h"
++
++// AC - OP spns 7810 Disable 3D Glyphs representation
++#ifdef PARAVIEW_USE_3DGLYPH
+ #include "vtkGlyph3DRepresentation.h"
++#endif
++
+ #include "vtkImageSliceMapper.h"
+ #include "vtkImageSliceRepresentation.h"
+ #include "vtkImageVolumeRepresentation.h"
+@@ -111,7 +116,12 @@
+   PRINT_SELF(vtkDataLabelRepresentation);
+   PRINT_SELF(vtkGeometryRepresentation);
+   PRINT_SELF(vtkGeometryRepresentationWithFaces);
++
++  // AC - OP spns 7810 Disable 3D Glyphs representation
++#ifdef PARAVIEW_USE_3DGLYPH
+   PRINT_SELF(vtkGlyph3DRepresentation);
++#endif
++  
+   PRINT_SELF(vtkImageSliceMapper);
+   PRINT_SELF(vtkImageSliceRepresentation);
+   PRINT_SELF(vtkImageVolumeRepresentation);
+diff -Naur ParaView_ori/ParaViewCore/ClientServerCore/Rendering/CMakeLists.txt ParaView_new/ParaViewCore/ClientServerCore/Rendering/CMakeLists.txt
+--- ParaView_ori/ParaViewCore/ClientServerCore/Rendering/CMakeLists.txt	2018-01-11 09:32:16.000000000 +0100
++++ ParaView_new/ParaViewCore/ClientServerCore/Rendering/CMakeLists.txt	2018-04-13 13:39:53.538166496 +0200
+@@ -28,6 +28,8 @@
+ #  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ #
+ #==========================================================================
++
++# AC - OP spns #7810 Disable 3D Glyphs representation
+ set (Module_SRCS
+   vtk3DWidgetRepresentation.cxx
+   vtkAMROutlineRepresentation.cxx
+@@ -44,7 +46,6 @@
+   vtkGeometryRepresentation.cxx
+   vtkGeometryRepresentationWithFaces.cxx
+   vtkGeometrySliceRepresentation.cxx
+-  vtkGlyph3DRepresentation.cxx
+   vtkImageSliceRepresentation.cxx
+   vtkImageVolumeRepresentation.cxx
+   vtkMoleculeRepresentation.cxx
+@@ -104,7 +105,13 @@
+   vtkThreeSliceFilter.cxx
+   vtkUnstructuredGridVolumeRepresentation.cxx
+   vtkXYChartRepresentation.cxx
+-)
++  )
++
++if (PARAVIEW_USE_3DGLYPH)
++  list(APPEND Module_SRCS
++    vtkGlyph3DRepresentation.cxx)
++endif()
++    
+ 
+ list(APPEND Module_SRCS
+   vtkPointGaussianRepresentation.cxx)
+diff -Naur ParaView_ori/ParaViewCore/ServerManager/SMApplication/Resources/views_and_representations.xml ParaView_new/ParaViewCore/ServerManager/SMApplication/Resources/views_and_representations.xml
+--- ParaView_ori/ParaViewCore/ServerManager/SMApplication/Resources/views_and_representations.xml	2018-01-11 09:32:16.000000000 +0100
++++ ParaView_new/ParaViewCore/ServerManager/SMApplication/Resources/views_and_representations.xml	2018-04-13 13:47:59.330840906 +0200
+@@ -3608,9 +3608,12 @@
+       <RepresentationType subproxy="SurfaceRepresentation"
+                           subtype="Surface With Edges"
+                           text="Surface With Edges" />
++      <!-- AC - OP spns #7810 Disable 3D Glyphs representation -->
++#ifdef PARAVIEW_USE_3DGLYPH
+       <RepresentationType subproxy="Glyph3DRepresentation"
+                           subtype="Surface"
+                           text="3D Glyphs" />
++#endif
+       <StringVectorProperty command="GetRepresentationTypes"
+                             information_only="1"
+                             name="RepresentationTypesInfo"
+@@ -3785,6 +3788,8 @@
+           <Exception name="Visibility" />
+         </ShareProperties>
+       </SubProxy>
++      <!-- AC - OP spns #7810 Disable 3D Glyphs representation -->
++#ifdef PARAVIEW_USE_3DGLYPH
+       <SubProxy>
+         <Proxy name="Glyph3DRepresentation"
+                proxygroup="representations"
+@@ -3834,6 +3839,7 @@
+           <Exception name="Visibility" />
+         </ShareProperties>
+       </SubProxy>
++ #endif
+       <ProxyProperty name="DataAxesGrid"
+                      command="SetGridAxesRepresentation"
+                      panel_widget="proxy_editor">
+@@ -4792,6 +4798,8 @@
+       </DoubleVectorProperty>
+     </RepresentationProxy>
+     <!-- ================================================================== -->
++    <!-- AC - OP spns #7810 Disable 3D Glyphs representation -->
++#ifdef PARAVIEW_USE_3DGLYPH
+     <RepresentationProxy base_proxygroup="internal_representations"
+                          base_proxyname="SurfaceRepresentationBase"
+                          class="vtkGlyph3DRepresentation"
+@@ -4997,6 +5005,7 @@
+       </IntVectorProperty>
+       <!-- end of Glyph3DRepresentation -->
+     </RepresentationProxy>
++#endif
+     <!-- ================================================================== -->
+     <RepresentationProxy class="vtkDataLabelRepresentation"
+                          name="DataLabelRepresentation"
+diff -Naur ParaView_ori/vtkPVConfig.h.in ParaView_new/vtkPVConfig.h.in
+--- ParaView_ori/vtkPVConfig.h.in	2018-01-11 09:32:16.000000000 +0100
++++ ParaView_new/vtkPVConfig.h.in	2018-04-13 13:53:16.193719426 +0200
+@@ -49,6 +49,9 @@
+ //Build ParaView with enforced secure connection (--connect-id)
+ #cmakedefine PARAVIEW_ALWAYS_SECURE_CONNECTION
+ 
++// AC - OP spns #7810 Disable 3D Glyphs representation
++#cmakedefine PARAVIEW_USE_3DGLYPH
++
+ #define PARAVIEW_VERSION_MAJOR @PARAVIEW_VERSION_MAJOR@
+ #define PARAVIEW_VERSION_MINOR @PARAVIEW_VERSION_MINOR@
+ #define PARAVIEW_VERSION_PATCH @PARAVIEW_VERSION_PATCH@

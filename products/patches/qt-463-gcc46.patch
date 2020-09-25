@@ -1,0 +1,11 @@
+diff -ru qt-everywhere-opensource-src-4.6.3/config.tests/unix/stl/stltest.cpp Qt-463/config.tests/unix/stl/stltest.cpp
+--- qt-everywhere-opensource-src-4.6.3/config.tests/unix/stl/stltest.cpp	2010-06-02 04:03:18.000000000 +0200
++++ Qt-463/config.tests/unix/stl/stltest.cpp	2011-05-11 10:23:35.968238594 +0200
+@@ -49,6 +49,7 @@
+ #include <vector>
+ #include <algorithm>
+ #include <iostream>
++#include <cstddef>
+ 
+ // something mean to see if the compiler and C++ standard lib are good enough
+ template<class K, class T>

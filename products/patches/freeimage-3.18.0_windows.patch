@@ -1,0 +1,132 @@
+--- freeimage-3.18.0_ref/FreeImage.2017.vcxproj
++++ freeimage-3.18.0/FreeImage.2017.vcxproj
+@@ -22,7 +22,7 @@
+     <ProjectName>FreeImage</ProjectName>
+     <ProjectGuid>{B39ED2B3-D53A-4077-B957-930979A3577D}</ProjectGuid>
+     <RootNamespace>FreeImage</RootNamespace>
+-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+--- freeimage-3.18.0_ref/Source/FreeImageLib/FreeImageLib.2017.vcxproj
++++ freeimage-3.18.0/Source/FreeImageLib/FreeImageLib.2017.vcxproj
+@@ -22,7 +22,7 @@
+     <ProjectName>FreeImageLib</ProjectName>
+     <ProjectGuid>{9E219DF2-315D-478E-8A07-8960C377CE1E}</ProjectGuid>
+     <RootNamespace>FreeImageLib</RootNamespace>
+-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+--- freeimage-3.18.0_ref/Source/LibJPEG/LibJPEG.2017.vcxproj
++++ freeimage-3.18.0/Source/LibJPEG/LibJPEG.2017.vcxproj
+@@ -22,7 +22,7 @@
+     <ProjectName>LibJPEG</ProjectName>
+     <ProjectGuid>{5E1D4E5F-E10C-4BA3-B663-F33014FD21D9}</ProjectGuid>
+     <RootNamespace>LibJPEG</RootNamespace>
+-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+--- freeimage-3.18.0_ref/Source/LibJXR/LibJXR.2017.vcxproj
++++ freeimage-3.18.0/Source/LibJXR/LibJXR.2017.vcxproj
+@@ -23,7 +23,7 @@
+     <ProjectGuid>{244455E0-5F25-4451-9540-F317883E52A8}</ProjectGuid>
+     <RootNamespace>LibJXR</RootNamespace>
+     <Keyword>Win32Proj</Keyword>
+-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+--- freeimage-3.18.0_ref/Source/LibOpenJPEG/LibOpenJPEG.2017.vcxproj
++++ freeimage-3.18.0/Source/LibOpenJPEG/LibOpenJPEG.2017.vcxproj
+@@ -22,7 +22,7 @@
+     <ProjectName>LibOpenJPEG</ProjectName>
+     <ProjectGuid>{E3536C28-A7F1-4B53-8E52-7D2232F9E098}</ProjectGuid>
+     <RootNamespace>LibOpenJPEG</RootNamespace>
+-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+--- freeimage-3.18.0_ref/Source/LibPNG/LibPNG.2017.vcxproj
++++ freeimage-3.18.0/Source/LibPNG/LibPNG.2017.vcxproj
+@@ -22,7 +22,7 @@
+     <ProjectName>LibPNG</ProjectName>
+     <ProjectGuid>{7DB10B50-CE00-4D7A-B322-6824F05D2FCB}</ProjectGuid>
+     <RootNamespace>LibPNG</RootNamespace>
+-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+--- freeimage-3.18.0_ref/Source/LibRawLite/LibRawLite.2017.vcxproj
++++ freeimage-3.18.0/Source/LibRawLite/LibRawLite.2017.vcxproj
+@@ -23,7 +23,7 @@
+     <ProjectGuid>{07F662C1-1323-42AB-B6AF-FBFD34A7437A}</ProjectGuid>
+     <RootNamespace>LibRawLite</RootNamespace>
+     <Keyword>Win32Proj</Keyword>
+-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+--- freeimage-3.18.0_ref/Source/LibTIFF4/LibTIFF4.2017.vcxproj
++++ freeimage-3.18.0/Source/LibTIFF4/LibTIFF4.2017.vcxproj
+@@ -22,7 +22,7 @@
+     <ProjectName>LibTIFF4</ProjectName>
+     <ProjectGuid>{EC085CBD-E9C3-477F-9A97-CB9D5DA30E27}</ProjectGuid>
+     <RootNamespace>LibTIFF4</RootNamespace>
+-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+--- freeimage-3.18.0_ref/Source/LibWebP/LibWebP.2017.vcxproj
++++ freeimage-3.18.0/Source/LibWebP/LibWebP.2017.vcxproj
+@@ -23,7 +23,7 @@
+     <ProjectGuid>{097D9F6C-FD0E-4CBC-9676-009012AAECA8}</ProjectGuid>
+     <RootNamespace>LibWebP</RootNamespace>
+     <Keyword>Win32Proj</Keyword>
+-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+--- freeimage-3.18.0_ref/Source/OpenEXR/OpenEXR.2017.vcxproj
++++ freeimage-3.18.0/Source/OpenEXR/OpenEXR.2017.vcxproj
+@@ -22,7 +22,7 @@
+     <ProjectName>OpenEXR</ProjectName>
+     <ProjectGuid>{17A4874B-0606-4687-90B6-F91F8CB3B8AF}</ProjectGuid>
+     <RootNamespace>OpenEXR</RootNamespace>
+-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+--- freeimage-3.18.0_ref/Source/ZLib/ZLib.2017.vcxproj
++++ freeimage-3.18.0/Source/ZLib/ZLib.2017.vcxproj
+@@ -22,7 +22,7 @@
+     <ProjectName>ZLib</ProjectName>
+     <ProjectGuid>{33134F61-C1AD-4B6F-9CEA-503A9F140C52}</ProjectGuid>
+     <RootNamespace>ZLib</RootNamespace>
+-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+--- freeimage-3.18.0_ref/Wrapper/FreeImagePlus/FreeImagePlus.2017.vcxproj
++++ freeimage-3.18.0/Wrapper/FreeImagePlus/FreeImagePlus.2017.vcxproj
+@@ -22,7 +22,7 @@
+     <ProjectName>FreeImagePlus</ProjectName>
+     <ProjectGuid>{94F36908-A4E2-4533-939D-64FF6EADA5A1}</ProjectGuid>
+     <RootNamespace>FreeImagePlus</RootNamespace>
+-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

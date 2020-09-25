@@ -1,0 +1,53 @@
+default :
+{
+    name : "Python"
+    build_source : "script"
+    compil_script : $name + $VARS.scriptExtension
+    get_source : "archive"
+    system_info : 
+    {
+        rpm : ["python36"]
+        rpm_dev : []
+        apt : ["python36"]
+        apt_dev : []
+    }
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : []
+    patches : []
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties:
+    {
+      incremental : "yes"
+      compile_and_runtime : "yes"
+    }
+}
+
+version_2_6_6 :
+{
+    patches : ["Python_zlib_detection.patch", "Python_SSL.patch"]
+}
+
+version_2_7_10 :
+{
+    patches : [
+        #'remove-windows-python-subprojects.patch', #patch Windows non applicable sur Linux
+        #'enable-windows-plugin-compilation.patch',
+    ]
+}
+
+version_3_6_5 :
+{
+ patches : []
+}
+
+version_3_6_5_win :
+{
+    compil_script : "Python-3.6.5.bat"
+    patches : ['Python-3.6.5_windows.patch']
+}
+ 

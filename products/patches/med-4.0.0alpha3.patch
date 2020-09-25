@@ -1,0 +1,21 @@
+diff -Naur --exclude=CVS --exclude=.git med-4.0.0alpha3_SRC.orig/config/cmake_files/FindMedfileHDF5.cmake med-4.0.0alpha3_SRC.patched/config/cmake_files/FindMedfileHDF5.cmake
+--- med-4.0.0alpha3_SRC.orig/config/cmake_files/FindMedfileHDF5.cmake	2018-10-18 17:54:13.943386900 +0300
++++ med-4.0.0alpha3_SRC.patched/config/cmake_files/FindMedfileHDF5.cmake	2018-10-18 17:15:02.000000000 +0300
+@@ -132,7 +132,16 @@
+   # As of HDF5-1.8.11 the following is still not set in the exported CONFIG
+   # of the official hdf5-config.cmake. We add it ourselves:
+   IF(NOT DEFINED HDF5_LIBRARIES)
+-    SET(HDF5_LIBRARIES "hdf5")
++    IF(NOT TARGET hdf5 AND NOT TARGET hdf5-static AND NOT TARGET hdf5-shared)
++      # Some HDF5 versions (e.g. 1.8.18) used hdf5::hdf5 etc
++      SET(_target_prefix "hdf5::")
++    ENDIF()
++    IF(MEDFILE_BUILD_SHARED_LIBS)
++      SET(_suffix "-shared")
++    ELSE()
++      SET(_suffix "-static")
++    ENDIF()
++    SET(HDF5_LIBRARIES "${_target_prefix}hdf5${_suffix}")
+   ENDIF()
+   
+   SET(HDF5_ROOT_DIR ${_tmp_ROOT_DIR})

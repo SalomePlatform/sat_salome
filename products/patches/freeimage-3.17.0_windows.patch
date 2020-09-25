@@ -1,0 +1,39 @@
+diff -Naur freeimage-3.17.0_SRC_orig/Source/LibRawLite/dcraw/dcraw.c freeimage-3.17.0_SRC_modif/Source/LibRawLite/dcraw/dcraw.c
+--- freeimage-3.17.0_SRC_orig/Source/LibRawLite/dcraw/dcraw.c	2015-03-08 22:19:52.000000000 +0300
++++ freeimage-3.17.0_SRC_modif/Source/LibRawLite/dcraw/dcraw.c	2018-07-12 19:55:33.272414700 +0300
+@@ -75,7 +75,9 @@
+ #include <sys/utime.h>
+ #include <winsock2.h>
+ #pragma comment(lib, "ws2_32.lib")
++#if _MSC_VER<1900
+ #define snprintf _snprintf
++#endif
+ #define strcasecmp stricmp
+ #define strncasecmp strnicmp
+ //@end DEFINES
+diff -Naur freeimage-3.17.0_SRC_orig/Source/LibRawLite/internal/defines.h freeimage-3.17.0_SRC_modif/Source/LibRawLite/internal/defines.h
+--- freeimage-3.17.0_SRC_orig/Source/LibRawLite/internal/defines.h	2015-03-08 23:37:22.000000000 +0300
++++ freeimage-3.17.0_SRC_modif/Source/LibRawLite/internal/defines.h	2018-07-12 19:58:42.939216200 +0300
+@@ -55,7 +55,9 @@
+ #include <sys/utime.h>
+ #include <winsock2.h>
+ #pragma comment(lib, "ws2_32.lib")
++#if _MSC_VER<1900
+ #define snprintf _snprintf
++#endif
+ #define strcasecmp stricmp
+ #define strncasecmp strnicmp
+ #line 85 "dcraw/dcraw.c"
+diff -Naur freeimage-3.17.0_SRC_orig/Source/LibTIFF4/tif_config.h freeimage-3.17.0_SRC_modif/Source/LibTIFF4/tif_config.h
+--- freeimage-3.17.0_SRC_orig/Source/LibTIFF4/tif_config.h	2015-03-02 03:50:58.000000000 +0300
++++ freeimage-3.17.0_SRC_modif/Source/LibTIFF4/tif_config.h	2018-07-12 19:59:37.215683700 +0300
+@@ -81,7 +81,9 @@
+ #endif // BYTE_ORDER
+ 
+ #ifdef _WIN32
++#if _MSC_VER<1900
+ #define snprintf _snprintf
++#endif
+ #define lfind _lfind
+ #endif // _WIN32
+ 

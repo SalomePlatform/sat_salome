@@ -1,0 +1,42 @@
+diff -Naur --exclude=CVS --exclude=.git xdata-0.9.11_SRC.orig/src/XDATA2SALOME/xsalome.py xdata-0.9.11_SRC/src/XDATA2SALOME/xsalome.py
+--- xdata-0.9.11_SRC.orig/src/XDATA2SALOME/xsalome.py	2011-10-03 12:07:33.000000000 +0400
++++ xdata-0.9.11_SRC/src/XDATA2SALOME/xsalome.py	2015-10-22 12:45:38.000000000 +0300
+@@ -8,6 +8,19 @@
+ # --
+ #
+ 
++def getHostName():
++    import os
++    try:
++        import socket
++        host = socket.gethostname()
++    except:
++        host = None
++        pass
++    if not host: host = os.getenv("HOSTNAME")
++    if not host: host = os.getenv("HOST")
++    if not host: host = "unknown"
++    return host
++
+ def searchFreePort():
+     print "Searching a free port for naming service:",
+     NSPORT=2810
+@@ -19,7 +32,7 @@
+         status = os.system("netstat -ltn | grep -E :%s"%(NSPORT))
+         if status:
+             home = os.environ['HOME']
+-            hostname = os.environ['HOSTNAME']
++            hostname = getHostName()
+             os.environ['OMNIORB_CONFIG'] = '%s/.omniORB_%s.cfg'%(home, NSPORT)
+             f = open(os.environ['OMNIORB_CONFIG'], "w")
+             f.write("ORBInitRef NameService=corbaname::%s:%s\n"%(hostname, NSPORT))
+@@ -163,7 +176,7 @@
+                 self.study_manager = study_manager
+                 pass
+             #
+-            theComputer = os.getenv("HOSTNAME")
++            theComputer = getHostName()
+             computerSplitName = theComputer.split('.')
+             theComputer = computerSplitName[0]
+             #
+

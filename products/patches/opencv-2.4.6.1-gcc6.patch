@@ -1,0 +1,131 @@
+diff -Naur opencv-2.4.6.1_SRC_orig/cmake/OpenCVPCHSupport.cmake opencv-2.4.6.1_SRC_modif/cmake/OpenCVPCHSupport.cmake
+--- opencv-2.4.6.1_SRC_orig/cmake/OpenCVPCHSupport.cmake	2013-07-10 15:49:00.000000000 +0400
++++ opencv-2.4.6.1_SRC_modif/cmake/OpenCVPCHSupport.cmake	2016-10-17 17:34:32.000000000 +0300
+@@ -19,7 +19,7 @@
+         ARGS ${CMAKE_CXX_COMPILER_ARG1} -dumpversion
+         OUTPUT_VARIABLE gcc_compiler_version)
+     #MESSAGE("GCC Version: ${gcc_compiler_version}")
+-    IF(gcc_compiler_version VERSION_GREATER "4.2.-1")
++    IF(gcc_compiler_version VERSION_GREATER "4.2.-1" AND gcc_compiler_version VERSION_LESS "6.0.0")
+         SET(PCHSupport_FOUND TRUE)
+     ENDIF()
+ 
+diff -Naur opencv-2.4.6.1_SRC_orig/modules/contrib/src/chamfermatching.cpp opencv-2.4.6.1_SRC_modif/modules/contrib/src/chamfermatching.cpp
+--- opencv-2.4.6.1_SRC_orig/modules/contrib/src/chamfermatching.cpp	2013-07-10 15:49:00.000000000 +0400
++++ opencv-2.4.6.1_SRC_modif/modules/contrib/src/chamfermatching.cpp	2016-10-17 18:11:47.000000000 +0300
+@@ -959,10 +959,8 @@
+     for (int y=0;y<h;++y) {
+         for (int x=0;x<w;++x) {
+             // initialize
+-            if (&annotate_img!=NULL) {
+-                annotate_img.at<Vec2i>(y,x)[0]=x;
+-                annotate_img.at<Vec2i>(y,x)[1]=y;
+-            }
++	    annotate_img.at<Vec2i>(y,x)[0]=x;
++            annotate_img.at<Vec2i>(y,x)[1]=y;
+ 
+             uchar edge_val = edges_img.at<uchar>(y,x);
+             if( (edge_val!=0) ) {
+@@ -1005,11 +1003,9 @@
+             if (dt==-1 || dt>dist) {
+                 dist_img.at<float>(ny,nx) = dist;
+                 q.push(std::make_pair(nx,ny));
+-
+-                if (&annotate_img!=NULL) {
+-                    annotate_img.at<Vec2i>(ny,nx)[0]=annotate_img.at<Vec2i>(y,x)[0];
+-                    annotate_img.at<Vec2i>(ny,nx)[1]=annotate_img.at<Vec2i>(y,x)[1];
+-                }
++		
++		annotate_img.at<Vec2i>(ny,nx)[0]=annotate_img.at<Vec2i>(y,x)[0];
++		annotate_img.at<Vec2i>(ny,nx)[1]=annotate_img.at<Vec2i>(y,x)[1];
+             }
+         }
+     }
+@@ -1101,26 +1097,24 @@
+     float cost = (sum_distance/truncate_)/addr.size();
+ 
+ 
+-    if (&orientation_img!=NULL) {
+-        float* optr = orientation_img.ptr<float>(y)+x;
+-        float sum_orientation = 0;
+-        int cnt_orientation = 0;
+-
+-        for (size_t i=0;i<addr.size();++i) {
+-
+-            if(addr[i] < (orientation_img.cols*orientation_img.rows) - (offset.y*orientation_img.cols + offset.x)){
+-                                if (tpl->orientations[i]>=-CV_PI && (*(optr+addr[i]))>=-CV_PI) {
+-                    sum_orientation += orientation_diff(tpl->orientations[i], (*(optr+addr[i])));
+-                    cnt_orientation++;
+-                }
+-            }
+-        }
+ 
+-        if (cnt_orientation>0) {
+-                        cost = (float)(beta*cost+alpha*(sum_orientation/(2*CV_PI))/cnt_orientation);
+-        }
+-
+-    }
++    float* optr = orientation_img.ptr<float>(y)+x;
++    float sum_orientation = 0;
++    int cnt_orientation = 0;
++    
++    for (size_t i=0;i<addr.size();++i) {
++      
++      if(addr[i] < (orientation_img.cols*orientation_img.rows) - (offset.y*orientation_img.cols + offset.x)){
++	if (tpl->orientations[i]>=-CV_PI && (*(optr+addr[i]))>=-CV_PI) {
++	  sum_orientation += orientation_diff(tpl->orientations[i], (*(optr+addr[i])));
++	  cnt_orientation++;
++	}
++      }
++    }
++    
++    if (cnt_orientation>0) {
++      cost = (float)(beta*cost+alpha*(sum_orientation/(2*CV_PI))/cnt_orientation);
++    }    
+ 
+     if(cost > 0){
+         ChamferMatcher::Match* istance = new ChamferMatcher::Match();
+diff -Naur opencv-2.4.6.1_SRC_orig/modules/legacy/src/dpstereo.cpp opencv-2.4.6.1_SRC_modif/modules/legacy/src/dpstereo.cpp
+--- opencv-2.4.6.1_SRC_orig/modules/legacy/src/dpstereo.cpp	2013-07-10 15:49:00.000000000 +0400
++++ opencv-2.4.6.1_SRC_modif/modules/legacy/src/dpstereo.cpp	2016-10-18 10:22:03.257968598 +0300
+@@ -76,8 +76,8 @@
+     uchar min_val, max_val;
+ } _CvRightImData;
+ 
+-#define CV_IMAX3(a,b,c) ((temp3 = (a) >= (b) ? (a) : (b)),(temp3 >= (c) ? temp3 : (c)))
+-#define CV_IMIN3(a,b,c) ((temp3 = (a) <= (b) ? (a) : (b)),(temp3 <= (c) ? temp3 : (c)))
++#define CV_IMAX3(a,b,c) (std::max(std::max((a), (b)), (c)))
++#define CV_IMIN3(a,b,c) (std::min(std::min((a), (b)), (c)))
+ 
+ static void icvFindStereoCorrespondenceByBirchfieldDP( uchar* src1, uchar* src2,
+                                                 uchar* disparities,
+@@ -87,7 +87,7 @@
+                                                 float  _param3, float _param4,
+                                                 float  _param5 )
+ {
+-    int     x, y, i, j, temp3;
++    int     x, y, i, j;
+     int     d, s;
+     int     dispH =  maxDisparity + 3;
+     uchar  *dispdata;
+diff -Naur opencv-2.4.6.1_SRC_orig/modules/ts/include/opencv2/ts/ts_perf.hpp opencv-2.4.6.1_SRC_modif/modules/ts/include/opencv2/ts/ts_perf.hpp
+--- opencv-2.4.6.1_SRC_orig/modules/ts/include/opencv2/ts/ts_perf.hpp	2013-07-10 15:49:00.000000000 +0400
++++ opencv-2.4.6.1_SRC_modif/modules/ts/include/opencv2/ts/ts_perf.hpp	2016-10-17 17:52:29.000000000 +0300
+@@ -475,9 +475,16 @@
+     INSTANTIATE_TEST_CASE_P(/*none*/, fixture##_##name, params);\
+     void fixture##_##name::PerfTestBody()
+ 
++   #if defined(_MSC_VER) && (_MSC_VER <= 1400)
++    #define CV_PERF_TEST_MAIN_INTERNALS_ARGS(...)	\
++	while (++argc >= (--argc,-1)) {__VA_ARGS__; break;} /*this ugly construction is needed for VS 2005*/
++    #else
++    #define CV_PERF_TEST_MAIN_INTERNALS_ARGS(...) \
++	__VA_ARGS__;
++    #endif
+ 
+ #define CV_PERF_TEST_MAIN_INTERNALS(modulename, impls, ...) \
+-    while (++argc >= (--argc,-1)) {__VA_ARGS__; break;} /*this ugly construction is needed for VS 2005*/\
++    CV_PERF_TEST_MAIN_INTERNALS_ARGS(__VA_ARGS__) \
+     ::perf::Regression::Init(#modulename);\
+     ::perf::TestBase::Init(std::vector<std::string>(impls, impls + sizeof impls / sizeof *impls),\
+                            argc, argv);\

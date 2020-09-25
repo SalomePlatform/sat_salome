@@ -1,0 +1,69 @@
+default :
+{
+    name : "numpy"
+    build_source : "script"
+    compil_script : $name + $VARS.scriptExtension
+    get_source : "archive"
+    system_info : 
+    {
+        rpm : ["python3-numpy"]
+        rpm_dev : []
+        apt : ["python3-numpy"]
+        apt_dev : []
+    }
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : [ 'Python', 'setuptools', 'Cython', 'lapack' ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties:
+    {
+      incremental : "yes"
+      pip : "yes"
+    }
+}
+
+
+default_win :
+{
+    compil_script :  'pip_install_whl' + $VARS.scriptExtension
+    archive_info:
+    {
+        archive_name : "numpy-"  + $APPLICATION.products.numpy + "_windows.tar.gz"
+    }
+    depend : [ 'Python', 'setuptools', 'Cython']
+}
+
+version_1_16_4_win_dbg:
+{
+    name : "numpy"
+    build_source : "script"
+    compil_script : $name + $VARS.scriptExtension
+    get_source : "archive"
+    archive_info:
+    {
+        archive_name : "numpy-1.16.4_windows.tar.gz"
+    }
+    depend : [ 'Python', 'setuptools', 'Cython']
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+}
+
+version_1_5_1_to_1_9_2 :
+{
+    name : "numpy"
+    compil_script :  $name + $VARS.scriptExtension
+    depend : [ 'Python']
+}

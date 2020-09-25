@@ -1,0 +1,5 @@
+diff -pruN sphinx_rtd_theme-0.1.9_OLD/requirements.txt sphinx_rtd_theme-0.1.9/requirements.txt
+--- sphinx_rtd_theme-0.1.9_OLD/requirements.txt	2015-11-20 14:31:27.184306650 +0100
++++ sphinx_rtd_theme-0.1.9/requirements.txt	2015-11-20 14:32:03.492486693 +0100
+@@ -1 +0,0 @@
+-sphinx>=1.3

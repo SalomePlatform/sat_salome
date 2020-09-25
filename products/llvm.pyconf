@@ -1,0 +1,50 @@
+default :
+{
+    name : "llvm"
+    build_source : "cmake"
+    cmake_options : "-DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$LLVM_ROOT_DIR -DLLVM_BUILD_LLVM_DYLIB=ON -DLLVM_ENABLE_RTTI=ON -DLLVM_INSTALL_UTILS=ON -DLLVM_TARGETS_TO_BUILD:STRING=X86 -DPYTHON_EXECUTABLE=${PYTHON_ROOT_DIR}/bin/python"
+    get_source : "archive"
+    system_info :
+    {
+       rpm : ["llvm-toolset"]
+       rpm_dev : []
+       apt : []
+       apt_dev : []
+    }
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : [ 'Python' ]
+    build_depend : ["cmake"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties:
+    {
+      is_mesa : "yes"
+      not_in_package : "no"
+      incremental : "yes"
+    }
+    patches : []
+}
+
+version_8_0_1_clang :
+{
+    cmake_options : "-DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$LLVM_ROOT_DIR -DLLVM_BUILD_LLVM_DYLIB=ON -DLLVM_ENABLE_RTTI=ON -DLLVM_INSTALL_UTILS=ON -DLLVM_TARGETS_TO_BUILD:STRING=X86 -DPYTHON_EXECUTABLE=${PYTHON_ROOT_DIR}/bin/python -DLLVM_TEMPORARILY_ALLOW_OLD_TOOLCHAIN=ON -DLLVM_ENABLE_DUMP=ON "
+}
+
+version_8_0_1_clang_win :
+{
+    cmake_options : ' -DCMAKE_INSTALL_PREFIX=%LLVM_ROOT_DIR% -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON  -DPYTHON_EXECUTABLE:STRING=%PYTHON_ROOT_DIR:\=/%/python.exe -DLLVM_INSTALL_UTILS:BOOL=ON -DLLVM_ENABLE_DUMP:BOOL=ON -Thost=x64'
+   depend : [ 'Python' ]
+   archive_info:
+   {
+     archive_name : "llvm-8.0.1-clang.tar.gz"
+   }
+   properties:
+   {
+     incremental : "yes"
+     compile_time : "yes"
+   }
+}

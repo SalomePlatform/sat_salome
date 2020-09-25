@@ -1,0 +1,68 @@
+default :
+{
+    name : "graphviz"
+    build_source : "script"
+    compil_script :  $name + $VARS.scriptExtension
+    get_source : "archive"
+    system_info : 
+    {
+        rpm : ["graphviz"]
+        rpm_dev : ["graphviz-devel"]
+        apt : ["graphviz"]
+        apt_dev : ["graphviz-dev"]
+    }
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : []
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+      incremental : "yes"
+      single_install_dir : "yes"
+      compile_and_runtime : "yes"
+    }
+}
+
+default_win :
+{
+   archive_info : {archive_name : "graphviz-" + $APPLICATION.products.graphviz + "_windows.tar.gz"}
+    depend : ['expat','zlib','libpng','libxml2', 'libjpeg']
+    properties :
+    {
+      incremental : "yes"
+      single_install_dir : "yes"
+      compile_and_runtime : "no"
+    }
+}
+
+version_2_44_1 :
+{
+}
+
+version_2_44_1_win :
+{
+    compil_script :  "graphviz-2.44.1" + $VARS.scriptExtension
+    depend : ['expat','zlib','libpng','libxml2', 'libjpeg','cmake']
+}
+
+version_2_38_0 :
+{
+    compil_script :  "graphviz-2.38.0" + $VARS.scriptExtension
+    depend : ["swig"]
+}
+
+version_2_38_0_win :
+{
+    compil_script :  "graphviz-2.38.0" + $VARS.scriptExtension
+    depend : ['expat','zlib','libpng','libxml2', 'libjpeg']
+}
+
+version_2_28_0 :
+{
+    compil_script :  "graphviz.sh"
+    depend : ["tcl", "tk", "expat"]
+}

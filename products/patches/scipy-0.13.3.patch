@@ -1,0 +1,38 @@
+--- scipy-0.13.3.old/scipy/_build_utils/_fortran.py	2014-02-04 05:56:48.000000000 +0100
++++ scipy-0.13.3/scipy/_build_utils/_fortran.py	2014-09-09 10:14:33.868172555 +0200
+@@ -9,12 +9,12 @@ __all__ = ['needs_g77_abi_wrapper', 'spl
+ 
+ 
+ def _uses_veclib(info):
+-    r_accelerate = re.compile("Accelerate|vecLib")
++    #r_accelerate = re.compile("Accelerate|vecLib")
+ 
+-    extra_link_args = info.get('extra_link_args', '')
+-    for arg in extra_link_args:
+-        if r_accelerate.search(arg):
+-            return True
++    #extra_link_args = info.get('extra_link_args', '')
++    #for arg in extra_link_args:
++    #    if r_accelerate.search(arg):
++    #        return True
+ 
+     return False
+ 
+@@ -22,12 +22,12 @@ def uses_accelerate(info):
+     return _uses_veclib(info)
+ 
+ def uses_mkl(info):
+-    r_mkl = re.compile("mkl_core")
++    #r_mkl = re.compile("mkl_core")
+ 
+-    libraries = info.get('libraries', '')
+-    for library in libraries:
+-        if r_mkl.search(library):
+-            return True
++    #libraries = info.get('libraries', '')
++    #for library in libraries:
++    #    if r_mkl.search(library):
++    #        return True
+ 
+     return False
+ 

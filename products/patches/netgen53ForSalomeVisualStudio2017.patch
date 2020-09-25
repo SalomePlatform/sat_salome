@@ -1,0 +1,1648 @@
+--- netgen_ref/libsrc/general/array.hpp
++++ netgen/libsrc/general/array.hpp
+@@ -50,7 +50,7 @@
+     {
+ #ifdef DEBUG
+       if (i-BASE < 0 || i-BASE >= size)
+-	cout << "array<" << typeid(T).name() << "> out of range, i = " << i << ", s = " << size << endl;
++	std::cout << "array<" << typeid(T).name() << "> out of range, i = " << i << ", s = " << size << std::endl;
+ #endif
+ 
+       return data[i-BASE]; 
+@@ -69,9 +69,9 @@
+     {
+ #ifdef DEBUG
+       if (i < 1 || i > size)
+-	cout << "Array<" << typeid(T).name() 
++	std::cout << "Array<" << typeid(T).name() 
+ 	     << ">::Elem out of range, i = " << i
+-	     << ", s = " << size << endl;
++	     << ", s = " << size << std::endl;
+ #endif
+ 
+       return ((T*)data)[i-1]; 
+@@ -82,8 +82,8 @@
+     {
+ #ifdef DEBUG
+       if (i < 1 || i > size)
+-	cout << "Array<" << typeid(T).name() << ">::Get out of range, i = " << i
+-	     << ", s = " << size << endl;
++	std::cout << "Array<" << typeid(T).name() << ">::Get out of range, i = " << i
++	     << ", s = " << size << std::endl;
+ #endif
+ 
+       return ((const T*)data)[i-1]; 
+@@ -94,8 +94,8 @@
+     { 
+ #ifdef DEBUG
+       if (i < 1 || i > size)
+-	cout << "Array<" << typeid(T).name() << ">::Set out of range, i = " << i
+-	     << ", s = " << size << endl;
++	std::cout << "Array<" << typeid(T).name() << ">::Set out of range, i = " << i
++	     << ", s = " << size << std::endl;
+ #endif
+ 
+       ((T*)data)[i-1] = el; 
+@@ -151,7 +151,7 @@
+   inline ostream & operator<< (ostream & s, const FlatArray<T,BASE,TIND> & a)
+   {
+     for (TIND i = a.Begin(); i < a.End(); i++)
+-      s << i << ": " << a[i] << endl;
++      s << i << ": " << a[i] << std::endl;
+     return s;
+   }
+ 
+@@ -435,7 +435,7 @@
+   inline ostream & operator<< (ostream & s, const IndirectArray<T1,T2> & ia)
+   {
+     for (int i = ia.Begin(); i < ia.End(); i++)
+-      s << i << ": " << ia[i] << endl;
++      s << i << ": " << ia[i] << std::endl;
+     return s;
+   }
+   
+@@ -551,7 +551,7 @@
+     void PrintMemInfo (ostream & ost) const
+     {
+       ost << Size() << " elements of size " << sizeof(T) << " = " 
+-	  << Size() * sizeof(T) << endl;
++	  << Size() * sizeof(T) << std::endl;
+     }
+ 
+     MoveableArray & operator= (const T & el)
+@@ -593,7 +593,7 @@
+   inline ostream & operator<< (ostream & ost, MoveableArray<T> & a)
+   {
+     for (int i = 0; i < a.Size(); i++)
+-      ost << i << ": " << a[i] << endl;
++      ost << i << ": " << a[i] << std::endl;
+     return ost;
+   }
+   */
+--- netgen_ref/libsrc/gprim/spline.hpp
++++ netgen/libsrc/gprim/spline.hpp
+@@ -55,7 +55,7 @@
+     /// returns a (not necessarily unit-length) tangent vector for 0 <= t <= 1
+     virtual Vec<D> GetTangent (const double t) const
+     { 
+-      cerr << "GetTangent not implemented for spline base-class"  << endl; 
++      std::cerr << "GetTangent not implemented for spline base-class"  << std::endl; 
+       Vec<D> dummy; return dummy;
+     }
+ 
+@@ -100,10 +100,10 @@
+     virtual string GetType(void) const {return "splinebase";}
+ 
+     virtual void Project (const Point<D> point, Point<D> & point_on_curve, double & t) const
+-    { cerr << "Project not implemented for spline base-class" << endl;}
++    { std::cerr << "Project not implemented for spline base-class" << std::endl;}
+ 
+     virtual void GetRawData (Array<double> & data) const
+-    { cerr << "GetRawData not implemented for spline base-class" << endl;}
++    { std::cerr << "GetRawData not implemented for spline base-class" << std::endl;}
+ 
+   };
+ 
+@@ -308,7 +308,7 @@
+ 
+     for ( int i=0; i<6; i++)
+       ost << u[i] << "  ";
+-    ost << endl;
++    ost << std::endl;
+   }
+ 
+ 
+@@ -430,11 +430,11 @@
+     Vec<D> v2 = p3-p2;
+     double l1 = v1.Length();
+     double l2 = v2.Length();
+-    (*testout) << "v1 " << v1 << " v2 " << v2 << endl;
++    (*testout) << "v1 " << v1 << " v2 " << v2 << std::endl;
+ 
+     double cosalpha = v1*v2/(l1*l2);
+ 
+-    (*testout) << "cosalpha " << cosalpha << endl;
++    (*testout) << "cosalpha " << cosalpha << std::endl;
+ 
+     return sqrt(cosalpha + 1.)/(min2(l1,l2)*(1.-cosalpha));
+     }
+--- netgen_ref/libsrc/occ/occgenmesh.cpp
++++ netgen/libsrc/occ/occgenmesh.cpp
+@@ -122,7 +122,7 @@
+          prop->SetParameters (parmid.X(), parmid.Y());
+          if (!prop->IsCurvatureDefined())
+          {
+-            (*testout) << "curvature not defined!" << endl;
++            (*testout) << "curvature not defined!" << std::endl;
+             return;
+          }
+          curvature = max(fabs(prop->MinCurvature()),
+@@ -131,7 +131,7 @@
+          prop->SetParameters (par0.X(), par0.Y());
+          if (!prop->IsCurvatureDefined())
+          {
+-            (*testout) << "curvature not defined!" << endl;
++            (*testout) << "curvature not defined!" << std::endl;
+             return;
+          }
+          curvature = max(curvature,max(fabs(prop->MinCurvature()),
+@@ -140,7 +140,7 @@
+          prop->SetParameters (par1.X(), par1.Y());
+          if (!prop->IsCurvatureDefined())
+          {
+-            (*testout) << "curvature not defined!" << endl;
++            (*testout) << "curvature not defined!" << std::endl;
+             return;
+          }
+          curvature = max(curvature,max(fabs(prop->MinCurvature()),
+@@ -149,17 +149,17 @@
+          prop->SetParameters (par2.X(), par2.Y());
+          if (!prop->IsCurvatureDefined())
+          {
+-            (*testout) << "curvature not defined!" << endl;
++            (*testout) << "curvature not defined!" << std::endl;
+             return;
+          }
+          curvature = max(curvature,max(fabs(prop->MinCurvature()),
+             fabs(prop->MaxCurvature())));
+ 
+-         //(*testout) << "curvature " << curvature << endl;
++         //(*testout) << "curvature " << curvature << std::endl;
+ 
+          if (curvature < 1e-3)
+          {
+-            //(*testout) << "curvature too small (" << curvature << ")!" << endl;
++            //(*testout) << "curvature too small (" << curvature << ")!" << std::endl;
+             return;
+             // return war bis 10.2.05 auskommentiert
+          }
+@@ -177,13 +177,13 @@
+ 
+       if (h < maxside && depth < 10)
+       {
+-         //cout << "\r h " << h << flush;
++         //std::cout << "\r h " << h << flush;
+          gp_Pnt2d pm;
+ 
+-         //cout << "h " << h << " maxside " << maxside << " depth " << depth << endl;
+-         //cout << "par0 " << par0.X() << " " << par0.Y()
++         //std::cout << "h " << h << " maxside " << maxside << " depth " << depth << std::endl;
++         //std::cout << "par0 " << par0.X() << " " << par0.Y()
+          //<< " par1 " << par1.X() << " " << par1.Y()
+-         //   << " par2 " << par2.X() << " " << par2.Y()<< endl;
++         //   << " par2 " << par2.X() << " " << par2.Y()<< std::endl;
+ 
+          if(ls == 0)
+          {
+@@ -224,7 +224,7 @@
+          p3d = Point3d(pnt2.X(), pnt2.Y(), pnt2.Z());
+          mesh.RestrictLocalH (p3d, h);
+ 
+-         //(*testout) << "p = " << p3d << ", h = " << h << ", maxside = " << maxside << endl;
++         //(*testout) << "p = " << p3d << ", h = " << h << ", maxside = " << maxside << std::endl;
+ 
+       }
+    }
+@@ -268,7 +268,7 @@
+                 pnt.Distance(oldpnt));
+ 
+          //(*testout) << "mesh.GetH(Point3d(pnt.X(), pnt.Y(), pnt.Z())) " << mesh.GetH(Point3d(pnt.X(), pnt.Y(), pnt.Z()))
+-         //	   <<  " pnt.Distance(oldpnt) " << pnt.Distance(oldpnt) << endl;
++         //	   <<  " pnt.Distance(oldpnt) " << pnt.Distance(oldpnt) << std::endl;
+ 
+          //olddist = dist; -- useless variables
+          //dist = pnt.Distance(oldpnt);
+@@ -300,7 +300,7 @@
+             nsubedges = i;
+             ps.SetSize(nsubedges-1);
+             params.SetSize(nsubedges+1);
+-            cout << "divide edge: local h too small" << endl;
++            std::cout << "divide edge: local h too small" << std::endl;
+          }
+       } while (i < nsubedges);
+ 
+@@ -309,7 +309,7 @@
+ 
+       if (params[nsubedges] <= params[nsubedges-1])
+       {
+-         cout << "CORRECTED" << endl;
++         std::cout << "CORRECTED" << std::endl;
+          ps.SetSize (nsubedges-2);
+          params.SetSize (nsubedges);
+          params[nsubedges] = s1;
+@@ -324,13 +324,13 @@
+       const char * savetask = multithread.task;
+       multithread.task = "Edge meshing";
+ 
+-      (*testout) << "edge meshing" << endl;
++      (*testout) << "edge meshing" << std::endl;
+ 
+       int nvertices = geom.vmap.Extent();
+       int nedges = geom.emap.Extent();
+ 
+-      (*testout) << "nvertices = " << nvertices << endl;
+-      (*testout) << "nedges = " << nedges << endl;
++      (*testout) << "nvertices = " << nvertices << std::endl;
++      (*testout) << "nedges = " << nedges << std::endl;
+ 
+       double eps = 1e-6 * geom.GetBoundingBox().Diam();
+       const double eps2 = eps * eps; // -- small optimization
+@@ -356,7 +356,7 @@
+                   mesh.AddPoint (mp);
+       }
+ 
+-      (*testout) << "different vertices = " << mesh.GetNP() << endl;
++      (*testout) << "different vertices = " << mesh.GetNP() << std::endl;
+ 
+ 
+       int first_ep = mesh.GetNP()+1;
+@@ -398,7 +398,7 @@
+ 
+       edgenr = mesh.GetNSeg(); // to support SALOME sub-meshes
+ 
+-      (*testout) << "faces = " << geom.fmap.Extent() << endl;
++      (*testout) << "faces = " << geom.fmap.Extent() << std::endl;
+       int curr = 0;
+ 
+       for (int i3 = 1; i3 <= geom.fmap.Extent(); i3++)
+@@ -447,7 +447,7 @@
+             for (TopExp_Explorer exp3 (wire, TopAbs_EDGE); exp3.More(); exp3.Next())
+             {
+                curr++;
+-               (*testout) << "edge nr " << curr << endl;
++               (*testout) << "edge nr " << curr << std::endl;
+ 
+                multithread.percent = 100 * curr / double (total);
+                if (multithread.terminate) return;
+@@ -455,7 +455,7 @@
+                TopoDS_Edge edge = TopoDS::Edge (exp3.Current());
+                if (BRep_Tool::Degenerated(edge))
+                {
+-                  //(*testout) << "ignoring degenerated edge" << endl;
++                  //(*testout) << "ignoring degenerated edge" << std::endl;
+                   continue;
+                }
+                if ( geom.emap.FindIndex(edge) < 1 ) continue; // to support SALOME sub-meshes
+@@ -468,8 +468,8 @@
+ 
+                   if (system.Mass() < eps)
+                   {
+-                     cout << "ignoring edge " << geom.emap.FindIndex (edge)
+-                        << ". closed edge with length < " << eps << endl;
++                     std::cout << "ignoring edge " << geom.emap.FindIndex (edge)
++                        << ". closed edge with length < " << eps << std::endl;
+                      continue;
+                   }
+                }
+@@ -612,13 +612,13 @@
+                      else
+                      {
+                         mesh.AddPoint (mp[i-1], geomedgenr); // to support SALOME fuse edges
+-                        (*testout) << "add meshpoint " << mp[i-1] << endl;
++                        (*testout) << "add meshpoint " << mp[i-1] << std::endl;
+                         pnums[i] = mesh.GetNP();
+                      }
+                }
+-               (*testout) << "NP = " << mesh.GetNP() << endl;
++               (*testout) << "NP = " << mesh.GetNP() << std::endl;
+ 
+-               //(*testout) << pnums[pnums.Size()-1] << endl;
++               //(*testout) << pnums[pnums.Size()-1] << std::endl;
+ 
+                for (int i = 1; i <= mp.Size()+1; i++)
+                {
+@@ -647,7 +647,7 @@
+                   /*
+                   if (occface->IsUPeriodic())
+                   {
+-                  cout << "U Periodic" << endl;
++                  std::cout << "U Periodic" << std::endl;
+                   if (fabs(seg.epgeominfo[1].u-seg.epgeominfo[0].u) >
+                   fabs(seg.epgeominfo[1].u-
+                   (seg.epgeominfo[0].u-occface->UPeriod())))
+@@ -661,7 +661,7 @@
+ 
+                   if (occface->IsVPeriodic())
+                   {
+-                  cout << "V Periodic" << endl;
++                  std::cout << "V Periodic" << std::endl;
+                   if (fabs(seg.epgeominfo[1].v-seg.epgeominfo[0].v) >
+                   fabs(seg.epgeominfo[1].v-
+                   (seg.epgeominfo[0].v-occface->VPeriod())))
+@@ -693,7 +693,7 @@
+ 
+       //	for(i=1; i<=mesh.GetNSeg(); i++)
+       //		(*testout) << "edge " << mesh.LineSegment(i).edgenr << " face " << mesh.LineSegment(i).si
+-      //				<< " p1 " << mesh.LineSegment(i)[0] << " p2 " << mesh.LineSegment(i)[1] << endl;
++      //				<< " p1 " << mesh.LineSegment(i)[0] << " p2 " << mesh.LineSegment(i)[1] << std::endl;
+       //	exit(10);
+       for (int j = 1; j <= mesh.GetNP(); j++) // to support SALOME fuse edges: set level to zero
+         mesh.Point(j) = MeshPoint( (Point<3>&) mesh.Point(j) );
+@@ -733,12 +733,12 @@
+       {
+          if(1==0 && !geom.fvispar[k-1].IsDrawable())
+          {
+-            (*testout) << "ignoring face " << k << endl;
+-            cout << "ignoring face " << k << endl;
++            (*testout) << "ignoring face " << k << std::endl;
++            std::cout << "ignoring face " << k << std::endl;
+             continue;
+          }
+ 
+-         (*testout) << "mesh face " << k << endl;
++         (*testout) << "mesh face " << k << std::endl;
+          multithread.percent = 100 * k / (mesh.GetNFD() + VSMALL);
+          geom.facemeshstatus[k-1] = -1;
+ 
+@@ -746,7 +746,7 @@
+          /*
+          if (k != 42)
+          {
+-         cout << "skipped" << endl;
++         std::cout << "skipped" << std::endl;
+          continue;
+          }
+          */
+@@ -768,12 +768,12 @@
+             PrintMessage (2, "Face ", k, " / ", mesh.GetNFD(), " (parameter space projection)");
+ 
+          if (surfmesherror)
+-            cout << "Surface meshing error occured before (in " << surfmesherror << " faces)" << endl;
++            std::cout << "Surface meshing error occured before (in " << surfmesherror << " faces)" << std::endl;
+ 
+          //      Meshing2OCCSurfaces meshing(f2, bb);
+          meshing.SetStartTime (starttime);
+ 
+-         //(*testout) << "Face " << k << endl << endl;
++         //(*testout) << "Face " << k << std::endl << std::endl;
+ 
+ 
+          if (meshing.GetProjectionType() == PLANESPACE)
+@@ -811,8 +811,8 @@
+                   gi1.v = seg.epgeominfo[1].v;
+ 
+                   meshing.AddBoundaryElement (glob2loc.Get(seg[0]), glob2loc.Get(seg[1]), gi0, gi1);
+-                  //(*testout) << gi0.u << " " << gi0.v << endl;
+-                  //(*testout) << gi1.u << " " << gi1.v << endl;
++                  //(*testout) << gi0.u << " " << gi0.v << std::endl;
++                  //(*testout) << gi1.u << " " << gi1.v << std::endl;
+                }
+             }
+          }
+@@ -869,8 +869,8 @@
+                   }
+ 
+                   meshing.AddBoundaryElement (locpnum[0], locpnum[1], gi0, gi1);
+-                  //(*testout) << gi0.u << " " << gi0.v << endl;
+-                  //(*testout) << gi1.u << " " << gi1.v << endl;
++                  //(*testout) << gi0.u << " " << gi0.v << std::endl;
++                  //(*testout) << gi1.u << " " << gi1.v << std::endl;
+ 
+                }
+             }
+@@ -899,13 +899,13 @@
+ 
+          catch (SingularMatrixException)
+          {
+-            (*myerr) << "Singular Matrix" << endl;
++            (*myerr) << "Singular Matrix" << std::endl;
+             res = MESHING2_GIVEUP;
+          }
+ 
+          catch (UVBoundsException)
+          {
+-            (*myerr) << "UV bounds exceeded" << endl;
++            (*myerr) << "UV bounds exceeded" << std::endl;
+             res = MESHING2_GIVEUP;
+          }
+ 
+@@ -920,7 +920,7 @@
+ 
+                mesh.Compress();
+ 
+-               cout << "retry Surface " << k << endl;
++               std::cout << "retry Surface " << k << std::endl;
+ 
+                k--;
+                projecttype*=-1;
+@@ -949,18 +949,18 @@
+ 
+ //      ofstream problemfile("occmesh.rep");
+ 
+-//      problemfile << "SURFACEMESHING" << endl << endl;
++//      problemfile << "SURFACEMESHING" << std::endl << std::endl;
+ 
+       if (surfmesherror)
+       {
+-         cout << "WARNING! NOT ALL FACES HAVE BEEN MESHED" << endl;
+-         cout << "SURFACE MESHING ERROR OCCURED IN " << surfmesherror << " FACES:" << endl;
++         std::cout << "WARNING! NOT ALL FACES HAVE BEEN MESHED" << std::endl;
++         std::cout << "SURFACE MESHING ERROR OCCURED IN " << surfmesherror << " FACES:" << std::endl;
+          for (int i = 1; i <= geom.fmap.Extent(); i++)
+             if (geom.facemeshstatus[i-1] == -1)
+             {
+-               cout << "Face " << i << endl;
+-//               problemfile << "problem with face " << i << endl;
+-//               problemfile << "vertices: " << endl;
++               std::cout << "Face " << i << std::endl;
++//               problemfile << "problem with face " << i << std::endl;
++//               problemfile << "vertices: " << std::endl;
+                TopExp_Explorer exp0,exp1,exp2;
+                for ( exp0.Init(TopoDS::Face (geom.fmap(i)), TopAbs_WIRE); exp0.More(); exp0.Next() )
+                {
+@@ -972,21 +972,21 @@
+                      {
+                         TopoDS_Vertex vertex = TopoDS::Vertex(exp2.Current());
+                         gp_Pnt point = BRep_Tool::Pnt(vertex);
+-//                        problemfile << point.X() << " " << point.Y() << " " << point.Z() << endl;
++//                        problemfile << point.X() << " " << point.Y() << " " << point.Z() << std::endl;
+                      }
+                   }
+                }
+-//               problemfile << endl;
++//               problemfile << std::endl;
+ 
+             }
+-            cout << endl << endl;
+-            cout << "for more information open IGES/STEP Topology Explorer" << endl;
++            std::cout << std::endl << std::endl;
++            std::cout << "for more information open IGES/STEP Topology Explorer" << std::endl;
+ //            problemfile.close();
+             throw NgException ("Problem in Surface mesh generation");
+       }
+       else
+       {
+-//         problemfile << "OK" << endl << endl;
++//         problemfile << "OK" << std::endl << std::endl;
+ //         problemfile.close();
+       }
+ 
+@@ -1006,7 +1006,7 @@
+          //      if (k != 42) continue;
+          //      if (k != 36) continue;
+ 
+-         //      (*testout) << "optimize face " << k << endl;
++         //      (*testout) << "optimize face " << k << std::endl;
+          multithread.percent = 100 * k / (mesh.GetNFD() + VSMALL);
+ 
+          FaceDescriptor & fd = mesh.GetFaceDescriptor(k);
+@@ -1014,7 +1014,7 @@
+          PrintMessage (1, "Optimize Surface ", k);
+          for (i = 1; i <= mparam.optsteps2d; i++)
+          {
+-            //	  (*testout) << "optstep " << i << endl;
++            //	  (*testout) << "optstep " << i << std::endl;
+             if (multithread.terminate) return;
+ 
+             {
+@@ -1025,7 +1025,7 @@
+                //meshopt.SetMetricWeight (0.2);
+                meshopt.SetWriteStatus (0);
+ 
+-               //	    (*testout) << "EdgeSwapping (mesh, (i > mparam.optsteps2d/2))" << endl;
++               //	    (*testout) << "EdgeSwapping (mesh, (i > mparam.optsteps2d/2))" << std::endl;
+                meshopt.EdgeSwapping (mesh, (i > mparam.optsteps2d/2));
+             }
+ 
+@@ -1038,7 +1038,7 @@
+                meshopt.SetMetricWeight (mparam.elsizeweight);
+                meshopt.SetWriteStatus (0);
+ 
+-               //	    (*testout) << "ImproveMesh (mesh)" << endl;
++               //	    (*testout) << "ImproveMesh (mesh)" << std::endl;
+                meshopt.ImproveMesh (mesh, mparam);
+             }
+ 
+@@ -1050,7 +1050,7 @@
+                meshopt.SetMetricWeight (mparam.elsizeweight);
+                meshopt.SetWriteStatus (0);
+ 
+-               //	    (*testout) << "CombineImprove (mesh)" << endl;
++               //	    (*testout) << "CombineImprove (mesh)" << std::endl;
+                meshopt.CombineImprove (mesh);
+             }
+ 
+@@ -1063,7 +1063,7 @@
+                meshopt.SetMetricWeight (mparam.elsizeweight);
+                meshopt.SetWriteStatus (0);
+ 
+-               //	    (*testout) << "ImproveMesh (mesh)" << endl;
++               //	    (*testout) << "ImproveMesh (mesh)" << std::endl;
+                meshopt.ImproveMesh (mesh, mparam);
+             }
+          }
+@@ -1132,7 +1132,7 @@
+ 
+             if (len < mincurvelength)
+             {
+-               (*testout) << "ignored" << endl;
++               (*testout) << "ignored" << std::endl;
+                continue;
+             }
+ 
+@@ -1212,7 +1212,7 @@
+ 
+                mesh.RestrictLocalH (Point3d(pnt.X(), pnt.Y(), pnt.Z()), ComputeH (fabs(curvature)));
+             }
+-            // (*testout) << "edge " << i << " max. curvature: " << maxcur << endl;
++            // (*testout) << "edge " << i << " max. curvature: " << maxcur << std::endl;
+          }
+ 
+          multithread.task = "Setting local mesh size (face curvature)";
+@@ -1251,10 +1251,10 @@
+                //maxside = max (maxside, p[0].Distance(p[1]));
+                //maxside = max (maxside, p[0].Distance(p[2]));
+                //maxside = max (maxside, p[1].Distance(p[2]));
+-               //cout << "\rFace " << i << " pos11 ntriangles " << ntriangles << " maxside " << maxside << flush;
++               //std::cout << "\rFace " << i << " pos11 ntriangles " << ntriangles << " maxside " << maxside << flush;
+ 
+                RestrictHTriangle (par[0], par[1], par[2], &prop, mesh, 0);
+-               //cout << "\rFace " << i << " pos12 ntriangles " << ntriangles << flush;
++               //std::cout << "\rFace " << i << " pos12 ntriangles " << ntriangles << flush;
+             }
+          }
+ 
+@@ -1347,8 +1347,8 @@
+                if (mindist < 1e-3)
+                {
+                   (*testout) << "extremely small local h: " << mindist
+-                     << " --> setting to 1e-3" << endl;
+-                  (*testout) << "somewhere near " << line.p0 << " - " << line.p1 << endl;
++                     << " --> setting to 1e-3" << std::endl;
++                  (*testout) << "somewhere near " << line.p0 << " - " << line.p1 << std::endl;
+                   mindist = 1e-3;
+                }
+ 
+@@ -1398,7 +1398,7 @@
+          OCCFindEdges (geom, *mesh);
+ 
+          /*
+-         cout << "Removing redundant points" << endl;
++         std::cout << "Removing redundant points" << std::endl;
+ 
+          int i, j;
+          int np = mesh->GetNP();
+@@ -1419,7 +1419,7 @@
+          for (i = 1; i <= np; i++)
+          if (equalto[i-1])
+          {
+-         cout << "Point " << i << " is equal to Point " << equalto[i-1] << endl;
++         std::cout << "Point " << i << " is equal to Point " << equalto[i-1] << std::endl;
+          for (j = 1; j <= mesh->GetNSeg(); j++)
+          {
+          Segment & seg = mesh->LineSegment(j);
+@@ -1428,14 +1428,14 @@
+          }
+          }
+ 
+-         cout << "Removing degenerated segments" << endl;
++         std::cout << "Removing degenerated segments" << std::endl;
+          for (j = 1; j <= mesh->GetNSeg(); j++)
+          {
+          Segment & seg = mesh->LineSegment(j);
+          if (seg[0] == seg[1])
+          {
+          mesh->DeleteSegment(j);
+-         cout << "Deleting Segment " << j << endl;
++         std::cout << "Deleting Segment " << j << std::endl;
+          }
+          }
+ 
+@@ -1451,15 +1451,15 @@
+          {
+          Handle(Geom_Surface) hf2 =
+          BRep_Tool::Surface(TopoDS::Face(geom.fmap(j)));
+-         if (hf1 == hf2) cout << "face " << i << " and face " << j << " lie on same surface" << endl;
++         if (hf1 == hf2) std::cout << "face " << i << " and face " << j << " lie on same surface" << std::endl;
+          }
+          }
+          */
+ 
+ #ifdef LOG_STREAM
+-         (*logout) << "Edges meshed" << endl
+-            << "time = " << GetTime() << " sec" << endl
+-            << "points: " << mesh->GetNP() << endl;
++         (*logout) << "Edges meshed" << std::endl
++            << "time = " << GetTime() << " sec" << std::endl
++            << "points: " << mesh->GetNP() << std::endl;
+ #endif
+       }
+ 
+@@ -1472,15 +1472,15 @@
+          if (multithread.terminate) return TCL_OK;
+ 
+ #ifdef LOG_STREAM
+-         (*logout) << "Surfaces meshed" << endl
+-            << "time = " << GetTime() << " sec" << endl
+-            << "points: " << mesh->GetNP() << endl;
++         (*logout) << "Surfaces meshed" << std::endl
++            << "time = " << GetTime() << " sec" << std::endl
++            << "points: " << mesh->GetNP() << std::endl;
+ #endif
+ 
+ #ifdef STAT_STREAM
+          (*statout) << mesh->GetNSeg() << " & "
+             << mesh->GetNSE() << " & - &"
+-            << GetTime() << " & " << endl;
++            << GetTime() << " & " << std::endl;
+ #endif
+ 
+          //      MeshQuality2d (*mesh);
+@@ -1499,12 +1499,12 @@
+ /*
+          ofstream problemfile("occmesh.rep",ios_base::app);
+ 
+-         problemfile << "VOLUMEMESHING" << endl << endl;
++         problemfile << "VOLUMEMESHING" << std::endl << std::endl;
+          if(res != MESHING3_OK)
+-            problemfile << "ERROR" << endl << endl;
++            problemfile << "ERROR" << std::endl << std::endl;
+          else
+-            problemfile << "OK" << endl
+-            << mesh->GetNE() << " elements" << endl << endl;
++            problemfile << "OK" << std::endl
++            << mesh->GetNE() << " elements" << std::endl << std::endl;
+ 
+          problemfile.close();
+ */
+@@ -1523,9 +1523,9 @@
+ #endif
+ 
+ #ifdef LOG_STREAM
+-         (*logout) << "Volume meshed" << endl
+-            << "time = " << GetTime() << " sec" << endl
+-            << "points: " << mesh->GetNP() << endl;
++         (*logout) << "Volume meshed" << std::endl
++            << "time = " << GetTime() << " sec" << std::endl
++            << "points: " << mesh->GetNP() << std::endl;
+ #endif
+       }
+ 
+@@ -1542,26 +1542,26 @@
+ #ifdef STAT_STREAM
+          (*statout) << GetTime() << " & "
+             << mesh->GetNE() << " & "
+-            << mesh->GetNP() << " " << '\\' << '\\' << " \\" << "hline" << endl;
++            << mesh->GetNP() << " " << '\\' << '\\' << " \\" << "hline" << std::endl;
+ #endif
+ 
+ #ifdef LOG_STREAM
+-         (*logout) << "Volume optimized" << endl
+-            << "time = " << GetTime() << " sec" << endl
+-            << "points: " << mesh->GetNP() << endl;
++         (*logout) << "Volume optimized" << std::endl
++            << "time = " << GetTime() << " sec" << std::endl
++            << "points: " << mesh->GetNP() << std::endl;
+ #endif
+ 
+-         // cout << "Optimization complete" << endl;
++         // std::cout << "Optimization complete" << std::endl;
+ 
+       }
+ 
+-      (*testout) << "NP: " << mesh->GetNP() << endl;
++      (*testout) << "NP: " << mesh->GetNP() << std::endl;
+       for (int i = 1; i <= mesh->GetNP(); i++)
+-         (*testout) << mesh->Point(i) << endl;
++         (*testout) << mesh->Point(i) << std::endl;
+ 
+-      (*testout) << endl << "NSegments: " << mesh->GetNSeg() << endl;
++      (*testout) << std::endl << "NSegments: " << mesh->GetNSeg() << std::endl;
+       for (int i = 1; i <= mesh->GetNSeg(); i++)
+-         (*testout) << mesh->LineSegment(i) << endl;
++         (*testout) << mesh->LineSegment(i) << std::endl;
+ 
+       return TCL_OK;
+    }
+--- netgen_ref/libsrc/occ/occgeom.cpp
++++ netgen/libsrc/occ/occgeom.cpp
+@@ -33,13 +33,13 @@
+       TopExp_Explorer e;
+       int count = 0;
+       for (e.Init(shape, TopAbs_COMPSOLID); e.More(); e.Next()) count++;
+-      cout << "CompSolids: " << count << endl;
++      std::cout << "CompSolids: " << count << std::endl;
+ 
+-      cout << "Solids    : " << somap.Extent() << endl;
+-      cout << "Shells    : " << shmap.Extent() << endl;
+-      cout << "Faces     : " << fmap.Extent() << endl;
+-      cout << "Edges     : " << emap.Extent() << endl;
+-      cout << "Vertices  : " << vmap.Extent() << endl;
++      std::cout << "Solids    : " << somap.Extent() << std::endl;
++      std::cout << "Shells    : " << shmap.Extent() << std::endl;
++      std::cout << "Faces     : " << fmap.Extent() << std::endl;
++      std::cout << "Edges     : " << emap.Extent() << std::endl;
++      std::cout << "Vertices  : " << vmap.Extent() << std::endl;
+    }
+ 
+ 
+@@ -51,51 +51,51 @@
+       cont.Clear();
+       cont.Perform(geom->shape);
+ 
+-      (*testout) << "OCC CONTENTS" << endl;
+-      (*testout) << "============" << endl;
+-      (*testout) << "SOLIDS   : " << cont.NbSolids() << endl;
+-      (*testout) << "SHELLS   : " << cont.NbShells() << endl;
+-      (*testout) << "FACES    : " << cont.NbFaces() << endl;
+-      (*testout) << "WIRES    : " << cont.NbWires() << endl;
+-      (*testout) << "EDGES    : " << cont.NbEdges() << endl;
+-      (*testout) << "VERTICES : " << cont.NbVertices() << endl;
++      (*testout) << "OCC CONTENTS" << std::endl;
++      (*testout) << "============" << std::endl;
++      (*testout) << "SOLIDS   : " << cont.NbSolids() << std::endl;
++      (*testout) << "SHELLS   : " << cont.NbShells() << std::endl;
++      (*testout) << "FACES    : " << cont.NbFaces() << std::endl;
++      (*testout) << "WIRES    : " << cont.NbWires() << std::endl;
++      (*testout) << "EDGES    : " << cont.NbEdges() << std::endl;
++      (*testout) << "VERTICES : " << cont.NbVertices() << std::endl;
+ 
+       TopExp_Explorer e;
+       int count = 0;
+       for (e.Init(geom->shape, TopAbs_COMPOUND); e.More(); e.Next())
+          count++;
+-      (*testout) << "Compounds: " << count << endl;
++      (*testout) << "Compounds: " << count << std::endl;
+ 
+       count = 0;
+       for (e.Init(geom->shape, TopAbs_COMPSOLID); e.More(); e.Next())
+          count++;
+-      (*testout) << "CompSolids: " << count << endl;
++      (*testout) << "CompSolids: " << count << std::endl;
+ 
+-      (*testout) << endl;
++      (*testout) << std::endl;
+ 
+-      cout << "Highest entry in topology hierarchy: " << endl;
++      std::cout << "Highest entry in topology hierarchy: " << std::endl;
+       if (count)
+-         cout << count << " composite solid(s)" << endl;
++         std::cout << count << " composite solid(s)" << std::endl;
+       else
+          if (geom->somap.Extent())
+-            cout << geom->somap.Extent() << " solid(s)" << endl;
++            std::cout << geom->somap.Extent() << " solid(s)" << std::endl;
+          else
+             if (geom->shmap.Extent())
+-               cout << geom->shmap.Extent() << " shells(s)" << endl;
++               std::cout << geom->shmap.Extent() << " shells(s)" << std::endl;
+             else
+                if (geom->fmap.Extent())
+-                  cout << geom->fmap.Extent() << " face(s)" << endl;
++                  std::cout << geom->fmap.Extent() << " face(s)" << std::endl;
+                else
+                   if (geom->wmap.Extent())
+-                     cout << geom->wmap.Extent() << " wire(s)" << endl;
++                     std::cout << geom->wmap.Extent() << " wire(s)" << std::endl;
+                   else
+                      if (geom->emap.Extent())
+-                        cout << geom->emap.Extent() << " edge(s)" << endl;
++                        std::cout << geom->emap.Extent() << " edge(s)" << std::endl;
+                      else
+                         if (geom->vmap.Extent())
+-                           cout << geom->vmap.Extent() << " vertices(s)" << endl;
++                           std::cout << geom->vmap.Extent() << " vertices(s)" << std::endl;
+                         else
+-                           cout << "no entities" << endl;
++                           std::cout << "no entities" << std::endl;
+ 
+    }
+ 
+@@ -145,11 +145,11 @@
+       }
+ 
+ 
+-      cout << "Starting geometry healing procedure (tolerance: " << tolerance << ")" << endl
+-         << "-----------------------------------" << endl;
++      std::cout << "Starting geometry healing procedure (tolerance: " << tolerance << ")" << std::endl
++         << "-----------------------------------" << std::endl;
+ 
+       {
+-         cout << endl << "- repairing faces" << endl;
++         std::cout << std::endl << "- repairing faces" << std::endl;
+ 
+          Handle(ShapeFix_Face) sff;
+          Handle(ShapeBuild_ReShape) rebuild = new ShapeBuild_ReShape;
+@@ -183,17 +183,17 @@
+                sff->Status(ShapeExtend_DONE4) ||
+                sff->Status(ShapeExtend_DONE5))
+             {
+-               cout << "repaired face " << fmap.FindIndex(face) << " ";
++               std::cout << "repaired face " << fmap.FindIndex(face) << " ";
+                if(sff->Status(ShapeExtend_DONE1))
+-                  cout << "(some wires are fixed)" <<endl;
++                  std::cout << "(some wires are fixed)" <<std::endl;
+                else if(sff->Status(ShapeExtend_DONE2))
+-                  cout << "(orientation of wires fixed)" <<endl;
++                  std::cout << "(orientation of wires fixed)" <<std::endl;
+                else if(sff->Status(ShapeExtend_DONE3))
+-                  cout << "(missing seam added)" <<endl;
++                  std::cout << "(missing seam added)" <<std::endl;
+                else if(sff->Status(ShapeExtend_DONE4))
+-                  cout << "(small area wire removed)" <<endl;
++                  std::cout << "(small area wire removed)" <<std::endl;
+                else if(sff->Status(ShapeExtend_DONE5))
+-                  cout << "(natural bounds added)" <<endl;
++                  std::cout << "(natural bounds added)" <<std::endl;
+                TopoDS_Face newface = sff->Face();
+ 
+                rebuild->Replace(face, newface);
+@@ -223,7 +223,7 @@
+ 
+       if (fixsmalledges)
+       {
+-         cout << endl << "- fixing small edges" << endl;
++         std::cout << std::endl << "- fixing small edges" << std::endl;
+ 
+          Handle(ShapeFix_Wire) sfw;
+          Handle(ShapeBuild_ReShape) rebuild = new ShapeBuild_ReShape;
+@@ -254,19 +254,19 @@
+                   sfw->StatusSmall(ShapeExtend_FAIL2) ||
+                   sfw->StatusSmall(ShapeExtend_FAIL3)))
+                {
+-                  cout << "Fixed small edge in wire " << wmap.FindIndex (oldwire) << endl;
++                  std::cout << "Fixed small edge in wire " << wmap.FindIndex (oldwire) << std::endl;
+                   replace = true;
+ 
+                }
+                else if (sfw->StatusSmall(ShapeExtend_FAIL1))
+-                  cerr << "Failed to fix small edge in wire " << wmap.FindIndex (oldwire)
+-                  << ", edge cannot be checked (no 3d curve and no pcurve)" << endl;
++                  std::cerr << "Failed to fix small edge in wire " << wmap.FindIndex (oldwire)
++                  << ", edge cannot be checked (no 3d curve and no pcurve)" << std::endl;
+                else if (sfw->StatusSmall(ShapeExtend_FAIL2))
+-                  cerr << "Failed to fix small edge in wire " << wmap.FindIndex (oldwire)
+-                  << ", edge is null-length and has different vertives at begin and end, and lockvtx is True or ModifiyTopologyMode is False" << endl;
++                  std::cerr << "Failed to fix small edge in wire " << wmap.FindIndex (oldwire)
++                  << ", edge is null-length and has different vertives at begin and end, and lockvtx is True or ModifiyTopologyMode is False" << std::endl;
+                else if (sfw->StatusSmall(ShapeExtend_FAIL3))
+-                  cerr << "Failed to fix small edge in wire " << wmap.FindIndex (oldwire)
+-                  << ", CheckConnected has failed" << endl;
++                  std::cerr << "Failed to fix small edge in wire " << wmap.FindIndex (oldwire)
++                  << ", CheckConnected has failed" << std::endl;
+ 
+                replace = sfw->FixEdgeCurves() || replace;
+ 
+@@ -306,9 +306,9 @@
+                   BRepGProp::LinearProperties(edge, system);
+                   if (system.Mass() < tolerance)
+                   {
+-                     cout << "removing degenerated edge " << emap.FindIndex(edge)
++                     std::cout << "removing degenerated edge " << emap.FindIndex(edge)
+                         << " from vertex " << vmap.FindIndex(TopExp::FirstVertex (edge))
+-                        << " to vertex " << vmap.FindIndex(TopExp::LastVertex (edge)) << endl;
++                        << " to vertex " << vmap.FindIndex(TopExp::LastVertex (edge)) << std::endl;
+                      rebuild->Remove(edge);
+                   }
+                }
+@@ -344,12 +344,12 @@
+ 
+          if (sfwf->FixWireGaps())
+          {
+-            cout << endl << "- fixing wire gaps" << endl;
+-            if (sfwf->StatusWireGaps(ShapeExtend_OK)) cout << "no gaps found" << endl;
+-            if (sfwf->StatusWireGaps(ShapeExtend_DONE1)) cout << "some 2D gaps fixed" << endl;
+-            if (sfwf->StatusWireGaps(ShapeExtend_DONE2)) cout << "some 3D gaps fixed" << endl;
+-            if (sfwf->StatusWireGaps(ShapeExtend_FAIL1)) cout << "failed to fix some 2D gaps" << endl;
+-            if (sfwf->StatusWireGaps(ShapeExtend_FAIL2)) cout << "failed to fix some 3D gaps" << endl;
++            std::cout << std::endl << "- fixing wire gaps" << std::endl;
++            if (sfwf->StatusWireGaps(ShapeExtend_OK)) std::cout << "no gaps found" << std::endl;
++            if (sfwf->StatusWireGaps(ShapeExtend_DONE1)) std::cout << "some 2D gaps fixed" << std::endl;
++            if (sfwf->StatusWireGaps(ShapeExtend_DONE2)) std::cout << "some 3D gaps fixed" << std::endl;
++            if (sfwf->StatusWireGaps(ShapeExtend_FAIL1)) std::cout << "failed to fix some 2D gaps" << std::endl;
++            if (sfwf->StatusWireGaps(ShapeExtend_FAIL2)) std::cout << "failed to fix some 3D gaps" << std::endl;
+          }
+ 
+          sfwf->SetPrecision(tolerance);
+@@ -360,7 +360,7 @@
+             {
+                TopoDS_Edge edge = TopoDS::Edge(exp1.Current());
+                if ( BRep_Tool::Degenerated(edge) )
+-                  cout << "degenerated edge at position 4" << endl;
++                  std::cout << "degenerated edge at position 4" << std::endl;
+             }
+          }
+ 
+@@ -368,10 +368,10 @@
+ 
+          if (sfwf->FixSmallEdges())
+          {
+-            cout << endl << "- fixing wire frames" << endl;
+-            if (sfwf->StatusSmallEdges(ShapeExtend_OK)) cout << "no small edges found" << endl;
+-            if (sfwf->StatusSmallEdges(ShapeExtend_DONE1)) cout << "some small edges fixed" << endl;
+-            if (sfwf->StatusSmallEdges(ShapeExtend_FAIL1)) cout << "failed to fix some small edges" << endl;
++            std::cout << std::endl << "- fixing wire frames" << std::endl;
++            if (sfwf->StatusSmallEdges(ShapeExtend_OK)) std::cout << "no small edges found" << std::endl;
++            if (sfwf->StatusSmallEdges(ShapeExtend_DONE1)) std::cout << "some small edges fixed" << std::endl;
++            if (sfwf->StatusSmallEdges(ShapeExtend_FAIL1)) std::cout << "failed to fix some small edges" << std::endl;
+          }
+ 
+ 
+@@ -392,7 +392,7 @@
+          {
+             TopoDS_Edge edge = TopoDS::Edge(exp1.Current());
+             if ( BRep_Tool::Degenerated(edge) )
+-               cout << "degenerated edge at position 5" << endl;
++               std::cout << "degenerated edge at position 5" << std::endl;
+          }
+       }
+ 
+@@ -402,7 +402,7 @@
+       if (fixspotstripfaces)
+       {
+ 
+-         cout << endl << "- fixing spot and strip faces" << endl;
++         std::cout << std::endl << "- fixing spot and strip faces" << std::endl;
+          Handle(ShapeFix_FixSmallFace) sffsm = new ShapeFix_FixSmallFace();
+          sffsm -> Init (shape);
+          sffsm -> SetPrecision (tolerance);
+@@ -418,7 +418,7 @@
+          {
+             TopoDS_Edge edge = TopoDS::Edge(exp1.Current());
+             if ( BRep_Tool::Degenerated(edge) )
+-               cout << "degenerated edge at position 6" << endl;
++               std::cout << "degenerated edge at position 6" << std::endl;
+          }
+       }
+ 
+@@ -426,7 +426,7 @@
+ 
+       if (sewfaces)
+       {
+-         cout << endl << "- sewing faces" << endl;
++         std::cout << std::endl << "- sewing faces" << std::endl;
+ 
+          BRepOffsetAPI_Sewing sewedObj(tolerance);
+ 
+@@ -441,7 +441,7 @@
+          if (!sewedObj.SewedShape().IsNull())
+             shape = sewedObj.SewedShape();
+          else
+-            cout << " not possible";
++            std::cout << " not possible";
+       }
+ 
+ 
+@@ -461,7 +461,7 @@
+ 
+       if (makesolids)
+       {
+-         cout << endl << "- making solids" << endl;
++         std::cout << std::endl << "- making solids" << std::endl;
+ 
+          BRepBuilderAPI_MakeSolid ms;
+          int count = 0;
+@@ -473,7 +473,7 @@
+ 
+          if (!count)
+          {
+-            cout << " not possible (no shells)" << endl;
++            std::cout << " not possible (no shells)" << std::endl;
+          }
+          else
+          {
+@@ -503,7 +503,7 @@
+                //delete sfs; sfs = NULL;
+             }
+             else
+-               cout << " not possible" << endl;
++               std::cout << " not possible" << std::endl;
+          }
+       }
+ 
+@@ -511,7 +511,7 @@
+ 
+       if (splitpartitions)
+       {
+-         cout << "- running SALOME partition splitter" << endl;
++         std::cout << "- running SALOME partition splitter" << std::endl;
+ 
+          TopExp_Explorer e2;
+          Partition_Spliter ps;
+@@ -527,13 +527,13 @@
+          ps.Compute();
+          shape = ps.Shape();
+ 
+-         cout << " before: " << count << " solids" << endl;
++         std::cout << " before: " << count << " solids" << std::endl;
+ 
+          count = 0;
+          for (e2.Init (shape, TopAbs_SOLID);
+             e2.More(); e2.Next()) count++;
+ 
+-            cout << " after : " << count << " solids" << endl;
++            std::cout << " after : " << count << " solids" << std::endl;
+       }
+ 
+       BuildFMap();
+@@ -545,7 +545,7 @@
+          {
+             TopoDS_Edge edge = TopoDS::Edge(exp1.Current());
+             if ( BRep_Tool::Degenerated(edge) )
+-               cout << "degenerated edge at position 8" << endl;
++               std::cout << "degenerated edge at position 8" << std::endl;
+          }
+       }
+ 
+@@ -573,18 +573,18 @@
+       for (exp0.Init(shape, TopAbs_COMPOUND); exp0.More(); exp0.Next()) nnrc++;
+       for (exp0.Init(shape, TopAbs_COMPSOLID); exp0.More(); exp0.Next()) nnrcs++;
+ 
+-      cout << "-----------------------------------" << endl;
+-      cout << "Compounds       : " << nnrc << " (" << nrc << ")" << endl;
+-      cout << "Composite solids: " << nnrcs << " (" << nrcs << ")" << endl;
+-      cout << "Solids          : " << nnrso << " (" << nrso << ")" << endl;
+-      cout << "Shells          : " << nnrsh << " (" << nrsh << ")" << endl;
+-      cout << "Wires           : " << nnrw << " (" << nrw << ")" << endl;
+-      cout << "Faces           : " << nnrf << " (" << nrf << ")" << endl;
+-      cout << "Edges           : " << nnre << " (" << nre << ")" << endl;
+-      cout << "Vertices        : " << nnrv << " (" << nrv << ")" << endl;
+-      cout << endl;
+-      cout << "Totol surface area : " << newsurfacecont << " (" << surfacecont << ")" << endl;
+-      cout << endl;
++      std::cout << "-----------------------------------" << std::endl;
++      std::cout << "Compounds       : " << nnrc << " (" << nrc << ")" << std::endl;
++      std::cout << "Composite solids: " << nnrcs << " (" << nrcs << ")" << std::endl;
++      std::cout << "Solids          : " << nnrso << " (" << nrso << ")" << std::endl;
++      std::cout << "Shells          : " << nnrsh << " (" << nrsh << ")" << std::endl;
++      std::cout << "Wires           : " << nnrw << " (" << nrw << ")" << std::endl;
++      std::cout << "Faces           : " << nnrf << " (" << nrf << ")" << std::endl;
++      std::cout << "Edges           : " << nnre << " (" << nre << ")" << std::endl;
++      std::cout << "Vertices        : " << nnrv << " (" << nrv << ")" << std::endl;
++      std::cout << std::endl;
++      std::cout << "Totol surface area : " << newsurfacecont << " (" << surfacecont << ")" << std::endl;
++      std::cout << std::endl;
+    }
+ 
+ 
+@@ -605,12 +605,12 @@
+          exp0.More(); exp0.Next())
+       {
+          TopoDS_Compound compound = TopoDS::Compound (exp0.Current());
+-         (*testout) << "compound" << endl;
++         (*testout) << "compound" << std::endl;
+          int i = 0;
+          for (exp1.Init(compound, TopAbs_SHELL);
+             exp1.More(); exp1.Next())
+          {
+-            (*testout) << "shell " << ++i << endl;
++            (*testout) << "shell " << ++i << std::endl;
+          }
+       }
+ 
+@@ -640,7 +640,7 @@
+                         fmap.Add (face);
+                         (*testout) << "face " << fmap.FindIndex(face) << " ";
+                         (*testout) << ((face.Orientation() == TopAbs_REVERSED) ? "-" : "+") << ", ";
+-                        (*testout) << ((exp2.Current().Orientation() == TopAbs_REVERSED) ? "-" : "+") << endl;
++                        (*testout) << ((exp2.Current().Orientation() == TopAbs_REVERSED) ? "-" : "+") << std::endl;
+                         for (exp3.Init(exp2.Current(), TopAbs_WIRE);
+                            exp3.More(); exp3.Next())
+                         {
+@@ -684,7 +684,7 @@
+ 
+             (*testout) << "shell " << shmap.FindIndex(shell) << " ";
+             (*testout) << ((shell.Orientation() == TopAbs_REVERSED) ? "-" : "+") << ", ";
+-            (*testout) << ((exp1.Current().Orientation() == TopAbs_REVERSED) ? "-" : "+") << endl;
++            (*testout) << ((exp1.Current().Orientation() == TopAbs_REVERSED) ? "-" : "+") << std::endl;
+ 
+             for (exp2.Init(shell, TopAbs_FACE); exp2.More(); exp2.Next())
+             {
+@@ -850,8 +850,8 @@
+ 
+    void OCCGeometry :: SewFaces ()
+    {
+-      (*testout) << "Trying to sew faces ..." << endl;
+-      cout << "Trying to sew faces ..." << flush;
++      (*testout) << "Trying to sew faces ..." << std::endl;
++      std::cout << "Trying to sew faces ..." << flush;
+ 
+       BRepOffsetAPI_Sewing sewedObj(1);
+  
+@@ -866,10 +866,10 @@
+       if (!sewedObj.SewedShape().IsNull())
+       {
+          shape = sewedObj.SewedShape();
+-         cout << " done" << endl;
++         std::cout << " done" << std::endl;
+       }
+       else
+-         cout << " not possible";
++         std::cout << " not possible";
+    }
+ 
+ 
+@@ -880,8 +880,8 @@
+    {
+       TopExp_Explorer exp0;
+ 
+-      (*testout) << "Trying to build solids ..." << endl;
+-      cout << "Trying to build solids ..." << flush;
++      (*testout) << "Trying to build solids ..." << std::endl;
++      std::cout << "Trying to build solids ..." << flush;
+ 
+       BRepBuilderAPI_MakeSolid ms;
+       int count = 0;
+@@ -893,7 +893,7 @@
+ 
+       if (!count)
+       {
+-         cout << " not possible (no shells)" << endl;
++         std::cout << " not possible (no shells)" << std::endl;
+          return;
+       }
+ 
+@@ -922,10 +922,10 @@
+             shape = newshape;
+          }
+ 
+-         cout << " done" << endl;
++         std::cout << " done" << std::endl;
+       }
+       else
+-         cout << " not possible" << endl;
++         std::cout << " not possible" << std::endl;
+    }
+ 
+ 
+@@ -933,12 +933,12 @@
+ 
+    void OCCGeometry :: BuildVisualizationMesh (double deflection)
+    {
+-      cout << "Preparing visualization (deflection = " << deflection << ") ... " << flush;
++      std::cout << "Preparing visualization (deflection = " << deflection << ") ... " << flush;
+ 
+       BRepTools::Clean (shape);
+       // BRepMesh_IncrementalMesh::
+       BRepMesh_IncrementalMesh (shape, deflection, true);
+-      cout << "done" << endl;
++      std::cout << "done" << std::endl;
+    }
+ 
+ 
+@@ -954,7 +954,7 @@
+       Point<3> p1 = Point<3> (x1,y1,z1);
+       Point<3> p2 = Point<3> (x2,y2,z2);
+ 
+-      (*testout) << "Bounding Box = [" << p1 << " - " << p2 << "]" << endl;
++      (*testout) << "Bounding Box = [" << p1 << " - " << p2 << "]" << std::endl;
+       boundingbox = Box<3> (p1,p2);
+       SetCenter();
+    }
+@@ -985,7 +985,7 @@
+    bool OCCGeometry :: Project (int surfi, Point<3> & p, double& u, double& v) const
+    {
+       static int cnt = 0;
+-      if (++cnt % 1000 == 0) cout << "Project cnt = " << cnt << endl;
++      if (++cnt % 1000 == 0) std::cout << "Project cnt = " << cnt << std::endl;
+ 
+       gp_Pnt pnt(p(0), p(1), p(2));
+ 
+@@ -1065,7 +1065,7 @@
+       // 
+       // } while (xold.SquareDistance(x) > sqr(PROJECTION_TOLERANCE) && count < 50);
+       // 
+-      // //    (*testout) << "FastProject count: " << count << endl;
++      // //    (*testout) << "FastProject count: " << count << std::endl;
+       // 
+       // if (count == 50) return false;
+       // 
+@@ -1077,7 +1077,7 @@
+       gp_Pnt2d p2d = proj->NextValueOfUV(gp_Pnt2d(u,v), p, Precision::Confusion());
+       if (cls->Perform(p2d) == TopAbs_OUT)
+       {
+-        //cout << "Projection fails" << endl;
++        //std::cout << "Projection fails" << std::endl;
+         return false;
+       }
+ 
+@@ -1093,14 +1093,14 @@
+ 
+    void OCCGeometry :: WriteOCC_STL(char * filename)
+    {
+-      cout << "writing stl..."; cout.flush();
++      std::cout << "writing stl..."; std::cout.flush();
+       StlAPI_Writer writer;
+       //writer.RelativeMode() = Standard_False;
+ 
+       //writer.SetDeflection(0.02);
+       writer.Write(shape,filename);
+ 
+-      cout << "done" << endl;
++      std::cout << "done" << std::endl;
+    }
+ 
+ 
+@@ -1379,7 +1379,7 @@
+ 	   case TopAbs_VERTEX:
+ 	     count2 = vmap.FindIndex(TopoDS::Vertex(e.Current())); break;
+ 	   default:
+-	     cout << "RecursiveTopologyTree: Case " << e.Current().ShapeType() << " not handeled" << endl;
++	     std::cout << "RecursiveTopologyTree: Case " << e.Current().ShapeType() << " not handeled" << std::endl;
+          }
+ 
+          int nrsubshapes = 0;
+@@ -1414,7 +1414,7 @@
+ 
+    void OCCGeometry :: GetTopologyTree (stringstream & str)
+    {
+-      cout << "Building topology tree ... " << flush;
++      std::cout << "Building topology tree ... " << flush;
+       RecursiveTopologyTree (shape, str, TopAbs_COMPSOLID, false, "CompSolids");
+       RecursiveTopologyTree (shape, str, TopAbs_SOLID, true, "FreeSolids");
+       RecursiveTopologyTree (shape, str, TopAbs_SHELL, true, "FreeShells");
+@@ -1423,7 +1423,7 @@
+       RecursiveTopologyTree (shape, str, TopAbs_EDGE, true, "FreeEdges");
+       RecursiveTopologyTree (shape, str, TopAbs_VERTEX, true, "FreeVertices");
+       str << flush;
+-      //  cout << "done" << endl;
++      //  std::cout << "done" << std::endl;
+    }
+ 
+ 
+@@ -1449,7 +1449,7 @@
+       int twistedfaces = 0;
+       // int edgessamebutnotidentified = 0;
+ 
+-      cout << "checking faces ... " << flush;
++      std::cout << "checking faces ... " << flush;
+ 
+       int i;
+       for (i = 1; i <= fmap.Extent(); i++)
+@@ -1462,7 +1462,7 @@
+             if (!spotfaces++)
+                str << "SpotFace {Spot face} ";
+ 
+-            (*testout) << "Face " << i << " is a spot face" << endl;
++            (*testout) << "Face " << i << " is a spot face" << std::endl;
+             str << "SpotFace/Face" << i << " ";
+             str << "{Face " << i << " } ";
+          }
+@@ -1472,7 +1472,7 @@
+             if (!stripsupportfaces++)
+                str << "StripSupportFace {Strip support face} ";
+ 
+-            (*testout) << "Face " << i << " has strip support" << endl;
++            (*testout) << "Face " << i << " has strip support" << std::endl;
+             str << "StripSupportFace/Face" << i << " ";
+             str << "{Face " << i << " } ";
+          }
+@@ -1483,7 +1483,7 @@
+                str << "SingleStripFace {Single strip face} ";
+ 
+             (*testout) << "Face " << i << " is a single strip (edge " << emap.FindIndex(e1)
+-               << " and edge " << emap.FindIndex(e2) << " are identical)" << endl;
++               << " and edge " << emap.FindIndex(e2) << " are identical)" << std::endl;
+             str << "SingleStripFace/Face" << i << " ";
+             str << "{Face " << i << " (edge " << emap.FindIndex(e1)
+                << " and edge " << emap.FindIndex(e2) << " are identical)} ";
+@@ -1496,7 +1496,7 @@
+ 
+             (*testout) << "Face " << i << " is a strip (edge " << emap.FindIndex(e1)
+                << " and edge " << emap.FindIndex(e2)
+-               << " are identical)" << endl;
++               << " are identical)" << std::endl;
+             str << "StripFace/Face" << i << " ";
+             str << "{Face " << i << " (edge " << emap.FindIndex(e1)
+                << " and edge " << emap.FindIndex(e2) << " are identical)} ";
+@@ -1508,7 +1508,7 @@
+                str << "FaceSplitByVertices {Face split by vertices} ";
+ 
+             (*testout) << "Face " << i << " is split by " << count
+-               << " vertex/vertices " << endl;
++               << " vertex/vertices " << std::endl;
+             str << "FaceSplitByVertices/Face" << i << " ";
+             str << "{Face " << i << " (split by " << count << "vertex/vertices)} ";
+          }
+@@ -1521,7 +1521,7 @@
+                if (!smoothpinfaces++)
+                   str << "SmoothPinFace {Smooth pin face} ";
+ 
+-               (*testout) << "Face " << i << " is a smooth pin" << endl;
++               (*testout) << "Face " << i << " is a smooth pin" << std::endl;
+                str << "SmoothPinFace/Face" << i << " ";
+                str << "{Face " << i << " } ";
+             }
+@@ -1530,7 +1530,7 @@
+                if (!stretchedpinfaces++)
+                   str << "StretchedPinFace {Stretched pin face} ";
+ 
+-               (*testout) << "Face " << i << " is a streched pin" << endl;
++               (*testout) << "Face " << i << " is a streched pin" << std::endl;
+                str << "StretchedPinFace/Face" << i << " ";
+                str << "{Face " << i << " } ";
+             }
+@@ -1542,14 +1542,14 @@
+             if (!twistedfaces++)
+                str << "TwistedFace {Twisted face} ";
+ 
+-            (*testout) << "Face " << i << " is twisted" << endl;
++            (*testout) << "Face " << i << " is twisted" << std::endl;
+             str << "TwistedFace/Face" << i << " ";
+             str << "{Face " << i << " } ";
+          }
+       }
+ 
+-      cout << "done" << endl;
+-      cout << "checking edges ... " << flush;
++      std::cout << "done" << std::endl;
++      std::cout << "checking edges ... " << flush;
+ 
+       // double dmax;
+       // int cnt = 0;
+@@ -1577,7 +1577,7 @@
+ 
+       str << flush;
+ 
+-      cout << "done" << endl;
++      std::cout << "done" << std::endl;
+    }
+ 
+ 
+@@ -1651,11 +1651,11 @@
+ 
+    void OCCParameters :: Print(ostream & ost) const
+    {
+-      ost << "OCC Parameters:" << endl
++      ost << "OCC Parameters:" << std::endl
+          << "close edges: " << resthcloseedgeenable
+-         << ", fac = " << resthcloseedgefac << endl
++         << ", fac = " << resthcloseedgefac << std::endl
+ 		 << "minimum edge length: " << resthminedgelenenable
+-		 << ", min len = " << resthminedgelen << endl;
++		 << ", min len = " << resthminedgelen << std::endl;
+    }
+ 
+ 
+--- netgen_ref/libsrc/occ/occgeom.hpp
++++ netgen/libsrc/occ/occgeom.hpp
+@@ -291,7 +291,7 @@
+ 
+       OCCSurface GetSurface (int surfi)
+       {
+-         cout << "OCCGeometry::GetSurface using PLANESPACE" << endl;
++         std::cout << "OCCGeometry::GetSurface using PLANESPACE" << std::endl;
+          return OCCSurface (TopoDS::Face(fmap(surfi)), PLANESPACE);
+       }
+ 
+--- netgen_ref/libsrc/occ/occmeshsurf.cpp
++++ netgen/libsrc/occ/occmeshsurf.cpp
+@@ -111,13 +111,13 @@
+       {
+ 	(*testout) << "u " << geominfo.u << " v " << geominfo.v 
+ 		   << " du " << lprop.D1U().X() << " "<< lprop.D1U().Y() << " "<< lprop.D1U().Z()
+-		   << " dv " << lprop.D1V().X() << " "<< lprop.D1V().Y() << " "<< lprop.D1V().Z() << endl;
++		   << " dv " << lprop.D1V().X() << " "<< lprop.D1V().Y() << " "<< lprop.D1V().Z() << std::endl;
+       }
+ 
+ 
+ 
+     if (orient == TopAbs_REVERSED) n = -1*n;
+-    //  (*testout) << "GetNormalVector" << endl;
++    //  (*testout) << "GetNormalVector" << std::endl;
+   }
+ 
+ 
+@@ -130,8 +130,8 @@
+       {
+ 	p1 = ap1; p2 = ap2;
+ 
+-	//cout << "p1 = " << p1 << endl;
+-	//cout << "p2 = " << p2 << endl;
++	//std::cout << "p1 = " << p1 << std::endl;
++	//std::cout << "p2 = " << p2 << std::endl;
+       
+ 	GetNormalVector (p1, geominfo1, ez);
+       
+@@ -152,7 +152,7 @@
+ 	ez.Normalize();
+ 	ey = Cross (ez, ex);
+ 	nmid = ez;
+-	//cout << "ex " << ex << " ey " << ey << " ez " << ez << endl;
++	//std::cout << "ex " << ex << " ey " << ey << " ez " << ez << std::endl;
+       }
+     else
+       {
+@@ -182,9 +182,9 @@
+ 	D1(0,1) = dv.X(); D1(1,1) = dv.Y(); D1(2,1) = dv.Z();
+ 
+ 	/*
+-	  (*testout) << "DefineTangentialPlane" << endl
+-	  << "---------------------" << endl;
+-	  (*testout) << "D1 = " << endl << D1 << endl;
++	  (*testout) << "DefineTangentialPlane" << std::endl
++	  << "---------------------" << std::endl;
++	  (*testout) << "D1 = " << std::endl << D1 << std::endl;
+ 	*/
+ 
+ 	Transpose (D1, D1T);
+@@ -274,7 +274,7 @@
+ 	/*
+ 	  if(zone == -1)
+ 	  {
+-	  (*testout) << "zone = -1 for " << p3d << " 2D: " << pplane << " n " << n << " nmid " << nmid << endl;
++	  (*testout) << "zone = -1 for " << p3d << " 2D: " << pplane << " n " << n << " nmid " << nmid << std::endl;
+ 	  glob_testout = true;
+ 	  GetNormalVector (p3d, geominfo, n);
+ 	  glob_testout = false;
+@@ -284,7 +284,7 @@
+     else
+       {
+ 	pplane = Point<2>(geominfo.u, geominfo.v);
+-	//      (*testout) << "(u,v) = " << geominfo.u << ", " << geominfo.v << endl;
++	//      (*testout) << "(u,v) = " << geominfo.u << ", " << geominfo.v << std::endl;
+ 	pplane = Point<2> (1/h * (Amatinv * (pplane-psp1)));
+ 	//      pplane = Point<2> (h * (Amatinv * (pplane-psp1)));
+ 	//      pplane = Point<2> (1/h * ((pplane-psp1)));
+@@ -301,11 +301,11 @@
+   { 
+     if (projecttype == PLANESPACE)
+       {
+-	//      cout << "2d   : " << pplane << endl;
++	//      std::cout << "2d   : " << pplane << std::endl;
+ 	p3d = p1 + (h * pplane(0)) * ex + (h * pplane(1)) * ey;
+-	//      cout << "3d   : " << p3d << endl;
++	//      std::cout << "3d   : " << p3d << std::endl;
+ 	Project (p3d, gi);  
+-	//      cout << "proj : " << p3d << endl;
++	//      std::cout << "proj : " << p3d << std::endl;
+       }
+     else
+       {
+@@ -325,11 +325,11 @@
+   void OCCSurface :: Project (Point<3> & p, PointGeomInfo & gi)
+   {
+     //   static int cnt = 0;
+-    //  if (cnt++ % 1000 == 0) cout << "********************************************** OCCSurfce :: Project, cnt = " << cnt << endl;
++    //  if (cnt++ % 1000 == 0) std::cout << "********************************************** OCCSurfce :: Project, cnt = " << cnt << std::endl;
+   
+     gp_Pnt pnt(p(0), p(1), p(2));
+ 
+-    //(*testout) << "pnt = " << pnt.X() << ", " << pnt.Y() << ", " << pnt.Z() << endl;
++    //(*testout) << "pnt = " << pnt.X() << ", " << pnt.Y() << ", " << pnt.Z() << std::endl;
+ 
+ 
+     /*
+@@ -337,7 +337,7 @@
+ 
+     if (!proj.NbPoints())
+       {
+-	cout << "Project Point on Surface FAIL" << endl;
++	std::cout << "Project Point on Surface FAIL" << std::endl;
+ 	throw UVBoundsException();
+       }
+     */
+@@ -347,13 +347,13 @@
+ 
+ 
+     /*
+-      cout << "NP = " << proj.NbPoints() << endl;
++      std::cout << "NP = " << proj.NbPoints() << std::endl;
+ 
+       for (int i = 1; i <= proj.NbPoints(); i++)
+       {
+       gp_Pnt pnt2 = proj.Point(i);
+       Point<3> p2 = Point<3> (pnt2.X(), pnt2.Y(), pnt2.Z());
+-      cout << i << ". p = " << p2 << ", dist = " << (p2-p).Length() << endl;
++      std::cout << i << ". p = " << p2 << ", dist = " << (p2-p).Length() << std::endl;
+       }
+     */
+ 
+@@ -368,7 +368,7 @@
+     suval.Coord( u, v);
+     pnt = occface->Value( u, v );
+     
+-    //(*testout) << "pnt(proj) = " << pnt.X() << ", " << pnt.Y() << ", " << pnt.Z() << endl;
++    //(*testout) << "pnt(proj) = " << pnt.X() << ", " << pnt.Y() << ", " << pnt.Z() << std::endl;
+     gi.u = u;
+     gi.v = v;
+     
+@@ -520,7 +520,7 @@
+   GetNormalVector(INDEX surfind, const Point<3> & p, Vec<3> & n) const
+   {
+     //  static int cnt = 0;
+-    //  if (cnt++ % 1000 == 0) cout << "GetNV cnt = " << cnt << endl;
++    //  if (cnt++ % 1000 == 0) std::cout << "GetNV cnt = " << cnt << std::endl;
+     Standard_Real u,v;
+ 
+     gp_Pnt pnt(p(0), p(1), p(2));
+@@ -533,9 +533,9 @@
+ 
+     if (proj.NbPoints() < 1)
+       {
+-	cout << "ERROR: OCCSurface :: GetNormalVector: GeomAPI_ProjectPointOnSurf failed!"
+-	     << endl;
+-	cout << p << endl;
++	std::cout << "ERROR: OCCSurface :: GetNormalVector: GeomAPI_ProjectPointOnSurf failed!"
++	     << std::endl;
++	std::cout << p << std::endl;
+ 	return;
+       }
+  
+@@ -554,7 +554,7 @@
+ 
+     /*
+       if (!occface->IsCNu (1) || !occface->IsCNv (1))
+-      (*testout) << "SurfOpt: Differentiation FAIL" << endl;
++      (*testout) << "SurfOpt: Differentiation FAIL" << std::endl;
+     */
+ 
+     n = Cross (Vec3d(du.X(), du.Y(), du.Z()),
+@@ -580,9 +580,9 @@
+ 
+     if (proj.NbPoints() < 1)
+       {
+-	cout << "ERROR: OCCSurface :: GetNormalVector: GeomAPI_ProjectPointOnSurf failed!"
+-	     << endl;
+-	cout << p << endl;
++	std::cout << "ERROR: OCCSurface :: GetNormalVector: GeomAPI_ProjectPointOnSurf failed!"
++	     << std::endl;
++	std::cout << p << std::endl;
+ 	return 0;
+       }
+  
+@@ -693,7 +693,7 @@
+  
+ 	if (!geometry.FastProject (surfi, hnewp, u, v))
+ 	  {
+-	  //  cout << "Fast projection to surface fails! Using OCC projection" << endl;
++	  //  std::cout << "Fast projection to surface fails! Using OCC projection" << std::endl;
+ 	    // geometry.Project (surfi, hnewp); -- Project() changed for optimization
+ 	    geometry.Project (surfi, hnewp, u, v);
+ 	  }
+@@ -741,7 +741,7 @@
+     if (surfi > 0)
+       if (!geometry.FastProject (surfi, p, gi.u, gi.v))
+ 	{
+-	  cout << "Fast projection to surface fails! Using OCC projection" << endl;
++	  std::cout << "Fast projection to surface fails! Using OCC projection" << std::endl;
+           double u, v;
+ 	  geometry.Project (surfi, p, u, v);
+ 	}
+--- netgen_ref/nglib/nglib.cpp
++++ netgen/nglib/nglib.cpp
+@@ -75,8 +75,8 @@
+    // initialize, deconstruct Netgen library:
+    DLL_HEADER void Ng_Init ()
+    {
+-      mycout = &cout;
+-      myerr = &cerr;
++      mycout = &std::cout;
++      myerr = &std::cerr;
+       // netgen::testout->SetOutStream (new ofstream ("test.out"));
+       testout = new ofstream ("test.out");
+    }
+@@ -515,7 +515,7 @@
+       Mesh * m;
+       MeshFromSpline2D (*(SplineGeometry2d*)geom, m, mparam);
+ 
+-      cout << m->GetNSE() << " elements, " << m->GetNP() << " points" << endl;
++      std::cout << m->GetNSE() << " elements, " << m->GetNP() << " points" << std::endl;
+ 
+       *mesh = (Ng_Mesh*)m;
+       return NG_OK;
+@@ -620,7 +620,7 @@
+          /*
+          for (int i = 1; i <= readedges.Size(); i+=2)
+          {
+-         cout << "e(" << readedges.Get(i) << "," << readedges.Get(i+1) << ")" << endl;
++         std::cout << "e(" << readedges.Get(i) << "," << readedges.Get(i+1) << ")" << std::endl;
+          }
+          */
+          geo->AddEdges(readedges);
+@@ -707,22 +707,22 @@
+       int retval = STLSurfaceMeshing (*stlgeometry, *me);
+       if (retval == MESHING3_OK)
+       {
+-         (*mycout) << "Success !!!!" << endl;
++         (*mycout) << "Success !!!!" << std::endl;
+          stlgeometry->surfacemeshed = 1;
+          stlgeometry->surfaceoptimized = 0;
+          stlgeometry->volumemeshed = 0;
+       } 
+       else if (retval == MESHING3_OUTERSTEPSEXCEEDED)
+       {
+-         (*mycout) << "ERROR: Give up because of too many trials. Meshing aborted!" << endl;
++         (*mycout) << "ERROR: Give up because of too many trials. Meshing aborted!" << std::endl;
+       }
+       else if (retval == MESHING3_TERMINATE)
+       {
+-         (*mycout) << "Meshing Stopped!" << endl;
++         (*mycout) << "Meshing Stopped!" << std::endl;
+       }
+       else
+       {
+-         (*mycout) << "ERROR: Surface meshing not successful. Meshing aborted!" << endl;
++         (*mycout) << "ERROR: Surface meshing not successful. Meshing aborted!" << std::endl;
+       }
+ 
+ 
+@@ -1179,7 +1179,7 @@
+ 
+    DLL_HEADER void MyError (const char * ch)
+    {
+-      cerr << ch;
++      std::cerr << ch;
+    }
+ 
+ 

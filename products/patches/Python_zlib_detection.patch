@@ -1,0 +1,12 @@
+diff -pruN Python-2.6.6_old/setup.py Python-2.6.6_new/setup.py
+--- Python-2.6.6_old/setup.py	2010-07-17 14:31:09.000000000 +0200
++++ Python-2.6.6_new/setup.py	2014-03-28 14:03:49.938705971 +0100
+@@ -409,7 +409,7 @@ class PyBuildExt(build_ext):
+         # be assumed that no additional -I,-L directives are needed.
+         lib_dirs = self.compiler.library_dirs + [
+             '/lib64', '/usr/lib64',
+-            '/lib', '/usr/lib',
++            '/lib', '/usr/lib', '/usr/lib/x86_64-linux-gnu'
+             ]
+         inc_dirs = self.compiler.include_dirs + ['/usr/include']
+         exts = []

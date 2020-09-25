@@ -1,0 +1,65 @@
+default :
+{
+    name : "medfile"
+    build_source : "script"
+    compil_script :  "medCMake" + $VARS.scriptExtension
+    test_build : "make test"
+    get_source : "archive"
+    archive_info : {archive_prefix : "med"}
+    environ :
+    {
+       env_script : "med.py"
+    }
+    depend : ["hdf5", "Python"]
+    opt_depend : ["openmpi"]
+    build_depend : ["cmake"]
+    patches : []
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :    
+    {
+        incremental : "yes"
+        has_unit_tests : "yes"
+    }
+}
+
+default_Autotools :
+{
+    compil_script :  "med.sh"
+    test_build : "make check"
+    build_depend : []
+}
+
+# needed in order to screen with windows version - see below
+version_4_1_0 :
+{
+  patches : []
+}
+
+version_4_1_0_win : 
+{
+  patches : ['med-4.1.0_win_3x_files_support.patch']
+}
+
+# needed in order to screen with windows version - see below
+version_4_0_0 : 
+{
+  patches : []
+}
+
+version_4_0_0_win : 
+{
+  patches : ['med-4.0.0_unicode.patch', 'medfile-4.0.0.patch']
+}
+
+version_4_0_0alpha3 :
+{
+    patches : [ "med-4.0.0alpha3.patch" ]
+}
+
+version_3_0_6 :
+{
+    compil_script :  "med.sh"
+    depend : ["hdf5"]
+}

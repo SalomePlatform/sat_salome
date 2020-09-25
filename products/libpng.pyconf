@@ -1,0 +1,30 @@
+default :
+{
+    name : "libpng"
+    build_source : "script"
+    compil_script : $name + $VARS.scriptExtension
+    get_source : "archive"
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : [ 'zlib' ]
+    build_depend : ["cmake"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties:
+    {
+      incremental : "yes"
+    }
+}
+
+default_win :
+{
+   archive_info : {archive_name : "libpng-" + $APPLICATION.products.libpng + "_windows.tar.gz"}
+   properties:
+   {
+     incremental : "yes"
+     single_install_dir : "yes"
+   }
+}

@@ -1,0 +1,706 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+MONDAY    : 0
+TUESDAY   : 1
+WEDNESDAY : 2
+THURSDAY  : 3
+FRIDAY    : 4
+SATURDAY  : 5
+SUNDAY    : 6
+
+LUNDI     : 0
+MARDI     : 1
+MERCREDI  : 2
+JEUDI     : 3
+VENDREDI  : 4
+SAMEDI    : 5
+DIMANCHE  : 6
+
+m : 60
+
+h : 60 * $m
+
+display : 'is225302.intra.cea.fr:0.0'
+
+machines:
+[
+    {
+        name : "CO7.2 info"
+        host : is231761 #is223284
+        user : salome
+        sat_path : '/volatile/salome/salomeTools-5-jobs'
+    }
+    {
+        name : "CO7.3 physique W"
+        host : is221713
+        user : salome
+        sat_path : '/volatile/home/salome/salomeTools-5-jobs'
+    }
+    {
+        name : "FD18 virtuelle"
+        host : isv20852
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+    {
+        name : "CO7.2 physique"
+        host : is228818
+        user : salome
+        sat_path : '/volatile/salome/salomeTools-5-jobs'
+    }
+    {
+        name : "CO7.2 virtuelle"
+        host : isv20845
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+    {
+        name : "DB07 virtuelle"
+        host : isv20847
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+    {
+        name : "DB08 virtuelle"
+        host : isv20848
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+    {
+        name : "UB16.04 physique" ###master Clarisse
+        host : is221556 ###anciennement is212797
+        user : salome
+        sat_path : '/volatile/salome/salomeTools-5-jobs'
+    }
+    {
+        name : "UB14.04 virtuelle"
+        host : isv20851
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+    {
+        name : "FD20 physique"
+        host : is228817
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+    {
+        name : "FD20 virtuelle"
+        host : isv20849
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+    {
+        name : "FD22 physique"
+        host : is223287
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+    {
+        name : "FD22 virtuelle"
+        host : isv20850
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+    {
+        name : "FD24 virtuelle"
+        host : isv20843
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+    {
+        name : "CO6.4 physique"
+        host : is225299
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+    {
+        name : "CO6.4 physique corpus"
+        host : is221049
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+    {
+        name : "CO6.4 virtuelle"
+        host : isv20844 #isv20853
+        user : salome
+        sat_path : '/export/home/salome/salomeTools-5-jobs'
+    }
+    {
+        name : "CO7 physique"
+        host : is221560
+        user : salome
+        sat_path : '/volatile/home/salome/salomeTools-5-jobs'
+    }
+]
+
+application1  : "SALOME-master"
+application2  : "SALOME-master-native"
+application3  : "SALOME-8.3.0"
+application4  : "SALOME-8.3.0-native"
+application5  : "SALOME-8.2.0"
+application6  : "SALOME-8.2.0-MPI"
+application7  : "SALOME-6.6.0"
+application8  : "CORPUS-2.0"
+application9  : "SALOME-7.8.2"
+
+application11 : "MEDCOUPLING-7.8.2"
+application12 : "MEDCOUPLING-8.3.0"
+application13 : "MEDCOUPLING-8.2.0"
+application14 : "MEDCOUPLING"
+application15 : "MEDCOUPLING-native"
+application16 : "MEDCOUPLING-Micro"
+application17 : "MEDCOUPLING-MPI"
+application18 : "SHAPER-2.7.0-SAL820"
+application19 : "PPGP-1.2beta-7.8.0"
+
+
+jobs :
+[
+    
+    {
+        name : 'CLEAN CO7.2 info'
+        when : [$FRIDAY]
+        application : "CLEAN"
+        machine : "CO7.2 info"
+        board : "CLEAN ALL"
+        timeout : 10 * $h
+        commands :
+        [
+            'sat clean ' + $application1  + ' --all'
+            'sat clean ' + $application2  + ' --all'
+            'sat clean ' + $application3  + ' --all'
+            'sat clean ' + $application4  + ' --all'
+            'sat clean ' + $application5  + ' --all'
+            'sat clean ' + $application6  + ' --all'
+            'sat clean ' + $application7  + ' --all'
+            'sat clean ' + $application8  + ' --all'
+            'sat clean ' + $application9  + ' --all'
+
+            'sat clean ' + $application11 + ' --all'
+            'sat clean ' + $application12 + ' --all'
+            'sat clean ' + $application13 + ' --all'
+            'sat clean ' + $application14 + ' --all'
+            'sat clean ' + $application15 + ' --all'
+            'sat clean ' + $application16 + ' --all'
+            'sat clean ' + $application17 + ' --all'
+            'sat clean ' + $application18 + ' --all'
+            'sat clean ' + $application19 + ' --all'
+        ]
+    }
+
+    {
+        name : 'CLEAN CO7.3 physique W'
+        when : [$FRIDAY]
+        application : "CLEAN"
+        machine : "CO7.3 physique W"
+        board : "CLEAN ALL"
+        timeout : 10 * $h
+        commands :
+        [
+            'sat clean ' + $application1  + ' --all'
+            'sat clean ' + $application2  + ' --all'
+            'sat clean ' + $application3  + ' --all'
+            'sat clean ' + $application4  + ' --all'
+            'sat clean ' + $application5  + ' --all'
+            'sat clean ' + $application6  + ' --all'
+            'sat clean ' + $application7  + ' --all'
+            'sat clean ' + $application8  + ' --all'
+            'sat clean ' + $application9  + ' --all'
+
+            'sat clean ' + $application11 + ' --all'
+            'sat clean ' + $application12 + ' --all'
+            'sat clean ' + $application13 + ' --all'
+            'sat clean ' + $application14 + ' --all'
+            'sat clean ' + $application15 + ' --all'
+            'sat clean ' + $application16 + ' --all'
+            'sat clean ' + $application17 + ' --all'
+            'sat clean ' + $application18 + ' --all'
+            'sat clean ' + $application19 + ' --all'
+
+        ]
+    }
+
+    {
+        name : 'CLEAN FD18 virtuelle'
+        when : [$FRIDAY]
+        application : "CLEAN"
+        machine : "FD18 virtuelle"
+        board : "CLEAN ALL"
+        timeout : 10 * $h
+        commands :
+        [
+            'sat clean ' + $application1  + ' --all'
+            'sat clean ' + $application2  + ' --all'
+            'sat clean ' + $application3  + ' --all'
+            'sat clean ' + $application4  + ' --all'
+            'sat clean ' + $application5  + ' --all'
+            'sat clean ' + $application6  + ' --all'
+            'sat clean ' + $application7  + ' --all'
+            'sat clean ' + $application8  + ' --all'
+            'sat clean ' + $application9  + ' --all'
+
+            'sat clean ' + $application11 + ' --all'
+            'sat clean ' + $application12 + ' --all'
+            'sat clean ' + $application13 + ' --all'
+            'sat clean ' + $application14 + ' --all'
+            'sat clean ' + $application15 + ' --all'
+            'sat clean ' + $application16 + ' --all'
+            'sat clean ' + $application17 + ' --all'
+            'sat clean ' + $application18 + ' --all'
+            'sat clean ' + $application19 + ' --all'
+
+        ]
+    }
+
+    {
+        name : 'CLEAN CO7.2 physique'
+        when : [$FRIDAY]
+        application : "CLEAN"
+        machine : "CO7.2 physique"
+        board : "CLEAN ALL"
+        timeout : 10 * $h
+        commands :
+        [
+            'sat clean ' + $application1  + ' --all'
+            'sat clean ' + $application2  + ' --all'
+            'sat clean ' + $application3  + ' --all'
+            'sat clean ' + $application4  + ' --all'
+            'sat clean ' + $application5  + ' --all'
+            'sat clean ' + $application6  + ' --all'
+            'sat clean ' + $application7  + ' --all'
+            'sat clean ' + $application8  + ' --all'
+            'sat clean ' + $application9  + ' --all'
+
+            'sat clean ' + $application11 + ' --all'
+            'sat clean ' + $application12 + ' --all'
+            'sat clean ' + $application13 + ' --all'
+            'sat clean ' + $application14 + ' --all'
+            'sat clean ' + $application15 + ' --all'
+            'sat clean ' + $application16 + ' --all'
+            'sat clean ' + $application17 + ' --all'
+            'sat clean ' + $application18 + ' --all'
+            'sat clean ' + $application19 + ' --all'
+
+        ]
+    }
+
+    {
+        name : 'CLEAN DB07 virtuelle'
+        when : [$FRIDAY]
+        application : "CLEAN"
+        machine : "DB07 virtuelle"
+        board : "CLEAN ALL"
+        timeout : 10 * $h
+        commands :
+        [
+            'sat clean ' + $application1  + ' --all'
+            'sat clean ' + $application2  + ' --all'
+            'sat clean ' + $application3  + ' --all'
+            'sat clean ' + $application4  + ' --all'
+            'sat clean ' + $application5  + ' --all'
+            'sat clean ' + $application6  + ' --all'
+            'sat clean ' + $application7  + ' --all'
+            'sat clean ' + $application8  + ' --all'
+            'sat clean ' + $application9  + ' --all'
+
+            'sat clean ' + $application11 + ' --all'
+            'sat clean ' + $application12 + ' --all'
+            'sat clean ' + $application13 + ' --all'
+            'sat clean ' + $application14 + ' --all'
+            'sat clean ' + $application15 + ' --all'
+            'sat clean ' + $application16 + ' --all'
+            'sat clean ' + $application17 + ' --all'
+            'sat clean ' + $application18 + ' --all'
+            'sat clean ' + $application19 + ' --all'
+
+        ]
+    }
+
+    {
+        name : 'CLEAN DB08 virtuelle'
+        when : [$FRIDAY]
+        application : "CLEAN"
+        machine : "DB08 virtuelle"
+        board : "CLEAN ALL"
+        timeout : 10 * $h
+        commands :
+        [
+            'sat clean ' + $application1  + ' --all'
+            'sat clean ' + $application2  + ' --all'
+            'sat clean ' + $application3  + ' --all'
+            'sat clean ' + $application4  + ' --all'
+            'sat clean ' + $application5  + ' --all'
+            'sat clean ' + $application6  + ' --all'
+            'sat clean ' + $application7  + ' --all'
+            'sat clean ' + $application8  + ' --all'
+            'sat clean ' + $application9  + ' --all'
+
+            'sat clean ' + $application11 + ' --all'
+            'sat clean ' + $application12 + ' --all'
+            'sat clean ' + $application13 + ' --all'
+            'sat clean ' + $application14 + ' --all'
+            'sat clean ' + $application15 + ' --all'
+            'sat clean ' + $application16 + ' --all'
+            'sat clean ' + $application17 + ' --all'
+            'sat clean ' + $application18 + ' --all'
+            'sat clean ' + $application19 + ' --all'
+
+        ]
+    }
+
+    {
+        name : 'CLEAN UB16.04 physique'
+        when : [$FRIDAY]
+        application : "CLEAN"
+        machine : "UB16.04 physique"
+        board : "CLEAN ALL"
+        timeout : 10 * $h
+        commands :
+        [
+            'sat clean ' + $application1  + ' --all'
+            'sat clean ' + $application2  + ' --all'
+            'sat clean ' + $application3  + ' --all'
+            'sat clean ' + $application4  + ' --all'
+            'sat clean ' + $application5  + ' --all'
+            'sat clean ' + $application6  + ' --all'
+            'sat clean ' + $application7  + ' --all'
+            'sat clean ' + $application8  + ' --all'
+            'sat clean ' + $application9  + ' --all'
+
+            'sat clean ' + $application11 + ' --all'
+            'sat clean ' + $application12 + ' --all'
+            'sat clean ' + $application13 + ' --all'
+            'sat clean ' + $application14 + ' --all'
+            'sat clean ' + $application15 + ' --all'
+            'sat clean ' + $application16 + ' --all'
+            'sat clean ' + $application17 + ' --all'
+            'sat clean ' + $application18 + ' --all'
+            'sat clean ' + $application19 + ' --all'
+
+        ]
+    }
+
+    {
+        name : 'CLEAN UB14.04 virtuelle'
+        when : [$FRIDAY]
+        application : "CLEAN"
+        machine : "UB14.04 virtuelle"
+        board : "CLEAN ALL"
+        timeout : 10 * $h
+        commands :
+        [
+            'sat clean ' + $application1  + ' --all'
+            'sat clean ' + $application2  + ' --all'
+            'sat clean ' + $application3  + ' --all'
+            'sat clean ' + $application4  + ' --all'
+            'sat clean ' + $application5  + ' --all'
+            'sat clean ' + $application6  + ' --all'
+            'sat clean ' + $application7  + ' --all'
+            'sat clean ' + $application8  + ' --all'
+            'sat clean ' + $application9  + ' --all'
+
+            'sat clean ' + $application11 + ' --all'
+            'sat clean ' + $application12 + ' --all'
+            'sat clean ' + $application13 + ' --all'
+            'sat clean ' + $application14 + ' --all'
+            'sat clean ' + $application15 + ' --all'
+            'sat clean ' + $application16 + ' --all'
+            'sat clean ' + $application17 + ' --all'
+            'sat clean ' + $application18 + ' --all'
+            'sat clean ' + $application19 + ' --all'
+
+        ]
+    }
+
+    {
+        name : 'CLEAN FD20 physique'
+        when : [$FRIDAY]
+        application : "CLEAN"
+        machine : "FD20 physique"
+        board : "CLEAN ALL"
+        timeout : 10 * $h
+        commands :
+        [
+            'sat clean ' + $application1  + ' --all'
+            'sat clean ' + $application2  + ' --all'
+            'sat clean ' + $application3  + ' --all'
+            'sat clean ' + $application4  + ' --all'
+            'sat clean ' + $application5  + ' --all'
+            'sat clean ' + $application6  + ' --all'
+            'sat clean ' + $application7  + ' --all'
+            'sat clean ' + $application8  + ' --all'
+            'sat clean ' + $application9  + ' --all'
+
+            'sat clean ' + $application11 + ' --all'
+            'sat clean ' + $application12 + ' --all'
+            'sat clean ' + $application13 + ' --all'
+            'sat clean ' + $application14 + ' --all'
+            'sat clean ' + $application15 + ' --all'
+            'sat clean ' + $application16 + ' --all'
+            'sat clean ' + $application17 + ' --all'
+            'sat clean ' + $application18 + ' --all'
+            'sat clean ' + $application19 + ' --all'
+
+        ]
+    }
+
+    {
+        name : 'CLEAN FD20 virtuelle'
+        when : [$FRIDAY]
+        application : "CLEAN"
+        machine : "FD20 virtuelle"
+        board : "CLEAN ALL"
+        timeout : 10 * $h
+        commands :
+        [
+            'sat clean ' + $application1  + ' --all'
+            'sat clean ' + $application2  + ' --all'
+            'sat clean ' + $application3  + ' --all'
+            'sat clean ' + $application4  + ' --all'
+            'sat clean ' + $application5  + ' --all'
+            'sat clean ' + $application6  + ' --all'
+            'sat clean ' + $application7  + ' --all'
+            'sat clean ' + $application8  + ' --all'
+            'sat clean ' + $application9  + ' --all'
+
+            'sat clean ' + $application11 + ' --all'
+            'sat clean ' + $application12 + ' --all'
+            'sat clean ' + $application13 + ' --all'
+            'sat clean ' + $application14 + ' --all'
+            'sat clean ' + $application15 + ' --all'
+            'sat clean ' + $application16 + ' --all'
+            'sat clean ' + $application17 + ' --all'
+            'sat clean ' + $application18 + ' --all'
+            'sat clean ' + $application19 + ' --all'
+
+        ]
+    }
+
+    {
+        name : 'CLEAN FD22 physique'
+        when : [$FRIDAY]
+        application : "CLEAN"
+        machine : "FD22 physique"
+        board : "CLEAN ALL"
+        timeout : 10 * $h
+        commands :
+        [
+            'sat clean ' + $application1  + ' --all'
+            'sat clean ' + $application2  + ' --all'
+            'sat clean ' + $application3  + ' --all'
+            'sat clean ' + $application4  + ' --all'
+            'sat clean ' + $application5  + ' --all'
+            'sat clean ' + $application6  + ' --all'
+            'sat clean ' + $application7  + ' --all'
+            'sat clean ' + $application8  + ' --all'
+            'sat clean ' + $application9  + ' --all'
+
+            'sat clean ' + $application11 + ' --all'
+            'sat clean ' + $application12 + ' --all'
+            'sat clean ' + $application13 + ' --all'
+            'sat clean ' + $application14 + ' --all'
+            'sat clean ' + $application15 + ' --all'
+            'sat clean ' + $application16 + ' --all'
+            'sat clean ' + $application17 + ' --all'
+            'sat clean ' + $application18 + ' --all'
+            'sat clean ' + $application19 + ' --all'
+
+        ]
+    }
+
+    {
+        name : 'CLEAN FD22 virtuelle'
+        when : [$FRIDAY]
+        application : "CLEAN"
+        machine : "FD22 virtuelle"
+        board : "CLEAN ALL"
+        timeout : 10 * $h
+        commands :
+        [
+            'sat clean ' + $application1  + ' --all'
+            'sat clean ' + $application2  + ' --all'
+            'sat clean ' + $application3  + ' --all'
+            'sat clean ' + $application4  + ' --all'
+            'sat clean ' + $application5  + ' --all'
+            'sat clean ' + $application6  + ' --all'
+            'sat clean ' + $application7  + ' --all'
+            'sat clean ' + $application8  + ' --all'
+            'sat clean ' + $application9  + ' --all'
+
+            'sat clean ' + $application11 + ' --all'
+            'sat clean ' + $application12 + ' --all'
+            'sat clean ' + $application13 + ' --all'
+            'sat clean ' + $application14 + ' --all'
+            'sat clean ' + $application15 + ' --all'
+            'sat clean ' + $application16 + ' --all'
+            'sat clean ' + $application17 + ' --all'
+            'sat clean ' + $application18 + ' --all'
+            'sat clean ' + $application19 + ' --all'
+
+        ]
+    }
+
+    {
+        name : 'CLEAN FD24 virtuelle'
+        when : [$FRIDAY]
+        application : "CLEAN"
+        machine : "FD24 virtuelle"
+        board : "CLEAN ALL"
+        timeout : 10 * $h
+        commands :
+        [
+            'sat clean ' + $application1  + ' --all'
+            'sat clean ' + $application2  + ' --all'
+            'sat clean ' + $application3  + ' --all'
+            'sat clean ' + $application4  + ' --all'
+            'sat clean ' + $application5  + ' --all'
+            'sat clean ' + $application6  + ' --all'
+            'sat clean ' + $application7  + ' --all'
+            'sat clean ' + $application8  + ' --all'
+            'sat clean ' + $application9  + ' --all'
+
+            'sat clean ' + $application11 + ' --all'
+            'sat clean ' + $application12 + ' --all'
+            'sat clean ' + $application13 + ' --all'
+            'sat clean ' + $application14 + ' --all'
+            'sat clean ' + $application15 + ' --all'
+            'sat clean ' + $application16 + ' --all'
+            'sat clean ' + $application17 + ' --all'
+            'sat clean ' + $application18 + ' --all'
+            'sat clean ' + $application19 + ' --all'
+
+        ]
+    }
+
+    {
+        name : 'CLEAN CO6.4 physique'
+        when : [$FRIDAY]
+        application : "CLEAN"
+        machine : "CO6.4 physique"
+        board : "CLEAN ALL"
+        timeout : 10 * $h
+        commands :
+        [
+            'sat clean ' + $application1  + ' --all'
+            'sat clean ' + $application2  + ' --all'
+            'sat clean ' + $application3  + ' --all'
+            'sat clean ' + $application4  + ' --all'
+            'sat clean ' + $application5  + ' --all'
+            'sat clean ' + $application6  + ' --all'
+            'sat clean ' + $application7  + ' --all'
+            'sat clean ' + $application8  + ' --all'
+            'sat clean ' + $application9  + ' --all'
+
+            'sat clean ' + $application11 + ' --all'
+            'sat clean ' + $application12 + ' --all'
+            'sat clean ' + $application13 + ' --all'
+            'sat clean ' + $application14 + ' --all'
+            'sat clean ' + $application15 + ' --all'
+            'sat clean ' + $application16 + ' --all'
+            'sat clean ' + $application17 + ' --all'
+            'sat clean ' + $application18 + ' --all'
+            'sat clean ' + $application19 + ' --all'
+
+        ]
+    }
+
+    {
+        name : 'CLEAN CO6.4 physique corpus'
+        when : [$FRIDAY]
+        application : "CLEAN"
+        machine : "CO6.4 physique corpus"
+        board : "CLEAN ALL"
+        timeout : 10 * $h
+        commands :
+        [
+            'sat clean ' + $application1  + ' --all'
+            'sat clean ' + $application2  + ' --all'
+            'sat clean ' + $application3  + ' --all'
+            'sat clean ' + $application4  + ' --all'
+            'sat clean ' + $application5  + ' --all'
+            'sat clean ' + $application6  + ' --all'
+            'sat clean ' + $application7  + ' --all'
+            'sat clean ' + $application8  + ' --all'
+            'sat clean ' + $application9  + ' --all'
+
+            'sat clean ' + $application11 + ' --all'
+            'sat clean ' + $application12 + ' --all'
+            'sat clean ' + $application13 + ' --all'
+            'sat clean ' + $application14 + ' --all'
+            'sat clean ' + $application15 + ' --all'
+            'sat clean ' + $application16 + ' --all'
+            'sat clean ' + $application17 + ' --all'
+            'sat clean ' + $application18 + ' --all'
+            'sat clean ' + $application19 + ' --all'
+
+        ]
+    }
+
+    {
+        name : 'CLEAN CO6.4 virtuelle'
+        when : [$FRIDAY]
+        application : "CLEAN"
+        machine : "CO6.4 virtuelle"
+        board : "CLEAN ALL"
+        timeout : 10 * $h
+        commands :
+        [
+            'sat clean ' + $application1  + ' --all'
+            'sat clean ' + $application2  + ' --all'
+            'sat clean ' + $application3  + ' --all'
+            'sat clean ' + $application4  + ' --all'
+            'sat clean ' + $application5  + ' --all'
+            'sat clean ' + $application6  + ' --all'
+            'sat clean ' + $application7  + ' --all'
+            'sat clean ' + $application8  + ' --all'
+            'sat clean ' + $application9  + ' --all'
+
+            'sat clean ' + $application11 + ' --all'
+            'sat clean ' + $application12 + ' --all'
+            'sat clean ' + $application13 + ' --all'
+            'sat clean ' + $application14 + ' --all'
+            'sat clean ' + $application15 + ' --all'
+            'sat clean ' + $application16 + ' --all'
+            'sat clean ' + $application17 + ' --all'
+            'sat clean ' + $application18 + ' --all'
+            'sat clean ' + $application19 + ' --all'
+
+        ]
+    }
+
+    {
+        name : 'CLEAN CO7 physique'
+        when : [$FRIDAY]
+        application : "CLEAN"
+        machine : "CO7 physique"
+        board : "CLEAN ALL"
+        timeout : 10 * $h
+        commands :
+        [
+            'sat clean ' + $application1  + ' --all'
+            'sat clean ' + $application2  + ' --all'
+            'sat clean ' + $application3  + ' --all'
+            'sat clean ' + $application4  + ' --all'
+            'sat clean ' + $application5  + ' --all'
+            'sat clean ' + $application6  + ' --all'
+            'sat clean ' + $application7  + ' --all'
+            'sat clean ' + $application8  + ' --all'
+            'sat clean ' + $application9  + ' --all'
+
+            'sat clean ' + $application11 + ' --all'
+            'sat clean ' + $application12 + ' --all'
+            'sat clean ' + $application13 + ' --all'
+            'sat clean ' + $application14 + ' --all'
+            'sat clean ' + $application15 + ' --all'
+            'sat clean ' + $application16 + ' --all'
+            'sat clean ' + $application17 + ' --all'
+            'sat clean ' + $application18 + ' --all'
+            'sat clean ' + $application19 + ' --all'
+
+        ]
+    }
+
+]
+

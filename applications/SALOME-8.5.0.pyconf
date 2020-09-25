@@ -1,0 +1,156 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+APPLICATION :
+{
+    name : 'SALOME-8.5.0'
+    workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
+    tag : 'V8_5_0'
+    base : 'no'
+    environ :
+    {
+        build : {CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"}
+    }
+    products :
+    {
+        # PREREQUISITES :         # Pas de H5py, mpi4py, nose, openmpi,
+                                  # Intel Threading Building Blocks, paco++,
+                                  # pkgconfig, tclx
+        # OP 09/04/2018 add Babel and click prerequisites for sphinx-intl
+        Babel : '2.0'
+        boost : '1.58.0'          # Nijni : 1.52.0
+        CAS : 'a4b60cc6a2986181e45acd069b69600c48daf13b' #'V7_2_0p3'
+        cgns : '3.3.1'
+        click : '6.7'
+        cmake : '3.5.2'           # Nijni : 3.3.0
+        cppunit : '1.13.2'        # Nijni : 1.12.1
+        cycler : '0.10.0'
+        Cython : '0.23.2'
+        dateutil : '2.4.2'        # Previous : 2.4.0
+        distribute : '0.7.3'      # Previous : 0.6.28
+        docutils : '0.12'
+        doxygen : '1.8.3.1'
+        eigen : '3.2.7'
+        freeimage : '3.16.0'
+        freetype : '2.9.1'
+        functools32: '3.2.3-2'
+        gl2ps : '1.4.0_4037312'  # Included in ParaView
+        gmsh : '3.0.5'
+        graphviz : '2.38.0'
+        hdf5 : '1.8.14'
+        homard_bin : {section : 'version_6_6_0_to_8_5_0', tag : '11.11'} # Nijni : 11.10
+        Jinja2 : '2.7.3'
+        lapack : '3.7.0'
+        lata : '1.3-PV5.4.1_b5c4c89'
+        libxml2 : '2.9.0'
+        llvm : '3.9.1'
+        markupsafe : '0.23'
+        matplotlib : '2.0.2'
+        medfile : '3.3.1'
+        mesa : '13.0.6'
+        MeshGems : '2.6-4'
+        metis : '5.1.0'
+        netgen : '5.3.1_with_CAS_7.2'
+        numpy : '1.12.1'
+        omniORB : '4.1.6'
+        omniORBpy : '3.6'
+        opencv : '2.4.13.5'
+        ParaView : {section : 'version_5_4_1b5c4c89', tag : '5.4.1_b5c4c89'}
+        planegcs : '0.16'
+
+        # OP 19/04/2018 add pockets prerequisites
+        pockets : '0.6.2'
+        Pygments : '2.0.2'
+        pyparsing : '2.0.3'       # Previous : 1.5.6
+        PyQt : '5.9'
+        pyreadline : '2.0'
+        Python : '2.7.10'
+        pytz : '2015.4'           # Previous : 2014.10
+        qt : '5.9.1'
+        qwt : '6.1.2'
+        scipy : '0.18.1'
+        scotch : '6.0.4'
+        setuptools : '38.4.0'
+        sip : '4.19.3'
+        six : '1.10.0'            # Nijni : 1.9.0
+        Sphinx : '1.2.3'
+
+        # OP 19/04/2018 add sphinxcontrib-napoleon prerequisite
+        # OP sphinxcontrib renamed to sphinxcontrib_napoleon
+        #sphinxcontrib : '0.6.1'
+        sphinxcontrib_napoleon : '0.6.1'
+        
+        # TA 06-04-2018 Add sphinx-intl prerequisite for KERNEL and MEDCOUPLING
+        sphinxintl: '0.9.10'
+        subprocess32 : '3.5.0rc1'
+        swig : '2.0.12'
+        tcl : '8.6.0'
+        tk : '8.6.0'
+        
+        
+        # SALOME MODULES :
+        'CONFIGURATION' : {dev: 'yes'}
+        'SALOME' : {tag :'V8_5_0', dev: 'yes'}
+        'LIBBATCH' : {tag :'V2_4_0', dev: 'yes'}
+        'KERNEL' : {dev: 'yes'}
+        'MEDCOUPLING': {dev: 'yes'}
+        'GUI': {dev: 'yes'}
+
+        'GEOM' : {dev: 'yes'}
+        'SMESH' : {dev: 'yes'}
+        'NETGENPLUGIN' : {dev: 'yes'}
+        'BLSURFPLUGIN': {dev: 'yes'}
+        'GHS3DPLUGIN' : {dev: 'yes'}
+
+         # ne pas livrer le plugin GHS3DPRLPLUGIN dans les versions opensource
+        'GHS3DPRLPLUGIN' : {dev: 'yes'}
+        
+        'HYBRIDPLUGIN' : {dev: 'yes'}
+        'HexoticPLUGIN' : {dev: 'yes'}
+	'GMSHPLUGIN' : {dev: 'yes'}
+        'HEXABLOCK' : {dev: 'yes'}
+        'HEXABLOCKPLUGIN' : {dev: 'yes'}
+        'HOMARD' : {dev: 'yes'}
+        'MED' : {dev: 'yes'}
+        'PARAVIS' : {dev: 'yes'}
+        'JOBMANAGER' : {dev: 'yes'}
+        'YACS' : {dev: 'yes'}
+        'YACSGEN' : {dev: 'yes'}
+        'DOCUMENTATION' : {dev: 'yes'}
+        'SAMPLES' : {dev: 'yes'}
+
+        #ne pas livrer le plugin COMPONENT dans les versions opensource et CEA
+        'COMPONENT' : {dev: 'yes'}
+        #ne pas livrer le plugin PYCALCULATOR dans les versions opensource et CEA
+        'PYCALCULATOR' : {dev: 'yes'}
+        #ne pas livrer le plugin CALCULATOR dans les versions opensource et CEA
+        'CALCULATOR' : {dev: 'yes'}
+        #ne pas livrer le plugin HELLO dans les versions opensource et CEA
+        'HELLO' : {dev: 'yes'}
+        #ne pas livrer le plugin PYHELLO dans les versions opensource et CEA
+        'PYHELLO' : {dev: 'yes'} 
+    }
+    profile :
+    {
+        product : "SALOME"
+    }
+    virtual_app:
+    {
+        name : "salome"
+        application_name : "APPLI"
+    }
+    test_base : 
+    {
+        name : "SALOME"
+        tag : "SalomeV8"
+    }
+}
+
+
+__overwrite__ :
+[
+  {
+# waiting for vadim branch test
+     'PRODUCTS.YACS.default.nb_proc' : 1
+  }
+]

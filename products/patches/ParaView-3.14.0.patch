@@ -1,0 +1,57 @@
+diff -pruN ParaView-3.14.0_ori/Utilities/VisItBridge/databases/paraDIS/RC_cpp_lib/RCLibPoint.h ParaView-3.14.0_new/Utilities/VisItBridge/databases/paraDIS/RC_cpp_lib/RCLibPoint.h
+--- ParaView-3.14.0_ori/Utilities/VisItBridge/databases/paraDIS/RC_cpp_lib/RCLibPoint.h	2012-02-20 15:48:20.000000000 +0100
++++ ParaView-3.14.0_new/Utilities/VisItBridge/databases/paraDIS/RC_cpp_lib/RCLibPoint.h	2013-03-07 15:58:49.107887795 +0100
+@@ -6,6 +6,7 @@
+ #include <iomanip> 
+ #include <istream>
+ #include "DebugStream.h"
++#include "stringutil.h"
+ 
+ namespace rclib {
+   using namespace std;
+diff -pruN ParaView-3.14.0_ori/Utilities/Xdmf2/vtk/Testing/Cxx/XdmfTestVTKIO.cxx ParaView-3.14.0_new/Utilities/Xdmf2/vtk/Testing/Cxx/XdmfTestVTKIO.cxx
+--- ParaView-3.14.0_ori/Utilities/Xdmf2/vtk/Testing/Cxx/XdmfTestVTKIO.cxx	2012-02-20 15:48:26.000000000 +0100
++++ ParaView-3.14.0_new/Utilities/Xdmf2/vtk/Testing/Cxx/XdmfTestVTKIO.cxx	2013-03-11 14:59:58.629495196 +0100
+@@ -21,6 +21,7 @@
+ //files around for inspection. Otherwise it deletes the temporary files it
+ //creates and returns success.
+ 
++#include<unistd.h>
+ #include "vtkXdmfWriter.h"
+ 
+ #include "vtkCellData.h"
+diff -pruN ParaView-3.14.0_ori/VTK/CMakeLists.txt ParaView-3.14.0_new/VTK/CMakeLists.txt
+--- ParaView-3.14.0_ori/VTK/CMakeLists.txt	2012-02-20 15:49:50.000000000 +0100
++++ ParaView-3.14.0_new/VTK/CMakeLists.txt	2013-03-07 16:02:10.698126978 +0100
+@@ -758,7 +758,7 @@ VTK_DEPENDENT_OPTION(VTK_USE_MPI
+ VTK_DEPENDENT_OPTION(VTK_USE_MATROX_IMAGING
+                      "Use Matrox Imaging Library for video input." OFF
+                      "VTK_USE_RENDERING;WIN32" OFF)
+-VTK_DEPENDENT_OPTION(VTK_USE_GL2PS "Build VTK with gl2ps support." OFF
++VTK_DEPENDENT_OPTION(VTK_USE_GL2PS "Build VTK with gl2ps support." ON
+                      "VTK_USE_RENDERING" ON)
+ VTK_DEPENDENT_OPTION(VTK_USE_PARALLEL_BGL
+                      "Use the Parallel Boost Graph Library"
+diff -pruN ParaView-3.14.0_ori/VTK/Rendering/vtkFreeTypeTools.cxx ParaView-3.14.0_new/VTK/Rendering/vtkFreeTypeTools.cxx
+--- ParaView-3.14.0_ori/VTK/Rendering/vtkFreeTypeTools.cxx	2012-02-20 15:49:51.000000000 +0100
++++ ParaView-3.14.0_new/VTK/Rendering/vtkFreeTypeTools.cxx	2013-03-07 15:58:49.108887791 +0100
+@@ -31,6 +31,8 @@
+ // The embedded fonts
+ #include "fonts/vtkEmbeddedFonts.h"
+ 
++#include<stdint.h>
++
+ #ifdef FTGL_USE_NAMESPACE
+ using namespace ftgl;
+ #endif
+diff -pruN ParaView-3.14.0_ori/VTK/Rendering/vtkFreeTypeUtilities.cxx ParaView-3.14.0_new/VTK/Rendering/vtkFreeTypeUtilities.cxx
+--- ParaView-3.14.0_ori/VTK/Rendering/vtkFreeTypeUtilities.cxx	2012-02-20 15:49:51.000000000 +0100
++++ ParaView-3.14.0_new/VTK/Rendering/vtkFreeTypeUtilities.cxx	2013-03-07 15:58:49.109887787 +0100
+@@ -31,6 +31,7 @@
+ #include "fonts/vtkEmbeddedFonts.h"
+ 
+ #include <sys/stat.h>
++#include<stdint.h>
+ 
+ #ifdef FTGL_USE_NAMESPACE
+ using namespace ftgl;

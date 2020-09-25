@@ -1,0 +1,188 @@
+default :
+{
+    name : "SMESH"
+    build_source : "cmake"
+    # cmake option SALOME_SMESH_BUILD_FRENCH_DOC=OFF until SMESH doc has been translated
+    cmake_options : "-DSALOME_SMESH_USE_CGNS:BOOL=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_SMESH_DYNLOAD_LOCAL:BOOL=ON -DSALOME_SMESH_BUILD_FRENCH_DOC=OFF -DSALOME_SMESH_USE_TBB=ON"
+    get_source : "git"
+    git_info:
+    {
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/smesh.git"
+        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "smesh.git"
+    }
+    environ :
+    {
+        _SMESH_MeshersList : "StdMeshers"
+        SalomeAppConfig_ : $install_dir + $VARS.sep + "share" + $VARS.sep + "salome" + $VARS.sep + "resources" + $VARS.sep + "smesh"
+    }
+    depend : ["KERNEL",
+              "GUI",
+              "GEOM",
+              "MEDCOUPLING",
+              "Python",
+              "qt",
+              "PyQt",
+              "boost",
+              "CAS",
+              "hdf5",
+              "medfile",
+              "qwt",
+              "ParaView",
+              "libxml2",
+              "omniORB",
+              "docutils",
+              "Sphinx",
+              "Jinja2",
+              "setuptools",
+              "Pygments",
+              "cgns",
+              "six",
+              "pytz",
+              "sphinxintl",
+              "sphinxcontrib_napoleon",
+              "tbb"
+             ]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+    patches : []
+    check_install : ["share/doc/salome/gui/SMESH/yams/index.html"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        incremental : "yes"
+        has_salome_gui : "yes"
+        is_SALOME_module : "yes"
+        has_unit_tests
+    }
+}
+
+default_win :
+{
+    cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR:\=/%/bin/swig.exe -DSALOME_SMESH_USE_CGNS:BOOL=ON -DSALOME_SMESH_DYNLOAD_LOCAL:BOOL=ON -DSALOME_SMESH_BUILD_FRENCH_DOC=OFF -DSALOME_SMESH_USE_TBB=ON"
+    patches : []
+    depend : ["KERNEL",
+              "GUI",
+              "GEOM",
+              "MEDCOUPLING",
+              "Python",
+              "qt",
+              "PyQt",
+              "boost",
+              "CAS",
+              "hdf5",
+              "medfile",
+              "qwt",
+              "ParaView",
+              "libxml2",
+              "omniORB",
+              "docutils",
+              "Sphinx",
+              "Jinja2",
+              "setuptools",
+              "Pygments",
+              "cgns",
+              "six",
+              "pytz",
+              "Sphinx",
+              "sphinxintl",
+              "sphinxcontrib_napoleon",
+              "tbb"
+            ]
+}
+
+# Starting from SALOME 9.4.0, we use tbb as product and build SMESH using it to accelerate its performances
+version_8_5_0_to_9_3_0 :
+{
+    cmake_options : "-DSALOME_SMESH_USE_CGNS:BOOL=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_SMESH_DYNLOAD_LOCAL:BOOL=ON -DSALOME_SMESH_BUILD_FRENCH_DOC=OFF"
+    depend : ["KERNEL",
+              "GUI",
+              "GEOM",
+              "MEDCOUPLING",
+              "Python",
+              "qt",
+              "PyQt",
+              "boost",
+              "CAS",
+              "hdf5",
+              "medfile",
+              "qwt",
+              "ParaView",
+              "libxml2",
+              "omniORB",
+              "docutils",
+              "Sphinx",
+              "Jinja2",
+              "setuptools",
+              "Pygments",
+              "cgns",
+              "six",
+              "pytz",
+              "sphinxintl",
+              "sphinxcontrib_napoleon"
+             ]
+}
+
+# OP 19/04/2018 Add section for SALOME 7.8.0 to 8.4.0 due to new dependencies in SALOME 8.5.0
+version_7_8_0_to_8_4_0 :
+{
+    cmake_options : "-DSALOME_SMESH_USE_CGNS:BOOL=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_SMESH_DYNLOAD_LOCAL:BOOL=ON"
+    environ :
+    {
+    }
+    depend : ["KERNEL",
+              "GUI",
+              "GEOM",
+              "MEDCOUPLING",
+              "Python",
+              "qt",
+              "PyQt",
+              "boost",
+              "CAS",
+              "hdf5",
+              "medfile",
+              "qwt",
+              "ParaView",
+              "libxml2",
+              "omniORB",
+              "docutils",
+              "Sphinx",
+              "Jinja2",
+              "setuptools",
+              "Pygments",
+              "cgns",
+              "six",
+              "pytz"
+             ]
+    nb_proc : 8
+}
+
+version_V6_6_0 :
+{
+    build_source : "autotools"
+    cmake_options : "-DSALOME_SMESH_USE_CGNS:BOOL=ON"
+    environ :
+    {
+    }
+    depend : ["KERNEL",
+              "GUI",
+              "GEOM",
+              "MED",
+              "Python",
+              "qt",
+              "PyQt",
+              "boost",
+              "CAS",
+              "hdf5",
+              "medfile",
+              "qwt",
+              "ParaView",
+              "libxml2",
+              "omniORB",
+              "docutils",
+              "Sphinx",
+              "Jinja2",
+              "setuptools",
+              "Pygments"
+             ]
+    check_install : []
+}

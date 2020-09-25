@@ -1,0 +1,24 @@
+diff -pruN ftgl-2.1.3-rc5/configure.ac ftgl-2.1.3-rc5_NEW/configure.ac
+--- ftgl-2.1.3-rc5/configure.ac	2008-06-12 15:14:43.000000000 +0200
++++ ftgl-2.1.3-rc5_NEW/configure.ac	2015-11-13 10:27:03.946859667 +0100
+@@ -99,8 +99,6 @@ AC_CONFIG_FILES([
+ AC_CONFIG_FILES([
+   Makefile
+   demo/Makefile
+-  docs/Makefile
+-  docs/doxygen.cfg
+   msvc/Makefile
+   src/Makefile
+   test/Makefile
+diff -pruN ftgl-2.1.3-rc5/Makefile.am ftgl-2.1.3-rc5_NEW/Makefile.am
+--- ftgl-2.1.3-rc5/Makefile.am	2008-05-12 20:04:08.000000000 +0200
++++ ftgl-2.1.3-rc5_NEW/Makefile.am	2015-11-13 10:26:18.980788629 +0100
+@@ -1,7 +1,7 @@
+ 
+ ACLOCAL_AMFLAGS = -I m4
+ 
+-SUBDIRS = src test demo docs
++SUBDIRS = src test demo
+ DIST_SUBDIRS = $(SUBDIRS) msvc
+ 
+ pkgconfigdir = $(libdir)/pkgconfig

@@ -1,0 +1,24 @@
+diff -pruN CAS-6.5.4_orig/configure.ac CAS-6.5.4/configure.ac
+--- CAS-6.5.4_orig/configure.ac	2012-11-12 11:53:15.000000000 +0100
++++ CAS-6.5.4/configure.ac	2013-02-27 10:58:49.000000000 +0100
+@@ -24,7 +24,7 @@ dnl Checks for programs.
+ AM_PROG_LIBTOOL
+ AC_PROG_CXX
+ AC_PROG_CC_C_O
+-AM_C_PROTOTYPES
++# AM_C_PROTOTYPES # obsolete macro in automake 1.13
+ 
+ AC_PROG_AWK
+ AC_PROG_INSTALL
+diff -pruN CAS-6.5.4_orig/src/STEPControl/STEPControl_Reader.cxx CAS-6.5.4/src/STEPControl/STEPControl_Reader.cxx
+--- CAS-6.5.4_orig/src/STEPControl/STEPControl_Reader.cxx	2012-11-12 11:42:38.000000000 +0100
++++ CAS-6.5.4/src/STEPControl/STEPControl_Reader.cxx	2013-02-27 10:57:31.000000000 +0100
+@@ -540,7 +540,7 @@ Standard_Boolean STEPControl_Reader::fin
+          continue;
+       anUnitFact = (!aSiUnit->HasPrefix()  ? 
+                     1. : STEPConstruct_UnitContext::ConvertSiPrefix(aSiUnit->Prefix()));
+-      aName = getSiName(aSiUnit->Name(), aSiUnit->Prefix());
++      aName = getSiName(aSiUnit->Name(), aSiUnit->HasPrefix() ? aSiUnit->Prefix() : StepBasic_SiPrefix(-1));
+       
+            
+     }

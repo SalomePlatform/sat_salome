@@ -1,0 +1,88 @@
+default :
+{
+    name : "GEOM"
+    build_source : "cmake"
+    #About the use of OpenCV, see spns #7996
+    cmake_options : "-DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_GEOM_USE_OPENCV=ON"
+    get_source : "git"
+    git_info:
+    {
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/geom.git"
+        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "geom.git"
+    }
+    environ :
+    {
+        PARALLEL_VISU : "1"
+        SalomeAppConfig_ : $install_dir + $VARS.sep + "share" + $VARS.sep + "salome" + $VARS.sep + "resources" + $VARS.sep + "geom"
+        GEOM_PluginsList : "BREPPlugin:STEPPlugin:IGESPlugin:STLPlugin:XAOPlugin:VTKPlugin:AdvancedGEOM"
+        CSF_ShHealingDefaults : $install_dir + $VARS.sep + "share" + $VARS.sep + "salome" + $VARS.sep + "resources" + $VARS.sep + "geom"
+    }
+    depend : ["KERNEL",
+              "GUI",
+              "boost",
+              "CAS",
+              "Python",
+              "hdf5",
+              "omniORB",
+              "qt",
+              "ParaView",
+              "docutils",
+              "Sphinx",
+              "Jinja2",
+              "setuptools",
+              "Pygments",
+              "opencv",
+              "six",
+              "pytz"
+             ]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+    patches : []
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        incremental : "yes"
+        has_salome_gui : "yes"
+        is_SALOME_module : "yes"
+        has_unit_tests
+    }
+}
+
+
+default_win :
+{
+    cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR:\=/%/bin/swig.exe -DSALOME_GEOM_USE_OPENCV=ON -DOPENCV_ROOT_DIR=%OPENCV_ROOT_DIR:\=/% -DOpenCV_INCLUDE_DIRS=%OpenCV_INCLUDE_DIRS:\=/% "
+}
+
+_from_8_5_0_to_9_2_1 :  # these versions requires the path geom_8.5.0_xao_data_dir.patch (for salome test)
+{
+    patches : [
+              "geom_8.5.0_xao_data_dir.patch" 
+              ]
+}
+
+version_V6_6_0 :
+{
+    build_source : "autotools"
+    cmake_options : ""
+    get_source : "git"
+    environ :
+    {
+    }
+    depend : ["KERNEL",
+              "GUI",
+              "boost",
+              "CAS",
+              "Python",
+              "hdf5",
+              "omniORB",
+              "qt",
+              "ParaView",
+              "docutils",
+              "Sphinx",
+              "Jinja2",
+              "setuptools",
+              "Pygments"
+             ]
+    nb_proc : 1
+}

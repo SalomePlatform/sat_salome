@@ -1,0 +1,152 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+APPLICATION :
+{
+    name : 'SALOME-9.3.0'
+    workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
+    tag : 'V9_3_0'
+    debug : 'no'
+    dev : 'no'
+    base : 'no'
+    python3 : 'yes'
+    environ :
+    {
+        build : {CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"}
+        #this policy is to be discussed in next cotech. alternative is to encode every accentued string with .encode('utf-8') 
+        launch : {PYTHONIOENCODING:"UTF_8", SALOME_MODULES_ORDER:"SHAPER:GEOM:SMESH"}
+    }
+    products :
+    {
+        # PREREQUISITES :
+        alabaster : '0.7.6'
+        Babel : '2.6.0'
+        boost : '1.58.0'
+        CAS : 'V7_3_0p3'
+        certifi : '2018.8.24'
+        cgns : '3.3.1'
+        chardet : '3.0.4'
+        click : '6.7'
+        cmake : '3.12.1'
+        cppunit : '1.13.2'
+        cycler : '0.10.0'
+        Cython : '0.25.2'
+        dateutil : '2.4.2'
+        docutils : '0.12'
+        doxygen : '1.8.14'
+        eigen : '3.3.4'
+        freeimage : '3.16.0'
+        freetype : '2.9.1'
+        gl2ps :  {section : 'version_1_4_04037312', tag : '1.4.0_4037312'}
+        gmsh : '4.1.4'
+        graphviz : '2.38.0'
+        hdf5 : '1.10.3'
+        homard_bin : '11.12'
+        idna : '2.7'
+        imagesize : '1.0.0'
+        Jinja2 : '2.7.3'
+        kiwisolver : '1.0.1'
+        lapack : '3.8.0'
+        lata : '1.4-PV5.6.0p1_7bafc2b'
+        libxml2 : '2.9.1'
+        llvm : '3.9.1'
+        markupsafe : '0.23'
+        matplotlib : '2.2.2'
+        medfile : '4.0.0'
+        mesa : '13.0.6'
+        MeshGems : '2.8-6'
+        metis : '5.1.0'
+        netgen : '5.3.1_with_CAS_7.2'
+        numpy : '1.15.1'
+        omniORB : '4.2.2'
+        omniORBpy : '4.2.2'
+        opencv : '2.4.13.5'
+        packaging : '17.1'
+        ParaView : {tag : '5.6.0p1_7bafc2b'}
+        planegcs : '0.18-3cb6890'
+        pockets : '0.6.2'
+        Pygments : '2.0.2'
+        pyparsing : '2.0.3'
+        PyQt : '5.9'
+        pyreadline : '2.0'
+        Python : '3.6.5'
+        pytz : '2015.4'
+        qt : '5.9.1'
+        qwt : '6.1.2'
+        requests : '2.19.1'
+        scipy : '0.19.1'
+        scotch : '6.0.4'
+        setuptools : '38.4.0'
+        sip : '4.19.3'
+        six : '1.10.0'
+        snowballstemmer : '1.2.1'
+        Sphinx : '1.7.6'
+        sphinxcontrib_napoleon : '0.6.1'
+        sphinxcontrib_websupport : '1.1.0'
+        sphinxintl: '0.9.10'
+        swig : '3.0.12'
+        tcl : '8.6.0'
+        tk : '8.6.0'
+        urllib3 : '1.23'
+
+        # SALOME MODULES :
+        'CONFIGURATION'
+        'SALOME'
+        'SHAPER'
+        'LIBBATCH'  : {tag:'V2_4_1'}
+        'KERNEL'
+        'MEDCOUPLING'
+        'GUI'
+        'GEOM'
+        'SMESH'
+        'NETGENPLUGIN'
+        'BLSURFPLUGIN'
+        'GHS3DPLUGIN'
+        'GHS3DPRLPLUGIN'
+        'HYBRIDPLUGIN'
+        'HexoticPLUGIN'
+    	'GMSHPLUGIN'
+        'HEXABLOCK'
+        'HEXABLOCKPLUGIN'
+        'HOMARD'
+        'FIELDS'
+        'PARAVIS'
+        'JOBMANAGER'
+        'YACS'
+        'YACSGEN'
+        'DOCUMENTATION'
+        'SAMPLES'
+        'COMPONENT'
+        'PYCALCULATOR'
+        'CALCULATOR'
+        'HELLO'
+        'PYHELLO'
+        'CEATESTBASE' : {tag: 'SalomeV9'}
+    }
+    profile :
+    {
+        launcher_name : "salome"
+    }
+    virtual_app:
+    {
+        name : "salome"
+        application_name : "APPLI"
+    }
+    test_base : 
+    {
+        name : "SALOME"
+        tag : "SalomeV9"
+    }
+    properties :
+    {
+        mesa_launcher_in_package : "yes"
+        repo_dev : "yes"
+    }
+}
+__overwrite__ :
+[
+  {
+  }
+]
+
+

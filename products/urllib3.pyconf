@@ -1,0 +1,34 @@
+default :
+{
+    name : "urllib3"
+    build_source : "script"
+    compil_script :  'pip_install' + $VARS.scriptExtension
+    get_source : "archive"
+    system_info : 
+    {
+        rpm : ["python3-urllib3"]
+        rpm_dev : []
+        apt : ["python3-urllib3"]
+        apt_dev : []
+    }
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : ['Python','setuptools']
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties:
+    {
+      incremental : "yes"
+      pip : "yes"
+    }
+}
+
+default_win :
+{
+   compil_script :  'pip_install_whl' + $VARS.scriptExtension
+   archive_info : {archive_name : "urllib3-" + $APPLICATION.products.urllib3 + "_windows.tar.gz"}
+   depend : ['Python','setuptools','idna']
+}

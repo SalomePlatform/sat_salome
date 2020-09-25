@@ -1,0 +1,12 @@
+diff -rupN metis/Makefile metis_new/Makefile
+--- metis/Makefile	2013-03-30 17:24:45.000000000 +0100
++++ metis_new/Makefile	2016-07-06 15:33:42.959903471 +0200
+@@ -62,7 +62,7 @@ endef
+ 
+ all clean install:
+ 	@if [ ! -f $(BUILDDIR)/Makefile ]; then \
+-		more BUILD.txt; \
++		cat BUILD.txt; \
+ 	else \
+ 	  	make -C $(BUILDDIR) $@ $(MAKEFLAGS); \
+ 	fi

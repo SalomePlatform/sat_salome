@@ -1,0 +1,38 @@
+--- tbb_ref/build/build.py
++++ tbb/build/build.py
+@@ -109,12 +109,10 @@
+     if is_win and args.msbuild:
+         preview_release_dir = release_dir = jp(args.tbbroot, 'build', 'vs'+args.vs, args.vs_platform, 'Release')
+         if not args.no_rebuild or not os.path.isdir(release_dir):
+-            assert os.system('msbuild /m /p:Platform=%s /p:Configuration=Release %s build/vs%s/makefile.sln'% \
+-                            (args.vs_platform, args.build_args, args.vs)) == 0
++            assert os.system('msbuild /m /p:Platform=%s /p:Configuration=Release %s build/vs%s/makefile.sln'%(args.vs_platform, args.build_args, args.vs)) == 0
+         preview_debug_dir = debug_dir = jp(args.tbbroot, 'build', 'vs'+args.vs, args.vs_platform, 'Debug')
+         if not args.no_rebuild or not os.path.isdir(debug_dir):
+-            assert os.system('msbuild /m /p:Platform=%s /p:Configuration=Debug %s build/vs%s/makefile.sln'% \
+-                            (args.vs_platform, args.build_args, args.vs)) == 0
++            assert os.system('msbuild /m /p:Platform=%s /p:Configuration=Debug %s build/vs%s/makefile.sln'%(args.vs_platform, args.build_args, args.vs)) == 0
+     else:
+         release_dir = jp(args.tbbroot, 'build', args.build_prefix+'_release')
+         debug_dir = jp(args.tbbroot, 'build', args.build_prefix+'_debug')
+@@ -198,7 +196,7 @@
+     paths = [os.path.abspath(d) for d in [args.prefix, inc_dir, irml_dir, lib_dir]+release_dirs]
+     os.environ["TBBROOT"] = paths[0]
+     # all the paths must be relative to python/ directory or be absolute
+-    assert system('python python/setup.py build -b%s build_ext -I%s -L%s install -f'% \
+-        (paths[2], paths[1], ':'.join(paths[2:]))) == 0
++    assert system('python python/setup.py build -b%s build_ext -I%s -L%s install -f --prefix=%s'% \
++        (paths[2], paths[1], ':'.join(paths[2:]), args.prefix)) == 0
+ 
+ print("done")
+--- tbb_ref/build/windows.inc
++++ tbb/build/windows.inc
+@@ -12,7 +12,7 @@
+ # See the License for the specific language governing permissions and
+ # limitations under the License.
+ 
+-export SHELL = cmd
++export shell = cmd
+ 
+ ifdef tbb_build_dir
+   test_dir:=$(tbb_build_dir)

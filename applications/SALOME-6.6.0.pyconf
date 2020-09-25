@@ -1,0 +1,98 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+APPLICATION :
+{
+    name : 'SALOME-6.6.0'
+    workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
+    tag : 'V6_6_0'
+    get_method : 'git'
+    base : 'no'
+    environ :
+    {
+    }
+    products :
+    {
+      # PREREQUISITES :
+      Python: '2.6.6'
+      Hexotic: '1.0' 
+      homard_bin : {section : 'version_6_6_0_to_8_5_0', tag : '10.5'}
+      MeshGems: '1.0'  
+      setuptools: '0.6c11' 
+      Jinja2: '2.6'  
+      Pygments: '1.5'
+      docutils: '0.8.1'
+      Sphinx: '1.1.3' 
+      qt: '4.6.3' 
+      sip: '4.13.2' 
+      PyQt: '4.9.1'  
+      tcl: '8.5.9'
+      tk: '8.5.9'     
+      Togl: '1.7'    
+      boost: '1.49.0' 
+      ParaViewData: '3.14.0' 
+      cmake: '2.8.7'   
+      gl2ps: '1.3.5'
+      hdf5: '1.8.8' 
+      freeimage: '3.14.1'   
+      freetype: '2.3.7'
+      ftgl: '2.1.3-rc5'
+      CAS: '6.5.4'     
+      cppunit: '1.12.1'
+      expat: '2.0.1'
+      graphviz: '2.28.0'
+      libxml2: '2.7.8'    
+      doxygen: '1.8.0'     
+      medfile: '3.0.6'
+      swig: '2.0.4'
+      qwt: '5.2.1'
+      netgen: '4.9.13'
+      scotch: '5.1.11'
+      omniORB: '4.1.6'
+      omniORBpy: '3.6'
+      omniNotify: '2.1'
+      numpy: '1.5.1'  
+      ParaView: '3.14.0'
+ #     QScintilla: '2.6.1' 
+ #     metis: '4.0patched'
+      
+      LIBBATCH : 'V1_6_0'
+      KERNEL
+      GUI
+      MED
+      GEOM
+      SMESH
+      NETGENPLUGIN
+      BLSURFPLUGIN
+      GHS3DPLUGIN
+      YACS
+      YACSGEN
+      VISU
+
+      # Add SAMPLES module
+      SAMPLES
+    }
+    virtual_app:
+    {
+        # The name of the application (overrides $PRODUCT.name)
+        # This name will be used to generate packages.
+        name : "salome660"
+        # The name for the application directory (default is APPLI)
+        application_name : "APPLI"
+    }
+    test_base : 
+    {
+        name : "SALOME"
+        tag : "SalomeV6"
+    }
+}
+APPLI:
+{
+    # The name of the application (overrides $PRODUCT.name)
+    # This name will be used to generate packages.
+    name : "salome660"
+    # The name for the application directory (default is APPLI)
+    application_name : "APPLI"
+    #module_appli: "SALOME_APPLI"
+    #module_appli_install_dir: $TOOLS.common.module_info.SALOME_APPLI.install_dir
+}

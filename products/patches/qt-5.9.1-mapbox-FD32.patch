@@ -1,0 +1,33 @@
+diff -rupN qt_ref/qtlocation/src/3rdparty/mapbox-gl-native/include/mbgl/util/convert.hpp qt/qtlocation/src/3rdparty/mapbox-gl-native/include/mbgl/util/convert.hpp
+--- qt_ref/qtlocation/src/3rdparty/mapbox-gl-native/include/mbgl/util/convert.hpp	2020-09-22 09:51:10.824285795 +0200
++++ qt/qtlocation/src/3rdparty/mapbox-gl-native/include/mbgl/util/convert.hpp	2020-09-22 12:36:07.546531484 +0200
+@@ -3,7 +3,7 @@
+ #include <array>
+ #include <type_traits>
+ #include <utility>
+-
++#include <stdint.h>
+ namespace mbgl {
+ namespace util {
+ 
+diff -rupN qt_ref/qtlocation/src/3rdparty/mapbox-gl-native/platform/default/bidi.cpp qt/qtlocation/src/3rdparty/mapbox-gl-native/platform/default/bidi.cpp
+--- qt_ref/qtlocation/src/3rdparty/mapbox-gl-native/platform/default/bidi.cpp	2020-09-22 09:51:10.850286258 +0200
++++ qt/qtlocation/src/3rdparty/mapbox-gl-native/platform/default/bidi.cpp	2020-09-22 12:39:55.042544429 +0200
+@@ -5,6 +5,7 @@
+ #include <unicode/ushape.h>
+ 
+ #include <memory>
++#include <stdexcept>
+ 
+ namespace mbgl {
+ 
+diff -rupN qt_ref/qtlocation/src/3rdparty/mapbox-gl-native/platform/qt/src/bidi.cpp qt/qtlocation/src/3rdparty/mapbox-gl-native/platform/qt/src/bidi.cpp
+--- qt_ref/qtlocation/src/3rdparty/mapbox-gl-native/platform/qt/src/bidi.cpp	2020-09-22 09:51:10.903287202 +0200
++++ qt/qtlocation/src/3rdparty/mapbox-gl-native/platform/qt/src/bidi.cpp	2020-09-22 12:40:52.602559767 +0200
+@@ -1,5 +1,5 @@
+ #include <memory>
+-
++#include <stdexcept>
+ #include <mbgl/text/bidi.hpp>
+ 
+ #include <QString>

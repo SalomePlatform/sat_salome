@@ -1,0 +1,12 @@
+diff -ru BLSURFPLUGIN_orig/tests/tests.set BLSURFPLUGIN_new/tests/tests.set
+--- BLSURFPLUGIN_orig/tests/tests.set	2018-01-17 18:22:04.712283026 +0100
++++ BLSURFPLUGIN_new/tests/tests.set	2018-01-17 18:25:29.130048705 +0100
+@@ -23,7 +23,7 @@
+   attractor_point_outside_face
+   enforced_internal_vertex
+   enforced_vertex
+-  multithread
++  #multithread # commented due to conflict between BLSURFPLUGIN and SAMPLES
+   periodicity_2D_prepro
+   #periodicity_prepro # already tested in examples
+   periodicity_reflexion_2D_prepro

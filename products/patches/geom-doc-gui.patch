@@ -1,0 +1,14 @@
+--- GEOM_ref/doc/salome/gui/GEOM/CMakeLists.txt
++++ GEOM/doc/salome/gui/GEOM/CMakeLists.txt
+@@ -32,6 +32,11 @@
+ SALOME_ACCUMULATE_ENVIRONMENT(GEOM_PluginsList NOCHECK ${DOC_GEOM_PluginsList})
+ SET(geom_file "${CMAKE_CURRENT_SOURCE_DIR}/collect_geom_methods.py")
+ SET(plugins_cmd_options ${geom_file} -o tmp1/geomBuilder.py ${DOC_GEOM_PluginsList})
++IF(WIN32)
++  MESSAGE(STATUS "Environment variable SALOME_HAS_GLOBAL_ENV is set to: $ENV{SALOME_HAS_GLOBAL_ENV}")
++  set(ENV{SALOME_HAS_GLOBAL_ENV} "0")
++  MESSAGE(STATUS "Environment variable SALOME_HAS_GLOBAL_ENV is NOW set to: $ENV{SALOME_HAS_GLOBAL_ENV}")
++ENDIF(WIN32)
+ SALOME_GENERATE_ENVIRONMENT_SCRIPT(plugins_cmd env_script "${PYTHON_EXECUTABLE}" "${plugins_cmd_options}")
+ # Install a script
+ SALOME_INSTALL_SCRIPTS(collect_geom_methods.py ${SALOME_INSTALL_BINS})

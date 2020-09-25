@@ -1,0 +1,73 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+APPLICATION :
+{
+    name : 'MEDCOUPLING-8.5.0'
+    workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
+    tag : 'V8_5_0'
+    environ :
+    {
+    }
+    products :
+    {
+        # PREREQUISITES :
+        Babel : '2.0'
+        boost : '1.58.0'
+        click : '6.7'
+        cmake : '3.5.2'
+        cppunit : '1.13.2'
+        Cython : '0.23.2'
+        docutils : '0.12'
+        doxygen : '1.8.3.1'
+        graphviz : '2.38.0'
+        hdf5 : '1.8.14'
+        Jinja2 : '2.7.3'
+        lapack : '3.7.0'
+        libxml2 : '2.9.0'
+        markupsafe : '0.23'
+        medfile : '3.3.1'
+        metis : '5.1.0'
+        numpy : '1.12.1'
+        Pygments : '2.0.2'
+        Python : '2.7.10'
+        pytz : '2015.4'
+        scipy : '0.18.1'
+        scotch : '6.0.4'
+        setuptools : '38.4.0'
+        six : '1.10.0'
+        Sphinx : '1.2.3'
+
+        # TA 06-04-2018 Add sphinx-intl prerequisite
+        sphinxintl: '0.9.10'
+        swig : '2.0.12'
+        
+        
+        
+#
+        # SALOME MODULES :
+        'CONFIGURATION': {dev: 'yes'}
+        'MEDCOUPLING': {dev: 'yes'}
+
+    }
+    test_base : 
+    {
+        name : "SALOME"
+        tag : "SalomeV8"
+    }
+}
+
+__overwrite__ :
+[
+   {
+       # OP 09/04/2018 add sphinx-intl, six prerequisites
+    'PRODUCTS.MEDCOUPLING.default.depend' : 
+     [
+         "Babel", "boost", "click", "cmake", "cppunit", "Cython", "docutils",
+         "doxygen", "graphviz", "hdf5", "Jinja2", "lapack", "libxml2",
+         "markupsafe", "medfile", "metis", "numpy", "Pygments", "Python", "pytz",
+         "scipy", "scotch", "setuptools", "six", "Sphinx", "sphinxintl",
+         "swig", "CONFIGURATION"
+     ]
+   }
+]

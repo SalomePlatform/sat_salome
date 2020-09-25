@@ -1,0 +1,27 @@
+default :
+{
+    name : "embree"
+    build_source : "cmake"
+    cmake_options : " -DEMBREE_ISPC_SUPPORT=ON -DEMBREE_TUTORIALS=OFF -DCMAKE_INSTALL_LIBDIR=lib"
+    get_source : "archive"
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : ['ispc','tbb']
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+      incremental : "yes"
+    }
+}
+
+default_win :
+{
+   cmake_options : '  -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DEMBREE_ISPC_SUPPORT=ON -DEMBREE_TUTORIALS=OFF -DEMBREE_TASKING_SYSTEM=TBB -DTBB_ROOT=%TBB_DIR:\=/% '
+   archive_info : {archive_name : "embree-" + $APPLICATION.products.embree + "_windows.tar.gz"}
+   depend : ['ispc','tbb']
+}
+

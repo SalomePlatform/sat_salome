@@ -1,0 +1,26 @@
+default :
+{
+    name : "CDMATH"
+    build_source : "cmake"
+    #cmake_options : "-DCDMATH_WITH_PYTHON=ON"# -DCMAKE_BUILD_TYPE=Release
+    cmake_options : "-DCMAKE_BUILD_TYPE=Release -DCDMATH_WITH_PYTHON=ON"
+    get_source : "git"
+    git_info:
+    {
+        repo : "https://github.com/mndjinga/CDMATH.git"
+    }
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : 
+    [
+        "hdf5", 
+        "numpy", 
+        "MEDCOUPLING"
+    ]
+    build_depend : ["cmake", "swig"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    #install_dir : 'base'
+}

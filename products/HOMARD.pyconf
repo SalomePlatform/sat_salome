@@ -1,0 +1,29 @@
+default :
+{
+    name : "HOMARD"
+    build_source : "cmake"
+    cmake_options : "-DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig"
+    get_source : "git"
+    git_info:
+    {
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/homard.git"
+        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "homard.git"
+    }
+    environ :
+    {
+        SalomeAppConfig_ : $install_dir + $VARS.sep + "share" + $VARS.sep + "salome" + $VARS.sep + "resources" + $VARS.sep + "homard"
+    }
+    depend : [ 
+      "SMESH", 
+      "homard_bin" 
+              ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        has_salome_gui : "yes"
+        is_SALOME_module : "yes"
+        has_unit_tests
+    }
+} 
+

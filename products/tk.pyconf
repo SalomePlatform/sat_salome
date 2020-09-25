@@ -1,0 +1,42 @@
+default :
+{
+    name : "tk"
+    build_source : "script"
+    compil_script :  $name + $VARS.scriptExtension
+    get_source : "archive"
+    system_info : 
+    {
+        rpm : ["tk"]
+        rpm_dev : ["tk-devel"]
+        apt : ["libtk"]
+        apt_dev : ["tk-dev"]
+    }
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    patches : []
+    depend : ["tcl"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+      incremental : "yes"
+      single_install_dir : "yes"
+    }
+}
+
+default_win:
+{
+    properties :
+    {
+      incremental : "yes"
+      single_install_dir : "no"
+    }
+}
+
+version_8_6_9:
+{
+  patches : []
+}

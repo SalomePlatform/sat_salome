@@ -1,0 +1,26 @@
+diff -Naur libxml2-2.9.0.orig/include/win32config.h libxml2-2.9.0/include/win32config.h
+--- libxml2-2.9.0.orig/include/win32config.h	2012-09-05 14:14:55.000000000 +0300
++++ libxml2-2.9.0/include/win32config.h	2017-01-17 16:24:17.021776800 +0300
+@@ -95,7 +95,9 @@
+ 
+ #if defined(_MSC_VER)
+ #define mkdir(p,m) _mkdir(p)
++#if _MSC_VER < 1900
+ #define snprintf _snprintf
++#endif
+ #if _MSC_VER < 1500
+ #define vsnprintf(b,c,f,a) _vsnprintf(b,c,f,a)
+ #endif
+diff -Naur libxml2-2.9.0.orig/win32/VC10/config.h libxml2-2.9.0/win32/VC10/config.h
+--- libxml2-2.9.0.orig/win32/VC10/config.h	2012-09-11 06:52:46.000000000 +0300
++++ libxml2-2.9.0/win32/VC10/config.h	2017-01-17 15:55:19.015090100 +0300
+@@ -96,7 +96,9 @@
+ 
+ #if defined(_MSC_VER)
+ #define mkdir(p,m) _mkdir(p)
++#if _MSC_VER < 1900 // Cannot define this in VS 2015 and above!
+ #define snprintf _snprintf
++#endif
+ #if _MSC_VER < 1500
+ #define vsnprintf(b,c,f,a) _vsnprintf(b,c,f,a)
+ #endif

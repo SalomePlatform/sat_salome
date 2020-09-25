@@ -1,0 +1,90 @@
+default :
+{
+    name : "MED"
+    build_source : "cmake"
+    get_source : "git"
+    git_info:
+    {
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/med.git"
+        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "med.git"
+    }
+    environ :
+    {
+    }
+    depend : [
+      "GUI", 
+      "KERNEL", 
+      "MEDCOUPLING" 
+    ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        has_salome_gui : "yes"
+        is_SALOME_module : "yes"
+        has_unit_tests
+    }
+}
+
+default_MPI :
+{
+    name : "MED"
+    build_source : "cmake"
+    cmake_options : "-DSALOME_USE_MPI=ON"
+    get_source : "git"
+    git_info:
+    {
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/med.git"
+        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "med.git"
+    }
+    environ :
+    {
+    }
+    depend : [
+      "GUI", 
+      "KERNEL", 
+      "MEDCOUPLING",
+      "openmpi"
+    ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        has_salome_gui : "yes"
+        is_SALOME_module : "yes"
+        has_unit_tests
+    }
+}
+
+version_V6_6_0 :
+{
+    name : "MED"
+    build_source : "autotools"
+    get_source : "git"
+    git_info:
+    {
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/med.git"
+        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "med.git"
+    }
+    environ :
+    {
+    }
+    depend : [
+      "medfile",
+      "GUI", 
+      "KERNEL", 
+    ]
+    patches : [
+                #avoid the horrible medmem traces!
+               "med_mode_non_debug.patch" 
+    ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        is_SALOME_module : "yes"
+        has_salome_gui : "yes"
+        has_unit_tests
+    }
+}
+

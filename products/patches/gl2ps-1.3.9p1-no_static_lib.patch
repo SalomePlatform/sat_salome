@@ -1,0 +1,32 @@
+diff -Naur gl2ps-1.3.9p1_ori/CMakeLists.txt gl2ps-1.3.9p1_new/CMakeLists.txt
+--- gl2ps-1.3.9p1_ori/CMakeLists.txt	2018-07-24 13:02:20.946136823 +0200
++++ gl2ps-1.3.9p1_new/CMakeLists.txt	2018-07-24 13:14:17.534888077 +0200
+@@ -117,8 +117,11 @@
+ include_directories(${EXTERNAL_INCLUDES})
+ 
+ if(OPENGL_FOUND)
+-  add_library(lib STATIC gl2ps.c gl2ps.h)
+-  set_target_properties(lib PROPERTIES OUTPUT_NAME gl2ps)
++  # Do not generate static library on Windows
++  if(NOT WIN32)
++    add_library(lib STATIC gl2ps.c gl2ps.h)
++    set_target_properties(lib PROPERTIES OUTPUT_NAME gl2ps)
++  endif(NOT WIN32)
+ 
+   add_library(shared SHARED gl2ps.c gl2ps.h)
+   target_link_libraries(shared ${EXTERNAL_LIBRARIES})
+@@ -130,7 +133,13 @@
+     set_target_properties(shared PROPERTIES COMPILE_FLAGS "-DGL2PSDLL -DGL2PSDLL_EXPORTS")
+   endif(MSVC)
+ 
+-  install(TARGETS lib shared DESTINATION lib${LIB_SUFFIX})
++  # Do not generate static library on Windows
++  if(NOT WIN32)
++    install(TARGETS lib shared DESTINATION lib${LIB_SUFFIX})
++  else(NOT WIN32)
++    install(TARGETS shared DESTINATION lib${LIB_SUFFIX})
++  endif(NOT WIN32)
++
+ endif(OPENGL_FOUND)
+ 
+ if(WIN32)

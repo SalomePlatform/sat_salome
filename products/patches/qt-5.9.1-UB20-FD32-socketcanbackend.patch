@@ -1,0 +1,10 @@
+--- qt_ref/qtserialbus/src/plugins/canbus/socketcan/socketcanbackend.h	2020-09-17 15:55:49.189400916 +0200
++++ qt/qtserialbus/src/plugins/canbus/socketcan/socketcanbackend.h	2020-09-17 15:57:23.325190527 +0200
+@@ -37,6 +37,7 @@
+ #ifndef SOCKETCANBACKEND_H
+ #define SOCKETCANBACKEND_H
+ 
++#include <linux/sockios.h>
+ #include <QtSerialBus/qcanbusframe.h>
+ #include <QtSerialBus/qcanbusdevice.h>
+ #include <QtSerialBus/qcanbusdeviceinfo.h>

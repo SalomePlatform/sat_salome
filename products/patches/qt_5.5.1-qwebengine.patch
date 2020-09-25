@@ -1,0 +1,25 @@
+diff -Naur qt-5.5.1_SRC_orig/qtwebengine/src/3rdparty/chromium/mojo/public/c/system/macros.h qt-5.5.1_SRC_modif/qtwebengine/src/3rdparty/chromium/mojo/public/c/system/macros.h
+--- qt-5.5.1_SRC_orig/qtwebengine/src/3rdparty/chromium/mojo/public/c/system/macros.h	2015-10-13 07:35:48.000000000 +0300
++++ qt-5.5.1_SRC_modif/qtwebengine/src/3rdparty/chromium/mojo/public/c/system/macros.h	2015-12-23 11:18:45.000000000 +0300
+@@ -66,10 +66,18 @@
+ // Unlike the C++11 |alignas()|, |alignment| must be an integer. It may not be a
+ // type, nor can it be an expression like |MOJO_ALIGNOF(type)| (due to the
+ // non-C++11 MSVS version).
+-#if __cplusplus >= 201103L
++#if defined(__GNUC__)
++  #if (__GNUC__<=4) and (_GNUC_MINOR__<= 7)
++    #define MOJO_ALIGNAS(alignment) __attribute__((aligned(alignment)))
++  #else
++    #if __cplusplus >= 201103L
++     #define MOJO_ALIGNAS(alignment) alignas(alignment)
++    #else
++     #define MOJO_ALIGNAS(alignment) __attribute__((aligned(alignment)))
++    #endif
++  #endif
++#elif __cplusplus >= 201103L
+ #define MOJO_ALIGNAS(alignment) alignas(alignment)
+-#elif defined(__GNUC__)
+-#define MOJO_ALIGNAS(alignment) __attribute__((aligned(alignment)))
+ #elif defined(_MSC_VER)
+ #define MOJO_ALIGNAS(alignment) __declspec(align(alignment))
+ #else

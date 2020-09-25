@@ -1,0 +1,13 @@
+diff --git a/src/Insitu/VisualizationLibrary/CMakeLists.txt b/src/Insitu/VisualizationLibrary/CMakeLists.txt
+index 880976c..ad793c8 100644
+--- a/src/Insitu/VisualizationLibrary/CMakeLists.txt
++++ b/src/Insitu/VisualizationLibrary/CMakeLists.txt
+@@ -7,7 +7,7 @@ INCLUDE_DIRECTORIES(
+   ${MEDCOUPLING_INCLUDE_DIRS}
+   ${MPI_INCLUDE_PATH}
+   ${PARAVIS_INCLUDE_DIRS}
+-  ${MEDCOUPLING_INCLUDE_DIRS}
++  ${MEDFILE_INCLUDE_DIRS}
+   ${CMAKE_CURRENT_SOURCE_DIR}/../../Plugins/MEDReader/IO/
+ )
+ 

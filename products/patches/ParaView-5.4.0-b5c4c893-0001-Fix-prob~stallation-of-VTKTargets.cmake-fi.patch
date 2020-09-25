@@ -1,0 +1,11 @@
+--- a/VTK/CMake/vtkModuleTop.cmake	2015-12-16 20:17:55.000000000 +0300
++++ b/VTK/CMake/vtkModuleTop.cmake	2016-02-08 16:12:02.000000000 +0300
+@@ -503,6 +503,7 @@
+   get_property(VTK_TARGETS GLOBAL PROPERTY VTK_TARGETS)
+   if(VTK_TARGETS)
+     install(EXPORT ${VTK_INSTALL_EXPORT_NAME}  DESTINATION ${VTK_INSTALL_PACKAGE_DIR} FILE ${VTK_INSTALL_EXPORT_NAME}.cmake)
++    install(EXPORT ${VTK_INSTALL_EXPORT_NAME}  DESTINATION ${VTK_INSTALL_PACKAGE_DIR} FILE VTKTargets.cmake)
+   else()
+     set(CMAKE_CONFIGURABLE_FILE_CONTENT "# No targets!")
+     configure_file(${CMAKE_ROOT}/Modules/CMakeConfigurableFile.in
+

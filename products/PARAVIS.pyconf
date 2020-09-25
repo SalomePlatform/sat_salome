@@ -1,0 +1,216 @@
+default :
+{
+    name : "PARAVIS"
+    build_source : "cmake"
+    cmake_options : "-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON -DBUILD_TESTING=ON"
+    get_source : "git"
+    git_info:
+    {
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/paravis.git"
+        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "paravis.git"
+    }
+    environ :
+    {
+        _PV_PLUGIN_PATH : $install_dir + $VARS.sep + "lib" + $VARS.sep + "paraview"
+        SalomeAppConfig_ : $install_dir + $VARS.sep + "share" + $VARS.sep + "salome" + $VARS.sep + "resources" + $VARS.sep + "paravis"
+    }
+    depend : [
+       "KERNEL",
+       "GUI",
+       "MEDCOUPLING",
+       "FIELDS",
+       "GEOM",
+       "SMESH",
+       "Python",
+       "qt",
+       "boost",
+       "hdf5",
+       "medfile",
+       "ParaView",
+       "CAS",
+       "omniORB",
+       "docutils",
+       "libxml2",
+       "six",
+       "pytz"
+    ]
+    opt_depend : []
+    build_depend : ["cmake", "swig", "cppunit"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        has_salome_gui : "yes"
+        is_SALOME_module : "yes"
+        incremental : "yes"
+    }
+}
+
+default_win:
+{
+    depend : [
+       "KERNEL",
+       "GUI",
+       "MEDCOUPLING",
+       "FIELDS",
+       "GEOM",
+       "SMESH",
+       "Python",
+       "qt",
+       "boost",
+       "hdf5",
+       "medfile",
+       "ParaView",
+       "CAS",
+       "omniORB",
+       "docutils",
+       "libxml2",
+       "six",
+       "pytz",
+    ]
+}
+
+default_MPI :
+{
+    cmake_options : "-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON -DMEDCOUPLING_USE_MPI=ON -DSALOME_USE_MPI=ON  -DCMAKE_CXX_COMPILER:STRING=${MPI_ROOT_DIR}/bin/mpic++ DCMAKE_C_COMPILER:STRING=${MPI_ROOT_DIR}/bin/mpicc"
+    depend : [
+       "KERNEL",
+       "GUI",
+       "MEDCOUPLING",
+       "FIELDS",
+       "GEOM",
+       "SMESH",
+       "Python",
+       "qt",
+       "boost",
+       "hdf5",
+       "medfile",
+       "ParaView",
+       "CAS",
+       "omniORB",
+       "docutils",
+       "libxml2",
+       "six",
+       "pytz",
+       "openmpi"
+    ]
+}
+
+version_7_8_0_to_9_1_0 :
+{
+    depend : [
+       "KERNEL",
+       "GUI",
+       "MEDCOUPLING",
+       "MED",
+       "GEOM",
+       "SMESH",
+       "Python",
+       "qt",
+       "boost",
+       "hdf5",
+       "medfile",
+       "ParaView",
+       "CAS",
+       "omniORB",
+       "docutils",
+       "libxml2",
+       "six",
+       "pytz"
+    ]
+}
+
+version_9_5_0_MPI :
+{
+    cmake_options : "-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON -DMEDCOUPLING_USE_MPI=ON -DSALOME_USE_MPI=ON  -DCMAKE_CXX_COMPILER:STRING=${MPI_ROOT_DIR}/bin/mpic++ DCMAKE_C_COMPILER:STRING=${MPI_ROOT_DIR}/bin/mpicc"
+    patches : ['PARAVIS-MEDReader-CMakeLists.patch'] # backporting bos #20031 
+    depend : [
+       "KERNEL",
+       "GUI",
+       "MEDCOUPLING",
+       "FIELDS",
+       "GEOM",
+       "SMESH",
+       "Python",
+       "qt",
+       "boost",
+       "hdf5",
+       "medfile",
+       "ParaView",
+       "CAS",
+       "omniORB",
+       "docutils",
+       "libxml2",
+       "six",
+       "pytz",
+       "openmpi"
+    ]
+}
+
+version_8_5_0_MPI :
+{
+    cmake_options : "-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON -DMEDCOUPLING_USE_MPI=ON -DSALOME_USE_MPI=ON"
+    depend : [
+       "KERNEL",
+       "GUI",
+       "MEDCOUPLING",
+       "MED",
+       "GEOM",
+       "SMESH",
+       "Python",
+       "qt",
+       "boost",
+       "hdf5",
+       "medfile",
+       "ParaView",
+       "CAS",
+       "omniORB",
+       "docutils",
+       "libxml2",
+       "six",
+       "pytz"
+    ]
+    patches : ["paravis_8_3_mpi_medinclude.patch"]
+}
+
+version_V6_6_0 :
+{
+    cmake_options : ""
+    depend : [
+       "KERNEL",
+       "GUI",
+       "MED",
+       "Python",
+       "qt",
+       "boost",
+       "hdf5",
+       "medfile",
+       "ParaView",
+       "CAS",
+       "omniORB",
+       "docutils",
+       "libxml2"
+    ]
+}
+
+version_alamos :
+{
+    cmake_options : "-DSALOME_PARAVIS_USE_GEOM_SOURCE=OFF -DSALOME_PARAVIS_USE_SMESH_SOURCE=OFF"
+    depend : [
+       "KERNEL",
+       "GUI",
+       "MEDCOUPLING",
+       "Python",
+       "qt",
+       "boost",
+       "hdf5",
+       "medfile",
+       "ParaView",
+       "CAS",
+       "omniORB",
+       "docutils",
+       "libxml2",
+       "six",
+       "pytz"
+    ]
+}

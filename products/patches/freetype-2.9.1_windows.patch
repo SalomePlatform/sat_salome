@@ -1,0 +1,32 @@
+--- freetype_orig/CMakeLists.txt
++++ freetype_fix/CMakeLists.txt
+@@ -234,6 +234,7 @@
+ endif ()
+ 
+ 
++
+ # Create the options file
+ file(READ "${PROJECT_SOURCE_DIR}/include/freetype/config/ftoption.h"
+   FTOPTION_H)
+@@ -415,11 +418,18 @@
+       PATTERN "internal" EXCLUDE
+       PATTERN "ftconfig.h" EXCLUDE
+       PATTERN "ftoption.h" EXCLUDE)
+-  install(
+-    FILES ${PROJECT_BINARY_DIR}/include/freetype/config/ftconfig.h
+-          ${PROJECT_BINARY_DIR}/include/freetype/config/ftoption.h
++  if (UNIX)
++    install(
++      FILES ${PROJECT_BINARY_DIR}/include/freetype/config/ftconfig.h
++            ${PROJECT_BINARY_DIR}/include/freetype/config/ftoption.h
+       DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/freetype2/freetype/config
+       COMPONENT headers)
++   elseif(WIN32)
++    install(
++      FILES ${PROJECT_BINARY_DIR}/include/freetype/config/ftoption.h
++      DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/freetype2/freetype/config
++      COMPONENT headers)
++   endif()
+ endif ()
+ 
+ if (NOT SKIP_INSTALL_LIBRARIES AND NOT SKIP_INSTALL_ALL)

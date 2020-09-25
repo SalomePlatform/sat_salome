@@ -1,0 +1,37 @@
+default :
+{
+    name : "pthreads"
+    build_source : "script"
+    compil_script :  $name + $VARS.scriptExtension
+    get_source : "archive"
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : []
+    patches : []
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties:
+    {
+      incremental : "yes"
+    }
+}
+
+default_win :
+{
+   archive_info : {archive_name : "pthreads-" + $APPLICATION.products.pthreads + "_windows.tar.gz"}
+}
+
+# needed in order to screen with windows version - see below
+version_2_9_1:
+{
+  patches : []
+}
+
+version_2_9_1_win:
+{
+  patches : ["pthreads-2.9.1_windows.patch"]
+}
+

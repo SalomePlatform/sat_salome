@@ -1,0 +1,51 @@
+default :
+{
+    name : "ispc"
+    build_source : "cmake"
+    cmake_options : "-DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang -DPYTHON_EXECUTABLE=${PYTHON_ROOT_DIR}/bin/python "
+    get_source : "archive"
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : ['llvm']
+    build_depend : ["cmake"]
+    patches : []
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+      incremental : "yes"
+    }
+}
+
+default_win :
+{
+    build_source : "script"
+    compil_script : "ispc.bat"
+    properties:
+    {
+      incremental : "yes"
+      single_install_dir : "yes"
+    }
+    depend : ['Python']
+}
+
+version_1_9_2 :
+{
+    build_source : "script"
+    compil_script :  "ispc-1.9.2.sh"
+    archive_info : {archive_name : "ispc-1.9.2-x86_64.tar.gz"}
+    patches : []
+    depend : []
+}
+
+version_1_9_2_src :
+{
+    build_source : "script"
+    compil_script :  "ispc-1.9.2.sh"
+    archive_info : {archive_name : "ispc-1.9.2.tar.gz"}
+    patches : ['ispc-makefile_WERROR.patch']
+    depend : ['llvm']
+}

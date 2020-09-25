@@ -1,0 +1,17 @@
+default :
+{
+    name : "openssl"
+    get_source : "native"
+    system_info : 
+    {
+        rpm : []
+        rpm_dev : ["openssl-devel"]
+        apt : []
+        apt_dev : ["openssl-dev"]
+    }
+    depend : []
+    properties :
+    {
+      incremental : "yes"
+    }
+}

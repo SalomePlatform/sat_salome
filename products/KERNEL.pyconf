@@ -1,0 +1,270 @@
+# add sphinxintl to version_7_8_0_to_8_4_0
+default :
+{
+    name : "KERNEL"
+    build_source : "cmake"
+    get_source : "git"
+    git_info:
+    {
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/kernel.git"
+        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "kernel.git"
+    }
+    environ :
+    {          
+    }
+    depend : ["Python",
+              "boost",
+              "cppunit",
+              "numpy",
+              "lapack",
+              "hdf5",
+              "omniORB",
+              "omniORBpy",
+              "docutils",
+              "libxml2",
+              "Sphinx",
+              "sphinxintl",
+              "Jinja2",
+              "setuptools",
+              "Pygments",
+              "pytz",
+              "LIBBATCH"
+              ]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    cmake_options : "-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_CMAKE_DEBUG=ON"
+    properties:
+    {
+        is_SALOME_module : "yes"
+        has_unit_tests
+        incremental : "yes"
+    }
+}
+
+default_win :
+{
+    cmake_options : "-DSALOME_USE_LIBBATCH=ON -DCMAKE_GENERATOR=\"Visual Studio 15 2017 Win64\" -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR:\=/%/bin/swig.exe -DCMAKE_CXX_COMPILER_ARCHITECTURE_ID=x64 -DBOOST_ROOT=%BOOST_ROOT_DIR:\=/% -DBOOST_DEBUG=ON -DBoost_ADDITIONAL_VERSIONS=\"1.67.0\" \"1.67\" -DBOOST_INCLUDEDIR=%BOOST_ROOT_DIR:\=/%/include/boost-1_67 -DBOOST_LIBRARYDIR=%BOOST_ROOT_DIR:\=/%/lib "
+    depend : ["Python",
+              "boost",
+              "numpy",
+              "lapack",
+              "hdf5",
+              "omniORB",
+              "omniORBpy",
+              "docutils",
+              "libxml2",
+              "Sphinx",
+              "sphinxintl",
+              "Jinja2",
+              "setuptools",
+              "Pygments",
+              "pytz",
+              "LIBBATCH"
+              ]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+}
+
+version_7_8_0_to_8_4_0 :
+{
+    depend : ["Python",
+              "boost",
+              "numpy",
+              "lapack",
+              "hdf5",
+              "omniORB",
+              "omniORBpy",
+              "docutils",
+              "libxml2",
+              "Sphinx",
+              "Jinja2",
+              "setuptools",
+              "Pygments",
+              "pytz",
+              "LIBBATCH"
+              ]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+    cmake_options : "-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig"
+}
+
+
+# this section is equivalent with version_7_8_0_to_8_4_0, without LIBBATCH
+ALAMOS_SALOME_9 :
+{
+    name : "KERNEL"
+    build_source : "cmake"
+    cmake_options : "-DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig"
+    get_source : "git"
+    git_info:
+    {
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/kernel.git"
+        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "kernel.git"
+    }
+    environ :
+    {          
+    }
+    depend : ["Python",
+              "boost",
+              "cppunit",
+              "numpy",
+              "lapack",
+              "hdf5",
+              "omniORB",
+              "omniORBpy",
+              "docutils",
+              "libxml2",
+              "Sphinx",
+              "sphinxintl",
+              "Jinja2",
+              "setuptools",
+              "Pygments",
+              "pytz"
+              ]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        is_SALOME_module : "yes"
+        has_unit_tests
+    }
+}
+
+ALAMOS_SALOME_9_win :
+{
+    name : "KERNEL"
+    build_source : "cmake"
+    cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR:\=/%/bin/swig.exe"
+    depend : ["Python",
+              "boost",
+              "numpy",
+              "lapack",
+              "hdf5",
+              "omniORB",
+              "omniORBpy",
+              "docutils",
+              "libxml2",
+              "Sphinx",
+              "sphinxintl",
+              "Jinja2",
+              "setuptools",
+              "Pygments",
+              "pytz",
+              "pthreads"
+            ]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+    get_source : "git"
+    git_info:
+    {
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/kernel.git"
+        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "kernel.git"
+    }
+    environ :
+    {
+    }
+}
+
+# this section is equivalent with version_7_8_0_to_8_4_0, without LIBBATCH
+ALAMOS :
+{
+    name : "KERNEL"
+    build_source : "cmake"
+    cmake_options : "-DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig"
+    get_source : "git"
+    git_info:
+    {
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/kernel.git"
+        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "kernel.git"
+    }
+    environ :
+    {          
+    }
+    depend : ["Python",
+              "boost",
+              "numpy",
+              "lapack",
+              "hdf5",
+              "omniORB",
+              "omniORBpy",
+              "docutils",
+              "libxml2",
+              "Sphinx",
+              "Jinja2",
+              "setuptools",
+              "Pygments",
+              "pytz"
+              ]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        is_SALOME_module : "yes"
+        has_unit_tests
+    }
+}
+
+# Default section for MPI version, for SALOME-8.5.0-MPI and later 
+# (adding sphinxintl prerequisite to previous MPI section).
+
+default_MPI :
+{
+    cmake_options : "-DSALOME_USE_MPI=ON -DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DCMAKE_CXX_COMPILER:STRING=${MPI_ROOT_DIR}/bin/mpic++ DCMAKE_C_COMPILER:STRING=${MPI_ROOT_DIR}/bin/mpicc"
+    depend : ["Python",
+              "boost",
+              "numpy",
+              "lapack",
+              "hdf5",
+              "omniORB",
+              "omniORBpy",
+              "docutils",
+              "libxml2",
+              "Sphinx",
+              "sphinxintl",
+              "Jinja2",
+              "setuptools",
+              "Pygments",
+              "pytz",
+              "cppunit",
+              "openmpi",
+              "LIBBATCH"
+              ]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+}
+
+version_V6_6_0 :
+{
+    name : "KERNEL"
+    build_source : "autotools"
+    get_source : "git"
+    git_info:
+    {
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/kernel.git"
+        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "kernel.git"
+    }
+    environ :
+    {          
+    }
+    depend : ["Python",
+              "boost",
+              "numpy",
+              "hdf5",
+              "omniORB",
+              "omniORBpy",
+              "docutils",
+              "libxml2",
+              "Sphinx",
+              "Jinja2",
+              "setuptools",
+              "Pygments"
+              ]
+    opt_depend : ["LIBBATCH"]
+    build_depend : ["swig", "doxygen", "cppunit"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        is_SALOME_module : "yes"
+        has_unit_tests
+    }
+}

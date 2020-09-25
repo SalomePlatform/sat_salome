@@ -1,0 +1,339 @@
+default :
+{
+    name : "ParaView"
+    build_source : "script"
+    compil_script :  $name + $VARS.scriptExtension
+    get_source : "archive"
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
+    opt_depend : ['openmpi', 'ospray','tbb']
+    build_depend : ["cmake"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+      incremental : "yes"
+    }
+}
+
+version_5_8_0 :
+{
+    archive_info : {archive_name : "ParaView-5.8.0-lata.tar.gz"}
+    # two other LATA patches already included in archive
+    patches : ['paraview.0003-ParaViewClient.patch',
+               'paraview.0004-ParaView_hdf5.patch',
+               'paraview.0005-ParaView_find_cgns.patch',
+               'paraview.0006-ParaView_find_libxml2.patch',
+               'paraview.0007-ParaView_find_freetype.patch',
+               'paraview.0009-ParaView_volume_mapper.patch',
+               'pv_coincident.patch'
+              ]
+}
+
+version_5_8_0_win :
+{
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments',
+              'pthreads',
+              'zlib'
+             ]
+    patches : ['paraview.0003-ParaViewClient.patch',
+               'paraview.0004-ParaView_hdf5.patch',
+               'paraview.0005-ParaView_find_cgns.patch',
+               'paraview.0006-ParaView_find_libxml2.patch',
+               'paraview.0007-ParaView_find_freetype.patch',
+               'paraview.0008-ParaView_find_zlib.patch',
+               'paraview.0009-ParaView_volume_mapper.patch',
+               'pv_coincident.patch'
+              ]
+}
+
+version_5_8_0_MPI :
+{
+    archive_info : {archive_name : "ParaView-5.8.0-lata.tar.gz"}
+    # two other LATA patches already included in archive
+    patches : ['paraview.0003-ParaViewClient.patch',
+               'paraview.0004-ParaView_hdf5.patch',
+               'paraview.0005-ParaView_find_cgns.patch',
+               'paraview.0006-ParaView_find_libxml2.patch',
+               'paraview.0007-ParaView_find_freetype.patch',
+               'paraview.0009-ParaView_volume_mapper.patch',
+               'paraview.0010-VTKM_MPI.patch',
+               'pv_coincident.patch'
+              ]
+}
+
+version_5_6_0_bfaf7b8 :
+{
+    compil_script : "ParaView-5.6.0_bfaf7b8.sh"
+    patches :[
+              'ParaView-5.6.0_bfaf7b8_patch_against_multiple_py_sv_thr.patch',
+              'ParaView-5.6.0-bfaf7b82_StateStorage_bug.patch'
+             ]
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'gl2ps',
+              'cgns',
+              'Pygments'
+              ]
+}
+
+version_5_6_0_bfaf7b8_win :
+{
+    compil_script : "ParaView-5.6.0_bfaf7b8.bat"
+    patches :  [
+                'ParaView-5.6.0_bfaf7b8_patch_against_multiple_py_sv_thr.patch',
+                'ParaView-5.6.0-bfaf7b82_StateStorage_bug.patch',
+                'ParaView-5.6.0_bfaf7b8-vtkm_visual_studio.patch'
+               ]
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'gl2ps',
+              'cgns',
+              'Pygments',
+              'pthreads'
+             ]
+}
+
+version_5_6_0_bfaf7b8_ospray_win :
+{
+    compil_script : "ParaView-5.6.0_bfaf7b8.bat"
+    archive_info : {archive_name : "ParaView-5.6.0_bfaf7b8.tar.gz"}
+    patches : [
+               'ParaView-5.6.0_bfaf7b8_patch_against_multiple_py_sv_thr.patch',
+               'ParaView-5.6.0-bfaf7b82_StateStorage_bug.patch',
+               'ParaView-5.6.0_bfaf7b8-vtkm_visual_studio.patch'
+              ]
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'gl2ps',
+              'cgns',
+              'Pygments',
+              'ospray',
+              'pthreads'
+             ]
+}
+
+version_5_6_0p1_7bafc2b :
+{
+    compil_script : "ParaView-5.6.0p1_7bafc2b.sh"
+    patches :  [
+               ]
+    depend : [
+              'cmake',
+              'Python',
+              'hdf5',
+              'qt',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'gl2ps',
+              'cgns',
+              'Pygments'
+             ]
+}
+
+version_5_6_0p1_7bafc2b_win :
+{
+    compil_script : "ParaView-5.6.0p1_7bafc2b.bat"
+    patches :  [
+                'ParaView-5.6.0_bfaf7b8_patch_against_multiple_py_sv_thr.patch',
+                'ParaView-5.6.0-bfaf7b82_StateStorage_bug.patch',
+                'ParaView-5.6.0_bfaf7b8-vtkm_visual_studio.patch'
+               ]
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'gl2ps',
+              'cgns',
+              'Pygments',
+              'pthreads'
+             ]
+}
+
+version_5_4_1b5c4c89 :
+{
+    compil_script : "ParaView-5.4.1_b5c4c89.sh"
+    # TA - OP 29/05/2018 Add the 3 patches from BO
+    patches : [
+               'ParaView-5.4.0-b5c4c893-0001-Fix-prob~stallation-of-VTKTargets.cmake-fi.patch',
+               'ParaView-5.4.0-b5c4c893-vtkXOpenGLRenderWindow.cxx.patch',
+               'ParaView-5.4.0-b5c4c893_temporaty_patch.patch'
+              ]
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'gl2ps',
+              'cgns',
+              'Pygments'
+             ]
+}
+
+
+version_5_1_2plus_820 :
+{
+    compil_script : "ParaView-5.1-820.sh"
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'boost',
+              'gl2ps',
+              'libxml2',
+              'freetype',
+              'matplotlib'
+             ]
+}
+
+version_5_1_2plus_820_offscreen_rendering :
+{
+    compil_script : "ParaView-5.1-820-offscreen_rendering.sh"
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'boost',
+              'gl2ps',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'mesa'
+             ]
+}
+
+version_5_1_2plus_820_win :
+{
+    compil_script : "ParaView-5.1-820.bat"
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'boost',
+              'gl2ps',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'zlib',
+              'libpng'
+             ]
+    opt_depend : []
+    patches : [ 'ParaView-5.1.2-win.patch' ]
+}
+
+version_5_1_2plus :
+{
+    compil_script : "ParaView-5.1.sh"
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'boost',
+              'gl2ps',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns'
+             ]
+}
+
+version_5_0_1p1 :
+{
+    name : "ParaView"
+    compil_script :  $name + "-5.0.sh"
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'boost',
+              'gl2ps',
+              'libxml2',
+              'freetype',
+              'matplotlib'
+             ]
+}
+
+version_4_2_0 :
+{
+    compil_script :  $name + "-3.14.0.sh"
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'boost',
+              'gl2ps',
+              'libxml2',
+              'freetype',
+              'matplotlib'
+             ]
+    patches : [
+                  $name + "-4.2.0.patch"
+              ]
+}
+
+version_3_14_0 :
+{
+    name : "ParaView"
+    compil_script : $name + "-3.14.0.sh"
+    depend : [
+              "Python",
+              "hdf5",
+              "qt",
+              "ParaViewData",
+              "boost",
+              "gl2ps"
+             ]
+    patches : [
+                  $name + "-3.14.0.patch"
+              ]
+}

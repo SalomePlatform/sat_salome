@@ -1,0 +1,31 @@
+default :
+{
+    name : "homard_bin"
+    build_source : "script"
+    compil_script :  "Homard-SALOME9.sh" # this script do the install in install_dir/homard
+    get_source : "archive"
+    environ :
+    {
+       env_script : "Homard.py"
+    }
+    depend : []
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+}
+
+version_6_6_0_to_8_5_0 :
+{
+    name : "homard_bin"
+    build_source : "script"
+    compil_script :  "Homard.sh"
+    get_source : "archive"
+    environ :
+    {
+       env_script : "Homard.py"
+    }
+    depend : []
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+}

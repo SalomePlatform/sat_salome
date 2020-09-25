@@ -1,0 +1,31 @@
+default :
+{
+    name : "SOLVERLAB"
+    build_source : "script"
+    compil_script :  $name + ".sh"
+    get_source : "git"
+    git_info:
+    {
+        repo : "https://codev-tuleap.cea.fr/plugins/git/spns/SolverLab.git"
+    }
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : 
+    [   
+        'hdf5', 
+        'matplotlib', 
+        'medfile', 
+        'numpy', 
+        'ParaView', 
+        'petsc', 
+        'Python', 
+        'MEDCOUPLING', 
+    ]
+    build_depend : ["cmake", "swig", "doxygen", "graphviz","cppunit"]   
+    # mscgen
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    nb_proc : 1
+}

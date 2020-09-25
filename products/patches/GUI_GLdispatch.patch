@@ -1,0 +1,32 @@
+diff --git a/src/SUITApp/CMakeLists.txt b/src/SUITApp/CMakeLists.txt
+index 7668604..5f4e828 100755
+--- a/src/SUITApp/CMakeLists.txt
++++ b/src/SUITApp/CMakeLists.txt
+@@ -41,6 +41,11 @@ IF(SALOME_USE_PYCONSOLE)
+   LIST(APPEND _link_LIBRARIES ${PYTHON_LIBRARIES})
+ ENDIF()
+ 
++FIND_LIBRARY(GLAPI_DISPATCH_LIBRARY libGLdispatch.so)
++IF(GLAPI_DISPATCH_LIBRARY)
++  LIST(APPEND _link_LIBRARIES GLdispatch)
++ENDIF()
++
+ # --- headers ---
+ 
+ # header files / to be processed by moc
+diff --git a/src/TOOLSGUI/CMakeLists.txt b/src/TOOLSGUI/CMakeLists.txt
+index e60ddda..1339b2c 100755
+--- a/src/TOOLSGUI/CMakeLists.txt
++++ b/src/TOOLSGUI/CMakeLists.txt
+@@ -52,6 +52,11 @@ SET(_link_LIBRARIES
+   qtx suit
+ )
+ 
++FIND_LIBRARY(GLAPI_DISPATCH_LIBRARY libGLdispatch.so)
++IF(GLAPI_DISPATCH_LIBRARY)
++  LIST(APPEND _link_LIBRARIES GLdispatch)
++ENDIF()
++
+ # --- headers ---
+ 
+ # header files / to be processed by moc

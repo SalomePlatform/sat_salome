@@ -1,0 +1,15 @@
+diff --git a/configure.ac b/configure.ac
+index 17d50d2..62596f8 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -145,8 +145,8 @@ AC_LOCAL_INSTALL
+ dnl 
+ dnl libtool macro check for CC, LD, NM, LN_S, RANLIB, STRIP + pour les librairies dynamiques !
+ 
+-AC_ENABLE_DEBUG(yes)
+-AC_DISABLE_PRODUCTION
++dnl AC_ENABLE_DEBUG(yes)
++dnl AC_DISABLE_PRODUCTION
+ 
+ echo
+ echo ---------------------------------------------

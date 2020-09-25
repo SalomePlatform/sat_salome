@@ -1,0 +1,17 @@
+diff -Naur med-4.1.0_SRC_orig/src/hdfi/_MEDfileCreate.c med-4.1.0_SRC_modif/src/hdfi/_MEDfileCreate.c
+--- med-4.1.0_SRC_orig/src/hdfi/_MEDfileCreate.c	2020-03-11 12:36:37.000000000 +0300
++++ med-4.1.0_SRC_modif/src/hdfi/_MEDfileCreate.c	2020-05-19 16:07:30.195334400 +0300
+@@ -78,8 +78,11 @@
+     _h518medfileMMN[MED_FILE_H518_MAJOR  ]= _i8_major;
+     _h518medfileMMN[MED_FILE_H518_MINOR  ]= _i8_minor;
+     _h518medfileMMN[MED_FILE_H518_RELEASE]= _i8_release; /* 0 */
+-
+-    _fp = fopen(filename, "w");
++#if defined(WIN32)
++    _fp = fopen(filename, "wb");
++#else
++	_fp = fopen(filename, "w");
++#endif
+     if(!_fp) {
+       MED_ERR_(_fid,MED_ERR_CREATE,MED_ERR_FILE,filename);
+       ISCRUTE(major);ISCRUTE(minor);ISCRUTE(release);

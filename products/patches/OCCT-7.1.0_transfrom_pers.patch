@@ -1,0 +1,14 @@
+diff -Naur OCCT-7.1.0_SRC_orig/src/Graphic3d/Graphic3d_TransformPers.hxx OCCT-7.1.0_SRC_modif/src/Graphic3d/Graphic3d_TransformPers.hxx
+--- OCCT-7.1.0_SRC_orig/src/Graphic3d/Graphic3d_TransformPers.hxx	2016-12-22 12:32:39.000000000 +0300
++++ OCCT-7.1.0_SRC_modif/src/Graphic3d/Graphic3d_TransformPers.hxx	2017-01-20 16:22:16.000000000 +0300
+@@ -510,8 +510,8 @@
+   {
+     typename BVH_Box<T, 4>::BVH_VecNt& aCorner = anArrayOfCorners[anIt];
+     aCorner  = aTPers * aCorner;
+-    aCorner /= aCorner.w();
+-    theBoundingBox.Add (aCorner.xyz());
++    aCorner = aCorner / aCorner.w();
++    theBoundingBox.Add (typename BVH_Box<T, 3>::BVH_VecNt (aCorner.x(), aCorner.y(), aCorner.z()));
+   }
+ }
+

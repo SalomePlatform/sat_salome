@@ -1,0 +1,22 @@
+default :
+{
+    name : "CEATESTBASE"
+    build_source : "cmake"
+    get_source : "git"
+    git_info:
+    {
+        repo : "https://codev-tuleap.cea.fr/plugins/git/spns/CEATESTBASE.git"
+        repo_dev : $repo
+    }
+    environ :
+    {
+        env_script : "ceatest.py"
+    }
+    depend : ["KERNEL"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        not_in_package : "yes"
+    }
+}

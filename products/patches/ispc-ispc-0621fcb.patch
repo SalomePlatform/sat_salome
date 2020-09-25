@@ -1,0 +1,11 @@
+--- ispc-ispc-0621fcb_orig/Makefile	2017-11-11 00:07:30.000000000 +0100
++++ ispc-ispc-0621fcb/Makefile	2019-01-04 09:56:16.477980636 +0100
+@@ -162,7 +162,7 @@
+ 
+ CXX=clang++
+ OPT=-O2
+-WERROR=-Werror
++WERROR=
+ CXXFLAGS=$(OPT) $(LLVM_CXXFLAGS) -I. -Iobjs/ -I$(CLANG_INCLUDE)  \
+ 	$(LLVM_VERSION_DEF) \
+ 	-Wall \

@@ -1,0 +1,55 @@
+default :
+{
+    name : "Sphinx"
+    build_source : "script"
+    compil_script :   'pip_install' + $VARS.scriptExtension
+    get_source : "archive"
+    system_info : 
+    {
+        rpm : ["python3-sphinx"]
+        rpm_dev : []
+        apt : ["python3-sphinx"]
+        apt_dev : []
+    }
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : ["Python", "setuptools", "six", "Pygments", "Jinja2", "docutils", "sphinxcontrib_websupport", "packaging", "requests", "imagesize", "alabaster", "Babel", "snowballstemmer"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties:
+    {
+      incremental : "yes"
+      pip : "yes"
+    }
+}
+
+default_win :
+{
+   compil_script :  'pip_install_whl' + $VARS.scriptExtension
+   archive_info : {archive_name : "Sphinx-" + $APPLICATION.products.Sphinx + "_windows.tar.gz"}
+   depend : ["Python", "setuptools", "Pygments", "Jinja2", "docutils", "sphinxcontrib_applehelp", "sphinxcontrib_serializinghtml","sphinxcontrib_websupport", "sphinxcontrib_htmlhelp", "sphinxcontrib_qthelp", "sphinxcontrib_devhelp", "sphinxcontrib_jsmath", "packaging", "requests", "imagesize", "alabaster", "Babel", "snowballstemmer", "markupsafe"]
+    properties:
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+}
+
+version_1_1_3_to_1_2_3 :
+{
+    name : "Sphinx"
+    compil_script :  $name + $VARS.scriptExtension
+    get_source : "archive"
+    depend : ["Python", "setuptools", "Pygments", "Jinja2", "docutils"]
+}
+
+version_1_7_6_py2 :
+{
+    name : "Sphinx"
+    build_source : "script"
+    compil_script :  'pip_install' + $VARS.scriptExtension
+    depend : ["Python", "setuptools", "Pygments", "Jinja2", "docutils", "sphinxcontrib_websupport", "packaging", "requests", "imagesize", "alabaster", "Babel", "snowballstemmer", "markupsafe", "typing"]
+}

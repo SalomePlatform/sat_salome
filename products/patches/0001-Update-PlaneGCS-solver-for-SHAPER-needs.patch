@@ -1,0 +1,647 @@
+From 853a0a438422d61cf1b9756d6949e04e5270d495 Mon Sep 17 00:00:00 2001
+From: azv <azv@opencascade.com>
+Date: Thu, 2 Aug 2018 11:32:16 +0300
+Subject: [PATCH] Update PlaneGCS solver for SHAPER needs
+
+* Add possibility to compile PlaneGCS as a shared library
+* Possibility to avoid memory clearance inside the solver (make possible external memory management)
+---
+ src/Mod/Sketcher/App/planegcs/Constraints.h | 48 ++++++++---------
+ src/Mod/Sketcher/App/planegcs/GCS.cpp       | 81 +++++++++++++++++++++++------
+ src/Mod/Sketcher/App/planegcs/GCS.h         |  8 +--
+ src/Mod/Sketcher/App/planegcs/Geo.h         | 34 ++++++------
+ src/Mod/Sketcher/App/planegcs/Util.h        | 10 ++++
+ 5 files changed, 123 insertions(+), 58 deletions(-)
+
+diff --git a/src/Mod/Sketcher/App/planegcs/Constraints.h b/src/Mod/Sketcher/App/planegcs/Constraints.h
+index 559f3a2..76e4763 100644
+--- a/src/Mod/Sketcher/App/planegcs/Constraints.h
++++ b/src/Mod/Sketcher/App/planegcs/Constraints.h
+@@ -91,7 +91,7 @@ namespace GCS
+         HyperbolaNegativeMinorY = 17
+     };
+ 
+-    class Constraint
++    class PLANEGCS_EXPORT Constraint
+     {
+     _PROTECTED_UNLESS_EXTRACT_MODE_:
+         VEC_pD origpvec; // is used only as a reference for redirecting and reverting pvec
+@@ -128,7 +128,7 @@ namespace GCS
+     };
+ 
+     // Equal
+-    class ConstraintEqual : public Constraint
++    class PLANEGCS_EXPORT ConstraintEqual : public Constraint
+     {
+     private:
+         inline double* param1() { return pvec[0]; }
+@@ -142,7 +142,7 @@ namespace GCS
+     };
+ 
+     // Difference
+-    class ConstraintDifference : public Constraint
++    class PLANEGCS_EXPORT ConstraintDifference : public Constraint
+     {
+     private:
+         inline double* param1() { return pvec[0]; }
+@@ -157,7 +157,7 @@ namespace GCS
+     };
+ 
+     // P2PDistance
+-    class ConstraintP2PDistance : public Constraint
++    class PLANEGCS_EXPORT ConstraintP2PDistance : public Constraint
+     {
+     private:
+         inline double* p1x() { return pvec[0]; }
+@@ -178,7 +178,7 @@ namespace GCS
+     };
+ 
+     // P2PAngle
+-    class ConstraintP2PAngle : public Constraint
++    class PLANEGCS_EXPORT ConstraintP2PAngle : public Constraint
+     {
+     private:
+         inline double* p1x() { return pvec[0]; }
+@@ -200,7 +200,7 @@ namespace GCS
+     };
+ 
+     // P2LDistance
+-    class ConstraintP2LDistance : public Constraint
++    class PLANEGCS_EXPORT ConstraintP2LDistance : public Constraint
+     {
+     private:
+         inline double* p0x() { return pvec[0]; }
+@@ -224,7 +224,7 @@ namespace GCS
+     };
+ 
+     // PointOnLine
+-    class ConstraintPointOnLine : public Constraint
++    class PLANEGCS_EXPORT ConstraintPointOnLine : public Constraint
+     {
+     private:
+         inline double* p0x() { return pvec[0]; }
+@@ -246,7 +246,7 @@ namespace GCS
+     };
+ 
+     // PointOnPerpBisector
+-    class ConstraintPointOnPerpBisector : public Constraint
++    class PLANEGCS_EXPORT ConstraintPointOnPerpBisector : public Constraint
+     {
+     private:
+         inline double* p0x() { return pvec[0]; }
+@@ -268,7 +268,7 @@ namespace GCS
+     };
+ 
+     // Parallel
+-    class ConstraintParallel : public Constraint
++    class PLANEGCS_EXPORT ConstraintParallel : public Constraint
+     {
+     private:
+         inline double* l1p1x() { return pvec[0]; }
+@@ -291,7 +291,7 @@ namespace GCS
+     };
+ 
+     // Perpendicular
+-    class ConstraintPerpendicular : public Constraint
++    class PLANEGCS_EXPORT ConstraintPerpendicular : public Constraint
+     {
+     private:
+         inline double* l1p1x() { return pvec[0]; }
+@@ -315,7 +315,7 @@ namespace GCS
+     };
+ 
+     // L2LAngle
+-    class ConstraintL2LAngle : public Constraint
++    class PLANEGCS_EXPORT ConstraintL2LAngle : public Constraint
+     {
+     private:
+         inline double* l1p1x() { return pvec[0]; }
+@@ -342,7 +342,7 @@ namespace GCS
+     };
+ 
+     // MidpointOnLine
+-    class ConstraintMidpointOnLine : public Constraint
++    class PLANEGCS_EXPORT ConstraintMidpointOnLine : public Constraint
+     {
+     private:
+         inline double* l1p1x() { return pvec[0]; }
+@@ -366,7 +366,7 @@ namespace GCS
+     };
+ 
+     // TangentCircumf
+-    class ConstraintTangentCircumf : public Constraint
++    class PLANEGCS_EXPORT ConstraintTangentCircumf : public Constraint
+     {
+     private:
+         inline double* c1x() { return pvec[0]; }
+@@ -389,7 +389,7 @@ namespace GCS
+         virtual double grad(double *);
+     };
+     // PointOnEllipse
+-    class ConstraintPointOnEllipse : public Constraint
++    class PLANEGCS_EXPORT ConstraintPointOnEllipse : public Constraint
+     {
+     private:
+         inline double* p1x() { return pvec[0]; }
+@@ -411,7 +411,7 @@ namespace GCS
+         virtual double grad(double *);
+     };
+     
+-    class ConstraintEllipseTangentLine : public Constraint
++    class PLANEGCS_EXPORT ConstraintEllipseTangentLine : public Constraint
+     {
+     private:
+         Line l;
+@@ -426,7 +426,7 @@ namespace GCS
+         virtual double grad(double *);
+     };
+         
+-    class ConstraintInternalAlignmentPoint2Ellipse : public Constraint
++    class PLANEGCS_EXPORT ConstraintInternalAlignmentPoint2Ellipse : public Constraint
+     {
+     public:
+         ConstraintInternalAlignmentPoint2Ellipse(Ellipse &e, Point &p1, InternalAlignmentType alignmentType);
+@@ -442,7 +442,7 @@ namespace GCS
+         InternalAlignmentType AlignmentType;
+     };
+ 
+-    class ConstraintInternalAlignmentPoint2Hyperbola : public Constraint
++    class PLANEGCS_EXPORT ConstraintInternalAlignmentPoint2Hyperbola : public Constraint
+     {
+     public:
+         ConstraintInternalAlignmentPoint2Hyperbola(Hyperbola &e, Point &p1, InternalAlignmentType alignmentType);
+@@ -458,7 +458,7 @@ namespace GCS
+         InternalAlignmentType AlignmentType;
+     };
+ 
+-    class ConstraintEqualMajorAxesConic : public Constraint
++    class PLANEGCS_EXPORT ConstraintEqualMajorAxesConic : public Constraint
+     {
+     private:
+         MajorRadiusConic * e1;
+@@ -473,7 +473,7 @@ namespace GCS
+         virtual double grad(double *);
+     };
+ 
+-    class ConstraintEqualFocalDistance : public Constraint
++    class PLANEGCS_EXPORT ConstraintEqualFocalDistance : public Constraint
+     {
+     private:
+         ArcOfParabola * e1;
+@@ -488,7 +488,7 @@ namespace GCS
+         virtual double grad(double *);
+     };
+ 
+-    class ConstraintCurveValue : public Constraint
++    class PLANEGCS_EXPORT ConstraintCurveValue : public Constraint
+     {
+     private:
+         inline double* pcoord() { return pvec[2]; } //defines, which coordinate of point is being constrained by this constraint
+@@ -515,7 +515,7 @@ namespace GCS
+     };
+     
+     // PointOnHyperbola
+-    class ConstraintPointOnHyperbola : public Constraint
++    class PLANEGCS_EXPORT ConstraintPointOnHyperbola : public Constraint
+     {
+     private:
+         inline double* p1x() { return pvec[0]; }
+@@ -538,7 +538,7 @@ namespace GCS
+     };
+ 
+     // PointOnParabola
+-    class ConstraintPointOnParabola : public Constraint
++    class PLANEGCS_EXPORT ConstraintPointOnParabola : public Constraint
+     {
+     private:
+         void errorgrad(double* err, double* grad, double *param); //error and gradient combined. Values are returned through pointers.
+@@ -558,7 +558,7 @@ namespace GCS
+         virtual double grad(double *);
+     };
+     
+-    class ConstraintAngleViaPoint : public Constraint
++    class PLANEGCS_EXPORT ConstraintAngleViaPoint : public Constraint
+     {
+     private:
+         inline double* angle() { return pvec[0]; };
+@@ -583,7 +583,7 @@ namespace GCS
+         virtual double grad(double *);
+     };
+ 
+-    class ConstraintSnell : public Constraint //snell's law angles constrainer. Point needs to lie on all three curves to be constraied.
++    class PLANEGCS_EXPORT ConstraintSnell : public Constraint //snell's law angles constrainer. Point needs to lie on all three curves to be constraied.
+     {
+     private:
+         inline double* n1() { return pvec[0]; };
+diff --git a/src/Mod/Sketcher/App/planegcs/GCS.cpp b/src/Mod/Sketcher/App/planegcs/GCS.cpp
+index 474024a..9103653 100644
+--- a/src/Mod/Sketcher/App/planegcs/GCS.cpp
++++ b/src/Mod/Sketcher/App/planegcs/GCS.cpp
+@@ -101,11 +101,56 @@
+ #endif
+ 
+ #include <FCConfig.h>
++#ifndef _GCS_USE_STL_OUTPUT
+ #include <Base/Console.h>
++#endif
+ 
+ #include <boost/graph/adjacency_list.hpp>
+ #include <boost/graph/connected_components.hpp>
+ 
++namespace GCS
++{
++  void Log(const char* message)
++  {
++#ifdef _GCS_USE_STL_OUTPUT
++    std::cout << message << std::endl;
++#else
++    Base::Console().Log(message);
++#endif
++  }
++
++  void Log(const char* format, const char* param)
++  {
++#ifdef _GCS_USE_STL_OUTPUT
++    static char message[4096];
++    sprintf(message, format, param);
++    std::cout << message << std::endl;
++#else
++    Base::Console().Log(format, param);
++#endif
++  }
++
++  void Log(const char* format, const size_t param)
++  {
++#ifdef _GCS_USE_STL_OUTPUT
++    static char message[4096];
++    sprintf(message, format, param);
++    std::cout << message << std::endl;
++#else
++    Base::Console().Log(format, param);
++#endif
++}
++
++  void Warning(const char* message)
++  {
++#ifdef _GCS_USE_STL_OUTPUT
++    std::cout << "Warning: " << message << std::endl;
++#else
++    Base::Console().Warning(message);
++#endif
++  }
++}
++
+ typedef Eigen::FullPivHouseholderQR<Eigen::MatrixXd>::IntDiagSizeVectorType MatrixIndexType;
+ 
+ #ifdef _GCS_DEBUG
+@@ -130,7 +175,7 @@ void LogMatrix(std::string str, Eigen::MatrixXd matrix )
+ #else
+     const std::string tmp = stream.str();
+ 
+-    Base::Console().Log(tmp.c_str());
++    GCS::Log(tmp.c_str());
+ #endif
+ }
+ 
+@@ -155,7 +200,7 @@ void LogMatrix(std::string str, MatrixIndexType matrix )
+     #else
+     const std::string tmp = stream.str();
+ 
+-    Base::Console().Log(tmp.c_str());
++    GCS::Log(tmp.c_str());
+     #endif
+ }
+ #endif
+@@ -178,7 +223,7 @@ void LogString(std::string str)
+     #else
+     const std::string tmp = stream.str();
+ 
+-    Base::Console().Log(tmp.c_str());
++    GCS::Log(tmp.c_str());
+     #endif
+ }
+ 
+@@ -429,7 +474,11 @@ void System::clear()
+ 
+     reference.clear();
+     clearSubSystems();
++#ifdef _GCS_DO_NOT_FREE_CONSTRAINTS_MEMORY
++    clist.clear();
++#else
+     free(clist);
++#endif
+     c2p.clear();
+     p2c.clear();
+ }
+@@ -486,9 +535,11 @@ void System::removeConstraint(Constraint *constr)
+     }
+     c2p.erase(constr);
+ 
++#ifndef _GCS_DO_NOT_FREE_CONSTRAINTS_MEMORY
+     std::vector<Constraint *> constrvec;
+     constrvec.push_back(constr);
+     free(constrvec);
++#endif
+ }
+ 
+ // basic constraints
+@@ -1477,7 +1528,7 @@ int System::solve_BFGS(SubSystem *subsys, bool /*isFine*/, bool isRedundantsolvi
+                 << ", maxIter: "            << maxIterNumber  << "\n";
+ 
+         const std::string tmp = stream.str();
+-        Base::Console().Log(tmp.c_str());
++        GCS::Log(tmp.c_str());
+     }
+ 
+     double divergingLim = 1e6*err + 1e12;
+@@ -1493,7 +1544,7 @@ int System::solve_BFGS(SubSystem *subsys, bool /*isFine*/, bool isRedundantsolvi
+                         << ", h_norm: "           << h_norm  << "\n";
+ 
+                 const std::string tmp = stream.str();
+-                Base::Console().Log(tmp.c_str());
++                GCS::Log(tmp.c_str());
+             }
+             break;
+         }
+@@ -1505,7 +1556,7 @@ int System::solve_BFGS(SubSystem *subsys, bool /*isFine*/, bool isRedundantsolvi
+                         << ", divergingLim: "            << divergingLim  << "\n";
+ 
+                 const std::string tmp = stream.str();
+-                Base::Console().Log(tmp.c_str());
++                GCS::Log(tmp.c_str());
+             }
+             break;
+         }
+@@ -1542,7 +1593,7 @@ int System::solve_BFGS(SubSystem *subsys, bool /*isFine*/, bool isRedundantsolvi
+                     << ", h_norm: "                 << h_norm << "\n";
+ 
+             const std::string tmp = stream.str();
+-            Base::Console().Log(tmp.c_str());
++            GCS::Log(tmp.c_str());
+         }
+     }
+ 
+@@ -1598,7 +1649,7 @@ int System::solve_LM(SubSystem* subsys, bool isRedundantsolving)
+                 << ", maxIter: "        << maxIterNumber  << "\n";
+ 
+         const std::string tmp = stream.str();
+-        Base::Console().Log(tmp.c_str());
++        GCS::Log(tmp.c_str());
+     }
+ 
+     double nu=2, mu=0;
+@@ -1712,7 +1763,7 @@ int System::solve_LM(SubSystem* subsys, bool isRedundantsolving)
+                     << ", h_norm: "                 << h_norm << "\n";
+ 
+             const std::string tmp = stream.str();
+-            Base::Console().Log(tmp.c_str());
++            GCS::Log(tmp.c_str());
+         }
+     }
+ 
+@@ -1757,7 +1808,7 @@ int System::solve_DL(SubSystem* subsys, bool isRedundantsolving)
+                 << ", maxIter: "        << maxIterNumber  << "\n";
+ 
+         const std::string tmp = stream.str();
+-        Base::Console().Log(tmp.c_str());
++        GCS::Log(tmp.c_str());
+     }
+ 
+     Eigen::VectorXd x(xsize), x_new(xsize);
+@@ -1912,7 +1963,7 @@ int System::solve_DL(SubSystem* subsys, bool isRedundantsolving)
+                     << ", err(divergingLim): "  << err  << "\n";
+ 
+             const std::string tmp = stream.str();
+-            Base::Console().Log(tmp.c_str());
++            GCS::Log(tmp.c_str());
+         }
+ 
+         // count this iteration and start again
+@@ -1926,7 +1977,7 @@ int System::solve_DL(SubSystem* subsys, bool isRedundantsolving)
+         stream  << "DL: stopcode: "     << stop << ((stop == 1) ? ", Success" : ", Failed") << "\n";
+ 
+         const std::string tmp = stream.str();
+-        Base::Console().Log(tmp.c_str());
++        GCS::Log(tmp.c_str());
+     }
+ 
+     return (stop == 1) ? Success : Failed;
+@@ -3721,7 +3772,7 @@ int System::diagnose(Algorithm alg)
+     Eigen::SparseQR<Eigen::SparseMatrix<double>, Eigen::COLAMDOrdering<int> > SqrJT;
+ #else
+     if(qrAlgorithm==EigenSparseQR){
+-        Base::Console().Warning("SparseQR not supported by you current version of Eigen. It requires Eigen 3.2.2 or higher. Falling back to Dense QR\n");
++        GCS::Warning("SparseQR not supported by you current version of Eigen. It requires Eigen 3.2.2 or higher. Falling back to Dense QR\n");
+         qrAlgorithm=EigenDenseQR;
+     }
+ #endif
+@@ -4074,7 +4125,7 @@ int System::diagnose(Algorithm alg)
+                         break;
+                 }
+ 
+-                Base::Console().Log("Sketcher::RedundantSolving-%s-\n",solvername.c_str());
++                GCS::Log("Sketcher::RedundantSolving-%s-\n",solvername.c_str());
+             }
+ 
+             if (res == Success) {
+@@ -4088,7 +4139,7 @@ int System::diagnose(Algorithm alg)
+                 resetToReference();
+ 
+                 if(debugMode==Minimal || debugMode==IterationLevel) {
+-                    Base::Console().Log("Sketcher Redundant solving: %d redundants\n",redundant.size());
++                    GCS::Log("Sketcher Redundant solving: %d redundants\n",redundant.size());
+                 }
+ 
+                 std::vector< std::vector<Constraint *> > conflictGroupsOrig=conflictGroups;
+diff --git a/src/Mod/Sketcher/App/planegcs/GCS.h b/src/Mod/Sketcher/App/planegcs/GCS.h
+index 17d57c8..ecc5b04 100644
+--- a/src/Mod/Sketcher/App/planegcs/GCS.h
++++ b/src/Mod/Sketcher/App/planegcs/GCS.h
+@@ -69,7 +69,7 @@ namespace GCS
+         IterationLevel = 2
+     };
+ 
+-    class System
++    class PLANEGCS_EXPORT System
+     {
+     // This is the main class. It holds all constraints and information
+     // about partitioning into subsystems and solution strategies
+@@ -283,9 +283,9 @@ namespace GCS
+     // Helper elements
+     ///////////////////////////////////////
+ 
+-    void free(VEC_pD &doublevec);
+-    void free(std::vector<Constraint *> &constrvec);
+-    void free(std::vector<SubSystem *> &subsysvec);
++    PLANEGCS_EXPORT void free(VEC_pD &doublevec);
++    PLANEGCS_EXPORT void free(std::vector<Constraint *> &constrvec);
++    PLANEGCS_EXPORT void free(std::vector<SubSystem *> &subsysvec);
+ 
+ } //namespace GCS
+ 
+diff --git a/src/Mod/Sketcher/App/planegcs/Geo.h b/src/Mod/Sketcher/App/planegcs/Geo.h
+index 1cdb983..6246f3b 100644
+--- a/src/Mod/Sketcher/App/planegcs/Geo.h
++++ b/src/Mod/Sketcher/App/planegcs/Geo.h
+@@ -26,16 +26,20 @@
+ #include <cmath>
+ #include "Util.h"
+ 
++#ifdef _MSC_VER
++#pragma warning(disable : 4251)
++#endif
++
+ namespace GCS
+ {
+-    class DependentParameters 
++    class PLANEGCS_EXPORT DependentParameters
+     {
+     public:
+         DependentParameters():hasDependentParameters(false) {}
+         bool hasDependentParameters;
+     };
+     
+-    class Point : public DependentParameters
++    class PLANEGCS_EXPORT Point : public DependentParameters
+     {
+     public:
+         Point(){x = 0; y = 0;}
+@@ -55,7 +59,7 @@ namespace GCS
+     ///manually as well. The class also provides a bunch of methods to do math
+     ///on it (and derivatives are calculated implicitly).
+     ///
+-    class DeriVector2
++    class PLANEGCS_EXPORT DeriVector2
+     {
+     public:
+         DeriVector2(){x=0; y=0; dx=0; dy=0;}
+@@ -95,7 +99,7 @@ namespace GCS
+     // Geometries
+     ///////////////////////////////////////
+ 
+-    class Curve: public DependentParameters //a base class for all curve-based objects (line, circle/arc, ellipse/arc)
++    class PLANEGCS_EXPORT Curve: public DependentParameters //a base class for all curve-based objects (line, circle/arc, ellipse/arc)
+     {
+     public:
+         virtual ~Curve(){}
+@@ -125,7 +129,7 @@ namespace GCS
+         virtual Curve* Copy() = 0; //DeepSOIC: I haven't found a way to simply copy a curve object provided pointer to a curve object.
+     };
+ 
+-    class Line: public Curve
++    class PLANEGCS_EXPORT Line: public Curve
+     {
+     public:
+         Line(){}
+@@ -139,7 +143,7 @@ namespace GCS
+         virtual Line* Copy();
+     };
+ 
+-    class Circle: public Curve
++    class PLANEGCS_EXPORT Circle: public Curve
+     {
+     public:
+         Circle(){rad = 0;}
+@@ -153,7 +157,7 @@ namespace GCS
+         virtual Circle* Copy();
+     };
+ 
+-    class Arc: public Circle
++    class PLANEGCS_EXPORT Arc: public Circle
+     {
+     public:
+         Arc(){startAngle=0;endAngle=0;rad=0;}
+@@ -169,7 +173,7 @@ namespace GCS
+         virtual Arc* Copy();
+     };
+     
+-    class MajorRadiusConic: public Curve
++    class PLANEGCS_EXPORT MajorRadiusConic: public Curve
+     {
+     public:
+         virtual ~MajorRadiusConic(){}
+@@ -179,7 +183,7 @@ namespace GCS
+         DeriVector2 CalculateNormal(Point &p, double* derivparam = 0) = 0;
+     };
+     
+-    class Ellipse: public MajorRadiusConic
++    class PLANEGCS_EXPORT Ellipse: public MajorRadiusConic
+     {
+     public:
+         Ellipse(){ radmin = 0;}
+@@ -197,7 +201,7 @@ namespace GCS
+         virtual Ellipse* Copy();
+     };
+     
+-    class ArcOfEllipse: public Ellipse
++    class PLANEGCS_EXPORT ArcOfEllipse: public Ellipse
+     {
+     public:
+         ArcOfEllipse(){startAngle=0;endAngle=0;radmin = 0;}
+@@ -215,7 +219,7 @@ namespace GCS
+         virtual ArcOfEllipse* Copy();
+     };
+     
+-    class Hyperbola: public MajorRadiusConic
++    class PLANEGCS_EXPORT Hyperbola: public MajorRadiusConic
+     {
+     public:
+         Hyperbola(){ radmin = 0;}
+@@ -233,7 +237,7 @@ namespace GCS
+         virtual Hyperbola* Copy();
+     };    
+ 
+-    class ArcOfHyperbola: public Hyperbola
++    class PLANEGCS_EXPORT ArcOfHyperbola: public Hyperbola
+     {
+     public:
+         ArcOfHyperbola(){startAngle=0;endAngle=0;radmin = 0;}
+@@ -249,7 +253,7 @@ namespace GCS
+         virtual ArcOfHyperbola* Copy();
+     };
+     
+-    class Parabola: public Curve
++    class PLANEGCS_EXPORT Parabola: public Curve
+     {
+     public:
+         Parabola(){ }
+@@ -263,7 +267,7 @@ namespace GCS
+         virtual Parabola* Copy();
+     };    
+ 
+-    class ArcOfParabola: public Parabola
++    class PLANEGCS_EXPORT ArcOfParabola: public Parabola
+     {
+     public:
+         ArcOfParabola(){startAngle=0;endAngle=0;}
+@@ -279,7 +283,7 @@ namespace GCS
+         virtual ArcOfParabola* Copy();
+     };
+ 
+-    class BSpline: public Curve
++    class PLANEGCS_EXPORT BSpline: public Curve
+     {
+     public:
+         BSpline(){periodic=false;degree=2;}
+diff --git a/src/Mod/Sketcher/App/planegcs/Util.h b/src/Mod/Sketcher/App/planegcs/Util.h
+index 8a759ba..7baafaa 100644
+--- a/src/Mod/Sketcher/App/planegcs/Util.h
++++ b/src/Mod/Sketcher/App/planegcs/Util.h
+@@ -44,4 +44,14 @@ namespace GCS
+ 
+ } //namespace GCS
+ 
++#if defined WIN32
++#  if defined PLANEGCS_EXPORTS
++#    define PLANEGCS_EXPORT __declspec(dllexport)
++#  else
++#    define PLANEGCS_EXPORT __declspec(dllimport)
++#  endif
++#else
++#  define PLANEGCS_EXPORT
++#endif
++
+ #endif // PLANEGCS_UTIL_H
+-- 
+2.9.0.windows.1
+

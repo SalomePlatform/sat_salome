@@ -1,0 +1,24 @@
+default :
+{
+    name : "SALOME"
+    build_source : "cmake"
+    get_source : "git"
+    git_info:
+    {
+        repo : "https://codev-tuleap.cea.fr/plugins/git/salome/" + $name + ".git"
+        repo_dev : $repo
+    }
+    environ :
+    {
+        _SalomeAppConfig : $install_dir + $VARS.sep + "share" + $VARS.sep + "salome" + $VARS.sep + "resources" + $VARS.sep + "salome"
+    }
+    depend : ["KERNEL", "GUI", "Python", "Sphinx", "qt"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        is_SALOME_module : "yes"
+        is_salome_application : "yes"
+        incremental : "yes"
+    }
+}

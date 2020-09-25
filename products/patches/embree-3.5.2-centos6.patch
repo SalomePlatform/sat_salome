@@ -1,0 +1,16 @@
+diff -Naur embree_ref/common/sys/alloc.cpp embree/common/sys/alloc.cpp
+--- embree_ref/common/sys/alloc.cpp	2019-07-22 14:41:16.045958480 +0200
++++ embree/common/sys/alloc.cpp	2019-07-22 14:42:13.162987513 +0200
+@@ -22,7 +22,11 @@
+ ////////////////////////////////////////////////////////////////////////////////
+ /// All Platforms
+ ////////////////////////////////////////////////////////////////////////////////
+-  
++
++#ifndef MAP_HUGETLB
++#define MAP_HUGETLB     0x40000         /* create a huge page mapping */
++#endif
++ 
+ namespace embree
+ {
+   void* alignedMalloc(size_t size, size_t align) 

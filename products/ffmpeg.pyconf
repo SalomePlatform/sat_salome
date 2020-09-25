@@ -1,0 +1,14 @@
+# Only used as a native product for dedicated opencv compilation
+default :
+{
+    name : "ffmpeg" 
+    get_source : "system"
+    depend : []
+    system_info :
+    {
+       rpm : ["ffmpeg"]
+       rpm_dev : ["ffmpeg-devel"]
+       apt : ["ffmpeg"]
+       apt_dev : []
+    }
+}

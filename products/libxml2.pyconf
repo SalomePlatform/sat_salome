@@ -1,0 +1,48 @@
+default :
+{
+    name : "libxml2"
+    build_source : "script"
+    compil_script :  $name + $VARS.scriptExtension
+    get_source : "archive"
+    system_info : 
+    {
+        rpm : ["libxml2"]
+        rpm_dev : ["libxml2-devel"]
+        apt : ["libxml2"]
+        apt_dev : ["libxml2-dev"]
+    }
+    archive_info:
+    {
+    }
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : ['Python' ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+      incremental : "yes"
+    }
+}
+
+default_win :
+{
+   properties:
+   {
+     incremental : "yes"
+     single_install_dir : "yes"
+   }
+}
+# needed in order to screen with windows version - see below
+version_2_9_1 :
+{
+  patches : []
+}
+
+version_2_9_1_win :
+{
+  patches : ["libxml2-2.9.1.patch"]
+}

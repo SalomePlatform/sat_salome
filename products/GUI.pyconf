@@ -1,0 +1,289 @@
+default :
+{
+    name : "GUI"
+    build_source : "cmake"
+    cmake_options : "-DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSIP_INCLUDE_DIR=${SIP_ROOT_DIR}"
+    get_source : "git"
+    git_info:
+    {
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/gui.git"
+        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "gui.git"
+    }
+    environ :
+    {
+        SalomeAppConfig_ : $install_dir + $VARS.sep + "share" + $VARS.sep + "salome" + $VARS.sep + "resources" + $VARS.sep + "gui"
+    }
+    depend : ["KERNEL",
+              "Python",
+              "qt",
+              "sip",
+              "PyQt",
+              "boost",
+              "CAS",
+              "qwt",
+              "hdf5",
+              "freetype",
+              "freeimage",
+              "ParaView",
+              "omniORB",
+              "docutils",
+              "libxml2",
+              "sphinxintl",
+              "sphinxcontrib_napoleon"
+           ]
+    opt_depend : ["sphinx_rtd_theme"]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        incremental : "yes"
+        is_SALOME_module : "yes"
+        has_unit_tests
+    }
+    patches : []
+}
+
+default_win :
+{
+    cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR:\=/%/bin/swig.exe -DSALOME_BUILD_WITH_QT5:BOOL=ON "
+    depend : ["KERNEL",
+              "Python",
+              "qt",
+              "sip",
+              "PyQt",
+              "boost",
+              "CAS",
+              "qwt",
+              "hdf5",
+              "freetype",
+              "freeimage",
+              "ParaView",
+              "omniORB",
+              "docutils",
+              "libxml2",
+              "sphinxintl",
+              "sphinxcontrib_websupport",
+              "sphinxcontrib_applehelp",
+              "sphinxcontrib_serializinghtml",
+              "sphinxcontrib_napoleon"
+             ]
+    opt_depend : ["sphinx_rtd_theme"]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+
+}
+
+version_8_5_0_to_9_4_0 :
+{
+    depend : ["KERNEL",
+              "Python",
+              "qt",
+              "sip",
+              "PyQt",
+              "boost",
+              "CAS",
+              "qwt",
+              "hdf5",
+              "freetype",
+              "freeimage",
+              "gl2ps",
+              "ParaView",
+              "omniORB",
+              "docutils",
+              "libxml2",
+              "sphinxintl",
+              "sphinxcontrib_napoleon"
+           ]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+}
+
+version_9_4_0_win:
+{
+    depend : ["KERNEL",
+              "Python",
+              "qt",
+              "sip",
+              "PyQt",
+              "boost",
+              "CAS",
+              "qwt",
+              "hdf5",
+              "freetype",
+              "freeimage",
+              "gl2ps",
+              "ParaView",
+              "omniORB",
+              "docutils",
+              "libxml2",
+              "sphinxintl",
+              "sphinxcontrib_websupport",
+              "sphinxcontrib_applehelp",
+              "sphinxcontrib_serializinghtml",
+              "sphinxcontrib_napoleon"
+             ]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+}
+
+# OP 19/04/2018 Add section for SALOME 7.8.0 to 8.4.0 due to new dependencies in SALOME 8.5.0
+version_7_8_0_to_8_4_0 :
+{
+    name : "GUI"
+    build_source : "cmake"
+    cmake_options : "-DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig"
+    get_source : "git"
+    git_info:
+    {
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/gui.git"
+        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "gui.git"
+    }
+    environ :
+    {
+    }
+    depend : ["KERNEL",
+              "Python",
+              "qt",
+              "sip",
+              "PyQt",
+              "boost",
+              "CAS",
+              "qwt",
+              "hdf5",
+              "freetype",
+              "freeimage",
+              "gl2ps",
+              "ParaView",
+              "omniORB",
+              "docutils",
+              "libxml2"
+              ]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        is_SALOME_module : "yes"
+        has_unit_tests
+    }
+}
+
+version_python_async :
+{
+    name : "GUI"
+    build_source : "cmake"
+    get_source : "git"
+    git_info:
+    {
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/gui.git"
+        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "gui.git"
+    }
+    environ :
+    {
+    }
+    depend : ["KERNEL",
+              "Python",
+              "qt",
+              "sip",
+              "PyQt",
+              "boost",
+              "CAS",
+              "qwt",
+              "hdf5",
+              "freetype",
+              "freeimage",
+              "gl2ps",
+              "ParaView",
+              "omniORB",
+              "docutils",
+              "libxml2"
+              ]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+    patches : [
+               "GUI_Python_async.patch" 
+    ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        is_SALOME_module : "yes"
+        has_unit_tests
+    }
+}
+
+version_oscar :
+{
+    name : "GUI"
+    build_source : "cmake"
+    cmake_options : "-DSALOME_USE_VTKVIEWER=OFF -DSALOME_USE_PVVIEWER=OFF"
+    get_source : "git"
+    git_info:
+    {
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/gui.git"
+        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "gui.git"
+    }
+    environ :
+    {
+    }
+    depend : ["KERNEL",
+              "Python",
+              "qt",
+              "sip",
+              "PyQt",
+              "boost",
+              "CAS",
+              "qwt",
+              "hdf5",
+              "freetype",
+              "freeimage",
+              "gl2ps",
+              "omniORB",
+              "docutils",
+              "libxml2"
+              ]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        is_SALOME_module : "yes"
+        has_unit_tests
+    }
+}
+
+version_V6_6_0 :
+{
+    name : "GUI"
+    build_source : "autotools"
+    get_source : "git"
+    git_info:
+    {
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/gui.git"
+        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "gui.git"
+    }
+    environ :
+    {
+    }
+    depend : ["KERNEL",
+              "Python",
+              "qt",
+              "sip",
+              "PyQt",
+              "boost",
+              "CAS",
+              "qwt",
+              "hdf5",
+              "freetype",
+              "freeimage",
+              "gl2ps",
+              "ParaView",
+              "omniORB",
+              "docutils",
+              "libxml2"]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        is_SALOME_module : "yes"
+        has_unit_tests
+    }
+}

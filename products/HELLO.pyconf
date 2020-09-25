@@ -1,0 +1,32 @@
+default :
+{
+    name : "HELLO"
+    build_source : "cmake"
+    get_source : "git"
+    git_info:
+    {
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "samples/hello.git"
+        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "hello.git"
+    }
+    environ :
+    {
+        SalomeAppConfig_ : $install_dir + $VARS.sep + "share" + $VARS.sep + "salome" + $VARS.sep + "resources" + $VARS.sep + "hello"
+    }
+    depend : [
+                "KERNEL",
+                "GUI", 
+                "boost", 
+                "CAS", 
+                "Python", 
+                "qt", 
+                "omniORB", 
+             ]
+    build_depend : ["cmake", "doxygen", "cppunit"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        has_salome_gui : "yes"
+        is_SALOME_module : "yes"
+    }
+}

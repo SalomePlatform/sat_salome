@@ -1,0 +1,51 @@
+diff -pruN PyQt-x11-gpl-4.9.1/sip/QtDBus/qpydbuspendingreply.sip PyQt-x11-gpl-4.9.1_new/sip/QtDBus/qpydbuspendingreply.sip
+--- PyQt-x11-gpl-4.9.1/sip/QtDBus/qpydbuspendingreply.sip	2012-02-10 11:35:14.000000000 +0100
++++ PyQt-x11-gpl-4.9.1_new/sip/QtDBus/qpydbuspendingreply.sip	2012-04-12 14:04:48.000000000 +0200
+@@ -23,6 +23,8 @@
+ // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ 
+ 
++%If (Qt_4_7_0 -)
++
+ class QPyDBusPendingReply : QDBusPendingCall /PyName=QDBusPendingReply/
+ {
+ %TypeHeaderCode
+@@ -47,3 +49,5 @@ public:
+ 
+     SIP_PYOBJECT value(SIP_PYOBJECT type /DocValue="None"/ = 0) const /HoldGIL/;
+ };
++
++%End
+diff -pruN PyQt-x11-gpl-4.9.1/sip/QtDBus/qpydbusreply.sip PyQt-x11-gpl-4.9.1_new/sip/QtDBus/qpydbusreply.sip
+--- PyQt-x11-gpl-4.9.1/sip/QtDBus/qpydbusreply.sip	2012-02-10 11:35:14.000000000 +0100
++++ PyQt-x11-gpl-4.9.1_new/sip/QtDBus/qpydbusreply.sip	2012-04-12 14:04:48.000000000 +0200
+@@ -23,6 +23,8 @@
+ // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ 
+ 
++%If (Qt_4_7_0 -)
++
+ class QPyDBusReply /PyName=QDBusReply/
+ {
+ %TypeHeaderCode
+@@ -241,3 +243,5 @@ template<TYPE>
+     return 0;
+ %End
+ };
++
++%End
+
+diff -pruN PyQt-x11-gpl-4.9.1_old/configure.py PyQt-x11-gpl-4.9.1_new/configure.py
+--- PyQt-x11-gpl-4.9.1_old/configure.py	2013-07-22 15:50:59.000000000 +0200
++++ PyQt-x11-gpl-4.9.1_new/configure.py	2013-07-22 15:42:12.000000000 +0200
+@@ -375,8 +375,8 @@ class ConfigurePyQt4:
+         check_module("QtWebKit", "qwebpage.h", "new QWebPage()")
+         check_module("QtXml", "qdom.h", "new QDomDocument()")
+         check_module("QtXmlPatterns", "qxmlname.h", "new QXmlName()")
+-        check_module("phonon", "phonon/videowidget.h",
+-                "new Phonon::VideoWidget()")
++        #check_module("phonon", "phonon/videowidget.h",
++        #        "new Phonon::VideoWidget()")
+         check_module("QtAssistant", "qassistantclient.h",
+                 "new QAssistantClient(\"foo\")", extra_lib_dirs=ass_lib_dirs,
+                 extra_libs=ass_libs)

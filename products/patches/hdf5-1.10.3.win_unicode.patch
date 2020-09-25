@@ -1,0 +1,36 @@
+diff -Naur hdf5-1.10.3_SRC_orig/src/H5FDwindows.c hdf5-1.10.3_SRC_modif/src/H5FDwindows.c
+--- hdf5-1.10.3_SRC_orig/src/H5FDwindows.c	2018-08-10 00:36:32.000000000 +0300
++++ hdf5-1.10.3_SRC_modif/src/H5FDwindows.c	2019-02-11 14:07:25.081398900 +0300
+@@ -24,6 +24,18 @@
+ 
+ #ifdef H5_HAVE_WINDOWS
+ 
++int _win_open(const char *name, int oflag,...)
++{
++    int fd = -1;
++    int size_needed = MultiByteToWideChar(CP_UTF8, 0, name, strlen(name), NULL, 0);
++    wchar_t* wname = (wchar_t*)malloc( sizeof(wchar_t)*(size_needed + 1) );
++    MultiByteToWideChar( CP_UTF8, 0, name, strlen(name), wname, size_needed );
++    wname[size_needed] = '\0';
++    fd=_wopen(wname, oflag);
++    free(wname);
++    return fd;
++}
++
+ 
+ /*-------------------------------------------------------------------------
+  * Function:    H5Pset_fapl_windows
+diff -Naur hdf5-1.10.3_SRC_orig/src/H5win32defs.h hdf5-1.10.3_SRC_modif/src/H5win32defs.h
+--- hdf5-1.10.3_SRC_orig/src/H5win32defs.h	2018-08-10 00:36:32.000000000 +0300
++++ hdf5-1.10.3_SRC_modif/src/H5win32defs.h	2019-02-11 14:08:05.105749000 +0300
+@@ -54,7 +54,9 @@
+  * Also note that the variadic macro is using a VC++ extension
+  * where the comma is dropped if nothing is passed to the ellipsis.
+  */
+-#define HDopen(S,F,...)       _open(S, F | _O_BINARY, __VA_ARGS__)
++//#define HDopen(S,F,...)       _open(S, F | _O_BINARY, __VA_ARGS__)
++H5_DLL int _win_open(const char *name, int oflag,...);
++#define HDopen(S,F,...)       _win_open(S, F | _O_BINARY, __VA_ARGS__)
+ #define HDread(F,M,Z)       _read(F,M,Z)
+ #define HDrmdir(S)          _rmdir(S)
+ #define HDsetvbuf(F,S,M,Z)  setvbuf(F,S,M,(Z>1?Z:2))

@@ -1,0 +1,13 @@
+--- opencv_ref/modules/videoio/src/cap_ffmpeg_api.hpp	2020-02-26 05:17:34.533150892 -0500
++++ opencv/modules/videoio/src/cap_ffmpeg_api.hpp	2020-02-26 05:17:19.668586898 -0500
+@@ -14,6 +14,10 @@
+ #   define OPENCV_FFMPEG_API
+ #endif
+ 
++#define AV_CODEC_FLAG_GLOBAL_HEADER (1 << 22)
++#define CODEC_FLAG_GLOBAL_HEADER AV_CODEC_FLAG_GLOBAL_HEADER
++#define AVFMT_RAWPICTURE 0x0020
++
+ enum
+ {
+     CV_FFMPEG_CAP_PROP_POS_MSEC=0,

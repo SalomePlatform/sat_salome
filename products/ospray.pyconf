@@ -1,0 +1,36 @@
+default :
+{
+    name : "ospray"
+    build_source : "cmake"
+    cmake_options : "-DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang -DEMBREE_ISPC_SUPPORT=ON -DEMBREE_TUTORIALS=OFF -Dembree_DIR=${embree_DIR} -DOSPRAY_ENABLE_APPS=OFF -DOSPRAY_ENABLE_TUTORIALS=OFF -DCMAKE_INSTALL_LIBDIR=lib"
+    get_source : "archive"
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : ['embree']
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+      incremental : "yes"
+    }
+}
+
+default_win :
+{
+    cmake_options : '  -Dembree_DIR=%embree_DIR:\=/% -DTBB_ROOT=%TBB_DIR:\=/% -DOSPRAY_TASKING_SYSTEM=TBB  -DOSPRAY_ENABLE_APPS=OFF -DOSPRAY_ENABLE_TUTORIALS=OFF '
+    depend : ['embree']
+    properties :
+    {
+      incremental : "yes"
+      single_install_dir : "yes"
+    }
+}
+
+version_1_7_3 :
+{
+    # OSPRAY_ENABLE_APPS not needed here, otherwise compilation issues on several Fedora nodes.
+    cmake_options : "-DEMBREE_TUTORIALS=OFF -Dembree_DIR=${embree_DIR} -DOSPRAY_ENABLE_TUTORIALS=OFF -DOSPRAY_ENABLE_APPS=OFF -DCMAKE_INSTALL_LIBDIR=lib"
+}

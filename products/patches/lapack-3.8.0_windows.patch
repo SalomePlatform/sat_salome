@@ -1,0 +1,13 @@
+--- lapack/CMakeLists.txt
++++ lapack_fix/CMakeLists.txt
+@@ -67,6 +67,10 @@
+ # Delete libmtsk in linking sequence for Sun/Oracle Fortran Compiler.
+ # This library is not present in the Sun package SolarisStudio12.3-linux-x86-bin
+   string(REPLACE \;mtsk\; \; CMAKE_Fortran_IMPLICIT_LINK_LIBRARIES "${CMAKE_Fortran_IMPLICIT_LINK_LIBRARIES}")
++elseif(WIN32)
++  if("${CMAKE_Fortran_COMPILER}" MATCHES "gfortran")
++    set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -Wl,--allow-multiple-definition")
++  endif()
+ endif()
+ 
+ if(CMAKE_Fortran_COMPILER_ID STREQUAL "Compaq")

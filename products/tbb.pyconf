@@ -1,0 +1,42 @@
+default :
+{
+    name : "tbb"
+    build_source : "script"
+    compil_script :  $name + $VARS.scriptExtension
+    get_source : "archive"
+    system_info : 
+    {
+        rpm : ["tbb"]
+        rpm_dev : ["tbb-devel"]
+        apt : ["libtbb"]
+        apt_dev : ["libtbb-dev"]
+    }
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : ['llvm']
+    build_depend : ["cmake"]
+    patches : []
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+      incremental : "yes"
+      single_install_dir : "no"
+    }
+}
+
+version_2019_U8_win :
+{
+    archive_info : {archive_name : "tbb-2019_U8.tar.gz"}
+    patches : ['tbb-2019_U8_windows10.patch']
+    depend : ['Python']
+    opt_depend : ['ispc']
+    properties :
+    {
+      incremental : "yes"
+      single_install_dir : "yes"
+    }
+}

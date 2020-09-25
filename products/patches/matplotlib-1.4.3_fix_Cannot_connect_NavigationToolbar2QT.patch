@@ -1,0 +1,33 @@
+diff -rupN ./lib/matplotlib/backends/backend_qt5.py_old ./lib/matplotlib/backends/backend_qt5.py
+--- ./lib/matplotlib/backends/backend_qt5.py_old	2017-12-13 08:34:28.995053982 +0100
++++ ./lib/matplotlib/backends/backend_qt5.py	2017-12-13 08:34:58.674133153 +0100
+@@ -475,10 +475,16 @@ class FigureManagerQT(FigureManagerBase)
+ 
+         self.window._destroying = False
+ 
++        # add text label to status bar
++        # fix https://github.com/matplotlib/matplotlib/issues/6858/ as 'matplotlib 2.0.2'
++        self.statusbar_label = QtWidgets.QLabel()
++        self.window.statusBar().addWidget(self.statusbar_label)
++
+         self.toolbar = self._get_toolbar(self.canvas, self.window)
+         if self.toolbar is not None:
+             self.window.addToolBar(self.toolbar)
+-            self.toolbar.message.connect(self._show_message)
++            # fix https://github.com/matplotlib/matplotlib/issues/6858/ as 'matplotlib 2.0.2'
++            self.toolbar.message.connect(self.statusbar_label.setText)
+             tbs_height = self.toolbar.sizeHint().height()
+         else:
+             tbs_height = 0
+@@ -502,10 +508,6 @@ class FigureManagerQT(FigureManagerBase)
+                 self.toolbar.update()
+         self.canvas.figure.add_axobserver(notify_axes_change)
+ 
+-    @QtCore.Slot()
+-    def _show_message(self, s):
+-        # Fixes a PySide segfault.
+-        self.window.statusBar().showMessage(s)
+ 
+     def full_screen_toggle(self):
+         if self.window.isFullScreen():
+

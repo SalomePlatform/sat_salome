@@ -1,0 +1,979 @@
+--- Python_ref/Modules/_io/_iomodule.c
++++ Python/Modules/_io/_iomodule.c
+@@ -21,7 +21,8 @@
+ #endif /* HAVE_SYS_STAT_H */
+ 
+ #ifdef MS_WINDOWS
+-#include <consoleapi.h>
++#include <windows.h>
++ #include <consoleapi.h>
+ #endif
+ 
+ /* Various interned strings */
+--- Python_ref/PCbuild/_asyncio.vcxproj
++++ Python/PCbuild/_asyncio.vcxproj
+@@ -38,6 +38,7 @@
+     <ProjectGuid>{384C224A-7474-476E-A01B-750EA7DE918C}</ProjectGuid>
+     <RootNamespace>_asyncio</RootNamespace>
+     <Keyword>Win32Proj</Keyword>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+@@ -74,4 +75,4 @@
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+   <ImportGroup Label="ExtensionTargets">
+   </ImportGroup>
+-</Project>
++</Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/_bz2.vcxproj
++++ Python/PCbuild/_bz2.vcxproj
+@@ -38,6 +38,7 @@
+     <ProjectGuid>{73FCD2BD-F133-46B7-8EC1-144CD82A59D5}</ProjectGuid>
+     <RootNamespace>bz2</RootNamespace>
+     <Keyword>Win32Proj</Keyword>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+--- Python_ref/PCbuild/_bz2.vcxproj.filters
++++ Python/PCbuild/_bz2.vcxproj.filters
+@@ -45,4 +45,7 @@
+       <Filter>bzip2 1.0.6 Header Files</Filter>
+     </ClInclude>
+   </ItemGroup>
+-</Project>
++  <ItemGroup>
++    <ResourceCompile Include="..\PC\python_nt.rc" />
++  </ItemGroup>
++</Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/_ctypes.vcxproj
++++ Python/PCbuild/_ctypes.vcxproj
+@@ -38,6 +38,7 @@
+     <ProjectGuid>{0E9791DB-593A-465F-98BC-681011311618}</ProjectGuid>
+     <RootNamespace>_ctypes</RootNamespace>
+     <Keyword>Win32Proj</Keyword>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+--- Python_ref/PCbuild/_ctypes.vcxproj.filters
++++ Python/PCbuild/_ctypes.vcxproj.filters
+@@ -62,4 +62,7 @@
+       <Filter>Source Files</Filter>
+     </CustomBuild>
+   </ItemGroup>
++  <ItemGroup>
++    <ResourceCompile Include="..\PC\python_nt.rc" />
++  </ItemGroup>
+ </Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/_ctypes_test.vcxproj
++++ Python/PCbuild/_ctypes_test.vcxproj
+@@ -39,6 +39,7 @@
+     <RootNamespace>_ctypes_test</RootNamespace>
+     <Keyword>Win32Proj</Keyword>
+     <SupportPGO>false</SupportPGO>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+--- Python_ref/PCbuild/_ctypes_test.vcxproj.filters
++++ Python/PCbuild/_ctypes_test.vcxproj.filters
+@@ -18,4 +18,7 @@
+       <Filter>Source Files</Filter>
+     </ClCompile>
+   </ItemGroup>
++  <ItemGroup>
++    <ResourceCompile Include="..\PC\python_nt.rc" />
++  </ItemGroup>
+ </Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/_decimal.vcxproj
++++ Python/PCbuild/_decimal.vcxproj
+@@ -38,6 +38,7 @@
+     <ProjectGuid>{0E9791DB-593A-465F-98BC-681011311617}</ProjectGuid>
+     <RootNamespace>_decimal</RootNamespace>
+     <Keyword>Win32Proj</Keyword>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+--- Python_ref/PCbuild/_decimal.vcxproj.filters
++++ Python/PCbuild/_decimal.vcxproj.filters
+@@ -113,4 +113,7 @@
+       <Filter>Source Files</Filter>
+     </CustomBuild>
+   </ItemGroup>
++  <ItemGroup>
++    <ResourceCompile Include="..\PC\python_nt.rc" />
++  </ItemGroup>
+ </Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/_distutils_findvs.vcxproj
++++ Python/PCbuild/_distutils_findvs.vcxproj
+@@ -38,6 +38,7 @@
+     <ProjectGuid>{41ADEDF9-11D8-474E-B4D7-BB82332C878E}</ProjectGuid>
+     <RootNamespace>_distutils_findvs</RootNamespace>
+     <Keyword>Win32Proj</Keyword>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+@@ -80,4 +81,4 @@
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+   <ImportGroup Label="ExtensionTargets">
+   </ImportGroup>
+-</Project>
++</Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/_elementtree.vcxproj
++++ Python/PCbuild/_elementtree.vcxproj
+@@ -38,6 +38,7 @@
+     <ProjectGuid>{17E1E049-C309-4D79-843F-AE483C264AEA}</ProjectGuid>
+     <RootNamespace>_elementtree</RootNamespace>
+     <Keyword>Win32Proj</Keyword>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+@@ -104,4 +105,4 @@
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+   <ImportGroup Label="ExtensionTargets">
+   </ImportGroup>
+-</Project>
++</Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/_elementtree.vcxproj.filters
++++ Python/PCbuild/_elementtree.vcxproj.filters
+@@ -33,9 +33,6 @@
+     <ClInclude Include="..\Modules\expat\latin1tab.h">
+       <Filter>Header Files</Filter>
+     </ClInclude>
+-    <ClInclude Include="..\Modules\expat\loadlibrary.c">
+-      <Filter>Header Files</Filter>
+-    </ClInclude>
+     <ClInclude Include="..\Modules\expat\macconfig.h">
+       <Filter>Header Files</Filter>
+     </ClInclude>
+@@ -71,5 +68,9 @@
+     <ClCompile Include="..\Modules\expat\xmltok.c">
+       <Filter>Source Files</Filter>
+     </ClCompile>
++    <ClCompile Include="..\Modules\expat\loadlibrary.c" />
+   </ItemGroup>
+-</Project>
++  <ItemGroup>
++    <ResourceCompile Include="..\PC\python_nt.rc" />
++  </ItemGroup>
++</Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/_freeze_importlib.vcxproj
++++ Python/PCbuild/_freeze_importlib.vcxproj
+@@ -39,6 +39,7 @@
+     <Keyword>Win32Proj</Keyword>
+     <RootNamespace>_freeze_importlib</RootNamespace>
+     <SupportPGO>false</SupportPGO>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+@@ -89,26 +90,21 @@
+   <ImportGroup Label="ExtensionTargets">
+   </ImportGroup>
+   <Target Name="_RebuildImportLib">
+-    <Exec Command='"$(TargetPath)" "%(None.FullPath)" "%(None.IntFile)"' />
+-    
++    <Exec Command="&quot;$(TargetPath)&quot; &quot;%(None.FullPath)&quot; &quot;%(None.IntFile)&quot;" />
+     <PropertyGroup>
+-      <_OldContent Condition="Exists($(OutTargetPath))"></_OldContent>
+-      <_NewContent Condition="Exists($(IntTargetPath))">$([System.IO.File]::ReadAllText($(IntTargetPath)).Replace(`&#x0D;&#x0A;`, `&#x0A;`))</_NewContent>
++      <_OldContent Condition="Exists($(OutTargetPath))">
++      </_OldContent>
++      <_NewContent Condition="Exists($(IntTargetPath))">$([System.IO.File]::ReadAllText($(IntTargetPath)).Replace(`
++`, `
++`))</_NewContent>
+     </PropertyGroup>
+-    
+-    <Copy SourceFiles="%(None.IntFile)"
+-          DestinationFiles="%(None.OutFile)"
+-          Condition="!Exists(%(None.OutFile)) or (Exists(%(None.IntFile)) and '$([System.IO.File]::ReadAllText(%(None.OutFile)).Replace(`&#x0D;&#x0A;`, `&#x0A;`))' != '$([System.IO.File]::ReadAllText(%(None.IntFile)).Replace(`&#x0D;&#x0A;`, `&#x0A;`))')">
++    <Copy SourceFiles="%(None.IntFile)" DestinationFiles="%(None.OutFile)" Condition="!Exists(%(None.OutFile)) or (Exists(%(None.IntFile)) and '$([System.IO.File]::ReadAllText(%(None.OutFile)).Replace(`&#xD;&#xA;`, `&#xA;`))' != '$([System.IO.File]::ReadAllText(%(None.IntFile)).Replace(`&#xD;&#xA;`, `&#xA;`))')">
+       <Output TaskParameter="CopiedFiles" ItemName="_Updated" />
+     </Copy>
+-    
+-    <Warning Text="@(_Updated->'%(Filename)%(Extension)',', ') updated. You will need to rebuild pythoncore to see the changes."
+-             Condition="'@(_Updated)' != '' and $(Configuration) == 'Debug'" />
+-    <Error Text="@(_Updated->'%(Filename)%(Extension)',', ') updated. You will need to rebuild pythoncore to see the changes."
+-           Condition="'@(_Updated)' != '' and $(Configuration) == 'Release'" />
++    <Warning Text="@(_Updated->'%(Filename)%(Extension)',', ') updated. You will need to rebuild pythoncore to see the changes." Condition="'@(_Updated)' != '' and $(Configuration) == 'Debug'" />
++    <Error Text="@(_Updated->'%(Filename)%(Extension)',', ') updated. You will need to rebuild pythoncore to see the changes." Condition="'@(_Updated)' != '' and $(Configuration) == 'Release'" />
+   </Target>
+-  <Target Name="RebuildImportLib" AfterTargets="AfterBuild" Condition="$(Configuration) == 'Debug' or $(Configuration) == 'Release'"
+-          DependsOnTargets="_RebuildImportLib">
++  <Target Name="RebuildImportLib" AfterTargets="AfterBuild" Condition="$(Configuration) == 'Debug' or $(Configuration) == 'Release'" DependsOnTargets="_RebuildImportLib">
+   </Target>
+   <Target Name="_CleanImportLib" BeforeTargets="CoreClean">
+     <ItemGroup>
+@@ -116,4 +112,4 @@
+       <Clean Include="$(IntDir)importlib_external.g.h" />
+     </ItemGroup>
+   </Target>
+-</Project>
++</Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/_freeze_importlib.vcxproj.filters
++++ Python/PCbuild/_freeze_importlib.vcxproj.filters
+@@ -23,5 +23,6 @@
+     <None Include="..\Lib\importlib\_bootstrap.py">
+       <Filter>Source Files</Filter>
+     </None>
++    <None Include="..\Lib\importlib\_bootstrap_external.py" />
+   </ItemGroup>
+-</Project>
++</Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/_hashlib.vcxproj
++++ Python/PCbuild/_hashlib.vcxproj
+@@ -38,6 +38,7 @@
+     <ProjectGuid>{447F05A8-F581-4CAC-A466-5AC7936E207E}</ProjectGuid>
+     <RootNamespace>_hashlib</RootNamespace>
+     <Keyword>Win32Proj</Keyword>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+@@ -90,4 +91,4 @@
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+   <ImportGroup Label="ExtensionTargets">
+   </ImportGroup>
+-</Project>
++</Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/_hashlib.vcxproj.filters
++++ Python/PCbuild/_hashlib.vcxproj.filters
+@@ -10,4 +10,7 @@
+       <Filter>Source Files</Filter>
+     </ClCompile>
+   </ItemGroup>
++  <ItemGroup>
++    <ResourceCompile Include="..\PC\python_nt.rc" />
++  </ItemGroup>
+ </Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/_lzma.vcxproj
++++ Python/PCbuild/_lzma.vcxproj
+@@ -38,6 +38,7 @@
+     <ProjectGuid>{F9D71780-F393-11E0-BE50-0800200C9A66}</ProjectGuid>
+     <RootNamespace>lzma</RootNamespace>
+     <Keyword>Win32Proj</Keyword>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+@@ -87,4 +88,4 @@
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+   <ImportGroup Label="ExtensionTargets">
+   </ImportGroup>
+-</Project>
++</Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/_lzma.vcxproj.filters
++++ Python/PCbuild/_lzma.vcxproj.filters
+@@ -10,4 +10,7 @@
+       <Filter>Source Files</Filter>
+     </ClCompile>
+   </ItemGroup>
++  <ItemGroup>
++    <ResourceCompile Include="..\PC\python_nt.rc" />
++  </ItemGroup>
+ </Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/_msi.vcxproj
++++ Python/PCbuild/_msi.vcxproj
+@@ -38,6 +38,7 @@
+     <ProjectGuid>{31FFC478-7B4A-43E8-9954-8D03E2187E9C}</ProjectGuid>
+     <RootNamespace>_msi</RootNamespace>
+     <Keyword>Win32Proj</Keyword>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+--- Python_ref/PCbuild/_msi.vcxproj.filters
++++ Python/PCbuild/_msi.vcxproj.filters
+@@ -10,4 +10,7 @@
+       <Filter>Source Files</Filter>
+     </ClCompile>
+   </ItemGroup>
++  <ItemGroup>
++    <ResourceCompile Include="..\PC\python_nt.rc" />
++  </ItemGroup>
+ </Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/_multiprocessing.vcxproj
++++ Python/PCbuild/_multiprocessing.vcxproj
+@@ -38,6 +38,7 @@
+     <ProjectGuid>{9E48B300-37D1-11DD-8C41-005056C00008}</ProjectGuid>
+     <RootNamespace>_multiprocessing</RootNamespace>
+     <Keyword>Win32Proj</Keyword>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+--- Python_ref/PCbuild/_multiprocessing.vcxproj.filters
++++ Python/PCbuild/_multiprocessing.vcxproj.filters
+@@ -21,4 +21,7 @@
+       <Filter>Source Files</Filter>
+     </ClCompile>
+   </ItemGroup>
++  <ItemGroup>
++    <ResourceCompile Include="..\PC\python_nt.rc" />
++  </ItemGroup>
+ </Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/_overlapped.vcxproj
++++ Python/PCbuild/_overlapped.vcxproj
+@@ -38,6 +38,7 @@
+     <ProjectGuid>{EB6E69DD-04BF-4543-9B92-49FAABCEAC2E}</ProjectGuid>
+     <RootNamespace>_overlapped</RootNamespace>
+     <Keyword>Win32Proj</Keyword>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+--- Python_ref/PCbuild/_overlapped.vcxproj.filters
++++ Python/PCbuild/_overlapped.vcxproj.filters
+@@ -10,4 +10,7 @@
+       <Filter>Source Files</Filter>
+     </ClCompile>
+   </ItemGroup>
++  <ItemGroup>
++    <ResourceCompile Include="..\PC\python_nt.rc" />
++  </ItemGroup>
+ </Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/_socket.vcxproj
++++ Python/PCbuild/_socket.vcxproj
+@@ -38,6 +38,7 @@
+     <ProjectGuid>{86937F53-C189-40EF-8CE8-8759D8E7D480}</ProjectGuid>
+     <RootNamespace>_socket</RootNamespace>
+     <Keyword>Win32Proj</Keyword>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+--- Python_ref/PCbuild/_socket.vcxproj.filters
++++ Python/PCbuild/_socket.vcxproj.filters
+@@ -18,4 +18,7 @@
+       <Filter>Source Files</Filter>
+     </ClCompile>
+   </ItemGroup>
++  <ItemGroup>
++    <ResourceCompile Include="..\PC\python_nt.rc" />
++  </ItemGroup>
+ </Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/_sqlite3.vcxproj
++++ Python/PCbuild/_sqlite3.vcxproj
+@@ -38,6 +38,7 @@
+     <ProjectGuid>{13CECB97-4119-4316-9D42-8534019A5A44}</ProjectGuid>
+     <RootNamespace>_sqlite3</RootNamespace>
+     <Keyword>Win32Proj</Keyword>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+--- Python_ref/PCbuild/_sqlite3.vcxproj.filters
++++ Python/PCbuild/_sqlite3.vcxproj.filters
+@@ -66,4 +66,7 @@
+       <Filter>Source Files</Filter>
+     </ClCompile>
+   </ItemGroup>
++  <ItemGroup>
++    <ResourceCompile Include="..\PC\python_nt.rc" />
++  </ItemGroup>
+ </Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/_ssl.vcxproj
++++ Python/PCbuild/_ssl.vcxproj
+@@ -38,6 +38,7 @@
+     <ProjectGuid>{C6E20F84-3247-4AD6-B051-B073268F73BA}</ProjectGuid>
+     <RootNamespace>_ssl</RootNamespace>
+     <Keyword>Win32Proj</Keyword>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+@@ -94,4 +95,4 @@
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+   <ImportGroup Label="ExtensionTargets">
+   </ImportGroup>
+-</Project>
++</Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/_ssl.vcxproj.filters
++++ Python/PCbuild/_ssl.vcxproj.filters
+@@ -10,4 +10,7 @@
+       <Filter>Source Files</Filter>
+     </ClCompile>
+   </ItemGroup>
++  <ItemGroup>
++    <ResourceCompile Include="..\PC\python_nt.rc" />
++  </ItemGroup>
+ </Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/_testbuffer.vcxproj
++++ Python/PCbuild/_testbuffer.vcxproj
+@@ -39,6 +39,7 @@
+     <RootNamespace>_testbuffer</RootNamespace>
+     <Keyword>Win32Proj</Keyword>
+     <SupportPGO>false</SupportPGO>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+--- Python_ref/PCbuild/_testbuffer.vcxproj.filters
++++ Python/PCbuild/_testbuffer.vcxproj.filters
+@@ -10,4 +10,7 @@
+       <Filter>Source Files</Filter>
+     </ClCompile>
+   </ItemGroup>
++  <ItemGroup>
++    <ResourceCompile Include="..\PC\python_nt.rc" />
++  </ItemGroup>
+ </Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/_testcapi.vcxproj
++++ Python/PCbuild/_testcapi.vcxproj
+@@ -39,6 +39,7 @@
+     <RootNamespace>_testcapi</RootNamespace>
+     <Keyword>Win32Proj</Keyword>
+     <SupportPGO>false</SupportPGO>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+--- Python_ref/PCbuild/_testcapi.vcxproj.filters
++++ Python/PCbuild/_testcapi.vcxproj.filters
+@@ -10,4 +10,7 @@
+       <Filter>Source Files</Filter>
+     </ClCompile>
+   </ItemGroup>
++  <ItemGroup>
++    <ResourceCompile Include="..\PC\python_nt.rc" />
++  </ItemGroup>
+ </Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/_testconsole.vcxproj
++++ Python/PCbuild/_testconsole.vcxproj
+@@ -39,6 +39,7 @@
+     <Keyword>Win32Proj</Keyword>
+     <RootNamespace>_testconsole</RootNamespace>
+     <SupportPGO>false</SupportPGO>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+--- Python_ref/PCbuild/_testconsole.vcxproj.filters
++++ Python/PCbuild/_testconsole.vcxproj.filters
+@@ -15,8 +15,13 @@
+     </Filter>
+   </ItemGroup>
+   <ItemGroup>
+-    <ClCompile Include="..\Modules\_testmultiphase.c">
++    <ClCompile Include="..\PC\_testconsole.c">
+       <Filter>Source Files</Filter>
+     </ClCompile>
++  </ItemGroup>
++  <ItemGroup>
++    <ResourceCompile Include="..\PC\python_nt.rc">
++      <Filter>Resource Files</Filter>
++    </ResourceCompile>
+   </ItemGroup>
+ </Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/_testembed.vcxproj
++++ Python/PCbuild/_testembed.vcxproj
+@@ -39,6 +39,7 @@
+     <Keyword>Win32Proj</Keyword>
+     <RootNamespace>_testembed</RootNamespace>
+     <SupportPGO>false</SupportPGO>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+--- Python_ref/PCbuild/_testembed.vcxproj.filters
++++ Python/PCbuild/_testembed.vcxproj.filters
+@@ -19,4 +19,9 @@
+       <Filter>Source Files</Filter>
+     </ClCompile>
+   </ItemGroup>
++  <ItemGroup>
++    <ResourceCompile Include="..\PC\python_nt.rc">
++      <Filter>Resource Files</Filter>
++    </ResourceCompile>
++  </ItemGroup>
+ </Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/_testimportmultiple.vcxproj
++++ Python/PCbuild/_testimportmultiple.vcxproj
+@@ -39,6 +39,7 @@
+     <RootNamespace>_testimportmultiple</RootNamespace>
+     <Keyword>Win32Proj</Keyword>
+     <SupportPGO>false</SupportPGO>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+@@ -80,4 +81,4 @@
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+   <ImportGroup Label="ExtensionTargets">
+   </ImportGroup>
+-</Project>
++</Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/_testimportmultiple.vcxproj.filters
++++ Python/PCbuild/_testimportmultiple.vcxproj.filters
+@@ -10,4 +10,7 @@
+       <Filter>Source Files</Filter>
+     </ClCompile>
+   </ItemGroup>
+-</Project>
++  <ItemGroup>
++    <ResourceCompile Include="..\PC\python_nt.rc" />
++  </ItemGroup>
++</Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/_testmultiphase.vcxproj
++++ Python/PCbuild/_testmultiphase.vcxproj
+@@ -39,6 +39,7 @@
+     <Keyword>Win32Proj</Keyword>
+     <RootNamespace>_testmultiphase</RootNamespace>
+     <SupportPGO>false</SupportPGO>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+--- Python_ref/PCbuild/_testmultiphase.vcxproj.filters
++++ Python/PCbuild/_testmultiphase.vcxproj.filters
+@@ -19,4 +19,9 @@
+       <Filter>Source Files</Filter>
+     </ClCompile>
+   </ItemGroup>
++  <ItemGroup>
++    <ResourceCompile Include="..\PC\python_nt.rc">
++      <Filter>Resource Files</Filter>
++    </ResourceCompile>
++  </ItemGroup>
+ </Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/env.bat
++++ Python/PCbuild/env.bat
+@@ -9,7 +9,8 @@
+ 
+ echo Build environments: x86, amd64, x86_amd64
+ echo.
+-set VSTOOLS=%VS140COMNTOOLS%
++set VSTOOLS=%VS150COMNTOOLS%
++if "%VSTOOLS%"=="" set VSTOOLS=%VS140COMNTOOLS%
+ if "%VSTOOLS%"=="" set VSTOOLS=%VS120COMNTOOLS%
+ if "%VSTOOLS%"=="" set VSTOOLS=%VS110COMNTOOLS%
+ if "%VSTOOLS%"=="" set VSTOOLS=%VS100COMNTOOLS%
+--- Python_ref/PCbuild/libeay.vcxproj
++++ Python/PCbuild/libeay.vcxproj
+@@ -37,18 +37,15 @@
+   <PropertyGroup Label="Globals">
+     <ProjectGuid>{E5B04CC0-EB4C-42AB-B4DC-18EF95F864B0}</ProjectGuid>
+     <RootNamespace>libeay</RootNamespace>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+-
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+-
+   <PropertyGroup Label="Configuration">
+     <ConfigurationType>StaticLibrary</ConfigurationType>
+   </PropertyGroup>
+-   
+   <Import Project="openssl.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+-
+   <Target Name="CreateBuildinfH" Inputs="$(MSBuildProjectFullPath)" Outputs="$(IntDir)\buildinf.h" AfterTargets="PrepareForBuild">
+     <PropertyGroup>
+       <_DATEValue>#define DATE "$([System.DateTime]::Now.ToString(`ddd MMM dd HH':'mm':'ss yyyy`))"</_DATEValue>
+@@ -56,25 +53,17 @@
+       <_PLATFORMValue Condition="$(Platform)=='Win32'">#define PLATFORM "VC-WIN32"</_PLATFORMValue>
+       <_PLATFORMValue Condition="$(Platform)=='x64'">#define PLATFORM "VC-WIN64A"</_PLATFORMValue>
+     </PropertyGroup>
+-    <WriteLinesToFile File="$(IntDir)\buildinf.h"
+-                      Lines="$(_DATEValue);$(_CFLAGSValue);$(_PLATFORMValue)"
+-                      Overwrite="true" />
+-    <Message Text="Updating buildinf.h:
+-    $(_DATEValue)
+-    $(_CFLAGSValue)
+-    $(_PLATFORMValue)" Importance="normal" />
++    <WriteLinesToFile File="$(IntDir)\buildinf.h" Lines="$(_DATEValue);$(_CFLAGSValue);$(_PLATFORMValue)" Overwrite="true" />
++    <Message Text="Updating buildinf.h:&#xD;&#xA;    $(_DATEValue)&#xD;&#xA;    $(_CFLAGSValue)&#xD;&#xA;    $(_PLATFORMValue)" Importance="normal" />
+   </Target>
+-
+   <Target Name="SuppressOriginalBuildinfH" Condition="Exists('$(opensslDir)crypto\buildinf.h')" BeforeTargets="PrepareForBuild">
+     <Move SourceFiles="$(opensslDir)crypto\buildinf.h" DestinationFiles="$(opensslDir)crypto\buildinf.h.orig" />
+   </Target>
+-
+   <ItemGroup>
+     <ClCompile Include="$(opensslDir)crypto\cversion.c">
+       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+     </ClCompile>
+   </ItemGroup>
+-  
+   <ItemGroup>
+     <!--
+     <ClCompile Include="$(opensslDir)apps\errstr.c" />
+@@ -847,7 +836,6 @@
+     <ClCompile Include="$(opensslDir)crypto\des\des_enc.c" />
+     <ClCompile Include="$(opensslDir)crypto\des\fcrypt_b.c" />
+   </ItemGroup>
+-    
+   <ItemGroup Condition="$(Platform) == 'Win32'">
+     <NasmCompile Include="$(opensslDir)tmp32\aes-586.asm" />
+     <NasmCompile Include="$(opensslDir)tmp32\aesni-x86.asm" />
+@@ -897,7 +885,6 @@
+     <NasmCompile Include="$(opensslDir)tmp64\x86_64-mont.asm" />
+     <NasmCompile Include="$(opensslDir)tmp64\x86_64-mont5.asm" />
+   </ItemGroup>
+-
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+   <Target Name="Clean" />
+   <Target Name="CleanAll">
+--- Python_ref/PCbuild/liblzma.vcxproj
++++ Python/PCbuild/liblzma.vcxproj
+@@ -38,11 +38,10 @@
+     <ProjectGuid>{12728250-16EC-4DC6-94D7-E21DD88947F8}</ProjectGuid>
+     <RootNamespace>liblzma</RootNamespace>
+     <SupportPGO>true</SupportPGO>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+-
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+-
+   <PropertyGroup Label="Configuration">
+     <ConfigurationType>StaticLibrary</ConfigurationType>
+   </PropertyGroup>
+@@ -213,4 +212,4 @@
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+   <ImportGroup Label="ExtensionTargets">
+   </ImportGroup>
+-</Project>
++</Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/pcbuild.sln
++++ Python/PCbuild/pcbuild.sln
+@@ -36,8 +36,6 @@
+ EndProject
+ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "_testimportmultiple", "_testimportmultiple.vcxproj", "{36D0C52C-DF4E-45D0-8BC7-E294C3ABC781}"
+ EndProject
+-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "_tkinter", "_tkinter.vcxproj", "{4946ECAC-2E69-4BF8-A90A-F5136F5094DF}"
+-EndProject
+ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "_bz2", "_bz2.vcxproj", "{73FCD2BD-F133-46B7-8EC1-144CD82A59D5}"
+ EndProject
+ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "select", "select.vcxproj", "{18CAE28C-B454-46C1-87A0-493D91D97F03}"
+@@ -79,12 +77,6 @@
+ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "_testembed", "_testembed.vcxproj", "{6DAC66D9-E703-4624-BE03-49112AB5AA62}"
+ EndProject
+ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "_testmultiphase", "_testmultiphase.vcxproj", "{16BFE6F0-22EF-40B5-B831-7E937119EF10}"
+-EndProject
+-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tcl", "tcl.vcxproj", "{B5FD6F1D-129E-4BFF-9340-03606FAC7283}"
+-EndProject
+-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tix", "tix.vcxproj", "{C5A3E7FB-9695-4B2E-960B-1D9F43F1E555}"
+-EndProject
+-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tk", "tk.vcxproj", "{7E85ECCF-A72C-4DA4-9E52-884508E80BA1}"
+ EndProject
+ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libeay", "libeay.vcxproj", "{E5B04CC0-EB4C-42AB-B4DC-18EF95F864B0}"
+ EndProject
+--- Python_ref/PCbuild/pyexpat.vcxproj
++++ Python/PCbuild/pyexpat.vcxproj
+@@ -38,6 +38,7 @@
+     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+     <ProjectGuid>{D06B6426-4762-44CC-8BAD-D79052507F2F}</ProjectGuid>
+     <RootNamespace>pyexpat</RootNamespace>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+@@ -85,4 +86,4 @@
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+   <ImportGroup Label="ExtensionTargets">
+   </ImportGroup>
+-</Project>
++</Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/pyexpat.vcxproj.filters
++++ Python/PCbuild/pyexpat.vcxproj.filters
+@@ -33,4 +33,7 @@
+       <Filter>Source Files</Filter>
+     </ClCompile>
+   </ItemGroup>
+-</Project>
++  <ItemGroup>
++    <ResourceCompile Include="..\PC\python_nt.rc" />
++  </ItemGroup>
++</Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/pylauncher.vcxproj
++++ Python/PCbuild/pylauncher.vcxproj
+@@ -39,6 +39,7 @@
+     <RootNamespace>pylauncher</RootNamespace>
+     <TargetName>py</TargetName>
+     <SupportPGO>false</SupportPGO>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+@@ -79,4 +80,4 @@
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+   <ImportGroup Label="ExtensionTargets">
+   </ImportGroup>
+-</Project>
++</Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/pyshellext.vcxproj
++++ Python/PCbuild/pyshellext.vcxproj
+@@ -39,6 +39,7 @@
+     <RootNamespace>pyshellext</RootNamespace>
+     <TargetName>pyshellext</TargetName>
+     <SupportPGO>false</SupportPGO>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+--- Python_ref/PCbuild/python.vcxproj
++++ Python/PCbuild/python.vcxproj
+@@ -36,6 +36,7 @@
+   </ItemGroup>
+   <PropertyGroup Label="Globals">
+     <ProjectGuid>{B11D750F-CD1F-4A96-85CE-E69A5C5259F9}</ProjectGuid>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+@@ -88,9 +89,7 @@
+       <UcrtName>ucrtbase</UcrtName>
+       <UcrtName Condition="'$(Configuration)' == 'Debug'">ucrtbased</UcrtName>
+     </PropertyGroup>
+-    <Exec Command='setlocal
+-set PYTHONPATH=$(PySourcePath)Lib
+-"$(OutDir)python$(PyDebugExt).exe" "$(PySourcePath)PC\validate_ucrtbase.py" $(UcrtName)' ContinueOnError="true" />
++    <Exec Command="setlocal&#xD;&#xA;set PYTHONPATH=$(PySourcePath)Lib&#xD;&#xA;&quot;$(OutDir)python$(PyDebugExt).exe&quot; &quot;$(PySourcePath)PC\validate_ucrtbase.py&quot; $(UcrtName)" ContinueOnError="true" />
+   </Target>
+   <Target Name="GeneratePythonBat" AfterTargets="AfterBuild">
+     <PropertyGroup>
+--- Python_ref/PCbuild/python3dll.vcxproj
++++ Python/PCbuild/python3dll.vcxproj
+@@ -40,6 +40,7 @@
+     <Keyword>Win32Proj</Keyword>
+     <TargetName>python3</TargetName>
+     <SupportPGO>false</SupportPGO>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+@@ -88,7 +89,6 @@
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+   <ImportGroup Label="ExtensionTargets">
+   </ImportGroup>
+-  
+   <Target Name="BuildPython3_dDef" BeforeTargets="BuildStubDef" Inputs="..\PC\python3.def" Outputs="$(IntDir)python3_d.def" Condition="$(Configuration) == 'Debug'">
+     <ItemGroup>
+       <_DefLines Remove="@(_DefLines)" />
+@@ -111,7 +111,6 @@
+     <MakeDir Directories="$(IntDir)" />
+     <WriteLinesToFile File="$(IntDir)python3_d.def" Lines="@(_Lines->'%(New)')" Overwrite="true" />
+   </Target>
+-  
+   <Target Name="BuildStubDef" BeforeTargets="PreLinkEvent" Inputs="..\PC\python3.def" Outputs="$(IntDir)python3stub.def">
+     <ItemGroup>
+       <_DefLines Remove="@(_DefLines)" />
+--- Python_ref/PCbuild/pythoncore.vcxproj
++++ Python/PCbuild/pythoncore.vcxproj
+@@ -37,6 +37,7 @@
+   <PropertyGroup Label="Globals">
+     <ProjectGuid>{CF7AC3D1-E2DF-41D2-BEA6-1E2556CDEA26}</ProjectGuid>
+     <RootNamespace>pythoncore</RootNamespace>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+@@ -433,4 +434,4 @@
+   <Target Name="_WarnAboutToolset" BeforeTargets="PrepareForBuild" Condition="$(PlatformToolset) != 'v140' and $(PlatformToolset) != 'v141'">
+     <Warning Text="Toolset $(PlatformToolset) is not used for official builds. Your build may have errors or incompatibilities." />
+   </Target>
+-</Project>
++</Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/pythonw.vcxproj
++++ Python/PCbuild/pythonw.vcxproj
+@@ -37,6 +37,7 @@
+   <PropertyGroup Label="Globals">
+     <ProjectGuid>{F4229CC3-873C-49AE-9729-DD308ED4CD4A}</ProjectGuid>
+     <SupportPGO>false</SupportPGO>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+--- Python_ref/PCbuild/pythonw.vcxproj.filters
++++ Python/PCbuild/pythonw.vcxproj.filters
+@@ -9,9 +9,7 @@
+     </Filter>
+   </ItemGroup>
+   <ItemGroup>
+-    <ResourceCompile Include="..\PC\python_exe.rc">
+-      <Filter>Resource Files</Filter>
+-    </ResourceCompile>
++    <ResourceCompile Include="..\PC\pythonw_exe.rc" />
+   </ItemGroup>
+   <ItemGroup>
+     <ClCompile Include="..\PC\WinMain.c">
+--- Python_ref/PCbuild/pywlauncher.vcxproj
++++ Python/PCbuild/pywlauncher.vcxproj
+@@ -39,6 +39,7 @@
+     <RootNamespace>pywlauncher</RootNamespace>
+     <TargetName>pyw</TargetName>
+     <SupportPGO>false</SupportPGO>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+--- Python_ref/PCbuild/select.vcxproj
++++ Python/PCbuild/select.vcxproj
+@@ -37,6 +37,7 @@
+   <PropertyGroup Label="Globals">
+     <ProjectGuid>{18CAE28C-B454-46C1-87A0-493D91D97F03}</ProjectGuid>
+     <RootNamespace>select</RootNamespace>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+--- Python_ref/PCbuild/select.vcxproj.filters
++++ Python/PCbuild/select.vcxproj.filters
+@@ -10,4 +10,7 @@
+       <Filter>Source Files</Filter>
+     </ClCompile>
+   </ItemGroup>
++  <ItemGroup>
++    <ResourceCompile Include="..\PC\python_nt.rc" />
++  </ItemGroup>
+ </Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/sqlite3.vcxproj
++++ Python/PCbuild/sqlite3.vcxproj
+@@ -39,6 +39,7 @@
+     <RootNamespace>sqlite3</RootNamespace>
+     <TargetExt>.pyd</TargetExt>
+     <SupportPGO>false</SupportPGO>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+@@ -86,4 +87,4 @@
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+   <ImportGroup Label="ExtensionTargets">
+   </ImportGroup>
+-</Project>
++</Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/sqlite3.vcxproj.filters
++++ Python/PCbuild/sqlite3.vcxproj.filters
+@@ -21,4 +21,7 @@
+       <Filter>Source Files</Filter>
+     </ClCompile>
+   </ItemGroup>
++  <ItemGroup>
++    <ResourceCompile Include="..\PC\sqlite3.rc" />
++  </ItemGroup>
+ </Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/ssleay.vcxproj
++++ Python/PCbuild/ssleay.vcxproj
+@@ -37,18 +37,15 @@
+   <PropertyGroup Label="Globals">
+     <ProjectGuid>{10615B24-73BF-4EFA-93AA-236916321317}</ProjectGuid>
+     <RootNamespace>ssleay</RootNamespace>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+-
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+-
+   <PropertyGroup Label="Configuration">
+     <ConfigurationType>StaticLibrary</ConfigurationType>
+   </PropertyGroup>
+-
+   <Import Project="openssl.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+-
+   <ItemGroup>
+     <!--
+     <ClCompile Include="$(opensslDir)ssl\bio_ssl.c" />
+@@ -109,7 +106,6 @@
+     <ClCompile Include="$(opensslDir)ssl\t1_srvr.c" />
+     <ClCompile Include="$(opensslDir)ssl\tls_srp.c" />
+   </ItemGroup>
+-  
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+   <Target Name="Clean" />
+   <Target Name="CleanAll">
+--- Python_ref/PCbuild/unicodedata.vcxproj
++++ Python/PCbuild/unicodedata.vcxproj
+@@ -38,6 +38,7 @@
+     <ProjectGuid>{ECC7CEAC-A5E5-458E-BB9E-2413CC847881}</ProjectGuid>
+     <RootNamespace>unicodedata</RootNamespace>
+     <Keyword>Win32Proj</Keyword>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+--- Python_ref/PCbuild/unicodedata.vcxproj.filters
++++ Python/PCbuild/unicodedata.vcxproj.filters
+@@ -21,4 +21,7 @@
+       <Filter>Source Files</Filter>
+     </ClCompile>
+   </ItemGroup>
++  <ItemGroup>
++    <ResourceCompile Include="..\PC\python_nt.rc" />
++  </ItemGroup>
+ </Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/winsound.vcxproj
++++ Python/PCbuild/winsound.vcxproj
+@@ -38,6 +38,7 @@
+     <ProjectGuid>{28B5D777-DDF2-4B6B-B34F-31D938813856}</ProjectGuid>
+     <RootNamespace>winsound</RootNamespace>
+     <Keyword>Win32Proj</Keyword>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+--- Python_ref/PCbuild/winsound.vcxproj.filters
++++ Python/PCbuild/winsound.vcxproj.filters
+@@ -11,4 +11,7 @@
+       <Filter>Source Files</Filter>
+     </ClCompile>
+   </ItemGroup>
++  <ItemGroup>
++    <ResourceCompile Include="..\PC\python_nt.rc" />
++  </ItemGroup>
+ </Project>
+\ No newline at end of file
+--- Python_ref/PCbuild/xxlimited.vcxproj
++++ Python/PCbuild/xxlimited.vcxproj
+@@ -38,6 +38,7 @@
+     <ProjectGuid>{F749B822-B489-4CA5-A3AD-CE078F5F338A}</ProjectGuid>
+     <RootNamespace>xxlimited</RootNamespace>
+     <Keyword>Win32Proj</Keyword>
++    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="python.props" />
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

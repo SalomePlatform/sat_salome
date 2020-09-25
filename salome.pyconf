@@ -1,0 +1,34 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+project_path : $PWD
+
+# Where to search the archives of the products
+ARCHIVEPATH : "/data/tmpsalome/salome/prerequis/archives"
+ARCHIVEFTP : "ftp.cea.fr/pub/salome/prerequisites"
+# Where to search the pyconf of the applications
+APPLICATIONPATH : $project_path + "/applications/"
+# Where to search the pyconf of the products
+PRODUCTPATH : $project_path + "/products/"
+# Where to search the pyconf of the jobs of the project
+JOBPATH : $project_path + "/jobs/" 
+# Where to search for licences
+LICENCEPATH : "\\\\terre\\data\\tmpsalome\\salome\\prerequis\\install\\LICENSE:/data/tmpsalome/salome/prerequis/install/LICENCE:/export/home/salome/prerequis/install/LICENCE:/volatile/salome/prerequis/install/LICENCE:/soft/commun/SALOME/LICENSE"
+
+git_info : 
+{
+    default_git_server : "http://git.salome-platform.org/gitpub/"
+    default_git_server_dev : "https://codev-tuleap.cea.fr/plugins/git/salome/"
+}
+
+test_bases :
+[
+      {
+        name : 'SALOME'
+        get_sources : 'git'
+        info :
+        {
+          base : 'https://codev-tuleap.cea.fr/plugins/git/spns/CEATESTBASE.git'
+        }
+      }
+]

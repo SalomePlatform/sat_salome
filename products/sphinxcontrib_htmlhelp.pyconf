@@ -1,0 +1,26 @@
+default :
+{
+    name : "sphinxcontrib-htmlhelp"
+    build_source : "script"
+    compil_script :  'pip_install' + $VARS.scriptExtension
+    get_source : "archive"
+    environ :
+    {
+       env_script : "sphinxcontrib_htmlhelp.py"
+    }
+    depend : ['Python','setuptools']
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + "sphinxcontrib_htmlhelp"
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + "sphinxcontrib_htmlhelp"
+    install_dir : 'base'
+    properties:
+    {
+      incremental : "yes"
+      pip : "yes"
+    }
+}
+
+default_win :
+{
+   compil_script :  'pip_install_whl' + $VARS.scriptExtension
+   archive_info : {archive_name : "sphinxcontrib_htmlhelp-" + $APPLICATION.products.sphinxcontrib_htmlhelp + "_windows.tar.gz"}
+}

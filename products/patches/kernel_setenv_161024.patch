@@ -1,0 +1,26 @@
+diff -pruN KERNEL_orig/bin/setenv.py KERNEL/bin/setenv.py
+--- KERNEL_orig/bin/setenv.py
++++ KERNEL/bin/setenv.py
+@@ -242,9 +242,22 @@
+ 
+ # -----------------------------------------------------------------------------
+ 
++def optimize_environ():
++    """Optimize some variables in environment variables."""
++    for key, val in os.environ.items():
++        if key in ['PATH', 'PYTHONPATH', 'LIB']:
++            lst = []
++            for f in val.split(os.pathsep):
++                if os.path.exists(f) and f not in lst:
++                    lst.append(f)
++            os.environ[key] = os.pathsep.join(lst)  
++
++# -----------------------------------------------------------------------------
++
+ def main(silent=False, exeName=None):
+     args, modules_list, modules_root_dir = get_config(silent=silent, exeName=exeName)
+     set_env(args, modules_list, modules_root_dir, silent=silent)
++    optimize_environ()
+     return args
+ 
+ # -----------------------------------------------------------------------------

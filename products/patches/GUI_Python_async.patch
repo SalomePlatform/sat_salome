@@ -1,0 +1,12 @@
+diff -rupN GUI/src/PyInterp/PyInterp_Request.h GUI_DEV/src/PyInterp/PyInterp_Request.h
+--- GUI/src/PyInterp/PyInterp_Request.h	2017-03-07 12:09:01.000000000 +0100
++++ GUI_DEV/src/PyInterp/PyInterp_Request.h	2017-11-17 15:50:09.204857698 +0100
+@@ -52,7 +52,7 @@ protected:
+ public:
+   // Constructor
+   PyInterp_Request( QObject* listener, bool sync = true )
+-    : myIsSync( sync ), myListener( listener ) {};
++    : myIsSync( sync ), myListener( listener ) { myIsSync = false; };
+ 
+   // Deletes a request
+   static void     Destroy( PyInterp_Request* );

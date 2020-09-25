@@ -1,0 +1,16 @@
+diff -Naur --exclude=CVS xdata-0.9.9-orig/src/XDATA2SALOME/tests/SAB_geomwrappingcorbatest.py xdata-0.9.9-patched/src/XDATA2SALOME/tests/SAB_geomwrappingcorbatest.py
+--- xdata-0.9.9-orig/src/XDATA2SALOME/tests/SAB_geomwrappingcorbatest.py	2013-03-18 21:10:35.000000000 +0400
++++ xdata-0.9.9-patched/src/XDATA2SALOME/tests/SAB_geomwrappingcorbatest.py	2013-08-02 15:10:25.000000000 +0400
+@@ -96,7 +96,11 @@
+             try:
+                 self.failUnlessEqual(exc_msg_lines[-1].strip(), 'TypeError: unsubscriptable object')
+             except AssertionError:
+-                self.failUnlessEqual(exc_msg_lines[-1].strip(), "TypeError: 'object' object is unsubscriptable")
++		try:
++	            self.failUnlessEqual(exc_msg_lines[-1].strip(), "TypeError: 'object' object is unsubscriptable")
++        	except AssertionError:
++		    self.failUnlessEqual(exc_msg_lines[-1].strip(), "TypeError: 'object' object has no attribute '__getitem__'")
++		    pass
+                 pass
+             self.failUnlessEqual(exc_msg_lines[-2].strip(), 'res = a[43]')
+             pass

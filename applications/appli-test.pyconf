@@ -1,0 +1,43 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+APPLICATION :
+{
+    name : 'APPLI-TEST'
+    workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
+    base : 'base'
+    tag : 'master'
+    get_method : 'git'
+    environ :
+    {
+        ACCEPT_SALOME_WARNINGS : '1'
+        LC_NUMERIC : 'C'
+    }
+    products :
+    {
+        'Python' : 'native'
+        'PRODUCT_GIT'
+        'PRODUCT_ARCHIVE'
+        'PRODUCT_DIR' : '4.4.2'
+        'PRODUCT_CVS' : 'V6_7_0'
+        'PRODUCT_NATIVE' : 'native'
+        #'PRODUCT_ERROR'
+        #'PRODUCT_UNKNOWN'
+        #'PRODUCT_SVN' : {'tag' : 'master'}
+        'PRODUCT_DEV' : {'tag' : 'master' , 'dev' : 'yes'}
+        'PRODUCT_FIXED' : "/export/home/salome"
+        'NO_DEF' : "native"
+    }
+    grid_to_test : 'SALOME_V7'
+    #profile :
+    #{
+    #    product : 'SALOME_PROFILE'
+    #}
+    dev_products : ['MODULE_ARCHIVE', 'MODULE_CVS']
+    
+    #hook :
+    #{
+    #    config : '/tmp/test_hook_config.py'
+    #}
+}
+

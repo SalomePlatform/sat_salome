@@ -1,0 +1,13 @@
+diff -rupN boost-1.52.0/libs/context/src/fcontext.cpp boost-1.52.0_new/libs/context/src/fcontext.cpp
+--- boost-1.52.0/libs/context/src/fcontext.cpp	2012-09-18 11:06:47.000000000 +0200
++++ boost-1.52.0_new/libs/context/src/fcontext.cpp	2014-06-04 11:23:59.123944000 +0200
+@@ -9,6 +9,9 @@
+ #include <boost/context/fcontext.hpp>
+ 
+ #include <cstddef>
++extern "C" { 
++#include <stdint.h> 
++} 
+ 
+ #ifdef BOOST_HAS_ABI_HEADERS
+ #  include BOOST_ABI_PREFIX

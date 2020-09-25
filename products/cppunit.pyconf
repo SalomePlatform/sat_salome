@@ -1,0 +1,46 @@
+default :
+{
+    name : "cppunit"
+    build_source : "script"
+    compil_script :  $name  + $VARS.scriptExtension
+    get_source : "archive"
+    system_info : 
+    {
+        rpm : ["cppunit"]
+        rpm_dev : ["cppunit-devel"]
+        apt : ["libcppunit"]
+        apt_dev : ["libcppunit-dev"]
+    }
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : []
+    build_depend : ["cmake"]
+    patches : []
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties:
+    {
+      incremental : "yes"
+    }
+}
+
+# NOTE: do not delete this section, it was added on purpose in order to be able to overload it for Windows in the main application.
+version_1_13_2 :
+{
+  patches : []
+}
+
+version_1_13_2_win :
+{
+  patches : ['cppunit-1.13.2_windows.patch']
+  properties:
+  {
+    incremental : "yes"
+    single_install_dir : "yes"
+    compile_time : "yes"
+  }
+}
+

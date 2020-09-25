@@ -1,0 +1,69 @@
+default :
+{
+    name : "scipy"
+    build_source : "script"
+    compil_script : "pip_install" + $VARS.scriptExtension
+    get_source : "archive"
+    patches : []
+    system_info : 
+    {
+        rpm : ["python3-scipy"]
+        rpm_dev : []
+        apt : ["python3-scipy"]
+        apt_dev : []
+    }
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : ['numpy','lapack']
+    build_depend : ["cmake"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+      incremental : "yes"
+      pip : "yes"
+    }
+}
+
+default_win :
+{
+   archive_info : {archive_name : "scipy-" + $APPLICATION.products.scipy + "_windows.tar.gz"}
+}
+
+version_1_3_0 : 
+{
+}
+
+version_1_3_0_win :
+{
+    compil_script : "scipy.bat"
+}
+
+version_0_18_1 :
+{
+    compil_script : "scipy.sh"
+    # OP 29/03/2018 Suppress the dependency to setuptools
+    depend : ['numpy','lapack']
+}
+
+version_0_15_1 :
+{
+    compil_script : "scipy.sh"
+    depend : ['Python','numpy','lapack']
+    patches : [ "scipy-0.14.1.patch" ]
+}
+
+version_0_15_1_win :
+{
+    compil_script : "scipy.bat"
+}
+
+version_0_13_3 :
+{
+    compil_script : "scipy.sh"
+    depend : ['numpy','lapack']
+    patches : [ "scipy-0.13.3.patch" ]
+}

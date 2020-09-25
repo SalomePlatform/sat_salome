@@ -1,0 +1,23 @@
+--- xdata-0.9.11_orig/src/XDATAGUI/xqt.py 2010-09-30 16:27:40.000000000 +0200
++++ xdata-0.9.11/src/XDATAGUI/xqt.py	2015-07-28 14:59:02.551760564 +0200
+@@ -568,9 +568,16 @@
+     # ---------------------
+     
+     if QComboBox.insertItem.__name__ != "__x_insertItem":
+-        def __x_insertItem(self, text, index=-1):
+-            if index == -1:
+-                index = self.count()
++        def __x_insertItem(self, val1, val2=-1):
++            if isinstance(val1, int):
++                index = val1
++                text = val2
++            else:
++                index = val2
++                text = val1
++                if index == -1:
++                    index = self.count()
++                    pass
+                 pass
+             result = QComboBox.insertItem_orig(self, index, text)
+             return result
+

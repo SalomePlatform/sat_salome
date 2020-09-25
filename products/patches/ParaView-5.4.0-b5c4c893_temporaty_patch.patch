@@ -1,0 +1,11 @@
+diff -Naur ParaView-5.4.0-b5c4c893_SRC_orig/CoProcessing/PythonCatalyst/module.cmake ParaView-5.4.0-b5c4c893_SRC_modif/CoProcessing/PythonCatalyst/module.cmake
+--- ParaView-5.4.0-b5c4c893_SRC_orig/CoProcessing/PythonCatalyst/module.cmake	2018-01-10 15:41:20.000000000 +0300
++++ ParaView-5.4.0-b5c4c893_SRC_modif/CoProcessing/PythonCatalyst/module.cmake	2018-01-11 18:52:49.000000000 +0300
+@@ -6,6 +6,7 @@
+     vtkIOImage
+     vtkTestingRendering
+     vtkPVCatalystTestDriver
++  EXCLUDE_FROM_WRAPPING
+   TEST_LABELS
+     PARAVIEW CATALYST
+ )

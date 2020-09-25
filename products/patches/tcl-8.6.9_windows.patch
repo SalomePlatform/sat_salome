@@ -1,0 +1,99 @@
+--- tcl_ref/pkgs/itcl4.1.2/win/rules.vc
++++ tcl/pkgs/itcl4.1.2/win/rules.vc
+@@ -992,7 +992,7 @@
+ # PRJSTUBLIB - output path of the generated project stubs library
+ # RESFILE - output resource file (only if not static build)
+ 
+-SUFX	    = tsgx
++SUFX	    = 
+ 
+ !if $(DEBUG)
+ BUILDDIRTOP = Debug
+--- tcl_ref/pkgs/sqlite3.25.3/win/rules.vc
++++ tcl/pkgs/sqlite3.25.3/win/rules.vc
+@@ -992,7 +992,7 @@
+ # PRJSTUBLIB - output path of the generated project stubs library
+ # RESFILE - output resource file (only if not static build)
+ 
+-SUFX	    = tsgx
++SUFX	    = 
+ 
+ !if $(DEBUG)
+ BUILDDIRTOP = Debug
+--- tcl_ref/pkgs/tdbc1.1.0/win/rules.vc
++++ tcl/pkgs/tdbc1.1.0/win/rules.vc
+@@ -994,7 +994,7 @@
+ # PRJSTUBLIB - output path of the generated project stubs library
+ # RESFILE - output resource file (only if not static build)
+ 
+-SUFX	    = tsgx
++SUFX	    = 
+ 
+ !if $(DEBUG)
+ BUILDDIRTOP = Debug
+--- tcl_ref/pkgs/tdbcmysql1.1.0/win/rules.vc
++++ tcl/pkgs/tdbcmysql1.1.0/win/rules.vc
+@@ -994,7 +994,7 @@
+ # PRJSTUBLIB - output path of the generated project stubs library
+ # RESFILE - output resource file (only if not static build)
+ 
+-SUFX	    = tsgx
++SUFX	    = 
+ 
+ !if $(DEBUG)
+ BUILDDIRTOP = Debug
+--- tcl_ref/pkgs/tdbcodbc1.1.0/win/rules.vc
++++ tcl/pkgs/tdbcodbc1.1.0/win/rules.vc
+@@ -994,7 +994,7 @@
+ # PRJSTUBLIB - output path of the generated project stubs library
+ # RESFILE - output resource file (only if not static build)
+ 
+-SUFX	    = tsgx
++SUFX	    = 
+ 
+ !if $(DEBUG)
+ BUILDDIRTOP = Debug
+--- tcl_ref/pkgs/tdbcpostgres1.1.0/win/rules.vc
++++ tcl/pkgs/tdbcpostgres1.1.0/win/rules.vc
+@@ -994,7 +994,7 @@
+ # PRJSTUBLIB - output path of the generated project stubs library
+ # RESFILE - output resource file (only if not static build)
+ 
+-SUFX	    = tsgx
++SUFX	    = 
+ 
+ !if $(DEBUG)
+ BUILDDIRTOP = Debug
+--- tcl_ref/pkgs/tdbcsqlite3-1.1.0/win/rules.vc
++++ tcl/pkgs/tdbcsqlite3-1.1.0/win/rules.vc
+@@ -994,7 +994,7 @@
+ # PRJSTUBLIB - output path of the generated project stubs library
+ # RESFILE - output resource file (only if not static build)
+ 
+-SUFX	    = tsgx
++SUFX	    = 
+ 
+ !if $(DEBUG)
+ BUILDDIRTOP = Debug
+--- tcl_ref/pkgs/thread2.8.4/win/rules.vc
++++ tcl/pkgs/thread2.8.4/win/rules.vc
+@@ -992,7 +992,7 @@
+ # PRJSTUBLIB - output path of the generated project stubs library
+ # RESFILE - output resource file (only if not static build)
+ 
+-SUFX	    = tsgx
++SUFX	    = 
+ 
+ !if $(DEBUG)
+ BUILDDIRTOP = Debug
+--- tcl_ref/win/rules.vc
++++ tcl/win/rules.vc
+@@ -992,7 +992,7 @@
+ # PRJSTUBLIB - output path of the generated project stubs library
+ # RESFILE - output resource file (only if not static build)
+ 
+-SUFX	    = tsgx
++SUFX	    = 
+ 
+ !if $(DEBUG)
+ BUILDDIRTOP = Debug

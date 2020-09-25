@@ -1,0 +1,15 @@
+diff --git a/bin/orbmodule.py b/bin/orbmodule.py
+old mode 100644
+new mode 100755
+index ddb8762..4b83fee
+--- a/bin/orbmodule.py
++++ b/bin/orbmodule.py
+@@ -69,7 +69,7 @@ class client:
+ 
+       # On lance le Naming Server (doit etre dans le PATH)
+       test = True
+-      if args['wake_up_session']:
++      if args != None and 'wake_up_session' in args and args['wake_up_session']:
+         test = False
+         pass
+       if test:

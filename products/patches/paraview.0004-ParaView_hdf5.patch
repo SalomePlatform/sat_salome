@@ -1,0 +1,14 @@
+diff -Naur ParaView-5.8.0_SRC_orig/VTK/ThirdParty/hdf5/CMakeLists.txt ParaView-5.8.0_SRC_modif/VTK/ThirdParty/hdf5/CMakeLists.txt
+--- ParaView-5.8.0_SRC_orig/VTK/ThirdParty/hdf5/CMakeLists.txt	2020-03-31 15:23:53.279485815 +0300
++++ ParaView-5.8.0_SRC_modif/VTK/ThirdParty/hdf5/CMakeLists.txt	2020-03-31 13:59:17.768118278 +0300
+@@ -10,8 +10,8 @@
+   EXTERNAL
+     PACKAGE       HDF5
+     COMPONENTS    C HL
+-    TARGETS       hdf5::hdf5
+-                  hdf5::hdf5_hl
++    TARGETS       hdf5::hdf5-shared
++                  hdf5::hdf5_hl-shared
+     USE_VARIABLES HDF5_IS_PARALLEL
+     STANDARD_INCLUDE_DIRS)
+ 

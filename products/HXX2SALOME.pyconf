@@ -1,0 +1,24 @@
+default :
+{
+    name : "HXX2SALOME"
+    build_source : "autotools"
+    get_source : "git"
+    git_info:
+    {
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "tools/hxx2salome.git"
+        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "hxx2salome.git"
+    }
+    environ :
+    {
+    }
+    depend : [
+              "qt"
+             ]
+    build_depend : ["cppunit"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        is_SALOME_module : "yes"
+    }
+}

@@ -1,0 +1,23 @@
+diff -pruN YACS-orig/adm/cmake/CMakeLists.txt YACS/adm/cmake/CMakeLists.txt
+--- YACS-orig/adm/cmake/CMakeLists.txt	2014-06-23 14:36:42.695397292 +0200
++++ YACS/adm/cmake/CMakeLists.txt	2014-06-23 14:37:01.907992394 +0200
+@@ -23,8 +23,6 @@
+ 
+ # These files are data, module or lib files
+ SET(_adm_data
+-  FindExpat.cmake
+-  FindSalomeExpat.cmake
+   FindQScintilla.cmake
+   FindSalomeQScintilla.cmake
+   FindSphinx.cmake
+diff -pruN YACS-orig/adm/unix/config_files/CMakeLists.txt YACS/adm/unix/config_files/CMakeLists.txt
+--- YACS-orig/adm/unix/config_files/CMakeLists.txt	2014-06-23 14:36:42.695397292 +0200
++++ YACS/adm/unix/config_files/CMakeLists.txt	2014-06-23 14:36:54.691768877 +0200
+@@ -25,7 +25,6 @@ SET(_m4_data
+   check_boost.m4
+   check_cas.m4
+   check_cppunit.m4
+-  check_expat.m4
+   check_htmlgen.m4
+   check_libxml.m4
+   check_omniorb.m4
