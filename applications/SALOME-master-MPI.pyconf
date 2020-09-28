@@ -48,7 +48,6 @@ APPLICATION :
         gmsh : '4.1.4'
         graphviz : '2.38.0'
         hdf5 : {tag : '1.10.3', hpc : 'yes'}
-        #hdf5 : {tag : '1.10.3', hpc : 'yes', section : 'default_Autotools'}
         homard_bin : '11.12_hdf51103med410'
         idna : '2.7'
         imagesize : '1.0.0'
@@ -63,7 +62,6 @@ APPLICATION :
         medfile : {tag : '4.1.0', hpc : 'yes', section : 'default_Autotools' }
         mesa : '19.0.8'
         MeshGems : {tag : '2.10-4', hpc : 'yes'}
-        #metis : '5.1.0'
         ParMetis : '3.1.1'
         netgen : '5.3.1_with_CAS_7.2'
         nlopt : '2.4.2'
@@ -111,7 +109,7 @@ APPLICATION :
         'SHAPER'
         'SHAPERSTUDY'
         'RESTRICTED'
-        'LIBBATCH' : {tag :'V2_4_3rc2'}
+        'LIBBATCH' : {tag :'V2_4_3'}
         'KERNEL' : {section : 'default_MPI', verbose : 'yes'}
         'MEDCOUPLING' : {section : 'default_MPI', verbose : 'yes'}
         'GUI' : {verbose : 'yes'}
@@ -124,12 +122,12 @@ APPLICATION :
         'HYBRIDPLUGIN'
         'HexoticPLUGIN'
         'GMSHPLUGIN'
-        'HEXABLOCK'
+        'HEXABLOCK' : {tag: 'master', section : "default_MPI", verbose: 'yes'}
         'HEXABLOCKPLUGIN'
         'HOMARD'
-        'FIELDS'
-        'PARAVIS'
-        'JOBMANAGER'
+        'FIELDS' : {tag: 'master', section : "default_MPI", verbose: 'yes'}
+        'PARAVIS' : {tag: 'master', section : "default_MPI", verbose: 'yes'}
+        'JOBMANAGER' : {tag: 'master', section : "default_MPI", verbose: 'yes'}
         'YACS'
         'YACSGEN'
         'DOCUMENTATION'
