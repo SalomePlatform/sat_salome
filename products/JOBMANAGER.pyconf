@@ -43,7 +43,7 @@ default_MPI :
 {
     name : "JOBMANAGER"
     build_source : "cmake"
-    cmake_options : "-DSALOME_USE_MPI=ON -DCMAKE_CXX_COMPILER:STRING=${MPI_ROOT_DIR}/bin/mpic++ DCMAKE_C_COMPILER:STRING=${MPI_ROOT_DIR}/bin/mpicc"
+    cmake_options : "-DSALOME_USE_MPI=ON -DCMAKE_CXX_COMPILER:STRING=${MPI_ROOT_DIR}/bin/mpic++ -DCMAKE_C_COMPILER:STRING=${MPI_ROOT_DIR}/bin/mpicc"
     get_source : "git"
     git_info:
     {
