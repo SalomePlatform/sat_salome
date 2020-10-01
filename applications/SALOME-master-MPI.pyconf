@@ -80,6 +80,7 @@ APPLICATION :
         Pygments : '2.0.2'
         pyparsing : '2.0.3'
         PyQt : '5.9'
+        PyQtChart : '5.9'
         pyreadline : '2.0'
         Python : '3.6.5'
         pytz : '2015.7'
