@@ -18,7 +18,7 @@ APPLICATION :
            CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
            RESTRICTED_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "RESTRICTED"
            SALOME_USE_64BIT_IDS : '1'
-           VTK_SMP_IMPLEMENTATION_TYPE : OpenMP
+           VTK_SMP_IMPLEMENTATION_TYPE : OpenMP # choose among: sequential / OpenMP / TBB switches
         }
         launch : {PYTHONIOENCODING:"UTF_8", SALOME_MODULES_ORDER:"SHAPER:SHAPERSTUDY:GEOM:SMESH"}
         SALOME_trace : "local" # local/file:.../with_logger
@@ -217,7 +217,7 @@ __overwrite__ :
   }
 
   {
-    __condition__ : "VARS.dist in ['CO7']"
+    __condition__ : "VARS.dist in ['CO7'] and APPLICATION.environ.build.VTK_SMP_IMPLEMENTATION_TYPE == 'OpenMP'"
     'PRODUCTS.ParaView.version_5_8_0.patches' : ['paraview.0003-ParaViewClient.patch',
                                                  'paraview.0004-ParaView_hdf5.patch',
                                                  'paraview.0005-ParaView_find_cgns.patch',
@@ -228,6 +228,12 @@ __overwrite__ :
                                                  'pv_coincident.patch'
                                                 ]
   }
+
+  {
+    __condition__ : "VARS.dist in ['CO7'] and APPLICATION.environ.build.VTK_SMP_IMPLEMENTATION_TYPE == 'TBB'"
+    'APPLICATION.products.tbb' : '4.4'
+  }
+
   {
     __condition__ : "VARS.dist in ['CO8']"
     'PRODUCTS.ParaView.version_5_8_0.patches' : ['paraview.0010-ParaViewClient.patch',
