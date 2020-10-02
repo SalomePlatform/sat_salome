@@ -24,3 +24,13 @@ default_win :
     archive_info : {archive_name : "PyQtChart-" + $APPLICATION.products.PyQtChart + "_windows.tar.gz"}
     compil_script : 'pip_install_whl' + $VARS.scriptExtension
 }
+
+version_5_9 :
+{
+    compil_script : 'PyQtChart-5.9' + $VARS.scriptExtension
+}
+
+version_5_9_win :
+{
+    compil_script : 'pip_install_whl' + $VARS.scriptExtension
+}
