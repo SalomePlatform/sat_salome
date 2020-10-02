@@ -1,0 +1,11 @@
+--- ParaView-orig/VTK/Common/Core/vtkSMPSelection.cmake	2020-03-23 22:17:27.000000000 +0100
++++ ParaView/VTK/Common/Core/vtkSMPSelection.cmake	2020-10-02 14:17:04.211733392 +0200
+@@ -44,7 +44,7 @@ elseif (VTK_SMP_IMPLEMENTATION_TYPE STRE
+     vtkSMPThreadLocalImpl.h
+     vtkSMPToolsInternal.h)
+ 
+-  if (OpenMP_CXX_SPEC_DATE AND NOT "${OpenMP_CXX_SPEC_DATE}" LESS "201107")
++  if (OpenMP_CXX_SPEC_DATE AND NOT "${OpenMP_CXX_SPEC_DATE}" LESS "200805")
+     set(vtk_smp_use_default_atomics OFF)
+     list(APPEND vtk_smp_sources
+       "${vtk_smp_implementation_dir}/vtkAtomic.cxx")
