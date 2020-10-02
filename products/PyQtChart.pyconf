@@ -27,8 +27,9 @@ version_5_9 :
 default_win :
 {
     compil_script : 'pip_install_whl' + $VARS.scriptExtension
-    archive_info :
+    properties:
     {
-        archive_name : "PyQtChart-" + $APPLICATION.products.PyQtChart + "_windows.tar.gz"
+      incremental : "yes"
+      pip : "yes"
     }
 }
