@@ -55,7 +55,7 @@ APPLICATION :
         numpy : '1.15.1'
         packaging : '17.1'
         ParaView : '5.8.0'
-        petsc : '3.13.5'
+        petsc : '3.14.0'
         Pygments : '2.0.2'
         pyparsing : '2.0.3'
         PyQt : '5.9'
