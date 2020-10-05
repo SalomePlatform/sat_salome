@@ -73,6 +73,11 @@ default_win :
 
 }
 
+version_V9_5_0:
+{
+  patches: ['gui-SVTK-VTKView.patch'] # backporting bos #19139
+}
+
 version_8_5_0_to_9_4_0 :
 {
     depend : ["KERNEL",

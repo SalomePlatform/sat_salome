@@ -1,0 +1,131 @@
+diff -Naur gui-9.5.0/src/SVTK/SVTK.h gui-master/src/SVTK/SVTK.h
+--- gui-9.5.0/src/SVTK/SVTK.h	2020-10-05 13:35:56.580949966 +0200
++++ gui-master/src/SVTK/SVTK.h	2020-10-05 13:34:10.374221860 +0200
+@@ -25,6 +25,8 @@
+ 
+ #include "VTKViewer.h"
+ 
++#define VGL_WORKAROUND
++
+ #ifdef WIN32
+ #  if defined SVTK_EXPORTS
+ #    define SVTK_EXPORT __declspec(dllexport)
+diff -Naur gui-9.5.0/src/SVTK/SVTK_InteractorStyle.cxx gui-master/src/SVTK/SVTK_InteractorStyle.cxx
+--- gui-9.5.0/src/SVTK/SVTK_InteractorStyle.cxx	2020-10-05 13:35:56.581949973 +0200
++++ gui-master/src/SVTK/SVTK_InteractorStyle.cxx	2020-10-05 13:34:10.378221887 +0200
+@@ -1551,6 +1551,9 @@
+   // check if bounding box was changed
+   if ( GetCurrentRenderer() )
+   {
++#ifdef VGL_WORKAROUND
++    GetCurrentRenderer()->Render();
++#endif
+     double aCurrBBCenter[3];
+     if ( ComputeBBCenter(GetCurrentRenderer(),aCurrBBCenter) )
+     {
+diff -Naur gui-9.5.0/src/SVTK/SVTK_ViewModel.cxx gui-master/src/SVTK/SVTK_ViewModel.cxx
+--- gui-9.5.0/src/SVTK/SVTK_ViewModel.cxx	2020-10-05 13:35:56.582949980 +0200
++++ gui-master/src/SVTK/SVTK_ViewModel.cxx	2020-10-05 13:34:10.384221928 +0200
+@@ -23,6 +23,7 @@
+ #include <QMenu>
+ #include <QColorDialog>
+ #include <QToolBar>
++#include <QTimer>
+ 
+ #include <vtkCamera.h>
+ #include <vtkRenderer.h>
+@@ -186,7 +187,7 @@
+           this,  SLOT(onActorAdded(VTKViewer_Actor*)));
+   connect(aViewWindow, SIGNAL( actorRemoved(VTKViewer_Actor*) ), 
+           this,  SLOT(onActorRemoved(VTKViewer_Actor*)));
+-
++  
+   return aViewWindow;
+ }
+ 
+@@ -528,6 +529,9 @@
+   
+   connect(theViewManager, SIGNAL(mouseRelease(SUIT_ViewWindow*, QMouseEvent*)), 
+           this, SLOT(onMouseRelease(SUIT_ViewWindow*, QMouseEvent*)));
++
++  connect(theViewManager, SIGNAL(viewCreated(SUIT_ViewWindow*)), 
++	  this, SLOT(onViewCreated(SUIT_ViewWindow*)));
+ }
+ 
+ /*!
+@@ -865,3 +869,10 @@
+ {
+   emit actorRemoved((SVTK_ViewWindow*)sender(), theActor);
+ }
++
++void SVTK_Viewer::onViewCreated( SUIT_ViewWindow* view) {
++#ifdef VGL_WORKAROUND
++  if ( SVTK_ViewWindow* svw = dynamic_cast<SVTK_ViewWindow*>( view ) )
++    QTimer::singleShot(500, [svw] () { svw->Repaint(); } );
++#endif
++}
+diff -Naur gui-9.5.0/src/SVTK/SVTK_ViewModel.h gui-master/src/SVTK/SVTK_ViewModel.h
+--- gui-9.5.0/src/SVTK/SVTK_ViewModel.h	2020-10-05 13:35:56.582949980 +0200
++++ gui-master/src/SVTK/SVTK_ViewModel.h	2020-10-05 13:34:10.384221928 +0200
+@@ -220,6 +220,8 @@
+   void onActorAdded(VTKViewer_Actor*);
+   void onActorRemoved(VTKViewer_Actor*);
+ 
++  void onViewCreated( SUIT_ViewWindow* );
++
+ private:
+   void updateToolBars();
+ 
+diff -Naur gui-9.5.0/src/SVTK/SVTK_ViewWindow.cxx gui-master/src/SVTK/SVTK_ViewWindow.cxx
+--- gui-9.5.0/src/SVTK/SVTK_ViewWindow.cxx	2020-10-05 13:35:56.584949994 +0200
++++ gui-master/src/SVTK/SVTK_ViewWindow.cxx	2020-10-05 13:34:10.385221935 +0200
+@@ -34,6 +34,7 @@
+ 
+ #include <QMenu>
+ #include <QToolBar>
++#include <QTimer>
+ #include <QEvent>
+ #include <QFileInfo>
+ #include <QSignalMapper>
+@@ -789,8 +790,16 @@
+   GetInteractor()->update();
+ 
+   SVTK_InteractorStyle* aStyle = (SVTK_InteractorStyle*)getInteractor()->GetInteractorStyle();
+-  if ( aStyle )
++  if ( aStyle ) {
++#ifdef VGL_WORKAROUND
++    if ( aStyle->GetCurrentRenderer() == nullptr ) {
++      if( GetRenderer() ) {
++        aStyle->SetCurrentRenderer(GetRenderer()->GetDevice());
++      }
++    }  
++#endif
+     aStyle->OnTimer();
++  }
+ }
+ 
+ /*!
+@@ -2828,3 +2837,10 @@
+ 
+   blockSignals( blocked );
+ }
++
++void SVTK_ViewWindow::resizeEvent( QResizeEvent* theEvent )
++{
++#ifdef VGL_WORKAROUND
++  Repaint();
++#endif
++}
+diff -Naur gui-9.5.0/src/SVTK/SVTK_ViewWindow.h gui-master/src/SVTK/SVTK_ViewWindow.h
+--- gui-9.5.0/src/SVTK/SVTK_ViewWindow.h	2020-10-05 13:35:56.584949994 +0200
++++ gui-master/src/SVTK/SVTK_ViewWindow.h	2020-10-05 13:34:10.385221935 +0200
+@@ -416,6 +416,9 @@
+   enum AnaglyphFilter { RedCyan, YellowBlue, GreenMagenta };
+ 
+ protected:
++  
++  virtual void resizeEvent( QResizeEvent* );
++  
+   virtual void Initialize(SVTK_View* theView,
+                           SVTK_ViewModelBase* theModel);
+ 
