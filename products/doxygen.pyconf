@@ -14,7 +14,7 @@ default :
     {
        env_script : $name + ".py"
     }
-    depend : ["graphviz", "cmake"]
+    depend : ["graphviz"]
     build_depend : ["cmake"]
     patches : []
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
