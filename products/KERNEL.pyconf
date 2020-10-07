@@ -9,7 +9,6 @@ default :
         repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/kernel.git"
         repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "kernel.git"
     }
-    patches : ['kernel_launcher_job.patch']
     environ :
     {          
     }
