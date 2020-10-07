@@ -15,8 +15,8 @@ def set_env(env, product_dir, version):
     env.set('CoreFlows_PYTHON', 'ON')
     env.set('CoreFlows_DOC', 'ON')
     env.set('CoreFlows_GUI', 'ON')
-    env.set('CoreFlows', os.path.join(install_rep,'bin','Executable','CoreFlowsMainExe'))
-    env.set('CoreFlowsGUI', os.path.join(install_rep,'bin','salome','CoreFlows_Standalone.py'))
+    env.set('CoreFlows', os.path.join(install_rep,'bin','CoreFlowsMainExe'))
+    env.set('CoreFlowsGUI', os.path.join(install_rep,'bin','CoreFlows_Standalone.py'))
     env.set('COREFLOWS_ROOT_DIR', root_module_rep)
 
     root = env.get('CoreFlows_ROOT_DIR')
@@ -24,9 +24,11 @@ def set_env(env, product_dir, version):
     env.prepend('PATH', os.path.join(root, 'include'))
     env.prepend('LD_LIBRARY_PATH', os.path.join(root, 'lib'))
     env.prepend('PYTHONPATH', os.path.join(root, 'lib'))
-    env.prepend('PYTHONPATH', os.path.join(root, 'lib', 'CoreFlows_Python'))
-    env.prepend('PYTHONPATH', os.path.join(root, 'bin', 'CoreFlows_Python'))
-    env.prepend('PYTHONPATH', os.path.join(root, 'lib','python2.7','site-packages','salome'))
+    env.prepend('PYTHONPATH', os.path.join(root, 'lib', 'coreflows'))
+    env.prepend('PYTHONPATH', os.path.join(root, 'bin', 'coreflows'))
+    env.prepend('PYTHONPATH', os.path.join(root, 'lib', 'cdmath'))
+    env.prepend('PYTHONPATH', os.path.join(root, 'bin', 'cdmath'))
+    env.prepend('PYTHONPATH', os.path.join(root, 'bin', 'cdmath','postprocessing'))
  
 def set_nativ_env(env):
     pass

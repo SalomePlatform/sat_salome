@@ -1,0 +1,114 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+APPLICATION :
+{
+    name : 'SOLVERLAB-9.4.0'
+    workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
+    tag : 'V9_4_0'
+    dev : 'no'
+    verbose :'no'
+    debug : 'no'
+    base : 'no'
+    python3 : 'yes'
+    environ :
+    {
+        build : 
+        {
+           CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
+           RESTRICTED_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "RESTRICTED"
+        }
+        launch : {PYTHONIOENCODING:"UTF_8", SALOME_MODULES_ORDER:""}
+        SALOME_trace : "local" # local/file:.../with_logger
+        SALOME_MODULES : ""  # specify the first modules to display in gui
+    }
+    products :
+    {
+        # PREREQUISITES :
+        alabaster : '0.7.6'
+        Babel : '2.6.0'
+        boost : '1.58.0'
+        certifi : '2018.8.24'
+        cgns : '3.3.1'
+        chardet : '3.0.4'
+        click : '6.7'
+        cmake : '3.12.1'
+        cycler : '0.10.0'
+        Cython : '0.25.2'
+        cppunit : '1.13.2'
+        dateutil : '2.4.2'
+        docutils : '0.12'
+        doxygen : '1.8.14'
+        freetype : '2.9.1'
+        gl2ps : '1.4.0_4037312'
+        graphviz : '2.38.0'
+        hdf5 : '1.10.3'
+        idna : '2.7'
+        imagesize : '1.0.0'
+        Jinja2 : '2.7.3'
+        kiwisolver : '1.0.1'
+        lapack : '3.8.0'
+        libxml2 : '2.9.1'
+        markupsafe : '0.23'
+        matplotlib : '2.2.2'
+        medfile : '4.0.0'
+        metis : '5.1.0'
+        numpy : '1.15.1'
+        packaging : '17.1'
+        ParaView : '5.6.0_bfaf7b8'
+        petsc : '3.13.5'
+        Pygments : '2.0.2'
+        pyparsing : '2.0.3'
+        PyQt : '5.9'
+        Python : '3.6.5'
+        pytz : '2015.4'
+        qt : '5.9.1'
+        requests : '2.19.1'
+        scipy : '0.19.1'
+        scotch : '6.0.4'
+        setuptools : '38.4.0'
+        sip : '4.19.3'
+        six : '1.10.0'
+        snowballstemmer : '1.2.1'
+        Sphinx : '1.7.6'
+        sphinxcontrib_websupport : '1.1.0'
+        sphinxintl: '0.9.10'
+        swig : '3.0.12'
+        urllib3 : '1.23'
+
+        # SALOME MODULES :
+        'CONFIGURATION'
+        'MEDCOUPLING'
+        'SOLVERLAB'
+    }
+    profile :
+    {
+        launcher_name : "salome"
+    }
+    virtual_app:
+    {
+        name : "salome"
+        application_name : "APPLI"
+    }
+    test_base : 
+    {
+        name : "SALOME"
+        tag : "SalomeV9"
+    }
+    properties :
+    {
+        mesa_launcher_in_package : "yes"
+        repo_dev : "yes"
+        pip : 'yes'
+        pip_install_dir : 'python'
+        single_install_dir : "no"
+    }
+}
+__overwrite__ :
+[
+  {
+    #
+    __condition__ : "VARS.dist in ['UB20.04']"
+    'PRODUCTS.qt.version_5_9_1.patches' : ['qt-5.9.1-UB20-FD32-socketcanbackend.patch']
+  }
+]
