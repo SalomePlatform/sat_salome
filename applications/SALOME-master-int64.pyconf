@@ -74,6 +74,7 @@ APPLICATION :
         ospray : '1.8.4'
         packaging : '17.1'
         ParaView : '5.8.0'
+        petsc : '3.14.0'
         Pillow : '7.1.1'
         planegcs : '0.18-3cb6890'
         pockets : '0.6.2'
@@ -131,6 +132,7 @@ APPLICATION :
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
+        'SOLVERLAB'
         'DOCUMENTATION'
         'SAMPLES'
         'COMPONENT'
@@ -178,7 +180,7 @@ __overwrite__ :
     'APPLICATION.products.llvm' : '3.9.1-clang'
     'APPLICATION.products.mesa' : '13.0.6'
     'PRODUCTS.embree.default.patches' : ['embree-3.5.2-centos6.patch']
-   }
+  }
 
   {
    # tbb as a mandatory native product since SMESH with tbb, not installed on DB8 (temporary)
