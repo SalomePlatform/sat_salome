@@ -17,6 +17,8 @@ APPLICATION :
         {
            CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
            RESTRICTED_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "RESTRICTED"
+           SALOME_USE_64BIT_IDS : '1'
+           VTK_SMP_IMPLEMENTATION_TYPE : sequential # OpenMP # choose among: sequential / OpenMP / TBB switches
         }
         launch : {PYTHONIOENCODING:"UTF_8", SALOME_MODULES_ORDER:"SHAPER:SHAPERSTUDY:GEOM:SMESH"}
         SALOME_trace : "local" # local/file:.../with_logger
@@ -58,7 +60,7 @@ APPLICATION :
         llvm : '8.0.1-clang'
         markupsafe : '0.23'
         matplotlib : '2.2.2'
-        medfile : '4.1.0'
+        medfile : {section: 'default_Autotools', tag: '4.1.0'}
         mesa : '19.0.8'
         MeshGems : '2.11-5'
         metis : '5.1.0'
@@ -111,7 +113,7 @@ APPLICATION :
         'RESTRICTED'
         'LIBBATCH' : {tag :'V2_4_3'}
         'KERNEL'
-        'MEDCOUPLING'
+        'MEDCOUPLING' : {tag : 'master', section: 'default_int64'} # this will trigger other modules as int64
         'GUI'
         'GEOM'
         'SMESH'
@@ -130,7 +132,7 @@ APPLICATION :
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
-        'SOLVERLAB'
+#        'SOLVERLAB'
         'DOCUMENTATION'
         'SAMPLES'
         'COMPONENT'
@@ -214,6 +216,24 @@ __overwrite__ :
                                                  'paraview.0009-ParaView_volume_mapper.patch',
                                                  'pv_coincident.patch'
                                                 ]
+  }
+
+  {
+    __condition__ : "VARS.dist in ['CO7'] and APPLICATION.environ.build.VTK_SMP_IMPLEMENTATION_TYPE == 'OpenMP'"
+    'PRODUCTS.ParaView.version_5_8_0.patches' : ['paraview.0003-ParaViewClient.patch',
+                                                 'paraview.0004-ParaView_hdf5.patch',
+                                                 'paraview.0005-ParaView_find_cgns.patch',
+                                                 'paraview.0006-ParaView_find_libxml2.patch',
+                                                 'paraview.0007-ParaView_find_freetype.patch',
+                                                 'paraview.0009-ParaView_volume_mapper.patch',
+                                                 'paraview.0011-vtkSMPSelection.patch',
+                                                 'pv_coincident.patch'
+                                                ]
+  }
+
+  {
+    __condition__ : "VARS.dist in ['CO7'] and APPLICATION.environ.build.VTK_SMP_IMPLEMENTATION_TYPE == 'TBB'"
+    'APPLICATION.products.tbb' : '4.4'
   }
 
   {

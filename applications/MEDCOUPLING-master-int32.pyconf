@@ -3,7 +3,7 @@
 
 APPLICATION :
 {
-    name : 'MEDCOUPLING-master-int64'
+    name : 'MEDCOUPLING-master-int32'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
     tag : 'master'
     base : 'no'
@@ -11,15 +11,8 @@ APPLICATION :
     python3 : 'yes'
     environ :
     {
-        build :
-        {
-           CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
-           SALOME_USE_64BIT_IDS : '1'
-        }
-        launch :
-        {
-           PYTHONIOENCODING:"UTF_8"
-        }
+        build : {CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"}
+        launch : {PYTHONIOENCODING:"UTF_8"} 
     }
     products :
     {
@@ -43,7 +36,7 @@ APPLICATION :
         lapack : '3.8.0'
         libxml2 : '2.9.1'
         markupsafe : '0.23'
-        medfile : {section: 'default_Autotools', tag: '4.1.0'}
+        medfile : '4.1.0'
         metis : '5.1.0'
         numpy : '1.15.1'
         pockets : '0.6.2'
@@ -67,7 +60,7 @@ APPLICATION :
 
         # SALOME MODULES :
         'CONFIGURATION'
-        'MEDCOUPLING' : {tag : 'master', section: 'default_int64'}
+        'MEDCOUPLING'
     }
     test_base : 
     {
@@ -82,3 +75,10 @@ APPLICATION :
         single_install_dir : "no"
     }
 }
+__overwrite__ :
+[
+  {
+    __condition__ : "VARS.dist in ['FD32']"
+    'APPLICATION.products.scipy' : '1.5.2' # gcc https://github.com/scipy/scipy/issues/11611 - either patch numpy to include -fallow-argument-mismatch or move to that version
+  }
+]
