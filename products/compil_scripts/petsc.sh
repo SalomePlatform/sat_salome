@@ -29,7 +29,8 @@ then
     exit 2
 fi
 
-MAKE_OPTIONS=$MAKE_OPTIONS" PETSC_ARCH=arch-linux-c-debug"
+# CentOS 6 automatically set PETSC_ARCH to arch-linux2-c-debug : remove arch specification
+# MAKE_OPTIONS=$MAKE_OPTIONS" PETSC_ARCH=arch-linux-c-debug"
 
 echo
 echo "*** make install"
