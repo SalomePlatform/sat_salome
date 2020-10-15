@@ -1,0 +1,29 @@
+diff -Naur --exclude=CVS --exclude=.git --exclude=.hg cmake-3.12.1.orig/Modules/CheckCXXCompilerFlag.cmake cmake-3.12.1.new/Modules/CheckCXXCompilerFlag.cmake
+--- cmake-3.12.1.orig/Modules/CheckCXXCompilerFlag.cmake	2018-08-09 15:14:07.000000000 +0300
++++ cmake-3.12.1.new/Modules/CheckCXXCompilerFlag.cmake	2020-08-03 14:51:05.000000000 +0300
+@@ -43,8 +43,10 @@
+    # Normalize locale during test compilation.
+    set(_CheckCXXCompilerFlag_LOCALE_VARS LC_ALL LC_MESSAGES LANG)
+    foreach(v ${_CheckCXXCompilerFlag_LOCALE_VARS})
+-     set(_CheckCXXCompilerFlag_SAVED_${v} "$ENV{${v}}")
+-     set(ENV{${v}} C)
++     if("$ENV{${v}}")
++       set(_CheckCXXCompilerFlag_SAVED_${v} "$ENV{${v}}")
++       set(ENV{${v}} C)
++     endif()
+    endforeach()
+    CHECK_COMPILER_FLAG_COMMON_PATTERNS(_CheckCXXCompilerFlag_COMMON_PATTERNS)
+    CHECK_CXX_SOURCE_COMPILES("int main() { return 0; }" ${_RESULT}
+@@ -53,8 +55,10 @@
+      ${_CheckCXXCompilerFlag_COMMON_PATTERNS}
+      )
+    foreach(v ${_CheckCXXCompilerFlag_LOCALE_VARS})
+-     set(ENV{${v}} ${_CheckCXXCompilerFlag_SAVED_${v}})
+-     unset(_CheckCXXCompilerFlag_SAVED_${v})
++     if("${_CheckCXXCompilerFlag_SAVED_${v}}")
++       set(ENV{${v}} ${_CheckCXXCompilerFlag_SAVED_${v}})
++       unset(_CheckCXXCompilerFlag_SAVED_${v})
++     endif()
+    endforeach()
+    unset(_CheckCXXCompilerFlag_LOCALE_VARS)
+    unset(_CheckCXXCompilerFlag_COMMON_PATTERNS)

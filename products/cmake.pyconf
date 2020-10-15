@@ -4,6 +4,7 @@ default :
     build_source : "script"
     compil_script : $name  + $VARS.scriptExtension
     get_source : "archive"
+    patches: []
     system_info : 
     {
         rpm : []
@@ -24,4 +25,14 @@ default :
       incremental : "yes"
       compile_time : "yes"
     }
+}
+
+version_3_12_1:
+{
+  patches : ['cmake-3.12.1.patch'] # spns #19085
+}
+
+version_3_12_1_win:
+{
+  patches : []
 }
