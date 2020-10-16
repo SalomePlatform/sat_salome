@@ -45,10 +45,9 @@ def set_paraview_env(env, version):
         paralib = os.path.join(root, 'lib', 'paraview-' + version)
         env.prepend('PATH', paralib)
         env.prepend('PV_PLUGIN_PATH', paralib)
-        env.prepend('PYTHONPATH', os.path.join(root,'bin', 'Lib', 'site-packages'))
-        env.prepend('PYTHONPATH', os.path.join(root,'bin', 'Lib', 'site-packages'))
         env.prepend('PYTHONPATH', os.path.join(root,'bin', 'Lib', 'site-packages', 'paraview'))
         env.prepend('PYTHONPATH', os.path.join(root,'bin', 'Lib', 'site-packages', 'vtk'))
+        env.prepend('PYTHONPATH', os.path.join(root,'bin', 'Lib', 'site-packages'))
     else:
         paralib = os.path.join(root, lib_dir, 'paraview-' + version)
         env.prepend('PV_PLUGIN_PATH', paralib)

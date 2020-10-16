@@ -12,9 +12,16 @@ APPLICATION :
     python3 : 'yes'
     environ :
     {
-        build : {CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"}
-        launch : {PYTHONIOENCODING:"UTF_8"}
-        SALOME_HAS_GLOBAL_ENV: "1"
+        build : 
+        {
+          CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
+          SALOME_HAS_GLOBAL_ENV: "1"
+          SALOME_USE_64BIT_IDS : '1'
+        }
+        launch :
+        {
+          PYTHONIOENCODING:"UTF_8"
+        }
     }
     products :
     {
@@ -50,6 +57,7 @@ APPLICATION :
         pockets : '0.7.2'
         Pygments : '2.4.2'
         pyparsing : '2.4.0'
+        pyreadline : '2.1'
         Python : '3.6.5'
         pytz : '2019.1'
         requests : '2.22.0'

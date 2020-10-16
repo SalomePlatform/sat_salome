@@ -60,7 +60,8 @@ default_win :
               "setuptools",
               "Pygments",
               "pytz",
-              "LIBBATCH"
+              "LIBBATCH",
+              "graphviz"
               ]
     build_depend : ["cmake", "swig", "doxygen", "cppunit"]
 }
@@ -143,6 +144,7 @@ ALAMOS_SALOME_9_win :
               "omniORB",
               "omniORBpy",
               "docutils",
+              "graphviz",
               "libxml2",
               "Sphinx",
               "sphinxintl",
