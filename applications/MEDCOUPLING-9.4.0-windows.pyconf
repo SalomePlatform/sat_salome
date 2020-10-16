@@ -13,9 +13,15 @@ APPLICATION :
     python3 : 'yes'
     environ :
     {
-        build : {CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"}
-        launch : {PYTHONIOENCODING:"UTF_8"}
-        SALOME_HAS_GLOBAL_ENV: "1"
+        build :
+        {
+            CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
+            SALOME_HAS_GLOBAL_ENV: "1"
+        }
+        launch :
+        {
+          PYTHONIOENCODING:"UTF_8"
+        }
     }
     products :
     {
@@ -45,15 +51,17 @@ APPLICATION :
         markupsafe : '1.1.1'
         medfile : '4.0.0'
         metis : '5.1.0'
+        msvc : '2017'
         numpy : '1.16.4'
         packaging : '19.0'
         pockets : '0.7.2'
         Pygments : '2.4.2'
         pyparsing : '2.4.0'
+        pyreadline : '2.1'
         Python : '3.6.5'
         pytz : '2019.1'
         requests : '2.22.0'
-        #scipy : '0.19.1'
+        scipy : '1.4.1'
         setuptools : '41.0.1'
         six : '1.12.0'
         snowballstemmer : '1.9.0'
