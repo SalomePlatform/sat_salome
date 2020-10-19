@@ -153,8 +153,8 @@ APPLICATION :
         'CALCULATOR'
         'HELLO'
         'PYHELLO'
-        'EFICAS'
-        'EFICAS_TOOLS'
+        'EFICAS' : {tag : 'V9_6_0b1'}
+        'EFICAS_TOOLS' : {tag : 'V9_6_0b1'}
         'ADAO'
         'CEATESTBASE' : {tag: 'SalomeV9'}
     }
