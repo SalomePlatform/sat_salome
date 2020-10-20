@@ -34,6 +34,7 @@ version_2019_U8_win :
     patches : ['tbb-2019_U8_windows10.patch']
     depend : ['Python']
     opt_depend : ['ispc']
+    build_depend : ['swig']
     properties :
     {
       incremental : "yes"

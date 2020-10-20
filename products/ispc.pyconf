@@ -29,7 +29,8 @@ default_win :
       incremental : "yes"
       single_install_dir : "yes"
     }
-    depend : ['Python', 'llvm']
+    depend : ['Python']
+    build_depend : ["cmake", "llvm"]
 }
 
 version_1_9_2 :
