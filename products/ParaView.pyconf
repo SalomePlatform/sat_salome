@@ -73,14 +73,13 @@ version_5_8_0_win :
 version_5_8_0_MPI :
 {
     archive_info : {archive_name : "ParaView-5.8.0-lata.tar.gz"}
-    # two other LATA patches already included in archive
     patches : ['paraview.0003-ParaViewClient.patch',
                'paraview.0004-ParaView_hdf5.patch',
                'paraview.0005-ParaView_find_cgns.patch',
                'paraview.0006-ParaView_find_libxml2.patch',
                'paraview.0007-ParaView_find_freetype.patch',
                'paraview.0009-ParaView_volume_mapper.patch',
-               'paraview.0010-VTKM_MPI.patch',
+               'paraview.0012-VTKM_MPI.patch',
                'pv_coincident.patch'
               ]
 }
