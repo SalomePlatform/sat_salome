@@ -140,8 +140,8 @@ APPLICATION :
         'CALCULATOR'
         'HELLO'
         'PYHELLO'
-        'EFICAS' : {tag: 'V9_6_0b1'}
-        'EFICAS_TOOLS' : {tag : 'V9_6_0b1'}
+        'EFICAS' : {tag: 'master'}
+        'EFICAS_TOOLS' : {tag : 'master'}
         'PY2CPP' : {tag: 'v2.0'}
         'ADAO'
         'ADAO_INTERFACE'
@@ -167,7 +167,7 @@ APPLICATION :
         repo_dev : "yes"
         pip : 'yes'
         pip_install_dir : 'python'
-        single_install_dir : "yes"
+        single_install_dir : "no"
     }
 }
 __overwrite__ :

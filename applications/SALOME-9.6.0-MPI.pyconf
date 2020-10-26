@@ -131,6 +131,7 @@ APPLICATION :
         'JOBMANAGER' : {section : "default_MPI", verbose: 'yes'}
         'YACS'
         'YACSGEN'
+        'SOLVERLAB'
         'DOCUMENTATION'
         'SAMPLES'
         'COMPONENT'
@@ -138,8 +139,8 @@ APPLICATION :
         'CALCULATOR'
         'HELLO'
         'PYHELLO'
-        'EFICAS'
-        'EFICAS_TOOLS'
+        'EFICAS' : {tag: 'master'}
+        'EFICAS_TOOLS' : {tag : 'master'}
         'PY2CPP' : {tag: 'v2.0'}
         'ADAO'
         'ADAO_INTERFACE'
@@ -178,7 +179,7 @@ __overwrite__ :
     'APPLICATION.products.llvm' : '3.9.1-clang'
     'APPLICATION.products.mesa' : '13.0.6'
     'PRODUCTS.embree.default.patches' : ['embree-3.5.2-centos6.patch']
-   }
+  }
 
   {
    # tbb as a mandatory native product since SMESH with tbb, not installed on DB8 (temporary)
@@ -187,9 +188,44 @@ __overwrite__ :
   }
 
   {
-     #
-     __condition__ : "VARS.dist in ['FD26']"
-     'APPLICATION.products.tbb'    : '2017-7'
-     'APPLICATION.products.embree' : '3.5.2'
+    #
+    __condition__ : "VARS.dist in ['FD26']"
+    'APPLICATION.products.tbb'    : '2017-7'
+    'APPLICATION.products.embree' : '3.5.2'
+  }
+
+  {
+    #
+    __condition__ : "VARS.dist in ['UB20.04']"
+    'PRODUCTS.qt.version_5_9_1.patches' : ['qt-5.9.1-UB20-FD32-socketcanbackend.patch']
+  }
+
+  {
+    __condition__ : "VARS.dist in ['FD32']"
+    'APPLICATION.products.scipy' : '1.5.2' # gcc https://github.com/scipy/scipy/issues/11611 - either patch numpy to include -fallow-argument-mismatch or move to that version
+    # see https://bugs.gentoo.org/708730
+    'PRODUCTS.llvm.version_8_0_1_clang.patches' : ['llvm-8.0.1-clang-FD32.patch']
+    'PRODUCTS.qt.version_5_9_1.patches' : ['qt-5.9.1-UB20-FD32-socketcanbackend.patch', 'qt-5.9.1-mapbox-FD32.patch']
+    'PRODUCTS.mesa.version_19_0_8.patches' : ['mesa-19.0.8-debug_symbol.patch']
+    'PRODUCTS.ParaView.version_5_8_0.patches' : ['paraview.0010-ParaViewClient.patch',
+                                                 'paraview.0004-ParaView_hdf5.patch',
+                                                 'paraview.0005-ParaView_find_cgns.patch',
+                                                 'paraview.0006-ParaView_find_libxml2.patch',
+                                                 'paraview.0007-ParaView_find_freetype.patch',
+                                                 'paraview.0009-ParaView_volume_mapper.patch',
+                                                 'pv_coincident.patch'
+                                                ]
+  }
+
+  {
+    __condition__ : "VARS.dist in ['CO8']"
+    'PRODUCTS.ParaView.version_5_8_0.patches' : ['paraview.0010-ParaViewClient.patch',
+                                                 'paraview.0004-ParaView_hdf5.patch',
+                                                 'paraview.0005-ParaView_find_cgns.patch',
+                                                 'paraview.0006-ParaView_find_libxml2.patch',
+                                                 'paraview.0007-ParaView_find_freetype.patch',
+                                                 'paraview.0009-ParaView_volume_mapper.patch',
+                                                 'pv_coincident.patch'
+                                                ]
   }
 ]
