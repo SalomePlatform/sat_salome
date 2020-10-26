@@ -6,10 +6,10 @@ default :
     get_source : "archive"
     system_info :
     {
-       rpm : ["llvm-toolset"]
-       rpm_dev : []
-       apt : []
-       apt_dev : []
+       rpm : []
+       rpm_dev : ["llvm-devel", "clang-devel"]
+       apt : ["clang"]
+       apt_dev : ["llvm-dev"]
     }
     environ :
     {

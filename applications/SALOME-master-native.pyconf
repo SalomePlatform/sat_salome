@@ -27,36 +27,26 @@ APPLICATION :
         # PREREQUISITES :
         alabaster : 'native'
         Babel : 'native'
-        # Previous master version : '1.58.0'
         boost : 'native'
-        CAS : 'V7_4_0p1'
+        CAS : 'CR740-SALOME-PATCH'
         certifi : 'native'
-        # Previous master version : '3.3.1'
         cgns : 'native'
         chardet : 'native'
         click : 'native'
-        # Previous master version : '3.12.1'
         cmake : 'native'
-        # Previous master version : '1.13.2'
         cppunit : 'native'
         cycler : 'native'
         Cython : 'native'
         dateutil : 'native'
         docutils : 'native'
-        # Previous master version : '1.8.14'
         doxygen : 'native'
-        # Previous master version : '3.3.4'
         eigen : 'native'
         embree : '3.3.0'
-        # Previous master version : '3.16.0'
         freeimage : 'native'
-        # Previous master version : '2.9.1'
         freetype : 'native'
-        # Previous master version : '1.4.0_4037312'
         gl2ps : 'native'
         # 'native' too difficult here : need python-pip package (gmsh-sdk) besides system packages
         gmsh : '4.1.4'
-        # Previous master version : '2.38.0'
         graphviz : 'native'
         hdf5 : '1.10.3'
         homard_bin : '11.12_hdf51103med410'
@@ -66,26 +56,20 @@ APPLICATION :
         ispc : '1.9.2'
         Jinja2 : 'native'
         kiwisolver : 'native'
-        # Previous master version : '3.8.0'
         lapack : 'native'
-        # Previous master version : '2.9.1'
         libxml2 : 'native'
-        # 'native' is conflicting : version 7 which needs a higher ispc version than above
         llvm : 'native'
         markupsafe : 'native'
         matplotlib : 'native'
-        medfile : '4.1.0'
-        # Previous master version : '13.0.6'
+        medfile : {section: 'default_Autotools', tag: '4.1.0'}
         mesa : 'native'
         MeshGems : '2.11-5'
-        # Previous master version : '5.1.0'
         metis : 'native'
         netgen : '5.3.1_with_CAS_7.2'
         nlopt : '2.4.2'
         numpy : 'native'
         omniORB : '4.2.2'
         omniORBpy : '4.2.2'
-        # Previous master version : '3.2.0'
         opencv : 'native'
         openssl : 'native'
         ospray : '1.8.4'
@@ -102,10 +86,9 @@ APPLICATION :
         Python : 'native'
         pytz : 'native'
         qt : 'native'
-        qwt : '6.1.2'
+        qwt : 'native'
         requests : 'native'
         scipy : 'native'
-        # Previous master version : '6.0.4' (too old for native metis)
         scotch : 'native'
         setuptools : 'native'
         sip : 'native'
@@ -116,11 +99,8 @@ APPLICATION :
         sphinxcontrib_websupport : 'native'
         sphinxintl: 'native'
         sphinx_rtd_theme : 'native'
-        # Previous master version : '3.0.12'
         swig : 'native'
-        # Previous master version : '4.4'
         tbb : 'native'
-        # 'native' isn't compliant with netgen5 on Debian
         tcl : 'native'
         tk : 'native'
         urllib3 : 'native'
@@ -131,9 +111,9 @@ APPLICATION :
         'SHAPER'
         'SHAPERSTUDY'
         'RESTRICTED'
-        'LIBBATCH' : {tag :'V2_4_3'}
+        'LIBBATCH' : {tag :'V2_4_4rc1'}
         'KERNEL'
-        'MEDCOUPLING'
+        'MEDCOUPLING' : {section: 'default_int64'}
         'GUI'
         'GEOM'
         'SMESH'
@@ -192,15 +172,9 @@ APPLICATION :
 __overwrite__ :
 [
    {
-      #
-      __condition__ : "VARS.dist in ['DB10']"
-      'PRODUCTS.embree.default.depend' : ['ispc']
-   }
-
-   {
-      # as agreed, we don't build SALOME with OSpray support.
-      __condition__ : "VARS.dist in ['FD30']"
-      'APPLICATION.rm_products' : ['embree', 'ispc', 'ospray']
+      # Overwrite dedicated to older distributions for a further native use
+      # (Some system packages are missing for now on CentOS 8)
+      __condition__ : "VARS.dist in ['FD32', 'DB10']"
       'APPLICATION.products.omniORB' : 'native'
       'APPLICATION.products.omniORBpy' : 'native'
    }
