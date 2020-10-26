@@ -43,6 +43,7 @@ default :
               "tbb"
              ]
     build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+    opt_depend : []
     patches : []
     check_install : ["share/doc/salome/gui/SMESH/yams/index.html"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
@@ -88,6 +89,38 @@ default_win :
               "sphinxcontrib_napoleon",
               "tbb"
             ]
+}
+
+default_MPI :
+{
+    depend : ["KERNEL",
+              "GUI",
+              "GEOM",
+              "MEDCOUPLING",
+              "Python",
+              "qt",
+              "PyQt",
+              "boost",
+              "CAS",
+              "hdf5",
+              "medfile",
+              "qwt",
+              "ParaView",
+              "libxml2",
+              "omniORB",
+              "docutils",
+              "Sphinx",
+              "Jinja2",
+              "setuptools",
+              "Pygments",
+              "cgns",
+              "six",
+              "pytz",
+              "sphinxintl",
+              "sphinxcontrib_napoleon",
+              "tbb",
+	      "openmpi"
+             ]
 }
 
 # Starting from SALOME 9.4.0, we use tbb as product and build SMESH using it to accelerate its performances

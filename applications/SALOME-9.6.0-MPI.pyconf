@@ -61,7 +61,7 @@ APPLICATION :
         matplotlib : '2.2.2'
         medfile : {tag : '4.1.0', hpc : 'yes', section : 'default_Autotools' }
         mesa : '19.0.8'
-        MeshGems : {tag : '2.10-4', hpc : 'yes'}
+        MeshGems : {tag : '2.11-5', hpc : 'yes'}
         ParMetis : '3.1.1'
         netgen : '5.3.1_with_CAS_7.2'
         nlopt : '2.4.2'
@@ -165,7 +165,7 @@ APPLICATION :
         repo_dev : "yes"
         pip : 'yes'
         pip_install_dir : 'python'
-        single_install_dir : "yes"
+        single_install_dir : "no"
     }
 }
 __overwrite__ :
@@ -187,9 +187,9 @@ __overwrite__ :
   }
 
   {
-    #
-    __condition__ : "VARS.dist in ['FD26']"
-    'APPLICATION.products.tbb'    : '2017-7'
-    'APPLICATION.products.embree' : '3.5.2'
-   }
+     #
+     __condition__ : "VARS.dist in ['FD26']"
+     'APPLICATION.products.tbb'    : '2017-7'
+     'APPLICATION.products.embree' : '3.5.2'
+  }
 ]

@@ -30,17 +30,17 @@ default :
               "CONFIGURATION"
               ]
     build_depend : ["cmake", "swig", "doxygen", "graphviz", "cppunit"]
+    opt_depend : []
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     properties:
     {
+        incremental : "yes"
         is_SALOME_module : "yes"
         has_unit_tests
         fhs : "yes"
-        incremental : "yes"
     }
 }
-
 
 default_win :
 {
@@ -63,6 +63,32 @@ default_win :
               "CONFIGURATION"
              ]
     build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+}
+
+default_MPI :
+{
+    cmake_options : "-DMEDCOUPLING_ENABLE_PYTHON=ON -DMEDCOUPLING_ENABLE_PARTITIONER=OFF -DMEDCOUPLING_ENABLE_RENUMBER=ON -DMEDCOUPLING_PARTITIONER_METIS=OFF -DMEDCOUPLING_PARTITIONER_SCOTCH=ON -DMEDCOUPLING_PARTITIONER_PARMETIS=ON -DMEDCOUPLING_MICROMED=OFF -DMEDCOUPLING_USE_MPI=ON -DSALOME_USE_MPI=ON -DMEDCOUPLING_USE_64BIT_IDS=ON"
+    depend : [
+              "boost",
+              "cppunit",
+              "Python",
+              "hdf5",
+              "medfile",
+              "scotch",
+              "ParMetis",
+              "docutils",
+              "libxml2",
+              "Sphinx",
+              "sphinxintl",
+              "setuptools",
+              "six",
+              "pytz",
+              "numpy",
+              "scipy",
+              "lapack",
+              "CONFIGURATION",
+              "openmpi"
+              ]
 }
 
 default_int64:
@@ -95,33 +121,6 @@ version_7_8_2_to_8_4_0 :
               "numpy",
               "scipy",
               "lapack"
-              "CONFIGURATION"
-              ]
-}
-
-# Default section for MPI version, for SALOME-8.5.0-MPI and later
-default_MPI :
-{
-    cmake_options : "-DMEDCOUPLING_ENABLE_PYTHON=ON -DMEDCOUPLING_ENABLE_PARTITIONER=OFF -DMEDCOUPLING_ENABLE_RENUMBER=ON -DMEDCOUPLING_PARTITIONER_METIS=OFF -DMEDCOUPLING_PARTITIONER_SCOTCH=ON -DMEDCOUPLING_PARTITIONER_PARMETIS=ON -DMEDCOUPLING_MICROMED=OFF -DMEDCOUPLING_USE_MPI=ON -DSALOME_USE_MPI=ON -DMEDCOUPLING_USE_64BIT_IDS=ON -DCMAKE_CXX_COMPILER:STRING=${MPI_ROOT_DIR}/bin/mpic++ -DCMAKE_C_COMPILER:STRING=${MPI_ROOT_DIR}/bin/mpicc"
-    depend : [
-              "boost",
-              "Python",
-              "hdf5",
-              "medfile",
-              "scotch",
-              "docutils",
-              "libxml2",
-              "ParMetis",
-              "Sphinx",
-              "sphinxintl",
-              "setuptools",
-              "six",
-              "pytz",
-              "numpy",
-              "scipy",
-              "lapack",
-              "openmpi",
-              "cppunit",
               "CONFIGURATION"
               ]
 }

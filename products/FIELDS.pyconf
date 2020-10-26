@@ -17,13 +17,12 @@ default :
       "KERNEL", 
       "MEDCOUPLING"
     ]
-    opt_depend : [
-      "Pillow"
-    ]
+    opt_depend : ["Pillow"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     properties:
     {
+        incremental : "yes"
         has_salome_gui : "yes"
         is_SALOME_module : "yes"
         has_unit_tests
@@ -32,31 +31,11 @@ default :
 
 default_MPI :
 {
-    name : "FIELDS"
-    build_source : "cmake"
-    cmake_options : "-DSALOME_USE_MPI=ON -DMEDCOUPLING_USE_64BIT_IDS=ON -DCMAKE_CXX_COMPILER:STRING=${MPI_ROOT_DIR}/bin/mpic++ -DCMAKE_C_COMPILER:STRING=${MPI_ROOT_DIR}/bin/mpicc"
-    get_source : "git"
-    git_info:
-    {
-        repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/med.git"
-        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "med.git"
-    }
-    environ :
-    {
-        SalomeAppConfig_ : $install_dir + $VARS.sep + "share" + $VARS.sep + "salome" + $VARS.sep + "resources" + $VARS.sep + "fields"
-    }
+    cmake_options : "-DSALOME_USE_MPI=ON -DMEDCOUPLING_USE_64BIT_IDS=ON"
     depend : [
       "GUI", 
       "KERNEL", 
       "MEDCOUPLING",
       "openmpi"
-             ]
-    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
-    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
-    properties:
-    {
-        has_salome_gui : "yes"
-        is_SALOME_module : "yes"
-        has_unit_tests
-    }
+    ]
 }
