@@ -29,4 +29,25 @@ default :
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     nb_proc : 1
+    properties:
+    {
+        is_SALOME_module : "yes"
+        incremental : "yes"
+    }
+}
+
+default_MPI :
+{
+    depend :
+    [
+        'hdf5',
+        'matplotlib',
+        'medfile',
+        'numpy',
+        'ParaView',
+        'petsc',
+        'Python',
+        'MEDCOUPLING',
+        'openmpi'
+    ]
 }
