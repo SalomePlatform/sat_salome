@@ -10,7 +10,7 @@ cp -r $SOURCE_DIR/* .
 
 echo
 echo "*** configure"
-./configure --prefix=$PRODUCT_INSTALL --with-mpi=0 --download-f2cblaslapack=https://www.mcs.anl.gov/petsc/mirror/externalpackages/f2cblaslapack-3.4.2.q4.tar.gz --download-slepc=https://slepc.upv.es/download/distrib/slepc-3.14.0.tar.gz
+./configure --prefix=$PRODUCT_INSTALL --with-mpi=0 --download-f2cblaslapack=ext/f2cblaslapack-3.4.2.q4 --download-slepc=ext/slepc-3.14.0
 
 if [ $? -ne 0 ]
 then
