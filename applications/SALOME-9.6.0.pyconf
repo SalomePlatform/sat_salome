@@ -111,7 +111,7 @@ APPLICATION :
         'SHAPER'
         'SHAPERSTUDY'
         'RESTRICTED'
-        'LIBBATCH' : {tag : 'V2_4_4rc1'}
+        'LIBBATCH' : {tag : 'V2_4_4rc2'}
         'KERNEL'
         'MEDCOUPLING' : {section: 'default_int64'} # this will trigger other modules as int64
         'GUI'
