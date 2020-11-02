@@ -90,7 +90,7 @@ fi
 
 echo
 echo "*** compile"
-make
+make -j4
 if [ $? -ne 0 ]
 then
     echo "error on make"

@@ -19,7 +19,7 @@ fi
 
 echo "*** bjam install"
 
-./bjam install
+./bjam -j4 install
 
 if [ $? -ne 0 ]
 then

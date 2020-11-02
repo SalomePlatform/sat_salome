@@ -132,7 +132,7 @@ APPLICATION :
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
-        'SOLVERLAB'
+        'SOLVERLAB': {tag : 'master'}
         'DOCUMENTATION'
         'SAMPLES'
         'COMPONENT'
@@ -144,7 +144,7 @@ APPLICATION :
         'EFICAS_TOOLS' : {tag : 'master'}
         'PY2CPP' : {tag: 'v2.0'}
         'ADAO'
-        'ADAO_INTERFACE'
+        'ADAO_INTERFACE': {tag : 'master'}
         'CEATESTBASE' : {tag: 'SalomeV9'}
     }
     profile :
