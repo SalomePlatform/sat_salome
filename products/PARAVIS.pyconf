@@ -200,6 +200,8 @@ version_alamos :
        "KERNEL",
        "GUI",
        "MEDCOUPLING",
+       "SMESH",
+       "FIELDS",
        "Python",
        "qt",
        "boost",
