@@ -6,7 +6,7 @@ APPLICATION :
     name : 'SALOME-9.6.0'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name
     cmake_generator : 'Visual Studio 15 2017 Win64'
-    tag : 'V9_6_BR'
+    tag : 'V9_6_0'
     dev : 'no'
     verbose :'no'
     debug : 'no'
@@ -34,7 +34,7 @@ APPLICATION :
         alabaster : '0.7.6'
         Babel : '2.7.0'
         boost : '1.67.0'
-        CAS : {section: 'version_CR740_SALOME_PATCH_win', tag: 'CR740-SALOME-PATCH'}
+        CAS : 'V7_4_0p2'
         certifi : '2019.6.16'
         cgns : '3.3.1'
         chardet : '3.0.4'
@@ -127,7 +127,7 @@ APPLICATION :
         'SHAPER'
         'SHAPERSTUDY'
         'RESTRICTED'
-        'LIBBATCH' : {tag :'V2_4_4rc2'}
+        'LIBBATCH' : {tag :'V2_4_4'}
         'KERNEL'
         'MEDCOUPLING'
         'GUI'
@@ -154,8 +154,8 @@ APPLICATION :
         'CALCULATOR'
         'HELLO'
         'PYHELLO'
-        'EFICAS' : {tag : 'master'}
-        'EFICAS_TOOLS' : {tag : 'master'}
+        'EFICAS'
+        'EFICAS_TOOLS'
         'ADAO'
         'CEATESTBASE' : {tag: 'SalomeV9'}
     }

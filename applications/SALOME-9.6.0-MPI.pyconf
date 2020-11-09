@@ -5,7 +5,7 @@ APPLICATION :
 {
     name : 'SALOME-9.6.0-MPI'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag : 'V9_6_BR'
+    tag : 'V9_6_0'
     dev : 'no'
     verbose :'no'
     debug : 'no'
@@ -29,7 +29,7 @@ APPLICATION :
         alabaster : '0.7.6'
         Babel : '2.7.0'
         boost : '1.58.0'
-        CAS : 'CR740-SALOME-PATCH'
+        CAS : 'V7_4_0p2'
         certifi : '2018.8.24'
         cgns : {tag : '3.3.1', hpc : 'yes'}
         chardet : '3.0.4'
@@ -111,7 +111,7 @@ APPLICATION :
         'SHAPER'
         'SHAPERSTUDY'
         'RESTRICTED'
-        'LIBBATCH' : {tag :'V2_4_4rc1'}
+        'LIBBATCH' : {tag :'V2_4_4'}
         'KERNEL' : {section : 'default_MPI', verbose : 'yes'}
         'MEDCOUPLING' : {section : 'default_MPI', verbose : 'yes'}
         'GUI' : {verbose : 'yes'}
@@ -140,8 +140,8 @@ APPLICATION :
         'CALCULATOR'
         'HELLO'
         'PYHELLO'
-        'EFICAS' : {tag: 'master'}
-        'EFICAS_TOOLS' : {tag : 'master'}
+        'EFICAS'
+        'EFICAS_TOOLS'
         'PY2CPP' : {tag: 'v2.0'}
         'ADAO'
         'ADAO_INTERFACE'
