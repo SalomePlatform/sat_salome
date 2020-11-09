@@ -145,7 +145,7 @@ APPLICATION :
         'PY2CPP' : {tag: 'v2.0'}
         'ADAO'
         'ADAO_INTERFACE'
-        'CEATESTBASE' : {tag: 'SalomeV9'}
+        'CEATESTBASE'
     }
     profile :
     {

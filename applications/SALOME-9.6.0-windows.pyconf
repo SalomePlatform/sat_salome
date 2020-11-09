@@ -157,7 +157,7 @@ APPLICATION :
         'EFICAS'
         'EFICAS_TOOLS'
         'ADAO'
-        'CEATESTBASE' : {tag: 'SalomeV9'}
+        'CEATESTBASE'
     }
     profile :
     {
