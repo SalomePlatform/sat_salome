@@ -89,8 +89,8 @@ then
 fi
 
 echo
-echo "*** compile"
-make -j4
+echo "*** make ${MAKE_OPTIONS}"
+make  ${MAKE_OPTIONS}
 if [ $? -ne 0 ]
 then
     echo "error on make"

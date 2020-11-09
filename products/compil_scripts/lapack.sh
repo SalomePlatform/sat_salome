@@ -34,8 +34,8 @@ then
 fi
 
 echo
-echo "*** make -j4"
-make -j4
+echo "*** make  ${MAKE_OPTIONS}"
+make ${MAKE_OPTIONS}
 if [ $? -ne 0 ]
 then
     echo "ERROR on make"
