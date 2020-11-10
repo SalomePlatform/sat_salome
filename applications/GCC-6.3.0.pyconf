@@ -16,6 +16,9 @@ APPLICATION :
     {
         # PREREQUISITES :
         gcc : '6.3.0'
+        mpc : 'native'
+        gmp : 'native'
+        mpfr : 'native'
     }
     test_base : 
     {

@@ -1,0 +1,14 @@
+# Only used as a native product for dedicated opencv compilation
+default :
+{
+    name : "gmp" 
+    get_source : "system"
+    depend : []
+    system_info :
+    {
+       rpm : []
+       rpm_dev : ["gmp-devel"]
+       apt : []
+       apt_dev : ["libgmp-dev"]
+    }
+}
