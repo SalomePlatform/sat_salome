@@ -1,0 +1,85 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+APPLICATION :
+{
+    name : 'MEDCOUPLING-9.6.0-MPI'
+    workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
+    tag : 'V9_6_0'
+    base : 'no'
+    debug : 'no'
+    python3 : 'yes'
+    environ :
+    {
+        build :
+        {
+           CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
+           SALOME_USE_64BIT_IDS : '1'
+        }
+        launch :
+        {
+           PYTHONIOENCODING:"UTF_8"
+        }
+    }
+    products :
+    {
+        # PREREQUISITES :
+        alabaster : '0.7.6'
+        Babel : '2.7.0'
+        boost : '1.58.0'
+        certifi : '2018.8.24'
+        click : '6.7'
+        cmake : '3.12.1' 
+        cppunit : '1.13.2'
+        chardet : '3.0.4'
+        Cython : '0.25.2'
+        docutils : '0.12'
+        doxygen : '1.8.14'
+        graphviz : '2.38.0'
+        hdf5 : {tag : '1.10.3', hpc : 'yes'}
+        idna : '2.7'
+        imagesize : '1.0.0'
+        Jinja2 : '2.7.3'
+        lapack : '3.8.0'
+        libxml2 : '2.9.1'
+        markupsafe : '0.23'
+        medfile : {tag : '4.1.0', hpc : 'yes', section : 'default_Autotools' }
+        numpy : '1.15.1'
+        openmpi : '2.1.6'
+        ParMetis : '3.1.1'
+        pockets : '0.6.2'
+        Pygments : '2.0.2'
+        pyparsing : '2.0.3'
+        Python : '3.6.5'
+        pytz : '2015.7'
+        requests : '2.19.1'
+        scipy : '0.19.1'
+        scotch : '6.0.4'
+        setuptools : '38.4.0'
+        six : '1.10.0'
+        snowballstemmer : '1.2.1'
+        Sphinx : '1.7.6'
+        sphinxcontrib_napoleon : '0.6.1'
+        sphinxcontrib_websupport : '1.1.0'
+        sphinxintl: '0.9.10'
+        swig : '3.0.12'
+        packaging : '17.1'
+        urllib3 : '1.23'
+
+        # SALOME MODULES :
+        'CONFIGURATION'
+        'MEDCOUPLING' : {tag : 'V9_6_0', section: 'default_MPI'}
+    }
+    test_base : 
+    {
+        name : "SALOME"
+        tag : "SalomeV9"
+    }
+    properties :
+    {
+        repo_dev : "yes"
+        pip : 'yes'
+        pip_install_dir : 'python'
+        single_install_dir : "no"
+    }
+}
