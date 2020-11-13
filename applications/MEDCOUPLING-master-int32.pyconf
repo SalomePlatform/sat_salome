@@ -22,7 +22,7 @@ APPLICATION :
         boost : '1.58.0'
         certifi : '2018.8.24'
         click : '6.7'
-        cmake : '3.12.1' 
+        cmake : '3.12.1'
         cppunit : '1.13.2'
         chardet : '3.0.4'
         Cython : '0.25.2'
@@ -62,7 +62,7 @@ APPLICATION :
         'CONFIGURATION'
         'MEDCOUPLING'
     }
-    test_base : 
+    test_base :
     {
         name : "SALOME"
         tag : "SalomeV9"

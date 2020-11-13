@@ -31,7 +31,7 @@ APPLICATION :
         boost : '1.67.0'
         certifi : '2019.6.16'
         click : '7.0'
-        cmake : '3.12.1' 
+        cmake : '3.12.1'
         colorama: '0.4.1'
         cppunit : '1.13.2'
         chardet : '3.0.4'
@@ -83,7 +83,7 @@ APPLICATION :
         'CONFIGURATION': {dev: 'yes'}
         'MEDCOUPLING': {dev: 'yes'}
     }
-    test_base : 
+    test_base :
     {
         name : "SALOME"
         tag : "SalomeV9"

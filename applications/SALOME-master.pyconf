@@ -111,9 +111,9 @@ APPLICATION :
         'SHAPER'
         'SHAPERSTUDY'
         'RESTRICTED'
-        'LIBBATCH'
+        'LIBBATCH' : {tag : 'V2_4_4'}
         'KERNEL'
-        'MEDCOUPLING' : {tag : 'master', section: 'default_int64'} # this will trigger other modules as int64
+        'MEDCOUPLING' : {section: 'default_int64'} # this will trigger other modules as int64
         'GUI'
         'GEOM'
         'SMESH'
@@ -208,14 +208,6 @@ __overwrite__ :
     'PRODUCTS.llvm.version_8_0_1_clang.patches' : ['llvm-8.0.1-clang-FD32.patch']
     'PRODUCTS.qt.version_5_9_1.patches' : ['qt-5.9.1-UB20-FD32-socketcanbackend.patch', 'qt-5.9.1-mapbox-FD32.patch']
     'PRODUCTS.mesa.version_19_0_8.patches' : ['mesa-19.0.8-debug_symbol.patch']
-    'PRODUCTS.ParaView.version_5_8_0.patches' : ['paraview.0010-ParaViewClient.patch',
-                                                 'paraview.0004-ParaView_hdf5.patch',
-                                                 'paraview.0005-ParaView_find_cgns.patch',
-                                                 'paraview.0006-ParaView_find_libxml2.patch',
-                                                 'paraview.0007-ParaView_find_freetype.patch',
-                                                 'paraview.0009-ParaView_volume_mapper.patch',
-                                                 'pv_coincident.patch'
-                                                ]
   }
 
   {
@@ -237,7 +229,8 @@ __overwrite__ :
   }
 
   {
-    __condition__ : "VARS.dist in ['CO8']"
+    # Adapt Paraview CMake files to be compliant with recent distributions
+    __condition__ : "VARS.dist in ['FD30', 'FD32', 'CO8']"
     'PRODUCTS.ParaView.version_5_8_0.patches' : ['paraview.0010-ParaViewClient.patch',
                                                  'paraview.0004-ParaView_hdf5.patch',
                                                  'paraview.0005-ParaView_find_cgns.patch',

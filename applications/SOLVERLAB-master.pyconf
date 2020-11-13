@@ -78,7 +78,7 @@ APPLICATION :
 
         # SALOME MODULES :
         'CONFIGURATION'
-        'MEDCOUPLING' : {tag : 'master', section: 'default_int64'} # this will trigger other modules as int64
+        'MEDCOUPLING' : {section: 'default_int64'} # this will trigger other modules as int64
         'SOLVERLAB'
     }
     profile :
