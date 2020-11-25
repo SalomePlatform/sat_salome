@@ -87,7 +87,8 @@ default_win :
               "Sphinx",
               "sphinxintl",
               "sphinxcontrib_napoleon",
-              "tbb"
+              "tbb",
+              "f2c"
             ]
 }
 
