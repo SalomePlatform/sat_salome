@@ -15,7 +15,7 @@ default :
     install_dir : 'base'
     properties:
     {
-      compile_time : "no"
+      compile_time : "yes"
       incremental : "yes"
     }
 }

@@ -87,9 +87,9 @@ default_win :
               "Sphinx",
               "sphinxintl",
               "sphinxcontrib_napoleon",
-              "tbb",
-              "f2c"
+              "tbb"
             ]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit", "f2c"]
 }
 
 default_MPI :
