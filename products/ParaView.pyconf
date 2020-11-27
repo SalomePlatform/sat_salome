@@ -159,7 +159,6 @@ version_5_6_0p1_7bafc2b :
     patches :  [
                ]
     depend : [
-              'cmake',
               'Python',
               'hdf5',
               'qt',
