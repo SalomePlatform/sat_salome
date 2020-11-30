@@ -17,9 +17,9 @@ then
     exit 1
 fi
 
-echo "*** bjam install"
+echo "*** bjam ${MAKE_OPTIONS} install"
 
-./bjam install
+./bjam  ${MAKE_OPTIONS} install
 
 if [ $? -ne 0 ]
 then

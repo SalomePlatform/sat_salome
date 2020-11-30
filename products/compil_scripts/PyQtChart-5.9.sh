@@ -5,7 +5,7 @@ echo "PyQtChart " $VERSION
 echo "##########################################################################"
 
 
-mkdir $PRODUCT_INSTALL 
+mkdir -p $PRODUCT_INSTALL 
 cd $PRODUCT_INSTALL
 echo "PyQtChart  will be installed in PyQt folder..." >> README
 

@@ -6,9 +6,11 @@ default :
     get_source : "archive"
     system_info : 
     {
-        rpm : ["python36"]
+        # Python is a mandatory part of current used Linux platforms, no need to check its presence therefore.
+        # As version of Python 3.x differs on each of them, a better solution would to eventually check the binary presence.
+        rpm : []
         rpm_dev : []
-        apt : ["python36"]
+        apt : []
         apt_dev : []
     }
     environ :

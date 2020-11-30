@@ -30,6 +30,7 @@ default_win :
       single_install_dir : "yes"
     }
     depend : ['Python']
+    build_depend : ["cmake", "llvm"]
 }
 
 version_1_9_2 :

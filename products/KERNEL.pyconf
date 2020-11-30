@@ -3,6 +3,7 @@ default :
 {
     name : "KERNEL"
     build_source : "cmake"
+    cmake_options : "-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_CMAKE_DEBUG=ON"
     get_source : "git"
     git_info:
     {
@@ -33,7 +34,6 @@ default :
     build_depend : ["cmake", "swig", "doxygen", "cppunit"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
-    cmake_options : "-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_CMAKE_DEBUG=ON"
     properties:
     {
         is_SALOME_module : "yes"
@@ -64,6 +64,30 @@ default_win :
               "graphviz"
               ]
     build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+}
+
+default_MPI :
+{
+    cmake_options : "-DSALOME_USE_MPI=ON -DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig"
+    depend : ["Python",
+              "boost",
+              "numpy",
+              "lapack",
+              "hdf5",
+              "omniORB",
+              "omniORBpy",
+              "docutils",
+              "libxml2",
+              "Sphinx",
+              "sphinxintl",
+              "Jinja2",
+              "setuptools",
+              "Pygments",
+              "pytz",
+              "cppunit",
+              "openmpi",
+              "LIBBATCH"
+              ]
 }
 
 version_7_8_0_to_8_4_0 :
@@ -204,34 +228,6 @@ ALAMOS :
         is_SALOME_module : "yes"
         has_unit_tests
     }
-}
-
-# Default section for MPI version, for SALOME-8.5.0-MPI and later 
-# (adding sphinxintl prerequisite to previous MPI section).
-
-default_MPI :
-{
-    cmake_options : "-DSALOME_USE_MPI=ON -DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DCMAKE_CXX_COMPILER:STRING=${MPI_ROOT_DIR}/bin/mpic++ -DCMAKE_C_COMPILER:STRING=${MPI_ROOT_DIR}/bin/mpicc"
-    depend : ["Python",
-              "boost",
-              "numpy",
-              "lapack",
-              "hdf5",
-              "omniORB",
-              "omniORBpy",
-              "docutils",
-              "libxml2",
-              "Sphinx",
-              "sphinxintl",
-              "Jinja2",
-              "setuptools",
-              "Pygments",
-              "pytz",
-              "cppunit",
-              "openmpi",
-              "LIBBATCH"
-              ]
-    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
 }
 
 version_V6_6_0 :

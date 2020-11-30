@@ -61,7 +61,7 @@ APPLICATION :
         matplotlib : '2.2.2'
         medfile : {tag : '4.1.0', hpc : 'yes', section : 'default_Autotools' }
         mesa : '19.0.8'
-        MeshGems : {tag : '2.10-4', hpc : 'yes'}
+        MeshGems : {tag : '2.11-5', hpc : 'yes'}
         ParMetis : '3.1.1'
         netgen : '5.3.1_with_CAS_7.2'
         nlopt : '2.4.2'
@@ -74,6 +74,7 @@ APPLICATION :
         ospray : '1.8.4'
         packaging : '17.1'
         ParaView : {tag : '5.8.0', hpc : 'yes', section: 'version_5_8_0_MPI'}
+        petsc : '3.14.0'
         Pillow : '7.1.1'
         planegcs : '0.18-3cb6890'
         pockets : '0.6.2'
@@ -110,7 +111,7 @@ APPLICATION :
         'SHAPER'
         'SHAPERSTUDY'
         'RESTRICTED'
-        'LIBBATCH' : {tag :'V2_4_3'}
+        'LIBBATCH' : {tag :'V2_4_4'}
         'KERNEL' : {section : 'default_MPI', verbose : 'yes'}
         'MEDCOUPLING' : {section : 'default_MPI', verbose : 'yes'}
         'GUI' : {verbose : 'yes'}
@@ -123,14 +124,15 @@ APPLICATION :
         'HYBRIDPLUGIN'
         'HexoticPLUGIN'
         'GMSHPLUGIN'
-        'HEXABLOCK' : {tag: 'master', section : "default_MPI", verbose: 'yes'}
+        'HEXABLOCK' : {section : "default_MPI", verbose: 'yes'}
         'HEXABLOCKPLUGIN'
         'HOMARD'
-        'FIELDS' : {tag: 'master', section : "default_MPI", verbose: 'yes'}
-        'PARAVIS' : {tag: 'master', section : "default_MPI", verbose: 'yes'}
-        'JOBMANAGER' : {tag: 'master', section : "default_MPI", verbose: 'yes'}
+        'FIELDS' : {section : "default_MPI", verbose: 'yes'}
+        'PARAVIS' : {section : "default_MPI", verbose: 'yes'}
+        'JOBMANAGER' : {section : "default_MPI", verbose: 'yes'}
         'YACS'
         'YACSGEN'
+        'SOLVERLAB' : {section : "default_MPI", hpc: 'yes'}
         'DOCUMENTATION'
         'SAMPLES'
         'COMPONENT'
@@ -168,28 +170,3 @@ APPLICATION :
         single_install_dir : "yes"
     }
 }
-__overwrite__ :
-[
-  {
-   # GTK  compilation issue
-    __condition__ : "VARS.dist in ['CO6']"
-    'APPLICATION.products.opencv' : '2.4.13.5'
-    'APPLICATION.products.tbb' : '4.4'
-    'APPLICATION.products.llvm' : '3.9.1-clang'
-    'APPLICATION.products.mesa' : '13.0.6'
-    'PRODUCTS.embree.default.patches' : ['embree-3.5.2-centos6.patch']
-   }
-
-  {
-   # tbb as a mandatory native product since SMESH with tbb, not installed on DB8 (temporary)
-    __condition__ : "VARS.dist in ['DB08']"
-    'APPLICATION.products.tbb' : '4.4'
-  }
-
-  {
-    #
-    __condition__ : "VARS.dist in ['FD26']"
-    'APPLICATION.products.tbb'    : '2017-7'
-    'APPLICATION.products.embree' : '3.5.2'
-   }
-]

@@ -30,10 +30,12 @@ default :
              "markupsafe"
              ]
     build_depend : ["cmake", "cppunit"]
+    opt_depend : []
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     properties:
     {
+        incremental : "yes"
         has_salome_gui : "yes"
         is_SALOME_module : "yes"
     }
@@ -41,18 +43,7 @@ default :
 
 default_MPI :
 {
-    name : "JOBMANAGER"
-    build_source : "cmake"
-    cmake_options : "-DSALOME_USE_MPI=ON -DCMAKE_CXX_COMPILER:STRING=${MPI_ROOT_DIR}/bin/mpic++ -DCMAKE_C_COMPILER:STRING=${MPI_ROOT_DIR}/bin/mpicc"
-    get_source : "git"
-    git_info:
-    {
-        repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/jobmanager.git"
-        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "jobmanager.git"
-    }
-    environ :
-    {
-    }
+    cmake_options : "-DSALOME_USE_MPI=ON"
     depend : [
              "LIBBATCH", 
              "KERNEL", 
@@ -70,13 +61,5 @@ default_MPI :
              "pytz", 
              "markupsafe",
              "openmpi"
-              ]
-    build_depend : ["cmake", "cppunit"]
-    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
-    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
-    properties:
-    {
-        has_salome_gui : "yes"
-        is_SALOME_module : "yes"
-    }
+             ]
 }

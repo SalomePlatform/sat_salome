@@ -3,9 +3,9 @@
 
 APPLICATION :
 {
-    name : 'SALOME-master-native'
+    name : 'SALOME-9.6.0-native'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag : 'master'
+    tag : 'V9_6_0'
     dev : 'no'
     verbose :'no'
     debug : 'no'
@@ -17,6 +17,7 @@ APPLICATION :
         {
            CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
            RESTRICTED_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "RESTRICTED"
+           SALOME_USE_64BIT_IDS : '1'
         }
         launch : {PYTHONIOENCODING:"UTF_8"} # alternative is to encode every accentued string with .encode('utf-8')
         SALOME_trace : "local" # local/file:.../with_logger
@@ -28,7 +29,7 @@ APPLICATION :
         alabaster : 'native'
         Babel : 'native'
         boost : 'native'
-        CAS : 'CR740-SALOME-PATCH'
+        CAS : 'V7_4_0p2'
         certifi : 'native'
         cgns : 'native'
         chardet : 'native'
@@ -45,14 +46,12 @@ APPLICATION :
         freeimage : 'native'
         freetype : 'native'
         gl2ps : 'native'
-        # 'native' too difficult here : need python-pip package (gmsh-sdk) besides system packages
         gmsh : '4.1.4'
         graphviz : 'native'
         hdf5 : '1.10.3'
         homard_bin : '11.12_hdf51103med410'
         idna : 'native'
         imagesize : 'native'
-        # 'native' not exists (only available on Fedora platform)
         ispc : '1.9.2'
         Jinja2 : 'native'
         kiwisolver : 'native'
@@ -76,7 +75,6 @@ APPLICATION :
         packaging : 'native'
         ParaView : '5.8.0'
         Pillow : 'native'
-        # 'native' not exists : freeCAD part but not delivered with it from package handler
         planegcs : '0.18-3cb6890'
         pockets : 'native'
         Pygments : 'native'
@@ -86,7 +84,7 @@ APPLICATION :
         Python : 'native'
         pytz : 'native'
         qt : 'native'
-        qwt : 'native'
+        qwt : '6.1.2'
         requests : 'native'
         scipy : 'native'
         scotch : 'native'
@@ -111,9 +109,9 @@ APPLICATION :
         'SHAPER'
         'SHAPERSTUDY'
         'RESTRICTED'
-        'LIBBATCH' : {tag :'V2_4_4rc1'}
+        'LIBBATCH' : {tag :'V2_4_4'}
         'KERNEL'
-        'MEDCOUPLING' : {section: 'default_int64'}
+        'MEDCOUPLING' : {section: 'default_int64'} # this will trigger other modules as int64
         'GUI'
         'GEOM'
         'SMESH'
@@ -144,7 +142,7 @@ APPLICATION :
 	'PY2CPP' : {tag: 'v2.0'}
 	'ADAO'
 	'ADAO_INTERFACE'
-        'CEATESTBASE' : {tag: 'SalomeV9'}
+        'CEATESTBASE'
     }
     profile :
     {
@@ -172,9 +170,15 @@ APPLICATION :
 __overwrite__ :
 [
    {
-      # Overwrite dedicated to older distributions for a further native use
-      # (Some system packages are missing for now on CentOS 8)
-      __condition__ : "VARS.dist in ['FD32', 'DB10']"
+      #
+      __condition__ : "VARS.dist in ['DB10']"
+      'PRODUCTS.embree.default.depend' : ['ispc']
+   }
+
+   {
+      # as agreed, we don't build SALOME with OSpray support.
+      __condition__ : "VARS.dist in ['FD30']"
+      'APPLICATION.rm_products' : ['embree', 'ispc', 'ospray']
       'APPLICATION.products.omniORB' : 'native'
       'APPLICATION.products.omniORBpy' : 'native'
    }

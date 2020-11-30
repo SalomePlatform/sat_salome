@@ -16,11 +16,18 @@ then
     export  QMAKE_CXXFLAGS="-std=c++11"
 fi
 
+if [ -n "$SAT_DEBUG" ]
+then
+    BUILD_TYPE="-debug"
+else
+    BUILD_TYPE="-release"
+fi
+
 # For -qt-harfbuzz option, see spns #9694
 echo
-echo "*** ./configure -prefix $PRODUCT_INSTALL -release -opensource -nomake tests -nomake examples -no-rpath -verbose -no-separate-debug-info -confirm-license -qt-libpng -qt-xcb -no-eglfs -dbus-runtime -skip qtwebengine -skip wayland -skip qtgamepad -system-freetype -qt-harfbuzz -no-openssl -no-glib"
+echo "*** ./configure -prefix $PRODUCT_INSTALL $BUILD_TYPE -opensource -nomake tests -nomake examples -no-rpath -verbose -no-separate-debug-info -confirm-license -qt-libpng -qt-xcb -no-eglfs -dbus-runtime -skip qtwebengine -skip wayland -skip qtgamepad -system-freetype -qt-harfbuzz -no-openssl -no-glib"
 
-./configure -prefix $PRODUCT_INSTALL -release -opensource -nomake tests -nomake examples -no-rpath \
+./configure -prefix $PRODUCT_INSTALL $BUILD_TYPE -opensource -nomake tests -nomake examples -no-rpath \
     -verbose -no-separate-debug-info -confirm-license -qt-libpng -qt-xcb -no-eglfs -dbus-runtime -skip qtwebengine \
     -skip wayland -skip qtgamepad -system-freetype -qt-harfbuzz \
     -no-openssl -no-glib

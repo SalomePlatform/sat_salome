@@ -3,7 +3,7 @@
 
 APPLICATION :
 {
-    name : 'MEDCOUPLING-9.6.0'
+    name : 'MEDCOUPLING-9.6.0-MPI'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
     tag : 'V9_6_0'
     base : 'no'
@@ -36,16 +36,17 @@ APPLICATION :
         docutils : '0.12'
         doxygen : '1.8.14'
         graphviz : '2.38.0'
-        hdf5 : '1.10.3'
+        hdf5 : {tag : '1.10.3', hpc : 'yes'}
         idna : '2.7'
         imagesize : '1.0.0'
         Jinja2 : '2.7.3'
         lapack : '3.8.0'
         libxml2 : '2.9.1'
         markupsafe : '0.23'
-        medfile : {section: 'default_Autotools', tag: '4.1.0'}
-        metis : '5.1.0'
+        medfile : {tag : '4.1.0', hpc : 'yes', section : 'default_Autotools' }
         numpy : '1.15.1'
+        openmpi : '2.1.6'
+        ParMetis : '3.1.1'
         pockets : '0.6.2'
         Pygments : '2.0.2'
         pyparsing : '2.0.3'
@@ -67,7 +68,7 @@ APPLICATION :
 
         # SALOME MODULES :
         'CONFIGURATION'
-        'MEDCOUPLING' : {section: 'default_int64'}
+        'MEDCOUPLING' : {tag : 'V9_6_0', section: 'default_MPI'}
     }
     test_base : 
     {
@@ -82,10 +83,3 @@ APPLICATION :
         single_install_dir : "no"
     }
 }
-__overwrite__ :
-[
-  {
-    __condition__ : "VARS.dist in ['FD32']"
-    'APPLICATION.products.scipy' : '1.5.2' # gcc https://github.com/scipy/scipy/issues/11611 - either patch numpy to include -fallow-argument-mismatch or move to that version
-  }
-]

@@ -39,7 +39,7 @@ version_4_1_0 :
 
 version_4_1_0_win : 
 {
-  patches : ['med-4.1.0_win_3x_files_support.patch']
+  patches : ['med-4.1.0_win_3x_files_support.patch', 'med-4.1.0_hdf5_native_long.patch']
 }
 
 # needed in order to screen with windows version - see below

@@ -4,6 +4,13 @@ default :
     build_source : "script"
     compil_script :  $name + $VARS.scriptExtension
     get_source : "archive"
+    system_info :
+    {
+       rpm : ["qwt-qt5"]
+       rpm_dev : ["qwt-qt5-devel"]
+       apt : ["libqwt-qt5"]
+       apt_dev : ["libqwt-qt5-dev"]
+    }
     environ :
     {
        env_script : $name + ".py"

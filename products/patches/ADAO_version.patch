@@ -1,0 +1,16 @@
+diff --git a/test/test1001/Versions.py b/test/test1001/Versions.py
+index f25466e..96144e6 100644
+--- a/test/test1001/Versions.py
++++ b/test/test1001/Versions.py
+@@ -87,7 +87,10 @@ class Test_Adao(unittest.TestCase):
+             import matplotlib
+             mplversion = matplotlib.__version__
+             print("    - Matplotlib........: %s"%mplversion)
+-            assert compare_versions(mplversion, minimal_matplotlib_version)
++            if mplversion == '0+unknown':
++                print("Presumably git based version... skipping assertion")
++            else:
++                assert compare_versions(mplversion, minimal_matplotlib_version)
+             #
+             print("")
+             backends_OK = []

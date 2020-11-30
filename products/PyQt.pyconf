@@ -7,9 +7,9 @@ default :
     system_info : 
     {
         rpm : ["python3-qt5"]
-        rpm_dev : []
+        rpm_dev : ["python3-qt5-devel"]
         apt : ["python3-pyqt5"]
-        apt_dev : []
+        apt_dev : ["pyqt5-dev"]
     }
     environ :
     {

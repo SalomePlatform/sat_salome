@@ -1,0 +1,60 @@
+diff -Naur med-4.1.0_SRC_oring/src/2.3.6/hdfi/MEDdatasetNumEcrire231.c med-4.1.0_SRC_modif/src/2.3.6/hdfi/MEDdatasetNumEcrire231.c
+--- med-4.1.0_SRC_oring/src/2.3.6/hdfi/MEDdatasetNumEcrire231.c	2020-03-11 12:36:36.000000000 +0300
++++ med-4.1.0_SRC_modif/src/2.3.6/hdfi/MEDdatasetNumEcrire231.c	2020-11-03 17:06:06.715500300 +0300
+@@ -98,7 +98,7 @@
+       break;
+  
+     case MED_INT64 :
+-      type_hdf = H5T_NATIVE_LONG;
++      type_hdf = MED_H5T_INT64;
+       break;
+       
+     default :
+diff -Naur med-4.1.0_SRC_oring/src/2.3.6/hdfi/MEDdatasetNumEcrire232.c med-4.1.0_SRC_modif/src/2.3.6/hdfi/MEDdatasetNumEcrire232.c
+--- med-4.1.0_SRC_oring/src/2.3.6/hdfi/MEDdatasetNumEcrire232.c	2020-03-11 12:36:36.000000000 +0300
++++ med-4.1.0_SRC_modif/src/2.3.6/hdfi/MEDdatasetNumEcrire232.c	2020-11-03 17:06:15.143299100 +0300
+@@ -116,7 +116,7 @@
+       break;
+ 
+     case MED_INT64 :
+-      type_hdf = H5T_NATIVE_LONG;
++      type_hdf = MED_H5T_INT64;
+       break;
+ 
+     default :
+diff -Naur med-4.1.0_SRC_oring/src/2.3.6/hdfi/MEDdatasetNumLire231.c med-4.1.0_SRC_modif/src/2.3.6/hdfi/MEDdatasetNumLire231.c
+--- med-4.1.0_SRC_oring/src/2.3.6/hdfi/MEDdatasetNumLire231.c	2020-03-11 12:36:36.000000000 +0300
++++ med-4.1.0_SRC_modif/src/2.3.6/hdfi/MEDdatasetNumLire231.c	2020-11-03 17:06:22.211203800 +0300
+@@ -98,7 +98,7 @@
+       break;
+ 
+     case MED_INT64 :
+-      type_hdf = H5T_NATIVE_LONG;
++      type_hdf = MED_H5T_INT64;
+       break;
+ 
+     default :
+diff -Naur med-4.1.0_SRC_oring/src/2.3.6/hdfi/MEDdatasetNumLire232.c med-4.1.0_SRC_modif/src/2.3.6/hdfi/MEDdatasetNumLire232.c
+--- med-4.1.0_SRC_oring/src/2.3.6/hdfi/MEDdatasetNumLire232.c	2020-03-11 12:36:36.000000000 +0300
++++ med-4.1.0_SRC_modif/src/2.3.6/hdfi/MEDdatasetNumLire232.c	2020-11-03 17:06:29.243019900 +0300
+@@ -110,7 +110,7 @@
+       break;
+ 
+     case MED_INT64 :
+-      type_hdf = H5T_NATIVE_LONG;
++      type_hdf = MED_H5T_INT64;
+       break;
+ 
+     default :
+diff -Naur med-4.1.0_SRC_oring/tools/medimport/2.1.x/MED21datasetNumLire.c med-4.1.0_SRC_modif/tools/medimport/2.1.x/MED21datasetNumLire.c
+--- med-4.1.0_SRC_oring/tools/medimport/2.1.x/MED21datasetNumLire.c	2020-03-11 12:36:40.000000000 +0300
++++ med-4.1.0_SRC_modif/tools/medimport/2.1.x/MED21datasetNumLire.c	2020-11-03 17:07:07.570860800 +0300
+@@ -58,7 +58,7 @@
+       break;
+ 
+     case MED_INT64 :
+-      type_hdf = H5T_NATIVE_LONG;
++      type_hdf = MED_H5T_INT64;
+       break;
+ 
+     default :
