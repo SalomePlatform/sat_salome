@@ -100,7 +100,7 @@ APPLICATION :
         repo_dev : "yes"
         pip : 'yes'
         pip_install_dir : 'python'
-        single_install_dir : "yes"
+        single_install_dir : "no"
     }
 }
 __overwrite__ :

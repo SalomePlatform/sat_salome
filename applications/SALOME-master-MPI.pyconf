@@ -170,3 +170,11 @@ APPLICATION :
         single_install_dir : "yes"
     }
 }
+__overwrite__ :
+[
+    {
+      #
+      __condition__ : "VARS.dist in ['UB20.04']"
+      'PRODUCTS.qt.version_5_9_1.patches' : ['qt-5.9.1-UB20-FD32-socketcanbackend.patch']
+    }
+]

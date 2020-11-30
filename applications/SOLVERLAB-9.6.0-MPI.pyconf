@@ -3,7 +3,7 @@
 
 APPLICATION :
 {
-    name : 'SALOME-9.6.0-MPI'
+    name : 'SOLVERLAB-9.6.0-MPI'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
     tag : 'V9_6_0'
     dev : 'no'
@@ -19,9 +19,9 @@ APPLICATION :
            RESTRICTED_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "RESTRICTED"
            SALOME_USE_64BIT_IDS : '1'
         }
-        launch : {PYTHONIOENCODING:"UTF_8", SALOME_MODULES_ORDER:"SHAPER:SHAPERSTUDY:GEOM:SMESH"}
+        launch : {PYTHONIOENCODING:"UTF_8", SALOME_MODULES_ORDER:""}
         SALOME_trace : "local" # local/file:.../with_logger
-        SALOME_MODULES : "SHAPER,SHAPERSTUDY,GEOM,SMESH,PARAVIS,YACS,JOBMANAGER"  # specify the first modules to display in gui
+        SALOME_MODULES : ""  # specify the first modules to display in gui
     }
     products :
     {
@@ -29,64 +29,41 @@ APPLICATION :
         alabaster : '0.7.6'
         Babel : '2.7.0'
         boost : '1.58.0'
-        CAS : 'V7_4_0p2'
         certifi : '2018.8.24'
         cgns : {tag : '3.3.1', hpc : 'yes'}
         chardet : '3.0.4'
         click : '6.7'
         cmake : '3.12.1'
-        cppunit : '1.13.2'
         cycler : '0.10.0'
         Cython : '0.25.2'
+        cppunit : '1.13.2'
         dateutil : '2.4.2'
         docutils : '0.12'
         doxygen : '1.8.14'
-        eigen : '3.3.4'
-        embree : '3.3.0'
-        freeimage : '3.16.0'
         freetype : '2.9.1'
-        gmsh : '4.1.4'
         graphviz : '2.38.0'
         hdf5 : {tag : '1.10.3', hpc : 'yes'}
-        homard_bin : '11.12_hdf51103med410'
         idna : '2.7'
         imagesize : '1.0.0'
-        ispc : '1.9.2'
         Jinja2 : '2.7.3'
         kiwisolver : '1.0.1'
         lapack : '3.8.0'
         libxml2 : '2.9.1'
-        llvm : '8.0.1-clang'
         markupsafe : '0.23'
         matplotlib : '2.2.2'
         medfile : {tag : '4.1.0', hpc : 'yes', section : 'default_Autotools' }
-        mesa : '19.0.8'
-        MeshGems : {tag : '2.11-5', hpc : 'yes'}
-        ParMetis : '3.1.1'
-        netgen : '5.3.1_with_CAS_7.2'
-        nlopt : '2.4.2'
-        numpy : '1.15.1'
-        omniORB : '4.2.2'
-        omniORBpy : '4.2.2'
-        opencv : '3.2.0'
         openmpi : '2.1.6'
-        openssl : "native"
-        ospray : '1.8.4'
+        ParMetis : '3.1.1'
+        numpy : '1.15.1'
         packaging : '17.1'
         ParaView : {tag : '5.8.0', hpc : 'yes', section: 'version_5_8_0_MPI'}
         petsc : '3.14.0'
-        Pillow : '7.1.1'
-        planegcs : '0.18-3cb6890'
-        pockets : '0.6.2'
         Pygments : '2.0.2'
         pyparsing : '2.0.3'
         PyQt : '5.9'
-        PyQtChart : '5.9'
-        pyreadline : '2.0'
         Python : '3.6.5'
         pytz : '2015.7'
         qt : '5.9.1'
-        qwt : '6.1.2'
         requests : '2.19.1'
         scipy : '0.19.1'
         scotch : '6.0.4'
@@ -95,57 +72,15 @@ APPLICATION :
         six : '1.10.0'
         snowballstemmer : '1.2.1'
         Sphinx : '1.7.6'
-        sphinxcontrib_napoleon : '0.6.1'
         sphinxcontrib_websupport : '1.1.0'
-        sphinx_rtd_theme : '0.4.3'
         sphinxintl: '0.9.10'
         swig : '3.0.12'
-        tbb : 'native'
-        tcl : '8.6.0'
-        tk : '8.6.0'
         urllib3 : '1.23'
 
         # SALOME MODULES :
         'CONFIGURATION'
-        'SALOME'
-        'SHAPER'
-        'SHAPERSTUDY'
-        'RESTRICTED'
-        'LIBBATCH' : {tag :'V2_4_4'}
-        'KERNEL' : {section : 'default_MPI', verbose : 'yes'}
         'MEDCOUPLING' : {section : 'default_MPI', verbose : 'yes'}
-        'GUI' : {verbose : 'yes'}
-        'GEOM'
-        'SMESH'
-        'NETGENPLUGIN'
-        'BLSURFPLUGIN'
-        'GHS3DPLUGIN'
-        'GHS3DPRLPLUGIN'
-        'HYBRIDPLUGIN'
-        'HexoticPLUGIN'
-        'GMSHPLUGIN'
-        'HEXABLOCK' : {section : "default_MPI", verbose: 'yes'}
-        'HEXABLOCKPLUGIN'
-        'HOMARD'
-        'FIELDS' : {section : "default_MPI", verbose: 'yes'}
-        'PARAVIS' : {section : "default_MPI", verbose: 'yes'}
-        'JOBMANAGER' : {section : "default_MPI", verbose: 'yes'}
-        'YACS'
-        'YACSGEN'
         'SOLVERLAB' : {section : 'default_MPI', hpc: 'yes'}
-        'DOCUMENTATION'
-        'SAMPLES'
-        'COMPONENT'
-        'PYCALCULATOR'
-        'CALCULATOR'
-        'HELLO'
-        'PYHELLO'
-        'EFICAS'
-        'EFICAS_TOOLS'
-        'PY2CPP' : {tag: 'v2.0'}
-        'ADAO'
-        'ADAO_INTERFACE'
-        'CEATESTBASE'
     }
     profile :
     {
@@ -170,7 +105,6 @@ APPLICATION :
         single_install_dir : "no"
     }
 }
-
 __overwrite__ :
 [
   {

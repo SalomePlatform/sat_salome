@@ -8,9 +8,19 @@ echo "##########################################################################
 
 cp -r $SOURCE_DIR/* .
 
+CONFIGURE_FLAGS=''
+CONFIGURE_FLAGS=$CONFIGURE_FLAGS" --download-f2cblaslapack=ext/f2cblaslapack-3.4.2.q4"
+CONFIGURE_FLAGS=$CONFIGURE_FLAGS" --download-slepc=ext/slepc-3.14.0"
+
 echo
-echo "*** configure"
-./configure --prefix=$PRODUCT_INSTALL --with-mpi=0 --download-f2cblaslapack=ext/f2cblaslapack-3.4.2.q4 --download-slepc=ext/slepc-3.14.0
+if [ -n "${MPI_ROOT_DIR}" ]
+then
+  echo "*** configure with mpi"
+  ./configure --prefix=${PRODUCT_INSTALL} --with-mpi-dir=${MPI_ROOT_DIR} ${CONFIGURE_FLAGS}
+else
+  echo "*** configure without mpi"
+  ./configure --prefix=${PRODUCT_INSTALL} --with-mpi=0 ${CONFIGURE_FLAGS}
+fi
 
 if [ $? -ne 0 ]
 then
