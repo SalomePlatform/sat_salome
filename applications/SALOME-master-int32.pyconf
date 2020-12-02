@@ -111,7 +111,7 @@ APPLICATION :
         'RESTRICTED'
         'LIBBATCH' : {tag :'V2_4_4'}
         'KERNEL'
-        'MEDCOUPLING'
+        'MEDCOUPLING': {section: 'default_32BIT_IDS'}
         'GUI'
         'GEOM'
         'SMESH'

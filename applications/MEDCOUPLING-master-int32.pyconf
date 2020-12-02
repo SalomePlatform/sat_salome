@@ -60,7 +60,7 @@ APPLICATION :
 
         # SALOME MODULES :
         'CONFIGURATION'
-        'MEDCOUPLING'
+        'MEDCOUPLING': {section: 'default_32BIT_IDS'}
     }
     test_base :
     {

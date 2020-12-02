@@ -67,7 +67,7 @@ APPLICATION :
 
         # SALOME MODULES :
         'CONFIGURATION'
-        'MEDCOUPLING' : {section: 'default_int64'}
+        'MEDCOUPLING'
     }
     test_base :
     {

@@ -110,7 +110,7 @@ APPLICATION :
         'RESTRICTED'
         'LIBBATCH' : {tag :'V2_4_3'}
         'KERNEL'
-        'MEDCOUPLING' : {tag : 'V9_5_0', section: 'default_int64'} # this will trigger other modules as int64
+        'MEDCOUPLING' : {tag : 'V9_5_0', section: 'version_V9_5_0_64BIT_IDS'}
         'GUI'
         'GEOM'
         'SMESH'

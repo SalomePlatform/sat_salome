@@ -111,7 +111,7 @@ APPLICATION :
         'RESTRICTED'
         'LIBBATCH' : {tag :'V2_4_4'}
         'KERNEL'
-        'MEDCOUPLING' : {section: 'default_int64'} # this will trigger other modules as int64
+        'MEDCOUPLING'
         'GUI'
         'GEOM'
         'SMESH'

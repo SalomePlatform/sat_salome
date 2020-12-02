@@ -17,6 +17,7 @@ APPLICATION :
         {
            CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
            RESTRICTED_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "RESTRICTED"
+           SALOME_USE_64BIT_IDS : '1'
         }
         launch : {PYTHONIOENCODING:"UTF_8"} # alternative is to encode every accentued string with .encode('utf-8')
         SALOME_trace : "local" # local/file:.../with_logger
@@ -111,9 +112,9 @@ APPLICATION :
         'SHAPER'
         'SHAPERSTUDY'
         'RESTRICTED'
-        'LIBBATCH' : {tag :'V2_4_4rc1'}
+        'LIBBATCH' : {tag :'V2_4_4'}
         'KERNEL'
-        'MEDCOUPLING' : {section: 'default_int64'}
+        'MEDCOUPLING'
         'GUI'
         'GEOM'
         'SMESH'
