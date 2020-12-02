@@ -80,8 +80,8 @@ APPLICATION :
         zlib : '1.2.5'
 
         # SALOME MODULES :
-        'CONFIGURATION': {dev: 'yes'}
-        'MEDCOUPLING': {dev: 'yes'}
+        'CONFIGURATION'
+        'MEDCOUPLING'
     }
     test_base : 
     {
