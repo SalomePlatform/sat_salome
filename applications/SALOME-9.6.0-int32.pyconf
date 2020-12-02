@@ -232,24 +232,6 @@ __overwrite__ :
   }
 
   {
-    __condition__ : "VARS.dist in ['CO7'] and APPLICATION.environ.build.VTK_SMP_IMPLEMENTATION_TYPE == 'OpenMP'"
-    'PRODUCTS.ParaView.version_5_8_0.patches' : ['paraview.0003-ParaViewClient.patch',
-                                                 'paraview.0004-ParaView_hdf5.patch',
-                                                 'paraview.0005-ParaView_find_cgns.patch',
-                                                 'paraview.0006-ParaView_find_libxml2.patch',
-                                                 'paraview.0007-ParaView_find_freetype.patch',
-                                                 'paraview.0009-ParaView_volume_mapper.patch',
-                                                 'paraview.0011-vtkSMPSelection.patch',
-                                                 'pv_coincident.patch'
-                                                ]
-  }
-
-  {
-    __condition__ : "VARS.dist in ['CO7'] and APPLICATION.environ.build.VTK_SMP_IMPLEMENTATION_TYPE == 'TBB'"
-    'APPLICATION.products.tbb' : '4.4'
-  }
-
-  {
     __condition__ : "VARS.dist in ['CO8']"
     'PRODUCTS.ParaView.version_5_8_0.patches' : ['paraview.0010-ParaViewClient.patch',
                                                  'paraview.0004-ParaView_hdf5.patch',
