@@ -22,9 +22,8 @@ if exist "%BUILD_DIR%" rmdir /Q /S %BUILD_DIR%
 mkdir %BUILD_DIR%
 
 cd %BUILD_DIR%
-set PATH=%PATH%;%BUILD_DIR%\windows\dependencies\graphviz-build-utilities
-set PATH=%PATH%;%WINFLEX_ROOT_DIR%
-set CMAKE_OPTIONS=%SOURCE_DIR%
+set PATH=%SOURCE_DIR%\windows\dependencies\graphviz-build-utilities;%PATH%
+set CMAKE_OPTIONS=
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_INSTALL_PREFIX=%PRODUCT_INSTALL%
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_BUILD_TYPE=%PRODUCT_BUILD_TYPE%
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DBUILD_SHARED_LIBS:BOOL=ON
@@ -49,7 +48,6 @@ echo *********************************************************************
 echo *** msbuild %MAKE_OPTIONS% /p:Configuration=Release /p:Platform=x64 ALL_BUILD.vcxproj"
 echo *********************************************************************
 echo.
-
 msbuild %MAKE_OPTIONS% /p:Configuration=Release /p:Platform=x64 ALL_BUILD.vcxproj
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on msbuild ALL_BUILD.vcxproj
@@ -61,13 +59,15 @@ echo *********************************************************************
 echo *** installation...
 echo *********************************************************************
 echo.
-
 msbuild %MAKE_OPTIONS% /p:Configuration=Release /p:Platform=x64 INSTALL.vcxproj
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on msbuild INSTALL.vcxproj
     exit 3
 )
 
+SET PATH=%PRODUCT_INSTALL%\bin;%PATH%
+cd %PRODUCT_INSTALL%\bin
+dot -c
 taskkill /F /IM "mspdbsrv.exe"
 
 echo.
