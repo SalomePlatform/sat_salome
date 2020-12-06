@@ -1,0 +1,84 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+  default :
+  {
+    name : 'PARAVISADDONS'
+    build_source : 'cmake'
+    cmake_options : ''
+    get_source : "archive"
+    archive_info :
+    {
+      archive_name : 'PARAVISADDONS.tgz'
+    }
+    git_info :
+    {
+      repo : $PROJECTS.projects.salome.git_info.default_git_server + 'modules/paravisaddons.git'
+      repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + 'paravisaddons.git'
+    }
+    environ :
+    {
+      PARAVISADDONS : $install_dir
+      PV_PLUGIN_PATH_ : $install_dir + $VARS.sep + 'lib' + $VARS.sep + 'paraview'
+    }
+    depend :
+    [
+      'KERNEL'
+      'GUI'
+      'MEDCOUPLING'
+      'PARAVIS'
+      'FIELDS'
+      'GEOM'
+      'SMESH'
+      'Python'
+      'qt'
+      'boost'
+      'hdf5'
+      'medfile'
+      'ParaView'
+      'CAS'
+      'omniORB'
+      'docutils'
+      'libxml2'
+      'six'
+      'pytz'
+    ]
+    opt_depend : [ ]
+    build_depend :
+    [
+      'cmake'
+      'swig'
+      'cppunit'
+    ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties :
+    {
+      incremental : 'yes'
+    }
+  }
+  default_win :
+  {
+    depend :
+    [
+      'KERNEL'
+      'GUI'
+      'MEDCOUPLING'
+      'FIELDS'
+      'PARAVISADDONS'
+      'GEOM'
+      'SMESH'
+      'Python'
+      'qt'
+      'boost'
+      'hdf5'
+      'medfile'
+      'ParaView'
+      'CAS'
+      'omniORB'
+      'docutils'
+      'libxml2'
+      'six'
+      'pytz'
+    ]
+  }
