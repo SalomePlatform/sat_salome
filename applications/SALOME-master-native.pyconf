@@ -172,13 +172,13 @@ APPLICATION :
         single_install_dir : "yes"
     }
 }
-__overwrite__ :
-[
-   {
-      # Overwrite dedicated to older distributions for a further native use
-      # (Some system packages are missing for now on CentOS 8)
-      __condition__ : "VARS.dist in ['FD32', 'DB10']"
-      'APPLICATION.products.omniORB' : 'native'
-      'APPLICATION.products.omniORBpy' : 'native'
-   }
-]
+#__overwrite__ :
+#[
+#   {
+#      # Overwrite dedicated to older distributions for a further native use
+#      # (Some system packages are missing for now on CentOS 8)
+#      __condition__ : "VARS.dist in ['FD32', 'DB10']"
+#      'APPLICATION.products.omniORB' : 'native'
+#      'APPLICATION.products.omniORBpy' : 'native'
+#   }
+#]
