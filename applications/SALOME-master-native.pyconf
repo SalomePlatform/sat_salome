@@ -76,6 +76,7 @@ APPLICATION :
         ospray : '1.8.4'
         packaging : 'native'
         ParaView : '5.8.0'
+        petsc : '3.14.0'
         Pillow : 'native'
         # 'native' not exists : freeCAD part but not delivered with it from package handler
         planegcs : '0.18-3cb6890'
@@ -132,6 +133,7 @@ APPLICATION :
         'PARAVIS'
         'JOBMANAGER'
         'YACS'
+        'SOLVERLAB'
         'YACSGEN'
         'DOCUMENTATION'
         'SAMPLES'
