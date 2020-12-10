@@ -65,7 +65,7 @@
       'GUI'
       'MEDCOUPLING'
       'FIELDS'
-      'PARAVISADDONS'
+      'PARAVIS'
       'GEOM'
       'SMESH'
       'Python'
