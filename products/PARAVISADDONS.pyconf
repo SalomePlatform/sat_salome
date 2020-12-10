@@ -6,11 +6,7 @@
     name : 'PARAVISADDONS'
     build_source : 'cmake'
     cmake_options : ''
-    get_source : "archive"
-    archive_info :
-    {
-      archive_name : 'PARAVISADDONS.tgz'
-    }
+    get_source : "git"
     git_info :
     {
       repo : $PROJECTS.projects.salome.git_info.default_git_server + 'modules/paravisaddons.git'
