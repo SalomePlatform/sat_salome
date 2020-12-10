@@ -9,7 +9,7 @@ default :
         rpm : ["graphviz"]
         rpm_dev : ["graphviz-devel"]
         apt : ["graphviz"]
-        apt_dev : ["graphviz-dev"]
+        apt_dev : ["libgraphviz-dev"]
     }
     environ :
     {

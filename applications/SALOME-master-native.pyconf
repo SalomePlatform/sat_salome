@@ -72,7 +72,6 @@ APPLICATION :
         omniORB : '4.2.2'
         omniORBpy : '4.2.2'
         opencv : 'native'
-        openssl : 'native'
         ospray : '1.8.4'
         packaging : 'native'
         ParaView : '5.8.0'
