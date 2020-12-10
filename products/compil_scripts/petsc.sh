@@ -16,6 +16,7 @@ echo
 if [ -n "${MPI_ROOT_DIR}" ]
 then
   echo "*** configure with mpi"
+  CONFIGURE_FLAGS=$CONFIGURE_FLAGS" --download-hypre=ext/hypre-2.20.0"
   ./configure --prefix=${PRODUCT_INSTALL} --with-mpi-dir=${MPI_ROOT_DIR} ${CONFIGURE_FLAGS}
 else
   echo "*** configure without mpi"
