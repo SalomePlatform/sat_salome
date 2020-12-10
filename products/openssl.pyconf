@@ -7,7 +7,7 @@ default :
         rpm : []
         rpm_dev : ["openssl-devel"]
         apt : []
-        apt_dev : ["openssl-dev"]
+        apt_dev : ["libssl-dev"]
     }
     depend : []
     properties :
