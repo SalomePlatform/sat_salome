@@ -35,7 +35,7 @@ APPLICATION :
         Cython : '0.25.2'
         docutils : '0.12'
         doxygen : '1.8.14'
-        graphviz : '2.44.1'
+        graphviz : '2.38.0'
         hdf5 : '1.10.3'
         idna : '2.7'
         imagesize : '1.0.0'
