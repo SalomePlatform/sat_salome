@@ -78,6 +78,7 @@ if [ ${PYTHON_VERSION_MAJ} == 3 ]
 then
     cd ${PRODUCT_INSTALL}/bin
     ln -s python3 python
+    ln -s pip3 pip
 fi
 
 # fix the path... 
