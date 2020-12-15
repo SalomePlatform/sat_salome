@@ -31,7 +31,8 @@ default :
 
 version_8_0_1_clang :
 {
-    cmake_options : "-DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$LLVM_ROOT_DIR -DLLVM_BUILD_LLVM_DYLIB=ON -DLLVM_ENABLE_RTTI=ON -DLLVM_INSTALL_UTILS=ON -DLLVM_TARGETS_TO_BUILD:STRING=X86 -DPYTHON_EXECUTABLE=${PYTHON_ROOT_DIR}/bin/python -DLLVM_TEMPORARILY_ALLOW_OLD_TOOLCHAIN=ON -DLLVM_ENABLE_DUMP=ON "
+    build_source : "script"
+    compil_script: "llvm-8.0.1.sh"
 }
 
 version_8_0_1_clang_win :
