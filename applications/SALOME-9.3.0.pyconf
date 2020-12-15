@@ -37,7 +37,7 @@ APPLICATION :
         eigen : '3.3.4'
         freeimage : '3.16.0'
         freetype : '2.9.1'
-        gl2ps :  {section : 'version_1_4_04037312', tag : '1.4.0_4037312'}
+        gl2ps : '1.4.0_4037312'
         gmsh : '4.1.4'
         graphviz : '2.38.0'
         hdf5 : '1.10.3'
