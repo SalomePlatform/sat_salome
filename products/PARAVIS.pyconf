@@ -96,6 +96,16 @@ default_MPI :
     ]
 }
 
+version_V9_4_0 :
+{
+    cmake_options : "-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON "
+}
+
+version_V9_3_0 :
+{
+    cmake_options : "-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON "
+}
+
 version_7_8_0_to_9_1_0 :
 {
     depend : [
