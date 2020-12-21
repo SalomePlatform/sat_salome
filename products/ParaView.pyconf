@@ -40,6 +40,7 @@ version_5_8_0 :
                'paraview.0006-ParaView_find_libxml2.patch',
                'paraview.0007-ParaView_find_freetype.patch',
                'paraview.0009-ParaView_volume_mapper.patch',
+               'paraview.0010-ParaView_find_python.patch',
                'pv_coincident.patch'
               ]
 }

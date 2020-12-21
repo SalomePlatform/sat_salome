@@ -232,12 +232,13 @@ __overwrite__ :
   {
     # Adapt Paraview CMake files to be compliant with recent distributions
     __condition__ : "VARS.dist in ['FD30', 'FD32', 'CO8']"
-    'PRODUCTS.ParaView.version_5_8_0.patches' : ['paraview.0010-ParaViewClient.patch',
-                                                 'paraview.0004-ParaView_hdf5.patch',
+    'PRODUCTS.ParaView.version_5_8_0.patches' : ['paraview.0004-ParaView_hdf5.patch',
                                                  'paraview.0005-ParaView_find_cgns.patch',
                                                  'paraview.0006-ParaView_find_libxml2.patch',
                                                  'paraview.0007-ParaView_find_freetype.patch',
                                                  'paraview.0009-ParaView_volume_mapper.patch',
+                                                 'paraview.0010-ParaViewClient.patch',
+                                                 'paraview.0010-ParaView_find_python.patch',
                                                  'pv_coincident.patch'
                                                 ]
   }
