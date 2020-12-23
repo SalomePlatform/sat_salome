@@ -1,0 +1,22 @@
+diff --git a/src/Plugins/MEDReader/plugin/MEDLoaderForPV/MEDFileFieldRepresentationTree.cxx b/src/Plugins/MEDReader/plugin/MEDLoaderForPV/MEDFileFieldRepresentationTree.cxx
+index 87404a4..a8396b3 100644
+--- a/src/Plugins/MEDReader/plugin/MEDLoaderForPV/MEDFileFieldRepresentationTree.cxx
++++ b/src/Plugins/MEDReader/plugin/MEDLoaderForPV/MEDFileFieldRepresentationTree.cxx
+@@ -270,7 +270,7 @@ void AssignDataPointerToVTK(typename MEDFileVTKTraits<T>::VtkType *vtkTab, typen
+ 
+ // here copy is always assumed.
+ template<class VTKT, class MCT>
+-void AssignDataPointerOther(VTKT *vtkTab, MCT *mcTab, int nbElems)
++void AssignDataPointerOther(VTKT *vtkTab, MCT *mcTab, vtkIdType nbElems)
+ {
+   typedef typename VTKT::ValueType VTKType;
+   if ( sizeof( VTKType ) == sizeof( typename MCT::Type ))
+@@ -732,7 +732,7 @@ vtkUnstructuredGrid *MEDFileFieldRepresentationLeaves::buildVTKInstanceNoTimeInt
+   MCAuto<DataArrayByte> typesSafe(typesMC);
+   MCAuto<DataArrayIdType> cellLocationsSafe(cellLocationsMC),cellsSafe(cellsMC),faceLocationsSafe(faceLocationsMC),facesSafe(facesMC);
+   //
+-  int nbOfCells(typesSafe->getNbOfElems());
++  vtkIdType nbOfCells(typesSafe->getNbOfElems());
+   vtkUnstructuredGrid *ret(vtkUnstructuredGrid::New());
+   vtkUnsignedCharArray *cellTypes(vtkUnsignedCharArray::New());
+   AssignDataPointerOther<vtkUnsignedCharArray,DataArrayByte>(cellTypes,typesSafe,nbOfCells);

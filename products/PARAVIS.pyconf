@@ -44,6 +44,7 @@ default :
         is_SALOME_module : "yes"
         incremental : "yes"
     }
+    patches : []
 }
 
 default_win:
@@ -94,6 +95,11 @@ default_MPI :
        "pytz",
        "openmpi"
     ]
+}
+
+version_V9_6_0 :
+{
+   patches : ['PARAVIS-MEDLoaderForPV-64BITS_IDS.patch'] # port-back post-9.6.0 PARAVIS fix # bos #20444
 }
 
 version_V9_4_0 :
