@@ -74,7 +74,7 @@ APPLICATION :
         openssl : "native"
         ospray : '1.8.4'
         packaging : '17.1'
-        ParaView : '5.8.0'
+        ParaView : {tag : '5.8.0', section : 'version_5_8_0_int32'}
         petsc : '3.14.0'
         Pillow : '7.1.1'
         planegcs : '0.18-3cb6890'

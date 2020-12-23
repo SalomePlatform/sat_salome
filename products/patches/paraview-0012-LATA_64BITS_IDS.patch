@@ -1,0 +1,1939 @@
+diff -Nur ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/arch.h ParaView/Utilities/VisItBridge/databases/readers/Lata/arch.h
+--- ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/arch.h	2020-12-22 12:04:51.219334522 +0100
++++ ParaView/Utilities/VisItBridge/databases/readers/Lata/arch.h	2020-12-22 12:06:26.188148423 +0100
+@@ -29,6 +29,10 @@
+ 
+ #ifndef arch_include_
+ #define arch_include_
+-typedef int entier;
++typedef long entier;
++typedef long integer;
++typedef int True_int;
++#define INT_is_64_
++
+ #endif
+ 
+diff -Nur ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/ArrOfBit.C ParaView/Utilities/VisItBridge/databases/readers/Lata/ArrOfBit.C
+--- ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/ArrOfBit.C	2020-03-23 22:18:49.000000000 +0100
++++ ParaView/Utilities/VisItBridge/databases/readers/Lata/ArrOfBit.C	2020-12-22 12:06:26.189148420 +0100
+@@ -31,8 +31,8 @@
+ #include <string.h>
+ //Implemente_instanciable_sans_constructeur_ni_destructeur(ArrOfBit,"ArrOfBit",Objet_U);
+ 
+-const unsigned int ArrOfBit::SIZE_OF_INT_BITS = 5;
+-const unsigned int ArrOfBit::DRAPEAUX_INT = 31;
++const unsigned long ArrOfBit::SIZE_OF_INT_BITS = 5;
++const unsigned long ArrOfBit::DRAPEAUX_INT = 31;
+ 
+ // Description: Constructeur d'un tableau de taille n, non initialise
+ ArrOfBit::ArrOfBit(entier n)
+@@ -59,7 +59,7 @@
+ }
+ 
+ // Description:
+-// Taille en "int" du tableau requis pour stocker un tableau de bits
++// Taille en "long" du tableau requis pour stocker un tableau de bits
+ // de taille donnees.
+ entier ArrOfBit::calculer_int_size(entier taille) const
+ {
+@@ -83,7 +83,7 @@
+     {
+       entier oldsize = calculer_int_size(taille);
+       entier newsize = calculer_int_size(n);
+-      unsigned int * newdata = new unsigned int[newsize];
++      unsigned long * newdata = new unsigned long[newsize];
+       entier size_copy = (newsize > oldsize) ? oldsize : newsize;
+       if (size_copy)
+         {
+@@ -114,11 +114,11 @@
+           data = 0;
+         }
+       if (newsize > 0)
+-        data = new unsigned int[newsize];
++        data = new unsigned long[newsize];
+     }
+   taille = array.taille;
+   if (taille)
+-    memcpy(data, array.data, newsize * sizeof(unsigned int));
++    memcpy(data, array.data, newsize * sizeof(unsigned long));
+   return *this;
+ }
+ 
+@@ -127,7 +127,7 @@
+ 
+ ArrOfBit& ArrOfBit::operator=(entier val)
+ {
+-  unsigned int valeur = val ? (~((unsigned int) 0)) : 0;
++  unsigned long valeur = val ? (~((unsigned long) 0)) : 0;
+   entier size = calculer_int_size(taille);
+   entier i;
+   for (i = 0; i < size; i++)
+diff -Nur ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/ArrOfBit.h ParaView/Utilities/VisItBridge/databases/readers/Lata/ArrOfBit.h
+--- ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/ArrOfBit.h	2020-03-23 22:18:49.000000000 +0100
++++ ParaView/Utilities/VisItBridge/databases/readers/Lata/ArrOfBit.h	2020-12-22 12:06:26.189148420 +0100
+@@ -55,18 +55,18 @@
+   entier calculer_int_size(entier taille) const;
+ protected:
+   entier taille;
+-  unsigned int *data;
+-  static const unsigned int SIZE_OF_INT_BITS;
+-  static const unsigned int DRAPEAUX_INT;
++  unsigned long *data;
++  static const unsigned long SIZE_OF_INT_BITS;
++  static const unsigned long DRAPEAUX_INT;
+ };
+ 
+ // Description: Renvoie 1 si le bit e est mis, 0 sinon.
+ inline entier ArrOfBit::operator[](entier e) const
+ {
+   assert(e >= 0 && e < taille);
+-  unsigned int i = (unsigned int) e;
+-  unsigned int x = data[i >> SIZE_OF_INT_BITS];
+-  unsigned int flag = 1 << (i & DRAPEAUX_INT);
++  unsigned long i = (unsigned long) e;
++  unsigned long x = data[i >> SIZE_OF_INT_BITS];
++  unsigned long flag = 1 << (i & DRAPEAUX_INT);
+   entier resultat = ((x & flag) != 0) ? 1 : 0;
+   return resultat;
+ }
+@@ -75,8 +75,8 @@
+ inline void ArrOfBit::setbit(entier e) const
+ {
+   assert(e >= 0 && e < taille);
+-  unsigned int i = (unsigned int) e;
+-  unsigned int flag = 1 << (i & DRAPEAUX_INT);
++  unsigned long i = (unsigned long) e;
++  unsigned long flag = 1 << (i & DRAPEAUX_INT);
+   data[i >> SIZE_OF_INT_BITS] |= flag;
+ }
+ 
+@@ -84,10 +84,10 @@
+ inline entier ArrOfBit::testsetbit(entier e) const
+ {
+   assert(e >= 0 && e < taille);
+-  unsigned int i = (unsigned int) e;
+-  unsigned int flag = 1 << (i & DRAPEAUX_INT);
++  unsigned long i = (unsigned long) e;
++  unsigned long flag = 1 << (i & DRAPEAUX_INT);
+   entier index = i >> SIZE_OF_INT_BITS;
+-  unsigned int old = data[index];
++  unsigned long old = data[index];
+   data[index] = old | flag;
+   return ((old & flag) != 0) ? 1 : 0;
+ }
+@@ -96,8 +96,8 @@
+ inline void ArrOfBit::clearbit(entier e) const
+ {
+   assert(e >= 0 && e < taille);
+-  unsigned int i = (unsigned int) e;
+-  unsigned int flag = 1 << (i & DRAPEAUX_INT);
++  unsigned long i = (unsigned long) e;
++  unsigned long flag = 1 << (i & DRAPEAUX_INT);
+   data[i >> SIZE_OF_INT_BITS] &= ~flag;
+ }
+ 
+diff -Nur ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/ArrOfDouble.C ParaView/Utilities/VisItBridge/databases/readers/Lata/ArrOfDouble.C
+--- ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/ArrOfDouble.C	2020-03-23 22:18:49.000000000 +0100
++++ ParaView/Utilities/VisItBridge/databases/readers/Lata/ArrOfDouble.C	2020-12-22 12:06:26.189148420 +0100
+@@ -210,7 +210,7 @@
+ // Description:
+ //     Un nouveau tableau utilise cette zone memoire :
+ //     incremente ref_count
+-// Retour: int
++// Retour: long
+ //    Signification: ref_count
+ inline entier VDoubledata::add_one_ref()
+ {
+@@ -222,7 +222,7 @@
+ //     decremente ref_count
+ // Precondition:
+ //     ref_count_ > 0
+-// Retour: int
++// Retour: long
+ //    Signification: ref_count
+ inline entier VDoubledata::suppr_one_ref()
+ {
+@@ -651,7 +651,7 @@
+ // Precondition:
+ // Parametre: const ArrOfDouble& dx
+ //    Signification: tableau a utiliser
+-// Retour: int
++// Retour: long
+ //    Signification: indice du min
+ entier imin_array(const ArrOfDouble& dx)
+ {
+@@ -679,7 +679,7 @@
+ // Precondition:
+ // Parametre: const ArrOfDouble& dx
+ //    Signification: tableau a utiliser
+-// Retour: int
++// Retour: long
+ //    Signification: indice du max
+ entier imax_array(const ArrOfDouble& dx)
+ {
+@@ -834,7 +834,7 @@
+ //   * annule p_, data_ et size_array_
+ //  Si le tableau est "ref_data" :
+ //   * annule data_ et size_array_
+-// Retour: int
++// Retour: long
+ //    Signification: 1 si les donnees du tableau ont ete supprimees
+ // Precondition:
+ // Postcondition:
+@@ -965,7 +965,7 @@
+ // Description:
+ //    Retourne le nombre de references des donnees du tableau
+ //    si le tableau est "normal", -1 s'il est "detache" ou "ref_data"
+-// Retour: int
++// Retour: long
+ //    Signification: ref_count_
+ entier ArrOfDouble::ref_count() const
+ {
+diff -Nur ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/ArrOfFloat.C ParaView/Utilities/VisItBridge/databases/readers/Lata/ArrOfFloat.C
+--- ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/ArrOfFloat.C	2020-03-23 22:18:49.000000000 +0100
++++ ParaView/Utilities/VisItBridge/databases/readers/Lata/ArrOfFloat.C	2020-12-22 12:06:26.190148418 +0100
+@@ -210,7 +210,7 @@
+ // Description:
+ //     Un nouveau tableau utilise cette zone memoire :
+ //     incremente ref_count
+-// Retour: int
++// Retour: long
+ //    Signification: ref_count
+ inline entier VFloatdata::add_one_ref()
+ {
+@@ -222,7 +222,7 @@
+ //     decremente ref_count
+ // Precondition:
+ //     ref_count_ > 0
+-// Retour: int
++// Retour: long
+ //    Signification: ref_count
+ inline entier VFloatdata::suppr_one_ref()
+ {
+@@ -651,7 +651,7 @@
+ // Precondition:
+ // Parametre: const ArrOfFloat& dx
+ //    Signification: tableau a utiliser
+-// Retour: int
++// Retour: long
+ //    Signification: indice du min
+ entier imin_array(const ArrOfFloat& dx)
+ {
+@@ -679,7 +679,7 @@
+ // Precondition:
+ // Parametre: const ArrOfFloat& dx
+ //    Signification: tableau a utiliser
+-// Retour: int
++// Retour: long
+ //    Signification: indice du max
+ entier imax_array(const ArrOfFloat& dx)
+ {
+@@ -834,7 +834,7 @@
+ //   * annule p_, data_ et size_array_
+ //  Si le tableau est "ref_data" :
+ //   * annule data_ et size_array_
+-// Retour: int
++// Retour: long
+ //    Signification: 1 si les donnees du tableau ont ete supprimees
+ // Precondition:
+ // Postcondition:
+@@ -965,7 +965,7 @@
+ // Description:
+ //    Retourne le nombre de references des donnees du tableau
+ //    si le tableau est "normal", -1 s'il est "detache" ou "ref_data"
+-// Retour: int
++// Retour: long
+ //    Signification: ref_count_
+ entier ArrOfFloat::ref_count() const
+ {
+diff -Nur ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/ArrOfInt.C ParaView/Utilities/VisItBridge/databases/readers/Lata/ArrOfInt.C
+--- ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/ArrOfInt.C	2020-03-23 22:18:49.000000000 +0100
++++ ParaView/Utilities/VisItBridge/databases/readers/Lata/ArrOfInt.C	2020-12-22 12:06:26.190148418 +0100
+@@ -211,7 +211,7 @@
+ // Description:
+ //     Un nouveau tableau utilise cette zone memoire :
+ //     incremente ref_count
+-// Retour: int
++// Retour: long
+ //    Signification: ref_count
+ inline entier VIntdata::add_one_ref()
+ {
+@@ -223,7 +223,7 @@
+ //     decremente ref_count
+ // Precondition:
+ //     ref_count_ > 0
+-// Retour: int
++// Retour: long
+ //    Signification: ref_count
+ inline entier VIntdata::suppr_one_ref()
+ {
+@@ -646,7 +646,7 @@
+ // Precondition:
+ // Parametre: const ArrOfInt& dx
+ //    Signification: tableau a utiliser
+-// Retour: int
++// Retour: long
+ //    Signification: indice du min
+ entier imin_array(const ArrOfInt& dx)
+ {
+@@ -674,7 +674,7 @@
+ // Precondition:
+ // Parametre: const ArrOfInt& dx
+ //    Signification: tableau a utiliser
+-// Retour: int
++// Retour: long
+ //    Signification: indice du max
+ entier imax_array(const ArrOfInt& dx)
+ {
+@@ -824,7 +824,7 @@
+ //   * annule p_, data_ et size_array_
+ //  Si le tableau est "ref_data" :
+ //   * annule data_ et size_array_
+-// Retour: int
++// Retour: long
+ //    Signification: 1 si les donnees du tableau ont ete supprimees
+ // Precondition:
+ // Postcondition:
+@@ -955,7 +955,7 @@
+ // Description:
+ //    Retourne le nombre de references des donnees du tableau
+ //    si le tableau est "normal", -1 s'il est "detache" ou "ref_data"
+-// Retour: int
++// Retour: long
+ //    Signification: ref_count_
+ entier ArrOfInt::ref_count() const
+ {
+diff -Nur ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/ArrOf_Scalar_Prototype.cpp.h ParaView/Utilities/VisItBridge/databases/readers/Lata/ArrOf_Scalar_Prototype.cpp.h
+--- ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/ArrOf_Scalar_Prototype.cpp.h	2020-03-23 22:18:49.000000000 +0100
++++ ParaView/Utilities/VisItBridge/databases/readers/Lata/ArrOf_Scalar_Prototype.cpp.h	2020-12-22 12:06:26.191148416 +0100
+@@ -182,7 +182,7 @@
+ // Description:
+ //     Un nouveau tableau utilise cette zone memoire :
+ //     incremente ref_count
+-// Retour: int
++// Retour: long
+ //    Signification: ref_count
+ inline entier V__Scalar__data::add_one_ref()
+ {
+@@ -194,7 +194,7 @@
+ //     decremente ref_count
+ // Precondition:
+ //     ref_count_ > 0
+-// Retour: int
++// Retour: long
+ //    Signification: ref_count
+ inline entier V__Scalar__data::suppr_one_ref()
+ {
+@@ -628,7 +628,7 @@
+ // Precondition:
+ // Parametre: const ArrOf__Scalar__& dx
+ //    Signification: tableau a utiliser
+-// Retour: int
++// Retour: long
+ //    Signification: indice du min
+ entier imin_array(const ArrOf__Scalar__& dx)
+ {
+@@ -656,7 +656,7 @@
+ // Precondition:
+ // Parametre: const ArrOf__Scalar__& dx
+ //    Signification: tableau a utiliser
+-// Retour: int
++// Retour: long
+ //    Signification: indice du max
+ entier imax_array(const ArrOf__Scalar__& dx)
+ {
+@@ -726,7 +726,7 @@
+ // Description:
+ //   Fonction de comparaison utilisee pour trier le tableau
+ //   dans ArrOf__Scalar__::trier(). Voir man qsort
+-static int fonction_compare_arrof__scalar___ordonner(const void * data1, const void * data2)
++static long fonction_compare_arrof__scalar___ordonner(const void * data1, const void * data2)
+ {
+   const __scalar__ x = *(const __scalar__*)data1;
+   const __scalar__ y = *(const __scalar__*)data2;
+@@ -816,7 +816,7 @@
+ //   * annule p_, data_ et size_array_
+ //  Si le tableau est "ref_data" :
+ //   * annule data_ et size_array_
+-// Retour: int
++// Retour: long
+ //    Signification: 1 si les donnees du tableau ont ete supprimees
+ // Precondition:
+ // Postcondition:
+@@ -947,7 +947,7 @@
+ // Description:
+ //    Retourne le nombre de references des donnees du tableau
+ //    si le tableau est "normal", -1 s'il est "detache" ou "ref_data"
+-// Retour: int
++// Retour: long
+ //    Signification: ref_count_
+ entier ArrOf__Scalar__::ref_count() const
+ {
+diff -Nur ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/EFichier.h ParaView/Utilities/VisItBridge/databases/readers/Lata/EFichier.h
+--- ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/EFichier.h	2020-03-23 22:18:49.000000000 +0100
++++ ParaView/Utilities/VisItBridge/databases/readers/Lata/EFichier.h	2020-12-22 12:06:26.191148416 +0100
+@@ -33,7 +33,7 @@
+ class EFichier : public Entree
+ {
+ public:
+-  int ouvrir(const char *name)
++  long ouvrir(const char *name)
+   {
+     is_.open(name);
+     return is_.good();
+@@ -42,11 +42,11 @@
+   {
+     return is_;
+   }
+-  int eof()
++  long eof()
+   {
+     return is_.eof();
+   }
+-  int good()
++  long good()
+   {
+     return is_.good();
+   }
+diff -Nur ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/Entree.h ParaView/Utilities/VisItBridge/databases/readers/Lata/Entree.h
+--- ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/Entree.h	2020-03-23 22:18:49.000000000 +0100
++++ ParaView/Utilities/VisItBridge/databases/readers/Lata/Entree.h	2020-12-22 12:06:26.191148416 +0100
+@@ -37,8 +37,8 @@
+ {
+ public:
+   virtual operator std::istream& () = 0;
+-  virtual int eof() = 0;
+-  virtual int good() = 0;
++  virtual long eof() = 0;
++  virtual long good() = 0;
+   virtual ~Entree() {};
+   virtual std::istream& get_istream() = 0;
+ };
+diff -Nur ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/LataDB.C ParaView/Utilities/VisItBridge/databases/readers/Lata/LataDB.C
+--- ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/LataDB.C	2020-03-23 22:18:49.000000000 +0100
++++ ParaView/Utilities/VisItBridge/databases/readers/Lata/LataDB.C	2020-12-22 12:06:26.192148414 +0100
+@@ -49,8 +49,8 @@
+ //  Dump detailed subbloc interpretation at level+1
+ #define verb_level_data_bloc 5
+ 
+-typedef int LataDBInt32;
+-typedef long long int LataDBInt64;
++typedef long LataDBInt32;
++typedef long long LataDBInt64;
+ 
+ void arch_check()
+ {
+@@ -106,7 +106,7 @@
+   field_name_ = n;
+ }
+ 
+-int Field_UName::operator==(const Field_UName & f) const
++long Field_UName::operator==(const Field_UName & f) const
+ {
+   return (geometry_ == f.geometry_) && (field_name_ == f.field_name_) && (loc_ == f.loc_);
+ }
+@@ -291,7 +291,7 @@
+       else 
+         {
+           if (msb_ != LataDBDataType::machine_msb_) {
+-            Journal() << "LataDB LataDataFile::write(int) not coded for reverse binary msb" << endl;
++            Journal() << "LataDB LataDataFile::write(long) not coded for reverse binary msb" << endl;
+             throw;
+           }
+           switch(mode) {
+@@ -306,7 +306,7 @@
+       }
+     }
+   }
+-  void set_exception(int i) { exception_ = i; }
++  void set_exception(long i) { exception_ = i; }
+   FileOffset position() { return (*stream_).tellp(); };
+   enum SeekType { ABSOLUTE, RELATIVE };
+   void seek(FileOffset pos, SeekType seekt) {
+@@ -369,7 +369,7 @@
+   std::iostream *stream_; // Points to fstream_ or mem_buffer passed to constructor
+   LataDBDataType::MSB msb_;
+   LataDBDataType::Type type_;
+-  int exception_;
++  long exception_;
+ };
+ 
+ void LataDataFile::read(LataDBInt32 *ptr, BigEntier n)
+@@ -381,9 +381,9 @@
+   if (msb_ == LataDBDataType::ASCII) {
+     BigEntier i;
+     if (ptr)
+-      Journal(verb_level_data_bloc+1) << "Reading ascii int data bloc size=" << n << endl;
++      Journal(verb_level_data_bloc+1) << "Reading ascii long data bloc size=" << n << endl;
+     else
+-      Journal(verb_level_data_bloc+1) << "Skipping ascii int data bloc size=" << n << endl;
++      Journal(verb_level_data_bloc+1) << "Skipping ascii long data bloc size=" << n << endl;
+     LataDBInt32 toto;
+     for (i = 0; i < n; i++) {
+       if (ptr)
+@@ -397,15 +397,15 @@
+       }
+     }
+   } else {
+-    if (type_ != LataDBDataType::INT32) {
++    if ((type_ != LataDBDataType::INT64) &&  (type_ != LataDBDataType::INT32)) {
+       Journal() << "Internal error in LataDB.cpp LataDataFile::read(LataDBInt32) : size conversion not coded" << endl;
+       throw;
+     }
+     if (ptr) {
+-      Journal(verb_level_data_bloc+1) << "Reading binary int data bloc size=" << n << endl;
++      Journal(verb_level_data_bloc+1) << "Reading binary long data bloc size=" << n << endl;
+       (*stream_).read((char*)ptr, n * sizeof(LataDBInt32));
+     } else {
+-      Journal(verb_level_data_bloc+1) << "Skipping binary int data bloc size=" << n << endl;
++      Journal(verb_level_data_bloc+1) << "Skipping binary long data bloc size=" << n << endl;
+       seek(n * sizeof(LataDBInt32), RELATIVE);
+     }
+     if (exception_ && !(*stream_).good()) {
+@@ -468,7 +468,7 @@
+ 
+ void LataDataFile::write(const LataDBInt32 *ptr, BigEntier n, BigEntier columns)
+ {
+-  Journal(verb_level_data_bloc+1) << "Writing int data bloc size=" << n << endl;
++  Journal(verb_level_data_bloc+1) << "Writing long data bloc size=" << n << endl;
+   if (type_ != LataDBDataType::INT32) {
+     Journal() << "Error in lataDB bloc write: trying to write integer data to non integer file block" << endl;
+     throw LataDBError(LataDBError::DATA_ERROR); 
+@@ -482,7 +482,7 @@
+     }
+   } else {
+     if (msb_ != LataDBDataType::machine_msb_) {
+-      Journal() << "LataDB LataDataFile::write(int) not coded for reverse binary msb" << endl;
++      Journal() << "LataDB LataDataFile::write(long) not coded for reverse binary msb" << endl;
+       throw;
+       // Put code here (and test !) to reverse bytes in the binary bloc:
+     }
+@@ -490,7 +490,7 @@
+   }
+   (*stream_).seekg(0, std::ios::end);
+   if (exception_ && !(*stream_).good()) {
+-    Journal() << "Error writing file " << fname_ << " int[" << n << "]" 
++    Journal() << "Error writing file " << fname_ << " long[" << n << "]" 
+               << endl << message_ << endl;
+     throw LataDBError(LataDBError::DATA_ERROR);
+   }
+@@ -533,7 +533,7 @@
+     return;
+   f.set_err_message("Error reading fortran blocsize");
+   f.set_encoding(type.msb_, type.bloc_marker_type_);
+-  int i;
++  long i;
+   f >> i;
+   Journal(verb_level_data_bloc+1) << "Skipping blocsize marker value=" << i << endl;
+ }
+@@ -567,7 +567,8 @@
+ {
+   f.set_encoding(msb, type);
+   switch(type) {
+-  case LataDBDataType::INT32: f.read((LataDBInt32*) 0, size); break;
++  case LataDBDataType::INT32:
++  case LataDBDataType::INT64: f.read((LataDBInt32*) 0, size); break;
+   case LataDBDataType::REAL32: f.read((float*) 0, size); break;
+   default:
+     Journal() << "Internal error: bloc read skip not code for this type" << endl;
+@@ -592,14 +593,14 @@
+ }
+ 
+ void bloc_write(LataDataFile & f, LataDBDataType::MSB msb, LataDBDataType::Type type,
+-                const ArrOfInt & tab, int columns)
++                const ArrOfInt & tab, long columns)
+ {
+   f.set_encoding(msb, type);
+   f.write(tab.addr(), tab.size_array(), columns);
+ }
+ 
+ void bloc_write(LataDataFile & f, LataDBDataType::MSB msb, LataDBDataType::Type type,
+-                const ArrOfFloat & tab, int columns)
++                const ArrOfFloat & tab, long columns)
+ {
+   f.set_encoding(msb, type);
+   f.write(tab.addr(), tab.size_array(), columns);
+@@ -812,7 +813,7 @@
+   param = strtoll(s, &errorptr, 0 /* base 10 par defaut */);
+   if (errno || *errorptr != 0) {
+     Journal() << "LataDB::read_master_file error: " << err_msg << endl
+-              << "Error converting a string to type long int : string = " << s << endl;
++              << "Error converting a string to type long long : string = " << s << endl;
+     throw(LataDBError(LataDBError::READ_ERROR));
+   }
+ }
+@@ -852,10 +853,10 @@
+ 
+   a faire extraire pour de vrai les differents mots de motlu
+   Nom motlu2(tmp);
+-  int nb_comp=1;
++  long nb_comp=1;
+   {
+     const char *s = tmp;
+-    int p=0;
++    long p=0;
+     while ( ((*s) != 0))
+       {
+         if ((*s) == (','))
+@@ -872,10 +873,10 @@
+   param=Noms(nb_comp);
+   {
+     const char *s=motlu2;
+-    for (int i=0;i<nb_comp;i++)
++    for (long i=0;i<nb_comp;i++)
+       {
+         
+-        int j=motlu2.find(",");
++        long j=motlu2.find(",");
+         if (j==-1) j=0;
+         param[i]=(s+j);
+         cerr<<param[i]<<endl;
+@@ -908,7 +909,7 @@
+ }
+ 
+ // We update only fields found in the string
+-// A string can contain both an int type and a float type: we get both in int_type and float_type
++// A string can contain both an long type and a float type: we get both in int_type and float_type
+ static void read_format_string(const Motcle & n, LataDBDataType & data_type, 
+                                LataDBDataType::Type & int_type,
+                                LataDBDataType::Type & float_type)
+@@ -1104,7 +1105,7 @@
+   software_id_ = s; 
+ }
+ 
+-int is_med(const char* filename)
++long is_med(const char* filename)
+ {
+   Motcle motcle_nom_fic(filename);
+   
+diff -Nur ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/LataDB.h ParaView/Utilities/VisItBridge/databases/readers/Lata/LataDB.h
+--- ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/LataDB.h	2020-03-23 22:18:49.000000000 +0100
++++ ParaView/Utilities/VisItBridge/databases/readers/Lata/LataDB.h	2020-12-22 12:06:26.192148414 +0100
+@@ -124,7 +124,7 @@
+   Field_UName();
+   Field_UName(const char *domain_name, const char *field_name, const char *loc);
+   Field_UName(const Field_UName &);
+-  int operator==(const Field_UName &) const;
++  long operator==(const Field_UName &) const;
+   Field_UName & operator=(const Field_UName &);
+   Nom build_string() const;
+   const Motcle & get_localisation() const { return loc_; }
+@@ -153,7 +153,7 @@
+   // Field name (without localisation spec)
+   Nom name_;
+   // Where is it ?
+-  int timestep_;
++  long timestep_;
+   // Filename containing the data
+   // Special names: memory_buffer_file() => data stored in the LataDB memory buffer.
+   Nom filename_;
+@@ -239,7 +239,7 @@
+   // Third line in the .lata file
+   Nom software_id_;
+ 
+-  LataDBDataType default_type_float() const; // Everything same as int, but type_=default_float_type_
++  LataDBDataType default_type_float() const; // Everything same as long, but type_=default_float_type_
+   LataDBDataType default_type_int_;
+   LataDBDataType::Type default_float_type_;
+ 
+diff -Nur ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/LataDBmed.h ParaView/Utilities/VisItBridge/databases/readers/Lata/LataDBmed.h
+--- ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/LataDBmed.h	2020-03-23 22:18:49.000000000 +0100
++++ ParaView/Utilities/VisItBridge/databases/readers/Lata/LataDBmed.h	2020-12-22 12:06:26.193148412 +0100
+@@ -81,7 +81,7 @@
+       case MED_SEG2:
+         type_elem="Segment"; break;
+       default:
+-        Cerr<<"type_geo " << (int)type_geo <<" is not a supported element."<<finl;
++        Cerr<<"type_geo " << (long)type_geo <<" is not a supported element."<<finl;
+ 	throw;
+         break;
+       }
+@@ -128,12 +128,12 @@
+ 
+ extern med_geometry_type typmai3[MED_N_CELL_FIXED_GEO];
+ 
+-void latadb_get_info_mesh_med(const char* filename,const char* meshname,med_geometry_type& type_geo,int& ncells,int& nnodes,int& spacedim, int &nbcomp,int& is_structured, std::vector<int>& NIJK)
++void latadb_get_info_mesh_med(const char* filename,const char* meshname,med_geometry_type& type_geo,long& ncells,long& nnodes,long& spacedim, long &nbcomp,long& is_structured, std::vector<long>& NIJK)
+ {
+     is_structured=0;
+-  int meshDim, i;
++  long meshDim, i;
+   try {
+-  std::vector< std::vector< std::pair<INTERP_KERNEL::NormalizedCellType,int> > > res = MEDCoupling::GetUMeshGlobalInfo(filename, meshname, meshDim, spacedim, nnodes);
++  std::vector< std::vector< std::pair<INTERP_KERNEL::NormalizedCellType,long> > > res = MEDCoupling::GetUMeshGlobalInfo(filename, meshname, meshDim, spacedim, nnodes);
+   
+ 
+   // on prend que la dimension la plus grande et on verifie que l'on a qu'un type elt 
+@@ -154,7 +154,7 @@
+       //on est force de lire le maillage pour avoir le bon nombre de cellules  
+       MEDCoupling::MEDCouplingUMesh * mesh=  MEDCoupling::ReadUMeshFromFile(filename,meshname);
+       ncells = mesh->getNumberOfCells();
+-      const int *idx = mesh->getNodalConnectivityIndex()->getConstPointer();
++      const long *idx = mesh->getNodalConnectivityIndex()->getConstPointer();
+       for (i = 0, nbcomp = 0; i < ncells; i++) if (nbcomp < idx[i + 1] - idx[i] - 1) nbcomp = idx[i + 1] - idx[i] - 1;
+       mesh->decrRef();
+     }
+@@ -166,7 +166,7 @@
+     // No UMesh try CMesh
+       MEDCoupling::MEDCouplingMesh* mesh=  MEDCoupling::ReadMeshFromFile(filename, meshname);
+       /* 
+-        type_geo,int& ncells,int& nnodes,int& spacedim, int &nbcomp
++        type_geo,long& ncells,long& nnodes,long& spacedim, long &nbcomp
+        */
+       MEDCoupling::MEDCouplingCMesh* cmesh = dynamic_cast<MEDCoupling::MEDCouplingCMesh*>(mesh);
+       spacedim=cmesh-> getSpaceDimension() ;
+@@ -229,17 +229,17 @@
+   
+   vector<double> times;
+   LataDBTimestep  table; 
+-  int first=1;
++  long first=1;
+   
+-  for (int i=0;i<geoms.size();i++)
++  for (long i=0;i<geoms.size();i++)
+     {
+       LataDBGeometry dom;
+       dom.timestep_ = timesteps_.size()-1;
+       dom.name_=geoms[i];
+       med_geometry_type type_geo;
+-      int ncells,nnodes,spacedim, nbcomp;
+-      int is_structured;
+-      std::vector<int> NIJK;
++      long ncells,nnodes,spacedim, nbcomp;
++      long is_structured;
++      std::vector<long> NIJK;
+       latadb_get_info_mesh_med(filename,geoms[i].c_str(),type_geo,ncells,nnodes,spacedim,nbcomp,is_structured,NIJK);
+             
+       dom.elem_type_=latadb_name_from_type_geo(type_geo);
+@@ -261,7 +261,7 @@
+       elem.size_=ncells;
+       elem.datatype_ = default_type_float(); // ??
+ 
+-      int dim,ff,ef;
++      long dim,ff,ef;
+       get_element_data(dom.elem_type_, dim, elem.nb_comp_, ff, ef);
+       if (elem.nb_comp_ == -1) elem.nb_comp_ = nbcomp;
+       
+@@ -310,7 +310,7 @@
+   fields= MEDCoupling::GetAllFieldNamesOnMesh(filename,dom.name_.getString());
+   
+ 
+-  for (int i=0;i<fields.size();i++)
++  for (long i=0;i<fields.size();i++)
+     {
+       LataDBField som;
+       som.name_ = fields[i];
+@@ -330,7 +330,7 @@
+       // cerr<<"field " <<fields[i]<< " "<< meshname<<" ";
+       vector< MEDCoupling::TypeOfField > ltypes=MEDCoupling::GetTypesOfField(filename,meshname.getString(),fields[i].c_str());
+       //if (ltypes.size()!=1) throw;
+-      for (int t=0;t<ltypes.size();t++)
++      for (long t=0;t<ltypes.size();t++)
+       {
+       switch (ltypes[t])
+ 	{
+@@ -372,8 +372,8 @@
+       {
+ 	if (ltypes.size()>1)
+ 	  {
+-	    vector<pair< int, int > > iters= MEDCoupling::GetFieldIterations(ltypes[t],filename,meshname.getString(),fields[i].c_str());
+-	    for (int iter=0;iter<iters.size();iter++)
++	    vector<pair< long, long > > iters= MEDCoupling::GetFieldIterations(ltypes[t],filename,meshname.getString(),fields[i].c_str());
++	    for (long iter=0;iter<iters.size();iter++)
+ 	      {
+ 		double t= MEDCoupling::GetTimeAttachedOnFieldIteration(filename,fields[i].c_str(),iters[iter].first,iters[iter].second);
+ 		if (first==1)
+@@ -394,8 +394,8 @@
+ 	  }
+ 	else
+ 	  {
+-	    vector<pair<pair<int,int>,double> > vtimes=MEDCoupling::GetAllFieldIterations(filename,/*meshname,*/fields[i].c_str());
+-	    for (int it=0;it<vtimes.size();it++)
++	    vector<pair<pair<long,long>,double> > vtimes=MEDCoupling::GetAllFieldIterations(filename,/*meshname,*/fields[i].c_str());
++	    for (long it=0;it<vtimes.size();it++)
+ 	      {
+ 		
+ 		double t=vtimes[it].second;
+@@ -421,17 +421,17 @@
+     }
+     }
+   if (times.size()>0)
+-    for (int i=0;i<times.size();i++)
++    for (long i=0;i<times.size();i++)
+     {
+       
+       //LataDBTimestep & t = timesteps_.add(table);
+       LataDBTimestep& t = timesteps_.add(LataDBTimestep());
+       t.time_=times[i];
+-      for (int f=0;f<table.fields_.size();f++)
++      for (long f=0;f<table.fields_.size();f++)
+ 	add(i+1,table.fields_[f]);
+     
+     }
+-  for (int i=0;i<times.size()*0;i++)
++  for (long i=0;i<times.size()*0;i++)
+     cerr<<" time "<<times[i]<<endl;
+ }
+ 
+@@ -452,8 +452,8 @@
+       MEDCoupling::MEDCouplingUMesh * mesh=  MEDCoupling::ReadUMeshFromFile(fld.filename_.getString(),fld.geometry_.getString());
+       const  MEDCoupling::DataArrayDouble* coords=mesh->getCoords();
+       data->resize(fld.size_,fld.nb_comp_);
+-      for (int i=0;i<fld.size_;i++)
+-	for (int j=0;j<fld.nb_comp_;j++)
++      for (long i=0;i<fld.size_;i++)
++	for (long j=0;j<fld.nb_comp_;j++)
+ 	  {
+ 	    (*data)(i,j)=coords->getIJ(i,j);
+ 	  }
+@@ -468,15 +468,15 @@
+       ArrOfInt filter=renum_conn(type);
+       MEDCoupling::MEDCouplingUMesh * mesh=  MEDCoupling::ReadUMeshFromFile(fld.filename_.getString(),fld.geometry_.getString());
+       const  MEDCoupling::DataArrayInt *elems = mesh->getNodalConnectivity(), *idx = mesh->getNodalConnectivityIndex();
+-      const int *ptr_elems=elems->getConstPointer(), *ptr_idx = idx->getConstPointer();
++      const long *ptr_elems=elems->getConstPointer(), *ptr_idx = idx->getConstPointer();
+       data->resize(fld.size_,fld.nb_comp_);
+-      int compt=0;
+-      for (int i=0;i<fld.size_;i++)
++      long compt=0;
++      for (long i=0;i<fld.size_;i++)
+       {
+           compt++;
+-          for (int j=0;j<fld.nb_comp_;j++)
++          for (long j=0;j<fld.nb_comp_;j++)
+           {
+-              int reel = j + ptr_idx[i] + 1 < ptr_idx[i + 1];
++              long reel = j + ptr_idx[i] + 1 < ptr_idx[i + 1];
+               (*data)(i,filter.size_array()>0 ? filter[j] : j) = reel ? ptr_elems[compt] + 1 : 0;
+               compt += reel;
+           }
+@@ -488,7 +488,7 @@
+       MEDCoupling::MEDCouplingMesh * mesh=  MEDCoupling::ReadMeshFromFile(fld.filename_.getString(),fld.geometry_.getString());
+       data->resize(fld.size_,fld.nb_comp_);
+       MEDCoupling::MEDCouplingCMesh* cmesh = dynamic_cast<MEDCoupling::MEDCouplingCMesh*>(mesh);
+-      int dir;
++      long dir;
+       if (fld.name_=="SOMMETS_IJK_I")
+           dir=0;
+       else  if (fld.name_=="SOMMETS_IJK_J")
+@@ -498,8 +498,8 @@
+       else
+           abort();
+       const MEDCoupling::DataArrayDouble* coords=cmesh->getCoordsAt(dir);
+-      for (int i=0;i<fld.size_;i++)
+-     	for (int j=0;j<fld.nb_comp_;j++)
++      for (long i=0;i<fld.size_;i++)
++     	for (long j=0;j<fld.nb_comp_;j++)
+ 	  {
+ 	    (*data)(i,j)=coords->getIJ(i,j);
+ 	  }
+@@ -519,11 +519,11 @@
+       fieldname+="_";
+       fieldname+=fld.geometry_;
+       
+-      int ok=0;
++      long ok=0;
+    
+       vector<string> fields= MEDCoupling::GetAllFieldNamesOnMesh(fld.filename_.getString(),fld.geometry_.getString());
+       
+-      for (int f=0;f<fields.size();f++)
++      for (long f=0;f<fields.size();f++)
+ 	{
+ 	  if (fieldname==fields[f].c_str())
+ 	    {
+@@ -535,10 +535,10 @@
+ 	{
+ 	  fieldname=fld.name_;
+ 	}
+-      vector<pair<pair<int,int>,double> > vtimes=MEDCoupling::GetAllFieldIterations(fld.filename_.getString(),fieldname.getString());
++      vector<pair<pair<long,long>,double> > vtimes=MEDCoupling::GetAllFieldIterations(fld.filename_.getString(),fieldname.getString());
+ 
+-      int it=fld.timestep_-1;
+-      pair <int,int> iter(fld.timestep_-1,-1);
++      long it=fld.timestep_-1;
++      pair <long,long> iter(fld.timestep_-1,-1);
+       if (fld.timestep_==1) it=0;
+       //Cerr<<iter.first <<" 00 "<<vtimes.size()<<finl;
+     
+@@ -572,9 +572,9 @@
+ 	{
+ 	  assert(field->getNumberOfComponents()==fld.nb_comp_);
+ 	  const double* ptr=values->getConstPointer();
+-	  for (int i=0;i<fld.size_;i++)
++	  for (long i=0;i<fld.size_;i++)
+ 	    {
+-	      for (int j=0;j<fld.nb_comp_;j++)
++	      for (long j=0;j<fld.nb_comp_;j++)
+ 		{		 
+ 		  (*data)(i,j)=ptr[i*fld.nb_comp_+j];
+ 		}
+diff -Nur ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/LataFilter.C ParaView/Utilities/VisItBridge/databases/readers/Lata/LataFilter.C
+--- ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/LataFilter.C	2020-03-23 22:18:49.000000000 +0100
++++ ParaView/Utilities/VisItBridge/databases/readers/Lata/LataFilter.C	2020-12-22 12:06:26.193148412 +0100
+@@ -56,7 +56,7 @@
+   char *errorptr = 0;
+   entier x = strtol(ptr+1, &errorptr, 0 /* base 10 par defaut */);
+   if (errno || *errorptr != 0) {
+-    Journal() << "LataOptions error reading int parameter: " << s << endl;
++    Journal() << "LataOptions error reading long parameter: " << s << endl;
+     throw;
+   }
+   return x;
+@@ -521,7 +521,7 @@
+     data.displayed_name_ = lata_geom_name;
+     
+     Nom separ("boundaries_");
+-    int m=data.displayed_name_.find(separ);
++    long m=data.displayed_name_.find(separ);
+     if (m>0)
+       {
+ 	const Nom& name= data.displayed_name_;
+@@ -990,17 +990,17 @@
+ 
+ void LataOptions::extract_path_basename(const char * s, Nom & path_prefix, Nom & basename)
+ {
+-  int i;
+-  for (i=(int)strlen(s)-1;i>=0;i--)
++  long i;
++  for (i=(long)strlen(s)-1;i>=0;i--)
+     if ((s[i]==PATH_SEPARATOR) ||(s[i]=='\\'))
+       break;
+   path_prefix = "";
+-  int j;
++  long j;
+   for (j = 0; j <= i; j++)
+     path_prefix += Nom(s[j]);
+   
+   // Parse basename : if extension given, remove it
+-  int n = (int)strlen(s);
++  long n = (long)strlen(s);
+   if (n > 5 && strcmp(s+n-5,".lata") == 0)
+     n -= 5;
+   basename = "";
+diff -Nur ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/LataFilter.h ParaView/Utilities/VisItBridge/databases/readers/Lata/LataFilter.h
+--- ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/LataFilter.h	2020-03-23 22:18:49.000000000 +0100
++++ ParaView/Utilities/VisItBridge/databases/readers/Lata/LataFilter.h	2020-12-22 12:06:26.194148410 +0100
+@@ -62,19 +62,19 @@
+ 
+   bool   reconnect;  // Do we want to reconnect multiblock meshes
+   float  reconnect_tolerance;
+-  int regularize_polyedre ; // if 1 Treate polyedre as poyledre extruder
+-  int    regularize;    // Do we want to force regularize the domain ie convert the mesh to a structured ijk (not necessary except for dual-mesh vdf)
++  long regularize_polyedre ; // if 1 Treate polyedre as poyledre extruder
++  long    regularize;    // Do we want to force regularize the domain ie convert the mesh to a structured ijk (not necessary except for dual-mesh vdf)
+                         // special value 2 means "regularize if faces present and vdf"
+-  int    extend_domain; // Extend the regularized domaine by n layers of cells
++  long    extend_domain; // Extend the regularized domaine by n layers of cells
+   float  regularize_tolerance;
+   bool   invalidate; // invalidate unused positions and connections;
+   bool   load_virtual_elements; // Do we want to extend the loaded mesh subblocks with a layer of virtual elements
+   bool   export_fields_at_faces_; // Should we show these fields in exportable fields
+   
+   // When loading ijk regular meshes, virtually create this number of blocks in the K direction:
+-  int    ijk_mesh_nb_parts_;
++  long    ijk_mesh_nb_parts_;
+   // When loading ijk regular meshes, merge N layers of virtual elements (default=1)
+-  int    ijk_virt_layer;
++  long    ijk_virt_layer;
+ 
+   bool   user_fields_; //activate user fields ?
+ 
+diff -Nur ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/LataStructures.C ParaView/Utilities/VisItBridge/databases/readers/Lata/LataStructures.C
+--- ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/LataStructures.C	2020-03-23 22:18:49.000000000 +0100
++++ ParaView/Utilities/VisItBridge/databases/readers/Lata/LataStructures.C	2020-12-22 12:06:26.194148410 +0100
+@@ -41,7 +41,7 @@
+   case LataField_base::ELEM: n = nb_elements(); break;
+   case LataField_base::FACES: n = nb_faces(); break;
+   default:
+-    Journal() << "Invalid localisation " << (int) loc << " in Domain::nb_items" << endl;
++    Journal() << "Invalid localisation " << (long) loc << " in Domain::nb_items" << endl;
+     throw;
+   }
+   return n;
+@@ -58,11 +58,11 @@
+   case LataField_base::ELEM: n = decal_elements_lata_; break;
+   case LataField_base::FACES: n = decal_faces_lata_; break;
+   default:
+-    Journal() << "Invalid localisation " << (int) loc << " in Domain::lata_block_offset" << endl;
++    Journal() << "Invalid localisation " << (long) loc << " in Domain::lata_block_offset" << endl;
+     throw;
+   }
+   if (n < 0) {
+-    Journal() << "Error: lata_block_offset not set for localisation " << (int) loc << endl;
++    Journal() << "Error: lata_block_offset not set for localisation " << (long) loc << endl;
+     throw;
+   }
+   return n;
+@@ -76,7 +76,7 @@
+   case LataField_base::ELEM: decal_elements_lata_ = n; break;
+   case LataField_base::FACES: decal_faces_lata_ = n; break;
+   default:
+-    Journal() << "Invalid localisation " << (int) loc << " in Domain::set_lata_block_offset" << endl;
++    Journal() << "Invalid localisation " << (long) loc << " in Domain::set_lata_block_offset" << endl;
+     throw;
+   }
+ }
+@@ -89,11 +89,11 @@
+   const entier nb_som_elem = elements_.dimension(1);
+   const double facteur = 1. / (double) nb_som_elem;
+   double tmp[3];
+-  for (int i = 0; i < nb_elem; i++) {
+-    int j, k;
++  for (long i = 0; i < nb_elem; i++) {
++    long j, k;
+     tmp[0] = tmp[1] = tmp[2] = 0.;
+     for (j = 0; j < nb_som_elem; j++) {
+-      int som = elements_(i, j);
++      long som = elements_(i, j);
+       for (k = 0; k < loop_max(dim, 3); k++) {
+         tmp[k] += nodes_(som, k);
+         break_loop(k, dim);
+diff -Nur ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/LataStructures.h ParaView/Utilities/VisItBridge/databases/readers/Lata/LataStructures.h
+--- ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/LataStructures.h	2020-03-23 22:18:49.000000000 +0100
++++ ParaView/Utilities/VisItBridge/databases/readers/Lata/LataStructures.h	2020-12-22 12:06:26.194148410 +0100
+@@ -43,14 +43,14 @@
+ class Domain_Id
+ {
+ public:
+-  Domain_Id(const char * name = "??", int t = 0, int block = -1) :
++  Domain_Id(const char * name = "??", long t = 0, long block = -1) :
+     name_(name), timestep_(t), block_(block) {};
+   // Domain name
+   Nom name_;
+   // At which timestep (needed for dynamic domains)
+-  int timestep_;
++  long timestep_;
+   // Which block of the parallel computation ? -1 => all blocks
+-  int block_;
++  long block_;
+ };
+ 
+ // Description: Field_Id is what you need to identify the content of a
+@@ -60,11 +60,11 @@
+ {
+ public:
+   Field_Id() : timestep_(0) {};
+-  Field_Id(const Field_UName & uname, int timestep, int block) :
++  Field_Id(const Field_UName & uname, long timestep, long block) :
+     timestep_(timestep), block_(block), uname_(uname)  {};
+   
+-  int         timestep_;
+-  int         block_;
++  long         timestep_;
++  long         block_;
+   Field_UName uname_;
+ 
+   operator Domain_Id() const { return Domain_Id(uname_.get_geometry(), timestep_, block_); }
+diff -Nur ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/Lata_tools.C ParaView/Utilities/VisItBridge/databases/readers/Lata/Lata_tools.C
+--- ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/Lata_tools.C	2020-03-23 22:18:49.000000000 +0100
++++ ParaView/Utilities/VisItBridge/databases/readers/Lata/Lata_tools.C	2020-12-22 12:06:26.194148410 +0100
+@@ -36,7 +36,7 @@
+ #include <string.h>
+ #include <stdlib.h>
+ 
+-static int journal_level = 0;
++static long journal_level = 0;
+ 
+ void set_Journal_level(entier level)
+ {
+@@ -89,17 +89,17 @@
+ 
+ BigEntier memory_size(const ArrOfBit & tab)
+ {
+-  return ((BigEntier)sizeof(tab)) + ((BigEntier)tab.size_array()) * sizeof(int) / 32; 
++  return ((BigEntier)sizeof(tab)) + ((BigEntier)tab.size_array()) * sizeof(long) / 32; 
+ }
+ 
+ void split_path_filename(const char *s, Nom & path, Nom & filename)
+ {
+-  int i;
+-  for (i=(int)strlen(s)-1;i>=0;i--)
++  long i;
++  for (i=(long)strlen(s)-1;i>=0;i--)
+     if ((s[i]==PATH_SEPARATOR) || (s[i]=='\\'))
+       break;
+   path = "";
+-  int j;
++  long j;
+   for (j = 0; j <= i; j++)
+     path += Nom(s[j]);
+   
+diff -Nur ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/LataV1_field_definitions.C ParaView/Utilities/VisItBridge/databases/readers/Lata/LataV1_field_definitions.C
+--- ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/LataV1_field_definitions.C	2020-03-23 22:18:49.000000000 +0100
++++ ParaView/Utilities/VisItBridge/databases/readers/Lata/LataV1_field_definitions.C	2020-12-22 12:06:26.195148408 +0100
+@@ -32,7 +32,7 @@
+ 
+ typedef struct {
+   const char * name;
+-  int shape; // Vector size (-1 => dimension of the problem)
++  long shape; // Vector size (-1 => dimension of the problem)
+ } StdComponents;
+ 
+ // COMPOSANTES EN MAJUSCULES !!!!!
+@@ -72,7 +72,7 @@
+     // Empty label means end of the table
+   };
+ 
+-int latav1_component_shape(const Motcle & compo)
++long latav1_component_shape(const Motcle & compo)
+ {
+   entier i = 0;
+   while (std_components[i].name[0] != 0) {
+diff -Nur ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/LataV1_field_definitions.h ParaView/Utilities/VisItBridge/databases/readers/Lata/LataV1_field_definitions.h
+--- ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/LataV1_field_definitions.h	2020-03-23 22:18:49.000000000 +0100
++++ ParaView/Utilities/VisItBridge/databases/readers/Lata/LataV1_field_definitions.h	2020-12-22 12:06:26.195148408 +0100
+@@ -32,4 +32,4 @@
+ // (separated from LataDB.cpp so that changes in this file are
+ //  easily identified)
+ class Motcle;
+-int latav1_component_shape(const Motcle & compo);
++long latav1_component_shape(const Motcle & compo);
+diff -Nur ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/LataVector.h ParaView/Utilities/VisItBridge/databases/readers/Lata/LataVector.h
+--- ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/LataVector.h	2020-03-23 22:18:49.000000000 +0100
++++ ParaView/Utilities/VisItBridge/databases/readers/Lata/LataVector.h	2020-12-22 12:06:26.195148408 +0100
+@@ -41,19 +41,19 @@
+   LataVector(const LataVector<C> & x) : n_(0), data_(0) { operator=(x); }
+   LataVector(entier n) : n_(0), data_(0) { for (entier i=0; i<n; i++) add(); }
+   ~LataVector() { reset(); }
+-  void reset() { for (int i=0; i<n_; i++) { delete data_[i]; }; delete[] data_; n_ = 0; data_ = 0; }
++  void reset() { for (long i=0; i<n_; i++) { delete data_[i]; }; delete[] data_; n_ = 0; data_ = 0; }
+   const C & operator[](entier i) const { assert(i>=0 && i<n_); return *(data_[i]); }
+   C & operator[](entier i) { assert(i>=0 && i<n_); return *(data_[i]); }
+   C & add(const C & item) { return add_item(new C(item)); }
+   C & add() { return add_item(new C); }
+   entier size() const { return n_; }
+   entier rang(const C & c) const { for (entier i = 0; i < n_; i++) if (*(data_[i]) == c) return i; return -1; }
+-  LataVector<C> & operator=(const LataVector<C> & x) { reset(); for (int i=0; i<x.n_; i++) add(x[i]); return *this; }
++  LataVector<C> & operator=(const LataVector<C> & x) { reset(); for (long i=0; i<x.n_; i++) add(x[i]); return *this; }
+ private:
+   C & add_item(C* added_item) {
+     C** old = data_; 
+     data_ = new C*[n_+1]; 
+-    for (int i=0; i<n_; i++) data_[i] = old[i]; 
++    for (long i=0; i<n_; i++) data_[i] = old[i]; 
+     delete[] old;
+     data_[n_++] = added_item;
+     return *added_item;
+diff -Nur ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/LmlReader.C ParaView/Utilities/VisItBridge/databases/readers/Lata/LmlReader.C
+--- ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/LmlReader.C	2020-03-23 22:18:49.000000000 +0100
++++ ParaView/Utilities/VisItBridge/databases/readers/Lata/LmlReader.C	2020-12-22 12:06:26.195148408 +0100
+@@ -114,7 +114,7 @@
+       Journal(lmllevel) << "lml_reader: GRILLE " << geom.name_ << endl;
+       is >> sommets.nb_comp_;
+       {
+-	int tmp;
++	long tmp;
+ 	is >> tmp; 
+ 	sommets.size_ = tmp; // size_ est long long...
+       }
+@@ -160,12 +160,12 @@
+         throw;
+       }
+       {
+-	int tmp;
++	long tmp;
+ 	is >> tmp; // size_ est long long...
+ 	elements.size_ = tmp;
+       }
+       is >> motlu;
+-      int borne_index_min=0;
++      long borne_index_min=0;
+       if (motlu == "TETRA4") {
+         lata_db.set_elemtype(tstep, elements.geometry_, "TETRAEDRE");
+         elements.nb_comp_ = 4;
+@@ -229,7 +229,7 @@
+       if (data_filename)
+         lata_db.write_data(tstep, elements.uname_, elems);
+     } else if (motlu == "FACE") {
+-      int n;
++      long n;
+       is >> n;
+       if (!is.good())
+         throw LataDBError(LataDBError::READ_ERROR);
+@@ -291,7 +291,7 @@
+       if (!is.good())
+         throw LataDBError(LataDBError::READ_ERROR);
+       {
+-	int tmp;
++	long tmp;
+ 	is >> tmp;
+ 	field.size_ = tmp; // long long convert
+       }
+diff -Nur ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/Motcle.C ParaView/Utilities/VisItBridge/databases/readers/Lata/Motcle.C
+--- ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/Motcle.C	2020-03-23 22:18:49.000000000 +0100
++++ ParaView/Utilities/VisItBridge/databases/readers/Lata/Motcle.C	2020-12-22 12:06:26.196148405 +0100
+@@ -34,8 +34,8 @@
+ #include <string>
+ Nom& Nom::majuscule()
+ {
+-  const int n = longueur()-1;
+-  for (int i = 0; i < n; i++)
++  const long n = longueur()-1;
++  for (long i = 0; i < n; i++)
+     {
+       char c = s_[i];
+       if (c >= 'a' && c <= 'z')
+@@ -54,7 +54,7 @@
+ 
+ // opt=0 => comparaison des chaines completes
+ // opt=1 => le debut de n1 doit etre egal a n2
+-int Motcle::strcmp_uppercase(const char *n1, const char *n2, int opt)
++long Motcle::strcmp_uppercase(const char *n1, const char *n2, long opt)
+ {
+   entier i = 0;
+   unsigned char c1, c2;
+@@ -76,17 +76,17 @@
+   return delta;
+ }
+ 
+-int Nom::debute_par(const char * s) const
++long Nom::debute_par(const char * s) const
+ {
+-  const int l1 = longueur()-1;
+-  const int l2 = (int)strlen(s);
++  const long l1 = longueur()-1;
++  const long l2 = (long)strlen(s);
+   return (l1>=l2) ? (strncmp(s_.c_str(), s, l2) == 0) : 0;
+ }
+ 
+-int Nom::finit_par(const char * s) const
++long Nom::finit_par(const char * s) const
+ {
+-  const int l1 = longueur()-1;
+-  const int l2 = (int)strlen(s);
++  const long l1 = longueur()-1;
++  const long l2 = (long)strlen(s);
+   return (l1>=l2) ? (strncmp(s_.c_str()+(l1-l2), s, l2) == 0) : 0;
+ }
+ 
+@@ -107,15 +107,15 @@
+   return *this;
+ }
+ 
+-int Motcle::debute_par(const char * s) const
++long Motcle::debute_par(const char * s) const
+ {
+   return (strcmp_uppercase(s_.c_str(), s, 1) == 0);
+ }
+ 
+-int Motcle::finit_par(const char * s) const
++long Motcle::finit_par(const char * s) const
+ {
+-  const int l1 = longueur()-1;
+-  const int l2 = (int)strlen(s);
++  const long l1 = longueur()-1;
++  const long l2 = (long)strlen(s);
+   return (l1>=l2) ? (strcmp_uppercase(s_.c_str()+(l1-l2), s) == 0) : 0;
+ }
+ 
+diff -Nur ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/Motcle.h ParaView/Utilities/VisItBridge/databases/readers/Lata/Motcle.h
+--- ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/Motcle.h	2020-03-23 22:18:49.000000000 +0100
++++ ParaView/Utilities/VisItBridge/databases/readers/Lata/Motcle.h	2020-12-22 12:06:26.196148405 +0100
+@@ -61,7 +61,7 @@
+   {
+     s_ = c;
+   };
+-  Nom(int i)
++  Nom(long i)
+   {
+     char s[30];
+     sprintf(s, "%d", i);
+@@ -88,11 +88,11 @@
+   {
+     os << s_;
+   }
+-  virtual int operator==(const char * s) const
++  virtual long operator==(const char * s) const
+   {
+     return (s_ == s);
+   }
+-  virtual int operator!=(const char * s) const
++  virtual long operator!=(const char * s) const
+   {
+     return !operator==(s);
+   }
+@@ -102,8 +102,8 @@
+     return *this;
+   }
+   virtual entier find(const char * n) const;
+-  virtual int debute_par(const char * s) const;
+-  virtual int finit_par(const char * s) const;
++  virtual long debute_par(const char * s) const;
++  virtual long finit_par(const char * s) const;
+   virtual Nom& prefix(const char * s);
+   Nom&          majuscule();
+ protected:
+@@ -118,11 +118,11 @@
+   Motcle(const char * s) : Nom(s) {};
+   Motcle(const Nom& n) : Nom(n) {};
+   ~Motcle() {};
+-  int operator==(const char * s) const
++  long operator==(const char * s) const
+   {
+     return (strcmp_uppercase(s_.c_str(), s) == 0);
+   }
+-  int operator!=(const char * s) const
++  long operator!=(const char * s) const
+   {
+     return !operator==(s);
+   }
+@@ -131,10 +131,10 @@
+     s_ += n;
+     return *this;
+   }
+-  int debute_par(const char * s) const;
+-  int finit_par(const char * s) const;
++  long debute_par(const char * s) const;
++  long finit_par(const char * s) const;
+ 
+-  static int strcmp_uppercase(const char * s1, const char * s2, int opt = 0);
++  static long strcmp_uppercase(const char * s1, const char * s2, long opt = 0);
+   virtual entier find(const char * n) const
+   {
+     return Nom(*this).majuscule().find(Nom(n).majuscule());
+diff -Nur ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/OpenDXWriter.C ParaView/Utilities/VisItBridge/databases/readers/Lata/OpenDXWriter.C
+--- ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/OpenDXWriter.C	2020-03-23 22:18:49.000000000 +0100
++++ ParaView/Utilities/VisItBridge/databases/readers/Lata/OpenDXWriter.C	2020-12-22 12:06:26.196148405 +0100
+@@ -39,14 +39,14 @@
+ {
+ public:
+   DX_stream() : os_to_cout_(0), os_(0) {};
+-  void init_cout(int is_ascii) 
++  void init_cout(long is_ascii) 
+   { 
+     reset();
+     os_to_cout_ = 1;
+     ascii_ = is_ascii;
+     os_ = &std::cout;
+   }
+-  void init_file(const char *fname, int is_ascii)
++  void init_file(const char *fname, long is_ascii)
+   {
+     reset();
+     os_to_cout_ = 0;
+@@ -62,17 +62,17 @@
+     os_to_cout_ = 0;
+   }
+   DX_stream & operator<<(const float f) { (*os_) << f; return *this; }
+-  DX_stream & operator<<(const int i) { (*os_) << i; return *this; }
++  DX_stream & operator<<(const long i) { (*os_) << i; return *this; }
+   DX_stream & operator<<(const char * s) { (*os_) << s; return *this; }
+   DX_stream & operator<<(DX_stream & f(DX_stream &)) { return f(*this); }
+ 
+-  void write(char * ptr, int sz) { os_->write(ptr, sz); }
++  void write(char * ptr, long sz) { os_->write(ptr, sz); }
+   entier ok() { return os_ != 0; }
+   entier ascii() { return ascii_; }
+   std::ostream & stream() { return *os_; }
+ protected:
+-  int os_to_cout_;
+-  int ascii_;
++  long os_to_cout_;
++  long ascii_;
+   std::ostream *os_;
+ };
+ 
+@@ -82,9 +82,9 @@
+   return os; 
+ }
+ 
+-void DX_write_vect(DX_stream & os, int dxobject, const ArrOfFloat & v)
++void DX_write_vect(DX_stream & os, long dxobject, const ArrOfFloat & v)
+ {
+-  const int places = v.size_array();
++  const long places = v.size_array();
+   os << "object " << dxobject << " class array" << endl;
+   os << "type float rank 1 shape 1 items " << places << " ";
+ 
+@@ -93,16 +93,16 @@
+     os.write((char*)v.addr(), sizeof(float) * places);
+   } else {
+     os << "ascii data follows" << endl;
+-    for (int i=0;i<places;i++) {
++    for (long i=0;i<places;i++) {
+       os << v[i] << " ";
+       os << endl;
+     }
+   }
+ }
+-void DX_write_vect(DX_stream & os, int dxobject, const FloatTab & v)
++void DX_write_vect(DX_stream & os, long dxobject, const FloatTab & v)
+ {
+-  const int places = v.dimension(0);
+-  const int shape  = v.dimension(1);
++  const long places = v.dimension(0);
++  const long shape  = v.dimension(1);
+   os << "object " << dxobject << " class array" << endl;
+   os << "type float rank 1 shape " << shape << " items " << places << " ";
+ 
+@@ -111,32 +111,32 @@
+     os.write((char*)v.addr(), sizeof(float) * places * shape);
+   } else {
+     os << "ascii data follows" << endl;
+-    for (int i=0;i<places;i++) {
+-      for (int j=0;j<shape;j++)
++    for (long i=0;i<places;i++) {
++      for (long j=0;j<shape;j++)
+         os << v(i, j) << " ";
+       os << endl;
+     }
+   }
+ }
+ 
+-void DX_write_vect(DX_stream & os, int dxobject, const IntTab & v)
++void DX_write_vect(DX_stream & os, long dxobject, const IntTab & v)
+ {
+-  if (sizeof(int) != 4) {
+-    Journal() << "Error DX_write_vect : int size != 32 bits" << endl;
++  if (sizeof(long) != 4) {
++    Journal() << "Error DX_write_vect : long size != 32 bits" << endl;
+     throw OpenDXWriter::DXInternalError;
+   }
+-  const int places = v.dimension(0);
+-  const int shape  = v.dimension(1);
++  const long places = v.dimension(0);
++  const long shape  = v.dimension(1);
+   os << "object " << dxobject << " class array" << endl;
+-  os << "type int rank 1 shape " << shape << " items " << places << " ";
++  os << "type long rank 1 shape " << shape << " items " << places << " ";
+ 
+   if (!os.ascii()) {
+     os << (mymachine_msb ? "msb ieee" : "lsb ieee") << " data follows" << endl;
+-    os.write((char*)v.addr(), sizeof(int) * places * shape);
++    os.write((char*)v.addr(), sizeof(long) * places * shape);
+   } else {
+     os << "ascii data follows" << endl;
+-    for (int i=0;i<places;i++) {
+-      for (int j=0;j<shape;j++)
++    for (long i=0;i<places;i++) {
++      for (long j=0;j<shape;j++)
+         os << v(i, j) << " ";
+       os << endl;
+     }
+@@ -163,7 +163,7 @@
+   finish_geometry(); // reset geometry data
+ }
+ 
+-void OpenDXWriter::init_cout(double time, int ascii)
++void OpenDXWriter::init_cout(double time, long ascii)
+ {
+   reset();
+   os_->init_cout(ascii);
+@@ -174,7 +174,7 @@
+   DX_write_vect(*os_, dx_time_index_, t);
+ }
+ 
+-void OpenDXWriter::init_file(double time, Nom & filename_, int ascii)
++void OpenDXWriter::init_file(double time, Nom & filename_, long ascii)
+ {
+   reset();
+   os_->init_file(filename_, ascii);
+@@ -319,7 +319,7 @@
+   components_names_.add(n);
+ }
+ 
+-entier OpenDXWriter::finish(int force_group)
++entier OpenDXWriter::finish(long force_group)
+ {
+   DX_stream & os = *os_;
+   finish_geometry();
+diff -Nur ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/OpenDXWriter.h ParaView/Utilities/VisItBridge/databases/readers/Lata/OpenDXWriter.h
+--- ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/OpenDXWriter.h	2020-03-23 22:18:49.000000000 +0100
++++ ParaView/Utilities/VisItBridge/databases/readers/Lata/OpenDXWriter.h	2020-12-22 12:06:26.197148403 +0100
+@@ -48,32 +48,32 @@
+ public:
+   OpenDXWriter();
+   ~OpenDXWriter();
+-  void init_cout(double time, int ascii = 0);
+-  void init_file(double time, Nom & filename_, int ascii = 0);
++  void init_cout(double time, long ascii = 0);
++  void init_file(double time, Nom & filename_, long ascii = 0);
+ 
+   void write_geometry(const Domain & dom);
+   void write_component(const LataField_base & field);
+ 
+-  entier finish(int force_group = 0);
++  entier finish(long force_group = 0);
+   enum DXErrors { DXInternalError };
+ protected:
+   void reset();
+   void finish_geometry();
+ 
+-  int dx_time_index_;
+-  int index_counter_;
++  long dx_time_index_;
++  long index_counter_;
+   // Indexes of all DXfield objects in the file (to build the final group)
+   ArrOfInt fields_indexes_;
+   // Names of the DXfields:
+   Noms fields_names_;
+ 
+   // Index of the nodes array of the last geometry
+-  int nodes_index_;
++  long nodes_index_;
+   // Index of the elements array of the last geometry
+-  int elements_index_;
++  long elements_index_;
+   // Index of these arrays:
+-  int invalid_positions_;
+-  int invalid_connections_;
++  long invalid_positions_;
++  long invalid_connections_;
+   // Indexes of the components associated with the last geometry
+   ArrOfInt components_indexes_;
+   Noms components_names_;
+diff -Nur ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/OperatorBoundary.C ParaView/Utilities/VisItBridge/databases/readers/Lata/OperatorBoundary.C
+--- ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/OperatorBoundary.C	2020-03-23 22:18:49.000000000 +0100
++++ ParaView/Utilities/VisItBridge/databases/readers/Lata/OperatorBoundary.C	2020-12-22 12:06:26.197148403 +0100
+@@ -50,7 +50,7 @@
+       { 2, 3, 6, 7 },
+       { 4, 5, 6, 7 } };
+ 
+-  int i, j;
++  long i, j;
+   switch(elt_type) {
+   case Domain::tetra:
+     ref_elem_face.resize(4,3);
+@@ -95,8 +95,8 @@
+   op.src_element_.set_smart_resize(1);
+   op.src_face_.set_smart_resize(1);
+   op.src_nodes_.set_smart_resize(1);
+-  const int nb_nodes_per_face = element_faces.dimension(1);
+-  const int nb_faces_per_element = element_faces.dimension(0);
++  const long nb_nodes_per_face = element_faces.dimension(1);
++  const long nb_faces_per_element = element_faces.dimension(0);
+ 
+   ArrOfInt one_face(nb_nodes_per_face);
+   ArrOfInt adjacent_elements;
+@@ -114,8 +114,8 @@
+   for (element_index = 0; element_index < nelem; element_index++) {
+     for (local_face_index = 0; local_face_index < nb_faces_per_element; local_face_index++) {
+       for (i = 0; i < nb_nodes_per_face; i++) {
+-        int local_node = element_faces(local_face_index, i);
+-        int node = src.elements_(element_index, local_node);
++        long local_node = element_faces(local_face_index, i);
++        long node = src.elements_(element_index, local_node);
+         one_face[i] = node;
+       }
+       find_adjacent_elements(som_elem, one_face, adjacent_elements);
+diff -Nur ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/OperatorDualMesh.C ParaView/Utilities/VisItBridge/databases/readers/Lata/OperatorDualMesh.C
+--- ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/OperatorDualMesh.C	2020-03-23 22:18:49.000000000 +0100
++++ ParaView/Utilities/VisItBridge/databases/readers/Lata/OperatorDualMesh.C	2020-12-22 12:06:26.197148403 +0100
+@@ -41,7 +41,7 @@
+     Journal() << "Error in OperatorDualMesh::build_geometry: source domain has no faces data" << endl;
+     throw;
+   }
+-  const int max_nb_som_face = 3; // for tetrahedra
++  const long max_nb_som_face = 3; // for tetrahedra
+   if (src.elt_type_ != Domain::triangle && src.elt_type_ != Domain::tetra) {
+     Journal() << "Error in OperatorDualMesh::build_geometry: cannot operate on unstructured mesh with this element type" << endl;
+     throw;
+@@ -63,13 +63,13 @@
+   const entier nb_som_face = src.faces_.dimension(1);
+   const entier nb_som_elem = src.elements_.dimension(1);
+   dest.elements_.resize(nb_elem * nb_faces_elem, nb_som_elem);
+-  int index = 0;
+-  for (int i = 0; i < nb_elem; i++) {
+-    const int central_node = nb_som + i;
+-    for (int j = 0; j < nb_faces_elem; j++) {
+-      const int face = src.elem_faces_(i, j);
++  long index = 0;
++  for (long i = 0; i < nb_elem; i++) {
++    const long central_node = nb_som + i;
++    for (long j = 0; j < nb_faces_elem; j++) {
++      const long face = src.elem_faces_(i, j);
+       dest.elements_(index, 0) = central_node;
+-      for (int k = 0; k < loop_max(nb_som_face, max_nb_som_face); k++) {
++      for (long k = 0; k < loop_max(nb_som_face, max_nb_som_face); k++) {
+         dest.elements_(index, k+1) = src.faces_(face, k);
+         break_loop(k, nb_som_face);
+       }
+@@ -99,11 +99,11 @@
+   const entier nb_face_elem = src_domain.elem_faces_.dimension(1);
+   const entier nb_comp = src.data_.dimension(1);
+   dest.data_.resize(nb_elem * nb_face_elem, nb_comp);
+-  int index = 0;
+-  for (int i = 0; i < nb_elem; i++) {
+-    for (int j = 0; j < nb_face_elem; j++) {
+-      const int face = src_domain.elem_faces_(i, j);
+-      for (int k = 0; k < nb_comp; k++)
++  long index = 0;
++  for (long i = 0; i < nb_elem; i++) {
++    for (long j = 0; j < nb_face_elem; j++) {
++      const long face = src_domain.elem_faces_(i, j);
++      for (long k = 0; k < nb_comp; k++)
+         dest.data_(index, k) = src.data_(face, k);
+       index++;
+     }
+@@ -125,9 +125,9 @@
+   for (entier i_dim = 0; i_dim < dim; i_dim++) {
+     const ArrOfFloat & c1 = src.coord_[i_dim];
+     ArrOfFloat & c2 = dest.coord_.add(ArrOfFloat());
+-    const int n = c1.size_array() - 1;
++    const long n = c1.size_array() - 1;
+     c2.resize_array(n*2+1);
+-    for (int i = 0; i < n; i++) {
++    for (long i = 0; i < n; i++) {
+       c2[i*2] = c1[i];
+       c2[i*2+1] = (c1[i] + c1[i+1]) * 0.5;
+     }
+@@ -137,20 +137,20 @@
+   if (src.invalid_connections_.size_array() > 0) {
+     dest.invalid_connections_.resize_array(dest.nb_elements());
+     dest.invalid_connections_ = 0;
+-    int index = 0;
++    long index = 0;
+     
+     const entier ni = dest.coord_[0].size_array()-1;
+     const entier nj = dest.coord_[1].size_array()-1;
+     const entier nk = (dim==3) ? (dest.coord_[2].size_array()-1) : 1;
+     const entier ni_src = src.coord_[0].size_array() - 1;
+     const entier nj_src = src.coord_[1].size_array() - 1;
+-    for (int k = 0; k < nk; k++) {
+-      const int k_src = k / 2;
+-      for (int j = 0; j < nj; j++) {
+-        const int j_src = j / 2;
+-        const int idx_source = (k_src * nj_src + j_src) * ni_src;
+-        for (int i = 0; i < ni; i++) {
+-          const int idx = idx_source + i / 2;
++    for (long k = 0; k < nk; k++) {
++      const long k_src = k / 2;
++      for (long j = 0; j < nj; j++) {
++        const long j_src = j / 2;
++        const long idx_source = (k_src * nj_src + j_src) * ni_src;
++        for (long i = 0; i < ni; i++) {
++          const long idx = idx_source + i / 2;
+           if (src.invalid_connections_[idx])
+             dest.invalid_connections_.setbit(index);
+           index++;
+@@ -175,7 +175,7 @@
+   dest.localisation_ = LataField_base::ELEM;
+   dest.nature_ = LataDBField::VECTOR;
+   const entier dim = src_domain.dimension();
+-  int index = 0;
++  long index = 0;
+ 
+   // Loop on destination elements
+   const entier ni = dest_domain.coord_[0].size_array()-1;
+@@ -184,15 +184,15 @@
+   dest.data_.resize(ni*nj*nk, dim);
+   const entier ni_src = src_domain.coord_[0].size_array();
+   const entier nj_ni_src = src_domain.coord_[1].size_array() * ni_src;
+-  for (int k = 0; k < nk; k++) {
+-    const int k2 = k/2;
+-    const int k3 = (k+1)/2;
+-    for (int j = 0; j < nj; j++) {
+-      const int j2 = j/2;
+-      const int j3 = (j+1)/2;
+-      for (int i = 0; i < ni; i++) {
+-        const int i2 = i/2;
+-        const int i3 = (i+1)/2;
++  for (long k = 0; k < nk; k++) {
++    const long k2 = k/2;
++    const long k3 = (k+1)/2;
++    for (long j = 0; j < nj; j++) {
++      const long j2 = j/2;
++      const long j3 = (j+1)/2;
++      for (long i = 0; i < ni; i++) {
++        const long i2 = i/2;
++        const long i3 = (i+1)/2;
+         dest.data_(index, 0) = src.data_(IJK(i3,j2,k2), 0);
+         dest.data_(index, 1) = src.data_(IJK(i2,j3,k2), 1);
+         if (dim==3)
+diff -Nur ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/OperatorFacesMesh.C ParaView/Utilities/VisItBridge/databases/readers/Lata/OperatorFacesMesh.C
+--- ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/OperatorFacesMesh.C	2020-03-23 22:18:49.000000000 +0100
++++ ParaView/Utilities/VisItBridge/databases/readers/Lata/OperatorFacesMesh.C	2020-12-22 12:06:26.197148403 +0100
+@@ -41,7 +41,7 @@
+     Journal() << "Error in OperatorFacesMesh::build_geometry: source domain has no faces data" << endl;
+     throw;
+   }
+-  // const int max_nb_som_face = 3; // for tetrahedra
++  // const long max_nb_som_face = 3; // for tetrahedra
+   if (src.elt_type_ != Domain::triangle && src.elt_type_ != Domain::polygone && src.elt_type_ != Domain::tetra && src.elt_type_ != Domain::polyedre) {
+     Journal() << "Error in OperatorFacesMesh::build_geometry: cannot operate on unstructured mesh with this element type" << endl;
+     throw;
+diff -Nur ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/OperatorRegularize.C ParaView/Utilities/VisItBridge/databases/readers/Lata/OperatorRegularize.C
+--- ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/OperatorRegularize.C	2020-03-23 22:18:49.000000000 +0100
++++ ParaView/Utilities/VisItBridge/databases/readers/Lata/OperatorRegularize.C	2020-12-22 12:06:26.198148401 +0100
+@@ -32,12 +32,12 @@
+ 
+ #define verb_level 4
+ 
+-template<class T, class Tab> int search_in_ordered_vect(T x, const Tab & v, const T epsilon) {
++template<class T, class Tab> long search_in_ordered_vect(T x, const Tab & v, const T epsilon) {
+   if (!v.size_array())
+     return -1;
+-  int i1=0;
+-  int i;
+-  int i2 = (int)v.size_array()-1;
++  long i1=0;
++  long i;
++  long i2 = (long)v.size_array()-1;
+   while (i1 != i2) {
+     i = (i1+i2)/2;
+     if (epsilon+ v[i] < x)
+@@ -56,9 +56,9 @@
+ template<class T, class Tab>
+ static void retirer_doublons(Tab & tab, const T epsilon)
+ {
+-  int i = 0;
+-  int j;
+-  const int n = tab.size_array();
++  long i = 0;
++  long j;
++  const long n = tab.size_array();
+   T last_tab_i = -1e40;
+   for (j = 0; j < n; j++) {
+     const T x = tab[j];
+@@ -124,18 +124,18 @@
+       throw;
+     }
+   }
+-  int i;
++  long i;
+   op.renum_nodes_.resize_array(nsom);
+-  int nb_som_ijk = 1;
++  long nb_som_ijk = 1;
+   for (i = 0; i < dim; i++) 
+     nb_som_ijk *= nb_som_dir[i];
+   IntTab ijk_indexes;
+   ijk_indexes.resize(nsom, dim);
+   for (i = 0; i < nsom; i++) {
+     entier ijk_index = 0;
+-    for (int j = dim-1; j >= 0; j--) {
++    for (long j = dim-1; j >= 0; j--) {
+       const double x = src.nodes_(i,j);
+-      int index = search_in_ordered_vect(x, dest.coord_[j],op.tolerance_);
++      long index = search_in_ordered_vect(x, dest.coord_[j],op.tolerance_);
+       if (index < 0) {
+         Journal() << "Error: coordinate (" << i << "," << j << ") = " << x << " not found in regularize" << endl
+                   << "Try reducing regularize tolerance value (option regularize=epsilon)" << endl;
+@@ -148,26 +148,26 @@
+     }
+     op.renum_nodes_[i] = ijk_index;
+   }
+-  const int max_index = max_array(nb_som_dir);
+-  int nb_elems_ijk = 1;
++  const long max_index = max_array(nb_som_dir);
++  long nb_elems_ijk = 1;
+   for (i = 0; i < dim; i++)
+     nb_elems_ijk *= nb_som_dir[i] - 1;
+   dest.invalid_connections_.resize_array(nb_elems_ijk);
+   dest.invalid_connections_ = 1; // Everything invalid by default
+-  const int nelem = src.elements_.dimension(0);
+-  const int nb_som_elem = src.elements_.dimension(1);
++  const long nelem = src.elements_.dimension(0);
++  const long nb_som_elem = src.elements_.dimension(1);
+   op.renum_elements_.resize_array(nelem);
+   // Pour chaque element, indice dans le maillage ijk du plus sommet le plus proche de l'origine
+   // (pour les faces...)
+   ArrOfInt idx_elem_som;
+   idx_elem_som.resize_array(nelem);
+-  int min_index[3];
++  long min_index[3];
+   for (i = 0; i < nelem; i++) {
+     min_index[0] = min_index[1] = min_index[2] = max_index;
+-    for (int j = 0; j < nb_som_elem; j++) {
+-      int node = src.elements_(i,j);
+-      for (int k = 0; k < loop_max(dim, 3); k++) {
+-        int idx = ijk_indexes(node, k);
++    for (long j = 0; j < nb_som_elem; j++) {
++      long node = src.elements_(i,j);
++      for (long k = 0; k < loop_max(dim, 3); k++) {
++        long idx = ijk_indexes(node, k);
+         min_index[k] = (idx < min_index[k]) ? idx : min_index[k];
+         break_loop(k,dim);
+       }
+@@ -191,10 +191,10 @@
+   }
+   
+   if (src.faces_ok()) {
+-    const int nfaces = src.faces_.dimension(0);
++    const long nfaces = src.faces_.dimension(0);
+     op.renum_faces_.resize_array(nfaces);
+     op.renum_faces_ = -1;
+-    const int nb_elem_face = src.elem_faces_.dimension(1);
++    const long nb_elem_face = src.elem_faces_.dimension(1);
+     ArrOfInt delta_dir(dim);
+     delta_dir[0] = 1;
+     for (i = 1; i < dim; i++)
+diff -Nur ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/UserFields.C ParaView/Utilities/VisItBridge/databases/readers/Lata/UserFields.C
+--- ParaView.orig/Utilities/VisItBridge/databases/readers/Lata/UserFields.C	2020-03-23 22:18:49.000000000 +0100
++++ ParaView/Utilities/VisItBridge/databases/readers/Lata/UserFields.C	2020-12-22 12:06:26.198148401 +0100
+@@ -346,7 +346,7 @@
+     const IntTab & les_elem = dom.elements_;
+     const entier n = les_elem.dimension(0);
+     const entier m = les_elem.dimension(1);
+-    int i, j, k;
++    long i, j, k;
+     for ( i = 0; i < n; i++) {
+       for (j = 0; j < m; j++) {
+         entier som = les_elem(i,j);
+@@ -459,17 +459,17 @@
+       Cerr<<" cas nn prevu"<<endl; 
+       throw;
+     }
+-  int nb_face=coords.dimension(0);
++  long nb_face=coords.dimension(0);
+   Vecteur3 normals[4];
+   Vecteur3 edge[2],opp;
+   edge[1].set(0,0,1);
+-  for (int n=0;n<nb_face;n++)
++  for (long n=0;n<nb_face;n++)
+     {
+      
+-      int prem=0;
++      long prem=0;
+       if (n==0) prem=1;
+-      int compteur=0;
+-      for (int s=0;s<nb_face;s++)
++      long compteur=0;
++      for (long s=0;s<nb_face;s++)
+         {
+ 
+           if ((s!=n) && (s!=prem))
+@@ -492,8 +492,8 @@
+     }
+   // on a les 4 normals orientes vers l'interieur
+   double max_pscal=-100;
+-  for (int n1=0;n1<nb_face;n1++)
+-    for (int n2=n1+1;n2<nb_face;n2++)
++  for (long n1=0;n1<nb_face;n1++)
++    for (long n2=n1+1;n2<nb_face;n2++)
+       {
+         double pscal=Vecteur3::produit_scalaire(normals[n1],normals[n2]);
+         //min_pscal=pscal;
+@@ -539,11 +539,11 @@
+     resu.data_.resize(n, nbcompo);
+     
+     const FloatTab& nodes_=dom.nodes_;
+-    int nb_som_elem=les_elem.dimension(1);
++    long nb_som_elem=les_elem.dimension(1);
+     DoubleTab coords(nb_som_elem,3);
+-    for ( int i = 0; i < n; i++) {
+-      for (int s=0;s<nb_som_elem;s++)
+-        for (int d=0;d<nodes_.dimension(1);d++)
++    for ( long i = 0; i < n; i++) {
++      for (long s=0;s<nb_som_elem;s++)
++        for (long d=0;d<nodes_.dimension(1);d++)
+           coords(s,d)=nodes_(les_elem(i,s),d);
+       resu.data_(i, 0) = largest_angle_2(coords);
+         
+@@ -587,16 +587,16 @@
+     
+     ArrOfFloat v1( nbcompo),v2(nbcompo);
+     ArrOfDouble nor(nbcompo);
+-    for ( int i = 0; i < n; i++) {
++    for ( long i = 0; i < n; i++) {
+       // calcul de la normale
+       entier som0 = les_elem(i,0);
+       entier som1 = les_elem(i,1);
+-      for (int j=0;j<nbcompo;j++)
++      for (long j=0;j<nbcompo;j++)
+         v1[j]=nodes_(som1,j)-nodes_(som0,j);
+       if (nbcompo==3)
+         {
+           entier som2 = les_elem(i,2);
+-          for (int j=0;j<nbcompo;j++)
++          for (long j=0;j<nbcompo;j++)
+             v2[j]=nodes_(som2,j)-nodes_(som0,j);
+           
+           nor[0]=v1[1]*v2[2]-v1[2]*v2[1];
+@@ -611,7 +611,7 @@
+           nor[1]=-v1[0];
+           
+         }
+-      for (int k = 0; k < nbcompo; k++) {
++      for (long k = 0; k < nbcompo; k++) {
+         resu.data_(i, k) = nor[k];
+       }
+        
+@@ -756,11 +756,11 @@
+   
+   const entier nb_geometries = geoms.size();
+   
+-  for (int i = 0; i < nb_geometries; i++) {
++  for (long i = 0; i < nb_geometries; i++) {
+     const LataGeometryMetaData data = filter.get_geometry_metadata(geoms[i]);
+     
+     // Si on a des faces, proposer la normale aux faces
+-    int topo_dim=data.dimension_;
++    long topo_dim=data.dimension_;
+     
+     switch(data.element_type_) {
+     case Domain::point:     topo_dim = 0; break;
+@@ -826,7 +826,7 @@
+   //  (nb_fields_debut est le nombre de champs existant avant qu'on 
+   //   commence a en ajouter dans le tableau fields_data)
+ 
+-  for (int i_in = 0; i_in < nb_fields_debut; i_in++) 
++  for (long i_in = 0; i_in < nb_fields_debut; i_in++) 
+     {
+       // On cherche si le champ de temperature aux elements existe
+       //  sur une geometrie IJK (Motcle permet d'ignorer majuscule/minuscule)
+@@ -902,9 +902,9 @@
+   float volume() const { return dx_ * dy_ * dz_; }
+ protected:
+   void init(LataFilter & lata, const Domain_Id & id, entier demi_pas);
+-  FloatTab calculer_somme_dir(const FloatTab & src, const int dir) const;
+-  FloatTab annu_bord(const FloatTab & input, int epaisseur) const;
+-  int ijk_index(int i, int j, int k) const {
++  FloatTab calculer_somme_dir(const FloatTab & src, const long dir) const;
++  FloatTab annu_bord(const FloatTab & input, long epaisseur) const;
++  long ijk_index(long i, long j, long k) const {
+     if (i < 0)
+       i = 0;
+     else if (i >= nx_)
+@@ -924,10 +924,10 @@
+   ArrOfBit invalid_connections_;
+ 
+   entier demi_pas_;
+-  int pbDim_; // dimension
+-  int nx_;
+-  int ny_;
+-  int nz_;
++  long pbDim_; // dimension
++  long nx_;
++  long ny_;
++  long nz_;
+   float dx_;
+   float dy_;
+   float dz_;
+@@ -967,19 +967,19 @@
+   lata.release_geometry(dom);
+ }
+ 
+-FloatTab FiltreSpatial::calculer_somme_dir(const FloatTab & src, const int dir) const
++FloatTab FiltreSpatial::calculer_somme_dir(const FloatTab & src, const long dir) const
+ {
+-  const int n = src.dimension(0);
+-  const int nb_compo = src.dimension(1);
++  const long n = src.dimension(0);
++  const long nb_compo = src.dimension(1);
+   FloatTab tmp;
+   tmp.resize(n, nb_compo);
+ 
+-  int index_resu = 0;
+-  for (int k = 0; k < nz_; k++) {
+-    for (int j = 0; j < ny_; j++) {
+-      for (int i = 0; i < nx_; i++) {
+-        for (int count = -demi_pas_; count <= demi_pas_; count++) {
+-          int index;
++  long index_resu = 0;
++  for (long k = 0; k < nz_; k++) {
++    for (long j = 0; j < ny_; j++) {
++      for (long i = 0; i < nx_; i++) {
++        for (long count = -demi_pas_; count <= demi_pas_; count++) {
++          long index;
+           switch(dir) {
+           case 0: index = ijk_index(i+count, j, k); break;
+           case 1: index = ijk_index(i, j+count, k); break;
+@@ -992,7 +992,7 @@
+             // element invalide !
+           } else {
+             // element ok !
+-            for (int compo = 0; compo < nb_compo; compo++)
++            for (long compo = 0; compo < nb_compo; compo++)
+               tmp(index_resu, compo) += src(index, compo);
+           }
+         }

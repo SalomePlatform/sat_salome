@@ -209,7 +209,8 @@ __overwrite__ :
                                                  'paraview.0006-ParaView_find_libxml2.patch',
                                                  'paraview.0007-ParaView_find_freetype.patch',
                                                  'paraview.0009-ParaView_volume_mapper.patch',
-                                                 'pv_coincident.patch'
+                                                 'pv_coincident.patch',
+                                                 'paraview-0012-LATA_64BITS_IDS.patch'
                                                 ]
   }
 
@@ -226,7 +227,8 @@ __overwrite__ :
                                                  'paraview.0006-ParaView_find_libxml2.patch',
                                                  'paraview.0007-ParaView_find_freetype.patch',
                                                  'paraview.0009-ParaView_volume_mapper.patch',
-                                                 'pv_coincident.patch'
+                                                 'pv_coincident.patch',
+                                                 'paraview-0012-LATA_64BITS_IDS.patch'
                                                 ]
   }
 
@@ -239,7 +241,8 @@ __overwrite__ :
                                                  'paraview.0007-ParaView_find_freetype.patch',
                                                  'paraview.0009-ParaView_volume_mapper.patch',
                                                  'paraview.0011-vtkSMPSelection.patch',
-                                                 'pv_coincident.patch'
+                                                 'pv_coincident.patch',
+                                                 'paraview-0012-LATA_64BITS_IDS.patch'
                                                 ]
   }
 
@@ -256,7 +259,8 @@ __overwrite__ :
                                                  'paraview.0006-ParaView_find_libxml2.patch',
                                                  'paraview.0007-ParaView_find_freetype.patch',
                                                  'paraview.0009-ParaView_volume_mapper.patch',
-                                                 'pv_coincident.patch'
+                                                 'pv_coincident.patch',
+                                                 'paraview-0012-LATA_64BITS_IDS.patch'
                                                 ]
   }
 ]

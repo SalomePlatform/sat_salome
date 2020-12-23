@@ -81,7 +81,7 @@ APPLICATION :
         opencv : '3.2.0'
         ospray : '1.8.4'
         packaging : '19.0'
-        ParaView : '5.8.0'
+        ParaView : {tag : '5.8.0', section : 'version_5_8_0_int32'}
         perl : '5.28.1.1'
         Pillow : '7.1.1'
         planegcs : '0.18-3cb6890'
