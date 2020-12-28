@@ -27,9 +27,15 @@ default :
     properties:
     {
         is_SALOME_module : "yes"
+        incremental : "yes"
     }
+    patches: []
 }
 
+default_win :
+{
+   patches : ['patches/GMSHPlugin_Mesher-ctx.patch']
+}
 
 version_8_1_0_to_9_1_0 :
 {

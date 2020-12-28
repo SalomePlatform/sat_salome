@@ -1,0 +1,15 @@
+diff --git a/src/GMSHPlugin/GMSHPlugin_Mesher.cxx b/src/GMSHPlugin/GMSHPlugin_Mesher.cxx
+index 282551b..c935857 100644
+--- a/src/GMSHPlugin/GMSHPlugin_Mesher.cxx
++++ b/src/GMSHPlugin/GMSHPlugin_Mesher.cxx
+@@ -938,7 +938,10 @@ void  GMSHPlugin_Mesher::mymsg::operator()(std::string level, std::string msg)
+     }
+     if (level == "Fatal")
+     {
++#ifndef WIN32
+         CTX::instance()->lock = 0;
++#endif
++
+         throw oss.str();
+     }
+     else

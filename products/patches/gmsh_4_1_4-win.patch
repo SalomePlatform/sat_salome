@@ -1,0 +1,15 @@
+--- gmsh_ref/api/gmsh.h	2019-02-02 13:03:46.000000000 +0100
++++ gmsh/api/gmsh.h	2020-12-26 15:00:16.000000000 +0100
+@@ -34,6 +34,12 @@
+ #define GMSH_API
+ #endif
+ 
++#ifdef WIN32
++#if !defined(M_PI)
++  #define M_PI 3.14159265358979323846264338327950
++#endif // M_PI
++#endif
++
+ namespace gmsh {
+ 
+   // A geometrical entity in the Gmsh API is represented by two integers: its
