@@ -31,5 +31,5 @@ version_4_1_4:
 
 version_4_1_4_win:
 {
-   patches : ['gmsh_4_1_4-win.patch"]
+   patches : ["gmsh_4_1_4-win.patch"]
 }
