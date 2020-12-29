@@ -1,8 +1,6 @@
-diff --git a/src/GMSHPlugin/GMSHPlugin_Mesher.cxx b/src/GMSHPlugin/GMSHPlugin_Mesher.cxx
-index 282551b..c935857 100644
---- a/src/GMSHPlugin/GMSHPlugin_Mesher.cxx
-+++ b/src/GMSHPlugin/GMSHPlugin_Mesher.cxx
-@@ -938,7 +938,10 @@ void  GMSHPlugin_Mesher::mymsg::operator()(std::string level, std::string msg)
+--- GMSHPLUGIN_ref/src/GMSHPlugin/GMSHPlugin_Mesher.cxx	2020-12-29 09:19:07.932776533 +0100
++++ GMSHPLUGIN/src/GMSHPlugin/GMSHPlugin_Mesher.cxx	2020-12-29 09:17:14.885840621 +0100
+@@ -938,7 +938,10 @@ void  GMSHPlugin_Mesher::mymsg::operator
      }
      if (level == "Fatal")
      {
