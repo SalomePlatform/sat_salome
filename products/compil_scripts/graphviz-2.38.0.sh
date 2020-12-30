@@ -11,8 +11,6 @@ cp -r $SOURCE_DIR/* .
 echo "graphviz compilation"
 
 echo
-#echo "*** ./configure --prefix=${PRODUCT_INSTALL} --with-tcl=${TCLHOME}/lib --with-expat=no --with-qt=no --with-cgraph=no  --enable-perl=no"
-#./configure --prefix=${PRODUCT_INSTALL} --with-tcl=${TCLHOME}/lib --with-expat=no --with-qt=no --with-cgraph=no --enable-perl=no
 echo "*** ./configure --prefix=${PRODUCT_INSTALL}  --enable-tcl=no --with-expat=no --with-qt=no  --enable-perl=no --enable-ocaml=no"
 ./configure --prefix=${PRODUCT_INSTALL} --enable-tcl=no --with-expat=no --with-qt=no  --enable-perl=no --enable-ocaml=no --with-ghostscript=no --enable-python=no --enable-java=no
 

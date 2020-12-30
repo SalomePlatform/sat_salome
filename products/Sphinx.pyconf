@@ -38,6 +38,12 @@ default_win :
     }
 }
 
+version_2_1_2:
+{
+   depend : ["Python", "setuptools", "Pygments", "Jinja2", "docutils", "sphinxcontrib_applehelp", "sphinxcontrib_serializinghtml","sphinxcontrib_websupport", "sphinxcontrib_htmlhelp", "sphinxcontrib_qthelp", "sphinxcontrib_devhelp", "sphinxcontrib_jsmath", "packaging", "requests", "imagesize", "alabaster", "Babel", "snowballstemmer", "markupsafe"]
+
+}
+
 version_1_1_3_to_1_2_3 :
 {
     name : "Sphinx"

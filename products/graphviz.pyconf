@@ -41,10 +41,12 @@ default_win :
 
 version_2_44_1 :
 {
+    build_source : "cmake"
 }
 
 version_2_44_1_win :
 {
+    build_source : "script"
     compil_script :  "graphviz-2.44.1" + $VARS.scriptExtension
     depend : ['expat','zlib','libpng','libxml2', 'libjpeg','cmake']
 }
