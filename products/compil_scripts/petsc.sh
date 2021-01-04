@@ -11,7 +11,7 @@ cp -r $SOURCE_DIR/* .
 CONFIGURE_FLAGS=''
 CONFIGURE_FLAGS=$CONFIGURE_FLAGS" --download-f2cblaslapack=ext/f2cblaslapack-3.4.2.q4"
 CONFIGURE_FLAGS=$CONFIGURE_FLAGS" --download-slepc=ext/slepc-3.14.0"
-
+CONFIGURE_FLAGS=$CONFIGURE_FLAGS" --with-debugging=0" # by default Petsc is build in debug mode
 echo
 if [ -n "${MPI_ROOT_DIR}" ]
 then
