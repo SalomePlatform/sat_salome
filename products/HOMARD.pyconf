@@ -12,18 +12,26 @@ default :
     environ :
     {
         SalomeAppConfig_ : $install_dir + $VARS.sep + "share" + $VARS.sep + "salome" + $VARS.sep + "resources" + $VARS.sep + "homard"
+        HOMARD_REP_EXE   : $install_dir + $VARS.sep + "bin" + $VARS.sep + "salome"
+        HOMARD_EXE       : "homard.out"
     }
-    depend : [ 
-      "SMESH", 
-      "homard_bin" 
-              ]
+    depend : [ "SMESH"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     properties:
     {
         has_salome_gui : "yes"
         is_SALOME_module : "yes"
+        incremental : "yes"
         has_unit_tests
     }
 } 
 
+version_8_5_0_to_V9_6_0 :
+{
+    environ :
+    {
+        SalomeAppConfig_ : $install_dir + $VARS.sep + "share" + $VARS.sep + "salome" + $VARS.sep + "resources" + $VARS.sep + "homard"
+    }
+    depend : ["SMESH","homard_bin"]
+}
