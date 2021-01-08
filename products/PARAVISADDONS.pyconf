@@ -39,7 +39,7 @@
       'six'
       'pytz'
     ]
-    opt_depend : [ ]
+    opt_depend : ['openmpi']
     build_depend :
     [
       'cmake'
