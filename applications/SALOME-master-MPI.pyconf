@@ -69,7 +69,7 @@ APPLICATION :
         omniORB : '4.2.2'
         omniORBpy : '4.2.2'
         opencv : '3.2.0'
-        openmpi : '2.1.6'
+        openmpi : '3.1.6'
         openssl : "native"
         ospray : '1.8.4'
         packaging : '17.1'
