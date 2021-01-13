@@ -35,15 +35,17 @@ if [ -n "$PARAVIEW_HEADLESS_MODE" ]
 then
     EGL_INCLUDE_ROOT_DIR=
     EGL_LIBRARY_ROOT_DIR=
+    OPENGL_LIBRARY_ROOT_DIR=
     # check EGL/egl.h is present
     LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
     case $LINUX_DISTRIBUTION in
         CO6|CO7|FD26|FD30|FD32)
-            if [ -f /usr/include/EGL/egl.h ] && [ -f /usr/lib64/libEGL.so ]
+            if [ -f /usr/include/EGL/egl.h ] && [ -f /usr/lib64/libEGL.so ] && [ -f /usr/lib64/libOpenGL.so ]
             then
                 EGL_FOUND=true
                 EGL_INCLUDE_ROOT_DIR=/usr/include
                 EGL_LIBRARY_ROOT_DIR=/usr/lib64
+                OPENGL_LIBRARY_ROOT_DIR=/usr/lib64
             fi
             ;;
         *)
@@ -53,9 +55,10 @@ then
         echo "WARNING: Building with headless mode support..."
         CMAKE_OPTIONS="${CMAKE_OPTIONS} -DVTK_OPENGL_HAS_EGL:BOOL=ON"
         CMAKE_OPTIONS="${CMAKE_OPTIONS} -DEGL_INCLUDE_DIR=${EGL_INCLUDE_ROOT_DIR}"
-        CMAKE_OPTIONS="${CMAKE_OPTIONS} -DEGL_opengl_LIBRARY=${EGL_LIBRARY_ROOT_DIR}/libEGL.so"
+        CMAKE_OPTIONS="${CMAKE_OPTIONS} -DEGL_LIBRARY=${EGL_LIBRARY_ROOT_DIR}/libEGL.so"
+        CMAKE_OPTIONS="${CMAKE_OPTIONS} -DEGL_opengl_LIBRARY=${OPENGL_LIBRARY_ROOT_DIR}/libOpenGL.so"
     else
-        echo "FATAL: Headless mode cannot be set on node $LINUX_DISTRIBUTION! Please set EGL_INCLUDE_ROOT_DIR and EGL_LIBRARY_ROOT_DIR environment variables in script: $0"
+        echo "FATAL: Headless mode cannot be set on node $LINUX_DISTRIBUTION! Please set EGL_INCLUDE_ROOT_DIR, EGL_LIBRARY_ROOT_DIR and OPENGL_LIBRARY_ROOT_DIR environment variables in script: $0"
         exit 1
     fi
 fi
