@@ -128,7 +128,7 @@ APPLICATION :
         'HEXABLOCK'
         'HEXABLOCKPLUGIN'
         'HOMARD'
-        'FIELDS'
+        'FIELDS' : {tag : 'nct/helpmenu'}
         'PARAVIS'
         'JOBMANAGER'
         'YACS'

@@ -126,7 +126,7 @@ APPLICATION :
         'HEXABLOCK'
         'HEXABLOCKPLUGIN'
         'HOMARD' : {tag : 'gn/evol_01'}
-        'FIELDS'
+        'FIELDS' : {tag : 'nct/helpmenu'}
         'PARAVIS'
         'JOBMANAGER'
         'YACS'
