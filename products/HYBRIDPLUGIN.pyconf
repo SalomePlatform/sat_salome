@@ -15,22 +15,18 @@ default :
     }
     depend : [
              "KERNEL",
-             "MEDCOUPLING", 
              "GEOM", 
              "SMESH",
-             "BLSURFPLUGIN",
-             "NETGENPLUGIN",
              "Python",
              "qt", 
              "boost", 
              "CAS",  
-             "hdf5",  
+             "medfile",  
              "omniORB",  
              "docutils",  
-             "ParaView",  
              "MeshGems" 
               ]
-    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+    build_depend : ["cmake", "swig", "doxygen"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     properties:
