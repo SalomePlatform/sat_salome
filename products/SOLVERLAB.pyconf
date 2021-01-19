@@ -22,7 +22,9 @@ default :
         'ParaView', 
         'petsc', 
         'Python', 
-        'MEDCOUPLING', 
+        'KERNEL',
+        'GUI',
+        'MEDCOUPLING'
     ]
     build_depend : ["cmake", "swig", "doxygen", "graphviz","cppunit"]   
     # mscgen
@@ -47,6 +49,8 @@ default_MPI :
         'ParaView',
         'petsc',
         'Python',
+        'KERNEL',
+        'GUI',
         'MEDCOUPLING',
         'openmpi'
     ]
