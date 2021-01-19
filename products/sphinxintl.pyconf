@@ -22,15 +22,27 @@ default :
 default_win :
 {
    compil_script :  'pip_install_whl' + $VARS.scriptExtension
-   archive_info : {archive_name : "sphinx_intl-" + $APPLICATION.products.sphinxintl + "_windows.tar.gz"}
+   archive_info : {archive_name : "sphinxintl-" + $APPLICATION.products.sphinxintl + "_windows.tar.gz"}
 }
 
 version_2_0_0_win_dbg :
 {
-   compil_script :  'sphinxintl.bat'
-   properties:
-   {
-     incremental : "yes"
-     pip : "no"
-   }
+    name : "sphinx_intl"
+    build_source : "script"
+    compil_script :  'sphinxintl.bat'
+    archive_info : {archive_name : "sphinxintl-2.0.0_windows.tar.gz"}
+    get_source : "archive"
+    environ :
+    {
+        env_script : "sphinxintl.py"
+    }
+    depend : ['Python', 'setuptools', 'click', 'Sphinx','Babel','six','pytz']
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties:
+    {
+      incremental : "yes"
+      pip : "no"
+    }
 }
