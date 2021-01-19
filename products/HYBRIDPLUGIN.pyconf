@@ -15,18 +15,17 @@ default :
     }
     depend : [
              "KERNEL",
+             "GUI",
              "GEOM", 
              "SMESH",
              "Python",
              "qt", 
              "boost", 
              "CAS",  
-             "medfile",  
              "omniORB",  
-             "docutils",  
              "MeshGems" 
               ]
-    build_depend : ["cmake", "swig", "doxygen"]
+    build_depend : ["cmake", "doxygen"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     properties:
