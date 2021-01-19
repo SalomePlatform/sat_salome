@@ -32,5 +32,15 @@ default :
     {
         is_SALOME_module : "yes"
         has_unit_tests
+	incremental : "yes"
     }
 } 
+
+default_win :
+{
+  # speed-up build - now 10 mn...
+   depend : [
+             "SMESH",
+             "MeshGems"
+              ]
+ }
