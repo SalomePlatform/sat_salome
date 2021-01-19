@@ -16,6 +16,7 @@ default :
        env_script : $name + ".py"
     }
     depend : []
+    build_depend : []
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     install_dir : 'base'
@@ -42,13 +43,15 @@ default_win :
 version_2_44_1 :
 {
     build_source : "cmake"
+    build_depend : ['cmake']
 }
 
 version_2_44_1_win :
 {
     build_source : "script"
     compil_script :  "graphviz-2.44.1" + $VARS.scriptExtension
-    depend : ['expat','zlib','libpng','libxml2', 'libjpeg','cmake']
+    depend : ['expat','zlib','libpng','libxml2', 'libjpeg']
+    build_depend : ['cmake']
 }
 
 version_2_38_0 :
