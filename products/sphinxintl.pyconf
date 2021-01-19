@@ -24,3 +24,13 @@ default_win :
    compil_script :  'pip_install_whl' + $VARS.scriptExtension
    archive_info : {archive_name : "sphinx_intl-" + $APPLICATION.products.sphinxintl + "_windows.tar.gz"}
 }
+
+version_2_0_0_win_dbg :
+{
+   compil_script :  'sphinxintl.bat'
+   properties:
+   {
+     incremental : "yes"
+     pip : "no"
+   }
+}

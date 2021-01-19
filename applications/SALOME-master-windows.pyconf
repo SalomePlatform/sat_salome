@@ -156,6 +156,7 @@ APPLICATION :
         'EFICAS'
         'EFICAS_TOOLS'
         'ADAO'
+        'PARAVISADDONS' : {tag: 'spns/20440'}
         'CEATESTBASE' : {tag: 'SalomeV9'}
     }
     profile :
@@ -181,3 +182,12 @@ APPLICATION :
         single_install_dir : "yes"
     }
 }
+
+__overwrite__ :
+[
+  {
+    __condition__ : "APPLICATION.debug == 'yes'"
+    'APPLICATION.products.numpy'      : {tag : '1.16.4', section: 'version_1_16_4_win_dbg'}
+    'APPLICATION.products.sphinxintl' : {tag : '2.0.0',  section: 'version_2_0_0_win_dbg'}
+  }
+]

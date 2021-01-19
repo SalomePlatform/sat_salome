@@ -14,17 +14,15 @@ if exist "%BUILD_DIR%" rmdir /Q /S %BUILD_DIR%
 mkdir %BUILD_DIR%
 
 SET PRODUCT_BUILD_TYPE=Release
-REM TODO: NGH: not Tested yet
-REM if %SAT_DEBUG% == 1 (
-REM   set PRODUCT_BUILD_TYPE=Debug
-REM )
-
-set CMAKE_OPTIONS=
+if %SAT_DEBUG% == 1 (
+  set PRODUCT_BUILD_TYPE=Debug
+)
 
 set PVLIBVERSION=5.8
 
 set python_name=python%PYTHON_VERSION%
 
+set CMAKE_OPTIONS=
 REM common compiler and install settings
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_INSTALL_PREFIX:STRING=%PRODUCT_INSTALL:\=/%
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_VERBOSE_MAKEFILE=ON

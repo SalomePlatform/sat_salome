@@ -24,9 +24,10 @@ echo --------------------------------------------------------------------------
 echo *** Launching "python.exe setup.py build"
 echo --------------------------------------------------------------------------
 set BUILD_OPT=
-if %SAT_DEBUG% == 1 (
-   set BUILD_OPT=--debug
-)
+REM not built by OCCT - see spns #20292 attached Excel document
+REM if %SAT_DEBUG% == 1 (
+REM    set BUILD_OPT=--debug
+REM)
 
 %PYTHON_ROOT_DIR%\python.exe setup.py build %BUILD_OPT%
 

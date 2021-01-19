@@ -10,9 +10,9 @@ IF NOT DEFINED SAT_DEBUG (
 
 SET PRODUCT_BUILD_TYPE=Release
 REM TODO: NGH: not Tested yet
-REM if %SAT_DEBUG% == 1 (
-REM   set PRODUCT_BUILD_TYPE=Debug
-REM )
+if %SAT_DEBUG% == 1 (
+  set PRODUCT_BUILD_TYPE=Debug
+)
 
 if NOT exist "%PRODUCT_INSTALL%" mkdir %PRODUCT_INSTALL%
 

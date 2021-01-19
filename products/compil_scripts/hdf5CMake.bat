@@ -9,10 +9,9 @@ IF NOT DEFINED SAT_DEBUG (
 )
 
 SET PRODUCT_BUILD_TYPE=Release
-REM TODO: NGH: not Tested yet
-REM if %SAT_DEBUG% == 1 (
-REM   set PRODUCT_BUILD_TYPE=Debug
-REM )
+if %SAT_DEBUG% == 1 (
+  set PRODUCT_BUILD_TYPE=Debug
+)
 
 if NOT exist "%PRODUCT_INSTALL%" mkdir %PRODUCT_INSTALL%
 
@@ -79,31 +78,7 @@ if NOT %ERRORLEVEL% == 0 (
     exit 3
 )
 
-REM some of the products like GUI expect .lib instead of _D.lib...
-cd %PRODUCT_INSTALL%\lib\
-if %SAT_DEBUG% == 1 (
-  SETLOCAL ENABLEDELAYEDEXPANSION
-  FOR %%f IN (*_D.lib) do (
-     set X=%%f
-     copy /Y /B %PRODUCT_INSTALL%\lib\%%f %PRODUCT_INSTALL%\lib\!X:_D.lib=.lib!
-  )
-  ENDLOCAL
-)
-
-REM Symbolic links require being in developer mode
-cd %PRODUCT_INSTALL%\bin\
-if %SAT_DEBUG% == 1 (
-  SETLOCAL ENABLEDELAYEDEXPANSION
-  FOR %%f IN (*_D.dll) do (
-     set X=%%f
-     copy /Y /B %PRODUCT_INSTALL%\bin\%%f %PRODUCT_INSTALL%\bin\!X:_D.dll=.dll!
-  )
-  ENDLOCAL
-)
-
 taskkill /F /IM "mspdbsrv.exe"
-
-
 
 echo.
 echo ########## END

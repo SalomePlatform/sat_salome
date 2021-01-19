@@ -10,9 +10,9 @@ IF NOT DEFINED SAT_DEBUG (
 
 SET PRODUCT_BUILD_TYPE=Release
 REM TODO: NGH: not Tested yet
-REM if %SAT_DEBUG% == 1 (
-REM   set PRODUCT_BUILD_TYPE=Debug
-REM )
+if %SAT_DEBUG% == 1 (
+  set PRODUCT_BUILD_TYPE=Debug
+)
 
 if NOT exist "%PRODUCT_INSTALL%" mkdir %PRODUCT_INSTALL%
 if NOT exist "%PRODUCT_INSTALL%\include" mkdir %PRODUCT_INSTALL%\include
@@ -54,12 +54,21 @@ if NOT %ERRORLEVEL% == 0 (
 echo.
 echo *** COPY FreeImage DLL to %PRODUCT_INSTALL%
 
-copy /Y %BUILD_DIR%\Dist\x64\FreeImage.dll %PRODUCT_INSTALL%\bin\FreeImage.dll
-copy /Y %BUILD_DIR%\Dist\x64\FreeImage.lib %PRODUCT_INSTALL%\lib\FreeImage.lib
-copy /Y %BUILD_DIR%\Dist\x64\FreeImage.h %PRODUCT_INSTALL%\include\FreeImage.h
-copy /Y %BUILD_DIR%\Wrapper\FreeImagePlus\dist\x64\FreeImagePlus.dll %PRODUCT_INSTALL%\bin\FreeImagePlus.dll
-copy /Y %BUILD_DIR%\Wrapper\FreeImagePlus\dist\x64\FreeImagePlus.lib %PRODUCT_INSTALL%\lib\FreeImagePlus.lib
-copy /Y %BUILD_DIR%\Wrapper\FreeImagePlus\dist\x64\FreeImagePlus.h %PRODUCT_INSTALL%\include\FreeImagePlus.h
+if %SAT_DEBUG% == 1 (
+  copy /Y %BUILD_DIR%\Dist\x64\*.dll %PRODUCT_INSTALL%\bin\
+  copy /Y %BUILD_DIR%\Dist\x64\*.lib %PRODUCT_INSTALL%\lib\
+  copy /Y %BUILD_DIR%\Dist\x64\*.h %PRODUCT_INSTALL%\include\
+  copy /Y %BUILD_DIR%\Wrapper\FreeImagePlus\dist\x64\*.dll %PRODUCT_INSTALL%\bin\
+  copy /Y %BUILD_DIR%\Wrapper\FreeImagePlus\dist\x64\*.lib %PRODUCT_INSTALL%\lib\
+  copy /Y %BUILD_DIR%\Wrapper\FreeImagePlus\dist\x64\*.h %PRODUCT_INSTALL%\include\
+) else (
+  copy /Y %BUILD_DIR%\Dist\x64\FreeImage.dll %PRODUCT_INSTALL%\bin\FreeImage.dll
+  copy /Y %BUILD_DIR%\Dist\x64\FreeImage.lib %PRODUCT_INSTALL%\lib\FreeImage.lib
+  copy /Y %BUILD_DIR%\Dist\x64\FreeImage.h %PRODUCT_INSTALL%\include\FreeImage.h
+  copy /Y %BUILD_DIR%\Wrapper\FreeImagePlus\dist\x64\FreeImagePlus.dll %PRODUCT_INSTALL%\bin\FreeImagePlus.dll
+  copy /Y %BUILD_DIR%\Wrapper\FreeImagePlus\dist\x64\FreeImagePlus.lib %PRODUCT_INSTALL%\lib\FreeImagePlus.lib
+  copy /Y %BUILD_DIR%\Wrapper\FreeImagePlus\dist\x64\FreeImagePlus.h %PRODUCT_INSTALL%\include\FreeImagePlus.h
+)
 
 taskkill /F /IM "mspdbsrv.exe"
 

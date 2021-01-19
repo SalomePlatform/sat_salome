@@ -9,10 +9,9 @@ IF NOT DEFINED SAT_DEBUG (
 )
 
 SET PRODUCT_BUILD_TYPE=-release
-REM TODO: NGH: not Tested yet
-REM if %SAT_DEBUG% == 1 (
-REM   set PRODUCT_BUILD_TYPE=-debug
-REM )
+if %SAT_DEBUG% == 1 (
+  set PRODUCT_BUILD_TYPE=-debug-and-release
+)
 
 if NOT exist "%PRODUCT_INSTALL%" mkdir %PRODUCT_INSTALL%
 REM clean BUILD directory
@@ -32,6 +31,7 @@ set QT_OPTIONS=%QT_OPTIONS% -opensource -confirm-license %PRODUCT_BUILD_TYPE%
 set QT_OPTIONS=%QT_OPTIONS% -no-angle -opengl desktop -nomake examples -nomake tests 
 set QT_OPTIONS=%QT_OPTIONS%  -skip qtwebengine  -skip wayland -skip qtgamepad -no-openssl
 set QT_OPTIONS=%QT_OPTIONS% -prefix %PRODUCT_INSTALL%
+echo **** call configure  %QT_OPTIONS%
 call configure  %QT_OPTIONS%
 if NOT %ERRORLEVEL% == 0 (
     echo "ERROR on configure"

@@ -115,36 +115,16 @@ if NOT %ERRORLEVEL% == 0 (
     exit 6
 )
 
-REM on purpose, we don't use mklink
+REM on purpose, we don't use mklink - requires admin rights...
 copy /Y /B %PRODUCT_INSTALL%\python%LIB_TAG%.exe %PRODUCT_INSTALL%\python3.exe
-
-REM some prequistes the DLL to be renamed
-REM on purpose we don't use mklink, since this requires the user to have his node set in developer mode.
-cd %PRODUCT_INSTALL%\
 if %SAT_DEBUG% == 1 (
-  FOR %%G IN (python3 python python36 sqlite3 pyshellext) DO copy /Y /B %PRODUCT_INSTALL%\%%G%LIB_TAG%.dll %PRODUCT_INSTALL%\%%G.dll
-)
-
-REM some of the products expect .lib instead of _d.lib...
-REM on purpose we don't use mklink, since this requires the user to have his node set in developer mode.
-cd %PRODUCT_INSTALL%\libs\
-if %SAT_DEBUG% == 1 (
-  SETLOCAL ENABLEDELAYEDEXPANSION
-  FOR %%f IN (*_d.lib) do (
-     set X=%%f
-     copy /Y /B %PRODUCT_INSTALL%\libs\%%f %PRODUCT_INSTALL%\libs\!X:_d.lib=.lib!
-     copy /Y /B %PRODUCT_INSTALL%\%%f %PRODUCT_INSTALL%\!X:_d.lib=.lib!
-  )
-  ENDLOCAL
+  copy /Y /B %PRODUCT_INSTALL%\python_d.exe %PRODUCT_INSTALL%\python.exe
+  REM otherwise OmniORB does not compile...
+  copy /Y /B %PRODUCT_INSTALL%\libs\python36_d.lib %PRODUCT_INSTALL%\libs\python36.lib 
+  copy /Y /B %PRODUCT_INSTALL%\libs\python_d.lib %PRODUCT_INSTALL%\libs\python.lib 
 )
 
 cd %PRODUCT_INSTALL%\
-powershell -Command "Get-ChildItem *_d.exe| Rename-Item -newname { $_.name -replace '_d.exe','.exe' }"
-REM powershell -Command "Get-ChildItem *_d.dll| Rename-Item -newname { $_.name -replace '_d.dll','.dll' }"
-REM powershell -Command "Get-ChildItem *_d.pdb| Rename-Item -newname { $_.name -replace '_d.pdb','.pdb' }"
-REM powershell -Command "Get-ChildItem *_d.pyd| Rename-Item -newname { $_.name -replace '_d.pyd','.pyd' }"
-REM powershell -Command "Get-ChildItem *_d.exp| Rename-Item -newname { $_.name -replace '_d.exp','.exp' }"
-REM powershell -Command "Get-ChildItem *_d.ilk| Rename-Item -newname { $_.name -replace '_d.ilk','.ilk' }"
 
 REM Add PIP support
 set PYTHONHOME=%PRODUCT_INSTALL%

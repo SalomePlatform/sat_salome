@@ -9,10 +9,9 @@ IF NOT DEFINED SAT_DEBUG (
 )
 
 SET PRODUCT_BUILD_TYPE=Release
-REM TODO: NGH: not Tested yet
-REM if %SAT_DEBUG% == 1 (
-REM   set PRODUCT_BUILD_TYPE=Debug
-REM )
+if %SAT_DEBUG% == 1 (
+  set PRODUCT_BUILD_TYPE=Debug
+)
 
 if NOT exist "%PRODUCT_INSTALL%" mkdir  %PRODUCT_INSTALL%
 
@@ -21,15 +20,12 @@ if exist "%BUILD_DIR%" rmdir /Q /S %BUILD_DIR%
 mkdir %BUILD_DIR%
 
 cd %BUILD_DIR%
+set CMAKE_OPTIONS=
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_INSTALL_PREFIX=%PRODUCT_INSTALL%
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_BUILD_TYPE=%PRODUCT_BUILD_TYPE%
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DBUILD_SHARED_LIBS=ON
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_DISABLE_FIND_PACKAGE_HarfBuzz=TRUE
-if defined CMAKE_GENERATOR (
-    set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_GENERATOR=%CMAKE_GENERATOR%
-) else (
-    set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_GENERATOR="Visual Studio 15 2017 Win64"
-)
+set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_GENERATOR="Visual Studio 15 2017 Win64"
 set MSBUILDDISABLENODEREUSE=1
 
 echo.
@@ -46,7 +42,7 @@ if NOT %ERRORLEVEL% == 0 (
 
 echo.
 echo *********************************************************************
-echo *** msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% ALL_BUILD.vcxproj"
+echo *** msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% ALL_BUILD.vcxproj
 echo *********************************************************************
 echo.
 
@@ -70,11 +66,15 @@ if NOT %ERRORLEVEL% == 0 (
 
 echo.
 echo *********************************************************************
-echo *** COPY Freetype DLL file from %BUILD_DIR% to %PRODUCT_INSTALL%
+echo *** COPY Freetype DLL files from %BUILD_DIR% to %PRODUCT_INSTALL%
 echo *********************************************************************
 echo.
 if NOT exist "%PRODUCT_INSTALL%\bin"     mkdir  %PRODUCT_INSTALL%\bin
-copy /Y  %BUILD_DIR%\%PRODUCT_BUILD_TYPE%\Freetype.dll %PRODUCT_INSTALL%\bin\Freetype.dll 
+if %SAT_DEBUG% == 0 (
+  copy /Y  %BUILD_DIR%\%PRODUCT_BUILD_TYPE%\Freetype.dll %PRODUCT_INSTALL%\bin\Freetype.dll
+) else (
+  copy /Y  %BUILD_DIR%\%PRODUCT_BUILD_TYPE%\*.dll %PRODUCT_INSTALL%\bin\
+)
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR when copying Freetype DLL
     exit 2
