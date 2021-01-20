@@ -29,6 +29,7 @@ APPLICATION :
         alabaster : '0.7.6'
         Babel : '2.7.0'
         boost : '1.58.0'
+        CAS : 'CR740-SALOME-PATCH'
         certifi : '2018.8.24'
         cgns : {tag : '3.3.1', hpc : 'yes'}
         chardet : '3.0.4'
@@ -40,6 +41,7 @@ APPLICATION :
         dateutil : '2.4.2'
         docutils : '0.12'
         doxygen : '1.8.14'
+        freeimage : '3.16.0'
         freetype : '2.9.1'
         graphviz : '2.38.0'
         hdf5 : {tag : '1.10.3', hpc : 'yes'}
@@ -55,15 +57,19 @@ APPLICATION :
         openmpi : '3.1.6'
         ParMetis : '3.1.1'
         numpy : '1.15.1'
+        omniORB : '4.2.2'
+        omniORBpy : '4.2.2'
         packaging : '17.1'
         ParaView : {tag : '5.8.0', hpc : 'yes', section: 'version_5_8_0_MPI'}
         petsc : '3.14.0'
+        pockets : '0.6.2'
         Pygments : '2.0.2'
         pyparsing : '2.0.3'
         PyQt : '5.9'
         Python : '3.6.5'
         pytz : '2015.7'
         qt : '5.9.1'
+        qwt : '6.1.2'
         requests : '2.19.1'
         scipy : '0.19.1'
         scotch : '6.0.4'
@@ -72,6 +78,7 @@ APPLICATION :
         six : '1.10.0'
         snowballstemmer : '1.2.1'
         Sphinx : '1.7.6'
+        sphinxcontrib_napoleon : '0.6.1'
         sphinxcontrib_websupport : '1.1.0'
         sphinxintl: '0.9.10'
         swig : '3.0.12'
@@ -79,6 +86,9 @@ APPLICATION :
 
         # SALOME MODULES :
         'CONFIGURATION'
+        'LIBBATCH' : {tag :'V2_4_4'}
+        'KERNEL' : {section : 'default_MPI', verbose : 'yes'}
+        'GUI' : {verbose : 'yes'}
         'MEDCOUPLING' : {section : 'default_MPI', verbose : 'yes'}
         'SOLVERLAB' : {section : 'default_MPI', hpc: 'yes'}
     }
