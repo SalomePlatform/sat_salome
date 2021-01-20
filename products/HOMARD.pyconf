@@ -31,7 +31,7 @@ version_8_5_0_to_V9_6_0 :
 {
     environ :
     {
-        SalomeAppConfig_ : $install_dir + $VARS.sep + "share" + $VARS.sep + "salome" + $VARS.sep + "resources" + $VARS.sep + "homard"
+        env_script : "HOMARD.py"
     }
     depend : ["SMESH","homard_bin"]
 }
