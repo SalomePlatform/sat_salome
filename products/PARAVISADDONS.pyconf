@@ -57,24 +57,6 @@
   {
     depend :
     [
-      'KERNEL'
-      'GUI'
-      'MEDCOUPLING'
-      'FIELDS'
       'PARAVIS'
-      'GEOM'
-      'SMESH'
-      'Python'
-      'qt'
-      'boost'
-      'hdf5'
-      'medfile'
-      'ParaView'
-      'CAS'
-      'omniORB'
-      'docutils'
-      'libxml2'
-      'six'
-      'pytz'
     ]
   }
