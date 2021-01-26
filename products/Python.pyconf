@@ -36,10 +36,7 @@ version_2_6_6 :
 
 version_2_7_10 :
 {
-    patches : [
-        #'remove-windows-python-subprojects.patch', #patch Windows non applicable sur Linux
-        #'enable-windows-plugin-compilation.patch',
-    ]
+    patches : ['Python-2.7.10-ssl.patch']
 }
 
 version_3_6_5 :

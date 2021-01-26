@@ -1,0 +1,12 @@
+--- Python/setup.py	2015-05-23 18:09:25.000000000 +0200
++++ Python_new/setup.py	2021-01-26 10:54:30.894406545 +0100
+@@ -804,7 +804,8 @@ class PyBuildExt(build_ext):
+                                      ['/usr/local/ssl/lib',
+                                       '/usr/contrib/ssl/lib/'
+                                      ] )
+-
++        ssl_incs = None
++        ssl_libs = None
+         if (ssl_incs is not None and
+             ssl_libs is not None):
+             exts.append( Extension('_ssl', ['_ssl.c'],
