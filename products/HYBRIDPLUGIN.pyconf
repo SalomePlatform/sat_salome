@@ -35,12 +35,3 @@ default :
 	incremental : "yes"
     }
 } 
-
-default_win :
-{
-  # speed-up build - now 10 mn...
-   depend : [
-             "SMESH",
-             "MeshGems"
-              ]
- }
