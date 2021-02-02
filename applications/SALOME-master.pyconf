@@ -107,15 +107,15 @@ APPLICATION :
         # SALOME MODULES :
         'CONFIGURATION'
         'SALOME'
-        'SHAPER'
-        'SHAPERSTUDY'
+        'SHAPER': {tag : 'agy/arch2_ic0'}
+        'SHAPERSTUDY': {tag : 'agy/arch2_ic0'}
         'RESTRICTED'
         'LIBBATCH' : {tag : 'V2_4_4'}
-        'KERNEL'
+        'KERNEL' : {tag : 'agy/arch2_ic0'}
         'MEDCOUPLING'
         'GUI'
-        'GEOM'
-        'SMESH'
+        'GEOM' : {tag : 'agy/arch2_ic0'}
+        'SMESH': {tag : 'agy/arch2_ic0'}
         'NETGENPLUGIN'
         'BLSURFPLUGIN'
         'GHS3DPLUGIN'
