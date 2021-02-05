@@ -21,7 +21,7 @@ APPLICATION :
         }
         launch : {PYTHONIOENCODING:"UTF_8", SALOME_MODULES_ORDER:""}
         SALOME_trace : "local" # local/file:.../with_logger
-        SALOME_MODULES : ""  # specify the first modules to display in gui
+        SALOME_MODULES : "SOLVERLAB"  # specify the first modules to display in gui
     }
     products :
     {
