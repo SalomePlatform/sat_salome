@@ -1,0 +1,13 @@
+diff --git a/cmake/SalomeSetupPlatform.cmake b/cmake/SalomeSetupPlatform.cmake
+index 87cfdf1..b56af6f 100644
+--- a/cmake/SalomeSetupPlatform.cmake
++++ b/cmake/SalomeSetupPlatform.cmake
+@@ -130,7 +130,7 @@ SET(CMAKE_CXX_STANDARD_REQUIRED ON)
+ 
+ # Fight warnings
+ IF(NOT APPLE)
+-  OPTION(SALOME_DEBUG_WARNINGS "Report more warnings" OFF)
++  OPTION(SALOME_DEBUG_WARNINGS "Report more warnings" ON)
+   OPTION(SALOME_TREAT_WARNINGS_AS_ERRORS "Treat warnings as errors" OFF)
+   # Report more warnings
+   MARK_AS_ADVANCED(SALOME_DEBUG_WARNINGS SALOME_TREAT_WARNINGS_AS_ERRORS)
