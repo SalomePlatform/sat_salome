@@ -18,7 +18,6 @@ default :
     depend : [ "SMESH"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
-    patches : ['HOMARD_SMESH_SSL_support.patch']
     properties:
     {
         has_salome_gui : "yes"
@@ -27,6 +26,11 @@ default :
         has_unit_tests
     }
 } 
+
+version_gn_evol_01 :
+{
+    patches : ['HOMARD_SMESH_SSL_support.patch']
+}
 
 version_8_5_0_to_V9_6_0 :
 {
