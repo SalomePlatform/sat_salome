@@ -9,8 +9,8 @@
     get_source : "git"
     git_info :
     {
-      repo : $PROJECTS.projects.salome.git_info.default_git_server + 'modules/paravisaddons.git'
-      repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + 'paravisaddons.git'
+      repo : $PROJECTS.projects.salome.git_info.default_git_server + 'modules/paravisaddons_common.git'
+      repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + 'paravisaddons_common.git'
     }
     environ :
     {

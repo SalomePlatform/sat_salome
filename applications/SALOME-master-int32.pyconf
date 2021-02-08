@@ -143,7 +143,7 @@ APPLICATION :
         'PY2CPP' : {tag: 'v2.0'}
         'ADAO'
         'ADAO_INTERFACE'
-        'PARAVISADDONS' : {tag: 'spns/20440'}
+        'PARAVISADDONS'
         'CEATESTBASE' : {tag: 'SalomeV9'}
     }
     profile :
