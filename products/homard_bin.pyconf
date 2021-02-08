@@ -20,6 +20,7 @@ version_6_6_0_to_8_5_0 :
     build_source : "script"
     compil_script :  "Homard.sh"
     get_source : "archive"
+    archive_info : {archive_name : "Homard-11.11.tar.gz"}
     environ :
     {
        env_script : "Homard.py"
