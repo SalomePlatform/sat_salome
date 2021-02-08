@@ -156,7 +156,7 @@ APPLICATION :
         'EFICAS'
         'EFICAS_TOOLS'
         'ADAO'
-        'PARAVISADDONS'
+        'PARAVISADDONS' : {tag : 'kw/issue23'}
         'CEATESTBASE' : {tag: 'SalomeV9'}
     }
     profile :
