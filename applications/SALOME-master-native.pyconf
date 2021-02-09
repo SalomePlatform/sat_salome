@@ -146,7 +146,7 @@ APPLICATION :
 	'PY2CPP' : {tag: 'v2.0'}
 	'ADAO'
 	'ADAO_INTERFACE'
-        'PARAVISADDONS' : {tag : 'kw/issue23'}
+        'PARAVISADDONS'
         'CEATESTBASE' : {tag: 'SalomeV9'}
     }
     profile :
