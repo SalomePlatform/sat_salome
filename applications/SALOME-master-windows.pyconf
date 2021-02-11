@@ -33,7 +33,7 @@ APPLICATION :
         alabaster : '0.7.6'
         Babel : '2.7.0'
         boost : '1.67.0'
-        CAS : {section: 'version_CR740_SALOME_PATCH_win', tag: 'CR740-SALOME-PATCH'}
+        CAS : {section: 'version_V7_5_0_win', tag: 'V7_5_0'}
         certifi : '2019.6.16'
         cgns : '3.3.1'
         chardet : '3.0.4'
