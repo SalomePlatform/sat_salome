@@ -33,6 +33,15 @@ default_win :
     build_depend : ["cmake", "llvm"]
 }
 
+version_1_15_0 :
+{
+    build_source : "script"
+    compil_script :  "ispc-1.15.0.sh"
+    archive_info : {archive_name : "ispc-1.15.0-x86_64.tar.gz"}
+    patches : []
+    depend : []
+}
+
 version_1_9_2 :
 {
     build_source : "script"

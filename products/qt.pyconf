@@ -32,12 +32,21 @@ default_win:
    check_install : []
 }
 
-version_4_8_4 :
+version_5_12_10 :
 {
-    compil_script :  "qt-4.8.4.sh"
-    patches : ["qt-4.8.4-enable-webkit-compilation-whith-gcc5.patch"]
+  compil_script : "qt-5.12.10.sh"
+  depend : ["freetype", 'llvm']
+}
+
+version_5_9_1 :
+{
+  patches : []
+}
+
+version_5_6_1_1:
+{
+    compil_script : "qt-5.6.1" + $VARS.scriptExtension
     depend : []
-    check_install : []
 }
 
 version_5_5_1:
@@ -50,6 +59,14 @@ version_5_5_1:
     depend : []
 }
 
+version_4_8_4 :
+{
+    compil_script :  "qt-4.8.4.sh"
+    patches : ["qt-4.8.4-enable-webkit-compilation-whith-gcc5.patch"]
+    depend : []
+    check_install : []
+}
+
 version_4_6_3:
 {
     compil_script :  "qt-4.6.3.sh"
@@ -58,19 +75,8 @@ version_4_6_3:
     check_install : []
 }
 
-version_5_6_1_1:
-{
-    compil_script : "qt-5.6.1" + $VARS.scriptExtension
-    depend : []
-}
-
 version_test:
 {
     compil_script : "qt-5.6.1_test.sh"
     depend : []
-}
-
-version_5_9_1 :
-{
-  patches : []
 }

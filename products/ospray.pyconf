@@ -29,6 +29,12 @@ default_win :
     }
 }
 
+version_2_4_0 :
+{
+  cmake_options : "-DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang -DEMBREE_ISPC_SUPPORT=ON -DEMBREE_TUTORIALS=OFF -Dembree_DIR=${embree_DIR} -DOSPRAY_ENABLE_APPS=OFF  -DCMAKE_INSTALL_LIBDIR=lib"
+  depend : ['embree','openVKL']
+}
+
 version_1_7_3 :
 {
     # OSPRAY_ENABLE_APPS not needed here, otherwise compilation issues on several Fedora nodes.
