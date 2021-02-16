@@ -2,7 +2,7 @@ default :
 {
     name : "openturns"
     build_source : "cmake"
-    cmake_options : " -DPYTHON_EXECUTABLE=${PYTHON_ROOT_DIR}/bin/python -DUSE_TBB=OFF"
+    cmake_options : " -DPYTHON_EXECUTABLE=${PYTHON_ROOT_DIR}/bin/python"
     get_source : "archive"
     environ :
     {
