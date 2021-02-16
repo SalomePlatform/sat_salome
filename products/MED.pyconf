@@ -69,6 +69,7 @@ version_V6_6_0 :
     environ :
     {
     }
+    nb_proc : 4
     depend : [
       "medfile",
       "GUI", 
