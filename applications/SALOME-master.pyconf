@@ -71,7 +71,7 @@ APPLICATION :
         opencv : '3.2.0'
         openssl : "native"
         ospray : '1.8.4'
-        openturns: '1.16'
+        #openturns: '1.16'
         packaging : '17.1'
         ParaView : '5.8.0'
         petsc : '3.14.0'
@@ -232,11 +232,11 @@ __overwrite__ :
                                                 ]
   }
 
-  {
-    #
-    __condition__ : "VARS.dist in ['CO7']"
-    'PRODUCTS.openturns.default.cmake_options' : " -DPYTHON_EXECUTABLE=${PYTHON_ROOT_DIR}/bin/python -DUSE_TBB=OFF" # essayer avec un nouveau gcc
-  }
+  # {
+  #   #
+  #   __condition__ : "VARS.dist in ['CO7']"
+  #   'PRODUCTS.openturns.default.cmake_options' : " -DPYTHON_EXECUTABLE=${PYTHON_ROOT_DIR}/bin/python -DUSE_TBB=OFF" # essayer avec un nouveau gcc
+  # }
 
   {
     __condition__ : "VARS.dist in ['CO7'] and APPLICATION.environ.build.VTK_SMP_IMPLEMENTATION_TYPE == 'TBB'"
