@@ -39,12 +39,10 @@ default :
               "six",
               "pytz",
               "sphinxintl",
-              "sphinxcontrib_napoleon",
               "tbb"
              ]
     build_depend : ["cmake", "swig", "doxygen", "cppunit"]
-    opt_depend : []
-    patches : []
+    patches : ["SMESH_sphinx_ext_napoleon.patch"]
     check_install : ["share/doc/salome/gui/SMESH/yams/index.html"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
@@ -60,7 +58,6 @@ default :
 default_win :
 {
     cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR:\=/%/bin/swig.exe -DSALOME_SMESH_USE_CGNS:BOOL=ON -DSALOME_SMESH_DYNLOAD_LOCAL:BOOL=ON -DSALOME_SMESH_BUILD_FRENCH_DOC=OFF -DSALOME_SMESH_USE_TBB=ON"
-    patches : []
     depend : ["KERNEL",
               "GUI",
               "GEOM",
@@ -86,7 +83,6 @@ default_win :
               "pytz",
               "Sphinx",
               "sphinxintl",
-              "sphinxcontrib_napoleon",
               "tbb"
             ]
     build_depend : ["cmake", "swig", "doxygen", "cppunit", "f2c"]
@@ -118,7 +114,6 @@ default_MPI :
               "six",
               "pytz",
               "sphinxintl",
-              "sphinxcontrib_napoleon",
               "tbb",
 	      "openmpi"
              ]
@@ -154,6 +149,7 @@ version_8_5_0_to_9_3_0 :
               "sphinxintl",
               "sphinxcontrib_napoleon"
              ]
+    patches : []
 }
 
 # OP 19/04/2018 Add section for SALOME 7.8.0 to 8.4.0 due to new dependencies in SALOME 8.5.0
@@ -188,6 +184,7 @@ version_7_8_0_to_8_4_0 :
               "pytz"
              ]
     nb_proc : 8
+    patches : []
 }
 
 version_V6_6_0 :
@@ -219,4 +216,5 @@ version_V6_6_0 :
               "Pygments"
              ]
     check_install : []
+    patches : []
 }

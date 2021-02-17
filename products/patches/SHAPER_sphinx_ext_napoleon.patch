@@ -1,0 +1,15 @@
+diff --git a/doc/gui/conf.py.in b/doc/gui/conf.py.in
+index d1327b144..e5e040494 100644
+--- a/doc/gui/conf.py.in
++++ b/doc/gui/conf.py.in
+@@ -33,8 +33,8 @@ import sphinx
+ # ones.
+ extensions = ['sphinx.ext.autodoc','sphinx.ext.autosummary']
+ try:
+-  import sphinxcontrib.napoleon
+-  extensions += ['sphinxcontrib.napoleon']
++  import sphinx.ext.napoleon
++  extensions += ['sphinx.ext.napoleon']
+ except:
+   pass
+ try:

@@ -1,0 +1,28 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 6796fcfe9..522790eac 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -130,7 +130,7 @@ IF(SALOME_BUILD_TESTS)
+ ENDIF()
+ IF(SALOME_BUILD_DOC)
+   FIND_PACKAGE(SalomeDoxygen)
+-  SET(Sphinx_EXTENSIONS sphinxcontrib.napoleon)
++  SET(Sphinx_EXTENSIONS sphinx.ext.napoleon)
+   FIND_PACKAGE(SalomeSphinx)
+   SALOME_LOG_OPTIONAL_PACKAGE(Doxygen SALOME_BUILD_DOC)
+   SALOME_LOG_OPTIONAL_PACKAGE(Sphinx SALOME_BUILD_DOC)
+diff --git a/doc/salome/gui/SMESH/conf.py.in b/doc/salome/gui/SMESH/conf.py.in
+index 66efe32d3..f86270ab8 100644
+--- a/doc/salome/gui/SMESH/conf.py.in
++++ b/doc/salome/gui/SMESH/conf.py.in
+@@ -26,8 +26,8 @@ import sphinx
+ # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
+ extensions = ['sphinx.ext.autodoc','sphinx.ext.autosummary']
+ try:
+-  import sphinxcontrib.napoleon
+-  extensions += ['sphinxcontrib.napoleon']
++  import sphinx.ext.napoleon
++  extensions += ['sphinx.ext.napoleon']
+ except:
+   pass
+ try:

@@ -28,8 +28,7 @@ default :
               "omniORB",
               "docutils",
               "libxml2",
-              "sphinxintl",
-              "sphinxcontrib_napoleon"
+              "sphinxintl"
            ]
     opt_depend : ["sphinx_rtd_theme"]
     build_depend : ["cmake", "swig", "doxygen", "cppunit"]
@@ -66,7 +65,6 @@ default_win :
               "sphinxcontrib_websupport",
               "sphinxcontrib_applehelp",
               "sphinxcontrib_serializinghtml",
-              "sphinxcontrib_napoleon",
               "graphviz"
              ]
     opt_depend : ["sphinx_rtd_theme"]
