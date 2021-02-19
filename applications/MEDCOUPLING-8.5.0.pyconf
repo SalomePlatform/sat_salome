@@ -6,6 +6,10 @@ APPLICATION :
     name : 'MEDCOUPLING-8.5.0'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
     tag : 'V8_5_0'
+    dev : 'no'
+    verbose :'no'
+    debug : 'no'
+    base : 'no'
     environ :
     {
     }
