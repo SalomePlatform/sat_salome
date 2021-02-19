@@ -39,6 +39,15 @@ default_win :
    }
 }
 
+version_2_2_2 :
+{
+    properties:
+    {
+      pip : "yes"
+      incremental : "yes"
+    }
+}
+
 version_2_0_2 :
 {
     depend : ['Python', 'PyQt',  'numpy', 'freetype', 'six', 'pytz', 'pyparsing', 'dateutil', 'setuptools', 'cycler']

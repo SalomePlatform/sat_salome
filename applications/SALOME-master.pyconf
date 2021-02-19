@@ -71,7 +71,7 @@ APPLICATION :
         opencv : '3.2.0'
         openssl : "native"
         ospray : '1.8.4'
-        #openturns: '1.16'
+        openturns: '1.16'
         packaging : '17.1'
         ParaView : '5.8.0'
         petsc : '3.14.0'
@@ -217,6 +217,11 @@ __overwrite__ :
   }
 
   {
+    __condition__ : "VARS.dist in ['CO7']"
+    'APPLICATION.products.tbb' : '4.4'
+  }
+
+  {
     __condition__ : "VARS.dist in ['CO7'] and APPLICATION.environ.build.VTK_SMP_IMPLEMENTATION_TYPE == 'OpenMP'"
     'PRODUCTS.ParaView.version_5_8_0.patches' : ['paraview.0003-ParaViewClient.patch',
                                                  'paraview.0004-ParaView_hdf5.patch',
@@ -229,12 +234,6 @@ __overwrite__ :
                                                  'paraview-0012-LATA_64BITS_IDS.patch'
                                                 ]
   }
-
-  # {
-  #   #
-  #   __condition__ : "VARS.dist in ['CO7']"
-  #   'PRODUCTS.openturns.default.cmake_options' : " -DPYTHON_EXECUTABLE=${PYTHON_ROOT_DIR}/bin/python -DUSE_TBB=OFF" # essayer avec un nouveau gcc
-  # }
 
   {
     __condition__ : "VARS.dist in ['CO7'] and APPLICATION.environ.build.VTK_SMP_IMPLEMENTATION_TYPE == 'TBB'"

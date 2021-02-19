@@ -5,7 +5,8 @@ import os.path
 import platform
 
 def set_env(env, prereq_dir, version):
-  env.set('EIGEN_ROOT_DIR', prereq_dir)    # update for cmake
+  env.set('EIGEN_ROOT_DIR', prereq_dir)
+  env.set('Eigen3_DIR', prereq_dir)
   root = env.get('EIGEN_ROOT_DIR')
   if platform.system() != "Windows" :
     pass
