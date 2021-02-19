@@ -42,7 +42,7 @@ default :
               "tbb"
              ]
     build_depend : ["cmake", "swig", "doxygen", "cppunit"]
-    patches : ["SMESH_sphinx_ext_napoleon.patch"]
+    patches : []
     check_install : ["share/doc/salome/gui/SMESH/yams/index.html"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
