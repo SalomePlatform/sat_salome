@@ -30,44 +30,28 @@ APPLICATION :
         metis : '5.1.0'
         numpy : '1.12.1'
         Pygments : '2.0.2'
-        Python : '2.7.10'
+        Python : '2.7.16'
         pytz : '2015.4'
         scipy : '0.18.1'
         scotch : '6.0.4'
         setuptools : '38.4.0'
         six : '1.10.0'
         Sphinx : '1.2.3'
-
-        # TA 06-04-2018 Add sphinx-intl prerequisite
         sphinxintl: '0.9.10'
         swig : '2.0.12'
-        
-        
-        
-#
-        # SALOME MODULES :
-        'CONFIGURATION': {dev: 'yes'}
-        'MEDCOUPLING': {dev: 'yes'}
 
+        # SALOME MODULES :
+        'CONFIGURATION'
+        'MEDCOUPLING'
     }
     test_base : 
     {
         name : "SALOME"
         tag : "SalomeV8"
     }
+    properties :
+    {
+        repo_dev : "yes"
+        single_install_dir : "no"
+    }
 }
-
-__overwrite__ :
-[
-   {
-       # OP 09/04/2018 add sphinx-intl, six prerequisites
-    'PRODUCTS.MEDCOUPLING.default.depend' : 
-     [
-         "Babel", "boost", "click", "cmake", "cppunit", "Cython", "docutils",
-         "doxygen", "graphviz", "hdf5", "Jinja2", "lapack", "libxml2",
-         "markupsafe", "medfile", "metis", "numpy", "Pygments", "Python", "pytz",
-         "scipy", "scotch", "setuptools", "six", "Sphinx", "sphinxintl",
-         "swig", "CONFIGURATION"
-     ]
-   }
-]

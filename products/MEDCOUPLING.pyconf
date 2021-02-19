@@ -136,6 +136,39 @@ version_V9_3_0_win :
     cmake_options : ' -DMEDCOUPLING_ENABLE_PYTHON=ON -DMEDCOUPLING_ENABLE_PARTITIONER=OFF -DMEDCOUPLING_ENABLE_RENUMBER=ON -DMEDCOUPLING_PARTITIONER_METIS=ON -DMEDCOUPLING_PARTITIONER_SCOTCH=OFF -DMEDCOUPLING_PARTITIONER_PARMETIS=OFF -DMEDCOUPLING_MICROMED=OFF -DMEDCOUPLING_USE_MPI=OFF '
 }
 
+version_8_5_0 :
+{
+    depend : ["Babel",
+	      "boost",
+	      "click",
+	      "cmake",
+	      "cppunit",
+	      "Cython",
+	      "docutils",
+              "doxygen",
+	      "graphviz",
+	      "hdf5",
+	      "Jinja2",
+	      "lapack",
+	      "libxml2",
+              "markupsafe",
+	      "medfile",
+	      "metis",
+	      "numpy",
+	      "Pygments",
+	      "Python",
+	      "pytz",
+              "scipy",
+	      "scotch",
+	      "setuptools",
+	      "six",
+	      "Sphinx",
+	      "sphinxintl",
+              "swig",
+	      "CONFIGURATION"
+	     ]
+}
+
 version_7_8_2_to_8_4_0 :
 {
     cmake_options : "-DMEDCOUPLING_ENABLE_PYTHON=ON -DMEDCOUPLING_ENABLE_PARTITIONER=ON -DMEDCOUPLING_ENABLE_RENUMBER=ON -DMEDCOUPLING_PARTITIONER_METIS=ON -DMEDCOUPLING_PARTITIONER_SCOTCH=ON -DMEDCOUPLING_PARTITIONER_PARMETIS=OFF -DMEDCOUPLING_MICROMED=OFF -DMEDCOUPLING_USE_MPI=OFF"
