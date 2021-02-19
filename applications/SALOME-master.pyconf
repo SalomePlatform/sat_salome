@@ -71,7 +71,7 @@ APPLICATION :
         opencv : '3.2.0'
         openssl : "native"
         ospray : '1.8.4'
-        openturns: '1.16'
+        #openturns: '1.16'
         packaging : '17.1'
         ParaView : '5.8.0'
         petsc : '3.14.0'
