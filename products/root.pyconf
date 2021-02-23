@@ -2,14 +2,14 @@ default :
 {
     name : "root"
     build_source : "cmake"
-    cmake_options : ""
+    cmake_options : " -Dgminimal:BOOL=ON -Dmathmore:BOOL=ON -Ddataframe:BOOL=ON -Dmlp:BOOL=ON -Dfftw3:BOOL=ON -Dminuit2:BOOL=ON -Dxml:BOOL=ON -Dasimage:BOOL=ON -Dpyroot:BOOL=ON -Dsoversion:BOOL=ON -Ddataframe:BOOL=ON -DPYTHON_EXECUTABLE:STRING=${PYTHONBIN} -DPYTHON_INCLUDE_DIR:STRING=${PYTHON_INCLUDE} "
     get_source : "archive"
     environ :
     {
        env_script : $name + ".py"
     }
-    depend : ['Python']
-    build_depend : ['cmake']
+    depend : ['Python', 'boost', 'freetype', 'freeimage']
+    build_depend : ['cmake', 'libxml2', 'doxygen']
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     install_dir : 'base'
@@ -18,6 +18,7 @@ default :
       incremental : "yes"
     }
 }
+
 version_6_16_00:
 {}
 
