@@ -49,6 +49,7 @@ APPLICATION :
         gmsh : '4.1.4'
         graphviz : '2.38.0'
         hdf5 : '1.10.3'
+        homard_bin : '11.12_hdf51103med410'
         idna : '2.7'
         imagesize : '1.0.0'
         ispc : '1.9.2'
@@ -107,15 +108,15 @@ APPLICATION :
         # SALOME MODULES :
         'CONFIGURATION'
         'SALOME'
-        'SHAPER'
+        'SHAPER' : {tag : 'agy/archi5_00'}
         'SHAPERSTUDY'
         'RESTRICTED'
         'LIBBATCH' : {tag : 'V2_4_4'}
-        'KERNEL'
+        'KERNEL' : {tag : 'agy/archi5_integ'}
         'MEDCOUPLING'
-        'GUI'
-        'GEOM'
-        'SMESH'
+        'GUI' : {tag : 'agy/archi5_integ'}
+        'GEOM' : {tag : 'agy/archi5_integ'}
+        'SMESH' : {tag : 'agy/archi5_integ'}
         'NETGENPLUGIN'
         'BLSURFPLUGIN'
         'GHS3DPLUGIN'
@@ -123,9 +124,9 @@ APPLICATION :
         'HYBRIDPLUGIN'
         'HexoticPLUGIN'
         'GMSHPLUGIN'
-        'HEXABLOCK'
+        'HEXABLOCK' : {tag : 'agy/archi5_integ'}
         'HEXABLOCKPLUGIN'
-        'HOMARD' : {tag : 'gn/evol_01'}
+        'HOMARD' : {tag : 'agy/archi5_integ'}
         'FIELDS'
         'PARAVIS'
         'JOBMANAGER'

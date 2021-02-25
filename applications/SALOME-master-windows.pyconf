@@ -121,22 +121,22 @@ APPLICATION :
         # SALOME MODULES :
         'CONFIGURATION'
         'SALOME'
-        'SHAPER'
+        'SHAPER' : {tag : 'agy/archi5_00'}
         'SHAPERSTUDY'
         'RESTRICTED'
         'LIBBATCH' : {tag :'V2_4_4'}
-        'KERNEL'
+        'KERNEL' : {tag : 'agy/archi5_integ'}
         'MEDCOUPLING'
-        'GUI'
-        'GEOM'
-        'SMESH'
+        'GUI' : {tag : 'agy/archi5_integ'}
+        'GEOM' : {tag : 'agy/archi5_integ'}
+        'SMESH' : {tag : 'agy/archi5_integ'}
         'NETGENPLUGIN'
         'BLSURFPLUGIN'
         'GHS3DPLUGIN'
         'HYBRIDPLUGIN'
         'HexoticPLUGIN'
         #'GMSHPLUGIN'
-        'HEXABLOCK'
+        'HEXABLOCK' : {tag : 'agy/archi5_integ'}
         'HEXABLOCKPLUGIN'
         #'HOMARD'
         'FIELDS'
