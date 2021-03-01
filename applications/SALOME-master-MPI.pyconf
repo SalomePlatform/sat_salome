@@ -62,6 +62,7 @@ APPLICATION :
         medfile : {tag : '4.1.0', hpc : 'yes', section : 'default_Autotools' }
         mesa : '19.0.8'
         MeshGems : {tag : '2.12-1', hpc : 'yes'}
+        mpi4py: '3.0.3'
         ParMetis : '3.1.1'
         netgen : '5.3.1_with_CAS_7.2'
         nlopt : '2.4.2'
