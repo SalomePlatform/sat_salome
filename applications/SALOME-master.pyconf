@@ -108,15 +108,15 @@ APPLICATION :
         # SALOME MODULES :
         'CONFIGURATION'
         'SALOME'
-        'SHAPER' : {tag : 'agy/archi5_00'}
+        'SHAPER'
         'SHAPERSTUDY'
         'RESTRICTED'
         'LIBBATCH' : {tag : 'V2_4_4'}
-        'KERNEL' : {tag : 'agy/archi5_integ'}
+        'KERNEL'
         'MEDCOUPLING'
-        'GUI' : {tag : 'agy/archi5_integ'}
-        'GEOM' : {tag : 'agy/archi5_integ'}
-        'SMESH' : {tag : 'agy/archi5_integ'}
+        'GUI'
+        'GEOM'
+        'SMESH'
         'NETGENPLUGIN'
         'BLSURFPLUGIN'
         'GHS3DPLUGIN'
@@ -124,9 +124,9 @@ APPLICATION :
         'HYBRIDPLUGIN'
         'HexoticPLUGIN'
         'GMSHPLUGIN'
-        'HEXABLOCK' : {tag : 'agy/archi5_integ'}
+        'HEXABLOCK'
         'HEXABLOCKPLUGIN'
-        'HOMARD' : {tag : 'agy/archi5_integ'}
+        'HOMARD'
         'FIELDS'
         'PARAVIS'
         'JOBMANAGER'
