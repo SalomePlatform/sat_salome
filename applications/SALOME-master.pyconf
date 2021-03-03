@@ -220,7 +220,7 @@ __overwrite__ :
 
   {
     __condition__ : "VARS.dist in ['CO7']"
-    'APPLICATION.products.tbb' : '4.4'
+    'APPLICATION.products.tbb' : '2019_U8'
   }
 
   {
