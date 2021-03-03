@@ -239,7 +239,7 @@ __overwrite__ :
 
   {
     __condition__ : "VARS.dist in ['CO7'] and APPLICATION.environ.build.VTK_SMP_IMPLEMENTATION_TYPE == 'TBB'"
-    'APPLICATION.products.tbb' : '4.4'
+    'APPLICATION.products.tbb' : '2019_U8'
   }
 
   {
