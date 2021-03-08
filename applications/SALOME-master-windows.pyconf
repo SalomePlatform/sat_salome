@@ -112,6 +112,7 @@ APPLICATION :
         sphinxcontrib_websupport : '1.1.2'
         sphinx_rtd_theme : '0.4.3'
         sphinxintl: '2.0.0'
+        StaticMeshPlugin : '5.8.0'
         swig : '3.0.12'
         tbb : '2019_U8_win'
         tcltk : '8.6.9'
@@ -121,22 +122,22 @@ APPLICATION :
         # SALOME MODULES :
         'CONFIGURATION'
         'SALOME'
-        'SHAPER' : {tag : 'agy/archi5_00'}
+        'SHAPER'
         'SHAPERSTUDY'
         'RESTRICTED'
         'LIBBATCH' : {tag :'V2_4_4'}
-        'KERNEL' : {tag : 'agy/archi5_integ'}
+        'KERNEL'
         'MEDCOUPLING'
-        'GUI' : {tag : 'agy/archi5_integ'}
-        'GEOM' : {tag : 'agy/archi5_integ'}
-        'SMESH' : {tag : 'agy/archi5_integ'}
+        'GUI'
+        'GEOM'
+        'SMESH'
         'NETGENPLUGIN'
         'BLSURFPLUGIN'
         'GHS3DPLUGIN'
         'HYBRIDPLUGIN'
         'HexoticPLUGIN'
         #'GMSHPLUGIN'
-        'HEXABLOCK' : {tag : 'agy/archi5_integ'}
+        'HEXABLOCK'
         'HEXABLOCKPLUGIN'
         #'HOMARD'
         'FIELDS'
