@@ -100,6 +100,7 @@ APPLICATION :
         sphinxcontrib_websupport : 'native'
         sphinxintl: 'native'
         sphinx_rtd_theme : 'native'
+        StaticMeshPlugin : '5.8.0'
         swig : 'native'
         tbb : 'native'
         tcl : 'native'
