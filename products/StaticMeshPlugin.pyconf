@@ -1,0 +1,63 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+  default :
+  {
+    name : 'StaticMeshPlugin'
+    build_source : 'cmake'
+    cmake_options : ''
+    get_source : "archive"
+    patches: []
+    environ :
+    {
+      StaticMeshPlugin : $install_dir
+      PV_PLUGIN_PATH_ : $install_dir + $VARS.sep + 'lib' + $VARS.sep + 'paraview'
+    }
+    depend :
+    [
+      'KERNEL'
+      'GUI'
+      'MEDCOUPLING'
+      'PARAVIS'
+      'FIELDS'
+      'GEOM'
+      'SMESH'
+      'Python'
+      'qt'
+      'boost'
+      'hdf5'
+      'medfile'
+      'ParaView'
+      'CAS'
+      'omniORB'
+      'docutils'
+      'libxml2'
+      'six'
+      'pytz'
+    ]
+    opt_depend : ['openmpi']
+    build_depend :
+    [
+      'cmake'
+      'swig'
+      'cppunit'
+    ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties :
+    {
+      incremental : 'yes'
+    }
+  }
+  version_5_8_0:
+  {
+   patches: ['StaticMeshPlugin-5.8.0.patch']
+  }
+
+  default_win :
+  {
+    depend :
+    [
+      'PARAVIS'
+    ]
+  }
