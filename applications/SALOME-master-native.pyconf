@@ -72,6 +72,7 @@ APPLICATION :
         omniORB : '4.2.2'
         omniORBpy : '4.2.2'
         opencv : 'native'
+        openturns: '1.16'
         ospray : '1.8.4'
         packaging : 'native'
         ParaView : '5.8.0'
@@ -89,6 +90,7 @@ APPLICATION :
         qt : 'native'
         qwt : 'native'
         requests : 'native'
+        root: '6.22.02'
         scipy : 'native'
         scotch : 'native'
         setuptools : 'native'
@@ -106,6 +108,7 @@ APPLICATION :
         tcl : 'native'
         tk : 'native'
         urllib3 : 'native'
+        URANIE : '4.5.0'
 
         # SALOME MODULES :
         'CONFIGURATION'

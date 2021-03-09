@@ -72,6 +72,7 @@ APPLICATION :
         opencv : '3.2.0'
         openmpi : '3.1.6'
         openssl : "native"
+        openturns: '1.16'
         ospray : '1.8.4'
         packaging : '17.1'
         ParaView : {tag : '5.8.0', hpc : 'yes', section: 'version_5_8_0_MPI'}
@@ -88,6 +89,7 @@ APPLICATION :
         qt : '5.9.1'
         qwt : '6.1.2'
         requests : '2.19.1'
+        root: '6.22.02'
         scipy : '0.19.1'
         scotch : '6.0.4'
         setuptools : '38.4.0'
@@ -104,7 +106,7 @@ APPLICATION :
         tcl : '8.6.0'
         tk : '8.6.0'
         urllib3 : '1.23'
-
+        URANIE : '4.5.0'
         # SALOME MODULES :
         'CONFIGURATION'
         'SALOME'
