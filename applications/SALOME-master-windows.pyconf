@@ -86,6 +86,7 @@ APPLICATION :
         perl : '5.28.1.1'
         Pillow : '7.1.1'
         planegcs : '0.18-3cb6890'
+        psutil : '5.7.2'
         pthreads : '2.9.1'
         Pygments : '2.4.2'
         pyparsing : '2.4.0'
@@ -129,7 +130,7 @@ APPLICATION :
         'SHAPERSTUDY'
         'RESTRICTED'
         'LIBBATCH' : {tag :'V2_4_4'}
-        'KERNEL'
+        'KERNEL' : {tag : 'occ/psutil'}
         'MEDCOUPLING'
         'GUI'
         'GEOM'
