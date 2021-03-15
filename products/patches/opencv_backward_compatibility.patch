@@ -1,0 +1,13 @@
+diff --git a/src/ShapeRecognition/ShapeRec_FeatureDetector.hxx b/src/ShapeRecognition/ShapeRec_FeatureDetector.hxx
+index f068387..8c45dac 100644
+--- a/src/ShapeRecognition/ShapeRec_FeatureDetector.hxx
++++ b/src/ShapeRecognition/ShapeRec_FeatureDetector.hxx
+@@ -35,6 +35,8 @@
+ #else
+  #include <opencv2/imgproc/imgproc.hpp>
+  #include <opencv2/highgui/highgui.hpp>
++ #include <opencv2/opencv.hpp>
++ #include <opencv2/legacy/compat.hpp>
+ #endif
+ 
+ // Qt

@@ -179,6 +179,8 @@ __overwrite__ :
    # GTK  compilation issue
     __condition__ : "VARS.dist in ['CO6']"
     'APPLICATION.products.opencv' : '2.4.13.5'
+    # Since OpenCV 4.X support, we need additional includes for old 2.X versions
+    'PRODUCTS.GEOM.default.patches' : ['opencv_backward_compatibility.patch']
     'APPLICATION.products.tbb' : '4.4'
     'APPLICATION.products.llvm' : '3.9.1-clang'
     'APPLICATION.products.mesa' : '13.0.6'
