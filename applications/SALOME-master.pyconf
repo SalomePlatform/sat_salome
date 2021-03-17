@@ -71,7 +71,7 @@ APPLICATION :
         omniORBpy : '4.2.2'
         opencv : '3.2.0'
         openssl : "native"
-        #openturns: '1.16'
+#        openturns: '1.16'
         ospray : '1.8.4'
         packaging : '17.1'
         ParaView : '5.8.0'
@@ -106,7 +106,7 @@ APPLICATION :
         tcl : '8.6.0'
         tk : '8.6.0'
         urllib3 : '1.23'
-        #URANIE : '4.5.0'
+#        URANIE : '4.5.0'
         # SALOME MODULES :
         'CONFIGURATION'
         'SALOME'
@@ -114,7 +114,7 @@ APPLICATION :
         'SHAPERSTUDY'
         'RESTRICTED'
         'LIBBATCH' : {tag : 'V2_4_4'}
-        'KERNEL' : {tag : 'occ/psutil'}
+        'KERNEL'
         'MEDCOUPLING'
         'GUI'
         'GEOM'
