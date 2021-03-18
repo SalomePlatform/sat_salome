@@ -102,6 +102,28 @@ _from_8_5_0_to_9_2_1 :  # these versions requires the path geom_8.5.0_xao_data_d
              ]
 }
 
+_from_7_5_0_to_7_8_3 :
+{
+    depend : ["KERNEL",
+              "GUI",
+              "boost",
+              "CAS",
+              "Python",
+              "hdf5",
+              "omniORB",
+              "qt",
+              "ParaView",
+              "docutils",
+              "Sphinx",
+              "Jinja2",
+              "setuptools",
+              "Pygments",
+              "opencv",
+              "six",
+              "pytz",
+             ]
+}
+
 version_V6_6_0 :
 {
     build_source : "autotools"
