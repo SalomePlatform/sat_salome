@@ -39,11 +39,19 @@ echo --------------------------------------------------------------------------
 if %INSTALL_CENTRALLY% == 1 (
     %PYTHON_ROOT_DIR%\python.exe setup.py install 
 ) else (
-    %PYTHON_ROOT_DIR%\python setup.py install  --single-version-externally-managed --root=/ --prefix=%PRODUCT_INSTALL% --install-lib=%PRODUCT_INSTALL%\lib\python%PYTHON_VERSION%\site-packages
+    %PYTHON_ROOT_DIR%\python.exe setup.py install  --single-version-externally-managed --root=/ --prefix=%PRODUCT_INSTALL% --install-lib=%PRODUCT_INSTALL%\lib\python%PYTHON_VERSION%\site-packages
 )
 if NOT %ERRORLEVEL% == 0  (
     echo "ERROR on setup install"
     exit 3
+)
+
+REM In debug mode, we need to rename all .pyd to _d.pyd... don't ask why. Seems like a known bug in OmniORB.
+if %SAT_DEBUG% == 1 (
+  cd %PYTHON_ROOT_DIR%\lib\site-packages\Cython-0.29.12-py3.6-win-amd64.egg
+  powershell -Command "Get-ChildItem -File -Recurse *.pyd| ForEach-Object {if ((!$_.Name.EndsWith('_d.pyd'))) {  $_ | Copy-Item -Destination {$_.Name  -replace '.pyd','_d.pyd'}}}"
+  cd %PYTHON_ROOT_DIR%lib\site-packages\Cython-0.29.12-py3.6-win-amd64.egg\Cython\Runtime
+  powershell -Command "Get-ChildItem -File -Recurse *.pyd| ForEach-Object {if ((!$_.Name.EndsWith('_d.pyd'))) {  $_ | Copy-Item -Destination {$_.Name  -replace '.pyd','_d.pyd'}}}"
 )
 
 echo.

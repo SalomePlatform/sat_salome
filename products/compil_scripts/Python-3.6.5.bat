@@ -140,6 +140,15 @@ set PATH=%PRODUCT_INSTALL%\Scripts;%PATH%
 
 %PRODUCT_INSTALL%\python.exe %SOURCE_DIR%\externals\pip-19.1.1\get-pip.py --force-reinstall --no-setuptools --no-wheel  --no-index --find-links=%SOURCE_DIR%\externals\pip-19.1.1
 
+REM In debug mode, we need to rename all _d.pyd to .pyd... don't ask why. Seems like a known bug in OmniORB.
+if %SAT_DEBUG% == 1 (
+  cd %PRODUCT_INSTALL%
+  powershell -Command "Get-ChildItem -File -Recurse *.pyd| ForEach-Object {if ((!$_.Name.EndsWith('_d.pyd'))) {  $_ | Copy-Item -Destination {$_.Name  -replace '.pyd','_d.pyd'}}}"
+  cd %PRODUCT_INSTALL%\lib\site-packages
+  powershell -Command "Get-ChildItem -File -Recurse *.pyd| ForEach-Object {if ((!$_.Name.EndsWith('_d.pyd'))) {  $_ | Copy-Item -Destination {$_.Name  -replace '.pyd','_d.pyd'}}}"
+)
+
+
 taskkill /F /IM "mspdbsrv.exe"
 
 echo.

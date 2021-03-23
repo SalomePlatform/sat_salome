@@ -39,9 +39,8 @@ echo INFO: activating platform target: x86_win32_vs_15
 sed "s/#platform = x86_win32_vs_15/platform = x86_win32_vs_15/g" < %CONFIG_REF% >  %CONFIG_MK%
 if %SAT_DEBUG% == 1 (
   copy %CONFIG_MK% %CONFIG_DBG%
-)
-if %SAT_DEBUG% == 1 (
   sed "s/#BuildDebugBinary = 1/BuildDebugBinary = 1/g" < %CONFIG_DBG% >  %CONFIG_MK% 
+  sed -i '199s/\.lib/\_d\.lib/' %BUILD_DIR%\src\tool\omniidl\cxx\dir.mk
 )
 
 REM target our Python in the configuration file

@@ -9,9 +9,10 @@ IF NOT DEFINED SAT_DEBUG (
 )
 
 SET PRODUCT_BUILD_TYPE=Release
-if %SAT_DEBUG% == 1 (
-  set PRODUCT_BUILD_TYPE=Debug
-)
+REM Building ISPC in DEBUG mode is definitely not relevant.
+REM if %SAT_DEBUG% == 1 (
+REM   set PRODUCT_BUILD_TYPE=Debug
+REM )
 
 if NOT exist "%PRODUCT_INSTALL%" mkdir %PRODUCT_INSTALL%
 REM clean BUILD directory

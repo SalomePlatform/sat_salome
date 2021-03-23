@@ -62,6 +62,13 @@ if NOT %ERRORLEVEL% == 0 (
     exit 3
 )
 
+REM In debug mode, we need to rename all .pyd to _d.pyd.
+if %SAT_DEBUG% == 1 (
+  cd %PRODUCT_INSTALL%\lib\%python_name%\site-packages\PyQt5
+  powershell -Command "Get-ChildItem -File -Recurse *.pyd| ForEach-Object {if ((!$_.Name.EndsWith('_d.pyd'))) {  $_ | Copy-Item -Destination {$_.Name  -replace '.pyd','_d.pyd'}}}"
+  powershell -Command "Get-ChildItem -File -Recurse *_d.pyd| ForEach-Object {if (($_.Name.EndsWith('_d.pyd'))) {  $_ | Copy-Item -Destination {$_.Name  -replace '_d.pyd','.pyd'}}}"
+)
+
 echo.
 echo ########## END
 

@@ -57,10 +57,16 @@ echo *** COPY FreeImage DLL to %PRODUCT_INSTALL%
 if %SAT_DEBUG% == 1 (
   copy /Y %BUILD_DIR%\Dist\x64\*.dll %PRODUCT_INSTALL%\bin\
   copy /Y %BUILD_DIR%\Dist\x64\*.lib %PRODUCT_INSTALL%\lib\
+  copy /Y %BUILD_DIR%\Dist\x64\*.pdb %PRODUCT_INSTALL%\lib\
   copy /Y %BUILD_DIR%\Dist\x64\*.h %PRODUCT_INSTALL%\include\
   copy /Y %BUILD_DIR%\Wrapper\FreeImagePlus\dist\x64\*.dll %PRODUCT_INSTALL%\bin\
   copy /Y %BUILD_DIR%\Wrapper\FreeImagePlus\dist\x64\*.lib %PRODUCT_INSTALL%\lib\
+  copy /Y %BUILD_DIR%\Wrapper\FreeImagePlus\dist\x64\*.pdb %PRODUCT_INSTALL%\lib\
   copy /Y %BUILD_DIR%\Wrapper\FreeImagePlus\dist\x64\*.h %PRODUCT_INSTALL%\include\
+  copy /Y %BUILD_DIR%\Wrapper\FreeImagePlus\dist\x64\FreeImagePlusd.dll %PRODUCT_INSTALL%\bin\FreeImagePlus.dll
+  copy /Y %BUILD_DIR%\Wrapper\FreeImagePlus\dist\x64\FreeImagePlusd.lib %PRODUCT_INSTALL%\lib\FreeImagePlus.lib
+  copy /Y %BUILD_DIR%\Dist\x64\FreeImaged.dll %PRODUCT_INSTALL%\bin\FreeImage.dll
+  copy /Y %BUILD_DIR%\Dist\x64\FreeImaged.lib %PRODUCT_INSTALL%\lib\FreeImage.lib
 ) else (
   copy /Y %BUILD_DIR%\Dist\x64\FreeImage.dll %PRODUCT_INSTALL%\bin\FreeImage.dll
   copy /Y %BUILD_DIR%\Dist\x64\FreeImage.lib %PRODUCT_INSTALL%\lib\FreeImage.lib

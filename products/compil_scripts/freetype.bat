@@ -73,7 +73,10 @@ if NOT exist "%PRODUCT_INSTALL%\bin"     mkdir  %PRODUCT_INSTALL%\bin
 if %SAT_DEBUG% == 0 (
   copy /Y  %BUILD_DIR%\%PRODUCT_BUILD_TYPE%\Freetype.dll %PRODUCT_INSTALL%\bin\Freetype.dll
 ) else (
+  copy /Y  %BUILD_DIR%\%PRODUCT_BUILD_TYPE%\*.lib %PRODUCT_INSTALL%\lib\
   copy /Y  %BUILD_DIR%\%PRODUCT_BUILD_TYPE%\*.dll %PRODUCT_INSTALL%\bin\
+  copy /Y  %BUILD_DIR%\%PRODUCT_BUILD_TYPE%\Freetyped.dll %PRODUCT_INSTALL%\bin\Freetype.dll
+  copy /Y  %BUILD_DIR%\%PRODUCT_BUILD_TYPE%\Freetyped.lib %PRODUCT_INSTALL%\lib\Freetype.lib
 )
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR when copying Freetype DLL

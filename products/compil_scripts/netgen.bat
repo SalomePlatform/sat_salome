@@ -4,6 +4,15 @@ echo ##########################################################################
 echo NETGEN %VERSION%
 echo ##########################################################################
 
+IF NOT DEFINED SAT_DEBUG (
+  SET SAT_DEBUG=0
+)
+
+SET PRODUCT_BUILD_TYPE=Release
+if %SAT_DEBUG% == 1 (
+  set PRODUCT_BUILD_TYPE=Debug
+)
+
 dos2unix -q %SOURCE_DIR%/libsrc/occ/*
 dos2unix -q %SOURCE_DIR%/libsrc/nglib/*
 
@@ -12,16 +21,14 @@ REM clean BUILD directory
 if exist "%BUILD_DIR%" rmdir /Q /S %BUILD_DIR%
 mkdir %BUILD_DIR%
 
-set CMAKE_OPTIONS=-DCMAKE_INSTALL_PREFIX:STRING=%PRODUCT_INSTALL:\=/%
-if defined CMAKE_GENERATOR (
-    set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_GENERATOR=%CMAKE_GENERATOR%
-) else (
-    set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_GENERATOR="Visual Studio 15 2017 Win64"
-)
-set MSBUILDDISABLENODEREUSE=1
-
+set CMAKE_OPTIONS=
+set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_INSTALL_PREFIX=%PRODUCT_INSTALL%
+set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_BUILD_TYPE=%PRODUCT_BUILD_TYPE%
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DZLIB_ROOT_DIR=%ZLIB_DIR%
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCASROOT=%CASROOT%
+set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_GENERATOR="Visual Studio 15 2017 Win64"
+
+set MSBUILDDISABLENODEREUSE=1
 
 cd %BUILD_DIR%
 
@@ -38,11 +45,11 @@ if NOT %ERRORLEVEL% == 0 (
 
 echo.
 echo *********************************************************************
-echo *** msbuild %MAKE_OPTIONS% /p:Configuration=Release ALL_BUILD.vcxproj"
+echo *** msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% ALL_BUILD.vcxproj
 echo *********************************************************************
 echo.
 
-msbuild %MAKE_OPTIONS% /p:Configuration=Release ALL_BUILD.vcxproj
+msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% ALL_BUILD.vcxproj
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on msbuild ALL_BUILD.vcxproj
     exit 2
@@ -50,11 +57,11 @@ if NOT %ERRORLEVEL% == 0 (
 
 echo.
 echo *********************************************************************
-echo *** installation... msbuild %MAKE_OPTIONS% /p:Configuration=Release INSTALL.vcxproj
+echo *** installation... msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% INSTALL.vcxproj
 echo *********************************************************************
 echo.
 
-msbuild %MAKE_OPTIONS% /p:Configuration=Release INSTALL.vcxproj
+msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% INSTALL.vcxproj
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on msbuild INSTALL.vcxproj
     exit 3

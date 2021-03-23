@@ -81,7 +81,11 @@ REM Python settings
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DPARAVIEW_USE_PYTHON:BOOL=ON
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DVTK_WRAP_PYTHON:BOOL=ON
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DPython3_INCLUDE_DIR:STRING=%PYTHON_ROOT_DIR:\=/%/include
-set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DPython3_LIBRARY:STRING=%PYTHON_ROOT_DIR:\=/%/libs/python%PYTHON_VERSION:.=%.lib
+if %SAT_DEBUG% == 0 (
+  set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DPython3_LIBRARY:STRING=%PYTHON_ROOT_DIR:\=/%/libs/python%PYTHON_VERSION:.=%.lib
+) else (
+  set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DPython3_LIBRARY:STRING=%PYTHON_ROOT_DIR:\=/%/libs/python%PYTHON_VERSION:.=%_d.lib
+)
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DVTK_PYTHON_FULL_THREADSAFE:BOOL=ON
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DVTK_NO_PYTHON_THREADS:BOOL=OFF
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DVTK_PYTHON_VERSION:STRING=3
@@ -131,12 +135,19 @@ REM freetype settings
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DVTK_MODULE_USE_EXTERNAL_VTK_freetype:BOOL=ON
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DFREETYPE_INCLUDE_DIRS:PATH=%FREETYPE_ROOT_DIR:\=/%/include
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DFREETYPE_INCLUDE_DIR_freetype2:PATH=%FREETYPE_ROOT_DIR:\=/%/include/freetype2
-set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DFREETYPE_LIBRARY:STRING=%FREETYPE_ROOT_DIR:\=/%/lib/freetype.lib
-
+if %SAT_DEBUG% == 0 (
+  set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DFREETYPE_LIBRARY:STRING=%FREETYPE_ROOT_DIR:\=/%/lib/freetype.lib
+) else (
+  set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DFREETYPE_LIBRARY:STRING=%FREETYPE_ROOT_DIR:\=/%/lib/freetyped.lib
+)
 REM ZLIB settings
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DVTK_MODULE_USE_EXTERNAL_VTK_zlib:BOOL=ON 
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DZLIB_INCLUDE_DIR:STRING=%ZLIB_ROOT_DIR:\=/%/include
-set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DZLIB_LIBRARY:STRING=%ZLIB_ROOT_DIR:\=/%/bin/zlib1.lib 
+if %SAT_DEBUG% == 0 (
+  set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DZLIB_LIBRARY:STRING=%ZLIB_ROOT_DIR:\=/%/lib/zlib.lib 
+) else (
+  set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DZLIB_LIBRARY:STRING=%ZLIB_ROOT_DIR:\=/%/lib/zlibd.lib 
+)
 
 REM Extra options (switch off non-used Paraview plug-ins)
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DPARAVIEW_PLUGINS_DEFAULT:BOOL=ON
@@ -159,6 +170,20 @@ echo INFO: running command: %CMAKE_ROOT%\bin\cmake %CMAKE_OPTIONS% %SOURCE_DIR%
 if NOT %ERRORLEVEL% == 0 (
     echo "ERROR on cmake"
     exit 1
+)
+
+REM 
+REM see https://gitlab.kitware.com/paraview/paraview/-/issues/19488
+if %SAT_DEBUG% == 1 (
+  del /Q Directory.Build.props
+  echo > Directory.Build.props
+  echo ^<Project^> > Directory.Build.props
+  echo     ^<ItemDefinitionGroup^> >> Directory.Build.props
+  echo       ^<Link^> >> Directory.Build.props
+  echo         ^<AdditionalLibraryDirectories^>%PYTHON_ROOT_DIR:\=/%/libs^;%%(AdditionalLibraryDirectories)^</AdditionalLibraryDirectories^> >> Directory.Build.props
+  echo      ^</Link^> >> Directory.Build.props
+  echo    ^</ItemDefinitionGroup^> >> Directory.Build.props
+  echo ^</Project^> >> Directory.Build.props
 )
 
 echo.
@@ -190,6 +215,12 @@ MOVE /Y site-packages Lib\site-packages
 
 REM move 
 set MSBUILDDISABLENODEREUSE=1
+
+REM In debug mode, we need to rename all .pyd to _d.pyd... don't ask why. Seems like a known bug in OmniORB.
+if %SAT_DEBUG% == 1 (
+  cd %PRODUCT_INSTALL%\bin\Lib\site-packages
+  powershell -Command "Get-ChildItem -File -Recurse *.pyd| ForEach-Object {if ((!$_.Name.EndsWith('_d.pyd'))) {  $_ | Copy-Item -Destination {$_.Name  -replace '.pyd','_d.pyd'}}}"
+)
 
 echo.
 echo --------------------------------------------------------------------------

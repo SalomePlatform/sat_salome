@@ -36,5 +36,9 @@ if NOT %ERRORLEVEL% == 0 (
    exit 2
 )
 
+if %SAT_DEBUG% == 1 (
+  cd %PRODUCT_INSTALL%
+  powershell -Command "Get-ChildItem -File -Recurse *.pyd| ForEach-Object {if ((!$_.Name.EndsWith('_d.pyd'))) {  $_ | Copy-Item -Destination {$_.Name  -replace '.pyd','_d.pyd'}}}"
+)
 echo.
 echo ########## END
