@@ -61,8 +61,7 @@ if NOT %ERRORLEVEL% == 0 (
 REM In debug mode, we need to rename all _d.pyd to .pyd... don't ask why. Seems like a known bug in OmniORB.
 if %SAT_DEBUG% == 1 (
   cd %PRODUCT_INSTALL%\lib\%python_name%\site-packages
-  powershell -Command "Get-ChildItem *_d.pyd| Rename-Item -newname { $_.name -replace '_d.pyd','.pyd' }"
-  powershell -Command "Get-ChildItem *.pyd| Rename-Item -newname { $_.name -replace '.pyd','_d.pyd' }"
+  powershell -Command "Get-ChildItem -File -Recurse *.pyd| ForEach-Object {if (($_.Name.EndsWith('_d.pyd'))) {  $_ | Copy-Item -Destination {$_.Name  -replace '_d.pyd','.pyd'}}}"
 )
 
 echo.
