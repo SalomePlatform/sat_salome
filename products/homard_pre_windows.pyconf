@@ -6,7 +6,7 @@ default :
     get_source : "archive"
     environ :
     {
-       env_script : $name + ".py"
+       env_script : "Homard_bin.py"
     }
     depend : []
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name

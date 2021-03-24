@@ -6,7 +6,7 @@ default :
     get_source : "archive"
     environ :
     {
-       env_script : "Homard.py"
+       env_script : "Homard_bin.py"
     }
     depend : []
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
@@ -23,7 +23,7 @@ version_6_6_0_to_8_5_0 :
     archive_info : {archive_name : "Homard-11.11.tar.gz"}
     environ :
     {
-       env_script : "Homard.py"
+       env_script : "Homard_bin.py"
     }
     depend : []
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
