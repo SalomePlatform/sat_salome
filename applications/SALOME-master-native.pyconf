@@ -29,7 +29,7 @@ APPLICATION :
         alabaster : 'native'
         Babel : 'native'
         boost : 'native'
-        CAS : 'CR740-SALOME-PATCH'
+        CAS : {tag: 'CR750-SALOME-PATCH', section: 'version_V7_5_0'}
         certifi : 'native'
         cgns : 'native'
         chardet : 'native'
