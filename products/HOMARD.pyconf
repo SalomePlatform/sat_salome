@@ -27,6 +27,13 @@ default :
     }
 } 
 
+default_win:
+{
+    build_source : "script"
+    compil_script  : "HOMARD_MED_MINGW.bat"	
+    depend : [ "SMESH", "boost", "hdf5", "medfile", "pthreads"]
+}
+
 version_gn_evol_01 :
 {
     patches : ['HOMARD_SMESH_SSL_support.patch']
