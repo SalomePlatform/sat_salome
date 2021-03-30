@@ -4,6 +4,10 @@ echo ##########################################################################
 echo omniORBpy %VERSION%
 echo ##########################################################################
 
+IF NOT DEFINED SAT_DEBUG (
+  SET SAT_DEBUG=0
+)
+
 if NOT defined CYGWIN_ROOT_DIR (
   echo ERROR: Please set the environment variable: CYGWIN_ROOT_DIR
   exit 2
