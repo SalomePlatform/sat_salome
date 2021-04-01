@@ -8,7 +8,7 @@ default :
     {
        env_script : $name + ".py"
     }
-    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen','pthreads']
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen']
     build_depend : ["cmake", "swig"]
     patches : []
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
@@ -21,7 +21,12 @@ default :
     }
 }
 
+default_win :
+{
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'pthreads']
+}
+
 version_1_16 :
 {
-  patches : ['openturns-1.16.0001.patch']
+    patches : ['openturns-1.16.0001.patch']
 }

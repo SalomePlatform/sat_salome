@@ -53,7 +53,6 @@ APPLICATION :
         gmsh : '4.1.4'
         graphviz : 'native'
         hdf5 : '1.10.3'
-        homard_bin : '11.12_hdf51103med410'
         idna : 'native'
         imagesize : 'native'
         # 'native' not exists (only available on Fedora platform)
@@ -141,7 +140,7 @@ APPLICATION :
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
-        'SOLVERLAB'
+#        'SOLVERLAB'
         'DOCUMENTATION'
         'SAMPLES'
         'COMPONENT'
