@@ -30,11 +30,27 @@ version_6_16_00_win:
 }
 
 version_6_22_06:
-{}
+{
+    patches : ['root-6.22.06.patch']
+}
 
 version_6_22_06_win:
 {
     archive_info : {archive_name : "root_v6.22.06.win32.vc16.tar.gz"}
+    patches : []
+    build_source : "script"
+    compil_script :  "root.bat"
+}
+
+version_6_22_02:
+{
+    patches : ['root-6.22.02.patch']
+}
+
+version_6_22_02_win:
+{
+    archive_info : {archive_name : "root_v6.22.02.win32.vc16.tar.gz"}
+    patches : []
     build_source : "script"
     compil_script :  "root.bat"
 }

@@ -20,3 +20,7 @@ default :
     }
 }
 
+version_4_5_0 :
+{
+    patches: ['URANIE-4.5.0.patch']
+}
