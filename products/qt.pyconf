@@ -8,8 +8,8 @@ default:
     {
         rpm : []
         rpm_dev : ["qt5-devel"]
-        apt : ["build-essential"]
-        apt_dev : ["libgl1-mesa-dev"]
+        apt : []
+        apt_dev : ["qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools"]
     }
     environ :
     {
@@ -30,6 +30,12 @@ default:
 default_win:
 {
    check_install : []
+}
+
+version_5_15_2 :
+{
+  compil_script : "qt-5.15.2.sh"
+  depend : ["freetype", 'llvm']
 }
 
 version_5_12_10 :

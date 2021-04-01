@@ -8,7 +8,7 @@ default :
     {
         rpm : ["python3-snowballstemmer"]
         rpm_dev : []
-        apt : ["python3-snowballstemmer"]
+        apt : ["python3-stemmer"]
         apt_dev : []
     }
     environ :

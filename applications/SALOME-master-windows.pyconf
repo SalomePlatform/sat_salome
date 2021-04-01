@@ -35,7 +35,7 @@ APPLICATION :
         boost : '1.67.0'
         CAS : {tag: 'CR750-SALOME-PATCH', section: 'version_V7_5_0_win'}
         certifi : '2019.6.16'
-        cgns : '3.3.1'
+        cgns : '4.1.1'
         chardet : '3.0.4'
         click : '7.0'
         cmake : '3.12.1'
@@ -52,10 +52,10 @@ APPLICATION :
         f2c : '1.0.0'
         freeimage : '3.18.0'
         freetype : '2.9.1'
-#        gmsh : '4.1.4'
+        #gmsh : '4.1.4'
         graphviz : '2.44.1'
         hdf5 : '1.10.3'
-#        homard_bin : '11.12'
+        #homard_bin : '11.12'
         idna : '2.8'
         imagesize : '1.1.0'
         ispc : '1.10.0'
@@ -79,10 +79,11 @@ APPLICATION :
         omniORB : '4.2.3'
         omniORBpy : '4.2.3'
         opencv : '3.2.0'
-#        openturns: '1.16'
-        ospray : '1.8.4'
+        openVKL: '0.11.0'
+        openturns: '1.16'
+        ospray : '2.4.0'
         packaging : '19.0'
-        ParaView : '5.8.0'
+        ParaView : '5.9.0'
         perl : '5.28.1.1'
         Pillow : '7.1.1'
         planegcs : '0.18-3cb6890'
@@ -90,15 +91,15 @@ APPLICATION :
         pthreads : '2.9.1'
         Pygments : '2.4.2'
         pyparsing : '2.4.0'
-        PyQt : '5.9'
-        PyQtChart : '5.9'
+        PyQt : '5.15.3'
+#        PyQtChart : '5.9'
         pyreadline : '2.1'
         Python : '3.6.5'
         pytz : '2019.1'
-        qt : '5.9.1'
+        qt : '5.12.10'
         qwt : '6.1.2'
         requests : '2.22.0'
-        root: '6.22.06'
+        rkCommon : '1.5.1'
         ruby : '2.5.5-1'
         scipy : '1.4.1'
         setuptools : '41.0.1'
@@ -120,7 +121,6 @@ APPLICATION :
         tbb : '2019_U8_win'
         tcltk : '8.6.9'
         urllib3 : '1.25.3'
-#        URANIE : '4.5.0'
         zlib : '1.2.5'
 
         # SALOME MODULES :
@@ -188,6 +188,10 @@ APPLICATION :
 
 __overwrite__ :
 [
+  {
+   # 
+    'PRODUCTS.PARAVISADDONS.default.patches' : ['paraview-5.9_PARAVISADDONS.patch']
+  }
   {
     __condition__ : "APPLICATION.debug == 'yes'"
     'APPLICATION.products.numpy'      : '1.16.4-win-dbg'

@@ -1,0 +1,66 @@
+diff --git a/src/ElectromagnetismRotation/plugin/ElectromagnetismRotationIO/vtkElectromagnetismRotation.cxx b/src/ElectromagnetismRotation/plugin/ElectromagnetismRotationIO/vtkElectromagnetismRotation.cxx
+index dfe3af6..8107cb6 100644
+--- a/src/ElectromagnetismRotation/plugin/ElectromagnetismRotationIO/vtkElectromagnetismRotation.cxx
++++ b/src/ElectromagnetismRotation/plugin/ElectromagnetismRotationIO/vtkElectromagnetismRotation.cxx
+@@ -26,7 +26,7 @@
+ #include "VTKMEDTraits.hxx"
+ 
+ #include "vtkAdjacentVertexIterator.h"
+-#include "vtkDataArrayTemplate.h"
++#include "vtkAOSDataArrayTemplate.h"
+ #include "vtkIntArray.h"
+ #include "vtkLongArray.h"
+ #ifdef WIN32
+@@ -210,7 +210,7 @@ vtkDataSet *FilterFamilies(vtkThreshold *thres,
+                            vtkDataSet *input, const std::set<int>& idsToKeep, bool insideOut, const char *arrNameOfFamilyField,
+                            const char *associationForThreshold, bool& catchAll, bool& catchSmth)
+ {
+-  const int VTK_DATA_ARRAY_DELETE=vtkDataArrayTemplate<double>::VTK_DATA_ARRAY_DELETE;
++  const int VTK_DATA_ARRAY_DELETE=vtkAOSDataArrayTemplate<double>::VTK_DATA_ARRAY_DELETE;
+   const char ZE_SELECTION_ARR_NAME[]="@@ZeSelection@@";
+   vtkDataSet *output(input->NewInstance());
+   output->ShallowCopy(input);
+diff --git a/src/ExtractThreeD/plugin/ExtractThreeDModule/vtkExtractThreeD.cxx b/src/ExtractThreeD/plugin/ExtractThreeDModule/vtkExtractThreeD.cxx
+index 208c6f3..5043cbc 100644
+--- a/src/ExtractThreeD/plugin/ExtractThreeDModule/vtkExtractThreeD.cxx
++++ b/src/ExtractThreeD/plugin/ExtractThreeDModule/vtkExtractThreeD.cxx
+@@ -30,7 +30,7 @@
+ #include <vtkCellData.h>
+ #include <vtkCharArray.h>
+ #include <vtkDataArraySelection.h>
+-#include <vtkDataArrayTemplate.h>
++#include <vtkAOSDataArrayTemplate.h>
+ #include <vtkDataObjectTreeIterator.h>
+ #include <vtkDataSet.h>
+ #include <vtkDataSetAttributes.h>
+@@ -156,7 +156,7 @@ int vtkExtractThreeD::RequestInformation(vtkInformation *request, vtkInformation
+ 
+ vtkDataSet *FilterFamilies(vtkDataSet *input, const std::vector<int> &idsToKeep)
+ {
+-  const int VTK_DATA_ARRAY_DELETE = vtkDataArrayTemplate<double>::VTK_DATA_ARRAY_DELETE;
++  const int VTK_DATA_ARRAY_DELETE = vtkAOSDataArrayTemplate<double>::VTK_DATA_ARRAY_DELETE;
+   const char ZE_SELECTION_ARR_NAME[] = "@@ZeSelection@@";
+   vtkDataSet *output(input->NewInstance());
+   output->ShallowCopy(input);
+diff --git a/src/ZJFilter/plugin/ZJFilterModule/vtkZJFilter.cxx b/src/ZJFilter/plugin/ZJFilterModule/vtkZJFilter.cxx
+index 803049e..e257e58 100644
+--- a/src/ZJFilter/plugin/ZJFilterModule/vtkZJFilter.cxx
++++ b/src/ZJFilter/plugin/ZJFilterModule/vtkZJFilter.cxx
+@@ -29,7 +29,7 @@
+ #include <vtkCharArray.h>
+ #include <vtkCompositeDataToUnstructuredGridFilter.h>
+ #include <vtkDataArraySelection.h>
+-#include <vtkDataArrayTemplate.h>
++#include <vtkAOSDataArrayTemplate.h>
+ #include <vtkDataObjectTreeIterator.h>
+ #include <vtkDataSet.h>
+ #include <vtkDataSetAttributes.h>
+@@ -363,7 +363,7 @@ vtkDataSet* FilterFamilies(vtkZJFilter* zeBoss, vtkDataSet* input, const std::se
+   bool catchAll, catchSmth;
+   vtkNew<vtkThreshold> thres;
+   thres->AddObserver(vtkCommand::ProgressEvent, zeBoss->InternalProgressObserver);
+-  constexpr int VTK_DATA_ARRAY_DELETE = vtkDataArrayTemplate<double>::VTK_DATA_ARRAY_DELETE;
++  constexpr int VTK_DATA_ARRAY_DELETE = vtkAOSDataArrayTemplate<double>::VTK_DATA_ARRAY_DELETE;
+   constexpr char ZE_SELECTION_ARR_NAME[] = "@@ZeSelection@@";
+   constexpr char arrNameOfFamilyField[] = "FamilyIdCell";
+   constexpr char associationForThreshold[] = "vtkDataObject::FIELD_ASSOCIATION_CELLS";

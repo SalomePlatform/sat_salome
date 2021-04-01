@@ -8,7 +8,7 @@ default :
     {
         rpm : ["freeimage"]
         rpm_dev : ["freeimage-devel"]
-        apt : ["libfreeimage"]
+        apt : ["libfreeimage3"]
         apt_dev : ["libfreeimage-dev"]
     }
     patches : []

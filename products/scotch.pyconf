@@ -8,7 +8,7 @@ default :
     {
         rpm : ["scotch"]
         rpm_dev : ["scotch-devel"]
-        apt : ["libscotch"]
+        apt : []
         apt_dev : ["libscotch-dev"]
     }
     environ :

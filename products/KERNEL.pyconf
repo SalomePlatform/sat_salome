@@ -29,7 +29,8 @@ default :
               "setuptools",
               "Pygments",
               "pytz",
-              "LIBBATCH"
+              "LIBBATCH",
+              "psutil"
               ]
     build_depend : ["cmake", "swig", "doxygen", "cppunit"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
@@ -61,7 +62,8 @@ default_win :
               "Pygments",
               "pytz",
               "LIBBATCH",
-              "graphviz"
+              "graphviz",
+              "psutil"
               ]
     build_depend : ["cmake", "swig", "doxygen", "cppunit"]
 }
@@ -86,7 +88,8 @@ default_MPI :
               "pytz",
               "cppunit",
               "openmpi",
-              "LIBBATCH"
+              "LIBBATCH",
+              "psutil"
               ]
 }
 

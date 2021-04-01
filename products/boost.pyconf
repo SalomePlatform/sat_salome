@@ -8,12 +8,8 @@ default :
     {
         rpm : ["boost"]
         rpm_dev : ["boost-devel"]
-        apt : ["libboost-regex", "libboost-thread" , "libboost-serialization",
-               "libboost-chrono", "libboost-filesystem", "libboost-system", 
-               "libboost-date-time", "libboost-graph"]
-        apt_dev : ["libboost-regex-dev", "libboost-thread-dev", "libboost-serialization-dev",
-                   "libboost-chrono-dev", "libboost-filesystem-dev", "libboost-system-dev", 
-                   "libboost-date-time-dev", "libboost-graph-dev"]
+        apt : []
+        apt_dev : ["libboost-all-dev"]
     }
     environ :
     {

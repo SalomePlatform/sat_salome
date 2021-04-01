@@ -9,7 +9,7 @@ default :
         rpm : ["python3-qt5"]
         rpm_dev : ["python3-qt5-devel"]
         apt : ["python3-pyqt5"]
-        apt_dev : ["pyqt5-dev"]
+        apt_dev : ["pyqt5-dev", "pyqt5-dev-tools"]
     }
     environ :
     {
@@ -26,6 +26,18 @@ default :
       single_install_dir : "no"
     }
 }
+
+version_5_15_3 :
+{
+    compil_script :  "PyQt-5.15" + $VARS.scriptExtension
+}
+
+version_5_12_3 :
+{
+    name : "PyQt"
+    compil_script :  "PyQt-5.12" + $VARS.scriptExtension
+}
+
 
 version_5_11_3 :
 {

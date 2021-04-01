@@ -8,7 +8,7 @@ default :
     {
         rpm : ["tbb"]
         rpm_dev : ["tbb-devel"]
-        apt : ["libtbb"]
+        apt : ["libtbb2"]
         apt_dev : ["libtbb-dev"]
     }
     environ :
