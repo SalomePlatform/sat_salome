@@ -19,16 +19,6 @@ default :
     }
 }
 
-version_6_16_00:
-{}
-
-version_6_16_00_win:
-{
-    archive_info : {archive_name : "root_v6.16.00-windows.tar.gz"}
-    build_source : "script"
-    compil_script :  "root.bat"
-}
-
 version_6_22_06:
 {
     patches : ['root-6.22.06.patch']
@@ -54,3 +44,15 @@ version_6_22_02_win:
     build_source : "script"
     compil_script :  "root.bat"
 }
+
+version_6_16_00:
+{}
+
+version_6_16_00_win:
+{
+
+    archive_info : {archive_name : "root_v6.16.00-windows.tar.gz"}
+    build_source : "script"
+    compil_script :  "root.bat"
+}
+
