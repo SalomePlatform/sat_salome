@@ -19,6 +19,7 @@ APPLICATION :
            CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
            RESTRICTED_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "RESTRICTED"
            SALOME_HAS_GLOBAL_ENV : "1"
+           SALOME_USE_64BIT_IDS : '1'
            SET_usr_docs_VARS : "1" # required for PyEditor build
         }
         launch : {PYTHONIOENCODING:"UTF_8", SALOME_MODULES_ORDER:"SHAPER:SHAPERSTUDY:GEOM:SMESH"}
