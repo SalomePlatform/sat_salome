@@ -93,6 +93,28 @@ default_MPI :
               ]
 }
 
+version_V8_5_0_to_V9_6_0:
+{
+    depend : ["Python",
+              "boost",
+              "cppunit",
+              "numpy",
+              "lapack",
+              "hdf5",
+              "omniORB",
+              "omniORBpy",
+              "docutils",
+              "libxml2",
+              "Sphinx",
+              "sphinxintl",
+              "Jinja2",
+              "setuptools",
+              "Pygments",
+              "pytz",
+              "LIBBATCH"
+              ]
+}
+
 version_7_8_0_to_8_4_0 :
 {
     depend : ["Python",
