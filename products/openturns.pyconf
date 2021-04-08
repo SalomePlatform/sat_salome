@@ -28,5 +28,5 @@ default_win :
 
 version_1_16 :
 {
-    patches : ['openturns-1.16.0001.patch']
+    patches : ['openturns-1.16.0001.patch', 'openturns_nlopt.patch']
 }
