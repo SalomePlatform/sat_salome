@@ -1,0 +1,10 @@
+--- ParaView_ref/./VTK/ThirdParty/vtkm/vtkvtkm/vtk-m/CMake/VTKmDeviceAdapters.cmake	2020-07-20 14:51:20.129903776 +0200
++++ ParaView_new/./VTK/ThirdParty/vtkm/vtkvtkm/vtk-m/CMake/VTKmDeviceAdapters.cmake	2020-07-20 14:57:01.681171900 +0200
+@@ -82,7 +82,7 @@ endif()
+ 
+ if(VTKm_ENABLE_OPENMP AND NOT TARGET vtkm::openmp)
+-  find_package(OpenMP 4.0 REQUIRED COMPONENTS CXX QUIET)
++  find_package(OpenMP 3.1 REQUIRED COMPONENTS CXX QUIET)
+ 
+   add_library(vtkm::openmp INTERFACE IMPORTED GLOBAL)
+   if(OpenMP_CXX_FLAGS)
