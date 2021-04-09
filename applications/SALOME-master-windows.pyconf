@@ -19,6 +19,7 @@ APPLICATION :
            CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
            RESTRICTED_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "RESTRICTED"
            SALOME_HAS_GLOBAL_ENV : "1"
+           SALOME_USE_64BIT_IDS : '1'
            SET_usr_docs_VARS : "1" # required for PyEditor build
         }
         launch : {PYTHONIOENCODING:"UTF_8", SALOME_MODULES_ORDER:"SHAPER:SHAPERSTUDY:GEOM:SMESH"}
@@ -92,7 +93,7 @@ APPLICATION :
         Pygments : '2.4.2'
         pyparsing : '2.4.0'
         PyQt : '5.15.3'
-#        PyQtChart : '5.9'
+        PyQtChart : '5.15.4'
         pyreadline : '2.1'
         Python : '3.6.5'
         pytz : '2019.1'
@@ -103,7 +104,7 @@ APPLICATION :
         ruby : '2.5.5-1'
         scipy : '1.4.1'
         setuptools : '41.0.1'
-        sip : '4.19.3'
+        sip : '5.5.0'
         six : '1.12.0'
         snowballstemmer : '1.9.0'
         Sphinx : '2.1.2'

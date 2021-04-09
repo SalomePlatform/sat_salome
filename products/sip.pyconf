@@ -27,12 +27,12 @@ default :
 
 version_5_5_0 :
 {
-    compil_script :  'sip-5.5.0.sh'
+    compil_script :  'sip-5.5.0' + $VARS.scriptExtension
     archive_info : {archive_name : "sip-5.5.0-PyQt5_sip-12.8.1.tar.gz"}
 }
 
 version_4_19_24 :
 {
-    compil_script :  'sip.sh'
+    compil_script :  'sip' + $VARS.scriptExtension
 #    archive_info : {archive_name : "sip-4.19.24_PyQt5-12.8.1.tar.gz"}
 }

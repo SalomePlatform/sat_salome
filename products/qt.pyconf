@@ -34,13 +34,13 @@ default_win:
 
 version_5_15_2 :
 {
-  compil_script : "qt-5.15.2.sh"
+  compil_script : "qt-5.15.2" + $VARS.scriptExtension
   depend : ["freetype", 'llvm']
 }
 
 version_5_12_10 :
 {
-  compil_script : "qt-5.12.10.sh"
+  compil_script : "qt-5.12.10" + $VARS.scriptExtension
   depend : ["freetype", 'llvm']
 }
 
