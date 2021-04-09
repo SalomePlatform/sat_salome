@@ -105,7 +105,6 @@ APPLICATION :
         sphinxcontrib_websupport : 'native'
         sphinxintl: 'native'
         sphinx_rtd_theme : 'native'
-        StaticMeshPlugin : '5.8.0'
         swig : 'native'
         tbb : 'native'
         tcl : 'native'
@@ -184,6 +183,11 @@ __overwrite__ :
    {
       #
       'PRODUCTS.PARAVISADDONS.default.patches' : ['paraview-5.9_PARAVISADDONS.patch']
+   }
+   {
+      # openturns - make install seems to not doing anything (although we see files installation in logs)
+      __condition__ : "VARS.dist in ['FD32', 'CO8']"
+      'APPLICATION.rm_products' : ['openturns']
    }
    {
       # Although recent adaptations of GEOM CMake procedure to be compliant with openCV 4.X, some
