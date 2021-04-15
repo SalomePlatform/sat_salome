@@ -178,7 +178,17 @@ APPLICATION :
 __overwrite__ :
 [
   {
-   #
-    'PRODUCTS.PARAVISADDONS.default.patches' : ['paraview-5.9_PARAVISADDONS.patch']
+   __condition__ : "APPLICATION.debug == 'yes'"
+   # https://cplusplus.com/forum/general/250854 : DEBUG symbol is defined twice, need an additional patch
+    'PRODUCTS.ParaView.version_5_9_0.patches' : ['paraview.0003-ParaViewClient.patch',
+                                                 'paraview.0004-ParaView_hdf5.patch',
+                                                 'paraview.0005-ParaView_find_cgns.patch',
+                                                 'paraview.0006-ParaView_find_libxml2.patch',
+                                                 'paraview.0007-ParaView_find_freetype.patch',
+                                                 'paraview-0012-LATA_64BITS_IDS.patch',
+                                                 'ParaView-5.9.0-CATALYST_cmake.patch',
+                                                 'paraview.0008-ParaView_coincident_rendering.patch',
+                                                 'paraview.0015-Paraview_VTKM_ioss.patch']
   }
 ]
+

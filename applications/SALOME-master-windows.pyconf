@@ -189,10 +189,6 @@ APPLICATION :
 __overwrite__ :
 [
   {
-   # 
-    'PRODUCTS.PARAVISADDONS.default.patches' : ['paraview-5.9_PARAVISADDONS.patch']
-  }
-  {
     __condition__ : "APPLICATION.debug == 'yes'"
     'APPLICATION.products.numpy'      : '1.16.4-win-dbg'
     'APPLICATION.products.sphinxintl' : '2.0.0-win-dbg'

@@ -1,0 +1,1111 @@
+diff -Naur ParaView-5.9.0_ref/VTK/ThirdParty/ioss ParaView-5.9.0_new/VTK/ThirdParty/ioss
+diff -Naur ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/exodus/Ioex_BaseDatabaseIO.C ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/exodus/Ioex_BaseDatabaseIO.C
+--- ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/exodus/Ioex_BaseDatabaseIO.C	2021-02-04 15:22:04.000000000 +0100
++++ ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/exodus/Ioex_BaseDatabaseIO.C	2021-04-15 15:05:03.009043046 +0200
+@@ -144,7 +144,7 @@
+     // Set exodusII warning level.
+     if (util().get_environment("EX_DEBUG", isParallel)) {
+       fmt::print(
+-          Ioss::DEBUG(),
++          Ioss::STREAM_DEBUG(),
+           "IOEX: Setting EX_VERBOSE|EX_DEBUG because EX_DEBUG environment variable is set.\n");
+       ex_opts(EX_VERBOSE | EX_DEBUG);
+     }
+@@ -152,13 +152,13 @@
+     if (!is_input()) {
+       if (util().get_environment("EX_MODE", exodusMode, isParallel)) {
+         fmt::print(
+-            Ioss::OUTPUT(),
++            Ioss::STREAM_OUTPUT(),
+             "IOEX: Exodus create mode set to {} from value of EX_MODE environment variable.\n",
+             exodusMode);
+       }
+ 
+       if (util().get_environment("EX_MINIMIZE_OPEN_FILES", isParallel)) {
+-        fmt::print(Ioss::OUTPUT(),
++        fmt::print(Ioss::STREAM_OUTPUT(),
+                    "IOEX: Minimizing open files because EX_MINIMIZE_OPEN_FILES environment "
+                    "variable is set.\n");
+         minimizeOpenFiles = true;
+@@ -337,7 +337,7 @@
+         double t_end    = Ioss::Utils::timer();
+         double duration = util().global_minmax(t_end - t_begin, Ioss::ParallelUtils::DO_MAX);
+         if (myProcessor == 0) {
+-          fmt::print(Ioss::DEBUG(), "File Close Time = {}\n", duration);
++          fmt::print(Ioss::STREAM_DEBUG(), "File Close Time = {}\n", duration);
+         }
+       }
+     }
+@@ -389,7 +389,7 @@
+     // Check byte-size of integers stored on the database...
+     if ((ex_int64_status(exodusFilePtr) & EX_ALL_INT64_DB) != 0) {
+       if (myProcessor == 0) {
+-        fmt::print(Ioss::OUTPUT(),
++        fmt::print(Ioss::STREAM_OUTPUT(),
+                    "IOSS: Input database contains 8-byte integers. Setting Ioss to use "
+                    "8-byte integers.\n");
+       }
+@@ -1914,7 +1914,7 @@
+       // try changing DIM_STR_NAME value and see if works...)
+       if (name_length > static_cast<size_t>(maximumNameLength)) {
+         if (myProcessor == 0) {
+-          fmt::print(Ioss::WARNING(),
++          fmt::print(Ioss::STREAM_WARNING(),
+                      "There are variables names whose name length ({0}) exceeds the current "
+                      "maximum name length ({1})\n         set for this database ({2}).\n"
+                      "         You should either reduce the length of the variable name, or "
+@@ -2182,7 +2182,7 @@
+         else if (Ioss::Utils::str_equal(type, "sphere-mass")) {
+           if (attribute_count != 10) {
+             if (myProcessor == 0) {
+-              fmt::print(Ioss::WARNING(),
++              fmt::print(Ioss::STREAM_WARNING(),
+                          "For element block '{}' of type '{}' there were {} attributes instead of "
+                          "the expected 10 attributes "
+                          "known to the IO Subsystem. "
+diff -Naur ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/exodus/Ioex_DatabaseIO.C ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/exodus/Ioex_DatabaseIO.C
+--- ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/exodus/Ioex_DatabaseIO.C	2021-02-04 15:22:04.000000000 +0100
++++ ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/exodus/Ioex_DatabaseIO.C	2021-04-15 15:05:03.008043046 +0200
+@@ -228,7 +228,7 @@
+           IOSS_ERROR(errmsg);
+         }
+         else {
+-          Ioss::WARNING() << errmsg.str();
++          Ioss::STREAM_WARNING() << errmsg.str();
+         }
+         return false;
+       }
+@@ -274,7 +274,7 @@
+             *error_msg = errmsg.str();
+           }
+           if (write_message && myProcessor == 0) {
+-            Ioss::WARNING() << errmsg.str();
++            Ioss::STREAM_WARNING() << errmsg.str();
+           }
+         }
+         if (bad_count != nullptr) {
+@@ -321,7 +321,7 @@
+     if (do_timer) {
+       double t_end    = Ioss::Utils::timer();
+       double duration = t_end - t_begin;
+-      fmt::print(Ioss::DEBUG(), "Input File Open Time = {}\n", duration);
++      fmt::print(Ioss::STREAM_DEBUG(), "Input File Open Time = {}\n", duration);
+     }
+ 
+     bool is_ok = check_valid_file_ptr(write_message, error_msg, bad_count, abort_if_error);
+@@ -545,7 +545,7 @@
+     m_groupCount[EX_BLOB]     = info.num_blob;
+ 
+     if (nodeCount == 0) {
+-      fmt::print(Ioss::WARNING(), "No nodes were found in the model, file '{}'\n",
++      fmt::print(Ioss::STREAM_WARNING(), "No nodes were found in the model, file '{}'\n",
+                  decoded_filename());
+     }
+     else if (nodeCount < 0) {
+@@ -559,7 +559,7 @@
+     }
+ 
+     if (elementCount == 0) {
+-      fmt::print(Ioss::WARNING(), "No elements were found in the model, file '{}'\n",
++      fmt::print(Ioss::STREAM_WARNING(), "No elements were found in the model, file '{}'\n",
+                  decoded_filename());
+     }
+ 
+@@ -744,7 +744,7 @@
+             // a warning if there is a corrupt step on processor
+             // 0... Need better warnings which won't overload in the
+             // worst case...
+-            fmt::print(Ioss::WARNING(),
++            fmt::print(Ioss::STREAM_WARNING(),
+                        "Skipping step {:n} at time {} in database file\n\t{}.\n"
+                        "\tThe data for that step is possibly corrupt since the last time written "
+                        "successfully was {}.\n",
+diff -Naur ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/exodus/Ioex_DecompositionData.C ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/exodus/Ioex_DecompositionData.C
+--- ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/exodus/Ioex_DecompositionData.C	2021-02-04 15:22:04.000000000 +0100
++++ ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/exodus/Ioex_DecompositionData.C	2021-04-15 15:05:03.008043046 +0200
+@@ -144,9 +144,9 @@
+     generate_adjacency_list(filePtr, m_decomposition);
+ 
+ #if IOSS_DEBUG_OUTPUT
+-    fmt::print(Ioss::DEBUG(), "Processor {} has {} elements; offset = {}\n", m_processor,
++    fmt::print(Ioss::STREAM_DEBUG(), "Processor {} has {} elements; offset = {}\n", m_processor,
+                decomp_elem_count(), decomp_elem_offset());
+-    fmt::print(Ioss::DEBUG(), "Processor {} has {} nodes; offset = {}\n", m_processor,
++    fmt::print(Ioss::STREAM_DEBUG(), "Processor {} has {} nodes; offset = {}\n", m_processor,
+                decomp_node_count(), decomp_node_offset());
+ #endif
+ 
+@@ -213,7 +213,7 @@
+       pu.hwm_memory_stats(min, max, avg);
+       int64_t MiB = 1024 * 1024;
+       if (m_processor == 0) {
+-        fmt::print(Ioss::DEBUG(), "\n\tHigh Water Memory at end of Decomposition: {}M  {}M  {}M\n",
++        fmt::print(Ioss::STREAM_DEBUG(), "\n\tHigh Water Memory at end of Decomposition: {}M  {}M  {}M\n",
+                    min / MiB, max / MiB, avg / MiB);
+       }
+     }
+@@ -322,7 +322,7 @@
+         std::vector<INT> connectivity(overlap * element_nodes);
+         size_t           blk_start = std::max(b_start, p_start) - b_start + 1;
+ #if IOSS_DEBUG_OUTPUT
+-        fmt::print(Ioss::DEBUG(), "Processor {} has {} elements on element block {}\n", m_processor,
++        fmt::print(Ioss::STREAM_DEBUG(), "Processor {} has {} elements on element block {}\n", m_processor,
+                    overlap, id);
+ #endif
+         ex_get_partial_conn(filePtr, EX_ELEM_BLOCK, id, blk_start, overlap, connectivity.data(),
+@@ -416,7 +416,7 @@
+         ssize_t to_read = std::min(remain, entitys_to_read);
+         if (m_processor == root) {
+ #if IOSS_DEBUG_OUTPUT
+-          fmt::print(Ioss::DEBUG(), "{} {} reading {} entities from offset {}\n", set_type_name,
++          fmt::print(Ioss::STREAM_DEBUG(), "{} {} reading {} entities from offset {}\n", set_type_name,
+                      sets[i].id, to_read, set_entities_read[i] + 1);
+ #endif
+           // Read the entitylists on root processor.
+diff -Naur ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/exodus/Ioex_IOFactory.C ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/exodus/Ioex_IOFactory.C
+--- ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/exodus/Ioex_IOFactory.C	2021-02-04 15:22:04.000000000 +0100
++++ ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/exodus/Ioex_IOFactory.C	2021-04-15 15:05:03.010043045 +0200
+@@ -128,16 +128,16 @@
+   { 
+     ex_print_config(); 
+ #if !defined(NO_PARMETIS_SUPPORT)
+-  fmt::print(Ioss::OUTPUT(), "\tParMetis Library Version: {}.{}.{} (Parallel Decomposition)\n"
++  fmt::print(Ioss::STREAM_OUTPUT(), "\tParMetis Library Version: {}.{}.{} (Parallel Decomposition)\n"
+ 	     "\t\tInteger Size is {}, Real Size is {}\n\n", PARMETIS_MAJOR_VERSION, PARMETIS_MINOR_VERSION, PARMETIS_SUBMINOR_VERSION,
+ 	     IDXTYPEWIDTH, REALTYPEWIDTH);
+ #else
+-  fmt::print(Ioss::OUTPUT(), "\tParMetis Library is NOT Available for Parallel Decomposition.\n\n");
++  fmt::print(Ioss::STREAM_OUTPUT(), "\tParMetis Library is NOT Available for Parallel Decomposition.\n\n");
+ #endif
+ #if !defined(NO_ZOLTAN_SUPPORT)
+-  fmt::print(Ioss::OUTPUT(), "\tZoltan Library is Available for Parallel Decomposition.\n\n");
++  fmt::print(Ioss::STREAM_OUTPUT(), "\tZoltan Library is Available for Parallel Decomposition.\n\n");
+ #else
+-  fmt::print(Ioss::OUTPUT(), "\tZoltan Library is NOT Available for Parallel Decomposition.\n\n");
++  fmt::print(Ioss::STREAM_OUTPUT(), "\tZoltan Library is NOT Available for Parallel Decomposition.\n\n");
+ #endif
+   }
+ } // namespace Ioex
+diff -Naur ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/exodus/Ioex_ParallelDatabaseIO.C ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/exodus/Ioex_ParallelDatabaseIO.C
+--- ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/exodus/Ioex_ParallelDatabaseIO.C	2021-02-04 15:22:04.000000000 +0100
++++ ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/exodus/Ioex_ParallelDatabaseIO.C	2021-04-15 15:05:03.010043045 +0200
+@@ -322,7 +322,7 @@
+             *error_msg = errmsg.str();
+           }
+           if (write_message && myProcessor == 0) {
+-            fmt::print(Ioss::OUTPUT(), "{}", errmsg.str());
++            fmt::print(Ioss::STREAM_OUTPUT(), "{}", errmsg.str());
+           }
+         }
+         if (bad_count != nullptr) {
+@@ -390,7 +390,7 @@
+       double t_end    = Ioss::Utils::timer();
+       double duration = util().global_minmax(t_end - t_begin, Ioss::ParallelUtils::DO_MAX);
+       if (myProcessor == 0) {
+-        fmt::print(Ioss::DEBUG(), "File Open Time = {}\n", duration);
++        fmt::print(Ioss::STREAM_DEBUG(), "File Open Time = {}\n", duration);
+       }
+     }
+ 
+@@ -501,7 +501,7 @@
+       double      duration    = util().global_minmax(t_end - t_begin, Ioss::ParallelUtils::DO_MAX);
+       std::string open_create = fileExists ? "Open" : "Create";
+       if (myProcessor == 0) {
+-        fmt::print(Ioss::DEBUG(), "File {} Time = {}\n", open_create, duration);
++        fmt::print(Ioss::STREAM_DEBUG(), "File {} Time = {}\n", open_create, duration);
+       }
+     }
+ 
+@@ -749,7 +749,7 @@
+           // 0... Need better warnings which won't overload in the
+           // worst case...
+           fmt::print(
+-              Ioss::WARNING(),
++              Ioss::STREAM_WARNING(),
+               "Skipping step {:n} at time {} in database file\n\t{}.\nThe data for that step "
+               "is possibly corrupt.\n",
+               i + 1, tsteps[i], get_filename());
+@@ -4873,7 +4873,7 @@
+         }
+ 
+         if (!bad_proc.empty()) {
+-          fmt::print(Ioss::WARNING(), "No {} on processor{}:\n\t{}\n\n", label[j],
++          fmt::print(Ioss::STREAM_WARNING(), "No {} on processor{}:\n\t{}\n\n", label[j],
+                      bad_proc.size() > 1 ? "s" : "", Ioss::Utils::format_id_list(bad_proc, ":"));
+           if (j == 0) {
+             break;
+diff -Naur ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/exodus/Ioex_SuperElement.C ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/exodus/Ioex_SuperElement.C
+--- ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/exodus/Ioex_SuperElement.C	2021-02-04 15:22:04.000000000 +0100
++++ ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/exodus/Ioex_SuperElement.C	2021-04-15 15:05:03.009043046 +0200
+@@ -267,7 +267,7 @@
+     }
+   }
+   else {
+-    fmt::print(Ioss::WARNING(), "{} '{}'. Unknown input field '{}'", type(), name(),
++    fmt::print(Ioss::STREAM_WARNING(), "{} '{}'. Unknown input field '{}'", type(), name(),
+                field.get_name());
+     return -4;
+   }
+diff -Naur ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/exodus/Ioex_Utils.C ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/exodus/Ioex_Utils.C
+--- ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/exodus/Ioex_Utils.C	2021-02-04 15:22:04.000000000 +0100
++++ ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/exodus/Ioex_Utils.C	2021-04-15 15:05:03.009043046 +0200
+@@ -231,7 +231,7 @@
+       status = nc_get_att_int(exodusFilePtr, NC_GLOBAL, "processor_info", proc_info);
+       if (status == NC_NOERR) {
+         if (proc_info[0] != processor_count && proc_info[0] > 1) {
+-          fmt::print(Ioss::WARNING(),
++          fmt::print(Ioss::STREAM_WARNING(),
+                      "Processor decomposition count in file ({}) does not match current "
+                      "processor "
+                      "count ({}).\n",
+@@ -240,7 +240,7 @@
+         }
+         if (proc_info[1] != processor_id) {
+           fmt::print(
+-              Ioss::WARNING(),
++              Ioss::STREAM_WARNING(),
+               "This file was originally written on processor {}, but is now being read on "
+               "processor {}.\n"
+               "This may cause problems if there is any processor-dependent data on the file.\n",
+@@ -495,7 +495,7 @@
+           std::string tmp_name = Ioss::Utils::encode_entity_name(basename, name_id);
+           if (tmp_name == buffer.data()) {
+             std::string new_name = Ioss::Utils::encode_entity_name(basename, id);
+-            fmt::print(Ioss::WARNING(),
++            fmt::print(Ioss::STREAM_WARNING(),
+                        "The entity named '{}' has the id {} which does not match the "
+                        "embedded id {}.\n"
+                        "         This can cause issues later; the entity will be renamed to '{}' "
+diff -Naur ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/generated/Iogn_GeneratedMesh.C ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/generated/Iogn_GeneratedMesh.C
+--- ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/generated/Iogn_GeneratedMesh.C	2021-02-04 15:22:04.000000000 +0100
++++ ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/generated/Iogn_GeneratedMesh.C	2021-04-15 15:05:03.011043045 +0200
+@@ -371,7 +371,7 @@
+       }
+ 
+       else if (option[0] == "help") {
+-        fmt::print(Ioss::OUTPUT(),
++        fmt::print(Ioss::STREAM_OUTPUT(),
+                    "\nValid Options for GeneratedMesh parameter string:\n"
+                    "\tIxJxK -- specifies intervals; must be first option. Ex: 4x10x12\n"
+                    "\toffset:xoff, yoff, zoff\n"
+@@ -405,7 +405,7 @@
+   void GeneratedMesh::show_parameters() const
+   {
+     if (myProcessor == 0) {
+-      fmt::print(Ioss::OUTPUT(),
++      fmt::print(Ioss::STREAM_OUTPUT(),
+                  "\nMesh Parameters:\n"
+                  "\tIntervals: {} by {} by {}\n"
+                  "\tX = {} * (0..{}) + {}\tRange: {} <= X <= {}\n"
+@@ -423,14 +423,14 @@
+                  timestep_count());
+ 
+       if (doRotation) {
+-        fmt::print(Ioss::OUTPUT(), "\tRotation Matrix: \n\t");
++        fmt::print(Ioss::STREAM_OUTPUT(), "\tRotation Matrix: \n\t");
+         for (auto &elem : rotmat) {
+           for (double jj : elem) {
+-            fmt::print(Ioss::OUTPUT(), "{:14.e}\t", jj);
++            fmt::print(Ioss::STREAM_OUTPUT(), "{:14.e}\t", jj);
+           }
+-          fmt::print(Ioss::OUTPUT(), "\n\t");
++          fmt::print(Ioss::STREAM_OUTPUT(), "\n\t");
+         }
+-        fmt::print(Ioss::OUTPUT(), "\n");
++        fmt::print(Ioss::STREAM_OUTPUT(), "\n");
+       }
+     }
+   }
+@@ -1578,7 +1578,7 @@
+       n3 = 2;
+     }
+     else {
+-      fmt::print(Ioss::WARNING(),
++      fmt::print(Ioss::STREAM_WARNING(),
+                  "\nInvalid axis specification '{}'. Valid options are 'x', 'y', or 'z'\n", axis);
+       return;
+     }
+diff -Naur ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/gen_struc/Iogs_GeneratedMesh.C ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/gen_struc/Iogs_GeneratedMesh.C
+--- ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/gen_struc/Iogs_GeneratedMesh.C	2021-02-04 15:22:04.000000000 +0100
++++ ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/gen_struc/Iogs_GeneratedMesh.C	2021-04-15 15:05:03.010043045 +0200
+@@ -290,7 +290,7 @@
+       }
+ 
+       else if (option[0] == "help") {
+-        fmt::print(Ioss::OUTPUT(),
++        fmt::print(Ioss::STREAM_OUTPUT(),
+                    "\nValid Options for GeneratedMesh parameter string:\n"
+                    "\tIxJxK -- specifies intervals; must be first option. Ex: 4x10x12\n"
+                    "\toffset:xoff, yoff, zoff\n"
+@@ -310,7 +310,7 @@
+         show_parameters();
+       }
+       else {
+-        fmt::print(Ioss::WARNING(), "Unrecognized option '{}'.  It will be ignored.\n", option[0]);
++        fmt::print(Ioss::STREAM_WARNING(), "Unrecognized option '{}'.  It will be ignored.\n", option[0]);
+       }
+     }
+   }
+@@ -318,7 +318,7 @@
+   void GeneratedMesh::show_parameters() const
+   {
+     if (myProcessor == 0) {
+-      fmt::print(Ioss::OUTPUT(),
++      fmt::print(Ioss::STREAM_OUTPUT(),
+                  "\nMesh Parameters:\n"
+                  "\tIntervals: {} by {} by {}\n"
+                  "\tX = {} * (0..{}) + {}\tRange: {} <= X <= {}\n"
+@@ -334,14 +334,14 @@
+                  element_count(), structured_block_count(), sideset_count(), timestep_count());
+ 
+       if (doRotation) {
+-        fmt::print(Ioss::OUTPUT(), "\tRotation Matrix: \n\t");
++        fmt::print(Ioss::STREAM_OUTPUT(), "\tRotation Matrix: \n\t");
+         for (auto &elem : rotmat) {
+           for (double jj : elem) {
+-            fmt::print(Ioss::OUTPUT(), "{:14.e}\t", jj);
++            fmt::print(Ioss::STREAM_OUTPUT(), "{:14.e}\t", jj);
+           }
+-          fmt::print(Ioss::OUTPUT(), "\n\t");
++          fmt::print(Ioss::STREAM_OUTPUT(), "\n\t");
+         }
+-        fmt::print(Ioss::OUTPUT(), "\n");
++        fmt::print(Ioss::STREAM_OUTPUT(), "\n");
+       }
+     }
+   }
+@@ -872,7 +872,7 @@
+       variableCount[Ioss::SIDEBLOCK] = count;
+     }
+     else {
+-      fmt::print(Ioss::WARNING(),
++      fmt::print(Ioss::STREAM_WARNING(),
+                  "(Iogs::GeneratedMesh::set_variable_count)\n"
+                  "       Unrecognized variable type '{}'. Valid types are:\n"
+                  "       global, element, node, nodal, surface, sideset.\n",
+diff -Naur ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/Ioss_DatabaseIO.C ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/Ioss_DatabaseIO.C
+--- ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/Ioss_DatabaseIO.C	2021-02-04 15:22:04.000000000 +0100
++++ ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/Ioss_DatabaseIO.C	2021-04-15 15:05:02.964043048 +0200
+@@ -99,7 +99,7 @@
+     unsigned int       min_hash   = util.global_minmax(hash_code, Ioss::ParallelUtils::DO_MIN);
+     if (max_hash != min_hash) {
+       const std::string &ge_name = ge->name();
+-      fmt::print(Ioss::WARNING(),
++      fmt::print(Ioss::STREAM_WARNING(),
+                  "Parallel inconsistency detected for {} field '{}' on entity '{}'\n",
+                  in_out == 0 ? "writing" : "reading", field_name, ge_name);
+       return false;
+@@ -298,12 +298,12 @@
+           usingDataWarp = true;
+           dwPath        = bb_path;
+           if (myProcessor == 0) {
+-            fmt::print(Ioss::OUTPUT(), "\nDataWarp Burst Buffer Enabled.  Path = `{}`\n\n", dwPath);
++            fmt::print(Ioss::STREAM_OUTPUT(), "\nDataWarp Burst Buffer Enabled.  Path = `{}`\n\n", dwPath);
+           }
+         }
+         else {
+           if (myProcessor == 0) {
+-            fmt::print(Ioss::WARNING(),
++            fmt::print(Ioss::STREAM_WARNING(),
+                        "DataWarp enabled via Ioss property `ENABLE_DATAWARP`, but\n"
+                        "         burst buffer path was not specified via `DW_JOB_STRIPED` or "
+                        "`DW_JOB_PRIVATE`\n"
+@@ -336,7 +336,7 @@
+ #if defined SEACAS_HAVE_DATAWARP
+ #if IOSS_DEBUG_OUTPUT
+         if (myProcessor == 0) {
+-          fmt::print(Ioss::DEBUG(), "DW: dw_wait_file_stage({});\n", bb_file.filename());
++          fmt::print(Ioss::STREAM_DEBUG(), "DW: dw_wait_file_stage({});\n", bb_file.filename());
+         }
+ #endif
+         int dwret = dw_wait_file_stage(bb_file.filename().c_str());
+@@ -348,7 +348,7 @@
+         }
+ #else
+         // Used to debug DataWarp logic on systems without DataWarp...
+-        fmt::print(Ioss::DEBUG(), "DW: (FAKE) dw_wait_file_stage({});\n", bb_file.filename());
++        fmt::print(Ioss::STREAM_DEBUG(), "DW: (FAKE) dw_wait_file_stage({});\n", bb_file.filename());
+ #endif
+       }
+       set_dwname(bb_file.filename());
+@@ -370,7 +370,7 @@
+         dw_query_file_stage(get_dwname().c_str(), &complete, &pending, &deferred, &failed);
+ #if IOSS_DEBUG_OUTPUT
+         auto initial = std::chrono::high_resolution_clock::now();
+-        fmt::print(Ioss::DEBUG(), "Query: {}, {}, {}, {}\n", complete, pending, deferred, failed);
++        fmt::print(Ioss::STREAM_DEBUG(), "Query: {}, {}, {}, {}\n", complete, pending, deferred, failed);
+ #endif
+         if (pending > 0) {
+           int dwret = dw_wait_file_stage(get_dwname().c_str());
+@@ -382,12 +382,12 @@
+           }
+ #if IOSS_DEBUG_OUTPUT
+           dw_query_file_stage(get_dwname().c_str(), &complete, &pending, &deferred, &failed);
+-          fmt::print(Ioss::DEBUG(), "Query: {}, {}, {}, {}\n", complete, pending, deferred, failed);
++          fmt::print(Ioss::STREAM_DEBUG(), "Query: {}, {}, {}, {}\n", complete, pending, deferred, failed);
+ #endif
+         }
+ 
+ #if IOSS_DEBUG_OUTPUT
+-        fmt::print(Ioss::DEBUG(), "\nDW: BEGIN dw_stage_file_out({}, {}, DW_STAGE_IMMEDIATE);\n",
++        fmt::print(Ioss::STREAM_DEBUG(), "\nDW: BEGIN dw_stage_file_out({}, {}, DW_STAGE_IMMEDIATE);\n",
+                    get_dwname(), get_pfsname());
+ #endif
+         int ret =
+@@ -396,7 +396,7 @@
+ #if IOSS_DEBUG_OUTPUT
+         auto                          time_now = std::chrono::high_resolution_clock::now();
+         std::chrono::duration<double> diff     = time_now - initial;
+-        fmt::print(Ioss::DEBUG(), "\nDW: END dw_stage_file_out({})\n", diff.count());
++        fmt::print(Ioss::STREAM_DEBUG(), "\nDW: END dw_stage_file_out({})\n", diff.count());
+ #endif
+         if (ret < 0) {
+           std::ostringstream errmsg;
+@@ -405,7 +405,7 @@
+           IOSS_ERROR(errmsg);
+         }
+ #else
+-        fmt::print(Ioss::DEBUG(), "\nDW: (FAKE) dw_stage_file_out({}, {}, DW_STAGE_IMMEDIATE);\n",
++        fmt::print(Ioss::STREAM_DEBUG(), "\nDW: (FAKE) dw_stage_file_out({}, {}, DW_STAGE_IMMEDIATE);\n",
+                    get_dwname(), get_pfsname());
+ #endif
+       }
+@@ -545,7 +545,7 @@
+   void DatabaseIO::create_group(EntityType /*type*/, const std::string &type_name,
+                                 const std::vector<std::string> &group_spec, const T * /*set_type*/)
+   {
+-    fmt::print(Ioss::WARNING(),
++    fmt::print(Ioss::STREAM_WARNING(),
+                "Grouping of {0} sets is not yet implemented.\n"
+                "         Skipping the creation of {0} set '{1}'\n\n",
+                type_name, group_spec[0]);
+@@ -600,7 +600,7 @@
+         }
+       }
+       else {
+-        fmt::print(Ioss::WARNING(),
++        fmt::print(Ioss::STREAM_WARNING(),
+                    "While creating the grouped surface '{}', the surface '{}' does not exist. "
+                    "This surface will skipped and not added to the group.\n\n",
+                    group_spec[0], group_spec[i]);
+@@ -1182,7 +1182,7 @@
+       if (util.parallel_size() > 1) {
+         fmt::print(strm, "\tTot: {} (ms)\n", total);
+       }
+-      fmt::print(Ioss::DEBUG(), "{}", strm.str());
++      fmt::print(Ioss::STREAM_DEBUG(), "{}", strm.str());
+     }
+   }
+ 
+@@ -1224,7 +1224,7 @@
+           fmt::print(strm, " T:{:8d}", total);
+         }
+         fmt::print(strm, "\t{}/{}\n", name, field.get_name());
+-        fmt::print(Ioss::DEBUG(), "{}", strm.str());
++        fmt::print(Ioss::STREAM_DEBUG(), "{}", strm.str());
+       }
+     }
+     else {
+diff -Naur ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/Ioss_Decomposition.C ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/Ioss_Decomposition.C
+--- ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/Ioss_Decomposition.C	2021-02-04 15:22:04.000000000 +0100
++++ ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/Ioss_Decomposition.C	2021-04-15 15:05:02.964043048 +0200
+@@ -161,7 +161,7 @@
+     common_nodes = par_util.global_minmax(common_nodes, Ioss::ParallelUtils::DO_MIN);
+ 
+ #if IOSS_DEBUG_OUTPUT
+-    fmt::print(Ioss::DEBUG(), "Setting common_nodes to {}\n", common_nodes);
++    fmt::print(Ioss::STREAM_DEBUG(), "Setting common_nodes to {}\n", common_nodes);
+ #endif
+     return common_nodes;
+   }
+@@ -315,12 +315,12 @@
+   {
+     show_progress(__func__);
+     if (m_processor == 0) {
+-      fmt::print(Ioss::OUTPUT(),
++      fmt::print(Ioss::STREAM_OUTPUT(),
+                  "\nIOSS: Using decomposition method '{}' for {:n} elements on {} processors.\n",
+                  m_method, m_globalElementCount, m_processorCount);
+ 
+       if ((size_t)m_processorCount > m_globalElementCount) {
+-        fmt::print(Ioss::WARNING(),
++        fmt::print(Ioss::STREAM_WARNING(),
+                    "Decomposing {} elements across {} processors will "
+                    "result in some processors with *NO* elements.\n",
+                    m_globalElementCount, m_processorCount);
+@@ -438,7 +438,7 @@
+     }
+ 
+ #if IOSS_DEBUG_OUTPUT
+-    fmt::print(Ioss::DEBUG(),
++    fmt::print(Ioss::STREAM_DEBUG(),
+                "Processor {} communicates {} nodes from and {} nodes to other processors\n",
+                m_processor, sumr, sums);
+ #endif
+@@ -722,7 +722,7 @@
+     show_progress("\tmetis_decompose Communication 2 finished");
+ 
+ #if IOSS_DEBUG_OUTPUT
+-    fmt::print(Ioss::DEBUG(), "Processor {}:\t{} local, {} imported and {} exported elements\n",
++    fmt::print(Ioss::STREAM_DEBUG(), "Processor {}:\t{} local, {} imported and {} exported elements\n",
+                m_processor, m_elementCount - exp_size, imp_size, exp_size);
+ #endif
+   }
+@@ -758,7 +758,7 @@
+                                    &ncon, &common_nodes, &nparts, tp_wgts.data(), ub_vec.data(),
+                                    options.data(), &edge_cuts, elem_partition, &m_comm);
+ #if IOSS_DEBUG_OUTPUT
+-      fmt::print(Ioss::DEBUG(), "Edge Cuts = {}\n", edge_cuts);
++      fmt::print(Ioss::STREAM_DEBUG(), "Edge Cuts = {}\n", edge_cuts);
+ #endif
+       if (rc != METIS_OK) {
+         std::ostringstream errmsg;
+@@ -796,7 +796,7 @@
+       }
+ 
+ #if IOSS_DEBUG_OUTPUT
+-      fmt::print(Ioss::DEBUG(), "Edge Cuts = {}\n", edge_cuts);
++      fmt::print(Ioss::STREAM_DEBUG(), "Edge Cuts = {}\n", edge_cuts);
+ #endif
+       METIS_Free(dual_xadj);
+       METIS_Free(dual_adjacency);
+@@ -886,7 +886,7 @@
+     show_progress("\tZoltan lb_partition finished");
+ 
+ #if IOSS_DEBUG_OUTPUT
+-    fmt::print(Ioss::DEBUG(), "Processor {}:\t{} local, {} imported and {} exported elements\n",
++    fmt::print(Ioss::STREAM_DEBUG(), "Processor {}:\t{} local, {} imported and {} exported elements\n",
+                m_processor, m_elementCount - num_export, num_import, num_export);
+ #endif
+ 
+@@ -1197,7 +1197,7 @@
+           nodes.push_back(i + m_nodeOffset);
+           found_count++;
+ #if IOSS_DEBUG_OUTPUT
+-          fmt::print(Ioss::DEBUG(), "Processor {}:\tNode {} not connected to any elements\n",
++          fmt::print(Ioss::STREAM_DEBUG(), "Processor {}:\tNode {} not connected to any elements\n",
+                      m_processor, i + m_nodeOffset + 1);
+ #endif
+         }
+@@ -1227,7 +1227,7 @@
+ // Map that converts nodes from the global index (1-based) to a
+ // local-per-processor index (1-based)
+ #if IOSS_DEBUG_OUTPUT
+-    fmt::print(Ioss::DEBUG(), "Processor {}:\tNode Count = {}\n", m_processor, nodes.size());
++    fmt::print(Ioss::STREAM_DEBUG(), "Processor {}:\tNode Count = {}\n", m_processor, nodes.size());
+ #endif
+     nodeGTL.swap(nodes);
+     for (size_t i = 0; i < nodeGTL.size(); i++) {
+@@ -1354,7 +1354,7 @@
+       m_nodeCommMap[i] = node_global_to_local(m_nodeCommMap[i] + 1);
+     }
+ #if IOSS_DEBUG_OUTPUT
+-    fmt::print(Ioss::DEBUG(), "Processor {} has {} shared nodes\n", m_processor,
++    fmt::print(Ioss::STREAM_DEBUG(), "Processor {} has {} shared nodes\n", m_processor,
+                m_nodeCommMap.size() / 2);
+ #endif
+     show_progress(__func__);
+diff -Naur ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/Ioss_ElementTopology.C ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/Ioss_ElementTopology.C
+--- ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/Ioss_ElementTopology.C	2021-02-04 15:22:04.000000000 +0100
++++ ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/Ioss_ElementTopology.C	2021-04-15 15:05:02.966043048 +0200
+@@ -158,7 +158,7 @@
+   std::string  ltype    = Ioss::Utils::lowercase(type);
+   auto         iter     = registry().find(ltype);
+   if (iter == registry().end()) {
+-    fmt::print(Ioss::WARNING(), "The topology type '{}' is not supported.\n", type);
++    fmt::print(Ioss::STREAM_WARNING(), "The topology type '{}' is not supported.\n", type);
+   }
+   else {
+     Ioss::ElementTopology *inst = (*iter).second;
+diff -Naur ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/Ioss_IOFactory.C ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/Ioss_IOFactory.C
+--- ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/Ioss_IOFactory.C	2021-02-04 15:22:04.000000000 +0100
++++ ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/Ioss_IOFactory.C	2021-04-15 15:05:02.971043048 +0200
+@@ -145,16 +145,16 @@
+ 
+ void Ioss::IOFactory::show_configuration()
+ {
+-  fmt::print(Ioss::OUTPUT(), "\nIOSS Library Version '{}'\n\n", Ioss::Version());
++  fmt::print(Ioss::STREAM_OUTPUT(), "\nIOSS Library Version '{}'\n\n", Ioss::Version());
+   NameList db_types;
+   describe(&db_types);
+-  fmt::print(Ioss::OUTPUT(), "Supported database types:\n\t{}\n", fmt::join(db_types, ", "));
++  fmt::print(Ioss::STREAM_OUTPUT(), "Supported database types:\n\t{}\n", fmt::join(db_types, ", "));
+ 
+ #if defined(SEACAS_HAVE_MPI)
+-  fmt::print(Ioss::OUTPUT(), "\nSupported decomposition methods:\n\t{}\n", fmt::join(Ioss::valid_decomp_methods(), ", "));
++  fmt::print(Ioss::STREAM_OUTPUT(), "\nSupported decomposition methods:\n\t{}\n", fmt::join(Ioss::valid_decomp_methods(), ", "));
+ #endif
+ 
+-  fmt::print(Ioss::OUTPUT(), "\nThird-Party Library Configuration Information:\n\n");
++  fmt::print(Ioss::STREAM_OUTPUT(), "\nThird-Party Library Configuration Information:\n\n");
+ 
+   // Each database type may appear multiple times in the registry
+   // due to aliasing (i.e. exodus, genesis, exodusII, ...)
+diff -Naur ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/Ioss_ParallelUtils.C ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/Ioss_ParallelUtils.C
+--- ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/Ioss_ParallelUtils.C	2021-02-04 15:22:04.000000000 +0100
++++ ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/Ioss_ParallelUtils.C	2021-04-15 15:05:02.974043048 +0200
+@@ -101,7 +101,7 @@
+       bool        all_digit = value.find_first_not_of("0123456789") == std::string::npos;
+ 
+       if (do_print && rank == 0) {
+-        fmt::print(Ioss::OUTPUT(), "IOSS: Adding property '{}' with value '{}'\n", prop, value);
++        fmt::print(Ioss::STREAM_OUTPUT(), "IOSS: Adding property '{}' with value '{}'\n", prop, value);
+       }
+       if (all_digit) {
+         int int_value = std::stoi(value);
+@@ -527,7 +527,7 @@
+ 
+   if (parallel_rank() == 0) {
+     double diff = Utils::timer() - begin;
+-    fmt::print(Ioss::DEBUG(), "  [{:.3f}] ({}MiB  {}MiB  {}MiB)\t{}\n", diff, min / MiB, max / MiB,
++    fmt::print(Ioss::STREAM_DEBUG(), "  [{:.3f}] ({}MiB  {}MiB  {}MiB)\t{}\n", diff, min / MiB, max / MiB,
+                avg / MiB, output);
+   }
+ }
+diff -Naur ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/Ioss_Region.C ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/Ioss_Region.C
+--- ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/Ioss_Region.C	2021-02-04 15:22:04.000000000 +0100
++++ ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/Ioss_Region.C	2021-04-15 15:05:02.982043047 +0200
+@@ -812,7 +812,7 @@
+     if (!get_database()->is_input() && !stateTimes.empty() && time <= stateTimes.back()) {
+       // Check that time is increasing...
+       if (!warning_output) {
+-        fmt::print(Ioss::WARNING(),
++        fmt::print(Ioss::STREAM_WARNING(),
+                    "Current time {} is not greater than previous time {} in\n\t{}.\n"
+                    "This may cause problems in applications that assume monotonically increasing "
+                    "time values.\n",
+diff -Naur ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/Ioss_SerializeIO.C ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/Ioss_SerializeIO.C
+--- ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/Ioss_SerializeIO.C	2021-02-04 15:22:04.000000000 +0100
++++ ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/Ioss_SerializeIO.C	2021-04-15 15:05:02.983043047 +0200
+@@ -33,7 +33,7 @@
+ #include <Ioss_DatabaseIO.h>    // for DatabaseIO
+ #include <Ioss_ParallelUtils.h> // for ParallelUtils
+ #include <Ioss_SerializeIO.h>
+-#include <Ioss_Utils.h> // for IOSS_ERROR, Ioss::WARNING()
++#include <Ioss_Utils.h> // for IOSS_ERROR, Ioss::STREAM_WARNING()
+ #include <fmt/ostream.h>
+ #include <ostream> // for operator<<, etc
+ #include <string>  // for char_traits
+@@ -114,7 +114,7 @@
+   {
+     IOSS_FUNC_ENTER(m_);
+     if (s_rank != -1) {
+-      fmt::print(Ioss::WARNING(), "Mesh I/O serialization group factor cannot be changed "
++      fmt::print(Ioss::STREAM_WARNING(), "Mesh I/O serialization group factor cannot be changed "
+                                   "once serialized I/O has begun");
+     }
+     else {
+diff -Naur ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/Ioss_Tracer.C ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/Ioss_Tracer.C
+--- ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/Ioss_Tracer.C	2021-02-04 15:22:04.000000000 +0100
++++ ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/Ioss_Tracer.C	2021-04-15 15:05:02.995043046 +0200
+@@ -41,7 +41,7 @@
+ 
+   Tracer::Tracer(const char *function)
+   {
+-    fmt::print(Ioss::DEBUG(), "Entering Function: {} at level {}\n", function, ++level);
++    fmt::print(Ioss::STREAM_DEBUG(), "Entering Function: {} at level {}\n", function, ++level);
+     assert(level == 1);
+   }
+ 
+diff -Naur ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/Ioss_Utils.C ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/Ioss_Utils.C
+--- ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/Ioss_Utils.C	2021-02-04 15:22:04.000000000 +0100
++++ ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/Ioss_Utils.C	2021-04-15 15:05:03.001043046 +0200
+@@ -485,7 +485,7 @@
+ int Ioss::Utils::field_warning(const Ioss::GroupingEntity *ge, const Ioss::Field &field,
+                                const std::string &inout)
+ {
+-  fmt::print(Ioss::WARNING(), "{} '{}'. Unknown {} field '{}'\n", ge->type_string(), ge->name(),
++  fmt::print(Ioss::STREAM_WARNING(), "{} '{}'. Unknown {} field '{}'\n", ge->type_string(), ge->name(),
+              inout, field.get_name());
+   return -4;
+ }
+@@ -1439,7 +1439,7 @@
+   if (!appending) {
+ 
+     if (options.debug && rank == 0) {
+-      fmt::print(Ioss::DEBUG(), "DEFINING MODEL ... \n");
++      fmt::print(Ioss::STREAM_DEBUG(), "DEFINING MODEL ... \n");
+     }
+     dbi->progress("DEFINING MODEL");
+     if (!output_region.begin_mode(Ioss::STATE_DEFINE_MODEL)) {
+@@ -1485,7 +1485,7 @@
+     transfer_blobs(region, output_region, options, rank);
+ 
+     if (options.debug && rank == 0) {
+-      fmt::print(Ioss::DEBUG(), "END STATE_DEFINE_MODEL...\n");
++      fmt::print(Ioss::STREAM_DEBUG(), "END STATE_DEFINE_MODEL...\n");
+     }
+     dbi->progress("END STATE_DEFINE_MODEL");
+ 
+@@ -1493,15 +1493,15 @@
+     dbi->progress("output_region.end_mode(Ioss::STATE_DEFINE_MODEL) finished");
+ 
+     if (options.verbose && rank == 0) {
+-      fmt::print(Ioss::DEBUG(), "Maximum Field size = {:n} bytes.\n", max_field_size);
++      fmt::print(Ioss::STREAM_DEBUG(), "Maximum Field size = {:n} bytes.\n", max_field_size);
+     }
+     data_pool.data.resize(max_field_size);
+     if (options.verbose && rank == 0) {
+-      fmt::print(Ioss::DEBUG(), "Resize finished...\n");
++      fmt::print(Ioss::STREAM_DEBUG(), "Resize finished...\n");
+     }
+ 
+     if (options.debug && rank == 0) {
+-      fmt::print(Ioss::DEBUG(), "TRANSFERRING MESH FIELD DATA ...\n");
++      fmt::print(Ioss::STREAM_DEBUG(), "TRANSFERRING MESH FIELD DATA ...\n");
+     }
+     dbi->progress("TRANSFERRING MESH FIELD DATA ... ");
+ 
+@@ -1538,7 +1538,7 @@
+     for (const auto &isb : sbs) {
+       const std::string &name = isb->name();
+       if (options.debug && rank == 0) {
+-        fmt::print(Ioss::DEBUG(), "{}, ", name);
++        fmt::print(Ioss::STREAM_DEBUG(), "{}, ", name);
+       }
+       // Find matching output structured block
+       Ioss::StructuredBlock *osb = output_region.get_structured_block(name);
+@@ -1549,7 +1549,7 @@
+         auto &inb = isb->get_node_block();
+         auto &onb = osb->get_node_block();
+         if (options.debug && rank == 0) {
+-          fmt::print(Ioss::DEBUG(), "NB: {}, ", inb.name());
++          fmt::print(Ioss::STREAM_DEBUG(), "NB: {}, ", inb.name());
+         }
+ 
+         transfer_field_data(&inb, &onb, data_pool, Ioss::Field::MESH, options);
+@@ -1609,7 +1609,7 @@
+       for (const auto &ifs : fss) {
+         const std::string &name = ifs->name();
+         if (options.debug && rank == 0) {
+-          fmt::print(Ioss::DEBUG(), "{}, ", name);
++          fmt::print(Ioss::STREAM_DEBUG(), "{}, ", name);
+         }
+         // Find matching output sideset
+         Ioss::SideSet *ofs = output_region.get_sideset(name);
+@@ -1624,7 +1624,7 @@
+             // Find matching output sideblock
+             const std::string &fbname = ifb->name();
+             if (options.debug && rank == 0) {
+-              fmt::print(Ioss::DEBUG(), "{}, ", fbname);
++              fmt::print(Ioss::STREAM_DEBUG(), "{}, ", fbname);
+             }
+             Ioss::SideBlock *ofb = ofs->get_side_block(fbname);
+ 
+@@ -1636,11 +1636,11 @@
+         }
+       }
+       if (options.debug && rank == 0) {
+-        fmt::print(Ioss::DEBUG(), "\n");
++        fmt::print(Ioss::STREAM_DEBUG(), "\n");
+       }
+     }
+     if (options.debug && rank == 0) {
+-      fmt::print(Ioss::DEBUG(), "END STATE_MODEL... \n");
++      fmt::print(Ioss::STREAM_DEBUG(), "END STATE_MODEL... \n");
+     }
+     dbi->progress("END STATE_MODEL... ");
+     output_region.end_mode(Ioss::STATE_MODEL);
+@@ -1658,13 +1658,13 @@
+   } // !appending
+ 
+   if (options.debug && rank == 0) {
+-    fmt::print(Ioss::DEBUG(), "DEFINING TRANSIENT FIELDS ... \n");
++    fmt::print(Ioss::STREAM_DEBUG(), "DEFINING TRANSIENT FIELDS ... \n");
+   }
+   dbi->progress("DEFINING TRANSIENT FIELDS ... ");
+ 
+   if (region.property_exists("state_count") && region.get_property("state_count").get_int() > 0) {
+     if (options.verbose && rank == 0) {
+-      fmt::print(Ioss::DEBUG(), "\nNumber of time steps on database = {}\n\n",
++      fmt::print(Ioss::STREAM_DEBUG(), "\nNumber of time steps on database = {}\n\n",
+                  region.get_property("state_count").get_int());
+     }
+ 
+@@ -1695,14 +1695,14 @@
+     }
+ 
+     if (options.debug && rank == 0) {
+-      fmt::print(Ioss::DEBUG(), "END STATE_DEFINE_TRANSIENT... \n");
++      fmt::print(Ioss::STREAM_DEBUG(), "END STATE_DEFINE_TRANSIENT... \n");
+     }
+     dbi->progress("END STATE_DEFINE_TRANSIENT... ");
+     output_region.end_mode(Ioss::STATE_DEFINE_TRANSIENT);
+   }
+ 
+   if (options.debug && rank == 0) {
+-    fmt::print(Ioss::DEBUG(), "TRANSFERRING TRANSIENT FIELDS ... \n");
++    fmt::print(Ioss::STREAM_DEBUG(), "TRANSFERRING TRANSIENT FIELDS ... \n");
+   }
+   dbi->progress("TRANSFERRING TRANSIENT FIELDS... ");
+ 
+@@ -1753,7 +1753,7 @@
+         for (const auto &isb : sbs) {
+           const std::string &name = isb->name();
+           if (options.debug && rank == 0) {
+-            fmt::print(Ioss::DEBUG(), "{}, ", name);
++            fmt::print(Ioss::STREAM_DEBUG(), "{}, ", name);
+           }
+           // Find matching output structured block
+           Ioss::StructuredBlock *osb = output_region.get_structured_block(name);
+@@ -1778,7 +1778,7 @@
+         for (const auto &ifs : fss) {
+           const std::string &name = ifs->name();
+           if (options.debug && rank == 0) {
+-            fmt::print(Ioss::DEBUG(), "{}, ", name);
++            fmt::print(Ioss::STREAM_DEBUG(), "{}, ", name);
+           }
+ 
+           // Find matching output sideset
+@@ -1792,7 +1792,7 @@
+               // Find matching output sideblock
+               const std::string &fbname = ifb->name();
+               if (options.debug && rank == 0) {
+-                fmt::print(Ioss::DEBUG(), "{}, ", fbname);
++                fmt::print(Ioss::STREAM_DEBUG(), "{}, ", fbname);
+               }
+ 
+               Ioss::SideBlock *ofb = ofs->get_side_block(fbname);
+@@ -1818,7 +1818,7 @@
+     }
+   }
+   if (options.debug && rank == 0) {
+-    fmt::print(Ioss::DEBUG(), "END STATE_TRANSIENT... \n");
++    fmt::print(Ioss::STREAM_DEBUG(), "END STATE_TRANSIENT... \n");
+   }
+   dbi->progress("END STATE_TRANSIENT (begin) ... ");
+ 
+@@ -1845,13 +1845,13 @@
+     for (const auto &inb : nbs) {
+       const std::string &name = inb->name();
+       if (options.debug && rank == 0) {
+-        fmt::print(Ioss::DEBUG(), "{}, ", name);
++        fmt::print(Ioss::STREAM_DEBUG(), "{}, ", name);
+       }
+       size_t num_nodes = inb->entity_count();
+       size_t degree    = inb->get_property("component_degree").get_int();
+       if (options.verbose && rank == 0) {
+-        fmt::print(Ioss::DEBUG(), " Number of Coordinates per Node = {:14n}\n", degree);
+-        fmt::print(Ioss::DEBUG(), " Number of Nodes                = {:14n}\n", num_nodes);
++        fmt::print(Ioss::STREAM_DEBUG(), " Number of Coordinates per Node = {:14n}\n", degree);
++        fmt::print(Ioss::STREAM_DEBUG(), " Number of Nodes                = {:14n}\n", num_nodes);
+       }
+       auto nb = new Ioss::NodeBlock(*inb);
+       output_region.add(nb);
+@@ -1875,7 +1875,7 @@
+       }
+     }
+     if (options.debug && rank == 0) {
+-      fmt::print(Ioss::DEBUG(), "\n");
++      fmt::print(Ioss::STREAM_DEBUG(), "\n");
+     }
+   }
+ 
+@@ -1886,7 +1886,7 @@
+     for (const auto &entity : entities) {
+       const std::string &name = entity->name();
+       if (options.debug && rank == 0) {
+-        fmt::print(Ioss::DEBUG(), "{}, ", name);
++        fmt::print(Ioss::STREAM_DEBUG(), "{}, ", name);
+       }
+ 
+       // Find the corresponding output node_block...
+@@ -1896,7 +1896,7 @@
+       }
+     }
+     if (options.debug && rank == 0) {
+-      fmt::print(Ioss::DEBUG(), "\n");
++      fmt::print(Ioss::STREAM_DEBUG(), "\n");
+     }
+   }
+ 
+@@ -1925,7 +1925,7 @@
+       for (const auto &iblock : blocks) {
+         const std::string &name = iblock->name();
+         if (options.debug && rank == 0) {
+-          fmt::print(Ioss::DEBUG(), "{}, ", name);
++          fmt::print(Ioss::STREAM_DEBUG(), "{}, ", name);
+         }
+         size_t count = iblock->entity_count();
+         total_entities += count;
+@@ -1934,13 +1934,13 @@
+         output_region.add(block);
+       }
+       if (options.verbose && rank == 0) {
+-        fmt::print(Ioss::DEBUG(), " Number of {:20s} = {:14n}\n",
++        fmt::print(Ioss::STREAM_DEBUG(), " Number of {:20s} = {:14n}\n",
+                    (*blocks.begin())->type_string() + "s", blocks.size());
+-        fmt::print(Ioss::DEBUG(), " Number of {:20s} = {:14n}\n",
++        fmt::print(Ioss::STREAM_DEBUG(), " Number of {:20s} = {:14n}\n",
+                    (*blocks.begin())->contains_string() + "s", total_entities);
+       }
+       if (options.debug && rank == 0) {
+-        fmt::print(Ioss::DEBUG(), "\n");
++        fmt::print(Ioss::STREAM_DEBUG(), "\n");
+       }
+     }
+   }
+@@ -1960,7 +1960,7 @@
+           const auto &       iblock = blocks[i];
+           const std::string &name   = iblock->name();
+           if (options.debug && rank == 0) {
+-            fmt::print(Ioss::DEBUG(), "{}, ", name);
++            fmt::print(Ioss::STREAM_DEBUG(), "{}, ", name);
+           }
+           size_t count = iblock->entity_count();
+           total_entities += count;
+@@ -1973,7 +1973,7 @@
+           auto &inb = iblock->get_node_block();
+           auto &onb = block->get_node_block();
+           if (options.debug && rank == 0) {
+-            fmt::print(Ioss::DEBUG(), "(NB: {}), ", inb.name());
++            fmt::print(Ioss::STREAM_DEBUG(), "(NB: {}), ", inb.name());
+           }
+           transfer_mesh_info(&inb, &onb);
+         }
+@@ -1982,7 +1982,7 @@
+         for (const auto &iblock : blocks) {
+           const std::string &name = iblock->name();
+           if (options.debug && rank == 0) {
+-            fmt::print(Ioss::DEBUG(), "{}, ", name);
++            fmt::print(Ioss::STREAM_DEBUG(), "{}, ", name);
+           }
+           size_t count = iblock->entity_count();
+           total_entities += count;
+@@ -1995,20 +1995,20 @@
+           auto &inb = iblock->get_node_block();
+           auto &onb = block->get_node_block();
+           if (options.debug && rank == 0) {
+-            fmt::print(Ioss::DEBUG(), "(NB: {}), ", inb.name());
++            fmt::print(Ioss::STREAM_DEBUG(), "(NB: {}), ", inb.name());
+           }
+           transfer_mesh_info(&inb, &onb);
+         }
+       }
+ 
+       if (options.verbose && rank == 0) {
+-        fmt::print(Ioss::DEBUG(), " Number of {:20s} = {:14n}\n",
++        fmt::print(Ioss::STREAM_DEBUG(), " Number of {:20s} = {:14n}\n",
+                    (*blocks.begin())->type_string() + "s", blocks.size());
+-        fmt::print(Ioss::DEBUG(), " Number of {:20s} = {:14n}\n",
++        fmt::print(Ioss::STREAM_DEBUG(), " Number of {:20s} = {:14n}\n",
+                    (*blocks.begin())->contains_string() + "s", total_entities);
+       }
+       if (options.debug && rank == 0) {
+-        fmt::print(Ioss::DEBUG(), "\n");
++        fmt::print(Ioss::STREAM_DEBUG(), "\n");
+       }
+     }
+   }
+@@ -2042,7 +2042,7 @@
+     for (const auto &ss : fss) {
+       const std::string &name = ss->name();
+       if (options.debug && rank == 0) {
+-        fmt::print(Ioss::DEBUG(), "{}, ", name);
++        fmt::print(Ioss::STREAM_DEBUG(), "{}, ", name);
+       }
+       auto surf = new Ioss::SideSet(*ss);
+       output_region.add(surf);
+@@ -2062,13 +2062,13 @@
+     }
+ 
+     if (options.verbose && rank == 0 && !fss.empty()) {
+-      fmt::print(Ioss::DEBUG(), " Number of {:20s} = {:14n}\n", (*fss.begin())->type_string() + "s",
++      fmt::print(Ioss::STREAM_DEBUG(), " Number of {:20s} = {:14n}\n", (*fss.begin())->type_string() + "s",
+                  fss.size());
+-      fmt::print(Ioss::DEBUG(), " Number of {:20s} = {:14n}\n",
++      fmt::print(Ioss::STREAM_DEBUG(), " Number of {:20s} = {:14n}\n",
+                  (*fss.begin())->contains_string() + "s", total_sides);
+     }
+     if (options.debug && rank == 0) {
+-      fmt::print(Ioss::DEBUG(), "\n");
++      fmt::print(Ioss::STREAM_DEBUG(), "\n");
+     }
+   }
+ 
+@@ -2081,7 +2081,7 @@
+       for (const auto &set : sets) {
+         const std::string &name = set->name();
+         if (options.debug && rank == 0) {
+-          fmt::print(Ioss::DEBUG(), "{}, ", name);
++          fmt::print(Ioss::STREAM_DEBUG(), "{}, ", name);
+         }
+         size_t count = set->entity_count();
+         total_entities += count;
+@@ -2090,12 +2090,12 @@
+       }
+ 
+       if (options.verbose && rank == 0) {
+-        fmt::print(Ioss::DEBUG(), " Number of {:20s} = {:14n}",
++        fmt::print(Ioss::STREAM_DEBUG(), " Number of {:20s} = {:14n}",
+                    (*sets.begin())->type_string() + "s", sets.size());
+-        fmt::print(Ioss::DEBUG(), "\tLength of entity list = {:14n}\n", total_entities);
++        fmt::print(Ioss::STREAM_DEBUG(), "\tLength of entity list = {:14n}\n", total_entities);
+       }
+       if (options.debug && rank == 0) {
+-        fmt::print(Ioss::DEBUG(), "\n");
++        fmt::print(Ioss::STREAM_DEBUG(), "\n");
+       }
+     }
+   }
+@@ -2146,7 +2146,7 @@
+         fmt::print(stderr, "\tLength of entity list = {:14n}\n", total_entities);
+       }
+       if (options.debug && rank == 0) {
+-        fmt::print(Ioss::DEBUG(), "\n");
++        fmt::print(Ioss::STREAM_DEBUG(), "\n");
+       }
+     }
+   }
+@@ -2186,13 +2186,13 @@
+     for (const auto &ics : css) {
+       const std::string &name = ics->name();
+       if (options.debug && rank == 0) {
+-        fmt::print(Ioss::DEBUG(), "{}, ", name);
++        fmt::print(Ioss::STREAM_DEBUG(), "{}, ", name);
+       }
+       auto cs = new Ioss::CommSet(*ics);
+       output_region.add(cs);
+     }
+     if (options.debug && rank == 0) {
+-      fmt::print(Ioss::DEBUG(), "\n");
++      fmt::print(Ioss::STREAM_DEBUG(), "\n");
+     }
+   }
+ 
+@@ -2413,7 +2413,7 @@
+ #endif
+     default:
+       if (field_name == "mesh_model_coordinates") {
+-        fmt::print(Ioss::DEBUG(), "data_storage option not recognized.");
++        fmt::print(Ioss::STREAM_DEBUG(), "data_storage option not recognized.");
+       }
+       return;
+     }
+@@ -2535,7 +2535,7 @@
+   void show_step(int istep, double time, const Ioss::MeshCopyOptions &options, int rank)
+   {
+     if (options.verbose && rank == 0) {
+-      fmt::print(Ioss::DEBUG(), "\r\tTime step {:5d} at time {:10.5e}", istep, time);
++      fmt::print(Ioss::STREAM_DEBUG(), "\r\tTime step {:5d} at time {:10.5e}", istep, time);
+     }
+   }
+ 
+diff -Naur ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/Ioss_Utils.h ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/Ioss_Utils.h
+--- ParaView-5.9.0_ref/VTK/ThirdParty/ioss/vtkioss/Ioss_Utils.h	2021-02-04 15:22:04.000000000 +0100
++++ ParaView-5.9.0_new/VTK/ThirdParty/ioss/vtkioss/Ioss_Utils.h	2021-04-15 15:05:03.001043046 +0200
+@@ -522,11 +522,11 @@
+                               Ioss::MeshCopyOptions &options);
+   };
+ 
+-  inline std::ostream &OUTPUT() { return *Utils::m_outputStream; }
++  inline std::ostream &STREAM_OUTPUT() { return *Utils::m_outputStream; }
+ 
+-  inline std::ostream &DEBUG() { return *Utils::m_debugStream; }
++  inline std::ostream &STREAM_DEBUG() { return *Utils::m_debugStream; }
+ 
+-  inline std::ostream &WARNING()
++  inline std::ostream &STREAM_WARNING()
+   {
+     *Utils::m_warningStream << Utils::m_preWarningText;
+     return *Utils::m_warningStream;

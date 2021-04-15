@@ -176,8 +176,21 @@ APPLICATION :
 __overwrite__ :
 [
   {
-   #
-    'PRODUCTS.PARAVISADDONS.default.patches' : ['paraview-5.9_PARAVISADDONS.patch']
+   # Dedicated builds to check new IMP SMESH 64bits support
+   __condition__ : "VARS.dist in ['FD32', 'FD30']"
+    'APPLICATION.products.KERNEL' : {tag : 'occ/20256'}
+    'PRODUCTS.KERNEL.default.cmake_options' : "-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_USE_64BIT_IDS=ON"
+    'APPLICATION.products.GUI' : {tag : 'occ/20256'}
+    'APPLICATION.products.SMESH' : {tag : 'occ/20256'}
+    'APPLICATION.products.HEXABLOCK' : {tag : 'occ/20256'}
+    'APPLICATION.products.HEXABLOCKPLUGIN' : {tag : 'occ/20256'}
+    'APPLICATION.products.NETGENPLUGIN' : {tag : 'occ/20256'}
+    'APPLICATION.products.GHS3DPRLPLUGIN' : {tag : 'occ/20256'}
+    'APPLICATION.products.GHS3DPLUGIN' : {tag : 'occ/20256'}
+    'APPLICATION.products.GMSHPLUGIN' : {tag : 'occ/20256'}
+    'APPLICATION.products.BLSURFPLUGIN' : {tag : 'occ/20256'}
+    'APPLICATION.products.HexoticPLUGIN' : {tag : 'occ/20256'}
+    'APPLICATION.products.HYBRIDPLUGIN' : {tag : 'occ/20256'}
   }
   {
    __condition__ : "VARS.dist in ['FD32']"
@@ -187,5 +200,20 @@ __overwrite__ :
     'PRODUCTS.llvm.version_8_0_1_clang.patches' : ['llvm-8.0.1-clang-FD32.patch']
    #
     'PRODUCTS.mesa.version_19_0_8.patches' : ['mesa-19.0.8-debug_symbol.patch']
+   #
+    'PRODUCTS.qt.version_5_12_10.patches' : ['qt-mapbox-FD32.patch']
+  }
+  {
+   __condition__ : "APPLICATION.debug == 'yes'"
+   # https://cplusplus.com/forum/general/250854 : DEBUG symbol is defined twice, need an additional patch
+    'PRODUCTS.ParaView.version_5_9_0.patches' : ['paraview.0003-ParaViewClient.patch',
+                                                 'paraview.0004-ParaView_hdf5.patch',
+                                                 'paraview.0005-ParaView_find_cgns.patch',
+                                                 'paraview.0006-ParaView_find_libxml2.patch',
+                                                 'paraview.0007-ParaView_find_freetype.patch',
+                                                 'paraview-0012-LATA_64BITS_IDS.patch',
+                                                 'ParaView-5.9.0-CATALYST_cmake.patch',
+                                                 'paraview.0008-ParaView_coincident_rendering.patch',
+                                                 'paraview.0015-Paraview_VTKM_ioss.patch']
   }
 ]

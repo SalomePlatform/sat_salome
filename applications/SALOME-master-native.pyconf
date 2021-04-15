@@ -181,10 +181,6 @@ APPLICATION :
 __overwrite__ :
 [
    {
-      #
-      'PRODUCTS.PARAVISADDONS.default.patches' : ['paraview-5.9_PARAVISADDONS.patch']
-   }
-   {
       # openturns - make install seems to not doing anything (although we see files installation in logs)
       __condition__ : "VARS.dist in ['FD32', 'CO8']"
       'APPLICATION.rm_products' : ['openturns']
