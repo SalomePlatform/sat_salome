@@ -1,0 +1,13 @@
+diff --git a/src/HEXABLOCKGUI/HEXABLOCKGUI.cxx b/src/HEXABLOCKGUI/HEXABLOCKGUI.cxx
+index b01745b..f7998d0 100644
+--- a/src/HEXABLOCKGUI/HEXABLOCKGUI.cxx
++++ b/src/HEXABLOCKGUI/HEXABLOCKGUI.cxx
+@@ -413,7 +413,7 @@ bool HEXABLOCKGUI::deactivateModule( SUIT_Study* theStudy )
+ 
+ SALOMEDS::Study_var HEXABLOCKGUI::getStudyServant()
+ {
+-  SALOME_NamingService *aNamingService = SalomeApp_Application::namingService();
++  SALOME_NamingService_Abstract *aNamingService = SalomeApp_Application::namingService();
+   CORBA::Object_var aSMObject = aNamingService->Resolve("/Study");
+   SALOMEDS::Study_var aDSStudy = SALOMEDS::Study::_narrow(aSMObject);
+   return aDSStudy._retn();

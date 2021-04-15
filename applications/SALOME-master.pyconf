@@ -183,6 +183,7 @@ __overwrite__ :
     'APPLICATION.products.GUI' : {tag : 'occ/20256'}
     'APPLICATION.products.SMESH' : {tag : 'occ/20256'}
     'APPLICATION.products.HEXABLOCK' : {tag : 'occ/20256'}
+    'PRODUCTS.HEXABLOCK.default.patches' : ['HEXABLOCK_occ20256.patch']
     'APPLICATION.products.HEXABLOCKPLUGIN' : {tag : 'occ/20256'}
     'APPLICATION.products.NETGENPLUGIN' : {tag : 'occ/20256'}
     'APPLICATION.products.GHS3DPRLPLUGIN' : {tag : 'occ/20256'}
