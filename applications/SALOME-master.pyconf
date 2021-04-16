@@ -176,24 +176,6 @@ APPLICATION :
 __overwrite__ :
 [
   {
-   # Dedicated builds to check new IMP SMESH 64bits support
-   __condition__ : "VARS.dist in ['FD32', 'FD30']"
-    'APPLICATION.products.KERNEL' : {tag : 'occ/20256'}
-    'PRODUCTS.KERNEL.default.cmake_options' : "-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_USE_64BIT_IDS=ON"
-    'APPLICATION.products.GUI' : {tag : 'occ/20256'}
-    'APPLICATION.products.SMESH' : {tag : 'occ/20256'}
-    'APPLICATION.products.HEXABLOCK' : {tag : 'occ/20256'}
-    'PRODUCTS.HEXABLOCK.default.patches' : ['HEXABLOCK_occ20256.patch']
-    'APPLICATION.products.HEXABLOCKPLUGIN' : {tag : 'occ/20256'}
-    'APPLICATION.products.NETGENPLUGIN' : {tag : 'occ/20256'}
-    'APPLICATION.products.GHS3DPRLPLUGIN' : {tag : 'occ/20256'}
-    'APPLICATION.products.GHS3DPLUGIN' : {tag : 'occ/20256'}
-    'APPLICATION.products.GMSHPLUGIN' : {tag : 'occ/20256'}
-    'APPLICATION.products.BLSURFPLUGIN' : {tag : 'occ/20256'}
-    'APPLICATION.products.HexoticPLUGIN' : {tag : 'occ/20256'}
-    'APPLICATION.products.HYBRIDPLUGIN' : {tag : 'occ/20256'}
-  }
-  {
    __condition__ : "VARS.dist in ['FD32']"
    # https://github.com/scipy/scipy/issues/11611
     'APPLICATION.products.scipy' : '1.5.2'
