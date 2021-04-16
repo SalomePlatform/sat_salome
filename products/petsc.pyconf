@@ -14,3 +14,20 @@ default :
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     install_dir : 'base'
 }
+
+version_3_15_0 :
+{
+    name : "petsc"
+    build_source : "script"
+    compil_script :  $name + "-3.15.0.sh"
+    get_source : "archive"
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : ["hdf5"]
+    opt_depend : ["openmpi"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+}
