@@ -13,7 +13,7 @@ default :
     {
         SalomeAppConfig_ : $install_dir + $VARS.sep + "share" + $VARS.sep + "salome" + $VARS.sep + "resources" + $VARS.sep + "homard"
         HOMARD_REP_EXE   : $install_dir + $VARS.sep + "bin" + $VARS.sep + "salome"
-        HOMARD_EXE       : "homard.out"
+        HOMARD_EXE       : "homard"
     }
     depend : [ "SMESH"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
