@@ -130,8 +130,7 @@ version_5_9_0_MPI :
                'paraview-5.9-VTKM_MPI.patch',
                'paraview-0012-LATA_64BITS_IDS.patch',
                'ParaView-5.9.0-CATALYST_cmake.patch',
-               'paraview.0008-ParaView_coincident_rendering.patch',
-	       'paraview.0016-openmpi.patch'
+               'paraview.0008-ParaView_coincident_rendering.patch'
               ]
 }
 
