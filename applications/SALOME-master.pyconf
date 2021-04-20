@@ -114,20 +114,20 @@ APPLICATION :
         'SHAPERSTUDY'
         'RESTRICTED'
         'LIBBATCH' : {tag : 'V2_4_4'}
-        'KERNEL'
+        'KERNEL' : {tag : 'occ/20256_v2'}
         'MEDCOUPLING'
-        'GUI'
+        'GUI' : {tag : 'occ/20256_v2'}
         'GEOM'
-        'SMESH'
-        'NETGENPLUGIN'
-        'BLSURFPLUGIN'
-        'GHS3DPLUGIN'
-        'GHS3DPRLPLUGIN'
-        'HYBRIDPLUGIN'
-        'HexoticPLUGIN'
-        'GMSHPLUGIN'
-        'HEXABLOCK'
-        'HEXABLOCKPLUGIN'
+        'SMESH' : {tag : 'occ/20256_v2'}
+        'NETGENPLUGIN' : {tag : 'occ/20256_v2'}
+        'BLSURFPLUGIN' : {tag : 'occ/20256_v2'}
+        'GHS3DPLUGIN' : {tag : 'occ/20256_v2'}
+        'GHS3DPRLPLUGIN' : {tag : 'occ/20256_v2'}
+        'HYBRIDPLUGIN' : {tag : 'occ/20256_v2'}
+        'HexoticPLUGIN' : {tag : 'occ/20256_v2'}
+        'GMSHPLUGIN' : {tag : 'occ/20256_v2'}
+        'HEXABLOCK' : {tag : 'occ/20256_v2'}
+        'HEXABLOCKPLUGIN' : {tag : 'occ/20256_v2'}
         'HOMARD'
         'FIELDS'
         'PARAVIS'

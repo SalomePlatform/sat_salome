@@ -3,7 +3,7 @@ default :
 {
     name : "KERNEL"
     build_source : "cmake"
-    cmake_options : "-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_CMAKE_DEBUG=ON"
+    cmake_options : "-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_CMAKE_DEBUG=ON -DSALOME_USE_64BIT_IDS=ON"
     get_source : "git"
     git_info:
     {
