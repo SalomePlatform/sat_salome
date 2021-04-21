@@ -77,7 +77,7 @@ APPLICATION :
         ospray : '2.4.0'
         packaging : '17.1'
         ParaView : {tag : '5.9.0', hpc : 'yes', section: 'version_5_9_0_MPI'}
-        petsc : '3.14.0'
+        petsc : {tag : '3.15.0', section: 'version_3_15_0'}
         Pillow : '7.1.1'
         planegcs : '0.18-3cb6890'
         psutil : '5.7.2'

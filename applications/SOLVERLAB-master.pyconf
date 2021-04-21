@@ -60,8 +60,9 @@ APPLICATION :
         omniORBpy : '4.2.2'
         packaging : '17.1'
         ParaView : '5.8.0'
-        petsc : '3.14.0'
+        petsc : {tag : '3.15.0', section: 'version_3_15_0'}
         pockets : '0.6.2'
+        psutil : '5.7.2'
         Pygments : '2.0.2'
         pyparsing : '2.0.3'
         PyQt : '5.9'
