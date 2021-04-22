@@ -1,0 +1,227 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+APPLICATION :
+{
+    name : 'SALOME-9.7.0-native'
+    workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
+    tag : 'V9_7_BR'
+    dev : 'no'
+    verbose :'no'
+    debug : 'no'
+    base : 'no'
+    python3 : 'yes'
+    environ :
+    {
+        build :
+        {
+           CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
+           RESTRICTED_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "RESTRICTED"
+           SALOME_USE_64BIT_IDS : '1'
+           VTK_SMP_IMPLEMENTATION_TYPE : 'OpenMP' # OpenMP # choose among: sequential / OpenMP / TBB switches
+        }
+        launch : {PYTHONIOENCODING:"UTF_8"} # alternative is to encode every accentued string with .encode('utf-8')
+        SALOME_trace : "local" # local/file:.../with_logger
+        SALOME_MODULES : "SHAPER,SHAPERSTUDY,GEOM,SMESH,PARAVIS,YACS,JOBMANAGER"  # specify the first modules to display in gui
+    }
+    products :
+    {
+        # PREREQUISITES :
+        alabaster : 'native'
+        Babel : 'native'
+        boost : 'native'
+        CAS : {tag: 'CR750-SALOME-PATCH', section: 'version_V7_5_0'}
+        certifi : 'native'
+        # Standalone native cgns works well. Unfortunately, it's directly linked to native hdf which uses a higher version than us.
+        # Rollback to embedded version to avoid versions mismatch between both of them (see imp_1538_cgns_export_import.py)
+        cgns : '4.1.1'
+        chardet : 'native'
+        click : 'native'
+        cmake : 'native'
+        cppunit : 'native'
+        cycler : 'native'
+        Cython : 'native'
+        dateutil : 'native'
+        docutils : 'native'
+        doxygen : 'native'
+        eigen : 'native'
+        embree : '3.12.2'
+        freeimage : 'native'
+        freetype : 'native'
+        gl2ps : 'native'
+        # 'native' too difficult here : need python-pip package (gmsh-sdk) besides system packages
+        gmsh : '4.1.4'
+        graphviz : 'native'
+        hdf5 : '1.10.3'
+        idna : 'native'
+        imagesize : 'native'
+        # 'native' not exists (only available on Fedora platform)
+        ispc : '1.15.0'
+        Jinja2 : 'native'
+        kiwisolver : 'native'
+        lapack : 'native'
+        libxml2 : 'native'
+        llvm : 'native'
+        markupsafe : 'native'
+        matplotlib : 'native'
+        medfile : {section: 'default_Autotools', tag: '4.1.0'}
+        mesa : 'native'
+        MeshGems : '2.12-1'
+        metis : 'native'
+        netgen : '5.3.1_with_CAS_7.2'
+        nlopt : '2.4.2'
+        numpy : 'native'
+        omniORB : '4.2.3'
+        omniORBpy : '4.2.3'
+        opencv : 'native'
+        openVKL : '0.11.0'
+        openturns: '1.16'
+        ospray : '2.4.0'
+        packaging : 'native'
+        ParaView : '5.9.0'
+        petsc : {tag : '3.15.0', section: 'version_3_15_0'}
+        Pillow : 'native'
+        # 'native' not exists : freeCAD part but not delivered with it from package handler
+        planegcs : '0.18-3cb6890'
+        psutil : 'native'
+        Pygments : 'native'
+        pyparsing : 'native'
+        PyQt : 'native'
+        pyreadline : 'native'
+        Python : 'native'
+        pytz : 'native'
+        qt : 'native'
+        qwt : 'native'
+        requests : 'native'
+        rkCommon : '1.5.1'
+        root: '6.22.02'
+        scipy : 'native'
+        scotch : 'native'
+        setuptools : 'native'
+        sip : 'native'
+        six : 'native'
+        snowballstemmer : 'native'
+        Sphinx : 'native'
+        sphinxcontrib_websupport : 'native'
+        sphinxintl: 'native'
+        sphinx_rtd_theme : 'native'
+        swig : 'native'
+        tbb : 'native'
+        tcl : 'native'
+        tk : 'native'
+        urllib3 : 'native'
+        URANIE : '4.5.0'
+
+        # SALOME MODULES :
+        'CONFIGURATION'
+        'SALOME'
+        'SHAPER'
+        'SHAPERSTUDY'
+        'RESTRICTED'
+        'LIBBATCH' : {tag :'V2_4_4'}
+        'KERNEL'
+        'MEDCOUPLING'
+        'GUI'
+        'GEOM'
+        'SMESH'
+        'NETGENPLUGIN'
+        'BLSURFPLUGIN'
+        'GHS3DPLUGIN'
+        'GHS3DPRLPLUGIN'
+        'HYBRIDPLUGIN'
+        'HexoticPLUGIN'
+        'GMSHPLUGIN'
+        'HEXABLOCK'
+        'HEXABLOCKPLUGIN'
+        'HOMARD'
+        'FIELDS'
+        'PARAVIS'
+        'JOBMANAGER'
+        'YACS'
+        'YACSGEN'
+        'SOLVERLAB' : {tag: 'master'}
+        'DOCUMENTATION'
+        'SAMPLES'
+        'COMPONENT'
+        'PYCALCULATOR'
+        'CALCULATOR'
+        'HELLO'
+        'PYHELLO'
+        'EFICAS' : {tag : 'V9_7_0b1'}
+        'EFICAS_TOOLS' : {tag : 'V9_7_0b1'}
+	'PY2CPP' : {tag: 'v2.0'}
+	'ADAO' : {tag : 'V9_7_0b1'}
+	'ADAO_INTERFACE' : {tag : 'V9_7_0b1'}
+        'PARAVISADDONS'
+        'CEATESTBASE' : {tag: 'SalomeV9'}
+    }
+    profile :
+    {
+        launcher_name : "salome"
+    }
+    virtual_app:
+    {
+        name : "salome"
+        application_name : "APPLI"
+    }
+    test_base :
+    {
+        name : "SALOME"
+        tag : "SalomeV9"
+    }
+    properties :
+    {
+        mesa_launcher_in_package : "yes"
+        repo_dev : "yes"
+        pip : 'yes'
+        pip_install_dir : 'python'
+        single_install_dir : "yes"
+    }
+}
+__overwrite__ :
+[
+   {
+      # openturns - make install seems to not doing anything (although we see files installation in logs)
+      __condition__ : "VARS.dist in ['FD32', 'CO8']"
+      'APPLICATION.rm_products' : ['openturns']
+   }
+   {
+      # Although recent adaptations of GEOM CMake procedure to be compliant with openCV 4.X, some
+      # deeper investigations need to be done in its sources. Use embedded openCV product where
+      # native one is 4.X.
+      __condition__ : "VARS.dist in ['FD32', 'UB20.04']"
+      'APPLICATION.products.opencv' : '3.2.0'
+   }
+   {
+      #
+      __condition__ : "VARS.dist in ['UB20.04', 'CO8', 'FD32']"
+      'PRODUCTS.ParaView.version_5_9_0.patches' : ['paraview.0003-ParaViewClient.patch',
+                                                   'paraview.0005-ParaView_find_cgns.patch',
+                                                   'paraview-0012-LATA_64BITS_IDS.patch',
+                                                   'ParaView-5.9.0-CATALYST_cmake.patch',
+                                                   'paraview.0008-ParaView_coincident_rendering.patch']
+   }
+   {
+      # On DB10, ParaView fails to find xmlpatterns executable : ParaViewClient.cmake try to find it
+      # from Qt5_DIR, going back from it in filesystem (hardcoded).
+      # The standard patch is also needed to be able to build PARAVIS (same kind of issue).
+      # What is more, ParaView 5.9 CMake procedure requires Qt 5.12 as minimum version (5.11 here).
+      # As this version is compliant too, let's force it as the new minimum needed version.
+      __condition__ : "VARS.dist in ['DB10']"
+      'PRODUCTS.ParaView.version_5_9_0.patches' : ['paraview.0003-ParaViewClient.patch',
+                                                   'paraview.0005-ParaView_find_cgns.patch',
+                                                   'paraview-0012-LATA_64BITS_IDS.patch',
+                                                   'paraview-5.9_qt-minimum-version.patch',
+                                                   'paraview.0003-ParaViewClient_native.patch',
+                                                   'ParaView-5.9.0-CATALYST_cmake.patch',
+                                                   'paraview.0008-ParaView_coincident_rendering.patch']
+   }
+   {
+      # CentOS 8 repositories don't include sphinxintl package which must be installed through pip.
+      # To avoid its missing (system_info pyconf key doesn't handle this use case), we embed it.
+      __condition__ : "VARS.dist in ['CO8']"
+      'APPLICATION.products.sphinxintl' : '0.9.10'
+      'PRODUCTS.sphinxintl.default.properties.pip' : "no"
+      'APPLICATION.products.cmake' : '3.12.1'
+   }
+]
