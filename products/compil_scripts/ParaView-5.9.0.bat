@@ -31,6 +31,7 @@ set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_BUILD_TYPE:STRING=%PRODUCT_BUILD_TYPE%
 REM common ParaView settings
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DPARAVIEW_BUILD_SHARED_LIBS:BOOL=ON
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_INSTALL_LIBDIR:STRING=lib
+set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_INSTALL_BINDIR:STRING=lib
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DBUILD_TESTING:BOOL=OFF
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DPARAVIEW_INSTALL_DEVELOPMENT_FILES:BOOL=ON
 
@@ -144,9 +145,9 @@ REM ZLIB settings
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DVTK_MODULE_USE_EXTERNAL_VTK_zlib:BOOL=ON 
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DZLIB_INCLUDE_DIR:STRING=%ZLIB_ROOT_DIR:\=/%/include
 if %SAT_DEBUG% == 0 (
-  set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DZLIB_LIBRARY:STRING=%ZLIB_ROOT_DIR:\=/%/lib/zlib.lib 
+  set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DZLIB_LIBRARY:STRING=%ZLIB_ROOT_DIR:\=/%/bin/zlib.lib 
 ) else (
-  set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DZLIB_LIBRARY:STRING=%ZLIB_ROOT_DIR:\=/%/lib/zlibd.lib 
+  set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DZLIB_LIBRARY:STRING=%ZLIB_ROOT_DIR:\=/%/bin/zlibd.lib 
 )
 
 REM Extra options (switch off non-used Paraview plug-ins)
@@ -156,6 +157,9 @@ set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DPARAVIEW_PLUGIN_ENABLE_SLACTools:BOOL=OFF
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DPARAVIEW_PLUGIN_ENABLE_SierraPlotTools:BOOL=OFF
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DPARAVIEW_PLUGIN_ENABLE_PacMan:BOOL=OFF
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DPARAVIEW_PLUGIN_ENABLE_pvblot:BOOL=OFF
+
+set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DPARAVIEW_USE_CATALYST:BOOL=ON
+set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCATALYST_BUILD_STUB_IMPLEMENTATION:BOOL=ON
 
 REM allow additional plugins
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DVTK_ALL_NEW_OBJECT_FACTORY:BOOL=ON
@@ -170,20 +174,6 @@ echo INFO: running command: %CMAKE_ROOT%\bin\cmake %CMAKE_OPTIONS% %SOURCE_DIR%
 if NOT %ERRORLEVEL% == 0 (
     echo "ERROR on cmake"
     exit 1
-)
-
-REM 
-REM see https://gitlab.kitware.com/paraview/paraview/-/issues/19488
-if %SAT_DEBUG% == 1 (
-  del /Q Directory.Build.props
-  echo > Directory.Build.props
-  echo ^<Project^> > Directory.Build.props
-  echo     ^<ItemDefinitionGroup^> >> Directory.Build.props
-  echo       ^<Link^> >> Directory.Build.props
-  echo         ^<AdditionalLibraryDirectories^>%PYTHON_ROOT_DIR:\=/%/libs^;%%(AdditionalLibraryDirectories)^</AdditionalLibraryDirectories^> >> Directory.Build.props
-  echo      ^</Link^> >> Directory.Build.props
-  echo    ^</ItemDefinitionGroup^> >> Directory.Build.props
-  echo ^</Project^> >> Directory.Build.props
 )
 
 echo.

@@ -12,29 +12,32 @@ if NOT exist "%PRODUCT_INSTALL%" mkdir %PRODUCT_INSTALL%
 REM clean BUILD directory
 if exist "%BUILD_DIR%" rmdir /Q /S %BUILD_DIR%
 mkdir %BUILD_DIR%
-
 cd %SOURCE_DIR%
-
-call :NORMALIZEPATH "%PRODUCT_INSTALL%\..\Python"
-set python_exe=%RETVAL%\python.exe
-set python_name=python%PYTHON_VERSION%
-
-call :NORMALIZEPATH "%PRODUCT_INSTALL%\..\sip"
-set sip_incdir=%RETVAL%\include\%python_name%
+xcopy * %BUILD_DIR%\ /E /I /Q
+cd %BUILD_DIR%
 
 echo.
 echo --------------------------------------------------------------------------
 echo *** python configure.py
 echo --------------------------------------------------------------------------
-
-set PRODUCT_BUILD_TYPE=
+SET BUILD_OPTIONS=
+SET BUILD_OPTIONS=%BUILD_OPTIONS% -b %PRODUCT_INSTALL%/bin 
+SET BUILD_OPTIONS=%BUILD_OPTIONS% -d %PRODUCT_INSTALL%
+SET BUILD_OPTIONS=%BUILD_OPTIONS% -v %PRODUCT_INSTALL%/sip
+SET BUILD_OPTIONS=%BUILD_OPTIONS% --stubsdir=%PRODUCT_INSTALL%/lib/site-packages
+SET BUILD_OPTIONS=%BUILD_OPTIONS% --designer-plugindir=%PRODUCT_INSTALL%/plugins/designer
+SET BUILD_OPTIONS=%BUILD_OPTIONS% --qml-plugindir=%PRODUCT_INSTALL%/plugins/qml
+SET BUILD_OPTIONS=%BUILD_OPTIONS% --no-qsci-api
+SET BUILD_OPTIONS=%BUILD_OPTIONS% --spec=win32-msvc
+SET BUILD_OPTIONS=%BUILD_OPTIONS% --confirm-license
+SET BUILD_OPTIONS=%BUILD_OPTIONS% --disable=QtNfc --disable=QtNetwork --disable=QtWebSockets 
+SET BUILD_OPTIONS=%BUILD_OPTIONS% --target-py-version=%PYTHON_VERSION%
 if %SAT_DEBUG% == 1 (
-   python configure.py --confirm-license --no-designer-plugin --debug --bindir=%PRODUCT_INSTALL%\bin --destdir=%PRODUCT_INSTALL%\lib\%python_name%\site-packages --sipdir=%PRODUCT_INSTALL%\sip --spec=win32-msvc --sip-incdir=%sip_incdir% --pyuic5-interpreter=%python_exe% --disable QtNfc --disable=QtNetwork --disable=QtWebSockets 2>&1
-) else (
-   python configure.py --confirm-license --no-designer-plugin --bindir=%PRODUCT_INSTALL%\bin --destdir=%PRODUCT_INSTALL%\lib\%python_name%\site-packages --sipdir=%PRODUCT_INSTALL%\sip --spec=win32-msvc --sip-incdir=%sip_incdir% --pyuic5-interpreter=%python_exe% --disable QtNfc --disable=QtNetwork --disable=QtWebSockets 2>&1
-) 
+ SET BUILD_OPTIONS=%BUILD_OPTIONS% -u
+)
+%PYTHONBIN% configure.py %BUILD_OPTIONS:\=/% 
 if NOT %ERRORLEVEL% == 0 (
-    echo ERROR on python configure.py
+    echo ERROR on python configure.py %BUILD_OPTIONS:\=/% 
     exit 1
 )
 
@@ -71,10 +74,3 @@ if %SAT_DEBUG% == 1 (
 
 echo.
 echo ########## END
-
-:: ========== FUNCTIONS ==========
-EXIT /B
-
-:NORMALIZEPATH
-  SET RETVAL=%~dpfn1
-  EXIT /B

@@ -21,11 +21,11 @@ def set_env(env, prereq_dir, version):
         env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib', pyver, 'site-packages'))
         env.prepend('CPLUS_INCLUDE_PATH', os.path.join(prereq_dir, 'include', pyver))
     else:
-#        env.set('SIPDIR', os.path.join(env.get('PYTHON_ROOT_DIR'),'site-packages'))
-#        env.set('SIP_ROOT_DIR', os.path.join(env.get('PYTHON_ROOT_DIR'),'site-packages'))
-#        env.prepend('CPLUS_INCLUDE_PATH', os.path.join( env.get('PYTHON_INCLUDE_PATH'), pyver))
         env.prepend('CPLUS_INCLUDE_PATH', os.path.join(prereq_dir, 'include', pyver))
-        env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'lib', pyver, 'site-packages'))
+        if '5.5.1' in version:
+            env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'lib', 'site-packages'))
+        else:
+            env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'lib', pyver, 'site-packages'))
         env.prepend('PATH', os.path.join(prereq_dir, 'bin'))
   
 def set_nativ_env(env):

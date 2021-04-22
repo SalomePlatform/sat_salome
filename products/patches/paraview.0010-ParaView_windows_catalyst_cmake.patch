@@ -1,0 +1,29 @@
+diff -Naur ParaView-5.9.0_SRC_orig/ThirdParty/catalyst/vtkcatalyst/catalyst/cmake/catalyst-macros.cmake ParaView-5.9.0_SRC_modif/ThirdParty/catalyst/vtkcatalyst/catalyst/cmake/catalyst-macros.cmake
+--- ParaView-5.9.0_SRC_orig/ThirdParty/catalyst/vtkcatalyst/catalyst/cmake/catalyst-macros.cmake	2021-04-15 12:41:13.691878300 +0300
++++ ParaView-5.9.0_SRC_modif/ThirdParty/catalyst/vtkcatalyst/catalyst/cmake/catalyst-macros.cmake	2021-04-15 12:50:29.348516100 +0300
+@@ -65,11 +65,20 @@
+   if (arg_INSTALL_EXPORT_DEFAULT)
+     set (_exports EXPORT Catalyst)
+   endif()
+-  if (arg_LIBRARY_DESTINATION)
+-    install(
+-      TARGETS ${arg_TARGET}
+-      ${_exports}
+-      LIBRARY DESTINATION ${arg_LIBRARY_DESTINATION})
++  if(WIN32)
++    if (arg_LIBRARY_DESTINATION)
++      install(
++        TARGETS ${arg_TARGET}
++        ${_exports}
++        RUNTIME DESTINATION ${arg_LIBRARY_DESTINATION})
++    endif()
++  else()
++    if (arg_LIBRARY_DESTINATION)
++      install(
++        TARGETS ${arg_TARGET}
++        ${_exports}
++        LIBRARY DESTINATION ${arg_LIBRARY_DESTINATION})
++    endif()
+   endif()
+ endfunction()
+ 

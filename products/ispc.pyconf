@@ -36,10 +36,16 @@ default_win :
 version_1_15_0 :
 {
     build_source : "script"
-    compil_script :  "ispc-1.15.0.sh"
+    compil_script :  "ispc-1.15.0" + $VARS.scriptExtension
     archive_info : {archive_name : "ispc-1.15.0-x86_64.tar.gz"}
     patches : []
     depend : []
+}
+
+version_1_15_0_win :
+{
+    archive_info : {archive_name : "ispc-v1.15.0-windows.tar.gz"}
+    build_depend : ["cmake", "llvm"]
 }
 
 version_1_9_2 :
