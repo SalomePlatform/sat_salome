@@ -22,12 +22,12 @@ rm -rf $BUILD_DIR && mkdir -p $BUILD_DIR && cd $BUILD_DIR
 
 # For -qt-harfbuzz option, see spns #9694
 echo
-echo "*** $SOURCE_DIR/configure -prefix $PRODUCT_INSTALL $BUILD_TYPE -opensource -nomake tests -nomake examples -no-rpath -verbose -no-separate-debug-info -confirm-license -qt-libpng -qt-xcb -no-eglfs -dbus-runtime -skip qtwebengine -skip wayland -skip qtgamepad -system-freetype -qt-harfbuzz -no-openssl -no-glib"
+echo "*** $SOURCE_DIR/configure -prefix $PRODUCT_INSTALL $BUILD_TYPE -opensource -nomake tests -nomake examples -no-rpath -verbose -no-separate-debug-info -confirm-license -qt-libpng -qt-xcb -no-eglfs -dbus-runtime -skip qtwebengine -skip wayland -skip qtgamepad -system-freetype -qt-harfbuzz -no-openssl -no-glib -no-jasper"
 
 $SOURCE_DIR/configure -prefix $PRODUCT_INSTALL $BUILD_TYPE -opensource -nomake tests -nomake examples -no-rpath \
     -verbose -no-separate-debug-info -confirm-license -qt-libpng -qt-xcb -no-eglfs -dbus-runtime -skip qtwebengine \
     -skip wayland -skip qtgamepad -system-freetype -qt-harfbuzz \
-    -no-openssl -no-glib
+    -no-openssl -no-glib -no-jasper
 
 if [ $? -ne 0 ]
 then

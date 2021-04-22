@@ -34,7 +34,7 @@ default_win:
 version_2_5_0:
 {
     build_source : "cmake"
-    cmake_options : "-DBUILD_SHARED_LIBS:BOOL=ON -DNLOPT_MATLAB:BOOL=OFF -DNLOPT_OCTAVE:BOOL=OFF -DNLOPT_GUILE:BOOL=OFF"
+    cmake_options : "-DBUILD_SHARED_LIBS:BOOL=ON -DNLOPT_MATLAB:BOOL=OFF -DNLOPT_OCTAVE:BOOL=OFF -DNLOPT_GUILE:BOOL=OFF -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig"
 }
 
 version_2_5_0_win:

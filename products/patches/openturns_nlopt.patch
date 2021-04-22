@@ -1,0 +1,11 @@
+--- new_openturns/CMakeLists.txt	2021-04-08 17:38:10.804000000 +0200
++++ openturns/CMakeLists.txt	2021-04-08 18:08:15.428000000 +0200
+@@ -268,7 +268,7 @@
+ endif ()
+ 
+ if (USE_NLOPT)
+-#  find_package (NLopt CONFIG QUIET)
++  find_package (NLopt CONFIG QUIET)
+   if (NLopt_FOUND)
+     message(STATUS "Found NLopt: ${NLopt_DIR}")
+   else ()

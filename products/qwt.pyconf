@@ -8,7 +8,7 @@ default :
     {
        rpm : ["qwt-qt5"]
        rpm_dev : ["qwt-qt5-devel"]
-       apt : ["libqwt-qt5"]
+       apt : ["libqwt-qt5-6"]
        apt_dev : ["libqwt-qt5-dev"]
     }
     environ :

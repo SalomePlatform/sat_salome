@@ -1,0 +1,25 @@
+diff -rupN root_ref/cmake/modules/SearchInstalledSoftware.cmake root_new/cmake/modules/SearchInstalledSoftware.cmake
+--- root_ref/cmake/modules/SearchInstalledSoftware.cmake	2020-08-17 14:41:56.000000000 +0200
++++ root_new/cmake/modules/SearchInstalledSoftware.cmake	2021-04-01 13:22:21.914013106 +0200
+@@ -82,6 +82,10 @@ endif()
+ #---Check for Freetype---------------------------------------------------------------
+ if(NOT builtin_freetype)
+   message(STATUS "Looking for Freetype")
++  SET(FREETYPE_ROOT_DIR $ENV{FREETYPE_ROOT_DIR} CACHE PATH "Path to the FreeType.")
++  IF(FREETYPE_ROOT_DIR)
++    LIST(APPEND CMAKE_PREFIX_PATH "${FREETYPE_ROOT_DIR}")
++  ENDIF(FREETYPE_ROOT_DIR)
+   if(fail-on-missing)
+     find_package(Freetype REQUIRED)
+   else()
+@@ -574,6 +578,10 @@ endif()
+ #---Check for XML Parser Support-----------------------------------------------------------
+ if(xml)
+   message(STATUS "Looking for LibXml2")
++  SET(LIBXML2_ROOT_DIR $ENV{LIBXML2_ROOT_DIR} CACHE PATH "Path to the LIBXML2.")
++  IF(LIBXML2_ROOT_DIR)
++    LIST(APPEND CMAKE_PREFIX_PATH "${LIBXML2_ROOT_DIR}")
++  ENDIF(LIBXML2_ROOT_DIR)
+   find_package(LibXml2)
+   if(NOT LIBXML2_FOUND)
+     if(fail-on-missing)

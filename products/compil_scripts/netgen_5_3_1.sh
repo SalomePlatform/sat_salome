@@ -61,27 +61,21 @@ echo "*** configure"
 BFLAG="-m64"
 OLEVEL="-O2"
 
-if [ "${TCLHOME}" == '/usr' ]
+if [ "${TCLHOME}" != '/usr' ]
 then
-    TCL_LIB_DIR=${TCLHOME}/lib64
-else
-    TCL_LIB_DIR=${TCLHOME}/lib
+    TCL_TK_OPTIONS="--with-tcl=${TCLHOME}/lib --with-tk=${TCLHOME}/lib --with-tclinclude=${TCLHOME}/include"
 fi
 echo ./configure --prefix=${PRODUCT_INSTALL} \
     --with-occ=${CASROOT} \
-    --with-tcl=${TCL_LIB_DIR} \
-    --with-tk=${TCL_LIB_DIR} \
     --disable-openmp \
-    --with-tclinclude=${TCLHOME}/include \
+    ${TCL_TK_OPTIONS} \
     CXXFLAGS="-I${CASROOT}/include/opencascade ${OLEVEL} ${BFLAG} -std=c++0x"
 ./configure --prefix=${PRODUCT_INSTALL} \
     --with-occ=${CASROOT} \
-    --with-tcl=${TCL_LIB_DIR} \
-    --with-tk=${TCL_LIB_DIR} \
     --disable-openmp \
-    --with-tclinclude=${TCLHOME}/include \
+    ${TCL_TK_OPTIONS} \
     CXXFLAGS="-I${CASROOT}/include/opencascade ${OLEVEL} ${BFLAG} -std=c++0x" #-std=gnu++11" #-std=c++11 -std=c++0x"
-    
+
 if [ $? -ne 0 ]
 then
     echo "error on configure"

@@ -8,7 +8,7 @@ default :
     {
         rpm : ["freetype"]
         rpm_dev : ["freetype-devel"]
-        apt : ["libfreetype"]
+        apt : ["libfreetype6"]
         apt_dev : ["libfreetype6-dev"]
     }
     environ :

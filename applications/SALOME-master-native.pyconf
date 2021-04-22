@@ -18,6 +18,7 @@ APPLICATION :
            CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
            RESTRICTED_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "RESTRICTED"
            SALOME_USE_64BIT_IDS : '1'
+           VTK_SMP_IMPLEMENTATION_TYPE : 'OpenMP' # OpenMP # choose among: sequential / OpenMP / TBB switches
         }
         launch : {PYTHONIOENCODING:"UTF_8"} # alternative is to encode every accentued string with .encode('utf-8')
         SALOME_trace : "local" # local/file:.../with_logger
@@ -31,7 +32,9 @@ APPLICATION :
         boost : 'native'
         CAS : {tag: 'CR750-SALOME-PATCH', section: 'version_V7_5_0'}
         certifi : 'native'
-        cgns : 'native'
+        # Standalone native cgns works well. Unfortunately, it's directly linked to native hdf which uses a higher version than us.
+        # Rollback to embedded version to avoid versions mismatch between both of them (see imp_1538_cgns_export_import.py)
+        cgns : '4.1.1'
         chardet : 'native'
         click : 'native'
         cmake : 'native'
@@ -42,7 +45,7 @@ APPLICATION :
         docutils : 'native'
         doxygen : 'native'
         eigen : 'native'
-        embree : '3.3.0'
+        embree : '3.12.2'
         freeimage : 'native'
         freetype : 'native'
         gl2ps : 'native'
@@ -50,11 +53,10 @@ APPLICATION :
         gmsh : '4.1.4'
         graphviz : 'native'
         hdf5 : '1.10.3'
-        homard_bin : '11.12_hdf51103med410'
         idna : 'native'
         imagesize : 'native'
         # 'native' not exists (only available on Fedora platform)
-        ispc : '1.9.2'
+        ispc : '1.15.0'
         Jinja2 : 'native'
         kiwisolver : 'native'
         lapack : 'native'
@@ -69,18 +71,19 @@ APPLICATION :
         netgen : '5.3.1_with_CAS_7.2'
         nlopt : '2.4.2'
         numpy : 'native'
-        omniORB : '4.2.2'
-        omniORBpy : '4.2.2'
+        omniORB : '4.2.3'
+        omniORBpy : '4.2.3'
         opencv : 'native'
+        openVKL : '0.11.0'
         openturns: '1.16'
-        ospray : '1.8.4'
+        ospray : '2.4.0'
         packaging : 'native'
-        ParaView : '5.8.0'
+        ParaView : '5.9.0'
         petsc : {tag : '3.15.0', section: 'version_3_15_0'}
         Pillow : 'native'
         # 'native' not exists : freeCAD part but not delivered with it from package handler
         planegcs : '0.18-3cb6890'
-        pockets : 'native'
+        psutil : 'native'
         Pygments : 'native'
         pyparsing : 'native'
         PyQt : 'native'
@@ -90,6 +93,7 @@ APPLICATION :
         qt : 'native'
         qwt : 'native'
         requests : 'native'
+        rkCommon : '1.5.1'
         root: '6.22.02'
         scipy : 'native'
         scotch : 'native'
@@ -98,11 +102,9 @@ APPLICATION :
         six : 'native'
         snowballstemmer : 'native'
         Sphinx : 'native'
-        sphinxcontrib_napoleon : 'native'
         sphinxcontrib_websupport : 'native'
         sphinxintl: 'native'
         sphinx_rtd_theme : 'native'
-        StaticMeshPlugin : '5.8.0'
         swig : 'native'
         tbb : 'native'
         tcl : 'native'
@@ -136,8 +138,8 @@ APPLICATION :
         'PARAVIS'
         'JOBMANAGER'
         'YACS'
-        'SOLVERLAB'
         'YACSGEN'
+        'SOLVERLAB'
         'DOCUMENTATION'
         'SAMPLES'
         'COMPONENT'
@@ -176,13 +178,50 @@ APPLICATION :
         single_install_dir : "yes"
     }
 }
-#__overwrite__ :
-#[
-#   {
-#      # Overwrite dedicated to older distributions for a further native use
-#      # (Some system packages are missing for now on CentOS 8)
-#      __condition__ : "VARS.dist in ['FD32', 'DB10']"
-#      'APPLICATION.products.omniORB' : 'native'
-#      'APPLICATION.products.omniORBpy' : 'native'
-#   }
-#]
+__overwrite__ :
+[
+   {
+      # openturns - make install seems to not doing anything (although we see files installation in logs)
+      __condition__ : "VARS.dist in ['FD32', 'CO8']"
+      'APPLICATION.rm_products' : ['openturns']
+   }
+   {
+      # Although recent adaptations of GEOM CMake procedure to be compliant with openCV 4.X, some
+      # deeper investigations need to be done in its sources. Use embedded openCV product where
+      # native one is 4.X.
+      __condition__ : "VARS.dist in ['FD32', 'UB20.04']"
+      'APPLICATION.products.opencv' : '3.2.0'
+   }
+   {
+      #
+      __condition__ : "VARS.dist in ['UB20.04', 'CO8', 'FD32']"
+      'PRODUCTS.ParaView.version_5_9_0.patches' : ['paraview.0003-ParaViewClient.patch',
+                                                   'paraview.0005-ParaView_find_cgns.patch',
+                                                   'paraview-0012-LATA_64BITS_IDS.patch',
+                                                   'ParaView-5.9.0-CATALYST_cmake.patch',
+                                                   'paraview.0008-ParaView_coincident_rendering.patch']
+   }
+   {
+      # On DB10, ParaView fails to find xmlpatterns executable : ParaViewClient.cmake try to find it
+      # from Qt5_DIR, going back from it in filesystem (hardcoded).
+      # The standard patch is also needed to be able to build PARAVIS (same kind of issue).
+      # What is more, ParaView 5.9 CMake procedure requires Qt 5.12 as minimum version (5.11 here).
+      # As this version is compliant too, let's force it as the new minimum needed version.
+      __condition__ : "VARS.dist in ['DB10']"
+      'PRODUCTS.ParaView.version_5_9_0.patches' : ['paraview.0003-ParaViewClient.patch',
+                                                   'paraview.0005-ParaView_find_cgns.patch',
+                                                   'paraview-0012-LATA_64BITS_IDS.patch',
+                                                   'paraview-5.9_qt-minimum-version.patch',
+                                                   'paraview.0003-ParaViewClient_native.patch',
+                                                   'ParaView-5.9.0-CATALYST_cmake.patch',
+                                                   'paraview.0008-ParaView_coincident_rendering.patch']
+   }
+   {
+      # CentOS 8 repositories don't include sphinxintl package which must be installed through pip.
+      # To avoid its missing (system_info pyconf key doesn't handle this use case), we embed it.
+      __condition__ : "VARS.dist in ['CO8']"
+      'APPLICATION.products.sphinxintl' : '0.9.10'
+      'PRODUCTS.sphinxintl.default.properties.pip' : "no"
+      'APPLICATION.products.cmake' : '3.12.1'
+   }
+]

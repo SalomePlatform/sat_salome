@@ -16,11 +16,15 @@ def set_env(env, prereq_dir, version):
   env.prepend('PATH', os.path.join(prereq_dir, 'bin'))
   env.prepend('PYTHONPATH', prereq_dir)
   pyver = 'python' + env.get('PYTHON_VERSION')
-  env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'lib', pyver, 'site-packages'))
   if not platform.system() == "Windows" :
+    env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'lib', pyver, 'site-packages'))
     env.set('PYUIC5',os.path.join(prereq_dir, 'bin','pyuic5'))
     env.prepend('LD_LIBRARY_PATH', prereq_dir)
   else:
+    if '5.15' in version:
+      env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'lib', 'site-packages'))
+    else:
+      env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'lib', pyver, 'site-packages'))
     env.set('PYUIC5',os.path.join(prereq_dir, 'bin','pyuic5.bat'))
 
 def set_nativ_env(env):

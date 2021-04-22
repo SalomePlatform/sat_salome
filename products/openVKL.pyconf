@@ -2,13 +2,13 @@ default :
 {
     name : "openVKL"
     build_source : "cmake"
-    cmake_options : "-DBUILD_TESTING=OFF -DCMAKE_INSTALL_LIBDIR=lib"
+    cmake_options : "-DBUILD_TESTING=OFF -DCMAKE_INSTALL_LIBDIR=lib -DBUILD_EXAMPLES=OFF"
     get_source : "archive"
     environ :
     {
        env_script : $name + ".py"
     }
-    depend : ['Python', 'tbb','glfw', 'ispc', 'rkCommon', 'embree']
+    depend : ['Python', 'tbb', 'ispc', 'rkCommon', 'embree']
     build_depend : ['cmake']
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name

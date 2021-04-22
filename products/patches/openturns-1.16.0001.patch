@@ -53,6 +53,15 @@ diff -pruN openturns_ref/CMakeLists.txt openturns_dev/CMakeLists.txt
  if (MSVC OR WINTEL)
    set (CMAKE_REQUIRED_INCLUDES ${CMAKE_REQUIRED_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR}/lib/include/pthread_win32 ${CMAKE_CURRENT_SOURCE_DIR}/lib/include)
    include_directories (${PROJECT_SOURCE_DIR}/lib/include/pthread_win32 ${CMAKE_CURRENT_SOURCE_DIR}/lib/include)
+@@ -257,7 +268,7 @@ if (NOT R_EXECUTABLE)
+ endif ()
+ 
+ if (USE_NLOPT)
+-  find_package (NLopt CONFIG QUIET)
++#  find_package (NLopt CONFIG QUIET)
+   if (NLopt_FOUND)
+     message(STATUS "Found NLopt: ${NLopt_DIR}")
+   else ()
 
 diff -pruN openturns_ref/cmake/FindTBB.cmake openturns_dev/cmake/FindTBB.cmake
 --- openturns_ref/cmake/FindTBB.cmake	2021-02-19 15:46:57.058060005 +0100

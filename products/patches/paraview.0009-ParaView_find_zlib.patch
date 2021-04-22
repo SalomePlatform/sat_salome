@@ -1,0 +1,15 @@
+diff -Naur ParaView-5.8.0_SRC_orig/VTK/CMake/patches/3.13/FindZLIB.cmake ParaView-5.8.0_SRC_modif/VTK/CMake/patches/3.13/FindZLIB.cmake
+--- ParaView-5.8.0_SRC_orig/VTK/CMake/patches/3.13/FindZLIB.cmake	2020-03-23 13:31:26.000000000 +0300
++++ ParaView-5.8.0_SRC_modif/VTK/CMake/patches/3.13/FindZLIB.cmake	2020-04-13 14:13:11.214692753 +0300
+@@ -52,6 +52,11 @@
+ 
+ set(_ZLIB_SEARCHES)
+ 
++SET(ZLIB_ROOT_DIR $ENV{ZLIB_ROOT_DIR} CACHE PATH "PATH TO zlib.")
++IF(ZLIB_ROOT_DIR)
++  LIST(APPEND CMAKE_PREFIX_PATH "${ZLIB_ROOT_DIR}")
++ENDIF(ZLIB_ROOT_DIR)
++
+ # Search ZLIB_ROOT first if it is set.
+ if(ZLIB_ROOT)
+   set(_ZLIB_SEARCH_ROOT PATHS ${ZLIB_ROOT} NO_DEFAULT_PATH)

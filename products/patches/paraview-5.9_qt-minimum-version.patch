@@ -1,0 +1,11 @@
+--- ParaView/Qt/Core/CMakeLists.txt	2021-02-04 15:22:02.000000000 +0100
++++ ParaView_new/Qt/Core/CMakeLists.txt	2021-03-24 19:07:19.332728213 +0100
+@@ -165,7 +165,7 @@
+ vtk_module_find_package(
+   PACKAGE     Qt5
+   COMPONENTS  ${qt_components}
+-  VERSION     5.12
++  VERSION     5.11
+   FORWARD_VERSION_REQ MINOR)
+ 
+ set(CMAKE_AUTOMOC 1)

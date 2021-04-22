@@ -3,7 +3,7 @@ default :
 {
     name : "KERNEL"
     build_source : "cmake"
-    cmake_options : "-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_CMAKE_DEBUG=ON"
+    cmake_options : "-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_CMAKE_DEBUG=ON -DSALOME_USE_64BIT_IDS=ON"
     get_source : "git"
     git_info:
     {
@@ -29,7 +29,8 @@ default :
               "setuptools",
               "Pygments",
               "pytz",
-              "LIBBATCH"
+              "LIBBATCH",
+              "psutil"
               ]
     build_depend : ["cmake", "swig", "doxygen", "cppunit"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
@@ -61,7 +62,8 @@ default_win :
               "Pygments",
               "pytz",
               "LIBBATCH",
-              "graphviz"
+              "graphviz",
+              "psutil"
               ]
     build_depend : ["cmake", "swig", "doxygen", "cppunit"]
 }
@@ -86,6 +88,29 @@ default_MPI :
               "pytz",
               "cppunit",
               "openmpi",
+              "LIBBATCH",
+              "psutil"
+              ]
+}
+
+version_V8_5_0_to_V9_6_0:
+{
+    depend : ["Python",
+              "boost",
+              "cppunit",
+              "numpy",
+              "lapack",
+              "hdf5",
+              "omniORB",
+              "omniORBpy",
+              "docutils",
+              "libxml2",
+              "Sphinx",
+              "sphinxintl",
+              "Jinja2",
+              "setuptools",
+              "Pygments",
+              "pytz",
               "LIBBATCH"
               ]
 }

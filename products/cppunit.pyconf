@@ -8,7 +8,7 @@ default :
     {
         rpm : ["cppunit"]
         rpm_dev : ["cppunit-devel"]
-        apt : ["libcppunit"]
+        apt : []
         apt_dev : ["libcppunit-dev"]
     }
     environ :

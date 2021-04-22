@@ -1,0 +1,27 @@
+diff -Naur ParaView_ref/VTK/CMake/patches/3.17/FindMPI.cmake ParaView_new/VTK/CMake/patches/3.17/FindMPI.cmake
+--- ParaView_ref/VTK/CMake/patches/3.17/FindMPI.cmake	2021-02-04 15:22:02.000000000 +0100
++++ ParaView_new/VTK/CMake/patches/3.17/FindMPI.cmake	2021-04-20 17:51:28.112662000 +0200
+@@ -259,6 +259,11 @@
+ cmake_policy(PUSH)
+ cmake_policy(SET CMP0057 NEW) # if IN_LIST
+ 
++SET(MPI_ROOT_DIR $ENV{MPI_ROOT_DIR} CACHE PATH "PATH TO MPI")
++IF(MPI_ROOT_DIR)
++  LIST(APPEND CMAKE_PREFIX_PATH "${MPI_ROOT_DIR}")
++ENDIF(MPI_ROOT_DIR)
++
+ include(FindPackageHandleStandardArgs)
+ 
+ # Generic compiler names
+@@ -1727,11 +1732,6 @@
+   list(APPEND _MPI_REQ_VARS "MPI_MPICXX_FOUND")
+ endif()
+ 
+-find_package_handle_standard_args(MPI
+-    REQUIRED_VARS ${_MPI_REQ_VARS}
+-    VERSION_VAR ${_MPI_MIN_VERSION}
+-    HANDLE_COMPONENTS)
+-
+ #=============================================================================
+ # More backward compatibility stuff
+ 

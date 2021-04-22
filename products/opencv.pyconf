@@ -8,7 +8,7 @@ default :
     {
         rpm : ["opencv"]
         rpm_dev : ["opencv-devel"]
-        apt : ["libopencv"]
+        apt : ["python3-opencv"]
         apt_dev : ["libopencv-dev"]
     }
     environ :

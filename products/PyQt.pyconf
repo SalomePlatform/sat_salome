@@ -9,7 +9,7 @@ default :
         rpm : ["python3-qt5"]
         rpm_dev : ["python3-qt5-devel"]
         apt : ["python3-pyqt5"]
-        apt_dev : ["pyqt5-dev"]
+        apt_dev : ["pyqt5-dev", "pyqt5-dev-tools"]
     }
     environ :
     {
@@ -27,9 +27,14 @@ default :
     }
 }
 
-version_5_11_3 :
+version_5_15_3 :
 {
-    compil_script :  "PyQt-5.11" + $VARS.scriptExtension
+    compil_script :  "PyQt-5.15" + $VARS.scriptExtension
+}
+
+version_5_15_3_win :
+{
+    depend : ['Python','setuptools', 'toml', 'sip', 'qt']
 }
 
 version_5_9 :

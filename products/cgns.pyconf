@@ -8,7 +8,7 @@ default :
     {
         rpm : ["cgnslib"]
         rpm_dev : ["cgnslib-devel"]
-        apt : ["libcgns3"]
+        apt : []
         apt_dev : ["libcgns-dev"]
     }
     environ :

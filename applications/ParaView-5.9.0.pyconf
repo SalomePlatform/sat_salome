@@ -45,7 +45,6 @@ APPLICATION :
         embree : '3.12.2'
         freeimage : '3.16.0'
         freetype : '2.9.1'
-        glfw : 'native'
         graphviz : '2.38.0'
         hdf5 : '1.10.3'
         idna : '2.7'

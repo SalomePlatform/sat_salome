@@ -25,6 +25,16 @@ default_win :
     compil_script : 'pip_install_whl' + $VARS.scriptExtension
 }
 
+version_5_15_4 :
+{
+    compil_script : 'PyQtChart-5.15.4' + $VARS.scriptExtension
+}
+
+version_5_15_4_win :
+{
+    compil_script : 'pip_install_whl' + $VARS.scriptExtension
+}
+
 version_5_9 :
 {
     compil_script : 'PyQtChart-5.9' + $VARS.scriptExtension

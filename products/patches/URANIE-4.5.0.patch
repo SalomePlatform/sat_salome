@@ -1,0 +1,35 @@
+diff -rupN URANIE_ref/CmakePackage/FindCPPUNIT.cmake URANIE_new/CmakePackage/FindCPPUNIT.cmake
+--- URANIE_ref/CmakePackage/FindCPPUNIT.cmake	2020-11-30 12:46:24.000000000 +0100
++++ URANIE_new/CmakePackage/FindCPPUNIT.cmake	2021-04-01 09:38:51.077522950 +0200
+@@ -3,11 +3,16 @@
+ # It tries to find the club-config script which gives you all the needed information.
+ 
+ MESSAGE(STATUS "Looking for CPPUNIT...")
++SET(CPPUNIT_ROOT_DIR $ENV{CPPUNIT_ROOT_DIR}  CACHE PATH "PATH TO CPPUNIT.")
+ SET(CPPUNIT_LIB)
+ SET(CPPUNIT_VERSION)
+ SET(CPPUNIT_INCLUDE_DIR)
+ SET(CPPUNIT_LIBRARY_DIR)
+ 
++IF(CPPUNIT_ROOT_DIR)
++ LIST(APPEND CMAKE_PREFIX_PATH "${CPPUNIT_ROOT_DIR}")
++ENDIF(CPPUNIT_ROOT_DIR)
++
+ if(CMAKE_VERBOSE_MAKEFILE STREQUAL "ON")
+     message(STATUS " **** PKG_CONFIG_FOUND [${PKG_CONFIG_FOUND}]")
+     message(STATUS " **** PKG_CONFIG_EXECUTABLE [${PKG_CONFIG_EXECUTABLE}]")
+
+diff -rupN URANIE_ref/CmakePackage/UranieFindAllPackages.cmake URANIE_new/CmakePackage/UranieFindAllPackages.cmake
+--- URANIE_ref/CmakePackage/UranieFindAllPackages.cmake	2020-11-30 12:46:24.000000000 +0100
++++ URANIE_new/CmakePackage/UranieFindAllPackages.cmake	2021-04-01 09:37:11.801519322 +0200
+@@ -99,6 +99,10 @@ if(--disable-libxml2 STREQUAL "ON")
+     message(STATUS "Libxml2 is disabled")
+ else(--disable-libxml2 STREQUAL "ON")
+     message(STATUS "Looking for LibXml2...")
++    SET(LIBXML2_ROOT_DIR $ENV{LIBXML2_ROOT_DIR} CACHE PATH "Path to the LIBXML2.")
++    IF(LIBXML2_ROOT_DIR)
++      LIST(APPEND CMAKE_PREFIX_PATH "${LIBXML2_ROOT_DIR}")
++    ENDIF(LIBXML2_ROOT_DIR)
+     find_path(LIBXML2_INCLUDE_DIR NAMES libxml/xpath.h
+                                 PATHS ENV PATH
+                                 PATH_SUFFIXES ../include)

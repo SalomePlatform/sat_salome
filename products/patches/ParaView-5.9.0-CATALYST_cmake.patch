@@ -1,5 +1,18 @@
---- ParaView_ref/ThirdParty/catalyst/vtkcatalyst/catalyst/CMakeLists.txt	2021-02-12 16:35:40.957930618 +0100
-+++ ParaView/ThirdParty/catalyst/vtkcatalyst/catalyst/CMakeLists.txt	2021-02-12 16:35:50.500219714 +0100
+diff -Naur ParaView-5.9.0_ref/ThirdParty/catalyst/vtkcatalyst/catalyst/cmake/catalyst-config.cmake.in ParaView-5.9.0/ThirdParty/catalyst/vtkcatalyst/catalyst/cmake/catalyst-config.cmake.in
+--- ParaView-5.9.0_ref/ThirdParty/catalyst/vtkcatalyst/catalyst/cmake/catalyst-config.cmake.in	2021-02-04 15:22:02.000000000 +0100
++++ ParaView-5.9.0/ThirdParty/catalyst/vtkcatalyst/catalyst/cmake/catalyst-config.cmake.in	2021-03-01 15:51:58.110940810 +0100
+@@ -1,6 +1,6 @@
+ # Catalyst Package config file.
+ cmake_policy(PUSH)
+-cmake_policy(VERSION 3.13)
++cmake_policy(VERSION 3.12)
+ 
+ set(CATALYST_VERSION "@CATALYST_VERSION@")
+ set(CATALYST_ABI_VERSION "@CATALYST_ABI_VERSION@")
+
+diff -Naur ParaView-5.9.0_ref/ThirdParty/catalyst/vtkcatalyst/catalyst/CMakeLists.txt ParaView-5.9.0/ThirdParty/catalyst/vtkcatalyst/catalyst/CMakeLists.txt
+--- ParaView-5.9.0_ref/ThirdParty/catalyst/vtkcatalyst/catalyst/CMakeLists.txt	2021-02-04 15:22:02.000000000 +0100
++++ ParaView-5.9.0/ThirdParty/catalyst/vtkcatalyst/catalyst/CMakeLists.txt	2021-03-01 15:56:02.640910857 +0100
 @@ -1,4 +1,4 @@
 -cmake_minimum_required(VERSION 3.13...3.16 FATAL_ERROR)
 +cmake_minimum_required(VERSION 3.12...3.16 FATAL_ERROR)
