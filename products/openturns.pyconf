@@ -23,10 +23,22 @@ default :
 
 default_win :
 {
+    compil_script :  'pip_install' + $VARS.scriptExtension
+    properties :
+    {
+      single_install_dir : "yes"
+      incremental : "yes"
+      pip : "yes"
+    }
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'pthreads']
 }
 
 version_1_16 :
 {
     patches : ['openturns-1.16.0001.patch']
+}
+
+version_1_16_win :
+{
+    patches : []
 }
