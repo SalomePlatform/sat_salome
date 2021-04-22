@@ -159,7 +159,7 @@ APPLICATION :
         'EFICAS' : {tag : 'V9_7_0b1'}
         'EFICAS_TOOLS' : {tag : 'V9_7_0b1'}
         'ADAO' : {tag : 'V9_7_0b1'}
-        'PARAVISADDONS'
+        'PARAVISADDONS' : {tag : 'master'}
         'CEATESTBASE' : {tag: 'SalomeV9'}
     }
     profile :
