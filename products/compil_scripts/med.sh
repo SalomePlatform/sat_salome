@@ -66,6 +66,25 @@ then
     exit 3
 fi
 
+# post-build action in case devtoolset-8 is used
+LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
+case $LINUX_DISTRIBUTION in
+    CO7)
+	if [ -n "$X_SCLS" ]
+	then
+	    X_SCLSVALUE=$(echo $X_SCLS)
+	    if [ $X_SCLSVALUE == "devtoolset-8" ]; then
+		echo "WARNING: devtoolset-8 is installed on ${LINUX_DISTRIBUTION} - libgfortran will be embedded..."
+		cp -RP /usr/lib64/libgfortran.so.5* $PRODUCT_INSTALL/lib/
+	    fi
+	else
+	    echo "INFO: X_SCLS does not seem to be set. skipping..."
+	fi
+	;;
+    *)
+        ;;
+esac
+
 echo
 echo "########## END"
 
