@@ -181,11 +181,6 @@ APPLICATION :
 __overwrite__ :
 [
    {
-      # openturns - make install seems to not doing anything (although we see files installation in logs)
-      __condition__ : "VARS.dist in ['FD32', 'CO8']"
-      'APPLICATION.rm_products' : ['openturns']
-   }
-   {
       # Although recent adaptations of GEOM CMake procedure to be compliant with openCV 4.X, some
       # deeper investigations need to be done in its sources. Use embedded openCV product where
       # native one is 4.X.
