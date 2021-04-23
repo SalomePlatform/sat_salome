@@ -40,6 +40,12 @@ fi
 echo
 echo "*** check installation"
 
+if [ -d "${PRODUCT_INSTALL}/lib64" ]
+then
+    mv ${PRODUCT_INSTALL}/lib64/* ${PRODUCT_INSTALL}/lib
+    rmdir ${PRODUCT_INSTALL}/lib64
+fi
+
 export PYTHONPATH=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages:${PYTHONPATH}
 export LD_LIBRARY_PATH=${PRODUCT_INSTALL}/lib:${LD_LIBRARY_PATH}
 chmod +x ${SOURCE_DIR}/python/test/t_features.py

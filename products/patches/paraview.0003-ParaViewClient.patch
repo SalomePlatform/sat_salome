@@ -1,7 +1,11 @@
---- ParaView-5.8.0-RC2.orig/CMake/ParaViewClient.cmake	2020-03-02 15:38:53.791382799 +0300
-+++ ParaView-5.8.0-RC2.new/CMake/ParaViewClient.cmake	2020-03-02 18:31:04.304698442 +0300
-@@ -516,6 +516,7 @@
-     NAMES xmlpatterns-qt5 xmlpatterns
+--- ParaView.orig/CMake/ParaViewClient.cmake	2021-02-04 15:22:02.000000000 +0100
++++ ParaView.new/CMake/ParaViewClient.cmake	2021-04-23 17:37:01.814270336 +0200
+@@ -513,9 +513,10 @@
+ 
+   include("${_ParaViewClient_cmake_dir}/paraview-find-package-helpers.cmake" OPTIONAL)
+   find_program(qt_xmlpatterns_executable
+-    NAMES xmlpatterns-qt5 xmlpatterns
++    NAMES xmlpatterns xmlpatterns-qt5
      HINTS "${Qt5_DIR}/../../../bin"
            "${Qt5_DIR}/../../../libexec/qt5/bin"
 +    NO_CMAKE_PATH
