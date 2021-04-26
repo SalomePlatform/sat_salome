@@ -103,6 +103,7 @@ APPLICATION :
         sphinxcontrib_websupport : '1.1.0'
         sphinx_rtd_theme : '0.4.3'
         sphinxintl: '0.9.10'
+        StaticMeshPlugin: '5.8.0'
         swig : '3.0.12'
         tbb : '2019_U8'
         tcl : '8.6.0'
