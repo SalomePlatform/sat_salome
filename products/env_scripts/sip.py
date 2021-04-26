@@ -22,11 +22,12 @@ def set_env(env, prereq_dir, version):
         env.prepend('CPLUS_INCLUDE_PATH', os.path.join(prereq_dir, 'include', pyver))
     else:
         env.prepend('CPLUS_INCLUDE_PATH', os.path.join(prereq_dir, 'include', pyver))
-        if '5.5.1' in version:
-            env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'lib', 'site-packages'))
+        if '5.5.0' in version:
+            env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'Lib', 'site-packages'))
+            env.prepend('PATH', os.path.join(prereq_dir, 'scripts'))
         else:
             env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'lib', pyver, 'site-packages'))
-        env.prepend('PATH', os.path.join(prereq_dir, 'bin'))
+            env.prepend('PATH', os.path.join(prereq_dir, 'bin'))
   
 def set_nativ_env(env):
     env.set('SIPDIR', '/usr')
