@@ -29,7 +29,7 @@ APPLICATION :
         # PREREQUISITES :
         alabaster : '0.7.6'
         Babel : '2.7.0'
-        boost : '1.58.0'
+        boost : '1.71.0'
         CAS : {tag: 'CR750-SALOME-PATCH', section: 'version_V7_5_0'}
         certifi : '2018.8.24'
         cgns : '4.1.1'
@@ -58,7 +58,7 @@ APPLICATION :
         libxml2 : '2.9.1'
         llvm : '8.0.1-clang'
         markupsafe : '0.23'
-        matplotlib : '2.2.2'
+        matplotlib : '3.0.3'
         medfile : {section: 'default_Autotools', tag: '4.1.0'}
         mesa : '19.0.8'
         MeshGems : '2.12-1'
@@ -198,6 +198,7 @@ __overwrite__ :
                                                  'paraview-0012-LATA_64BITS_IDS.patch',
                                                  'ParaView-5.9.0-CATALYST_cmake.patch',
                                                  'paraview.0008-ParaView_coincident_rendering.patch',
-                                                 'paraview.0015-Paraview_VTKM_ioss.patch']
+                                                 'paraview.0015-Paraview_VTKM_ioss.patch',
+                                                 'paraview.0017-ParaView_protobuf_crash.patch']
   }
 ]

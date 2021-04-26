@@ -1,0 +1,14 @@
+diff -Naur ParaView-5.9.0_SRC_orig/Remoting/Application/vtkInitializationHelper.cxx ParaView-5.9.0_SRC_modif/Remoting/Application/vtkInitializationHelper.cxx
+index e171735139..47784ec70e 100644
+--- ParaView-5.9.0_SRC_orig/Remoting/Application/vtkInitializationHelper.cxx
++++ ParaView-5.9.0_SRC_modif/Remoting/Application/vtkInitializationHelper.cxx
+@@ -300,7 +300,7 @@ void vtkInitializationHelper::Finalize()
+   vtkProcessModule::Finalize();
+ 
+   // Optional:  Delete all global objects allocated by libprotobuf.
+-  google::protobuf::ShutdownProtobufLibrary();
++  //google::protobuf::ShutdownProtobufLibrary();
+ }
+ 
+ //----------------------------------------------------------------------------
+

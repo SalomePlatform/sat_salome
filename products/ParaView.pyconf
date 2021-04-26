@@ -42,7 +42,8 @@ version_5_9_0 :
                'paraview.0007-ParaView_find_freetype.patch',
                'paraview-0012-LATA_64BITS_IDS.patch',
                'ParaView-5.9.0-CATALYST_cmake.patch',
-               'paraview.0008-ParaView_coincident_rendering.patch'
+               'paraview.0008-ParaView_coincident_rendering.patch',
+               'paraview.0017-ParaView_protobuf_crash.patch'
               ]
 }
 
@@ -57,7 +58,8 @@ version_5_9_0_int32 :
                'paraview.0006-ParaView_find_libxml2.patch',
                'paraview.0007-ParaView_find_freetype.patch',
                'ParaView-5.9.0-CATALYST_cmake.patch',
-               'paraview.0008-ParaView_coincident_rendering.patch'
+               'paraview.0008-ParaView_coincident_rendering.patch',
+               'paraview.0017-ParaView_protobuf_crash.patch'
               ]
 }
 
@@ -87,7 +89,8 @@ version_5_9_0_win :
                'paraview-0012-LATA_64BITS_IDS.patch',
                'ParaView-5.9.0-CATALYST_cmake.patch',
                'paraview.0010-ParaView_windows_catalyst_cmake.patch',
-               'paraview.0008-ParaView_coincident_rendering.patch'
+               'paraview.0008-ParaView_coincident_rendering.patch',
+               'paraview.0017-ParaView_protobuf_crash.patch'
               ]
 }
 
@@ -116,7 +119,8 @@ version_5_9_0_win_int32 :
                'paraview.0008-ParaView_find_zlib.patch',
                'ParaView-5.9.0-CATALYST_cmake.patch',
                'paraview.0010-ParaView_windows_catalyst_cmake.patch',
-               'paraview.0008-ParaView_coincident_rendering.patch'
+               'paraview.0008-ParaView_coincident_rendering.patch',
+               'paraview.0017-ParaView_protobuf_crash.patch'
               ]
 }
 
@@ -132,7 +136,8 @@ version_5_9_0_MPI :
                'paraview-5.9-VTKM_MPI.patch',
                'paraview-0012-LATA_64BITS_IDS.patch',
                'ParaView-5.9.0-CATALYST_cmake.patch',
-               'paraview.0008-ParaView_coincident_rendering.patch'
+               'paraview.0008-ParaView_coincident_rendering.patch',
+               'paraview.0017-ParaView_protobuf_crash.patch'
               ]
 }
 
@@ -147,7 +152,8 @@ version_5_9_0_MPI_int32 :
                'paraview.0007-ParaView_find_freetype.patch',
                'paraview-5.9-VTKM_MPI.patch',
                'ParaView-5.9.0-CATALYST_cmake.patch',
-               'paraview.0008-ParaView_coincident_rendering.patch'
+               'paraview.0008-ParaView_coincident_rendering.patch',
+               'paraview.0017-ParaView_protobuf_crash.patch'
               ]
 }
 
