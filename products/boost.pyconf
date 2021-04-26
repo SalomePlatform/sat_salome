@@ -33,6 +33,11 @@ default_win :
    archive_info : {archive_name : "boost-" + $APPLICATION.products.boost + "_windows.tar.gz"}
 }
 
+version_1_71_0 :
+{
+    compil_script : "boost-1.71.0.sh"
+}
+
 version_1_52_0 :
 {
     patches : 
