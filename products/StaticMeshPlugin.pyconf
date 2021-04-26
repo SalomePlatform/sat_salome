@@ -11,7 +11,8 @@
     environ :
     {
       StaticMeshPlugin : $install_dir
-      PV_PLUGIN_PATH_ : $install_dir + $VARS.sep + 'lib' + $VARS.sep + 'paraview'
+      # SPN 24019 : do not add StaticMeshPlugin to PV_PLUGIN_PATH - uploaded on request only
+      #PV_PLUGIN_PATH_ : $install_dir + $VARS.sep + 'lib' + $VARS.sep + 'paraview'
     }
     depend :
     [
