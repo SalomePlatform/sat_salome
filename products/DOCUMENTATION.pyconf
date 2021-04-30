@@ -11,7 +11,8 @@ default :
     environ :
     {
     }
-    cmake_options : "-DSALOME_INSTALL_MODULES_DOC=ON"
+    # Symlinks option is hidden for Windows thanks to cmake_dependent_option instruction (not used then)
+    cmake_options : "-DSALOME_INSTALL_MODULES_DOC=ON -DSALOME_CREATE_SYMLINKS=ON"
     depend : [
              "KERNEL", 
              "Sphinx", 
@@ -22,7 +23,8 @@ default :
              "pytz", 
              "markupsafe" 
              ]
-    opt_depend : [BLSURFPLUGIN, EFICAS, GEOM, GHS3DPLUGIN, GHS3DPRLPLUGIN, GMSHPLUGIN, GUI, HELLO, HEXABLOCK, HYBRIDPLUGIN, HexoticPLUGIN, JOBMANAGER, NETGENPLUGIN, PYHELLO, SHAPER, SMESH, YACS]
+    # To reduce the (long) list, we only declare tip of the dependencies tree (for instance, SMESH will be automatically used through its plugins)
+    opt_depend : [SHAPER, PARAVIS, HEXABLOCK, HELLO, PYHELLO, ADAO, HOMARD, JOBMANAGER, BLSURFPLUGIN, GHS3DPLUGIN, GHS3DPRLPLUGIN, GMSHPLUGIN, HYBRIDPLUGIN, HexoticPLUGIN, NETGENPLUGIN]
     build_depend : ["cmake", "doxygen"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
