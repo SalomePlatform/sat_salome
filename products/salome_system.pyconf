@@ -4,10 +4,38 @@ default :
     get_source : "native"
     system_info : 
     {
-        rpm : ["dbus-libs", "gmp", "libglvnd", "libglvnd-egl", "libglvnd-glx", "libglvnd-opengl", "libvorbis", "mariadb-libs", "openssl-libs", "tcl", "tk", "libogg", "libpng", "alsa-lib", "atk", "atlas", "bzip2-libs", "cairo", "cyrus-sasl-lib", "elfutils-libelf", "elfutils-libs", "expat", "flac-libs", "fontconfig", "freetype", "fribidi", "gd", "gdbm", "gdk-pixbuf2", "glib2", "glibc", "graphite2", "gsm", "gtk2", "harfbuzz", "jbigkit-libs", "keyutils-libs", "krb5-libs", "libasyncns", "libattr", "libblkid", "libcap", "libcom_err", "libdrm", "libffi", "libgcc", "libgcrypt", "libgfortran", "libgpg-error", "libICE", "libicu", "libjpeg-turbo", "libmount", "libquadmath", "libselinux", "libSM", "libsndfile", "libstdc++", "libthai", "libtiff", "libuuid", "libX11", "libXau", "libxcb", "libXcomposite", "libXcursor", "libXdamage", "libXext", "libXfixes", "libXft", "libXi", "libXinerama", "libXmu", "libXpm", "libXrandr", "libXrender", "libXt", "libXtst", "lua", "lz4", "mesa-libGLU", "ncurses-libs", "nspr", "nss", "nss-softokn-freebl", "nss-util", "openldap", "pango", "pcre", "pixman", "postgresql-libs", "pulseaudio-libs", "pulseaudio-libs-glib2", "readline", "ruby-libs", "sqlite", "systemd-libs", "tbb", "tcp_wrappers-libs", "xz-libs", "zlib"]
-        rpm_dev : ["python3", "which", "openssl-devel", "tbb-devel", "gcc", "make", "sed", "gcc-c++", "expat", "fontconfig-devel", "flex", "bison", "mesa-libGLU-devel", "perl", "libxcb-devel", "xcb-util-devel", "libxkbcommon-devel", "libxkbcommon-x11-devel", "bzip2-devel", "libXi-devel", "libXmu-devel", "libXtst-devel", "automake", "libtool", "libjpeg-turbo-devel", "cmake", "libXpm-devel", "libXft-devel"]
-        apt : []
-        apt_dev : []
+        rpm : ["dbus-libs", "gmp", "libglvnd", "libglvnd-egl", "libglvnd-glx", "libglvnd-opengl", 
+               "libvorbis", "openssl-libs", "tcl", "tk", "libogg", "libpng", "alsa-lib", "atk", 
+               "bzip2-libs", "cairo", "cyrus-sasl-lib", "elfutils-libelf", "elfutils-libs", "expat", 
+               "flac-libs", "fontconfig", "freetype", "fribidi", "gd", "gdbm", "gdk-pixbuf2", "glib2", 
+               "glibc", "graphite2", "gsm", "gtk2", "harfbuzz", "jbigkit-libs", "keyutils-libs", 
+               "krb5-libs", "libasyncns", "libattr", "libblkid", "libcap", "libcom_err", "libdrm", 
+               "libffi", "libgcc", "libgcrypt", "libgfortran", "libgpg-error", "libICE", "libicu", 
+               "libjpeg-turbo", "libmount", "libquadmath", "libselinux", "libSM", "libsndfile", "libstdc++", 
+               "libthai", "libtiff", "libuuid", "libX11", "libXau", "libxcb", "libXcomposite", "libXcursor", 
+               "libXdamage", "libXext", "libXfixes", "libXft", "libXi", "libXinerama", "libXmu", "libXpm", 
+               "libXrandr", "libXrender", "libXt", "libXtst", "lua", "lz4", "mesa-libGLU", "ncurses-libs", 
+               "nspr", "nss", "nss-softokn-freebl", "nss-util", "openldap", "pango", "pcre", "pixman", 
+               "pulseaudio-libs", "pulseaudio-libs-glib2", "readline", "sqlite", "systemd-libs", "tbb", 
+               "xz-libs", "zlib"]
+        rpm_dev : ["openssl-devel", "tbb-devel", "gcc", "make", "sed", "gcc-c++", "expat-devel", "fontconfig-devel", 
+                   "flex", "bison", "mesa-libGLU-devel", "perl", "libxcb-devel", "xcb-util-devel", "libxkbcommon-devel", 
+                   "libxkbcommon-x11-devel", "bzip2-devel", "libXi-devel", "libXmu-devel", "automake", "libtool", 
+                   "libjpeg-turbo-devel", "cmake", "libXpm-devel", "libXft-devel"]
+        apt : ["libbsd0", "libbz2-1.0", "libc6", "libdc1394-22", "libdrm2", "libegl1", "libevent-2.1-6",
+               "libevent-pthreads-2.1-6", "libexif12", "libexpat1", "libffi6", "libfftw3-double3", "libfontconfig1", 
+               "libgcc1", "libgcc-8-dev", "libgfortran5", "libgl1", "libglu1-mesa", "libglvnd0", "libglx0", 
+               "libgomp1", "libgphoto2-6", "libgphoto2-port12", "libhwloc5", "libice6", "libicu63", "libilmbase23", 
+               "libjbig0", "libjpeg62-turbo", "libjsoncpp1", "libltdl7", "liblzma5", "libncurses6", "libnuma1", 
+               "libopenexr23", "libopengl0", "libopenmpi3", "libpcl1", "libpcre3", "libpng16-16", "libquadmath0", 
+               "libraw1394-11", "libreadline7", "libsm6", "libssl1.1", "libstdc++6", "libtiff5", "libtinfo6", "libudev1", 
+               "libusb-1.0-0", "libuuid1", "libwebp6", "libx11-6", "libx11-xcb1", "libxau6", "libxcb1", "libxcb-glx0", 
+               "libxcb-xfixes0", "libxcb-xkb1", "libxdmcp6", "libxext6", "libxft2", "libxi6", "libxkbcommon0", "libxkbcommon-x11-0", 
+               "libxmu6", "libxpm4", "libxrender1", "libxss1", "libxt6", "libzstd1", "zlib1g"]
+        apt_dev : ["libssl-dev", "libtbb-dev", "gcc", "make", "sed", "g++", "libexpat1-dev", "libfontconfig1-dev", 
+                   "flex", "bison", "libglu1-mesa-dev", "perl", "libx11-xcb-dev ", "libxcb-dri2-0-dev", "libxkbcommon-dev", 
+                   "libxkbcommon-x11-dev", "bzip2", "libxi-dev", "libxt-dev", "libxmu-dev", "libxpm-dev", "libxft-dev", 
+                   "automake", "libtool", "libjpeg-dev", "cmake"]
     }
     depend : []
     properties :
