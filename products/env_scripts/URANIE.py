@@ -23,9 +23,7 @@ def set_env(env, prereq_dir, version, forBuild=None):
     env.prepend('LD_LIBRARY_PATH', os.path.join(uranie, 'lib'))
 
     # ROOT PATH
-    root_env = env.get('ROOT_ROOT_DIR')
-    env.set('ROOTSYS', root_env)
-
+    root_env = env.get('ROOTSYS')
     root_lib_env = os.path.join(root_env,'lib','root')
     if os.path.isdir(root_lib_env):
       env.prepend('ROOTSYSLIB', root_lib_env)
