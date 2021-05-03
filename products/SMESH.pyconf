@@ -86,7 +86,6 @@ default_win :
               "tbb"
             ]
     build_depend : ["cmake", "swig", "doxygen", "cppunit", "f2c"]
-    patches : ['BOS-24228.patch']
 }
 
 default_MPI :
