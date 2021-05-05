@@ -29,7 +29,7 @@ default :
 
 version_3_12_1:
 {
-  patches : ['cmake-3.12.1.patch'] # spns #19085
+  patches : ['cmake-3.12.1.patch', 'cmake-3.12.1-checkUnusedVariables.patch'] # spns #19085
 }
 
 version_3_12_1_win:
