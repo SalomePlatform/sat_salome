@@ -195,10 +195,9 @@ __overwrite__ :
                                                  'paraview.0005-ParaView_find_cgns.patch',
                                                  'paraview.0006-ParaView_find_libxml2.patch',
                                                  'paraview.0007-ParaView_find_freetype.patch',
-                                                 'paraview-0012-LATA_64BITS_IDS.patch',
-                                                 'ParaView-5.9.0-CATALYST_cmake.patch',
+                                                 'paraview.0010-ParaView_CATALYST_cmake.patch',
                                                  'paraview.0008-ParaView_coincident_rendering.patch',
                                                  'paraview.0015-Paraview_VTKM_ioss.patch',
-                                                 'paraview.0017-ParaView_protobuf_crash.patch']
+                                                 'paraview.0011-ParaView_protobuf_crash.patch']
   }
 ]
