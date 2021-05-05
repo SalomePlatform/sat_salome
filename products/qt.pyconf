@@ -38,10 +38,22 @@ version_5_15_2 :
   depend : ["freetype", 'llvm']
 }
 
+version_5_15_2_win :
+{
+  depend : ["freetype"]
+  build_depend : [llvm']
+}
+
 version_5_12_10 :
 {
   compil_script : "qt-5.12.10" + $VARS.scriptExtension
   depend : ["freetype", 'llvm']
+}
+
+version_5_12_10_win :
+{
+  depend : ["freetype"]
+  build_depend : [llvm']
 }
 
 version_5_9_1 :
