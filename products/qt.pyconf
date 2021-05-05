@@ -41,7 +41,7 @@ version_5_15_2 :
 version_5_15_2_win :
 {
   depend : ["freetype"]
-  build_depend : [llvm']
+  build_depend : ["llvm"]
 }
 
 version_5_12_10 :
@@ -53,7 +53,7 @@ version_5_12_10 :
 version_5_12_10_win :
 {
   depend : ["freetype"]
-  build_depend : [llvm']
+  build_depend : ["llvm"]
 }
 
 version_5_9_1 :
