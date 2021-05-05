@@ -84,4 +84,11 @@ APPLICATION :
 }
 __overwrite__ :
 [
+   {
+      # sphinxintl is missing on this node
+      __condition__ : "VARS.dist in ['CO8']"
+      'APPLICATION.products.sphinxintl' : '0.9.10'
+      'PRODUCTS.sphinxintl.default.properties.pip' : "no"
+      'APPLICATION.products.cmake' : '3.12.1'
+   }
 ]
