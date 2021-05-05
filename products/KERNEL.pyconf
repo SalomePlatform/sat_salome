@@ -45,7 +45,7 @@ default :
 
 default_win :
 {
-    cmake_options : "-DSALOME_USE_LIBBATCH=ON -DCMAKE_GENERATOR=\"Visual Studio 15 2017 Win64\" -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR:\=/%/bin/swig.exe -DCMAKE_CXX_COMPILER_ARCHITECTURE_ID=x64 -DBOOST_ROOT=%BOOST_ROOT_DIR:\=/% -DBOOST_DEBUG=ON -DBoost_ADDITIONAL_VERSIONS=\"1.67.0\" \"1.67\" -DBOOST_INCLUDEDIR=%BOOST_ROOT_DIR:\=/%/include/boost-1_67 -DBOOST_LIBRARYDIR=%BOOST_ROOT_DIR:\=/%/lib "
+    cmake_options : "-DSALOME_USE_LIBBATCH=ON -DCMAKE_GENERATOR=\"Visual Studio 15 2017 Win64\" -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR:\=/%/bin/swig.exe -DCMAKE_CXX_COMPILER_ARCHITECTURE_ID=x64 -DBOOST_ROOT=%BOOST_ROOT_DIR:\=/% -DBOOST_DEBUG=ON -DBoost_ADDITIONAL_VERSIONS=\"1.67.0\" \"1.67\" -DBOOST_INCLUDEDIR=%BOOST_ROOT_DIR:\=/%/include/boost-1_67 -DBOOST_LIBRARYDIR=%BOOST_ROOT_DIR:\=/%/lib -DSALOME_USE_64BIT_IDS=ON "
     depend : ["Python",
               "boost",
               "numpy",
@@ -70,7 +70,7 @@ default_win :
 
 default_MPI :
 {
-    cmake_options : "-DSALOME_USE_MPI=ON -DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig"
+    cmake_options : "-DSALOME_USE_MPI=ON -DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_USE_64BIT_IDS=ON "
     depend : ["Python",
               "boost",
               "numpy",
@@ -95,6 +95,7 @@ default_MPI :
 
 version_V8_5_0_to_V9_6_0:
 {
+    cmake_options : "-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_CMAKE_DEBUG=ON "
     depend : ["Python",
               "boost",
               "cppunit",
