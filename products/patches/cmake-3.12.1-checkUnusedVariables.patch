@@ -1,0 +1,12 @@
+diff -Naur cmake-3.12.1/Source/cmake.cxx cmake-3.12.1_new/Source/cmake.cxx
+--- cmake-3.12.1/Source/cmake.cxx	2018-08-09 14:14:08.000000000 +0200
++++ cmake-3.12.1_new/Source/cmake.cxx	2021-05-05 12:21:45.728181956 +0200
+@@ -2589,7 +2589,7 @@
+     }
+   }
+   if (haveUnused) {
+-    this->IssueMessage(cmake::WARNING, msg.str());
++    this->IssueMessage(cmake::FATAL_ERROR, msg.str());
+   }
+ #endif
+ }
