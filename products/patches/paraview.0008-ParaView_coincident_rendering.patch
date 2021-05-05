@@ -1,6 +1,6 @@
-diff -Naur ParaView-5.8.0_SRC_orig/Remoting/Views/Resources/utilities_remotingviews.xml ParaView-5.8.0_SRC_modif/Remoting/Views/Resources/utilities_remotingviews.xml
---- ParaView-5.8.0_SRC_orig/Remoting/Views/Resources/utilities_remotingviews.xml	2020-03-23 13:30:04.000000000 +0300
-+++ ParaView-5.8.0_SRC_modif/Remoting/Views/Resources/utilities_remotingviews.xml	2020-04-27 19:07:56.559333300 +0300
+diff -Naur ParaView-5.9.0_SRC_orig/Remoting/Views/Resources/utilities_remotingviews.xml ParaView-5.9.0_SRC_modif/Remoting/Views/Resources/utilities_remotingviews.xml
+--- ParaView-5.9.0_SRC_orig/Remoting/Views/Resources/utilities_remotingviews.xml
++++ ParaView-5.9.0_SRC_modif/Remoting/Views/Resources/utilities_remotingviews.xml
 @@ -31,7 +31,7 @@
        <DoubleVectorProperty name="PolygonOffsetParameters"
          command="SetPolygonOffsetParameters"
@@ -28,10 +28,10 @@ diff -Naur ParaView-5.8.0_SRC_orig/Remoting/Views/Resources/utilities_remotingvi
          panel_visibility="advanced">
          <DoubleRangeDomain name="range" />
          <Documentation>
-diff -Naur ParaView-5.8.0_SRC_orig/VTK/Rendering/Core/vtkMapper.cxx ParaView-5.8.0_SRC_modif/VTK/Rendering/Core/vtkMapper.cxx
---- ParaView-5.8.0_SRC_orig/VTK/Rendering/Core/vtkMapper.cxx	2020-03-23 13:31:28.000000000 +0300
-+++ ParaView-5.8.0_SRC_modif/VTK/Rendering/Core/vtkMapper.cxx	2020-04-27 18:07:54.639203400 +0300
-@@ -35,11 +35,11 @@
+diff -Naur ParaView-5.9.0_SRC_orig/VTK/Rendering/Core/vtkMapper.cxx ParaView-5.9.0_SRC_modif/VTK/Rendering/Core/vtkMapper.cxx
+--- ParaView-5.9.0_SRC_orig/VTK/Rendering/Core/vtkMapper.cxx
++++ ParaView-5.9.0_SRC_modif/VTK/Rendering/Core/vtkMapper.cxx
+@@ -36,11 +36,11 @@
  static double vtkMapperGlobalResolveCoincidentTopologyZShift = 0.01;
  static int vtkMapperGlobalResolveCoincidentTopologyPolygonOffsetFaces = 1;
  
@@ -46,32 +46,34 @@ diff -Naur ParaView-5.8.0_SRC_orig/VTK/Rendering/Core/vtkMapper.cxx ParaView-5.8
 +static double vtkMapperGlobalResolveCoincidentTopologyLineOffsetUnits = 1.0;
 +static double vtkMapperGlobalResolveCoincidentTopologyPointOffsetUnits = 0.0;
  
- // Construct with initial range (0,1).
- vtkMapper::vtkMapper()
-diff -Naur ParaView-5.8.0_SRC_orig/VTK/Rendering/OpenGL2/vtkOpenGLPolyDataMapper.cxx ParaView-5.8.0_SRC_modif/VTK/Rendering/OpenGL2/vtkOpenGLPolyDataMapper.cxx
---- ParaView-5.8.0_SRC_orig/VTK/Rendering/OpenGL2/vtkOpenGLPolyDataMapper.cxx	2020-03-23 13:31:28.000000000 +0300
-+++ ParaView-5.8.0_SRC_modif/VTK/Rendering/OpenGL2/vtkOpenGLPolyDataMapper.cxx	2020-04-27 18:12:49.486483700 +0300
-@@ -1963,7 +1963,6 @@
-   float factor = 0.0;
-   float offset = 0.0;
-   this->GetCoincidentParameters(ren, actor, factor, offset);
--  vtkOpenGLCamera* cam = (vtkOpenGLCamera*)(ren->GetActiveCamera());
+ vtkCxxSetObjectMacro(vtkMapper, Selection, vtkSelection);
  
-   // if we need an offset handle it here
-   // The value of .000016 is suitable for depth buffers
-@@ -1974,23 +1973,26 @@
+diff -Naur ParaView-5.9.0_SRC_orig/VTK/Rendering/OpenGL2/vtkOpenGLPolyDataMapper.cxx ParaView-5.9.0_SRC_modif/VTK/Rendering/OpenGL2/vtkOpenGLPolyDataMapper.cxx
+--- ParaView-5.9.0_SRC_orig/VTK/Rendering/OpenGL2/vtkOpenGLPolyDataMapper.cxx
++++ ParaView-5.9.0_SRC_modif/VTK/Rendering/OpenGL2/vtkOpenGLPolyDataMapper.cxx
+@@ -2430,42 +2430,26 @@
    {
      std::string FSSource = shaders[vtkShader::Fragment]->GetSource();
  
--    if (cam->GetParallelProjection())
-+    if (factor != 0.0)
-     {
+-    if (ren->GetActiveCamera()->GetParallelProjection())
+-    {
 -      vtkShaderProgram::Substitute(FSSource, "//VTK::Coincident::Dec", "uniform float cCValue;");
+-      if (this->DrawingTubesOrSpheres(*this->LastBoundBO, actor))
+-      {
+-        vtkShaderProgram::Substitute(
+-          FSSource, "//VTK::Depth::Impl", "gl_FragDepth = gl_FragDepth + cCValue;\n");
+-      }
+-      else
+-      {
+-        vtkShaderProgram::Substitute(
+-          FSSource, "//VTK::Depth::Impl", "gl_FragDepth = gl_FragCoord.z + cCValue;\n");
+-      }
++    if (factor != 0.0)
++    {
 +      vtkShaderProgram::Substitute(FSSource, "//VTK::Coincident::Dec", 
 +        "uniform float cfactor;\n"
 +        "uniform float coffset;");
-       vtkShaderProgram::Substitute(
--        FSSource, "//VTK::Depth::Impl", "gl_FragDepth = gl_FragCoord.z + cCValue;\n");
++       vtkShaderProgram::Substitute(
 +        FSSource, 
 +        "//VTK::UniformFlow::Impl",
 +        "float cscale = length(vec2(dFdx(gl_FragCoord.z),dFdy(gl_FragCoord.z)));\n"
@@ -82,27 +84,39 @@ diff -Naur ParaView-5.8.0_SRC_orig/VTK/Rendering/OpenGL2/vtkOpenGLPolyDataMapper
      }
      else
      {
-       vtkShaderProgram::Substitute(FSSource, "//VTK::Coincident::Dec",
+-      vtkShaderProgram::Substitute(FSSource, "//VTK::Coincident::Dec",
 -        "uniform float cCValue;\n"
 -        "uniform float cSValue;\n"
 -        "uniform float cDValue;");
--      vtkShaderProgram::Substitute(FSSource, "//VTK::Depth::Impl",
--        "float Zdc = gl_FragCoord.z*2.0 - 1.0;\n"
--        "  float Z2 = -1.0*cDValue/(Zdc + cCValue) + cSValue;\n"
--        "  float Zdc2 = -1.0*cCValue - cDValue/Z2;\n"
--        "  gl_FragDepth = Zdc2*0.5 + 0.5;\n");
+-      if (this->DrawingTubesOrSpheres(*this->LastBoundBO, actor))
+-      {
+-        vtkShaderProgram::Substitute(FSSource, "//VTK::Depth::Impl",
+-          "float Zdc = gl_FragDepth*2.0 - 1.0;\n"
+-          "  float Z2 = -1.0*cDValue/(Zdc + cCValue) + cSValue;\n"
+-          "  float Zdc2 = -1.0*cCValue - cDValue/Z2;\n"
+-          "  gl_FragDepth = Zdc2*0.5 + 0.5;\n");
+-      }
+-      else
+-      {
+-        vtkShaderProgram::Substitute(FSSource, "//VTK::Depth::Impl",
+-          "float Zdc = gl_FragCoord.z*2.0 - 1.0;\n"
+-          "  float Z2 = -1.0*cDValue/(Zdc + cCValue) + cSValue;\n"
+-          "  float Zdc2 = -1.0*cCValue - cDValue/Z2;\n"
+-          "  gl_FragDepth = Zdc2*0.5 + 0.5;\n");
+-      }
++       vtkShaderProgram::Substitute(FSSource, "//VTK::Coincident::Dec",
 +        "uniform float coffset;");
 +      vtkShaderProgram::Substitute(
 +        FSSource, "//VTK::Depth::Impl", "gl_FragDepth = gl_FragCoord.z + 0.000016*coffset;\n");
      }
      shaders[vtkShader::Fragment]->SetSource(FSSource);
    }
-@@ -2110,14 +2112,12 @@
+@@ -2586,14 +2570,13 @@
    // Have the renderpasses changed?
    vtkMTimeType renderPassMTime = this->GetRenderPassStageMTime(actor);
  
 -  vtkOpenGLCamera* cam = (vtkOpenGLCamera*)(ren->GetActiveCamera());
--
+ 
    // shape of input data changed?
    float factor, offset;
    this->GetCoincidentParameters(ren, actor, factor, offset);
@@ -111,13 +125,13 @@ diff -Naur ParaView-5.8.0_SRC_orig/VTK/Rendering/OpenGL2/vtkOpenGLPolyDataMapper
 -    ((cam->GetParallelProjection() != 0.0) ? 0x08 : 0) + ((offset != 0.0) ? 0x10 : 0) +
 +    ((factor != 0.0) ? 0x08 : 0) + ((offset != 0.0) ? 0x10 : 0) +
      (this->VBOs->GetNumberOfComponents("scalarColor") ? 0x20 : 0) +
-     ((this->VBOs->GetNumberOfComponents("tcoord") % 4) << 6);
- 
-@@ -2381,6 +2381,19 @@
-     lineWidth[1] = 2.0 * actor->GetProperty()->GetLineWidth() / vp[3];
+     (vtkOpenGLRenderer::SafeDownCast(ren)->GetUseSphericalHarmonics() ? 0x40 : 0) +
+     (actor->GetProperty()->GetCoatStrength() > 0.0 ? 0x80 : 0) +
+@@ -2910,6 +2893,19 @@
+     lineWidth[1] = 2.0 * propLineWidth / vp[3];
      cellBO.Program->SetUniform2f("lineWidthNVC", lineWidth);
    }
-+  
++   
 +  // handle coincident
 +  if (cellBO.Program->IsUniformUsed("coffset"))
 +  {
@@ -130,10 +144,10 @@ diff -Naur ParaView-5.8.0_SRC_orig/VTK/Rendering/OpenGL2/vtkOpenGLPolyDataMapper
 +      cellBO.Program->SetUniformf("cfactor", factor);
 +    }
 +  }
+   vtkOpenGLCheckErrorMacro("failed after UpdateShader");
  }
  
- //-----------------------------------------------------------------------------
-@@ -2436,25 +2449,6 @@
+@@ -2995,25 +2991,6 @@
      }
    }
  
@@ -156,6 +170,7 @@ diff -Naur ParaView-5.8.0_SRC_orig/VTK/Rendering/OpenGL2/vtkOpenGLPolyDataMapper
 -    }
 -  }
 -
-   // If the VBO coordinates were shifted and scaled, apply the inverse transform
-   // to the model->view matrix:
-   vtkOpenGLVertexBufferObject* vvbo = this->VBOs->GetVBO("vertexMC");
+   vtkNew<vtkMatrix3x3> env;
+   if (program->IsUniformUsed("envMatrix"))
+   {
+
