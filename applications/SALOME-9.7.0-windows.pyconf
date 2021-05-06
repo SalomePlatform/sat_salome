@@ -27,6 +27,7 @@ APPLICATION :
         SALOME_MODULES : "SHAPER,SHAPERSTUDY,GEOM,SMESH,PARAVIS,YACS,JOBMANAGER"  # specify the first modules to display in gui
         SALOME_TMP_DIR : "%appdata%"
         HOME : "%userprofile%"
+        SALOME_ACTOR_DELEGATE_TO_VTK : '1'
     }
     products :
     {
