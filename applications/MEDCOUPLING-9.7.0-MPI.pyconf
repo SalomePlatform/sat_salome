@@ -5,7 +5,7 @@ APPLICATION :
 {
     name : 'MEDCOUPLING-9.7.0-MPI'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag : 'V9_7_BR'
+    tag : 'V9_7_0rc1'
     base : 'no'
     debug : 'no'
     python3 : 'yes'
@@ -69,7 +69,7 @@ APPLICATION :
 
         # SALOME MODULES :
         'CONFIGURATION'
-        'MEDCOUPLING' : {tag : 'V9_7_BR', section: 'default_MPI'}
+        'MEDCOUPLING' : {tag : 'V9_7_0rc1', section: 'default_MPI'}
     }
     test_base : 
     {

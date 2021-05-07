@@ -5,7 +5,7 @@ APPLICATION :
 {
     name : 'SALOME-9.7.0-native'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag : 'V9_7_BR'
+    tag : 'V9_7_0rc1'
     dev : 'no'
     verbose :'no'
     debug : 'no'
@@ -120,7 +120,7 @@ APPLICATION :
         'SHAPER'
         'SHAPERSTUDY'
         'RESTRICTED'
-        'LIBBATCH' : {tag :'V2_4_4'}
+        'LIBBATCH' : {tag :'V2_4_5rc1'}
         'KERNEL'
         'MEDCOUPLING'
         'GUI'
@@ -149,12 +149,12 @@ APPLICATION :
         'CALCULATOR'
         'HELLO'
         'PYHELLO'
-        'EFICAS' : {tag : 'V9_7_0b1'}
-        'EFICAS_TOOLS' : {tag : 'V9_7_0b1'}
-	'PY2CPP' : {tag: 'v2.0'}
-	'ADAO' : {tag : 'V9_7_0b1'}
-	'ADAO_INTERFACE' : {tag : 'V9_7_0b1'}
-        'PARAVISADDONS' : {tag : 'master'}
+        'EFICAS'
+        'EFICAS_TOOLS'
+        'PY2CPP'
+        'ADAO'
+        'ADAO_INTERFACE'
+        'PARAVISADDONS'
         'CEATESTBASE' : {tag: 'SalomeV9'}
     }
     profile :

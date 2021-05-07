@@ -5,7 +5,7 @@ APPLICATION :
 {
     name : 'SOLVERLAB-9.7.0'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag : 'V9_7_BR'
+    tag : 'V9_7_0rc1'
     dev : 'no'
     verbose :'no'
     debug : 'no'
@@ -86,7 +86,7 @@ APPLICATION :
 
         # SALOME MODULES :
         'CONFIGURATION'
-        'LIBBATCH' : {tag : 'V2_4_4'}
+        'LIBBATCH' : {tag : 'V2_4_5rc1'}
         'KERNEL'
         'GUI'
         'MEDCOUPLING'
