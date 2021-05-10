@@ -213,7 +213,9 @@ __overwrite__ :
                                                    'paraview.0003-ParaViewClient_native.patch',
                                                    'ParaView-5.9.0-CATALYST_cmake.patch',
                                                    'paraview.0008-ParaView_coincident_rendering.patch',
-                                                   'paraview.0017-ParaView_protobuf_crash.patch']
+                                                   'paraview.0017-ParaView_protobuf_crash.patch',
+                                                   'paraview.0015-Paraview_VTKM_ioss.patch'
+                                                  ]
    }
    {
       # CentOS 8 repositories don't include sphinxintl package which must be installed through pip.
