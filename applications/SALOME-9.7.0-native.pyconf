@@ -194,10 +194,11 @@ __overwrite__ :
       __condition__ : "VARS.dist in ['UB20.04', 'CO8', 'FD32']"
       'PRODUCTS.ParaView.version_5_9_0.patches' : ['paraview.0003-ParaViewClient.patch',
                                                    'paraview.0005-ParaView_find_cgns.patch',
-                                                   'paraview-0012-LATA_64BITS_IDS.patch',
-                                                   'ParaView-5.9.0-CATALYST_cmake.patch',
+                                                   'paraview.0010-ParaView_CATALYST_cmake.patch',
                                                    'paraview.0008-ParaView_coincident_rendering.patch',
-                                                   'paraview.0017-ParaView_protobuf_crash.patch']
+                                                   'paraview.0017-ParaView_protobuf_crash.patch',
+                                                   'paraview.0015-Paraview_VTKM_ioss.patch'
+                                                  ]
    }
    {
       # On DB10, ParaView fails to find xmlpatterns executable : ParaViewClient.cmake try to find it
@@ -208,10 +209,9 @@ __overwrite__ :
       __condition__ : "VARS.dist in ['DB10']"
       'PRODUCTS.ParaView.version_5_9_0.patches' : ['paraview.0003-ParaViewClient.patch',
                                                    'paraview.0005-ParaView_find_cgns.patch',
-                                                   'paraview-0012-LATA_64BITS_IDS.patch',
                                                    'paraview-5.9_qt-minimum-version.patch',
                                                    'paraview.0003-ParaViewClient_native.patch',
-                                                   'ParaView-5.9.0-CATALYST_cmake.patch',
+                                                   'paraview.0010-ParaView_CATALYST_cmake.patch',
                                                    'paraview.0008-ParaView_coincident_rendering.patch',
                                                    'paraview.0017-ParaView_protobuf_crash.patch',
                                                    'paraview.0015-Paraview_VTKM_ioss.patch'
