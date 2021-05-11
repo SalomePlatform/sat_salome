@@ -79,7 +79,8 @@ fi
 # Issue with GUI - TO BE FIXED
 if [ -n "$SIP_ROOT_DIR" ]
 then
-    cp -r $SIP_ROOT_DIR $PRODUCT_INSTALL
+    mkdir -p $PRODUCT_INSTALL/sip
+    cp -r $SIP_ROOT_DIR/* $PRODUCT_INSTALL/sip
 else
     echo "FATAL: Please set SIP_ROOT_DIR environment variable"
     exit 6
