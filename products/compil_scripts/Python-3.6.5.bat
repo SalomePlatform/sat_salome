@@ -13,6 +13,11 @@ if %SAT_DEBUG% == 1 (
   set PRODUCT_BUILD_TYPE=Debug
 )
 
+set PLATFORM_TARGET=x64
+if defined SALOME_APPLICATION_NAME if %SALOME_APPLICATION_NAME% == URANIE (
+  set PLATFORM_TARGET=Win32
+)
+
 SET LIB_TAG=
 if %SAT_DEBUG% == 1 (
   set LIB_TAG=_d
@@ -77,8 +82,8 @@ REM Compilation
 
 cd %SOURCE_DIR%
 echo.
-echo *** msbuild %SOURCE_DIR%\PCBuild\pcbuild.sln /t:Build /m /nologo /v:m /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64 /p:BuildProjectReferences=false /p:OutDir=%PRODUCT_INSTALL%\
-msbuild %SOURCE_DIR%\PCBuild\pcbuild.sln  /t:Build /m /nologo /v:m /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64 /p:OutDir=%PRODUCT_INSTALL%\
+echo *** msbuild %SOURCE_DIR%\PCBuild\pcbuild.sln /t:Build /m /nologo /v:m /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=%PLATFORM_TARGET% /p:BuildProjectReferences=false /p:OutDir=%PRODUCT_INSTALL%\
+msbuild %SOURCE_DIR%\PCBuild\pcbuild.sln  /t:Build /m /nologo /v:m /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=%PLATFORM_TARGET% /p:OutDir=%PRODUCT_INSTALL%\
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on msbuild
     exit 2

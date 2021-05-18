@@ -13,6 +13,11 @@ if %SAT_DEBUG% == 1 (
   set PRODUCT_BUILD_TYPE=Debug
 )
 
+set PLATFORM_TARGET=x64
+if defined SALOME_APPLICATION_NAME if %SALOME_APPLICATION_NAME% == URANIE (
+  set PLATFORM_TARGET=Win32
+)
+
 if NOT exist "%PRODUCT_INSTALL%" mkdir  %PRODUCT_INSTALL%
 
 REM clean BUILD directory
@@ -25,7 +30,11 @@ set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_INSTALL_PREFIX=%PRODUCT_INSTALL%
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_BUILD_TYPE=%PRODUCT_BUILD_TYPE%
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DBUILD_SHARED_LIBS=ON
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_DISABLE_FIND_PACKAGE_HarfBuzz=TRUE
-set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_GENERATOR="Visual Studio 15 2017 Win64"
+if %PLATFORM_TARGET% == Win32 (
+  set CMAKE_OPTIONS=%CMAKE_OPTIONS% -A Win32 -Thost=x64 -DCMAKE_SYSTEM_VERSION=10.0.19041.0
+)
+set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_GENERATOR:STRING=%CMAKE_GENERATOR%
+
 set MSBUILDDISABLENODEREUSE=1
 
 echo.
@@ -42,11 +51,11 @@ if NOT %ERRORLEVEL% == 0 (
 
 echo.
 echo *********************************************************************
-echo *** msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% ALL_BUILD.vcxproj
+echo *** msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:PlatformTarget=%PLATFORM_TARGET% ALL_BUILD.vcxproj
 echo *********************************************************************
 echo.
 
-msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% ALL_BUILD.vcxproj
+msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:PlatformTarget=%PLATFORM_TARGET% ALL_BUILD.vcxproj
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on msbuild ALL_BUILD.vcxproj
     exit 2
@@ -54,11 +63,11 @@ if NOT %ERRORLEVEL% == 0 (
 
 echo.
 echo *********************************************************************
-echo *** installation... msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% INSTALL.vcxproj
+echo *** installation... msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:PlatformTarget=%PLATFORM_TARGET% INSTALL.vcxproj
 echo *********************************************************************
 echo.
 
-msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% INSTALL.vcxproj
+msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:PlatformTarget=%PLATFORM_TARGET% INSTALL.vcxproj
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on msbuild INSTALL.vcxproj
     exit 3

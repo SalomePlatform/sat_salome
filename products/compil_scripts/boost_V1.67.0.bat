@@ -30,7 +30,13 @@ echo.
 echo --------------------------------------------------------------------------
 echo *** Compilation
 echo --------------------------------------------------------------------------
-.\bjam --toolset=msvc --prefix=%PRODUCT_INSTALL% address-model=64  --build-type=complete stage variant=%PRODUCT_BUILD_TYPE% threading=multi link=shared runtime-link=shared install
+
+set PLATFORM_TARGET=64
+if defined SALOME_APPLICATION_NAME if %SALOME_APPLICATION_NAME% == URANIE (
+  set PLATFORM_TARGET=32
+)
+
+.\bjam --toolset=msvc --prefix=%PRODUCT_INSTALL% address-model=%PLATFORM_TARGET%  --build-type=complete stage variant=%PRODUCT_BUILD_TYPE% threading=multi link=shared runtime-link=shared install
 
 cd "%BUILD_DIR%"
 

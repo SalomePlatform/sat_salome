@@ -8,6 +8,11 @@ IF NOT DEFINED SAT_DEBUG (
   SET SAT_DEBUG=0
 )
 
+set PLATFORM_TARGET=x64
+if defined SALOME_APPLICATION_NAME if %SALOME_APPLICATION_NAME% == URANIE (
+  set PLATFORM_TARGET=Win32
+)
+
 SET PRODUCT_BUILD_TYPE=Release
 REM TODO: NGH: not Tested yet
 if %SAT_DEBUG% == 1 (
@@ -42,30 +47,30 @@ if NOT %ERRORLEVEL% == 0 (
 
 echo.
 echo -------------------------------------------------------------------------------
-echo msbuild cppunit.vcxproj %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64
+echo msbuild cppunit.vcxproj %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=%PLATFORM_TARGET%
 echo -------------------------------------------------------------------------------
 
 cd %BUILD_DIR%\src\cppunit
 
-msbuild cppunit.vcxproj %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64
+msbuild cppunit.vcxproj %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=%PLATFORM_TARGET%
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on msbuild
     exit 21
 )
 
-msbuild cppunit.vcxproj %MAKE_OPTIONS% /p:Configuration=Debug /p:TargetName=cppunitd 
+msbuild cppunit.vcxproj %MAKE_OPTIONS% /p:Configuration=Debug /p:TargetName=cppunitd /p:Platform=%PLATFORM_TARGET%
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on msbuild
     exit 22
 )
 
-msbuild cppunit_dll.vcxproj %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64
+msbuild cppunit_dll.vcxproj %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=%PLATFORM_TARGET%
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on msbuild
     exit 23
 )
 
-msbuild cppunit_dll.vcxproj %MAKE_OPTIONS% /p:Configuration=Debug /p:TargetName=cppunitd_dll /p:Platform=x64
+msbuild cppunit_dll.vcxproj %MAKE_OPTIONS% /p:Configuration=Debug /p:TargetName=cppunitd_dll /p:Platform=%PLATFORM_TARGET%
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on msbuild
     exit 24
