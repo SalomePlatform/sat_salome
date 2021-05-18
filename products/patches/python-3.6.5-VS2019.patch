@@ -1,0 +1,12 @@
+diff -Naur Python_ref/PCbuild/_distutils_findvs.vcxproj Python_new/PCbuild/_distutils_findvs.vcxproj
+--- Python_ref/PCbuild/_distutils_findvs.vcxproj	2018-03-28 11:19:31.000000000 +0200
++++ Python_new/PCbuild/_distutils_findvs.vcxproj	2021-05-18 18:47:18.610913526 +0200
+@@ -61,7 +61,7 @@
+   </PropertyGroup>
+   <ItemDefinitionGroup>
+     <Link>
+-      <AdditionalDependencies>version.lib;ole32.lib;oleaut32.lib;Microsoft.VisualStudio.Setup.Configuration.Native.lib;%(AdditionalDependencies)</AdditionalDependencies>
++      <AdditionalDependencies>version.lib;ole32.lib;oleaut32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(PySourcePath)PC\external\$(PlatformToolset)\$(ArchName)</AdditionalLibraryDirectories>
+     </Link>
+   </ItemDefinitionGroup>

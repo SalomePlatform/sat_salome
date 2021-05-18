@@ -52,6 +52,7 @@ set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_SYSTEM_VERSION=10.0.19041.0
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_GENERATOR=%CMAKE_GENERATOR%
 
 cd %BUILD_DIR%
+set PATH=%BUILD_DIR%\bin;%PATH%
 
 echo.
 echo --------------------------------------------------------------------------
