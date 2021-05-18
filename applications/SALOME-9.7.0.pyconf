@@ -117,7 +117,7 @@ APPLICATION :
         'RESTRICTED'
         'LIBBATCH' : {tag : 'V2_4_5rc1'}
         'KERNEL'
-        'MEDCOUPLING'
+        'MEDCOUPLING' : {tag : 'abn/decl_spec'}
         'GUI'
         'GEOM'
         'SMESH'

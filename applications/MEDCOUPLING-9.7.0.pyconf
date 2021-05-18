@@ -67,7 +67,7 @@ APPLICATION :
 
         # SALOME MODULES :
         'CONFIGURATION'
-        'MEDCOUPLING'
+        'MEDCOUPLING' : {tag : 'abn/decl_spec'}
     }
     test_base :
     {
