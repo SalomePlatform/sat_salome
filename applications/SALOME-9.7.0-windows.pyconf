@@ -6,7 +6,7 @@ APPLICATION :
     name : 'SALOME-9.7.0'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name
     cmake_generator : 'Visual Studio 15 2017 Win64'
-    tag : 'V9_7_0rc1'
+    tag : 'V9_7_0rc2'
     dev : 'no'
     verbose :'no'
     debug : 'no'

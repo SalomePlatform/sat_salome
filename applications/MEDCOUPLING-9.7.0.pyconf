@@ -5,7 +5,7 @@ APPLICATION :
 {
     name : 'MEDCOUPLING-9.7.0'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag : 'V9_7_0rc1'
+    tag : 'V9_7_0rc2'
     base : 'no'
     debug : 'no'
     python3 : 'yes'
@@ -67,7 +67,7 @@ APPLICATION :
 
         # SALOME MODULES :
         'CONFIGURATION'
-        'MEDCOUPLING' : {tag : 'abn/decl_spec'}
+        'MEDCOUPLING'
     }
     test_base :
     {
