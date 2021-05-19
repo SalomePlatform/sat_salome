@@ -33,10 +33,9 @@ set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DNLOPT_OCTAVE:BOOL=OFF
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DNLOPT_GUILE:BOOL=OFF
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR:\=/%/bin/swig.exe
 if %PLATFORM_TARGET% == Win32 (
-  set CMAKE_OPTIONS=%CMAKE_OPTIONS% -A Win32 -Thost=x64 -DCMAKE_SYSTEM_VERSION=10.0.19041.0 -g "Visual Studio 2019"
-) else (
-  set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_GENERATOR:STRING=%CMAKE_GENERATOR%
+  set CMAKE_OPTIONS=%CMAKE_OPTIONS% -A Win32 -Thost=x64 -DCMAKE_SYSTEM_VERSION=10.0.19041.0
 )
+set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_GENERATOR:STRING=%CMAKE_GENERATOR%
 
 set MSBUILDDISABLENODEREUSE=1
 
@@ -54,7 +53,8 @@ if NOT %ERRORLEVEL% == 0 (
 
 echo.
 echo *********************************************************************
-echo *** msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=%PLATFORM_TARGET% ALL_BUILD.vcxproj"
+echo *** msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=%PLATFORM_TARGET% ALL_BUILD.vcxproj
+
 echo *********************************************************************
 echo.
 
