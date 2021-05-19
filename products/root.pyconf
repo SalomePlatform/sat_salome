@@ -19,6 +19,19 @@ default :
     }
 }
 
+version_6_24_00:
+{
+    patches : []
+}
+
+version_6_24_00_win:
+{
+    build_source : "script"
+    compil_script :  "root-6.24.bat"
+    depend : ['Python', 'boost', 'freetype', 'freeimage']
+    patches : []
+}
+
 version_6_22_06:
 {
     patches : ['root-6.22.06.patch']
@@ -26,10 +39,10 @@ version_6_22_06:
 
 version_6_22_06_win:
 {
-    archive_info : {archive_name : "root_v6.22.06.win32.vc16.tar.gz"}
-    patches : []
     build_source : "script"
     compil_script :  "root.bat"
+    archive_info : {archive_name : "root_v6.22.06.win32.vc16.tar.gz"}
+    patches : []
 }
 
 version_6_22_02:
@@ -39,10 +52,11 @@ version_6_22_02:
 
 version_6_22_02_win:
 {
-    archive_info : {archive_name : "root_v6.22.02.win32.vc16.tar.gz"}
-    patches : []
     build_source : "script"
     compil_script :  "root.bat"
+    archive_info : {archive_name : "root_v6.22.02.win32.vc16.tar.gz"}
+    depend : ['Python', 'boost', 'freetype', 'freeimage']
+    patches : []
 }
 
 version_6_16_00:
