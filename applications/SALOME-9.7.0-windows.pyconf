@@ -6,7 +6,7 @@ APPLICATION :
     name : 'SALOME-9.7.0'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name
     cmake_generator : 'Visual Studio 15 2017 Win64'
-    tag : 'V9_7_0rc2'
+    tag : 'V9_7_0'
     dev : 'no'
     verbose :'no'
     debug : 'no'
@@ -131,7 +131,7 @@ APPLICATION :
         'SHAPER'
         'SHAPERSTUDY'
         'RESTRICTED'
-        'LIBBATCH' : {tag :'V2_4_5rc1'}
+        'LIBBATCH' : {tag :'V2_4_5'}
         'KERNEL'
         'MEDCOUPLING'
         'GUI'
@@ -158,9 +158,9 @@ APPLICATION :
         'CALCULATOR'
         'HELLO'
         'PYHELLO'
-        'EFICAS'
-        'EFICAS_TOOLS'
-        'ADAO'
+        'EFICAS' : {tag: 'V9_7_0rc2'}
+        'EFICAS_TOOLS' : {tag: 'V9_7_0rc2'}
+        'ADAO' : {tag: 'V9_7_0rc2'}
         'PARAVISADDONS'
         'CEATESTBASE' : {tag: 'SalomeV9'}
     }

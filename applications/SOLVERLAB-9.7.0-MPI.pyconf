@@ -5,7 +5,7 @@ APPLICATION :
 {
     name : 'SOLVERLAB-9.7.0-MPI'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag : 'V9_7_0rc1'
+    tag : 'V9_7_0'
     dev : 'no'
     verbose :'no'
     debug : 'no'
@@ -87,7 +87,7 @@ APPLICATION :
 
         # SALOME MODULES :
         'CONFIGURATION'
-        'LIBBATCH' : {tag :'V2_4_5rc1'}
+        'LIBBATCH' : {tag :'V2_4_5'}
         'KERNEL' : {section : 'default_MPI', verbose : 'yes'}
         'GUI' : {verbose : 'yes'}
         'MEDCOUPLING' : {section : 'default_MPI', verbose : 'yes'}
