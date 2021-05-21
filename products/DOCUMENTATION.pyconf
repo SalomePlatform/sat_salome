@@ -11,8 +11,7 @@ default :
     environ :
     {
     }
-    # Symlinks option is hidden for Windows thanks to cmake_dependent_option instruction (not used then)
-    cmake_options : "-DSALOME_INSTALL_MODULES_DOC=ON -DSALOME_CREATE_SYMLINKS=ON"
+    cmake_options : "-DSALOME_INSTALL_MODULES_DOC=ON"
     depend : [
              "KERNEL", 
              "Sphinx", 
