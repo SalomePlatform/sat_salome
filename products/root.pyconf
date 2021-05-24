@@ -28,7 +28,7 @@ version_6_24_00_win:
 {
     build_source : "script"
     compil_script :  "root-6.24.bat"
-    depend : ['Python', 'boost', 'freetype', 'freeimage']
+    depend : ['Python', 'Cython', 'numpy']
     patches : []
 }
 

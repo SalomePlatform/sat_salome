@@ -13,6 +13,11 @@ if %SAT_DEBUG% == 1 (
   set PRODUCT_BUILD_TYPE=Debug
 )
 
+set PLATFORM_TARGET=x64
+if defined SALOME_APPLICATION_NAME if %SALOME_APPLICATION_NAME% == URANIE (
+  set PLATFORM_TARGET=Win32
+)
+
 if NOT exist "%PRODUCT_INSTALL%" mkdir %PRODUCT_INSTALL%
 if NOT exist "%PRODUCT_INSTALL%\lib" mkdir %PRODUCT_INSTALL%\lib
 if NOT exist "%PRODUCT_INSTALL%\include" mkdir %PRODUCT_INSTALL%\include
@@ -40,9 +45,9 @@ if NOT %ERRORLEVEL% == 0 (
 
 REM Compilation
 echo.
-echo *** %BUILD_DIR%\pthread.sln /t:build /p:Configuration=%PRODUCT_BUILD_TYPE%;Platform=x64
+echo *** %BUILD_DIR%\pthread.sln /t:build /p:Configuration=%PRODUCT_BUILD_TYPE%;Platform=%PLATFORM_TARGET%
 
-msbuild %BUILD_DIR%\pthread.sln /t:build /p:Configuration=%PRODUCT_BUILD_TYPE%;Platform=x64
+msbuild %BUILD_DIR%\pthread.sln /t:build /p:Configuration=%PRODUCT_BUILD_TYPE%;Platform=%PLATFORM_TARGET%
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on msbuild
     exit 3
@@ -78,7 +83,7 @@ if NOT %ERRORLEVEL% == 0 (
     exit 6
 )
 
-copy %PRODUCT_INSTALL%\lib\pthreadVC2.lib %PRODUCT_INSTALL%\lib\pthreadVC2_64.lib
+copy %PRODUCT_INSTALL%\lib\pthreadVC2.lib %PRODUCT_INSTALL%\lib\pthreadVC2_%PLATFORM_TARGET%.lib
 if NOT %ERRORLEVEL% == 0 (
     echo "ERROR on renaming lib\pthreadVC2.lib"
     exit 7

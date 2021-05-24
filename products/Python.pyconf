@@ -49,4 +49,15 @@ version_3_6_5_win :
     compil_script : "Python-3.6.5.bat"
     patches : ['Python-3.6.5_windows.patch']
 }
+version_3_7_9 :
+{
+ patches : []
+}
+
+version_3_7_9_win :
+{
+    compil_script : "Python-3.7.9.bat"
+    patches : []
+    build_depend : ['perl']
+}
  
