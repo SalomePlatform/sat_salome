@@ -89,5 +89,11 @@ if NOT %ERRORLEVEL% == 0 (
     exit 7
 )
 
+copy %PRODUCT_INSTALL%\lib\pthreadVC2.lib %PRODUCT_INSTALL%\lib\pthreadVCE2.lib
+if NOT %ERRORLEVEL% == 0 (
+    echo "ERROR on renaming lib\pthreadVCE2.lib"
+    exit 7
+)
+
 echo.
 echo "########## END"
