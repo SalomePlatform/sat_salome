@@ -29,5 +29,5 @@ version_4_5_0_win :
 {
     depend : ['Python', 'root','nlopt', 'boost', 'pthreads']
     build_depend : ["cmake", 'swig', 'cppunit']
-    patches: ['URANIE-4.5.0.patch']
+    patches: ['URANIE-4.5.0.patch', 'URANIE-FindROOT.cmake.patch']
 }

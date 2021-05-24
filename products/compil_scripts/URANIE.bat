@@ -35,6 +35,8 @@ set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DPTHREAD_DLL_LIBRARY=%PTHREAD_ROOT_DIR:\=/%/l
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DPTHREAD_LIBRARY=%PTHREAD_ROOT_DIR:\=/%/lib/pthreadVCE2.lib
 
 
+SET INCLUDE=
+
 cd %BUILD_DIR%
 echo.
 echo --------------------------------------------------------------------------

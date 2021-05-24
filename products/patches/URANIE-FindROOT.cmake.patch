@@ -1,0 +1,68 @@
+diff -rupN URANIE-4.5.0_ref/CmakePackage/FindROOT.cmake URANIE-4.5.0_new/CmakePackage/FindROOT.cmake
+--- URANIE-4.5.0_ref/CmakePackage/FindROOT.cmake	2021-05-24 15:55:21.002279495 +0200
++++ URANIE-4.5.0_new/CmakePackage/FindROOT.cmake	2021-05-24 16:27:26.382164733 +0200
+@@ -107,8 +107,62 @@ IF (ROOT_CONFIG_EXECUTABLE)
+     
+   ENDIF(UNIX)
+   IF(WIN32)
+-    #Trouver un moyen de tester la version de root
+-    SET(ROOT_FOUND TRUE)
++    # we need at least version 5.99/00
++    IF (NOT ROOT_MIN_VERSION)
++      SET(ROOT_MIN_VERSION "5.99/00")
++    ENDIF (NOT ROOT_MIN_VERSION)
++    
++    # we need at max version 6.14/14
++    IF (NOT ROOT_MAX_VERSION)
++      SET(ROOT_MAX_VERSION "6.44/00")
++    ENDIF (NOT ROOT_MAX_VERSION)
++    FIND_PROGRAM(ROOT_EXECUTABLE NAMES root PATHS ${ROOT_CONFIG_SEARCHPATH} NO_DEFAULT_PATH)
++    EXECUTE_PROCESS(COMMAND ${ROOT_EXECUTABLE} --version
++                    OUTPUT_VARIABLE ROOT_EXECUTABLE_VERSION
++                    ERROR_VARIABLE ROOT_EXECUTABLE_VERSION
++                    OUTPUT_STRIP_TRAILING_WHITESPACE)
++    STRING(REGEX MATCH "ROOT Version: [^ $]+" ROOTVERSION ${ROOT_EXECUTABLE_VERSION})
++    STRING(REGEX REPLACE "ROOT Version: " "" ROOTVERSION ${ROOTVERSION})
++    MESSAGE(STATUS "...ROOT Version = ${ROOTVERSION}")
++    EXECUTE_PROCESS(COMMAND ${ROOT_EXECUTABLE} -config
++                    OUTPUT_VARIABLE  ROOT_CONFIGURATION
++                    ERROR_VARIABLE  ROOT_CONFIGURATION
++                    OUTPUT_STRIP_TRAILING_WHITESPACE)
++    STRING(REGEX MATCH "PYTHON_VERSION_STRING=[^ $]+" ROOT_PYTHON_VERSION ${ROOT_CONFIGURATION})
++    STRING(REGEX REPLACE "PYTHON_VERSION_STRING=" "" ROOT_PYTHON_VERSION ${ROOT_PYTHON_VERSION})
++    MESSAGE(STATUS "...ROOT build based on Python version = ${ROOT_PYTHON_VERSION}")
++    SET(ROOT_FOUND FALSE)
++    STRING(REGEX REPLACE "^([0-9]+)\\.[0-9][0-9]+\\/[0-9][0-9]+" "\\1" req_root_major_vers "${ROOT_MIN_VERSION}")
++    STRING(REGEX REPLACE "^[0-9]+\\.([0-9][0-9])+\\/[0-9][0-9]+.*" "\\1" req_root_minor_vers "${ROOT_MIN_VERSION}")
++    STRING(REGEX REPLACE "^[0-9]+\\.[0-9][0-9]+\\/([0-9][0-9]+)" "\\1" req_root_patch_vers "${ROOT_MIN_VERSION}")
++    
++    # now parse the parts of the user given maximum version string into variables
++    STRING(REGEX REPLACE "^([0-9]+)\\.[0-9][0-9]+\\/[0-9][0-9]+" "\\1" max_req_root_major_vers "${ROOT_MAX_VERSION}")
++    STRING(REGEX REPLACE "^[0-9]+\\.([0-9][0-9])+\\/[0-9][0-9]+.*" "\\1" max_req_root_minor_vers "${ROOT_MAX_VERSION}")
++    STRING(REGEX REPLACE "^[0-9]+\\.[0-9][0-9]+\\/([0-9][0-9]+)" "\\1" max_req_root_patch_vers "${ROOT_MAX_VERSION}")
++    
++    # and now the version string given by qmake
++    STRING(REGEX REPLACE "^([0-9]+)\\.[0-9][0-9]+\\/[0-9][0-9]+.*" "\\1" found_root_major_vers "${ROOTVERSION}")
++    STRING(REGEX REPLACE "^[0-9]+\\.([0-9][0-9])+\\/[0-9][0-9]+.*" "\\1" found_root_minor_vers "${ROOTVERSION}")
++    STRING(REGEX REPLACE "^[0-9]+\\.[0-9][0-9]+\\/([0-9][0-9]+).*" "\\1" found_root_patch_vers "${ROOTVERSION}")
++    
++    # compute an overall version number which can be compared at once
++    math(EXPR req_vers "${req_root_major_vers}*10000 + ${req_root_minor_vers}*100 + ${req_root_patch_vers}")
++    math(EXPR max_req_vers "${max_req_root_major_vers}*10000 + ${max_req_root_minor_vers}*100 + ${max_req_root_patch_vers}")
++    math(EXPR found_vers "${found_root_major_vers}*10000 + ${found_root_minor_vers}*100 + ${found_root_patch_vers}")
++    
++    IF (found_vers LESS req_vers)
++      MESSAGE( FATAL_ERROR "Invalid ROOT version \"${ROOTVERSION}\"found : at least \"${ROOT_MIN_VERSION}\" required.")
++      SET(ROOT_FOUND FALSE)
++      SET(ROOT_INSTALLED_VERSION_TOO_OLD TRUE)
++    ELSE (found_vers LESS req_vers)
++      IF (found_vers GREATER max_req_vers)
++        MESSAGE( FATAL_ERROR "Invalid ROOT version \"${ROOTVERSION}\" found : maximum \"${ROOT_MAX_VERSION}\" required.")
++        SET(ROOT_FOUND FALSE)
++      ELSE (found_vers GREATER max_req_vers)
++        SET(ROOT_FOUND TRUE)
++      ENDIF (found_vers GREATER max_req_vers)
++    ENDIF (found_vers LESS req_vers)
+   ENDIF(WIN32)
+   
+   
