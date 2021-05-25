@@ -144,11 +144,11 @@ APPLICATION :
         'CALCULATOR'
         'HELLO'
         'PYHELLO'
-        'EFICAS' : {tag: 'V9_7_0rc2'}
-        'EFICAS_TOOLS' : {tag: 'V9_7_0rc2'}
+        'EFICAS'
+        'EFICAS_TOOLS'
         'PY2CPP'
-        'ADAO' : {tag: 'V9_7_0rc2'}
-        'ADAO_INTERFACE' : {tag: 'V9_7_0rc2'}
+        'ADAO'
+        'ADAO_INTERFACE'
         'PARAVISADDONS'
         'CEATESTBASE' : {tag: 'SalomeV9'}
     }
