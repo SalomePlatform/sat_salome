@@ -158,9 +158,9 @@ APPLICATION :
         'CALCULATOR'
         'HELLO'
         'PYHELLO'
-        'EFICAS' : {tag: 'V9_7_0rc2'}
-        'EFICAS_TOOLS' : {tag: 'V9_7_0rc2'}
-        'ADAO' : {tag: 'V9_7_0rc2'}
+        'EFICAS'
+        'EFICAS_TOOLS'
+        'ADAO'
         'PARAVISADDONS'
         'CEATESTBASE' : {tag: 'SalomeV9'}
     }
