@@ -36,7 +36,7 @@ APPLICATION :
         cgns : {tag : '4.1.1', hpc : 'yes'}
         chardet : '3.0.4'
         click : '6.7'
-        cmake : '3.12.1'
+        cmake : '3.17.5'
         cppunit : '1.13.2'
         cycler : '0.10.0'
         Cython : '0.25.2'
