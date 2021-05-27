@@ -3,7 +3,10 @@ echo "##########################################################################
 echo "cgnslib" $VERSION
 echo "##########################################################################"
 
-
+# clean BUILD_DIR
+rm -rf $BUILD_DIR
+mkdir -p $BUILD_DIR
+cd $BUILD_DIR
 
 # compilation
 echo "cgnslib compilation"
