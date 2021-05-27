@@ -3,7 +3,12 @@ default :
     name : "root"
     build_source : "cmake"
     cmake_options : " -Dgminimal:BOOL=ON -Dmathmore:BOOL=ON -Ddataframe:BOOL=ON -Dmlp:BOOL=ON -Dfftw3:BOOL=ON -Dminuit2:BOOL=ON -Dxml:BOOL=ON -Dasimage:BOOL=ON -Dpyroot:BOOL=ON -Dsoversion:BOOL=ON -Ddataframe:BOOL=ON -DPYTHON_EXECUTABLE:STRING=${PYTHONBIN} -DPYTHON_INCLUDE_DIR:STRING=${PYTHON_INCLUDE} "
-    get_source : "archive"
+    get_source : "git"
+    git_info:
+    {
+        repo : "https://github.com/root-project/root.git"
+        repo_dev : $repo
+    }
     environ :
     {
        env_script : $name + ".py"
@@ -34,6 +39,7 @@ version_6_24_00_win:
 
 version_6_22_06:
 {
+    get_source : "archive"
     patches : ['root-6.22.06.patch']
 }
 
@@ -47,6 +53,7 @@ version_6_22_06_win:
 
 version_6_22_02:
 {
+    get_source : "archive"
     patches : ['root-6.22.02.patch']
 }
 
@@ -60,7 +67,9 @@ version_6_22_02_win:
 }
 
 version_6_16_00:
-{}
+{
+    get_source : "archive"
+}
 
 version_6_16_00_win:
 {

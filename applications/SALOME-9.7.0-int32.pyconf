@@ -28,7 +28,7 @@ APPLICATION :
         alabaster : '0.7.6'
         Babel : '2.7.0'
         boost : '1.71.0'
-        CAS : {tag: 'CR750-SALOME-PATCH', section: 'version_V7_5_0'}
+        CAS : {tag: 'V7_5_0p1', section: 'version_V7_5_0'}
         certifi : '2018.8.24'
         cgns : '4.1.1'
         chardet : '3.0.4'
@@ -174,16 +174,6 @@ APPLICATION :
 }
 __overwrite__ :
 [
-  {
-   # GTK  compilation issue
-    __condition__ : "VARS.dist in ['CO6']"
-    'APPLICATION.products.opencv' : '2.4.13.5'
-    'APPLICATION.products.tbb' : '4.4'
-    'APPLICATION.products.llvm' : '3.9.1-clang'
-    'APPLICATION.products.mesa' : '13.0.6'
-    'PRODUCTS.embree.default.patches' : ['embree-3.5.2-centos6.patch']
-  }
-
   {
    # tbb as a mandatory native product since SMESH with tbb, not installed on DB8 (temporary)
     __condition__ : "VARS.dist in ['DB08']"
