@@ -162,7 +162,7 @@ APPLICATION :
         'EFICAS_TOOLS'
         'ADAO'
         'PARAVISADDONS'
-        'CEATESTBASE' : {tag: 'SalomeV9'}
+        'CEATESTBASE'
     }
     profile :
     {
@@ -190,9 +190,4 @@ APPLICATION :
 
 __overwrite__ :
 [
-  {
-    __condition__ : "APPLICATION.debug == 'yes'"
-    'APPLICATION.products.numpy'      : '1.16.4-win-dbg'
-    'APPLICATION.products.sphinxintl' : '2.0.0-win-dbg'
-  }
 ]

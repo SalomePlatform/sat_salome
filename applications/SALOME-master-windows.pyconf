@@ -27,6 +27,7 @@ APPLICATION :
         SALOME_MODULES : "SHAPER,SHAPERSTUDY,GEOM,SMESH,PARAVIS,YACS,JOBMANAGER"  # specify the first modules to display in gui
         SALOME_TMP_DIR : "%appdata%"
         HOME : "%userprofile%"
+        SALOME_ACTOR_DELEGATE_TO_VTK : '1'
     }
     products :
     {
@@ -34,7 +35,7 @@ APPLICATION :
         alabaster : '0.7.6'
         Babel : '2.7.0'
         boost : '1.67.0'
-        CAS : {tag: 'CR750-SALOME-PATCH', section: 'version_V7_5_0_win'}
+        CAS : {tag: 'V7_5_0p1', section: 'version_V7_5_0_win'}
         certifi : '2019.6.16'
         cgns : '4.1.1'
         chardet : '3.0.4'
@@ -130,7 +131,7 @@ APPLICATION :
         'SHAPER'
         'SHAPERSTUDY'
         'RESTRICTED'
-        'LIBBATCH' : {tag :'V2_4_4'}
+        'LIBBATCH' : {tag :'V2_4_5'}
         'KERNEL'
         'MEDCOUPLING'
         'GUI'

@@ -23,14 +23,15 @@ APPLICATION :
         launch : {PYTHONIOENCODING:"UTF_8", SALOME_MODULES_ORDER:"SHAPER:SHAPERSTUDY:GEOM:SMESH"}
         SALOME_trace : "local" # local/file:.../with_logger
         SALOME_MODULES : "SHAPER,SHAPERSTUDY,GEOM,SMESH,PARAVIS,YACS,JOBMANAGER"  # specify the first modules to display in gui
+        SALOME_ACTOR_DELEGATE_TO_VTK : '1'
     }
     products :
     {
         # PREREQUISITES :
         alabaster : '0.7.6'
         Babel : '2.7.0'
-        boost : '1.58.0'
-        CAS : {tag: 'CR750-SALOME-PATCH', section: 'version_V7_5_0'}
+        boost : '1.71.0'
+        CAS : {tag: 'V7_5_0p1', section: 'version_V7_5_0'}
         certifi : '2018.8.24'
         cgns : '4.1.1'
         chardet : '3.0.4'
@@ -58,7 +59,7 @@ APPLICATION :
         libxml2 : '2.9.1'
         llvm : '8.0.1-clang'
         markupsafe : '0.23'
-        matplotlib : '2.2.2'
+        matplotlib : '3.0.3'
         medfile : {section: 'default_Autotools', tag: '4.1.0'}
         mesa : '19.0.8'
         MeshGems : '2.12-1'
@@ -69,7 +70,6 @@ APPLICATION :
         omniORB : '4.2.2'
         omniORBpy : '4.2.2'
         opencv : '3.2.0'
-        openssl : "native"
         openturns: '1.16'
         openVKL: '0.11.0'
         ospray : '2.4.0'
@@ -91,6 +91,7 @@ APPLICATION :
         requests : '2.19.1'
         rkCommon : '1.5.1'
         root: '6.22.02'
+        salome_system : 'native'
         scipy : '1.4.1'
         scotch : '6.0.4'
         setuptools : '38.4.0'
@@ -101,6 +102,7 @@ APPLICATION :
         sphinxcontrib_websupport : '1.1.0'
         sphinx_rtd_theme : '0.4.3'
         sphinxintl: '0.9.10'
+        StaticMeshPlugin: '5.8.0'
         swig : '3.0.12'
         tbb : '2019_U8'
         tcl : '8.6.0'
@@ -113,7 +115,7 @@ APPLICATION :
         'SHAPER'
         'SHAPERSTUDY'
         'RESTRICTED'
-        'LIBBATCH' : {tag : 'V2_4_4'}
+        'LIBBATCH' : {tag : 'V2_4_5'}
         'KERNEL'
         'MEDCOUPLING'
         'GUI'
@@ -144,7 +146,7 @@ APPLICATION :
         'PYHELLO'
         'EFICAS'
         'EFICAS_TOOLS'
-        'PY2CPP' : {tag: 'v2.0'}
+        'PY2CPP'
         'ADAO'
         'ADAO_INTERFACE'
         'PARAVISADDONS'
@@ -178,25 +180,6 @@ __overwrite__ :
   {
    __condition__ : "VARS.dist in ['FD32']"
    # https://github.com/scipy/scipy/issues/11611
-    'APPLICATION.products.scipy' : '1.5.2'
-   # https://bugs.gentoo.org/708730 : llvm 8.0.1 build issue with gcc/clang 10.X
-    'PRODUCTS.llvm.version_8_0_1_clang.patches' : ['llvm-8.0.1-clang-FD32.patch']
-   #
-    'PRODUCTS.mesa.version_19_0_8.patches' : ['mesa-19.0.8-debug_symbol.patch']
-   #
-    'PRODUCTS.qt.version_5_12_10.patches' : ['qt-mapbox-FD32.patch']
-  }
-  {
-   __condition__ : "APPLICATION.debug == 'yes'"
-   # https://cplusplus.com/forum/general/250854 : DEBUG symbol is defined twice, need an additional patch
-    'PRODUCTS.ParaView.version_5_9_0.patches' : ['paraview.0003-ParaViewClient.patch',
-                                                 'paraview.0004-ParaView_hdf5.patch',
-                                                 'paraview.0005-ParaView_find_cgns.patch',
-                                                 'paraview.0006-ParaView_find_libxml2.patch',
-                                                 'paraview.0007-ParaView_find_freetype.patch',
-                                                 'paraview-0012-LATA_64BITS_IDS.patch',
-                                                 'ParaView-5.9.0-CATALYST_cmake.patch',
-                                                 'paraview.0008-ParaView_coincident_rendering.patch',
-                                                 'paraview.0015-Paraview_VTKM_ioss.patch']
+   'APPLICATION.products.scipy' : '1.5.2'
   }
 ]

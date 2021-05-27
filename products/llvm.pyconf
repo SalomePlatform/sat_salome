@@ -33,6 +33,7 @@ version_8_0_1_clang :
 {
     build_source : "script"
     compil_script: "llvm-8.0.1.sh"
+    patches : ['llvm-8.0.1-clang-FD32-gcc-10.0.patch']
 }
 
 version_8_0_1_clang_win :
@@ -48,4 +49,5 @@ version_8_0_1_clang_win :
      incremental : "yes"
      compile_time : "yes"
    }
+   patches : []
 }

@@ -1,0 +1,18 @@
+--- mesa/src/gallium/auxiliary/util/u_debug_symbol.c	2019-06-26 22:14:08.000000000 +0200
++++ mesa_new/src/gallium/auxiliary/util/u_debug_symbol.c	2021-05-18 12:25:33.795494688 +0200
+@@ -270,7 +270,14 @@
+    debug_printf("\t%s\n", buf);
+ }
+ 
+-struct util_hash_table* symbols_hash;
++#ifdef __GNUC__
++#  include <features.h>
++#  if __GNUC_PREREQ(10,0)
++   extern struct util_hash_table* symbols_hash;
++# else
++  struct util_hash_table* symbols_hash;
++# endif
++#endif
+ static mtx_t symbols_mutex = _MTX_INITIALIZER_NP;
+ 
+ static unsigned hash_ptr(void* p)

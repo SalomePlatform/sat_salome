@@ -1,0 +1,47 @@
+diff -Naur qt_ref/qtlocation/src/3rdparty/mapbox-gl-native/include/mbgl/util/convert.hpp qt_new/qtlocation/src/3rdparty/mapbox-gl-native/include/mbgl/util/convert.hpp
+--- qt_ref/qtlocation/src/3rdparty/mapbox-gl-native/include/mbgl/util/convert.hpp	2020-10-15 08:53:19.000000000 +0200
++++ qt_new/qtlocation/src/3rdparty/mapbox-gl-native/include/mbgl/util/convert.hpp	2021-05-18 14:27:22.215207025 +0200
+@@ -3,6 +3,12 @@
+ #include <array>
+ #include <type_traits>
+ #include <utility>
++#ifdef __GNUC__
++#  include <features.h>
++#  if __GNUC_PREREQ(10,0)
++#    include <stdint.h>
++#  endif
++#endif // __GNUC__
+ 
+ namespace mbgl {
+ namespace util {
+diff -Naur qt_ref/qtlocation/src/3rdparty/mapbox-gl-native/platform/default/bidi.cpp qt_new/qtlocation/src/3rdparty/mapbox-gl-native/platform/default/bidi.cpp
+--- qt_ref/qtlocation/src/3rdparty/mapbox-gl-native/platform/default/bidi.cpp	2020-10-15 08:53:19.000000000 +0200
++++ qt_new/qtlocation/src/3rdparty/mapbox-gl-native/platform/default/bidi.cpp	2021-05-18 14:30:10.072271805 +0200
+@@ -5,6 +5,12 @@
+ #include <unicode/ushape.h>
+ 
+ #include <memory>
++#ifdef __GNUC__
++#  include <features.h>
++#  if __GNUC_PREREQ(10,0)
++#   include <stdexcept>
++#  endif
++#endif // __GNUC__
+ 
+ namespace mbgl {
+ 
+diff -Naur qt_ref/qtlocation/src/3rdparty/mapbox-gl-native/platform/qt/src/bidi.cpp qt_new/qtlocation/src/3rdparty/mapbox-gl-native/platform/qt/src/bidi.cpp
+--- qt_ref/qtlocation/src/3rdparty/mapbox-gl-native/platform/qt/src/bidi.cpp	2020-10-15 08:53:19.000000000 +0200
++++ qt_new/qtlocation/src/3rdparty/mapbox-gl-native/platform/qt/src/bidi.cpp	2021-05-18 14:32:30.936842655 +0200
+@@ -1,5 +1,11 @@
+ #include <memory>
+ 
++#ifdef __GNUC__
++#  include <features.h>
++#  if __GNUC_PREREQ(10,0)
++#    include <stdexcept>
++#  endif
++#endif // __GNUC__
+ #include <mbgl/text/bidi.hpp>
+ 
+ #include <QString>

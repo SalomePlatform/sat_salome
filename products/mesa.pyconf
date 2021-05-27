@@ -36,5 +36,10 @@ default_win:
 
 version_19_0_8:
 {
+  patches: ['mesa-19.0.8-debug_symbol-gcc-10.0.patch']
+}
+
+version_19_0_8_win:
+{
   patches: []
 }

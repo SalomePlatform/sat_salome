@@ -1,4 +1,4 @@
-s#!/usr/bin/env python
+#!/usr/bin/env python
 #-*- coding:utf-8 -*-
 
 APPLICATION :
@@ -136,7 +136,7 @@ APPLICATION :
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
-        'SOLVERLAB' : {tag: 'master'}
+        'SOLVERLAB'
         'DOCUMENTATION'
         'SAMPLES'
         'COMPONENT'
@@ -150,7 +150,7 @@ APPLICATION :
         'ADAO'
         'ADAO_INTERFACE'
         'PARAVISADDONS'
-        'CEATESTBASE' : {tag: 'SalomeV9'}
+        'CEATESTBASE'
     }
     profile :
     {
@@ -180,12 +180,6 @@ __overwrite__ :
   {
    __condition__ : "VARS.dist in ['FD32']"
    # https://github.com/scipy/scipy/issues/11611
-    'APPLICATION.products.scipy' : '1.5.2'
-   # https://bugs.gentoo.org/708730 : llvm 8.0.1 build issue with gcc/clang 10.X
-    'PRODUCTS.llvm.version_8_0_1_clang.patches' : ['llvm-8.0.1-clang-FD32.patch']
-   #
-    'PRODUCTS.mesa.version_19_0_8.patches' : ['mesa-19.0.8-debug_symbol.patch']
-   #
-    'PRODUCTS.qt.version_5_12_10.patches' : ['qt-mapbox-FD32.patch']
+   'APPLICATION.products.scipy' : '1.5.2'
   }
 ]
