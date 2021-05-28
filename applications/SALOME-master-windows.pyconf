@@ -21,6 +21,7 @@ APPLICATION :
            SALOME_HAS_GLOBAL_ENV : "1"
            SALOME_USE_64BIT_IDS : '1'
            SET_usr_docs_VARS : "1" # required for PyEditor build
+           SALOME_APPLICATION_NAME : "SALOME"
         }
         launch : {PYTHONIOENCODING:"UTF_8", SALOME_MODULES_ORDER:"SHAPER:SHAPERSTUDY:GEOM:SMESH"}
         SALOME_trace : "local" # local/file:.../with_logger
