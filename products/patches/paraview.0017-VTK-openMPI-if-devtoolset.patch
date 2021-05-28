@@ -1,0 +1,29 @@
+diff -Naur ParaView_ref/VTK/CMake/vtkModule.cmake  ParaView_new/VTK/CMake/vtkModule.cmake
+--- ParaView_ref/VTK/CMake/vtkModule.cmake	2021-05-28 15:30:35.258745811 +0200
++++ ParaView_new/VTK/CMake/vtkModule.cmake	2021-05-28 15:29:03.348649076 +0200
+@@ -4544,7 +4544,13 @@
+       if (_vtk_export_exact)
+         set(_vtk_export_exact_arg EXACT)
+       endif ()
++     
++      IF(_vtk_export_package MATCHES "MPI")
++      file(APPEND "${_vtk_export_output_file}"
++"  find_package(${_vtk_export_package})
++\n")
+ 
++      ELSE(_vtk_export_package MATCHES "MPI")
+       file(APPEND "${_vtk_export_output_file}"
+ "  find_package(${_vtk_export_package}
+     ${_vtk_export_version}
+@@ -4554,6 +4560,11 @@
+     \${_vtk_module_find_package_required}
+     COMPONENTS          ${_vtk_export_components}
+     OPTIONAL_COMPONENTS ${_vtk_export_optional_components})
++\n")
++
++ENDIF(_vtk_export_package MATCHES "MPI")
++      file(APPEND "${_vtk_export_output_file}"
++"
+   if (NOT ${_vtk_export_package}_FOUND AND _vtk_module_find_package_fail_if_not_found)
+     if (NOT \${CMAKE_FIND_PACKAGE_NAME}_FIND_QUIETLY)
+       message(STATUS
