@@ -32,7 +32,7 @@ echo *** Compilation
 echo --------------------------------------------------------------------------
 
 set PLATFORM_TARGET=64
-if defined SALOME_APPLICATION_NAME if %SALOME_APPLICATION_NAME% == URANIE (
+if "%SALOME_APPLICATION_NAME%" == URANIE (
   set PLATFORM_TARGET=32
 )
 
