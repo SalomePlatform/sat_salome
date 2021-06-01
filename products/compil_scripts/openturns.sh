@@ -4,6 +4,13 @@ echo "##########################################################################
 echo "openturns" $VERSION
 echo "##########################################################################"
 
+if [ -n "$MPI_ROOT_DIR" ]
+then
+    echo "WARNING: setting CC and CXX environment variables and target MPI wrapper"
+    export CC=${MPI_ROOT_DIR}/bin/mpicc
+    export CXX=${MPI_ROOT_DIR}/bin/mpicxx
+fi
+
 CMAKE_OPTIONS=""
 CMAKE_OPTIONS=$CMAKE_OPTIONS" -DCMAKE_INSTALL_PREFIX:STRING=${PRODUCT_INSTALL}"
 CMAKE_OPTIONS=$CMAKE_OPTIONS" -DCMAKE_BUILD_TYPE:STRING=Release"
