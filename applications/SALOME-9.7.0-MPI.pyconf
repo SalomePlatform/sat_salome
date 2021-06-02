@@ -179,5 +179,9 @@ APPLICATION :
 }
 __overwrite__ :
 [
+    {
+        # with cmake 3.17.5 issue with Python2 detection - remove it since not required
+        'PRODUCTS.opencv.version_3_2_0.patches' : ['opencv-3.2.0-ccache.patch','opencv-3.2.0-python2-cmake-3.17.5.patch']
+    }
 ]
 
