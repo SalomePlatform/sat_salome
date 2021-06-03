@@ -1,0 +1,64 @@
+diff -Naur petsc_ref/config/BuildSystem/config/package.py petsc_new/config/BuildSystem/config/package.py 
+--- petsc_ref/config/BuildSystem/config/package.py	2021-03-31 02:22:39.000000000 +0200
++++ petsc_new/config/BuildSystem/config/package.py	2021-06-01 16:57:13.432206497 +0200
+@@ -1704,7 +1704,7 @@
+ 
+     args = ['-DCMAKE_INSTALL_PREFIX='+self.installDir]
+     args.append('-DCMAKE_INSTALL_NAME_DIR:STRING="'+os.path.join(self.installDir,self.libdir)+'"')
+-    args.append('-DCMAKE_INSTALL_LIBDIR:STRING="lib"')
++    #args.append('-DCMAKE_INSTALL_LIBDIR:STRING="lib"')
+     args.append('-DCMAKE_VERBOSE_MAKEFILE=1')
+     if self.compilerFlags.debugging:
+       args.append('-DCMAKE_BUILD_TYPE=Debug')
+@@ -1712,32 +1712,33 @@
+       args.append('-DCMAKE_BUILD_TYPE=Release')
+     self.framework.pushLanguage('C')
+     args.append('-DCMAKE_C_COMPILER="'+self.framework.getCompiler()+'"')
+-    args.append('-DMPI_C_COMPILER="'+self.framework.getCompiler()+'"')
++    #args.append('-DMPI_C_COMPILER="'+self.framework.getCompiler()+'"')
+     args.append('-DCMAKE_AR='+self.setCompilers.AR)
+     ranlib = shlex.split(self.setCompilers.RANLIB)[0]
+     args.append('-DCMAKE_RANLIB='+ranlib)
+     cflags = self.updatePackageCFlags(self.setCompilers.getCompilerFlags())
+     args.append('-DCMAKE_C_FLAGS:STRING="'+cflags+'"')
+-    args.append('-DCMAKE_C_FLAGS_DEBUG:STRING="'+cflags+'"')
++    #args.append('-DCMAKE_C_FLAGS_DEBUG:STRING="'+cflags+'"')
+     args.append('-DCMAKE_C_FLAGS_RELEASE:STRING="'+cflags+'"')
+     self.framework.popLanguage()
+-    if hasattr(self.compilers, 'CXX'):
+-      self.framework.pushLanguage('Cxx')
+-      args.append('-DCMAKE_CXX_COMPILER="'+self.framework.getCompiler()+'"')
+-      args.append('-DMPI_CXX_COMPILER="'+self.framework.getCompiler()+'"')
+-      args.append('-DCMAKE_CXX_FLAGS:STRING="'+self.updatePackageCxxFlags(self.framework.getCompilerFlags())+'"')
+-      args.append('-DCMAKE_CXX_FLAGS_DEBUG:STRING="'+self.updatePackageCxxFlags(self.framework.getCompilerFlags())+'"')
+-      args.append('-DCMAKE_CXX_FLAGS_RELEASE:STRING="'+self.updatePackageCxxFlags(self.framework.getCompilerFlags())+'"')
+-      self.framework.popLanguage()
++   
++     #if hasattr(self.compilers, 'CXX'):
++      #self.framework.pushLanguage('Cxx')
++      #args.append('-DCMAKE_CXX_COMPILER="'+self.framework.getCompiler()+'"')
++      #args.append('-DMPI_CXX_COMPILER="'+self.framework.getCompiler()+'"')
++      #args.append('-DCMAKE_CXX_FLAGS:STRING="'+self.updatePackageCxxFlags(self.framework.getCompilerFlags())+'"')
++      #args.append('-DCMAKE_CXX_FLAGS_DEBUG:STRING="'+self.updatePackageCxxFlags(self.framework.getCompilerFlags())+'"')
++      #args.append('-DCMAKE_CXX_FLAGS_RELEASE:STRING="'+self.updatePackageCxxFlags(self.framework.getCompilerFlags())+'"')
++      #self.framework.popLanguage()
+ 
+-    if hasattr(self.compilers, 'FC'):
+-      self.framework.pushLanguage('FC')
+-      args.append('-DCMAKE_Fortran_COMPILER="'+self.framework.getCompiler()+'"')
+-      args.append('-DMPI_Fortran_COMPILER="'+self.framework.getCompiler()+'"')
+-      args.append('-DCMAKE_Fortran_FLAGS:STRING="'+self.updatePackageFFlags(self.framework.getCompilerFlags())+'"')
+-      args.append('-DCMAKE_Fortran_FLAGS_DEBUG:STRING="'+self.updatePackageFFlags(self.framework.getCompilerFlags())+'"')
+-      args.append('-DCMAKE_Fortran_FLAGS_RELEASE:STRING="'+self.updatePackageFFlags(self.framework.getCompilerFlags())+'"')
+-      self.framework.popLanguage()
++    #if hasattr(self.compilers, 'FC'):
++      #self.framework.pushLanguage('FC')
++      #args.append('-DCMAKE_Fortran_COMPILER="'+self.framework.getCompiler()+'"')
++      #args.append('-DMPI_Fortran_COMPILER="'+self.framework.getCompiler()+'"')
++      #args.append('-DCMAKE_Fortran_FLAGS:STRING="'+self.updatePackageFFlags(self.framework.getCompilerFlags())+'"')
++      #args.append('-DCMAKE_Fortran_FLAGS_DEBUG:STRING="'+self.updatePackageFFlags(self.framework.getCompilerFlags())+'"')
++      #args.append('-DCMAKE_Fortran_FLAGS_RELEASE:STRING="'+self.updatePackageFFlags(self.framework.getCompilerFlags())+'"')
++      #self.framework.popLanguage()
+ 
+     if self.setCompilers.LDFLAGS:
+       args.append('-DCMAKE_EXE_LINKER_FLAGS:STRING="'+self.setCompilers.LDFLAGS+'"')
