@@ -67,7 +67,7 @@ def set_vtk_env(env, version):
     env.set('VTK_ROOT_DIR', root)
     env.set('VTK_DIR', os.path.join(root, lib_dir, 'cmake', 'paraview-' + version))
     # OP TEST
-    env.prepend('VTK_ROOT_DIR', os.path.join(root, lib_dir, 'cmake', 'paraview-' + version))
+    #env.prepend('VTK_ROOT_DIR', os.path.join(root, lib_dir, 'cmake', 'paraview-' + version))
     #env.prepend('VTK_ROOT_DIR', os.path.join(root, lib_dir, 'paraview-' + version))
     
     if not platform.system() == "Windows" :

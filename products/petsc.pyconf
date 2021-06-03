@@ -13,6 +13,7 @@ default :
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     install_dir : 'base'
+    patches : ["petsc-3.15-cmakeUnusedOptions.patch"]
 }
 
 version_3_15_0 :
@@ -30,4 +31,5 @@ version_3_15_0 :
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     install_dir : 'base'
+    patches : ["petsc-3.15-cmakeUnusedOptions.patch"]
 }

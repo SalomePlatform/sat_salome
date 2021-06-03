@@ -19,5 +19,5 @@ default :
         configure_dependency : "yes"  # the source of this module is required for the configuration of salome
         is_SALOME_module : "yes"
     }
-    patches : []
+    patches : ["configuration-avoid-cmakeWarningOnFindGmsh.patch"]
 }
