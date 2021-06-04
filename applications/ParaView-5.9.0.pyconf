@@ -110,3 +110,11 @@ APPLICATION :
         single_install_dir : "yes"
     }
 }
+__overwrite__ :
+[
+  {
+   __condition__ : "VARS.dist in ['FD32']"
+   # https://github.com/scipy/scipy/issues/11611
+   'APPLICATION.products.scipy' : '1.5.2'
+  }
+]
