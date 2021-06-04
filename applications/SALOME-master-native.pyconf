@@ -107,6 +107,7 @@ APPLICATION :
         sphinx_rtd_theme : 'native'
         StaticMeshPlugin: '5.8.0'
         swig : 'native'
+        salome_system : 'native'
         tbb : 'native'
         tcl : 'native'
         tk : 'native'
