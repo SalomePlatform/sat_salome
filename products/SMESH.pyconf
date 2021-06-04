@@ -18,7 +18,6 @@ default :
     depend : ["KERNEL",
               "GUI",
               "GEOM",
-	      "SHAPERSTUDY",
               "MEDCOUPLING",
               "Python",
               "qt",
@@ -43,6 +42,7 @@ default :
               "tbb"
              ]
     build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+    opt_depend : ['SHAPERSTUDY']
     patches : []
     check_install : ["share/doc/salome/gui/SMESH/yams/index.html"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
@@ -62,7 +62,6 @@ default_win :
     depend : ["KERNEL",
               "GUI",
               "GEOM",
-	      "SHAPERSTUDY",
               "MEDCOUPLING",
               "Python",
               "qt",
@@ -95,7 +94,6 @@ default_MPI :
     depend : ["KERNEL",
               "GUI",
               "GEOM",
-	      "SHAPERSTUDY",
               "MEDCOUPLING",
               "Python",
               "qt",
