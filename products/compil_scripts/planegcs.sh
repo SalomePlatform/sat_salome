@@ -9,7 +9,7 @@ echo "##########################################################################
 cd $SOURCE_DIR
 
 # Install dir
-CMAKE_OPTIONS=$CMAKE_OPTIONS" -DCMAKE_INSTALL_PREFIX=$PRODUCT_INSTALL"
+CMAKE_OPTIONS+=" -DCMAKE_INSTALL_PREFIX=$PRODUCT_INSTALL"
 
 echo
 echo "*** cmake " ${CMAKE_OPTIONS}
