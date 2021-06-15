@@ -1,0 +1,21 @@
+default :
+{
+    name : "pmml"
+    build_source : "cmake"
+    get_source : "git"
+    git_info :
+    {
+        repo : "https://codev-tuleap.cea.fr/plugins/git/salome/" $name + ".git"
+        repo_dev : $repo
+    }
+    environ :
+    {
+        env_script : $name + ".py"
+    }
+    build_depend : ["cmake", "Python", "libxml2"]
+    depend : []
+    opt_depend : ["swig", "doxygen"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+}

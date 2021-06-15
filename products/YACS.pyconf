@@ -28,8 +28,9 @@ default :
               "Pygments", 
               "six", 
               "pytz", 
-              "markupsafe"  
+              "markupsafe"
               ]
+    opt_depend : ['pmml']
     build_depend : ["cmake", "swig", "doxygen", "cppunit"]
 
     patches : [
