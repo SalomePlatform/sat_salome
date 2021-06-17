@@ -6,9 +6,9 @@ default :
     get_source : "archive"
     system_info :
     {
-       rpm : []
+       rpm : ["metis"]
        rpm_dev : ["metis-devel"]
-       apt : []
+       apt : ["libmetis5"]
        apt_dev : ["libmetis-dev"]
     }
     environ :
