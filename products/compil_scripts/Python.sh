@@ -21,7 +21,7 @@ if version_ge $VERSION "3.6"; then
     # --without-pymalloc: disable specialized mallocs
     # --with-ensurepip  : installation using bundled pip
     # --enable-optimizations:  recommandé et utilisé par Nijni -> mais trop long!
-    CONFIGURE_ARGUMENTS="--enable-shared --with-threads --without-pymalloc --with-ensurepip=install"
+    CONFIGURE_ARGUMENTS="--enable-shared --with-threads --without-pymalloc --with-ensurepip=install --with-ssl --with-pydebug --enable-loadable-sqlite-extensions"
 else
     echo "*** Python version is older than version 3.6 ..."
     CONFIGURE_ARGUMENTS="--enable-shared --with-threads --without-pymalloc --enable-unicode=ucs4"
