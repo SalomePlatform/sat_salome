@@ -25,6 +25,11 @@ default_win:
     depend : ["CAS"]
 }
 
+version_4_8_4:
+{
+  compil_script : "gmsh-4.8.4.sh"
+}
+
 version_4_1_4:
 {
 }
