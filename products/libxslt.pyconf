@@ -37,3 +37,13 @@ default_win :
      single_install_dir : "yes"
    }
 }
+
+version_1_1_34 :
+{
+  patches : []
+}
+
+version_1_1_34_win :
+{
+  patches : ['libxslt-1.1.34-config-windows.patch']
+}
