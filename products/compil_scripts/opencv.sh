@@ -5,7 +5,7 @@ echo "opencv" $VERSION
 echo "##########################################################################"
 
 function version_ge() { test "$(echo "$@" | tr " " "\n" | sort -rV | head -n 1)" == "$1"; }
-
+CPPSTD="\"-std=c++14\""
 CMAKE_OPTIONS=""
 CMAKE_OPTIONS+=" -DCMAKE_INSTALL_PREFIX:STRING=${PRODUCT_INSTALL}"
 CMAKE_OPTIONS+=" -DCMAKE_BUILD_TYPE:STRING=Release"
@@ -28,7 +28,11 @@ if version_ge $VERSION "3."; then
     CMAKE_OPTIONS+=" -DENABLE_PRECOMPILED_HEADERS:BOOL=OFF"
     CMAKE_OPTIONS+=" -DCMAKE_CXX_FLAGS=-fPIC"
     CMAKE_OPTIONS+=" -DCMAKE_C_FLAGS=-fPIC"
-
+    if [[ $DIST_NAME == "FD" && $DIST_VERSION == "34" ]]
+        then
+            CMAKE_OPTIONS+=" -DCMAKE_CXX_FLAGS=${CPPSTD}"
+        fi
+    CMAKE_OPTIONS+=" -DCMAKE_C_FLAGS=-fPIC"
     # 
 else
     echo "*** openCV version $VERSION < 3."

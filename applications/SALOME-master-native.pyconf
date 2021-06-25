@@ -72,8 +72,8 @@ APPLICATION :
         netgen : '5.3.1_with_CAS_7.2'
         nlopt : '2.4.2'
         numpy : 'native'
-        omniORB : '4.2.3'
-        omniORBpy : '4.2.3'
+        omniORB : '4.2.4'
+        omniORBpy : '4.2.4'
         opencv : 'native'
         openVKL : '0.11.0'
         openturns: '1.16'
@@ -187,7 +187,7 @@ __overwrite__ :
       # Although recent adaptations of GEOM CMake procedure to be compliant with openCV 4.X, some
       # deeper investigations need to be done in its sources. Use embedded openCV product where
       # native one is 4.X.
-      __condition__ : "VARS.dist in ['FD32', 'UB20.04']"
+      __condition__ : "VARS.dist in ['FD32', 'UB20.04', 'FD34']"
       'APPLICATION.products.opencv' : '3.2.0'
    }
    {

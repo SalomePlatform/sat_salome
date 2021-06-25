@@ -1,0 +1,94 @@
+diff -Naur ParaView_ref ParaView_new 
+diff -Naur ParaView_ref/VTK/Common/Core/vtkDataArrayPrivate.txx ParaView_new/VTK/Common/Core/vtkDataArrayPrivate.txx
+--- ParaView_ref/VTK/Common/Core/vtkDataArrayPrivate.txx	2021-02-04 15:22:02.000000000 +0100
++++ ParaView_new/VTK/Common/Core/vtkDataArrayPrivate.txx	2021-06-22 13:11:58.767853208 +0200
+@@ -25,6 +25,14 @@
+ #include <array>
+ #include <cassert> // for assert()
+ #include <vector>
++#ifdef __GNUC__
++#include <features.h>
++# ifdef __GNUC_PREREQ
++#  if __GNUC_PREREQ(11,0)
++#   include <limits>
++#  endif
++# endif
++#endif // __GNUC__
+ 
+ namespace vtkDataArrayPrivate
+ {
+diff -Naur ParaView_ref/VTK/Common/Core/vtkGenericDataArrayLookupHelper.h ParaView_new/VTK/Common/Core/vtkGenericDataArrayLookupHelper.h
+--- ParaView_ref/VTK/Common/Core/vtkGenericDataArrayLookupHelper.h	2021-02-04 15:22:02.000000000 +0100
++++ ParaView_new/VTK/Common/Core/vtkGenericDataArrayLookupHelper.h	2021-06-22 13:12:33.343455420 +0200
+@@ -27,6 +27,14 @@
+ #include <cmath>
+ #include <unordered_map>
+ #include <vector>
++#ifdef __GNUC__
++#include <features.h>
++# ifdef __GNUC_PREREQ
++#  if __GNUC_PREREQ(11,0)
++#   include <limits>
++#  endif
++# endif
++#endif // __GNUC__
+ 
+ namespace detail
+ {
+diff -Naur ParaView_ref/VTK/Common/DataModel/vtkPiecewiseFunction.cxx ParaView_new/VTK/Common/DataModel/vtkPiecewiseFunction.cxx
+--- ParaView_ref/VTK/Common/DataModel/vtkPiecewiseFunction.cxx	2021-02-04 15:22:03.000000000 +0100
++++ ParaView_new/VTK/Common/DataModel/vtkPiecewiseFunction.cxx	2021-06-22 16:03:40.045670686 +0200
+@@ -24,7 +24,14 @@
+ #include <iterator>
+ #include <set>
+ #include <vector>
+-
++#ifdef __GNUC__
++#include <features.h>
++# ifdef __GNUC_PREREQ
++#  if __GNUC_PREREQ(11,0)
++#   include <limits>
++#  endif
++# endif
++#endif // __GNUC__
+ vtkStandardNewMacro(vtkPiecewiseFunction);
+ 
+ // The Node structure
+diff -Naur ParaView_ref/VTK/Filters/HyperTree/vtkHyperTreeGridThreshold.cxx ParaView_new/VTK/Filters/HyperTree/vtkHyperTreeGridThreshold.cxx
+--- ParaView_ref/VTK/Filters/HyperTree/vtkHyperTreeGridThreshold.cxx	2021-02-04 15:22:03.000000000 +0100
++++ ParaView_new/VTK/Filters/HyperTree/vtkHyperTreeGridThreshold.cxx	2021-06-22 16:36:07.933839424 +0200
+@@ -27,6 +27,14 @@
+ #include "vtkHyperTreeGridNonOrientedCursor.h"
+ 
+ #include <cmath>
++#ifdef __GNUC__
++#include <features.h>
++# ifdef __GNUC_PREREQ
++#  if __GNUC_PREREQ(11,0)
++#   include <limits>
++#  endif
++# endif
++#endif // __GNUC__
+ 
+ vtkStandardNewMacro(vtkHyperTreeGridThreshold);
+ 
+diff -Naur ParaView_ref/VTK/Rendering/Core/vtkColorTransferFunction.cxx ParaView_new/VTK/Rendering/Core/vtkColorTransferFunction.cxx
+--- ParaView_ref/VTK/Rendering/Core/vtkColorTransferFunction.cxx	2021-02-04 15:22:03.000000000 +0100
++++ ParaView_new/VTK/Rendering/Core/vtkColorTransferFunction.cxx	2021-06-23 11:25:49.494921639 +0200
+@@ -23,7 +23,15 @@
+ #include <iterator>
+ #include <set>
+ #include <vector>
+-
++#include <cmath>
++#ifdef __GNUC__
++#include <features.h>
++# ifdef __GNUC_PREREQ
++#  if __GNUC_PREREQ(11,0)
++#   include <limits>
++#  endif
++# endif
++#endif // __GNUC__
+ vtkStandardNewMacro(vtkColorTransferFunction);
+ 
+ #define MY_MAX(x, y) ((x) > (y) ? (x) : (y))

@@ -37,7 +37,7 @@ default_win :
 
 version_1_16 :
 {
-    patches : ['openturns-1.16.0001.patch']
+    patches : ['openturns-1.16.0001.patch','openturns-1.16.0002.patch']
 }
 
 version_1_16_win :

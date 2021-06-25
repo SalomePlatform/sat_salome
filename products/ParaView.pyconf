@@ -110,6 +110,7 @@ version_5_9_0 :
                'paraview.0008-ParaView_coincident_rendering.patch',
                'paraview.0011-ParaView_protobuf_crash.patch',
                'paraview.0015-Paraview_VTKM_ioss.patch'
+               'paraview-5.9.0-gcc.11.0.patch'
               ]
 }
 

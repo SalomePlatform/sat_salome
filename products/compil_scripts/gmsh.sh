@@ -27,7 +27,7 @@ if version_ge $VERSION "4."; then
     CMAKE_OPTIONS="${CMAKE_OPTIONS} -DENABLE_CGNS=OFF" # default value is set to ON in release 4.1.4
     CMAKE_OPTIONS="${CMAKE_OPTIONS} -DCMAKE_INSTALL_LIBDIR=${PRODUCT_INSTALL}/lib" # strangely on Ubuntu GMSH installs the .so in lib instead of lib/lib64 - so force to lib64
     CMAKE_OPTIONS="${CMAKE_OPTIONS} -DCMAKE_PREFIX_PATH=${LAPACK_ROOT_DIR}" # set path of third libraries to our associated internal products
-    if [[ $DIST_NAME == "FD" && $DIST_VERSION == "32" ]]
+    if [[ $DIST_NAME == "FD" && ($DIST_VERSION == "32" || $DIST_VERSION == "34") ]]
     then
         CMAKE_OPTIONS="${CMAKE_OPTIONS} -DENABLE_MMG3D=OFF" # removed anyhow in GMS 4.6
     fi

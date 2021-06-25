@@ -1,0 +1,11 @@
+diff -Naur root_ref/core/foundation/inc/ROOT/libcpp_string_view.h root_new/core/foundation/inc/ROOT/libcpp_string_view.h 
+--- root_ref/core/foundation/inc/ROOT/libcpp_string_view.h	2020-08-17 14:41:56.000000000 +0200
++++ root_new/core/foundation/inc/ROOT/libcpp_string_view.h	2021-05-21 12:52:20.897359685 +0200
+@@ -15,6 +15,7 @@
+ #error "Do not use libcpp_string_view.h directly. #include \"RWrap_libcpp_string_view.h\" instead."
+ #endif // RWrap_libcpp_string_view_h
+ 
++#include <limits>
+ /*
+ string_view synopsis
+ 

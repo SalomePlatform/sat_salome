@@ -7,7 +7,7 @@ default:
     system_info : 
     {
         rpm : []
-        rpm_dev : ["qt5-devel"]
+        rpm_dev : ["qt5-qtbase-devel"]
         apt : []
         apt_dev : ["qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools"]
     }

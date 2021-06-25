@@ -1,0 +1,16 @@
+diff -Naur openturns_ref/lib/src/Base/Algo/openturns/KarhunenLoeveAlgorithmImplementation.hxx openturns_new/lib/src/Base/Algo/openturns/KarhunenLoeveAlgorithmImplementation.hxx
+--- openturns_ref/lib/src/Base/Algo/openturns/KarhunenLoeveAlgorithmImplementation.hxx	2020-11-10 13:21:21.000000000 +0100
++++ openturns_new/lib/src/Base/Algo/openturns/KarhunenLoeveAlgorithmImplementation.hxx	2021-05-21 11:08:48.206212694 +0200
+@@ -24,6 +24,12 @@
+ #include "openturns/PersistentObject.hxx"
+ #include "openturns/CovarianceModel.hxx"
+ #include "openturns/KarhunenLoeveResult.hxx"
++#ifdef __GNUC__
++#  include <features.h>
++#  if __GNUC_PREREQ(11,0)
++#     include <limits>
++#  endif
++#endif // __GNUC__
+ 
+ BEGIN_NAMESPACE_OPENTURNS
+ 
