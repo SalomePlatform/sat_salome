@@ -4,6 +4,7 @@ default :
     build_source : "script"
     compil_script :  $name + $VARS.scriptExtension
     get_source : "archive"
+    patches : []
     system_info : 
     {
         rpm : []
@@ -29,6 +30,7 @@ version_5_5_0 :
 {
     compil_script :  'sip-5.5.0' + $VARS.scriptExtension
     archive_info : {archive_name : "sip-5.5.0-PyQt5_sip-12.8.1.tar.gz"}
+    patches : ['sip-5.5.0-sipSetBool.patch']
 }
 
 version_4_19_24 :

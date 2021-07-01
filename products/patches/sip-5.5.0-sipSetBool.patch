@@ -1,0 +1,30 @@
+diff -Naur sip-5.5.0-PyQt5_sip-12.8.1_ref/sip-5.5.0/sipbuild/module/source/12.7/sipint.h sip-5.5.0-PyQt5_sip-12.8.1_new/sip-5.5.0/sipbuild/module/source/12.7/sipint.h
+--- sip-5.5.0-PyQt5_sip-12.8.1_ref/sip-5.5.0/sipbuild/module/source/12.7/sipint.h	2020-11-23 14:21:33.000000000 +0100
++++ sip-5.5.0-PyQt5_sip-12.8.1_new/sip-5.5.0/sipbuild/module/source/12.7/sipint.h	2021-07-01 15:42:35.397922670 +0200
+@@ -177,9 +177,9 @@
+ void sipOMAddObject(sipObjectMap *om, sipSimpleWrapper *val);
+ int sipOMRemoveObject(sipObjectMap *om, sipSimpleWrapper *val);
+ 
+-#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L
++//#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L
+ #define sipSetBool(p, v)    (*(_Bool *)(p) = (v))
+-#endif
++//#endif
+ 
+ 
+ #ifdef __cplusplus
+diff -Naur sip-5.5.0-PyQt5_sip-12.8.1_ref/sip-5.5.0/sipbuild/module/source/12.8/sipint.h sip-5.5.0-PyQt5_sip-12.8.1_new/sip-5.5.0/sipbuild/module/source/12.8/sipint.h
+--- sip-5.5.0-PyQt5_sip-12.8.1_ref/sip-5.5.0/sipbuild/module/source/12.8/sipint.h	2020-11-23 14:21:33.000000000 +0100
++++ sip-5.5.0-PyQt5_sip-12.8.1_new/sip-5.5.0/sipbuild/module/source/12.8/sipint.h	2021-07-01 15:42:19.981784592 +0200
+@@ -177,9 +177,9 @@
+ void sipOMAddObject(sipObjectMap *om, sipSimpleWrapper *val);
+ int sipOMRemoveObject(sipObjectMap *om, sipSimpleWrapper *val);
+ 
+-#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L
++//#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L
+ #define sipSetBool(p, v)    (*(_Bool *)(p) = (v))
+-#endif
++//#endif
+ 
+ 
+ #ifdef __cplusplus
