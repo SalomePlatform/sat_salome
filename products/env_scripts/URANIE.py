@@ -16,6 +16,7 @@ def set_env(env, prereq_dir, version, forBuild=None):
     env.prepend('PYTHONPATH', os.path.join(uranie, 'lib', 'python'))
     # LD LIBRARY PATH
     env.prepend('PATH', os.path.join(uranie, 'lib'))
+    env.prepend('ROOT_INCLUDE_PATH',os.path.join(uranie, 'include'))
     # ROOT PATH
     root_env = env.get('ROOTSYS')
     root_lib_env = os.path.join(root_env,'lib','root')
