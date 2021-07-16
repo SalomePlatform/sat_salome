@@ -56,6 +56,9 @@ def set_env(env, prereq_dir, version, forBuild=None):
     # OPT
     opt_env = os.path.join(uranie, 'OPT++','optpp-2.4','lib')
     env.prepend('LD_LIBRARY_PATH', opt_env)
+    # JSONCPP
+    jsoncpp_env = os.path.join(uranie,'JSONCPP','jsoncpp-0.10.5','lib')
+    env.prepend('LD_LIBRARY_PATH', jsoncpp_env)
 
 def set_nativ_env(env):
   pass
