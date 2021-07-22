@@ -12,7 +12,7 @@ default :
                "libdrm", "libffi", "libgcc", "libgcrypt", "libgfortran", "libgpg-error", "libICE", "libicu", "libjpeg-turbo",
                "libmount", "libquadmath", "libselinux", "libSM", "libsndfile", "libstdc++", "libthai", "libtiff", "libuuid",
                "libX11", "libXau", "libxcb", "libXcomposite", "libXcursor", "libXdamage", "libXext", "libXfixes", "libXft",
-               "libXi", "libXinerama", "libXmu", "libXpm", "libXrandr", "libXrender", "libXt", "libXtst", "lua", "lz4",
+               "libXi", "libXinerama", "libXmu", "libXpm", "libXrandr", "libXrender", "libXt", "libXtst", "lua",
                "mesa-libGLU", "ncurses-libs", "nspr", "nss", "nss-softokn-freebl", "nss-util", "openldap", "pango", "pcre",
                "pixman", "pulseaudio-libs", "pulseaudio-libs-glib2", "readline", "sqlite", "systemd-libs", "tbb", "xz-libs",
                "zlib"]
@@ -35,10 +35,12 @@ default :
         # specific to some plateform(s)
         "CO7" :
         {
+            rpm : ["lz4"]
             rpm_dev : ["perl"]
         }
         "CO8-FD30-FD32" :
         {
+            rpm : ["lz4"]
             rpm_dev : ["perl-interpreter"]
         }
         "DB08" :
@@ -76,6 +78,12 @@ default :
                    "libffi7", "libtinfo6", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0"]
             apt_dev : ["libtbb-dev"]
         }
+        "FD34" :
+        {
+           rpm : ["lz4-libs"] 
+           rpm_dev : ["lz4-devel"]
+        }
+        
     }
     depend : []
     properties :
