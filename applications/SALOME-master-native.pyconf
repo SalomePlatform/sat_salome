@@ -226,4 +226,11 @@ __overwrite__ :
       'PRODUCTS.sphinxintl.default.properties.pip' : "no"
       'APPLICATION.products.cmake' : '3.12.1'
    }
+   {
+      # FD 34 qt5 package is qt5-qtbase-devel.
+      
+      __condition__ : "VARS.dist in ['FD34']"
+      'PRODUCTS.qt.default.system_info.rpm' : []
+      'PRODUCTS.qt.default.system_info.rpm_dev' : ["qt5-qtbase-devel"]
+   }
 ]
