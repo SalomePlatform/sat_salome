@@ -72,8 +72,8 @@ APPLICATION :
         netgen : '5.3.1_with_CAS_7.2'
         nlopt : '2.4.2'
         numpy : 'native'
-        omniORB : '4.2.4'
-        omniORBpy : '4.2.4'
+        omniORB : '4.2.2'
+        omniORBpy : '4.2.2'
         opencv : 'native'
         openVKL : '0.11.0'
         openturns: '1.16'
@@ -230,6 +230,9 @@ __overwrite__ :
       # FD 34 qt5 package is qt5-qtbase-devel.
       
       __condition__ : "VARS.dist in ['FD34']"
+      'APPLICATION.products.omniORB'  : '4.2.4'
+      'APPLICATION.products.omniORBpy': '4.2.4'
+      'PRODUCTS.root.version_6_22_02.patches' : ['root-6.22.02.patch', 'root-6.22.02-gcc-11.0.patch']
       'PRODUCTS.qt.default.system_info.rpm' : []
       'PRODUCTS.qt.default.system_info.rpm_dev' : ["qt5-qtbase-devel"]
    }
