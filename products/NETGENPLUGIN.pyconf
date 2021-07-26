@@ -68,6 +68,16 @@ default_win :
               ]
 }
 
+version_V9_3_0 :
+{
+  patches : []
+}
+
+version_V9_3_0_win :
+{
+  patches : ['NETGENPlugin_Mesh.patch']
+}
+
 version_V6_6_0 :
 {
     build_source : "autotools"
