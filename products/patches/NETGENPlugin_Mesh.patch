@@ -1,0 +1,327 @@
+diff --git a/src/NETGENPlugin/NETGENPlugin_Mesher.cxx b/src/NETGENPlugin/NETGENPlugin_Mesher.cxx
+index f6398f4..7faff19 100644
+--- a/src/NETGENPlugin/NETGENPlugin_Mesher.cxx
++++ b/src/NETGENPlugin/NETGENPlugin_Mesher.cxx
+@@ -83,6 +83,7 @@
+ #include <occgeom.hpp>
+ #include <meshing.hpp>
+ //#include <ngexception.hpp>
++
+ namespace netgen {
+ #ifdef NETGEN_V5
+   extern int OCCGenerateMesh (OCCGeometry&, Mesh*&, MeshingParameters&, int, int);
+@@ -406,7 +407,7 @@ namespace
+     if ( node_id->second == newNgId)
+     {
+ #if defined(DUMP_SEGMENTS) || defined(DUMP_TRIANGLES)
+-      cout << "Ng " << newNgId << " - " << node;
++      std::cout << "Ng " << newNgId << " - " << node;
+ #endif
+       netgen::MeshPoint p( netgen::Point<3> (node->X(), node->Y(), node->Z()) );
+       ngMesh.AddPoint( p );
+@@ -986,12 +987,12 @@ double NETGENPlugin_Mesher::GetDefaultMinSize(const TopoDS_Shape& geom,
+   if ( minh > 0.25 * bb.SquareExtent() ) // simple geometry, rough triangulation
+   {
+     minh = 1e-3 * sqrt( bb.SquareExtent());
+-    //cout << "BND BOX minh = " <<minh << endl;
++    //std::cout << "BND BOX minh = " <<minh << std::endl;
+   }
+   else
+   {
+     minh = sqrt( minh ); // triangulation for visualization is rather fine
+-    //cout << "TRIANGULATION minh = " <<minh << endl;
++    //std::cout << "TRIANGULATION minh = " <<minh << std::endl;
+   }
+   if ( minh > 0.5 * maxSize )
+     minh = maxSize / 3.;
+@@ -1168,16 +1169,16 @@ bool NETGENPlugin_Mesher::FillNgMesh(netgen::OCCGeometry&           occgeom,
+           RestrictLocalSize( ngMesh, 0.5*(np1+np2), (np1-np2).Modulus() );
+ 
+ #ifdef DUMP_SEGMENTS
+-          cout << "Segment: " << seg.edgenr << " on SMESH face " << helper.GetMeshDS()->ShapeToIndex( face ) << endl
+-               << "\tface index: " << seg.si << endl
+-               << "\tp1: " << seg[0] << endl
+-               << "\tp2: " << seg[1] << endl
+-               << "\tp0 param: " << seg.epgeominfo[ 0 ].dist << endl
+-               << "\tp0 uv: " << seg.epgeominfo[ 0 ].u <<", "<< seg.epgeominfo[ 0 ].v << endl
+-            //<< "\tp0 edge: " << seg.epgeominfo[ 0 ].edgenr << endl
+-               << "\tp1 param: " << seg.epgeominfo[ 1 ].dist << endl
+-               << "\tp1 uv: " << seg.epgeominfo[ 1 ].u <<", "<< seg.epgeominfo[ 1 ].v << endl;
+-            //<< "\tp1 edge: " << seg.epgeominfo[ 1 ].edgenr << endl;
++          std::cout << "Segment: " << seg.edgenr << " on SMESH face " << helper.GetMeshDS()->ShapeToIndex( face ) << std::endl
++               << "\tface index: " << seg.si << std::endl
++               << "\tp1: " << seg[0] << std::endl
++               << "\tp2: " << seg[1] << std::endl
++               << "\tp0 param: " << seg.epgeominfo[ 0 ].dist << std::endl
++               << "\tp0 uv: " << seg.epgeominfo[ 0 ].u <<", "<< seg.epgeominfo[ 0 ].v << std::endl
++            //<< "\tp0 edge: " << seg.epgeominfo[ 0 ].edgenr << std::endl
++               << "\tp1 param: " << seg.epgeominfo[ 1 ].dist << std::endl
++               << "\tp1 uv: " << seg.epgeominfo[ 1 ].u <<", "<< seg.epgeominfo[ 1 ].v << std::endl;
++            //<< "\tp1 edge: " << seg.epgeominfo[ 1 ].edgenr << std::endl;
+ #endif
+           if ( isSeam )
+           {
+@@ -1195,10 +1196,10 @@ bool NETGENPlugin_Mesher::FillNgMesh(netgen::OCCGeometry&           occgeom,
+             seg.edgenr = ngMesh.GetNSeg() + 1; // segment id
+             ngMesh.AddSegment( seg );
+ #ifdef DUMP_SEGMENTS
+-            cout << "Segment: " << seg.edgenr << endl
++            std::cout << "Segment: " << seg.edgenr << std::endl
+                  << "\t is SEAM (reverse) of the previous. "
+                  << " Other " << (helper.GetPeriodicIndex() && 1 ? "U" : "V")
+-                 << " = " << otherSeamParam << endl;
++                 << " = " << otherSeamParam << std::endl;
+ #endif
+           }
+           else if ( fOri == TopAbs_INTERNAL )
+@@ -1208,7 +1209,7 @@ bool NETGENPlugin_Mesher::FillNgMesh(netgen::OCCGeometry&           occgeom,
+             seg.edgenr = ngMesh.GetNSeg() + 1; // segment id
+             ngMesh.AddSegment( seg );
+ #ifdef DUMP_SEGMENTS
+-            cout << "Segment: " << seg.edgenr << endl << "\t is REVERSE of the previous" << endl;
++            std::cout << "Segment: " << seg.edgenr << std::endl << "\t is REVERSE of the previous" << std::endl;
+ #endif
+           }
+         }
+@@ -1359,8 +1360,8 @@ bool NETGENPlugin_Mesher::FillNgMesh(netgen::OCCGeometry&           occgeom,
+       SMESH_TNodeXYZ xyz[3];
+ 
+ #ifdef DUMP_TRIANGLES
+-      cout << "SMESH face " << helper.GetMeshDS()->ShapeToIndex( geomFace )
+-           << " internal="<<isInternalFace << endl;
++      std::cout << "SMESH face " << helper.GetMeshDS()->ShapeToIndex( geomFace )
++           << " internal="<<isInternalFace << std::endl;
+ #endif
+ 
+       SMDS_ElemIteratorPtr faces = smDS->GetElements();
+@@ -1411,7 +1412,7 @@ bool NETGENPlugin_Mesher::FillNgMesh(netgen::OCCGeometry&           occgeom,
+ 
+         ngMesh.AddSurfaceElement (tri);
+ #ifdef DUMP_TRIANGLES
+-        cout << tri << endl;
++        std::cout << tri << std::endl;
+ #endif
+ 
+         if ( isInternalFace )
+@@ -1419,7 +1420,7 @@ bool NETGENPlugin_Mesher::FillNgMesh(netgen::OCCGeometry&           occgeom,
+           swap( tri[1], tri[2] );
+           ngMesh.AddSurfaceElement (tri);
+ #ifdef DUMP_TRIANGLES
+-          cout << tri << endl;
++          std::cout << tri << std::endl;
+ #endif
+         }
+       }
+@@ -1824,7 +1825,7 @@ void NETGENPlugin_Mesher::AddIntVerticesInFaces(const netgen::OCCGeometry&     o
+       double nodeDist3D  = evalDist( vData.uv, vData.uvClose, surf );
+       bool avgLenOK  = ( avgSegLen2d < 0.75 * nodeDist2D );
+       bool hintLenOK = ( segLenHint  < 0.75 * nodeDist3D );
+-      //cout << "uvV " << uvV.X() <<","<<uvV.Y() << " ";
++      //std::cout << "uvV " << uvV.X() <<","<<uvV.Y() << " ";
+       if ( hintLenOK || avgLenOK )
+       {
+         // create a point between the closest node and V
+@@ -1840,11 +1841,11 @@ void NETGENPlugin_Mesher::AddIntVerticesInFaces(const netgen::OCCGeometry&     o
+         netgen::MeshPoint mp( netgen::Point<3> (P.X(), P.Y(), P.Z()));
+         ngMesh.AddPoint ( mp, 1, netgen::EDGEPOINT );
+         segEnd2 = ngMesh.GetNP();
+-        //cout << "Middle " << r << " uv " << uvP.X() << "," << uvP.Y() << "( " << ngMesh.Point(segEnd2).X()<<","<<ngMesh.Point(segEnd2).Y()<<","<<ngMesh.Point(segEnd2).Z()<<" )"<< endl;
++        //std::cout << "Middle " << r << " uv " << uvP.X() << "," << uvP.Y() << "( " << ngMesh.Point(segEnd2).X()<<","<<ngMesh.Point(segEnd2).Y()<<","<<ngMesh.Point(segEnd2).Z()<<" )"<< std::endl;
+         SMDS_MeshNode * nP = helper.AddNode(P.X(), P.Y(), P.Z());
+         nodeVec.push_back( nP );
+       }
+-      //else cout << "at Node " << " uv " << uvP.X() << "," << uvP.Y() << endl;
++      //else std::cout << "at Node " << " uv " << uvP.X() << "," << uvP.Y() << std::endl;
+ 
+       // Add the segment
+       netgen::Segment seg;
+@@ -1894,10 +1895,10 @@ void NETGENPlugin_Mesher::AddIntVerticesInSolids(const netgen::OCCGeometry&
+ #ifdef DUMP_TRIANGLES_SCRIPT
+   // create a python script making a mesh containing triangles added for internal vertices
+   ofstream py(DUMP_TRIANGLES_SCRIPT);
+-  py << "import SMESH"<< endl
+-     << "from salome.smesh import smeshBuilder"<<endl
+-     << "smesh = smeshBuilder.New()"<<endl
+-     << "m = smesh.Mesh(name='triangles')" << endl;
++  py << "import SMESH"<< std::endl
++     << "from salome.smesh import smeshBuilder"<<std::endl
++     << "smesh = smeshBuilder.New()"<<std::endl
++     << "m = smesh.Mesh(name='triangles')" << std::endl;
+ #endif
+   if ((int) nodeVec.size() < ngMesh.GetNP() )
+     nodeVec.resize( ngMesh.GetNP(), 0 );
+@@ -2095,10 +2096,10 @@ void NETGENPlugin_Mesher::AddIntVerticesInSolids(const netgen::OCCGeometry&
+       ngMesh.AddSurfaceElement (tri);
+ 
+ #ifdef DUMP_TRIANGLES_SCRIPT
+-      py << "n1 = m.AddNode( "<< mpV(0)<<", "<< mpV(1)<<", "<< mpV(2)<<") "<< endl
+-         << "n2 = m.AddNode( "<< mp[0](0)<<", "<< mp[0](1)<<", "<< mp[0](2)<<") "<< endl
+-         << "n3 = m.AddNode( "<< mp[1](0)<<", "<< mp[1](1)<<", "<< mp[1](2)<<" )" << endl
+-         << "m.AddFace([n1,n2,n3])" << endl;
++      py << "n1 = m.AddNode( "<< mpV(0)<<", "<< mpV(1)<<", "<< mpV(2)<<") "<< std::endl
++         << "n2 = m.AddNode( "<< mp[0](0)<<", "<< mp[0](1)<<", "<< mp[0](2)<<") "<< std::endl
++         << "n3 = m.AddNode( "<< mp[1](0)<<", "<< mp[1](1)<<", "<< mp[1](2)<<" )" << std::endl
++         << "m.AddFace([n1,n2,n3])" << std::endl;
+ #endif
+     } // loop on internal vertices of a solid
+ 
+@@ -2315,7 +2316,7 @@ NETGENPlugin_Mesher::AddSegmentsToMesh(netgen::Mesh&                    ngMesh,
+     }
+ 
+ #ifdef DUMP_SEGMENTS
+-    cout << "BEGIN WIRE " << iW << endl;
++    std::cout << "BEGIN WIRE " << iW << std::endl;
+     for ( int i = prevNbNGSeg+1; i <= ngMesh.GetNSeg(); ++i )
+     {
+       netgen::Segment& seg = ngMesh.LineSegment( i );
+@@ -2323,21 +2324,21 @@ NETGENPlugin_Mesher::AddSegmentsToMesh(netgen::Mesh&                    ngMesh,
+         netgen::Segment& prevSeg = ngMesh.LineSegment( i-1 );
+         if ( seg[0] == prevSeg[1] && seg[1] == prevSeg[0] )
+         {
+-          cout << "Segment: " << seg.edgenr << endl << "\tis REVERSE of the previous one" << endl;
++          std::cout << "Segment: " << seg.edgenr << std::endl << "\tis REVERSE of the previous one" << std::endl;
+           continue;
+         }
+       }
+-      cout << "Segment: " << seg.edgenr << endl
+-           << "\tp1: " << seg[0] << "   n" << nodeVec[ seg[0]]->GetID() << endl
+-           << "\tp2: " << seg[1] << "   n" << nodeVec[ seg[1]]->GetID() <<  endl
+-           << "\tp0 param: " << seg.epgeominfo[ 0 ].dist << endl
+-           << "\tp0 uv: " << seg.epgeominfo[ 0 ].u <<", "<< seg.epgeominfo[ 0 ].v << endl
+-           << "\tp0 edge: " << seg.epgeominfo[ 0 ].edgenr << endl
+-           << "\tp1 param: " << seg.epgeominfo[ 1 ].dist << endl
+-           << "\tp1 uv: " << seg.epgeominfo[ 1 ].u <<", "<< seg.epgeominfo[ 1 ].v << endl
+-           << "\tp1 edge: " << seg.epgeominfo[ 1 ].edgenr << endl;
++      std::cout << "Segment: " << seg.edgenr << std::endl
++           << "\tp1: " << seg[0] << "   n" << nodeVec[ seg[0]]->GetID() << std::endl
++           << "\tp2: " << seg[1] << "   n" << nodeVec[ seg[1]]->GetID() <<  std::endl
++           << "\tp0 param: " << seg.epgeominfo[ 0 ].dist << std::endl
++           << "\tp0 uv: " << seg.epgeominfo[ 0 ].u <<", "<< seg.epgeominfo[ 0 ].v << std::endl
++           << "\tp0 edge: " << seg.epgeominfo[ 0 ].edgenr << std::endl
++           << "\tp1 param: " << seg.epgeominfo[ 1 ].dist << std::endl
++           << "\tp1 uv: " << seg.epgeominfo[ 1 ].u <<", "<< seg.epgeominfo[ 1 ].v << std::endl
++           << "\tp1 edge: " << seg.epgeominfo[ 1 ].edgenr << std::endl;
+     }
+-    cout << "--END WIRE " << iW << endl;
++    std::cout << "--END WIRE " << iW << std::endl;
+ #else
+     SMESH_Comment __not_unused_variable( prevNbNGSeg );
+ #endif
+@@ -3669,8 +3670,8 @@ double NETGENPlugin_Mesher::GetProgress(const SMESH_Algo* holder,
+         double    doneShapeRate = _curShapeIndex / double( _occgeom->fmap.Extent() );
+         double         doneTime = edgeMeshingTime + doneShapeRate * faceMeshingTime;
+         ((double&)    _ticTime) = doneTime / _totalTime / _progressTic;
+-        // cout << "shape " << _curShapeIndex << " _ticTime " << _ticTime
+-        //      << " " << doneTime / _totalTime / _progressTic << endl;
++        // std::cout << "shape " << _curShapeIndex << " _ticTime " << _ticTime
++        //      << " " << doneTime / _totalTime / _progressTic << std::endl;
+       }
+     }
+   }
+@@ -3688,8 +3689,8 @@ double NETGENPlugin_Mesher::GetProgress(const SMESH_Algo* holder,
+       double    doneShapeRate = _curShapeIndex / double( _occgeom->somap.Extent() );
+       double         doneTime = edgeFaceMeshingTime + doneShapeRate * voluMeshingTime;
+       ((double&)    _ticTime) = doneTime / _totalTime / _progressTic;
+-      // cout << "shape " << _curShapeIndex << " _ticTime " << _ticTime
+-      //      << " " << doneTime / _totalTime / _progressTic << endl;
++      // std::cout << "shape " << _curShapeIndex << " _ticTime " << _ticTime
++      //      << " " << doneTime / _totalTime / _progressTic << std::endl;
+     }
+   }
+ 
+@@ -3708,7 +3709,7 @@ double NETGENPlugin_Mesher::GetProgress(const SMESH_Algo* holder,
+     ((int&) *algoProgressTic )++;
+     ((double&) *algoProgress) = progress;
+   }
+-  //cout << progress << " "  << *algoProgressTic << " " << netgen::multithread.task << " "<< _ticTime << endl;
++  //std::cout << progress << " "  << *algoProgressTic << " " << netgen::multithread.task << " "<< _ticTime << std::endl;
+ 
+   return Min( progress, 0.99 );
+ }
+@@ -3802,10 +3803,10 @@ void NETGENPlugin_Mesher::toPython( const netgen::Mesh* ngMesh )
+   ofstream outfile( pyFile, ios::out );
+   if ( !outfile ) return;
+ 
+-  outfile << "import salome, SMESH" << endl
+-          << "from salome.smesh import smeshBuilder" << endl
+-          << "smesh = smeshBuilder.New()" << endl
+-          << "mesh = smesh.Mesh()" << endl << endl;
++  outfile << "import salome, SMESH" << std::endl
++          << "from salome.smesh import smeshBuilder" << std::endl
++          << "smesh = smeshBuilder.New()" << std::endl
++          << "mesh = smesh.Mesh()" << std::endl << std::endl;
+ 
+   using namespace netgen;
+   PointIndex pi;
+@@ -3815,12 +3816,12 @@ void NETGENPlugin_Mesher::toPython( const netgen::Mesh* ngMesh )
+     outfile << "mesh.AddNode( ";
+     outfile << (*ngMesh)[pi](0) << ", ";
+     outfile << (*ngMesh)[pi](1) << ", ";
+-    outfile << (*ngMesh)[pi](2) << ") ## "<< pi << endl;
++    outfile << (*ngMesh)[pi](2) << ") ## "<< pi << std::endl;
+   }
+ 
+   int nbDom = ngMesh->GetNDomains();
+   for ( int i = 0; i < nbDom; ++i )
+-    outfile<< "grp" << i+1 << " = mesh.CreateEmptyGroup( SMESH.FACE, 'domain"<< i+1 << "')"<< endl;
++    outfile<< "grp" << i+1 << " = mesh.CreateEmptyGroup( SMESH.FACE, 'domain"<< i+1 << "')"<< std::endl;
+ 
+   SurfaceElementIndex sei;
+   for (sei = 0; sei < ngMesh->GetNSE(); sei++)
+@@ -3830,14 +3831,14 @@ void NETGENPlugin_Mesher::toPython( const netgen::Mesh* ngMesh )
+     for (int j = 0; j < sel.GetNP(); j++)
+       outfile << sel[j] << ( j+1 < sel.GetNP() ? ", " : " ])");
+     if ( sel.IsDeleted() ) outfile << " ## IsDeleted ";
+-    outfile << endl;
++    outfile << std::endl;
+ 
+     if ((*ngMesh)[sei].GetIndex())
+     {
+       if ( int dom1 = ngMesh->GetFaceDescriptor((*ngMesh)[sei].GetIndex ()).DomainIn())
+-        outfile << "grp"<< dom1 <<".Add([ " << (int)sei+1 << " ])" << endl;
++        outfile << "grp"<< dom1 <<".Add([ " << (int)sei+1 << " ])" << std::endl;
+       if ( int dom2 = ngMesh->GetFaceDescriptor((*ngMesh)[sei].GetIndex ()).DomainOut())
+-        outfile << "grp"<< dom2 <<".Add([ " << (int)sei+1 << " ])" << endl;
++        outfile << "grp"<< dom2 <<".Add([ " << (int)sei+1 << " ])" << std::endl;
+     }
+   }
+ 
+@@ -3847,7 +3848,7 @@ void NETGENPlugin_Mesher::toPython( const netgen::Mesh* ngMesh )
+     outfile << "mesh.AddVolume([ ";
+     for (int j = 0; j < el.GetNP(); j++)
+       outfile << el[j] << ( j+1 < el.GetNP() ? ", " : " ])");
+-    outfile << endl;
++    outfile << std::endl;
+   }
+ 
+   for (int i = 1; i <= ngMesh->GetNSeg(); i++)
+@@ -3855,9 +3856,9 @@ void NETGENPlugin_Mesher::toPython( const netgen::Mesh* ngMesh )
+     const Segment & seg = ngMesh->LineSegment (i);
+     outfile << "mesh.AddEdge([ "
+             << seg[0] << ", "
+-            << seg[1] << " ])" << endl;
++            << seg[1] << " ])" << std::endl;
+   }
+-  cout << "Write " << pyFile << endl;
++  std::cout << "Write " << pyFile << std::endl;
+ }
+ 
+ //================================================================================
+@@ -4174,7 +4175,7 @@ void NETGENPlugin_Internals::getInternalEdges( TopTools_IndexedMapOfShape& fmap,
+ 
+     ( ev.ShapeType() == TopAbs_EDGE ? emap : vmap ).Add( ev );
+     fmap.Add( face );
+-    //cout<<"INTERNAL EDGE or VERTEX "<<ev_face->first<<" on face "<<ev_face->second<<endl;
++    //std::cout<<"INTERNAL EDGE or VERTEX "<<ev_face->first<<" on face "<<ev_face->second<<std::endl;
+ 
+     smToPrecompute[ MeshDim_1D ].push_back( _mesh.GetSubMeshContaining( ev_face->first ));
+   }
+@@ -4309,7 +4310,7 @@ NETGENPlugin_NetgenLibWrapper::NETGENPlugin_NetgenLibWrapper()
+     netgen::myerr   = netgen::mycout;
+     _coutBuffer     = std::cout.rdbuf();
+ #ifdef _DEBUG_
+-    cout << "NOTE: netgen output is redirected to file " << _outputFileName << endl;
++    std::cout << "NOTE: netgen output is redirected to file " << _outputFileName << std::endl;
+ #else
+     std::cout.rdbuf( netgen::mycout->rdbuf() );
+ #endif
