@@ -120,8 +120,45 @@ default_MPI :
              ]
 }
 
+version_V9_3_0 :
+{
+    cmake_options : "-DSALOME_SMESH_USE_CGNS:BOOL=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_SMESH_DYNLOAD_LOCAL:BOOL=ON -DSALOME_SMESH_BUILD_FRENCH_DOC=OFF"
+    depend : ["KERNEL",
+              "GUI",
+              "GEOM",
+              "MEDCOUPLING",
+              "Python",
+              "qt",
+              "PyQt",
+              "boost",
+              "CAS",
+              "hdf5",
+              "medfile",
+              "qwt",
+              "ParaView",
+              "libxml2",
+              "omniORB",
+              "docutils",
+              "Sphinx",
+              "Jinja2",
+              "setuptools",
+              "Pygments",
+              "cgns",
+              "six",
+              "pytz",
+              "sphinxintl",
+              "sphinxcontrib_napoleon"
+             ]
+    patches : []
+}
+
+version_V9_3_0_win :
+{
+    cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR:\=/%/bin/swig.exe -DSALOME_SMESH_USE_CGNS:BOOL=ON -DSALOME_SMESH_DYNLOAD_LOCAL:BOOL=ON -DSALOME_SMESH_BUILD_FRENCH_DOC=OFF"
+}
+
 # Starting from SALOME 9.4.0, we use tbb as product and build SMESH using it to accelerate its performances
-version_8_5_0_to_9_3_0 :
+version_8_5_0_to_9_2_1 :
 {
     cmake_options : "-DSALOME_SMESH_USE_CGNS:BOOL=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_SMESH_DYNLOAD_LOCAL:BOOL=ON -DSALOME_SMESH_BUILD_FRENCH_DOC=OFF"
     depend : ["KERNEL",
