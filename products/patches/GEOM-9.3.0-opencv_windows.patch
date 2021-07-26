@@ -1,0 +1,31 @@
+diff --git a/src/ShapeRecognition/ShapeRec_FeatureDetector.cxx b/src/ShapeRecognition/ShapeRec_FeatureDetector.cxx
+index a56e18f7f..a59aaee76 100644
+--- a/src/ShapeRecognition/ShapeRec_FeatureDetector.cxx
++++ b/src/ShapeRecognition/ShapeRec_FeatureDetector.cxx
+@@ -26,6 +26,12 @@
+ #include "ShapeRec_FeatureDetector.hxx"
+ #include <stdio.h>
+ #include "utilities.h"
++#include <opencv2/core/version.hpp>
++
++
++#if CV_MAJOR_VERSION == 3
++#define cvCvtPixToPlane cvSplit
++#endif
+ 
+ // TODO : All the following methods but ComputeContours use the C API of OpenCV while ComputContours
+ // uses the C++ API of the library.
+@@ -233,7 +239,12 @@ bool ShapeRec_FeatureDetector::ComputeContours( bool useROI, ShapeRec_Parameters
+     cvReleaseImage(&input_splane);
+     cvReleaseImage(&backproject);
+   
+-    detected_edges = cv::Mat(binary_backproject);
++
++#if CV_MAJOR_VERSION == 3
++    detected_edges = cv::cvarrToMat(binary_backproject);
++#else
++     detected_edges = cv::Mat(binary_backproject);
++#endif
+   }
+   // else if ( detection_method == RIDGE_DETECTOR )  // Method adapted for engineering drawings (e.g. watershed functionality could be used here cf.OpenCV documentation and samples)
+   // {
