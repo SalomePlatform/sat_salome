@@ -128,6 +128,34 @@ version_9_4_0_win:
     build_depend : ["cmake", "swig", "doxygen", "cppunit"]
 }
 
+version_V9_3_0_win :
+{
+    depend : ["KERNEL",
+              "Python",
+              "qt",
+              "sip",
+              "PyQt",
+              "boost",
+              "CAS",
+              "qwt",
+              "hdf5",
+              "freetype",
+              "freeimage",
+              "gl2ps",
+              "ParaView",
+              "omniORB",
+              "docutils",
+              "libxml2",
+              "sphinxintl",
+              "sphinxcontrib_websupport",
+              "sphinxcontrib_applehelp",
+              "sphinxcontrib_serializinghtml",
+              "sphinxcontrib_napoleon"
+             ]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+    patches : ['GUI-V9_3_0-LightApplication_windows.patch']
+}
+
 # OP 19/04/2018 Add section for SALOME 7.8.0 to 8.4.0 due to new dependencies in SALOME 8.5.0
 version_7_8_0_to_8_4_0 :
 {
