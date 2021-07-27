@@ -17,7 +17,9 @@ def set_env(env, prereq_dir, version):
   else:
     env.prepend('PATH', os.path.join(prereq_dir, 'x64','vc15','bin'))
     env.prepend('PATH', os.path.join(prereq_dir, 'x64','vc15','lib'))
-    env.set('OpenCV_INCLUDE_DIRS', os.path.join(prereq_dir, 'include') + ';' + os.path.join(prereq_dir, 'include','opencv') + ';' + os.path.join(prereq_dir, 'include','opencv2'))
+    env.set('OpenCV_INCLUDE_DIRS', os.path.join(prereq_dir, 'include'))
+    env.append('OpenCV_INCLUDE_DIRS',os.path.join(prereq_dir, 'include','opencv'))
+    env.append('OpenCV_INCLUDE_DIRS',os.path.join(prereq_dir, 'include','opencv2'))
 
 def set_nativ_env(env):
   env.set('OPENCV_ROOT_DIR', '/usr')
