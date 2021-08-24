@@ -30,7 +30,7 @@ def set_distene_licence(env):
 
 def set_DASSAULT_license(env, version):
   env.add_comment("DASSAULT MeshGems KeyGenerator based License")
-  env.set('SALOME_MG_KEYGEN_LIB_PATH', '/home/salome/private/MeshGems/libSalomeMeshGemsKeyGenerator.so')
+  env.set('SALOME_MG_KEYGEN_LIB_PATH', '/home/salome/private/MeshGems/libSalomeMeshGemsKeyGenerator-' + version + '.so')
   return
 
 def set_env(env, prereq_dir, version):
