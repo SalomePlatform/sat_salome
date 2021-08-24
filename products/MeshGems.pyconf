@@ -35,6 +35,25 @@ default_win :
     }
 }
 
+version_2_13_1 :
+{
+    properties :
+    {
+      is_distene : "no"
+      incremental : "yes"
+    }
+}
+
+version_2_13_1_win :
+{
+    properties :
+    {
+      is_distene : "no"
+      incremental : "yes"
+      single_install_dir : "yes" # aimed to solve sat #18914
+    }
+}
+
 version_2_9_6 :
 {
 }
