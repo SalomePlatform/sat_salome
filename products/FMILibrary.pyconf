@@ -1,0 +1,41 @@
+default :
+{
+    name : "FMILibrary"
+    build_source : "cmake"
+    cmake_options : " -DFMILIB_GENERATE_DOXYGEN_DOC=OFF"
+    get_source : "archive"
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib']
+    build_depend : ["cmake", "swig"]
+    opt_depend : ['openmpi']
+    patches : []
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+      single_install_dir : "no"
+      incremental : "yes"
+    }
+}
+
+default_win :
+{
+    compil_script :  'pip_install' + $VARS.scriptExtension
+    properties :
+    {
+      single_install_dir : "yes"
+      incremental : "yes"
+      pip : "yes"
+    }
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'pthreads']
+    opt_depend : []
+}
+
+version_2_0_3 :
+{
+   patches : ['FMILibrary-2.0.3-installdir.patch']
+}

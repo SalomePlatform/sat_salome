@@ -1,0 +1,12 @@
+diff -Naur FMILibrary-2.0.3_ref/CMakeLists.txt FMILibrary-2.0.3_new/CMakeLists.txt
+--- FMILibrary-2.0.3_ref/CMakeLists.txt	2017-09-13 08:13:54.000000000 +0200
++++ FMILibrary-2.0.3_new/CMakeLists.txt	2021-08-30 14:32:32.100995247 +0200
+@@ -26,7 +26,7 @@
+ set(FMILIBRARYBUILD ${FMILibrary_BINARY_DIR})
+ 
+ # User configuration options and parameters
+-SET(FMILIB_INSTALL_PREFIX ${FMILibrary_BINARY_DIR}/../install CACHE PATH "Prefix prepended to install directories")
++SET(FMILIB_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX} CACHE PATH "Prefix prepended to install directories")
+ set(FMILIB_THIRDPARTYLIBS  ${FMILibrary_SOURCE_DIR}/ThirdParty CACHE PATH "Path to the ThirdParty library dir" )
+ set(FMILIB_FMI_STANDARD_HEADERS  ${FMILIB_THIRDPARTYLIBS}/FMI/default CACHE PATH "Path to the FMI standard headers dir" )
+ 
