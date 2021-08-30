@@ -1,0 +1,28 @@
+diff -Naur cminpack-1.3.6_ref/CMakeLists.txt cminpack-1.3.6_dev/CMakeLists.txt
+--- cminpack-1.3.6_ref/CMakeLists.txt	2017-02-24 16:09:31.000000000 +0100
++++ cminpack-1.3.6_dev/CMakeLists.txt	2021-08-30 14:02:27.425683737 +0200
+@@ -69,12 +69,23 @@
+ 
+ # Link with a BLAS library if requested
+ if (USE_BLAS)
++  SET(LAPACK_ROOT_DIR $ENV{LAPACK_ROOT_DIR} CACHE PATH "Path to the LAPACK.")
++  IF(LAPACK_ROOT_DIR)
++    LIST(APPEND CMAKE_PREFIX_PATH "${LAPACK_ROOT_DIR}")
++  ENDIF(LAPACK_ROOT_DIR)
+   if (NOT BUILD_SHARED_LIBS)
+     set(BLA_STATIC True)
+   endif()
+   find_package(BLAS)
+   if (BLAS_FOUND)
+-    target_link_libraries(cminpack PUBLIC ${BLAS_LIBRARIES})
++    MESSAGE(STATUS "Searching for C-BLAS library...")
++    FIND_LIBRARY(CBLAS_LIBRARIES NAMES cblas
++      HINTS ${LAPACK_ROOT_DIR}
++      PATH_SUFFIXES lib
++      PATHS ${LAPACK_ROOT_DIR}
++    )
++
++    target_link_libraries(cminpack PUBLIC ${BLAS_LIBRARIES} ${CBLAS_LIBRARIES})
+     set_target_properties(cminpack PROPERTIES LINK_FLAGS "${BLAS_LINKER_FLAGS}")
+     target_compile_definitions(cminpack PUBLIC -DUSE_CBLAS)
+   endif()
