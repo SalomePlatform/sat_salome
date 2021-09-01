@@ -4,7 +4,7 @@
 project_path : $PWD
 
 # Where to search the archives of the products
-ARCHIVEPATH : "/home/salome/prerequis/archives"
+ARCHIVEPATH : "/home/salome/prerequis/archives:/home/salome-public/prerequis/archives"
 ARCHIVEFTP : "ftp.cea.fr/pub/salome/prerequisites"
 # Where to search the pyconf of the applications
 APPLICATIONPATH : $project_path + "/applications/"
