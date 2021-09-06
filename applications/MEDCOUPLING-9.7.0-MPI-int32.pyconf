@@ -62,7 +62,7 @@ APPLICATION :
 
         # SALOME MODULES :
         'CONFIGURATION'
-        'MEDCOUPLING' : {section : 'default_MPI'}
+        'MEDCOUPLING' : {section : 'default_32BIT_IDS_MPI'}
     }
     test_base : 
     {
