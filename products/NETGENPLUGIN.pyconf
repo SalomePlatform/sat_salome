@@ -2,6 +2,7 @@ default :
 {
     name : "NETGENPLUGIN"
     build_source : "cmake"
+    cmake_options: " -DSALOME_CXX_STANDARD=17 "
     get_source : "git"
     git_info:
     {
@@ -45,7 +46,7 @@ default :
 
 default_win :
 {
-	cmake_options : " -DZLIB_LIBRARY=%ZLIB_BIN:\=/%  -DZLIB_INCLUDE_DIR=%ZLIB_INCLUDE_DIR:\=/%  -DCMAKE_GENERATOR=\"Visual Studio 15 2017 Win64\" "
+    cmake_options : " -DZLIB_LIBRARY=%ZLIB_BIN:\=/%  -DZLIB_INCLUDE_DIR=%ZLIB_INCLUDE_DIR:\=/%  -DCMAKE_GENERATOR=\"Visual Studio 15 2017 Win64\" -DSALOME_CXX_STANDARD=17 "
     depend : [
              "KERNEL",
              "MEDCOUPLING",
@@ -67,6 +68,7 @@ default_win :
              "zlib"
               ]
 }
+
 
 version_V9_3_0 :
 {

@@ -64,7 +64,7 @@ APPLICATION :
         mesa : '19.0.8'
         MeshGems : '2.13-1'
         metis : '5.1.0'
-        netgen : '5.3.1_with_CAS_7.2'
+        netgen : '6.2.2101'
         nlopt : '2.5.0'
         numpy : '1.16.4'
         omniORB : '4.2.2'

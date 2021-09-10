@@ -29,3 +29,23 @@ default_win :
     cmake_options : '-DCMAKE_GENERATOR="Visual Studio 15 2017 Win64" -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR:\=/%/bin/swig.exe'
     depend : [ "Python", "pthreads" ]
 }
+
+version_V2_4_5:
+{
+    cmake_options : "-DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DLIBBATCH_CXX_STANDARD=17"
+}
+
+version_V2_4_5_win:
+{
+    cmake_options : '-DCMAKE_GENERATOR="Visual Studio 15 2017 Win64" -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR:\=/%/bin/swig.exe -DLIBBATCH_CXX_STANDARD=17 '
+}
+
+version_V2_4_4:
+{
+    cmake_options : "-DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig"
+}
+
+version_V2_4_4_win:
+{
+    cmake_options : '-DCMAKE_GENERATOR="Visual Studio 15 2017 Win64" -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR:\=/%/bin/swig.exe '
+}
