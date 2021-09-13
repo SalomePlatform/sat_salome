@@ -31,6 +31,12 @@ version_6_2_2101 :
    patches : ['netgen62ForSalome.patch']
 }
 
+version_6_2_2101_win :
+{
+   build_source : "script"
+   compil_script :  'netgen-6.2.2101.bat'
+}
+
 version_5_3_1_with_CAS_7_2 :
 {
     archive_info : {archive_name : "netgen-5.3.1.tar.gz"}

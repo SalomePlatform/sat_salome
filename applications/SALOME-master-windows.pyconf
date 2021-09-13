@@ -75,7 +75,7 @@ APPLICATION :
         MeshGems : '2.12-1'
         metis : '5.1.0'
         msvc : '2017'
-        netgen : '5.3.1_with_CAS_7.2'
+        netgen : '6.2.2101'
         nlopt : '2.5.0'
         numpy : '1.16.4'
         omniORB : '4.2.3'
