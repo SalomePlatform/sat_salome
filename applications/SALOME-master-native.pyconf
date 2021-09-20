@@ -51,7 +51,7 @@ APPLICATION :
         freetype : 'native'
         gl2ps : 'native'
         # 'native' too difficult here : need python-pip package (gmsh-sdk) besides system packages
-        gmsh : '4.1.4'
+        gmsh : '4.8.4'
         graphviz : 'native'
         hdf5 : '1.10.3'
         idna : 'native'

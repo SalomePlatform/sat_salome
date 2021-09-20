@@ -44,7 +44,7 @@ APPLICATION :
         embree : '3.3.0'
         freeimage : '3.16.0'
         freetype : '2.9.1'
-        gmsh : '4.1.4'
+        gmsh : '4.8.4'
         graphviz : '2.38.0'
         hdf5 : '1.10.3'
         homard_bin : '11.12_hdf51103med410'
