@@ -13,7 +13,7 @@ PRODUCTPATH : $project_path + "/products/"
 # Where to search the pyconf of the jobs of the project
 JOBPATH : $project_path + "/jobs/" 
 # Where to search for licences
-LICENCEPATH : "\\\\terre\\data\\tmpsalome\\salome\\prerequis\\install\\LICENSE:/data/tmpsalome/salome/prerequis/install/LICENCE:/export/home/salome/prerequis/install/LICENCE:/volatile/salome/prerequis/install/LICENCE:/soft/commun/SALOME/LICENSE"
+LICENCEPATH : "\\\\terre\\data\\tmpsalome\\salome\\prerequis\\install\\LICENSE:/data/tmpsalome/salome/prerequis/install/LICENCE:/home/salome-public/prerequis/LICENCE:/export/home/salome/prerequis/install/LICENCE:/volatile/salome/prerequis/install/LICENCE:/soft/commun/SALOME/LICENSE"
 
 git_info : 
 {
