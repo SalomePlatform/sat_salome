@@ -29,11 +29,21 @@ def set_distene_licence(env):
   return
 
 def set_DASSAULT_license(env, version):
+  try:
+    license_file_prefix = env.environ.get_value("LICENCE_FILE")
+    linux_dist = env.environ.get_value("sat_dist")
+  except Exception as e:
+    return
   env.add_comment("DASSAULT MeshGems KeyGenerator based License")
   if platform.system() == "Windows" :
-    env.set('SALOME_MG_KEYGEN_LIB_PATH', 'W:\\private\\MeshGems\\libSalomeMeshGemsKeyGenerator-' + version + '.dll')
+    license_file_name=license_file_prefix + '-' + version + '.dll'
   else:
-    env.set('SALOME_MG_KEYGEN_LIB_PATH', '/home/salome/private/MeshGems/libSalomeMeshGemsKeyGenerator-' + version + '.so')
+    license_file_name=license_file_prefix + '-' + version + '-' + linux_dist + '.so'
+
+  if not os.path.exists(license_file_name):
+     print("WARNING : DASSAULT license file %s not found!" % license_file_name) 
+
+  env.set('SALOME_MG_KEYGEN_LIB_PATH', license_file_name)
   return
 
 def set_env(env, prereq_dir, version):
