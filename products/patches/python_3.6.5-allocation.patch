@@ -1,0 +1,26 @@
+diff -Naur Python_old/Include/objimpl.h Python/Include/objimpl.h
+--- Python_old/Include/objimpl.h	2021-09-22 13:45:20.116037197 +0200
++++ Python/Include/objimpl.h	2021-09-22 13:46:05.444683399 +0200
+@@ -255,7 +255,7 @@
+         union _gc_head *gc_prev;
+         Py_ssize_t gc_refs;
+     } gc;
+-    double dummy;  /* force worst-case alignment */
++    long double dummy;  /* force worst-case alignment */
+ } PyGC_Head;
+ 
+ extern PyGC_Head *_PyGC_generation0;
+diff -Naur Python_old/Objects/obmalloc.c Python/Objects/obmalloc.c
+--- Python_old/Objects/obmalloc.c	2018-03-28 11:19:31.000000000 +0200
++++ Python/Objects/obmalloc.c	2021-09-22 13:46:32.901074624 +0200
+@@ -633,8 +633,8 @@
+  *
+  * You shouldn't change this unless you know what you are doing.
+  */
+-#define ALIGNMENT               8               /* must be 2^N */
+-#define ALIGNMENT_SHIFT         3
++#define ALIGNMENT               16               /* must be 2^N */
++#define ALIGNMENT_SHIFT         4
+ 
+ /* Return the number of bytes in size class I, as a uint. */
+ #define INDEX2SIZE(I) (((uint)(I) + 1) << ALIGNMENT_SHIFT)
