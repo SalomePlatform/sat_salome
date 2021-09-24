@@ -36,7 +36,7 @@ APPLICATION :
         lapack : '3.8.0'
         libxml2 : '2.9.1'
         markupsafe : '0.23'
-        medfile : '4.1.0'
+        medfile : '4.1.1rc1'
         metis : '5.1.0'
         numpy : '1.15.1'
         pockets : '0.6.2'

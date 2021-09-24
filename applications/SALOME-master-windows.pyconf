@@ -70,7 +70,7 @@ APPLICATION :
         llvm : '8.0.1-clang-win'
         markupsafe : '1.1.1'
         matplotlib : '3.1.0'
-        medfile : '4.1.0'
+        medfile : '4.1.1rc1'
         mesa : '19.2.3'
         MeshGems : '2.12-1'
         metis : '5.1.0'

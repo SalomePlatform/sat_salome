@@ -50,7 +50,7 @@ APPLICATION :
         libpng: '1.5.10'
         libxml2 : '2.9.1'
         markupsafe : '1.1.1'
-        medfile : '4.1.0'
+        medfile : '4.1.1rc1'
         metis : '5.1.0'
         msvc : '2017'
         numpy : '1.16.4'

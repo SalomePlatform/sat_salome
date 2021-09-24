@@ -43,7 +43,7 @@ APPLICATION :
         lapack : 'native'
         libxml2 : 'native'
         markupsafe : 'native'
-        medfile : {section: 'default_Autotools', tag: '4.1.0'}
+        medfile : {section: 'default_Autotools', tag: '4.1.1rc1'}
         metis : 'native'
         numpy : 'native'
         pockets : 'native'
