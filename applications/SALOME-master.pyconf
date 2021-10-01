@@ -47,6 +47,10 @@ APPLICATION :
         embree : '3.12.2'
         freeimage : '3.16.0'
         freetype : '2.9.1'
+        gcc  :  '8.5.0'
+        mpc : 'native'
+        gmp : 'native'
+        mpfr : 'native'
         gmsh : '4.8.4'
         graphviz : '2.38.0'
         hdf5 : '1.10.3'
@@ -181,5 +185,10 @@ __overwrite__ :
    __condition__ : "VARS.dist in ['FD32']"
    # https://github.com/scipy/scipy/issues/11611
    'APPLICATION.products.scipy' : '1.5.2'
+  }
+  {
+   __condition__ : "VARS.dist not in ['DB09']"
+   # https://github.com/scipy/scipy/issues/11611
+   'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
   }
 ]

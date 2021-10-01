@@ -19,8 +19,12 @@ default :
     }
 }
 
+version_8_5_0:
+{
+    compil_script : 'gcc-8.5.0.sh'
+}
+
 version_6_3_0:
 {
     compil_script : 'gcc-6.3.0.sh'
-
 }
