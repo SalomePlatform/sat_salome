@@ -31,7 +31,7 @@ APPLICATION :
         alabaster : '0.7.6'
         Babel : '2.7.0'
         boost : '1.71.0'
-        CAS : {tag: 'V7_5_0p1', section: 'version_V7_5_0'}
+        CAS : {tag: '1e74e3eacd', section: 'version_V7_5_0'}
         certifi : '2018.8.24'
         cgns : '4.1.1'
         chardet : '3.0.4'
@@ -188,7 +188,6 @@ __overwrite__ :
   }
   {
    __condition__ : "VARS.dist not in ['DB09']"
-   # https://github.com/scipy/scipy/issues/11611
    'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
   }
 ]
