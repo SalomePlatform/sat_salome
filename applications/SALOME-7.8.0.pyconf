@@ -6,7 +6,9 @@ APPLICATION :
     name : 'SALOME-7.8.0'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
     tag : 'V7_8_0'
-    #base : 'no'
+    dev : 'no'
+    verbose :'no'
+    debug : 'no'
     environ :
     {
     }
