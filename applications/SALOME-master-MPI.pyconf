@@ -64,7 +64,7 @@ APPLICATION :
         llvm : '8.0.1-clang'
         markupsafe : '0.23'
         matplotlib : '3.0.3'
-        medfile : {tag : '4.1.1rc1', hpc : 'yes', section : 'default_Autotools' }
+        medfile : {tag : '4.1.1', hpc : 'yes', section : 'default_Autotools' }
         mesa : '19.0.8'
         MeshGems : {tag : '2.13-1', hpc : 'yes'}
         mpi4py: '3.0.3'

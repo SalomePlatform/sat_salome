@@ -62,7 +62,7 @@ APPLICATION :
         llvm : '8.0.1-clang'
         markupsafe : '0.23'
         matplotlib : '2.2.2'
-        medfile : '4.1.1rc1'
+        medfile : '4.1.1'
         mesa : '19.0.8'
         MeshGems : '2.13-1'
         metis : '5.1.0'
