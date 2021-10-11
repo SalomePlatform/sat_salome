@@ -23,7 +23,7 @@ echo SRC_FOLDER = %SRC_FOLDER%
 echo PRODUCT_INSTALL = %PRODUCT_INSTALL%
 
 rem ## Includes
-xcopy include\* %PRODUCT_INSTALL%\include /E /I /Q
+xcopy include\* %PRODUCT_INSTALL%\include /E /I /Q /Y
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on copying include
     exit 1
@@ -31,8 +31,8 @@ if NOT %ERRORLEVEL% == 0 (
 
 rem ## Lib
 echo. 
-echo running command: xcopy lib\%SRC_FOLDER%\* %PRODUCT_INSTALL%\lib /E /I /Q
-xcopy lib\%SRC_FOLDER%\* %PRODUCT_INSTALL%\lib /E /I /Q
+echo running command: xcopy lib\%SRC_FOLDER%\* %PRODUCT_INSTALL%\lib /E /I /Q /Y
+xcopy lib\%SRC_FOLDER%\* %PRODUCT_INSTALL%\lib /E /I /Q /Y
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on copying lib
     exit 2
@@ -40,8 +40,8 @@ if NOT %ERRORLEVEL% == 0 (
 
 rem ## Bin
 echo. 
-echo running command: bin\%SRC_FOLDER%\* %PRODUCT_INSTALL%\bin /E /I /Q
-xcopy bin\%SRC_FOLDER%\* %PRODUCT_INSTALL%\bin /E /I /Q
+echo running command: bin\%SRC_FOLDER%\* %PRODUCT_INSTALL%\bin /E /I /Q /Y
+xcopy bin\%SRC_FOLDER%\* %PRODUCT_INSTALL%\bin /E /I /Q /Y
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on copying bin
     exit 3
