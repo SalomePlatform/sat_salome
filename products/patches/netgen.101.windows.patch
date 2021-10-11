@@ -1,0 +1,95 @@
+diff -Naur netgen-6.2.2101_SRC_orig/libsrc/core/version.hpp netgen-6.2.2101_SRC_modif/libsrc/core/version.hpp
+--- netgen-6.2.2101_SRC_orig/libsrc/core/version.hpp	2021-03-26 15:27:42.000000000 +0300
++++ netgen-6.2.2101_SRC_modif/libsrc/core/version.hpp	2021-10-05 14:21:01.736494600 +0300
+@@ -41,7 +41,12 @@
+               if(!vstring.empty())
+                 {
+                   dot = vstring.find('-');
+-                  patch = std::stoi(vstring.substr(0,dot));
++                  try {
++                    patch = std::stoi(vstring.substr(0,dot));
++                  }
++                  catch (const std::exception& e) {
++                    patch = 0;
++                  }
+                   if(dot == size_t(-1)) vstring = "";
+                   else vstring = vstring.substr(dot+1, vstring.size()-dot-1);
+                   if(!vstring.empty())
+diff -Naur netgen-6.2.2101_SRC_orig/libsrc/stlgeom/stlgeom.hpp netgen-6.2.2101_SRC_modif/libsrc/stlgeom/stlgeom.hpp
+--- netgen-6.2.2101_SRC_orig/libsrc/stlgeom/stlgeom.hpp	2021-03-26 15:27:44.000000000 +0300
++++ netgen-6.2.2101_SRC_modif/libsrc/stlgeom/stlgeom.hpp	2021-10-05 14:51:15.044170800 +0300
+@@ -188,7 +188,7 @@
+       STLTopology::DoArchive(ar);
+     }
+ 
+-    void Clear();
++    DLL_HEADER void Clear();
+ 
+     virtual void Save (string filename) const override;
+ 
+@@ -369,19 +369,19 @@
+ 
+     ///Build EdgeSegments
+     void ClearEdges();
+-    void BuildEdges(const STLParameters& stlparam);
++    DLL_HEADER void BuildEdges(const STLParameters& stlparam);
+     void BuildEdgesPerPoint();
+     void UseExternalEdges();
+ 
+ 
+     void FindEdgesFromAngles(const STLParameters& stlparam);
+-    void CalcFaceNums();
++    DLL_HEADER void CalcFaceNums();
+     int GetNOBodys();
+     int GetNOFaces() {return facecnt;}
+-    void LinkEdges(const STLParameters& stlparam);
++    DLL_HEADER void LinkEdges(const STLParameters& stlparam);
+ 
+     void AddConeAndSpiralEdges(const STLParameters& stlparam);
+-    void AddFaceEdges(); //each face should have at least one starting edge (outherwise it won't be meshed)
++    DLL_HEADER void AddFaceEdges(); //each face should have at least one starting edge (outherwise it won't be meshed)
+ 
+     void GetDirtyChartTrigs(int chartnum, STLChart& chart, const Array<ChartId, STLTrigId>& outercharttrigs, 
+ 			    NgArray<ChartId>& chartpointchecked, NgArray<int>& dirtytrigs);
+@@ -398,7 +398,7 @@
+ 
+ 
+     //make charts with regions of a max. angle
+-    void MakeAtlas(class Mesh & mesh, const MeshingParameters& mparam, const STLParameters& stlparam);
++    DLL_HEADER void MakeAtlas(class Mesh & mesh, const MeshingParameters& mparam, const STLParameters& stlparam);
+ 
+     //outerchartspertrig, sorted!
+     int GetOCPTSize() const {return outerchartspertrig.Size();};
+@@ -460,7 +460,7 @@
+     int GetLineP(int lnr, int pnr) const {return lines.Get(lnr)->PNum(pnr);}
+     int GetLineNP(int nr) const {return lines.Get(nr)->NP();}
+ 
+-    void SetLineEndPoint(int pn);
++    DLL_HEADER void SetLineEndPoint(int pn);
+     int IsLineEndPoint(int pn);
+     int LineEndPointsSet() const {return lineendpoints.Size() == GetNP();}
+     void ClearLineEndPoints();
+diff -Naur netgen-6.2.2101_SRC_orig/libsrc/stlgeom/stltopology.hpp netgen-6.2.2101_SRC_modif/libsrc/stlgeom/stltopology.hpp
+--- netgen-6.2.2101_SRC_orig/libsrc/stlgeom/stltopology.hpp	2021-03-26 15:27:44.000000000 +0300
++++ netgen-6.2.2101_SRC_modif/libsrc/stlgeom/stltopology.hpp	2021-10-05 14:45:13.980762200 +0300
+@@ -342,7 +342,7 @@
+   int GetNP() const { return points.Size(); }
+   int AddPoint(const Point<3> & p) { points.Append(p); return points.Size(); }
+   const Point<3> & GetPoint(STLPointId nr) const { return points[nr]; } // .Get(nr); }
+-  int GetPointNum (const Point<3> & p);
++  DLL_HEADER int GetPointNum (const Point<3> & p);
+   void SetPoint(STLPointId nr, const Point<3> & p) { points[nr] = p; } // { points.Elem(nr) = p; }
+   auto & GetPoints() const { return points; }
+ 
+diff -Naur netgen-6.2.2101_SRC_orig/nglib/nglib.cpp netgen-6.2.2101_SRC_modif/nglib/nglib.cpp
+--- netgen-6.2.2101_SRC_orig/nglib/nglib.cpp	2021-09-21 17:05:14.000000000 +0300
++++ netgen-6.2.2101_SRC_modif/nglib/nglib.cpp	2021-10-05 14:55:59.205412900 +0300
+@@ -550,7 +550,7 @@
+ 
+ 
+    NgArray<STLReadTriangle> readtrias; //only before initstlgeometry
+-   NgArray<Point<3> > readedges; //only before init stlgeometry
++   DLL_HEADER NgArray<Point<3> > readedges; //only before init stlgeometry
+ 
+    // loads geometry from STL file
+    DLL_HEADER Ng_STL_Geometry * Ng_STL_LoadGeometry (const char * filename, int binary)

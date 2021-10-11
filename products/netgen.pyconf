@@ -34,7 +34,14 @@ version_6_2_2101 :
 version_6_2_2101_win :
 {
    build_source : "script"
-   compil_script :  'netgen-6.2.2101.bat'
+   archive_info: {archive_name : "netgen-6.2.2101_cmake-3.16.7.tar.gz"}
+   patches : ['netgen62ForSalome_windows.patch', 'netgen.101.windows.patch']
+   compil_script :  'netgen-6.2.2101_2.bat'
+   properties :
+   {
+     incremental : "yes"
+     single_install_dir : "no"
+   }
 }
 
 version_5_3_1_with_CAS_7_2 :
