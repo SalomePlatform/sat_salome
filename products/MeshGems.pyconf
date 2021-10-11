@@ -35,7 +35,7 @@ default_win :
     }
 }
 
-_from_2_13_0_to_2_99_9 :
+version_2_13_1 :
 {
     properties :
     {
@@ -43,6 +43,17 @@ _from_2_13_0_to_2_99_9 :
       licence : "libSalomeMeshGemsKeyGenerator"
       incremental : "yes"
     }
+}
+
+version_2_13_1_win :
+{
+    properties :
+    {
+      is_distene : "no"
+      licence : "libSalomeMeshGemsKeyGenerator"
+      incremental : "yes"
+    }
+   archive_info : {archive_name : "MeshGems_V2.13-1_windows.tar.gz"}
 }
 
 version_2_9_6 :
