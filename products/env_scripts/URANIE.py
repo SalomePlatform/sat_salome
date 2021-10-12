@@ -53,6 +53,7 @@ def set_env(env, prereq_dir, version, forBuild=None):
     env.prepend('PATH', os.path.join(uranie,'bin'))
     env.prepend('PATH', os.path.join(root_env,'bin'))
 
+    env.prepend('ROOT_INCLUDE_PATH',os.path.join(uranie, 'include'))
     # OPT
     opt_env = os.path.join(uranie, 'OPT++','optpp-2.4','lib')
     env.prepend('LD_LIBRARY_PATH', opt_env)
