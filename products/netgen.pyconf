@@ -40,7 +40,7 @@ version_6_2_2101_win :
    properties :
    {
      incremental : "yes"
-     single_install_dir : "no"
+     single_install_dir : "yes"
    }
 }
 
