@@ -76,6 +76,42 @@ version_V7_5_0 :
     }
 }
 
+version_1e74e3eacd :
+{
+    name : "CAS"
+    build_source : "cmake"
+    cmake_options : "-DUSE_TCL=OFF -DBUILD_MODULE_Draw=OFF -DUSE_FREETYPE=ON -D3RDPARTY_FREETYPE_DIR=$FREETYPEDIR -DUSE_FREEIMAGE=ON -D3RDPARTY_FREEIMAGE_DIR=$FREEIMAGEDIR"
+    get_source : "git"
+    #get_source : "archive"
+    git_info:
+    {
+        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo_dev : $repo
+    }
+    environ :
+    {
+        CSF_ShadersDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Shaders"
+        CSF_UnitsLexicon : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
+        CSF_UnitsDefinition : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
+        CSF_SHMessage : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "SHMessage"
+        CSF_XSMessage : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "XSMessage"
+        CSF_MDTVTexturesDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Textures"
+        MMGT_REENTRANT : "1"
+        CSF_StandardDefaults : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        CSF_PluginDefaults : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        env_script : $name + ".py"
+    }
+    depend : ['freetype', 'freeimage']
+    build_depend : ["cmake", "doxygen"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties:
+    {
+      incremental : "no"
+    }
+}
+
 version_1e74e3eacd_win :
 {
     name : "CAS"
