@@ -76,6 +76,10 @@ if NOT %ERRORLEVEL% == 0 (
     exit 3
 )
 
+REM rename documentation directory
+cd  %PRODUCT_INSTALL%\share\doc
+mv med-fichier* med
+
 taskkill /F /IM "mspdbsrv.exe"
 
 
