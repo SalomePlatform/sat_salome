@@ -31,7 +31,7 @@ APPLICATION :
         alabaster : 'native'
         Babel : 'native'
         boost : 'native'
-        CAS : {tag: 'f9481b4f21', section: 'version_7_5_3p1'}
+        CAS : {tag: 'b08cd044f9', section: 'version_7_5_3p1'}
         certifi : 'native'
         # Standalone native cgns works well. Unfortunately, it's directly linked to native hdf which uses a higher version than us.
         # Rollback to embedded version to avoid versions mismatch between both of them (see imp_1538_cgns_export_import.py)

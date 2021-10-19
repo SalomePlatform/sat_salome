@@ -36,7 +36,7 @@ APPLICATION :
         alabaster : '0.7.6'
         Babel : '2.7.0'
         boost : '1.67.0'
-        CAS : {tag: 'f9481b4f21', section: 'version_7_5_3p1_win'}
+        CAS : {tag: 'b08cd044f9', section: 'version_7_5_3p1_win'}
         certifi : '2019.6.16'
         cgns : '4.1.1'
         chardet : '3.0.4'
