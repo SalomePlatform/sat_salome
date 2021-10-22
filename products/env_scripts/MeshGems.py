@@ -41,21 +41,12 @@ def set_DASSAULT_license(env, version):
     license_file_name=license_file_prefix + '-' + version + '-' + linux_dist + '.so'
 
   if not os.path.exists(license_file_name):
-     print("WARNING : DASSAULT license file %s not found!" % license_file_name) 
+     print("\nWARNING : DASSAULT license file %s not found!" % license_file_name) 
 
   env.set('SALOME_MG_KEYGEN_LIB_PATH', license_file_name)
   return
 
-def set_env(env, prereq_dir, version):
-  env.add_comment("Here you can define your license parameters for MeshGems")
-  if LooseVersion(version) > LooseVersion('2.12-1'):
-    set_DASSAULT_license(env,version)
-  else:
-    env.add_comment("DISTENE license")
-    if not env.forBuild:
-      # we don't need licence keys at compile time
-      set_distene_licence(env)
-
+def set_env_build(env, prereq_dir, version):
   env.set('MESHGEMSHOME', prereq_dir)
   env.set('MESHGEMS_ROOT_DIR', prereq_dir)    # update for cmake
 
@@ -67,6 +58,18 @@ def set_env(env, prereq_dir, version):
     libdir = "Linux_64"
     env.prepend('PATH', os.path.join(prereq_dir, 'bin', libdir))
     env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib', libdir))
+
+def set_env(env, prereq_dir, version):
+  env.add_comment("Here you can define your license parameters for MeshGems")
+  if LooseVersion(version) > LooseVersion('2.12-1'):
+    set_DASSAULT_license(env,version)
+  else:
+    env.add_comment("DISTENE license")
+    if not env.forBuild:
+      # we don't need licence keys at compile time
+      set_distene_licence(env)
+  set_env_build(env, prereq_dir, version)
+
 
 def set_nativ_env(env):
   pass
