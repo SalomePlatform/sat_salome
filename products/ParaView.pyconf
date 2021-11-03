@@ -19,7 +19,7 @@ default :
               'cgns',
               'Pygments'
               ]
-    opt_depend : ['openmpi', 'ospray','tbb']
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns']
     build_depend : ["cmake"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name

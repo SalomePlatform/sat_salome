@@ -22,4 +22,5 @@ def set_env(env, prereq_dir, version):
 
 def set_nativ_env(env):
     env.set('LAPACKHOME', '/usr')
+    env.set('LAPACK_ROOT_DIR', '/')
 

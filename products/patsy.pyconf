@@ -1,6 +1,6 @@
 default :
 {
-    name : "PyFMI"
+    name : "patsy"
     build_source : "script"
     compil_script : "pip_install" + $VARS.scriptExtension
     get_source : "archive"
@@ -13,21 +13,13 @@ default :
     }
     environ :
     {
-       env_script : $name + ".py"
+
     }
-    depend : ["Python", "setuptools", "FMILibrary"]
+    depend : ["Python", "setuptools"]
+    opt_depend : ['pandas']
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     install_dir : 'base'
-    properties:
-    {
-      incremental : "yes"
-      pip : "yes"
-    }
-}
-
-version_2_5 :
-{
     properties:
     {
       incremental : "yes"

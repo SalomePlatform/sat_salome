@@ -157,7 +157,11 @@ CMAKE_OPTIONS="${CMAKE_OPTIONS} -DVTK_MODULE_USE_EXTERNAL_VTK_hdf5:BOOL=ON"
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DHDF5_DIR:PATH=${HDF5_ROOT_DIR}/share/cmake/hdf5"
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DHDF5_USE_STATIC_LIBRARIES:BOOL=OFF"
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DHDF5_ROOT:PATH=${HDF5_ROOT_DIR}"
-
+CMAKE_OPTIONS="${CMAKE_OPTIONS} -DHDF5_hdf5_LIBRARY_RELEASE=${HDF5_ROOT_DIR}/lib"
+CMAKE_OPTIONS="${CMAKE_OPTIONS} -DHDF5_hdf5_hl_LIBRARY_RELEASE=${HDF5_ROOT_DIR}/lib/libhdf5_hl.so"
+CMAKE_OPTIONS="${CMAKE_OPTIONS} -DHDF5_hdf5_CXX_LIBRARY_RELEASE=${HDF5_ROOT_DIR}/lib/libhdf5_cxx.so"
+CMAKE_OPTIONS="${CMAKE_OPTIONS} -DHDF5_HL_LIBRARY=${HDF5_ROOT_DIR}/lib/libhdf5_hl.so"
+CMAKE_OPTIONS="${CMAKE_OPTIONS} -DHDF5_C_INCLUDE_DIR=${HDF5_ROOT_DIR}/include"
 ### CGNS
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DVTK_MODULE_USE_EXTERNAL_ParaView_cgns:BOOL=ON"
 if [ "$CGNS_ROOT_DIR" != "/usr" ]
@@ -211,6 +215,20 @@ CMAKE_OPTIONS="${CMAKE_OPTIONS} -DPARAVIEW_PLUGIN_ENABLE_pvblot:BOOL=OFF"
 
 # allow additional plugins
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DVTK_ALL_NEW_OBJECT_FACTORY:BOOL=ON"
+
+# Openturns:
+if [ -n "$OPENTURNS_VERSION" ]; then
+    function version_ge() { test "$(echo "$@" | tr " " "\n" | sort -rV | head -n 1)" == "$1"; }
+    if version_ge $OPENTURNS_VERSION "1.17" ; then
+        echo "INFO: Adding OpenTURNS version ${OPENTURNS_VERSION} support..."
+        CMAKE_OPTIONS="${CMAKE_OPTIONS} -DPARAVIEW_ENABLE_OPENTURNS=ON"
+        CMAKE_OPTIONS="${CMAKE_OPTIONS} -DOpenTURNS_DIR=$OPENTURNS_ROOT_DIR/lib/cmake/openturns"
+    else
+        echo "WARNING: OpenTURNS ${OPENTURNS_VERSON} is not supported with current ParaView build..."
+    fi
+else
+    echo "WARNING: No OpenTURNS environment variable is found..."
+fi
 
 echo
 echo "*** cmake" ${CMAKE_OPTIONS}
