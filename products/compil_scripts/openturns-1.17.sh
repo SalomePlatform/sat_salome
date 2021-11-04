@@ -63,7 +63,7 @@ if [ -n "$LAPACK_ROOT_DIR" ] && [ "${LAPACK_ROOT_DIR}" != "/" ]; then
     CMAKE_OPTIONS+=" -DBLAS_LIBRARIES=$LAPACK_ROOT_DIR/lib/libblas.so"
 fi
 
-if [[ $DIST_NAME == "CO" && $DIST_VERSION == "8" && $APPLICATION_NAME =~ native && -d /usr/lib64/libcblas.so && -d /usr/lib64/libblas.so ]]; then
+if [[ $DIST_NAME == "CO" && $DIST_VERSION == "8" && $APPLICATION_NAME =~ native && -f /usr/lib64/libcblas.so && -f /usr/lib64/libblas.so ]]; then
     CMAKE_OPTIONS+=" -DCBLAS_LIBRARIES=/usr/lib64/libcblas.so"
     CMAKE_OPTIONS+=" -DBLAS_LIBRARIES=/usr/lib64/libblas.so"
 fi
