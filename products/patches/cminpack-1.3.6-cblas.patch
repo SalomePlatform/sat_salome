@@ -1,7 +1,15 @@
-diff -Naur cminpack-1.3.6_ref/CMakeLists.txt cminpack-1.3.6_dev/CMakeLists.txt
---- cminpack-1.3.6_ref/CMakeLists.txt	2017-02-24 16:09:31.000000000 +0100
-+++ cminpack-1.3.6_dev/CMakeLists.txt	2021-08-30 14:02:27.425683737 +0200
-@@ -69,12 +69,23 @@
+diff -Naur cminpack_ref/CMakeLists.txt  cminpack_new/CMakeLists.txt
+--- cminpack_ref/CMakeLists.txt	2017-02-24 16:09:31.000000000 +0100
++++ cminpack_new/CMakeLists.txt	2021-11-01 17:02:44.829569251 +0100
+@@ -41,6 +41,7 @@
+ endif ()
+ 
+ option(USE_BLAS "Compile cminpack using a blas library if possible" ON)
++option(CBLAS_INCLUDE_DIRS "On CentOS8 -  CMake fails to find /usr/include/cblas" "")
+ 
+ #set(CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR}/../build)
+ 
+@@ -69,14 +70,28 @@
  
  # Link with a BLAS library if requested
  if (USE_BLAS)
@@ -25,4 +33,16 @@ diff -Naur cminpack-1.3.6_ref/CMakeLists.txt cminpack-1.3.6_dev/CMakeLists.txt
 +    target_link_libraries(cminpack PUBLIC ${BLAS_LIBRARIES} ${CBLAS_LIBRARIES})
      set_target_properties(cminpack PROPERTIES LINK_FLAGS "${BLAS_LINKER_FLAGS}")
      target_compile_definitions(cminpack PUBLIC -DUSE_CBLAS)
++    if (CBLAS_INCLUDE_DIRS)
++      include_directories(${CBLAS_INCLUDE_DIRS})
++    endif(CBLAS_INCLUDE_DIRS)
    endif()
+ endif()
+ 
+@@ -94,4 +109,4 @@
+ set_target_properties(cminpack PROPERTIES VERSION ${CMINPACK_VERSION} SOVERSION ${CMINPACK_SOVERSION})
+ 
+ add_subdirectory (cmake)
+-add_subdirectory (examples)
+\ No newline at end of file
++add_subdirectory (examples)
