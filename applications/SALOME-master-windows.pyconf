@@ -163,6 +163,7 @@ APPLICATION :
         'EFICAS_TOOLS'
         'ADAO'
         'PARAVISADDONS'
+        'TESTBASE'
         'CEATESTBASE' : {tag: 'SalomeV9'}
     }
     profile :

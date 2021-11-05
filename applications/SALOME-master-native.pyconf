@@ -162,6 +162,7 @@ APPLICATION :
         'ADAO'
         'ADAO_INTERFACE'
         'PARAVISADDONS'
+        'TESTBASE'
         'CEATESTBASE' : {tag: 'SalomeV9'}
     }
     profile :
