@@ -4,7 +4,7 @@
 project_path : $PWD
 
 # Where to search the archives of the products
-ARCHIVEPATH : "/data/tmpsalome/salome/prerequis/archives:/home/salome-public/prerequis/archives:/nfs/home/salome-public/prerequis/archives"
+ARCHIVEPATH : "/home/salome-public/prerequis/archives:/nfs/home/salome-public/prerequis/archives:/mnt/prerequis/archives"
 ARCHIVEFTP : "ftp.cea.fr/pub/salome/prerequisites"
 # Where to search the pyconf of the applications
 APPLICATIONPATH : $project_path + "/applications/"
@@ -13,7 +13,7 @@ PRODUCTPATH : $project_path + "/products/"
 # Where to search the pyconf of the jobs of the project
 JOBPATH : $project_path + "/jobs/" 
 # Where to search for licences
-LICENCEPATH : "\\\\terre\\data\\tmpsalome\\salome\\prerequis\\install\\LICENSE:/data/tmpsalome/salome/prerequis/install/LICENCE:/home/salome-public/prerequis/LICENCE:/nfs/home/salome-public/prerequis/LICENCE:/export/home/salome/prerequis/install/LICENCE:/volatile/salome/prerequis/install/LICENCE:/soft/commun/SALOME/LICENSE"
+LICENCEPATH : "\\\\terre\\data\\tmpsalome\\salome\\prerequis\\install\\LICENSE:/home/salome-public/prerequis/LICENCE:/nfs/home/salome-public/prerequis/LICENCE:/export/home/salome/prerequis/install/LICENCE:/volatile/salome/prerequis/install/LICENCE:/soft/commun/SALOME/LICENSE:/mnt/prerequis/LICENCE"
 
 git_info : 
 {
