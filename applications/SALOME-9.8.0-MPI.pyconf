@@ -156,13 +156,13 @@ APPLICATION :
         'CALCULATOR'
         'HELLO'
         'PYHELLO'
-        'EFICAS'
-        'EFICAS_TOOLS'
-        'PY2CPP'
-        'ADAO'
-        'ADAO_INTERFACE'
-        'PARAVISADDONS'
-        'TESTBASE'
+        'EFICAS' :  {tag : 'V9_8_0b1'}
+        'EFICAS_TOOLS' :  {tag : 'V9_8_0b1'}
+        'PY2CPP':  {tag: 'V9_8_0b1'}
+        'ADAO' : {tag: 'V9_8_0b1'}
+        'ADAO_INTERFACE': {tag: 'V9_8_0b1'}
+        'PARAVISADDONS' : {tag: 'V9_8_0b1'}
+        'TESTBASE': {tag: 'master'}
         'CEATESTBASE' : {tag: 'SalomeV9'}
     }
     profile :

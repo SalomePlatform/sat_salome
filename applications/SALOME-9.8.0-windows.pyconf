@@ -159,11 +159,11 @@ APPLICATION :
         'CALCULATOR'
         'HELLO'
         'PYHELLO'
-        'EFICAS'
-        'EFICAS_TOOLS'
-        'ADAO'
-        'PARAVISADDONS'
-        'TESTBASE'
+        'EFICAS' :  {tag : 'V9_8_0b1'}
+        'EFICAS_TOOLS' :  {tag : 'V9_8_0b1'}
+        'ADAO' : {tag: 'V9_8_0b1'}
+        'PARAVISADDONS' : {tag: 'V9_8_0b1'}
+        'TESTBASE': {tag: 'master'}
         'CEATESTBASE' : {tag: 'SalomeV9'}
     }
     profile :
