@@ -146,7 +146,7 @@ APPLICATION :
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
-        'SOLVERLAB'
+        'SOLVERLAB' : {tag : 'master'}
         'DOCUMENTATION'
         'SAMPLES'
         'COMPONENT'

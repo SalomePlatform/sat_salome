@@ -148,7 +148,7 @@ APPLICATION :
         'JOBMANAGER' : {section : "default_MPI", verbose: 'yes'}
         'YACS'
         'YACSGEN'
-        'SOLVERLAB' : {section : "default_MPI", hpc: 'yes'}
+        'SOLVERLAB' : {tag: 'master', section : "default_MPI", hpc: 'yes'}
         'DOCUMENTATION'
         'SAMPLES'
         'COMPONENT'
