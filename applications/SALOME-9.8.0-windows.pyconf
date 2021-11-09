@@ -1,0 +1,200 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+APPLICATION :
+{
+    name : 'SALOME-9.8.0'
+    workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name
+    cmake_generator : 'Visual Studio 15 2017 Win64'
+    tag : 'V9_8_BR'
+    dev : 'no'
+    verbose :'no'
+    debug : 'no'
+    base : 'no'
+    python3 : 'yes'
+    environ :
+    {
+        build : 
+        {
+           CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
+           RESTRICTED_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "RESTRICTED"
+           SALOME_HAS_GLOBAL_ENV : "1"
+           SALOME_USE_64BIT_IDS : '1'
+           SET_usr_docs_VARS : "1" # required for PyEditor build
+           CMAKE_GENERATOR : '"Visual Studio 15 2017 Win64"'
+        }
+        launch : {PYTHONIOENCODING:"UTF_8", SALOME_MODULES_ORDER:"SHAPER:SHAPERSTUDY:GEOM:SMESH"}
+        SALOME_trace : "local" # local/file:.../with_logger
+        SALOME_MODULES : "SHAPER,SHAPERSTUDY,GEOM,SMESH,PARAVIS,YACS,JOBMANAGER"  # specify the first modules to display in gui
+        SALOME_TMP_DIR : "%appdata%"
+        HOME : "%userprofile%"
+        SALOME_ACTOR_DELEGATE_TO_VTK : '1'
+    }
+    products :
+    {
+        # PREREQUISITES :
+        alabaster : '0.7.6'
+        Babel : '2.7.0'
+        boost : '1.67.0'
+        CAS : {tag: 'b08cd044f9', section: 'version_7_5_3p1_win'}
+        certifi : '2019.6.16'
+        cgns : '4.1.1'
+        chardet : '3.0.4'
+        click : '7.0'
+        cmake : '3.12.1'
+        colorama: '0.4.1'
+        cppunit : '1.13.2'
+        cycler : '0.10.0'
+        Cython : '0.29.12'
+        dateutil : '2.8.0'
+        docutils : '0.14'
+        doxygen : '1.8.3.1'
+        eigen : '3.3.4'
+        embree : '3.12.2'
+        expat : '2.0.1'
+        f2c : '1.0.0'
+        freeimage : '3.18.0'
+        freetype : '2.9.1'
+        #gmsh : '4.1.4'
+        graphviz : '2.44.1'
+        hdf5 : '1.10.3'
+        idna : '2.8'
+        imagesize : '1.1.0'
+        ispc : '1.15.0'
+        Jinja2 : '2.10.1'
+        kiwisolver : '1.1.0'
+        lapack : '3.8.0'
+        libjpeg: '9c'
+        libpng: '1.5.10'
+        libxml2 : '2.9.1'
+        llvm : '8.0.1-clang-win'
+        markupsafe : '1.1.1'
+        matplotlib : '3.1.0'
+        medfile : '4.1.1'
+        mesa : '19.2.3'
+        MeshGems : '2.13-1'
+        metis : '5.1.0'
+        msvc : '2017'
+        netgen : '6.2.2101'
+        nlopt : '2.5.0'
+        numpy : '1.16.4'
+        omniORB : '4.2.3'
+        omniORBpy : '4.2.3'
+        opencv : '3.2.0'
+        openVKL: '0.11.0'
+        openturns: '1.16'
+        ospray : '2.4.0'
+        packaging : '19.0'
+        ParaView : '5.9.0'
+        perl : '5.28.1.1'
+        Pillow : '7.1.1'
+        planegcs : '0.18-3cb6890'
+        psutil : '5.7.2'
+        pthreads : '2.9.1'
+        Pygments : '2.4.2'
+        pyparsing : '2.4.0'
+        PyQt : '5.15.3'
+       # PyQtChart : '5.15.4'
+        pyreadline : '2.1'
+        Python : '3.6.5'
+        pytz : '2019.1'
+        qt : '5.12.10'
+        qwt : '6.1.2'
+        requests : '2.22.0'
+        rkCommon : '1.5.1'
+        ruby : '2.5.5-1'
+        scipy : '1.4.1'
+        setuptools : '41.0.1'
+        sip : '5.5.0'
+        six : '1.12.0'
+        snowballstemmer : '1.9.0'
+        Sphinx : '2.1.2'
+        sphinxcontrib_applehelp : '1.0.1'
+        sphinxcontrib_devhelp : '1.0.1'
+        sphinxcontrib_jsmath : '1.0.1'
+        sphinxcontrib_htmlhelp : '1.0.2'
+        sphinxcontrib_qthelp : '1.0.2'
+        sphinxcontrib_serializinghtml :'1.1.3'
+        sphinxcontrib_websupport : '1.1.2'
+        sphinx_rtd_theme : '0.4.3'
+        sphinxintl: '2.0.0'
+        StaticMeshPlugin: '5.8.0'
+        swig : '3.0.12'
+        tbb : '2019_U8_win'
+        toml : '0.10.2'
+        tcltk : '8.6.9'
+        urllib3 : '1.25.3'
+        zlib : '1.2.5'
+
+        # SALOME MODULES :
+        'CONFIGURATION'
+        'SALOME'
+        'SHAPER'
+        'SHAPERSTUDY'
+        'RESTRICTED'
+        'LIBBATCH' : {tag :'V2_4_5'}
+        'KERNEL'
+        'MEDCOUPLING'
+        'GUI'
+        'GEOM'
+        'SMESH'
+        'NETGENPLUGIN'
+        'BLSURFPLUGIN'
+        'GHS3DPLUGIN'
+        'HYBRIDPLUGIN'
+        'HexoticPLUGIN'
+        #'GMSHPLUGIN'
+        'HEXABLOCK'
+        'HEXABLOCKPLUGIN'
+        #'HOMARD'
+        'FIELDS'
+        'PARAVIS'
+        'JOBMANAGER'
+        'YACS'
+        'YACSGEN'
+        'DOCUMENTATION'
+        'SAMPLES'
+        'COMPONENT'
+        'PYCALCULATOR'
+        'CALCULATOR'
+        'HELLO'
+        'PYHELLO'
+        'EFICAS'
+        'EFICAS_TOOLS'
+        'ADAO'
+        'PARAVISADDONS'
+        'TESTBASE'
+        'CEATESTBASE' : {tag: 'SalomeV9'}
+    }
+    profile :
+    {
+        launcher_name : "salome"
+    }
+    virtual_app:
+    {
+        name : "salome"
+        application_name : "APPLI"
+    }
+    test_base : 
+    {
+        name : "SALOME"
+        tag : "SalomeV9"
+    }
+    properties :
+    {
+        mesa_launcher_in_package : "no"
+        repo_dev : "yes"
+        pip : 'yes'
+        pip_install_dir : 'python'
+        single_install_dir : "yes"
+    }
+}
+
+__overwrite__ :
+[
+  {
+    __condition__ : "APPLICATION.debug == 'yes'"
+    'APPLICATION.products.numpy'      : '1.16.4-win-dbg'
+    'APPLICATION.products.sphinxintl' : '2.0.0-win-dbg'
+  }
+]
