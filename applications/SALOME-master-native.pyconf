@@ -245,6 +245,8 @@ __overwrite__ :
       'PRODUCTS.root.version_6_22_02.patches' : ['root-6.22.02.patch', 'root-6.22.02-gcc-11.0.patch']
       'PRODUCTS.qt.default.system_info.rpm' : []
       'PRODUCTS.qt.default.system_info.rpm_dev' : ["qt5-qtbase-devel"]
+      'PRODUCTS.PyFMI.version_2_5.properties.pip' : "no"
+      'PRODUCTS.PyFMI.version_2_5.compil_script' : "PyFMI-2.5.sh"
    }
    {
      __condition__ : "VARS.dist in ['FD32']"
