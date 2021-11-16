@@ -163,7 +163,7 @@ APPLICATION :
         'ADAO_INTERFACE': {tag: 'V9_8_0b1'}
         'PARAVISADDONS' : {tag: 'V9_8_0b1'}
         'TESTBASE': {tag: 'master'}
-        'CEATESTBASE' : {tag: 'SalomeV9'}
+        'CEATESTBASE' : {tag: 'SSL'}
     }
     profile :
     {
