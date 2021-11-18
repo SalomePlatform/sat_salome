@@ -31,7 +31,7 @@ APPLICATION :
         alabaster : '0.7.6'
         Babel : '2.7.0'
         boost : '1.71.0'
-        CAS : {tag: 'b08cd044f9', section: 'version_7_5_3p1'}
+        CAS : 'V7_5_3p1'
         certifi : '2018.8.24'
         cgns : '4.1.1'
         chardet : '3.0.4'
@@ -83,7 +83,7 @@ APPLICATION :
         pandas : '0.25.2'
         patsy : '0.5.2'
         ParaView : '5.9.0'
-        petsc : {tag : '3.15.0', section: 'version_3_15_0'}
+        petsc : {tag : '3.16.0', section: 'version_3_16_0'}
         Pillow : '7.1.1'
         planegcs : '0.18-3cb6890'
         psutil : '5.7.2'

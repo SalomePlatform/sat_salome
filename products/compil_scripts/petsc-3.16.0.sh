@@ -13,7 +13,7 @@ CONFIGURE_FLAGS+=" --with-hdf5-dir=${HDF5_ROOT_DIR}"
 CONFIGURE_FLAGS+=" --download-metis=ext/metis-5.1.0-p10.tar.gz"
 CONFIGURE_FLAGS+=" --with-debugging=0" # by default Petsc is build in debug mode
 CONFIGURE_FLAGS+=" --with-petsc4py=yes"
-CONFIGURE_FLAGS+=" --download-slepc-configure-arguments=\" --with-slepc4py=yes\" "
+CONFIGURE_FLAGS+=" --download-slepc-configure-arguments=--with-slepc4py=yes "
 echo
 if [ -n "${MPI_ROOT_DIR}" ]
 then
@@ -22,6 +22,7 @@ then
   CONFIGURE_FLAGS+=" --download-parms=ext/parms-3.2-p5.tar.gz"
   CONFIGURE_FLAGS+=" --download-parmetis=ext/parmetis-4.0.3-p6.tar.gz"
   CONFIGURE_FLAGS+=" --download-ptscotch=ext/scotch_6.1.0.tar.gz"
+#  CONFIGURE_FLAGS+=" --download-mpi4py=ext/mpi4py-3.0.3.tar.gz"
   CONFIGURE_FLAGS+=" --with-mpi4py-dir=${MPI4PY_ROOT_DIR}"
   ./configure --prefix=${PRODUCT_INSTALL} --with-mpi-dir=${MPI_ROOT_DIR} ${CONFIGURE_FLAGS}
 else

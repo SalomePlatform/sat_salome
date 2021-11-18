@@ -24,6 +24,7 @@ version_3_16_0 :
 {
     compil_script :  "petsc-3.16.0.sh"
     depend : ["hdf5", "Python"]
+    patches: ['petsc-3.16-mpi4py.patch']
 }
 
 version_3_15_0 :
