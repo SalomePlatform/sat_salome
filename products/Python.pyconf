@@ -50,6 +50,13 @@ version_3_6_5_win :
     compil_script : "Python-3.6.5.bat"
     patches : ['Python-3.6.5_windows.patch']
 }
+
+version_3_6_8 :
+{
+ compil_script : 'Python-3.6.8.sh'
+ patches : []
+}
+
 version_3_7_9 :
 {
  patches : []
