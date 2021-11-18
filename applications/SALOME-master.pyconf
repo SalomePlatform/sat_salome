@@ -83,7 +83,7 @@ APPLICATION :
         pandas : '0.25.2'
         patsy : '0.5.2'
         ParaView : '5.9.0'
-        petsc : {tag : '3.15.0', section: 'version_3_15_0'}
+        petsc : {tag : '3.16.0', section: 'version_3_16_0'}
         Pillow : '7.1.1'
         planegcs : '0.18-3cb6890'
         psutil : '5.7.2'
