@@ -56,4 +56,5 @@ default_MPI :
         'MEDCOUPLING',
         'openmpi'
     ]
+    opt_depend : ['mpi4py']
 }

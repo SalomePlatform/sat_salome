@@ -39,6 +39,12 @@ then
     fi
     CMAKE_OPTIONS="${CMAKE_OPTIONS} -DCMAKE_CXX_COMPILER:STRING=${MPI_ROOT_DIR}/bin/mpic++"
     CMAKE_OPTIONS="${CMAKE_OPTIONS} -DCMAKE_C_COMPILER:STRING=${MPI_ROOT_DIR}/bin/mpicc"
+    if [ -n "$MPI4PY_ROOT_DIR" ]
+    then
+	CMAKE_OPTIONS="${CMAKE_OPTIONS} -DMPI4PY_ROOT_DIR:PATH=${MPI4PY_ROOT_DIR}"
+    else
+        echo "WARNING: mpi4py environment variable not detected"
+    fi
 fi
 
 echo
@@ -71,4 +77,3 @@ fi
 
 echo
 echo "########## END"
-
