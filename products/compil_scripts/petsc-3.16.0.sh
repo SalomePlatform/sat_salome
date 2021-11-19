@@ -22,8 +22,13 @@ then
   CONFIGURE_FLAGS+=" --download-parms=ext/parms-3.2-p5.tar.gz"
   CONFIGURE_FLAGS+=" --download-parmetis=ext/parmetis-4.0.3-p6.tar.gz"
   CONFIGURE_FLAGS+=" --download-ptscotch=ext/scotch_6.1.0.tar.gz"
-#  CONFIGURE_FLAGS+=" --download-mpi4py=ext/mpi4py-3.0.3.tar.gz"
-  CONFIGURE_FLAGS+=" --with-mpi4py-dir=${MPI4PY_ROOT_DIR}"
+  if [ -n "${MPI4PY_ROOT_DIR}" ]
+  then
+      echo "*** mpi4py external dependency detected..."
+      CONFIGURE_FLAGS+=" --with-mpi4py-dir=${MPI4PY_ROOT_DIR}"
+  else
+      CONFIGURE_FLAGS+=" --download-mpi4py=ext/mpi4py-3.0.3.tar.gz"
+  fi
   ./configure --prefix=${PRODUCT_INSTALL} --with-mpi-dir=${MPI_ROOT_DIR} ${CONFIGURE_FLAGS}
 else
   echo "*** configure without mpi"
