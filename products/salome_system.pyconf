@@ -31,7 +31,7 @@ default :
                    "libglu1-mesa-dev", "perl", "libxcb-dri2-0-dev", "libxkbcommon-dev", "libxkbcommon-x11-dev", "bzip2",
                    "libxi-dev", "libxt-dev", "libxmu-dev", "libxpm-dev", "libxft-dev", "automake", "libtool", "libjpeg-dev",
                    "cmake", "libicu-dev", "libopenmpi-dev", "libreadline-dev", "libhwloc-dev", "libsqlite3-dev",
-                   "cython3", "libfftw3-dev", "ibopenblas-dev"]
+                   "cython3", "libfftw3-dev", "libopenblas-dev"]
 
         # specific to some plateform(s)
         "CO7" :
