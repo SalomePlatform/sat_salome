@@ -26,7 +26,7 @@ default :
                "libraw1394-11", "libsm6", "libstdc++6", "libtiff5", "libudev1", "libusb-1.0-0", "libuuid1", "libx11-6",
                "libx11-xcb1", "libxau6", "libxcb1", "libxcb-glx0", "libxcb-xfixes0", "libxcb-xkb1", "libxdmcp6",
                "libxext6", "libxft2", "libxi6", "libxkbcommon0", "libxkbcommon-x11-0", "libxmu6", "libxpm4", "libxrender1",
-               "libxss1", "libxt6", "zlib1g", "libsqlite3", "libopenblas0"]
+               "libxss1", "libxt6", "zlib1g", "libsqlite3"]
         apt_dev : ["libssl-dev", "gcc", "make", "sed", "g++", "libexpat1-dev", "libfontconfig1-dev", "flex", "bison",
                    "libglu1-mesa-dev", "perl", "libxcb-dri2-0-dev", "libxkbcommon-dev", "libxkbcommon-x11-dev", "bzip2",
                    "libxi-dev", "libxt-dev", "libxmu-dev", "libxpm-dev", "libxft-dev", "automake", "libtool", "libjpeg-dev",
