@@ -30,8 +30,7 @@ default :
         apt_dev : ["libssl-dev", "gcc", "make", "sed", "g++", "libexpat1-dev", "libfontconfig1-dev", "flex", "bison",
                    "libglu1-mesa-dev", "perl", "libxcb-dri2-0-dev", "libxkbcommon-dev", "libxkbcommon-x11-dev", "bzip2",
                    "libxi-dev", "libxt-dev", "libxmu-dev", "libxpm-dev", "libxft-dev", "automake", "libtool", "libjpeg-dev",
-                   "cmake", "libicu-dev", "libopenmpi-dev", "libreadline-dev", "libhwloc-dev", "libsqlite3-dev",
-                   "cython3", "libfftw3-dev", "libopenblas-dev"]
+                   "cmake", "libicu-dev", "libopenmpi-dev", "libreadline-dev", "libhwloc-dev", "libsqlite3-dev"]
 
         # specific to some plateform(s)
         "CO7" :
@@ -59,7 +58,8 @@ default :
         {
             apt : ["libopenexr23", "libwebp6", "libgfortran5", "libilmbase23", "libevent-2.1-6", "libpng16-16", "libgcc-8-dev",
                    "libffi6", "libtinfo6", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0"]
-            apt_dev : ["libtbb-dev"]
+            apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev"]
+
         }
         "UB16.04" :
         {
@@ -71,13 +71,13 @@ default :
         {
             apt : ["libopenexr22", "libwebp6", "libgfortran4", "libilmbase12", "libevent-2.1-6", "libpng16-16", "libgcc-7-dev",
                    "libffi6", "libtinfo5", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0"]
-            apt_dev : ["libtbb-dev"]
+            apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev"]
         }
         "UB20.04" :
         {
             apt : ["libopenexr24", "libwebp6", "libgfortran5", "libilmbase24", "libevent-2.1-7", "libpng16-16", "libgcc-9-dev",
                    "libffi7", "libtinfo6", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0"]
-            apt_dev : ["libtbb-dev"]
+            apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev"]
         }
         "FD34" :
         {
