@@ -3,7 +3,7 @@
 
 APPLICATION :
 {
-    name : 'MEDCOUPLING-master-native'
+    name : 'MEDCOUPLING-9.4.0-native'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
     tag : 'V9_4_0'
     base : 'no'
