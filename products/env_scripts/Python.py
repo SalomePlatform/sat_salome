@@ -8,6 +8,8 @@ def set_env(env,prereq_dir,version,forBuild=None):
         
     # [CMake KERNEL] Nouveau nom pour PYTHONHOME = PYTHON_ROOT_DIR 22/03/2013
     env.set('PYTHON_ROOT_DIR', prereq_dir)
+    # EDF uses this environment variable
+    env.set('PYTHON_INSTALL_DIR', prereq_dir)
 
     # keep only the first two version numbers
     version = '.'.join(version.replace('-', '.').split('.')[:2])

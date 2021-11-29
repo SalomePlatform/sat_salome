@@ -1,0 +1,42 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 8959cac..e5d03fc 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -23,14 +23,33 @@ SET (CMAKE_CXX_STANDARD 11)
+ ENABLE_TESTING()
+ SET(BUILD_SHARED_LIBS TRUE)
+ 
++SET(CONFIGURATION_ROOT_DIR $ENV{CONFIGURATION_ROOT_DIR} CACHE PATH "Path to the Salome CMake configuration files")
++IF(EXISTS ${CONFIGURATION_ROOT_DIR})
++  LIST(APPEND CMAKE_MODULE_PATH "${CONFIGURATION_ROOT_DIR}/cmake")
++  INCLUDE(SalomeMacros NO_POLICY_SCOPE)
++ELSE()
++  MESSAGE(FATAL_ERROR "We absolutely need the Salome CMake configuration files, please define CONFIGURATION_ROOT_DIR !")
++ENDIF()
++
++SET(KERNEL_ROOT_DIR $ENV{KERNEL_ROOT_DIR} CACHE PATH "Path to the Salome KERNEL")
++IF(EXISTS ${KERNEL_ROOT_DIR})
++  FIND_PACKAGE(SalomeKERNEL REQUIRED)
++  ADD_DEFINITIONS(${KERNEL_DEFINITIONS})
++  INCLUDE_DIRECTORIES(${KERNEL_INCLUDE_DIRS})
++ELSE(EXISTS ${KERNEL_ROOT_DIR})
++  MESSAGE(FATAL_ERROR "We absolutely need a Salome KERNEL, please define KERNEL_ROOT_DIR")
++ENDIF(EXISTS ${KERNEL_ROOT_DIR})
++
++# Platform setup
++# ==============
++INCLUDE(SalomeSetupPlatform)   # From CONFIGURATION
++# Always build libraries as shared objects:
++SET(BUILD_SHARED_LIBS TRUE)
++
+ OPTION(YDEFX_BUILD_GUI "Generate widgets" ON)
+ 
+ FIND_PACKAGE(Py2cpp REQUIRED)
+ 
+-# SalomeKERNEL can be useful in order to define SALOME_INSTALL directories and
+-# for using salome test, but it is not a c++ dependency.
+-FIND_PACKAGE(SalomeKERNEL NO_MODULE)
+-
+ IF(NOT SalomeKERNEL_FOUND)
+   MESSAGE("SalomeKERNEL not found. Salome installation paths will not be used")
+ ELSE()

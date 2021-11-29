@@ -11,7 +11,7 @@ default :
     }
     environ :
     {
-        PY2CPP_ROOT_DIR : $install_dir
+        env_script : $name + ".py"
     }
     depend : [
               "CONFIGURATION",
