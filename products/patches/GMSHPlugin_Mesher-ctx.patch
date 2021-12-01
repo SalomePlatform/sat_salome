@@ -1,14 +1,13 @@
 diff --git a/src/GMSHPlugin/GMSHPlugin_Mesher.cxx b/src/GMSHPlugin/GMSHPlugin_Mesher.cxx
-index 8ac85b5..a9a691a 100644
+index 8ac85b5..847526e 100644
 --- a/src/GMSHPlugin/GMSHPlugin_Mesher.cxx
 +++ b/src/GMSHPlugin/GMSHPlugin_Mesher.cxx
-@@ -1028,7 +1028,9 @@ void  GMSHPlugin_Mesher::mymsg::operator()(std::string level, std::string msg)
-     }
-     if (level == "Fatal")
-     {
-+#ifndef WIN32
-         CTX::instance()->lock = 0;
-+#endif
-         throw oss.str();
-     }
-     else
+@@ -60,7 +60,7 @@
+ 
+ #if GMSH_MAJOR_VERSION >=4
+ #include <GmshGlobal.h>
+-#include <Context.h>
++#include <gmsh/Context.h>
+ #endif
+ 
+ #if GMSH_MAJOR_VERSION >=4 && GMSH_MINOR_VERSION >=8
