@@ -1,15 +1,14 @@
 diff --git a/src/GMSHPlugin/GMSHPlugin_Mesher.cxx b/src/GMSHPlugin/GMSHPlugin_Mesher.cxx
-index 8ac85b5..3a5c1ad 100644
+index 8ac85b5..a9a691a 100644
 --- a/src/GMSHPlugin/GMSHPlugin_Mesher.cxx
 +++ b/src/GMSHPlugin/GMSHPlugin_Mesher.cxx
-@@ -1028,8 +1028,10 @@ void  GMSHPlugin_Mesher::mymsg::operator()(std::string level, std::string msg)
+@@ -1028,7 +1028,9 @@ void  GMSHPlugin_Mesher::mymsg::operator()(std::string level, std::string msg)
      }
      if (level == "Fatal")
      {
 +#ifndef WIN32
          CTX::instance()->lock = 0;
-         throw oss.str();
 +#endif
+         throw oss.str();
      }
      else
-         printf("%s\n", oss.str().c_str());
