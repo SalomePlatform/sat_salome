@@ -1,0 +1,11 @@
+diff -Naur gmsh_ref/CMakeLists.txt gmsh_new/CMakeLists.txt
+--- gmsh_ref/CMakeLists.txt	2021-04-28 09:09:29.000000000 +0200
++++ gmsh_new/CMakeLists.txt	2021-12-01 00:25:02.000000000 +0100
+@@ -1357,7 +1357,6 @@
+     endif()
+     if(WIN32)
+       list(APPEND EXTERNAL_LIBRARIES "winspool")
+-      add_definitions(-DOCC_CONVERT_SIGNALS)
+     elseif(MSVC)
+       add_definitions(-DWNT)
+     endif()

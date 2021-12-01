@@ -18,16 +18,23 @@ default :
     {
       incremental : "yes"
     }
+    patches: []
 } 
 
 default_win:
 {
-    depend : ["CAS"]
+    depend : ["CAS", "pthreads"]
 }
 
 version_4_8_4:
 {
   compil_script : "gmsh-4.8.4.sh"
+}
+
+version_4_8_4_win:
+{
+  compil_script : "gmsh-4.8.4.bat"
+  patches: ['gmsh-4.8.4-windows.patch']
 }
 
 version_4_1_4:

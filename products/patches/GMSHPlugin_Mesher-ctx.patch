@@ -1,13 +1,15 @@
---- GMSHPLUGIN_ref/src/GMSHPlugin/GMSHPlugin_Mesher.cxx	2020-12-29 09:19:07.932776533 +0100
-+++ GMSHPLUGIN/src/GMSHPlugin/GMSHPlugin_Mesher.cxx	2020-12-29 09:17:14.885840621 +0100
-@@ -938,7 +938,10 @@ void  GMSHPlugin_Mesher::mymsg::operator
+diff --git a/src/GMSHPlugin/GMSHPlugin_Mesher.cxx b/src/GMSHPlugin/GMSHPlugin_Mesher.cxx
+index 8ac85b5..3a5c1ad 100644
+--- a/src/GMSHPlugin/GMSHPlugin_Mesher.cxx
++++ b/src/GMSHPlugin/GMSHPlugin_Mesher.cxx
+@@ -1028,8 +1028,10 @@ void  GMSHPlugin_Mesher::mymsg::operator()(std::string level, std::string msg)
      }
      if (level == "Fatal")
      {
 +#ifndef WIN32
          CTX::instance()->lock = 0;
-+#endif
-+
          throw oss.str();
++#endif
      }
      else
+         printf("%s\n", oss.str().c_str());
