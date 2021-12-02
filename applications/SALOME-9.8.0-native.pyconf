@@ -5,7 +5,7 @@ APPLICATION :
 {
     name : 'SALOME-9.8.0-native'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag : 'V9_8_BR'
+    tag : 'V9_8_0rc1'
     dev : 'no'
     verbose :'no'
     debug : 'no'
@@ -18,7 +18,7 @@ APPLICATION :
            CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
            RESTRICTED_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "RESTRICTED"
            SALOME_USE_64BIT_IDS : '1'
-           VTK_SMP_IMPLEMENTATION_TYPE : 'OpenMP' # OpenMP # choose among: sequential / OpenMP / TBB switches
+           VTK_SMP_IMPLEMENTATION_TYPE : OpenMP # OpenMP # choose among: sequential / OpenMP / TBB switches
         }
         launch : {PYTHONIOENCODING:"UTF_8"} # alternative is to encode every accentued string with .encode('utf-8')
         SALOME_trace : "local" # local/file:.../with_logger
@@ -31,7 +31,7 @@ APPLICATION :
         alabaster : 'native'
         Babel : 'native'
         boost : 'native'
-        CAS : 'V7_5_3p1'
+        CAS : {tag: 'V7_5_3p1', section: 'version_V7_5_3p1'}
         certifi : 'native'
         # Standalone native cgns works well. Unfortunately, it's directly linked to native hdf which uses a higher version than us.
         # Rollback to embedded version to avoid versions mismatch between both of them (see imp_1538_cgns_export_import.py)
@@ -156,13 +156,13 @@ APPLICATION :
         'CALCULATOR'
         'HELLO'
         'PYHELLO'
-        'EFICAS' :  {tag : 'V9_8_0b1'}
-        'EFICAS_TOOLS' :  {tag : 'V9_8_0b1'}
-        'PY2CPP':  {tag: 'V9_8_0b1'}
-        'ADAO' : {tag: 'V9_8_0b1'}
-        'ADAO_INTERFACE': {tag: 'V9_8_0b1'}
-        'PARAVISADDONS' : {tag: 'V9_8_0b1'}
-        'YDEFX' : {tag : 'V9_8_0b1'}
+        'EFICAS'
+        'EFICAS_TOOLS'
+        'PY2CPP'
+        'ADAO'
+        'ADAO_INTERFACE'
+        'PARAVISADDONS'
+        'YDEFX'
         'TESTBASE': {tag: 'master'}
         'CEATESTBASE' : {tag: 'SSL'}
     }

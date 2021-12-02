@@ -76,7 +76,7 @@ version_V7_5_0 :
     }
 }
 
-version_7_5_3p1 :
+version_V7_5_3p1 :
 {
     name : "CAS"
     build_source : "cmake"
@@ -112,7 +112,7 @@ version_7_5_3p1 :
     }
 }
 
-version_7_5_3p1_win :
+version_V7_5_3p1_win :
 {
     name : "CAS"
     build_source : "script"
