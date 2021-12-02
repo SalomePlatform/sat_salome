@@ -6,7 +6,7 @@ APPLICATION :
     name : 'MEDCOUPLING-9.8.0'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name
     cmake_generator : 'Visual Studio 15 2017 Win64'
-    tag : 'V9_8_BR'
+    tag : 'V9_8_0rc1'
     debug : 'no'
     base : 'no'
     python3 : 'yes'
@@ -81,8 +81,8 @@ APPLICATION :
         zlib : '1.2.5'
 
         # SALOME MODULES :
-        'CONFIGURATION': {dev: 'yes'}
-        'MEDCOUPLING': {dev: 'yes'}
+        'CONFIGURATION'
+        'MEDCOUPLING'
     }
     test_base :
     {
