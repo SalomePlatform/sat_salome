@@ -55,7 +55,7 @@ APPLICATION :
         f2c : '1.0.0'
         freeimage : '3.18.0'
         freetype : '2.9.1'
-        #gmsh : '4.1.4'
+        gmsh : '4.8.4'
         graphviz : '2.44.1'
         hdf5 : '1.10.3'
         idna : '2.8'
@@ -143,7 +143,7 @@ APPLICATION :
         'GHS3DPLUGIN'
         'HYBRIDPLUGIN'
         'HexoticPLUGIN'
-        #'GMSHPLUGIN'
+        'GMSHPLUGIN'
         'HEXABLOCK'
         'HEXABLOCKPLUGIN'
         #'HOMARD'
@@ -164,7 +164,7 @@ APPLICATION :
         'ADAO'
         'PARAVISADDONS'
         'TESTBASE'
-        'CEATESTBASE' : {tag: 'SalomeV9'}
+        'CEATESTBASE' : {tag: 'SSL'}
     }
     profile :
     {
