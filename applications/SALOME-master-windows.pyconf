@@ -196,5 +196,7 @@ __overwrite__ :
     __condition__ : "APPLICATION.debug == 'yes'"
     'APPLICATION.products.numpy'      : '1.16.4-win-dbg'
     'APPLICATION.products.sphinxintl' : '2.0.0-win-dbg'
+    'PRODUCTS.llvm.version_8_0_1_clang_win.build_source' : 'script'
+    'PRODUCTS.llvm.version_8_0_1_clang_win.compil_script' : 'llvm-8.0.1.bat'
   }
 ]
