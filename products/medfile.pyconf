@@ -32,6 +32,17 @@ default_Autotools :
 }
 
 # needed in order to screen with windows version - see below
+version_4_1_1 :
+{
+  patches : []
+}
+
+version_4_1_1_win :
+{
+  patches : ['med-4.1.0_win_3x_files_support.patch']
+}
+
+# needed in order to screen with windows version - see below
 version_4_1_0 :
 {
   patches : []
