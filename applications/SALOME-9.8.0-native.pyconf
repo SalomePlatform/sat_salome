@@ -267,6 +267,6 @@ __overwrite__ :
         'PRODUCTS.PyFMI.version_2_5.properties.pip' : "no"
         'PRODUCTS.PyFMI.version_2_5.compil_script' : "PyFMI-2.5.sh"
         'PRODUCTS.statsmodels.version_0_6_1.properties.pip' : "no"
-        'PRO  DUCTS.statsmodels.version_0_6_1.compil_script' : "statsmodels-0.6.1.sh"
+        'PRODUCTS.statsmodels.version_0_6_1.compil_script' : "statsmodels-0.6.1.sh"
     }
 ]
