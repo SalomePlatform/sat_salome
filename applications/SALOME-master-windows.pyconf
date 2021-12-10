@@ -198,5 +198,6 @@ __overwrite__ :
     'APPLICATION.products.sphinxintl' : '2.0.0-win-dbg'
     'PRODUCTS.llvm.version_8_0_1_clang_win.build_source' : 'script'
     'PRODUCTS.llvm.version_8_0_1_clang_win.compil_script' : 'llvm-8.0.1.bat'
+    'PRODUCTS.tbb.version_2019_U8_win.patches' : ['tbb-2019_U8_windows10.patch', 'tbb-2019_U8_windows10_debug.patch']
   }
 ]

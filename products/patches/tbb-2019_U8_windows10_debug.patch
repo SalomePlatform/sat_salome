@@ -1,0 +1,15 @@
+diff -Naur tbb-2019_U8_ref/python/setup.py tbb-2019_U8_new/python/setup.py
+--- tbb-2019_U8_ref/python/setup.py	2019-06-06 12:29:15.000000000 +0200
++++ tbb-2019_U8_new/python/setup.py	2021-12-10 15:25:52.144064203 +0100
+@@ -53,9 +53,9 @@
+         os.environ['DISTUTILS_USE_SDK'] = '1'  # Enable environment settings in distutils
+         os.environ['MSSdk'] = '1'
+         print("Using compiler settings from environment")
+-    tbb_flag = ['/Qtbb'] if use_compiler_tbb else []
++    tbb_flag = ['/Qtbb'] if use_compiler_tbb else ['-D_DEBUG']
+     tbb_flag += ['/EHsc'] # for Python 2
+-    compile_flags = ['/Qstd=c++11'] if intel_compiler else []
++    compile_flags = ['/Qstd=c++11'] if intel_compiler else ['-D_DEBUG']
+ else:
+     tbb_flag = ['-tbb'] if use_compiler_tbb else []
+     compile_flags = ['-std=c++11', '-Wno-unused-variable']
