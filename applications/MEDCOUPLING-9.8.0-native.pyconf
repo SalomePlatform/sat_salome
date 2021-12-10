@@ -31,7 +31,7 @@ APPLICATION :
         click : 'native'
         cmake : 'native' 
         cppunit : 'native'
-        chardet : 'native'master
+        chardet : 'native'
         Cython : 'native'
         docutils : 'native'
         doxygen : 'native'
