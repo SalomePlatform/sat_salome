@@ -17,21 +17,20 @@ CONFIGURE_FLAGS+=" --download-slepc-configure-arguments=--with-slepc4py=yes "
 echo
 if [ -n "${MPI_ROOT_DIR}" ]
 then
-  echo "*** configure with mpi"
   CONFIGURE_FLAGS+=" --download-hypre=ext/hypre-2.20.0.tar.gz"
   CONFIGURE_FLAGS+=" --download-parms=ext/parms-3.2-p5.tar.gz"
   CONFIGURE_FLAGS+=" --download-parmetis=ext/parmetis-4.0.3-p6.tar.gz"
   CONFIGURE_FLAGS+=" --download-ptscotch=ext/scotch_6.1.0.tar.gz"
   if [ -n "${MPI4PY_ROOT_DIR}" ]
   then
-      echo "*** mpi4py external dependency detected..."
       CONFIGURE_FLAGS+=" --with-mpi4py-dir=${MPI4PY_ROOT_DIR}"
   else
       CONFIGURE_FLAGS+=" --download-mpi4py=ext/mpi4py-3.0.3.tar.gz"
   fi
+  echo "*** configure --prefix=${PRODUCT_INSTALL} --with-mpi-dir=${MPI_ROOT_DIR} ${CONFIGURE_FLAGS}"
   ./configure --prefix=${PRODUCT_INSTALL} --with-mpi-dir=${MPI_ROOT_DIR} ${CONFIGURE_FLAGS}
 else
-  echo "*** configure without mpi"
+  echo "*** configure --prefix=${PRODUCT_INSTALL} --with-mpi=0 ${CONFIGURE_FLAGS}"
   ./configure --prefix=${PRODUCT_INSTALL} --with-mpi=0 ${CONFIGURE_FLAGS}
 fi
 
