@@ -5,7 +5,7 @@ APPLICATION :
 {
     name : 'MEDCOUPLING-9.8.0-native'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag : 'V9_8_0rc1'
+    tag : 'V9_8_0'
     base : 'no'
     debug : 'no'
     python3 : 'yes'
@@ -13,12 +13,12 @@ APPLICATION :
     {
         build :
         {
-           CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
-           SALOME_USE_64BIT_IDS : '1'
+            CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
+            SALOME_USE_64BIT_IDS : '1'
         }
         launch :
         {
-           PYTHONIOENCODING:"UTF_8"
+            PYTHONIOENCODING:"UTF_8"
         }
     }
     products :
@@ -31,7 +31,7 @@ APPLICATION :
         click : 'native'
         cmake : 'native' 
         cppunit : 'native'
-        chardet : 'native'
+        chardet : 'native'master
         Cython : 'native'
         docutils : 'native'
         doxygen : 'native'
@@ -84,11 +84,11 @@ APPLICATION :
 }
 __overwrite__ :
 [
-   {
-      # sphinxintl is missing on this node
-      __condition__ : "VARS.dist in ['CO8']"
-      'APPLICATION.products.sphinxintl' : '0.9.10'
-      'PRODUCTS.sphinxintl.default.properties.pip' : "no"
-      'APPLICATION.products.cmake' : '3.12.1'
-   }
+    {
+        # sphinxintl is missing on this node
+        __condition__ : "VARS.dist in ['CO8']"
+        'APPLICATION.products.sphinxintl' : '0.9.10'
+        'PRODUCTS.sphinxintl.default.properties.pip' : "no"
+        'APPLICATION.products.cmake' : '3.12.1'
+    }
 ]

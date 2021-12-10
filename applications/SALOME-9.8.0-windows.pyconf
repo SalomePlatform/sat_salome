@@ -6,7 +6,7 @@ APPLICATION :
     name : 'SALOME-9.8.0'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name
     cmake_generator : 'Visual Studio 15 2017 Win64'
-    tag : 'V9_8_BR'
+    tag : 'V9_8_0'
     dev : 'no'
     verbose :'no'
     debug : 'no'
@@ -16,12 +16,12 @@ APPLICATION :
     {
         build : 
         {
-           CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
-           RESTRICTED_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "RESTRICTED"
-           SALOME_HAS_GLOBAL_ENV : "1"
-           SALOME_USE_64BIT_IDS : '1'
-           SET_usr_docs_VARS : "1" # required for PyEditor build
-           CMAKE_GENERATOR : '"Visual Studio 15 2017 Win64"'
+            CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
+            RESTRICTED_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "RESTRICTED"
+            SALOME_HAS_GLOBAL_ENV : "1"
+            SALOME_USE_64BIT_IDS : '1'
+            SET_usr_docs_VARS : "1" # required for PyEditor build
+            CMAKE_GENERATOR : '"Visual Studio 15 2017 Win64"'
         }
         launch : {PYTHONIOENCODING:"UTF_8", SALOME_MODULES_ORDER:"SHAPER:SHAPERSTUDY:GEOM:SMESH"}
         SALOME_trace : "local" # local/file:.../with_logger
@@ -94,7 +94,7 @@ APPLICATION :
         Pygments : '2.4.2'
         pyparsing : '2.4.0'
         PyQt : '5.15.3'
-       # PyQtChart : '5.15.4'
+        # PyQtChart : '5.15.4'
         pyreadline : '2.1'
         Python : '3.6.5'
         pytz : '2019.1'
@@ -159,10 +159,10 @@ APPLICATION :
         'CALCULATOR'
         'HELLO'
         'PYHELLO'
-        'EFICAS' :  {tag : 'V9_8_0b1'}
-        'EFICAS_TOOLS' :  {tag : 'V9_8_0b1'}
-        'ADAO' : {tag: 'V9_8_0b1'}
-        'PARAVISADDONS' : {tag: 'V9_8_0b1'}
+        'EFICAS'
+        'EFICAS_TOOLS' :  {tag : 'V9_8_0rc1'}
+        'ADAO'
+        'PARAVISADDONS'
         'TESTBASE': {tag: 'master'}
         'CEATESTBASE' : {tag: 'SSL'}
     }

@@ -6,7 +6,7 @@ APPLICATION :
     name : 'MEDCOUPLING-9.8.0'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name
     cmake_generator : 'Visual Studio 15 2017 Win64'
-    tag : 'V9_8_0rc1'
+    tag : 'V9_8_0'
     debug : 'no'
     base : 'no'
     python3 : 'yes'
@@ -14,14 +14,14 @@ APPLICATION :
     {
         build : 
         {
-          CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
-          SALOME_HAS_GLOBAL_ENV: "1"
-          SALOME_USE_64BIT_IDS : '1'
-          CMAKE_GENERATOR : '"Visual Studio 15 2017 Win64"' # strangely not exposed in scripts...
+            CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
+            SALOME_HAS_GLOBAL_ENV: "1"
+            SALOME_USE_64BIT_IDS : '1'
+            CMAKE_GENERATOR : '"Visual Studio 15 2017 Win64"' # strangely not exposed in scripts...
         }
         launch :
         {
-          PYTHONIOENCODING:"UTF_8"
+            PYTHONIOENCODING:"UTF_8"
         }
     }
     products :

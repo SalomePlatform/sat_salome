@@ -5,7 +5,7 @@ APPLICATION :
 {
     name : 'SALOME-9.8.0-native'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag : 'V9_8_0rc1'
+    tag : 'V9_8_0'
     dev : 'no'
     verbose :'no'
     debug : 'no'
@@ -15,10 +15,10 @@ APPLICATION :
     {
         build :
         {
-           CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
-           RESTRICTED_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "RESTRICTED"
-           SALOME_USE_64BIT_IDS : '1'
-           VTK_SMP_IMPLEMENTATION_TYPE : OpenMP # OpenMP # choose among: sequential / OpenMP / TBB switches
+            CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
+            RESTRICTED_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "RESTRICTED"
+            SALOME_USE_64BIT_IDS : '1'
+            VTK_SMP_IMPLEMENTATION_TYPE : OpenMP # OpenMP # choose among: sequential / OpenMP / TBB switches
         }
         launch : {PYTHONIOENCODING:"UTF_8"} # alternative is to encode every accentued string with .encode('utf-8')
         SALOME_trace : "local" # local/file:.../with_logger
@@ -127,7 +127,7 @@ APPLICATION :
         'SHAPER'
         'SHAPERSTUDY'
         'RESTRICTED'
-        'LIBBATCH' : {tag :'V2_4_5'}
+        'LIBBATCH' : {tag : 'V2_4_5'}
         'KERNEL'
         'MEDCOUPLING'
         'GUI'
@@ -191,82 +191,82 @@ APPLICATION :
 }
 __overwrite__ :
 [
-   {
-      # Although recent adaptations of GEOM CMake procedure to be compliant with openCV 4.X, some
-      # deeper investigations need to be done in its sources. Use embedded openCV product where
-      # native one is 4.X.
-      __condition__ : "VARS.dist in ['FD32', 'UB20.04', 'FD34']"
-      'APPLICATION.products.opencv' : '3.2.0'
-   }
-   {
-      #
-      __condition__ : "VARS.dist in ['UB20.04', 'CO8', 'FD32']"
-      'PRODUCTS.ParaView.version_5_9_0.patches' : ['paraview.0003-ParaViewClient.patch',
-                                                   'paraview.0005-ParaView_find_cgns.patch',
-                                                   'paraview.0010-ParaView_CATALYST_cmake.patch',
-                                                   'paraview.0008-ParaView_coincident_rendering.patch',
-                                                   'paraview.0017-ParaView_protobuf_crash.patch',
-                                                   'paraview.0015-Paraview_VTKM_ioss.patch'
-                                                   'paraview.0018-spns-26351-autoconvert.patch',
-                                                   'paraview.0019-spns-26344-VTK-OpenMP.patch'
-                                                  ]
-   }
-   {
-      # On DB10, ParaView fails to find xmlpatterns executable : ParaViewClient.cmake try to find it
-      # from Qt5_DIR, going back from it in filesystem (hardcoded).
-      # The standard patch is also needed to be able to build PARAVIS (same kind of issue).
-      # What is more, ParaView 5.9 CMake procedure requires Qt 5.12 as minimum version (5.11 here).
-      # As this version is compliant too, let's force it as the new minimum needed version.
-      __condition__ : "VARS.dist in ['DB10']"
-      'PRODUCTS.ParaView.version_5_9_0.patches' : ['paraview.0003-ParaViewClient.patch',
-                                                   'paraview.0005-ParaView_find_cgns.patch',
-                                                   'paraview-5.9_qt-minimum-version.patch',
-                                                   'paraview.0003-ParaViewClient_native.patch',
-                                                   'paraview.0010-ParaView_CATALYST_cmake.patch',
-                                                   'paraview.0008-ParaView_coincident_rendering.patch',
-                                                   'paraview.0017-ParaView_protobuf_crash.patch',
-                                                   'paraview.0015-Paraview_VTKM_ioss.patch'
-                                                   'paraview.0018-spns-26351-autoconvert.patch',
-                                                   'paraview.0019-spns-26344-VTK-OpenMP.patch'
-                                                  ]
-   }
-   {
-      # CentOS 8 repositories don't include sphinxintl package which must be installed through pip.
-      # To avoid its missing (system_info pyconf key doesn't handle this use case), we embed it.
-      __condition__ : "VARS.dist in ['CO8']"
-      'APPLICATION.products.sphinxintl' : '0.9.10'
-      'PRODUCTS.sphinxintl.default.properties.pip' : "no"
-      'APPLICATION.products.cmake' : '3.12.1'
-   }
-   {
-      # FD 34 qt5 package is qt5-qtbase-devel.
-      __condition__ : "VARS.dist in ['FD34']"
-      'APPLICATION.products.omniORB'  : '4.2.4'
-      'APPLICATION.products.omniORBpy': '4.2.4'
-      'PRODUCTS.root.version_6_22_02.patches' : ['root-6.22.02.patch', 'root-6.22.02-gcc-11.0.patch']
-      'PRODUCTS.qt.default.system_info.rpm' : []
-      'PRODUCTS.qt.default.system_info.rpm_dev' : ["qt5-qtbase-devel"]
-      'PRODUCTS.PyFMI.version_2_5.properties.pip' : "no"
-      'PRODUCTS.PyFMI.version_2_5.compil_script' : "PyFMI-2.5.sh"
-   }
-   {
-     __condition__ : "VARS.dist in ['FD32']"
-      'PRODUCTS.PyFMI.version_2_5.properties.pip' : "no"
-      'PRODUCTS.PyFMI.version_2_5.compil_script' : "PyFMI-2.5.sh"
-   }
-   {
-     __condition__ : "VARS.dist in ['DB10', 'UB20.04']"
-      'APPLICATION.products.cminpack': 'native'
-      'PRODUCTS.PyFMI.version_2_5.properties.pip' : "no"
-      'PRODUCTS.PyFMI.version_2_5.compil_script' : "PyFMI-2.5.sh"
-   }
-   {
-     __condition__ : "VARS.dist in ['CO8']"
-      'APPLICATION.products.statsmodels' :  '0.6.1'  # will fail otherwise -  0.8.0 does not match Cython.
-      'APPLICATION.products.cminpack': '1.3.6'
-      'PRODUCTS.PyFMI.version_2_5.properties.pip' : "no"
-      'PRODUCTS.PyFMI.version_2_5.compil_script' : "PyFMI-2.5.sh"
-      'PRODUCTS.statsmodels.version_0_6_1.properties.pip' : "no"
-      'PRODUCTS.statsmodels.version_0_6_1.compil_script' : "statsmodels-0.6.1.sh"
-   }
+    {
+        # Although recent adaptations of GEOM CMake procedure to be compliant with openCV 4.X, some
+        # deeper investigations need to be done in its sources. Use embedded openCV product where
+        # native one is 4.X.
+        __condition__ : "VARS.dist in ['FD32', 'UB20.04', 'FD34']"
+        'APPLICATION.products.opencv' : '3.2.0'
+    }
+    {
+        #
+        __condition__ : "VARS.dist in ['UB20.04', 'CO8', 'FD32']"
+        'PRODUCTS.ParaView.version_5_9_0.patches' : ['paraview.0003-ParaViewClient.patch',
+                                                    'paraview.0005-ParaView_find_cgns.patch',
+                                                    'paraview.0010-ParaView_CATALYST_cmake.patch',
+                                                    'paraview.0008-ParaView_coincident_rendering.patch',
+                                                    'paraview.0017-ParaView_protobuf_crash.patch',
+                                                    'paraview.0015-Paraview_VTKM_ioss.patch'
+                                                    'paraview.0018-spns-26351-autoconvert.patch',
+                                                    'paraview.0019-spns-26344-VTK-OpenMP.patch'
+                                                    ]
+    }
+    {
+        # On DB10, ParaView fails to find xmlpatterns executable : ParaViewClient.cmake try to find it
+        # from Qt5_DIR, going back from it in filesystem (hardcoded).
+        # The standard patch is also needed to be able to build PARAVIS (same kind of issue).
+        # What is more, ParaView 5.9 CMake procedure requires Qt 5.12 as minimum version (5.11 here).
+        # As this version is compliant too, let's force it as the new minimum needed version.
+        __condition__ : "VARS.dist in ['DB10']"
+        'PRODUCTS.ParaView.version_5_9_0.patches' : ['paraview.0003-ParaViewClient.patch',
+                                                    'paraview.0005-ParaView_find_cgns.patch',
+                                                    'paraview-5.9_qt-minimum-version.patch',
+                                                    'paraview.0003-ParaViewClient_native.patch',
+                                                    'paraview.0010-ParaView_CATALYST_cmake.patch',
+                                                    'paraview.0008-ParaView_coincident_rendering.patch',
+                                                    'paraview.0017-ParaView_protobuf_crash.patch',
+                                                    'paraview.0015-Paraview_VTKM_ioss.patch'
+                                                    'paraview.0018-spns-26351-autoconvert.patch',
+                                                    'paraview.0019-spns-26344-VTK-OpenMP.patch'
+                                                    ]
+    }
+    {
+        # CentOS 8 repositories don't include sphinxintl package which must be installed through pip.
+        # To avoid its missing (system_info pyconf key doesn't handle this use case), we embed it.
+        __condition__ : "VARS.dist in ['CO8']"
+        'APPLICATION.products.sphinxintl' : '0.9.10'
+        'PRODUCTS.sphinxintl.default.properties.pip' : "no"
+        'APPLICATION.products.cmake' : '3.12.1'
+    }
+    {
+        # FD 34 qt5 package is qt5-qtbase-devel.
+        __condition__ : "VARS.dist in ['FD34']"
+        'APPLICATION.products.omniORB'  : '4.2.4'
+        'APPLICATION.products.omniORBpy': '4.2.4'
+        'PRODUCTS.root.version_6_22_02.patches' : ['root-6.22.02.patch', 'root-6.22.02-gcc-11.0.patch']
+        'PRODUCTS.qt.default.system_info.rpm' : []
+        'PRODUCTS.qt.default.system_info.rpm_dev' : ["qt5-qtbase-devel"]
+        'PRODUCTS.PyFMI.version_2_5.properties.pip' : "no"
+        'PRODUCTS.PyFMI.version_2_5.compil_script' : "PyFMI-2.5.sh"
+    }
+    {
+        __condition__ : "VARS.dist in ['FD32']"
+        'PRODUCTS.PyFMI.version_2_5.properties.pip' : "no"
+        'PRODUCTS.PyFMI.version_2_5.compil_script' : "PyFMI-2.5.sh"
+    }
+    {
+        __condition__ : "VARS.dist in ['DB10', 'UB20.04']"
+        'APPLICATION.products.cminpack': 'native'
+        'PRODUCTS.PyFMI.version_2_5.properties.pip' : "no"
+        'PRODUCTS.PyFMI.version_2_5.compil_script' : "PyFMI-2.5.sh"
+    }
+    {
+        __condition__ : "VARS.dist in ['CO8']"
+        'APPLICATION.products.statsmodels' :  '0.6.1'  # will fail otherwise -  0.8.0 does not match Cython.
+        'APPLICATION.products.cminpack': '1.3.6'
+        'PRODUCTS.PyFMI.version_2_5.properties.pip' : "no"
+        'PRODUCTS.PyFMI.version_2_5.compil_script' : "PyFMI-2.5.sh"
+        'PRODUCTS.statsmodels.version_0_6_1.properties.pip' : "no"
+        'PRO  DUCTS.statsmodels.version_0_6_1.compil_script' : "statsmodels-0.6.1.sh"
+    }
 ]

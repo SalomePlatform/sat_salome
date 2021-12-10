@@ -5,7 +5,7 @@ APPLICATION :
 {
     name : 'SALOME-9.8.0-int32'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag : 'V9_8_0rc1'
+    tag : 'V9_8_0'
     dev : 'no'
     verbose :'no'
     debug : 'no'
@@ -144,7 +144,7 @@ APPLICATION :
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
-        'SOLVERLAB' : {tag : 'master'}
+        'SOLVERLAB' : {tag : 'a9937a9'}
         'DOCUMENTATION'
         'SAMPLES'
         'COMPONENT'
@@ -187,18 +187,18 @@ APPLICATION :
 }
 __overwrite__ :
 [
-  {
-   __condition__ : "VARS.dist in ['FD32']"
-   # https://github.com/scipy/scipy/issues/11611
-   'APPLICATION.products.scipy' : '1.5.2'
-  }
-  {
-   __condition__ : "VARS.dist in ['FD30']"
-   # https://github.com/scipy/scipy/issues/11611
-   'APPLICATION.products.gcc' : '9.3.0'
-  }
-  {
-   __condition__ : "VARS.dist not in ['DB08','DB09', 'FD30']"
-   'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
-  }
+    {
+        __condition__ : "VARS.dist in ['FD32']"
+        # https://github.com/scipy/scipy/issues/11611
+        'APPLICATION.products.scipy' : '1.5.2'
+    }
+    {
+        __condition__ : "VARS.dist in ['FD30']"
+        # https://github.com/scipy/scipy/issues/11611
+        'APPLICATION.products.gcc' : '9.3.0'
+    }
+    {
+        __condition__ : "VARS.dist not in ['DB08','DB09', 'FD30']"
+        'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
+    }
 ]
