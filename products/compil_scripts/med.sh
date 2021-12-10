@@ -41,7 +41,7 @@ else
 fi
 
 echo
-echo "*** configure"
+echo "*** configure --prefix=$PRODUCT_INSTALL FFLAGS=${FFLAGS} $CONFIGURE_FLAGS"
 $SOURCE_DIR/configure --prefix=$PRODUCT_INSTALL FFLAGS="${FFLAGS}" $CONFIGURE_FLAGS
 if [ $? -ne 0 ]
 then

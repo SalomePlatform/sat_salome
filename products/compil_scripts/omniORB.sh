@@ -9,7 +9,7 @@ echo "##########################################################################
 PYTHON_HOME=$PYTHONHOME
 
 echo
-echo "*** configure --disable-ipv6"
+echo "*** configure --prefix=$PRODUCT_INSTALL --disable-ipv6"
 $SOURCE_DIR/configure --prefix=$PRODUCT_INSTALL --disable-ipv6 
 if [ $? -ne 0 ]
 then

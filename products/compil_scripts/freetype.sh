@@ -5,8 +5,7 @@ echo "freetype" $VERSION
 echo "###############################################"
 
 echo
-echo "*** configure"
-
+echo "*** configure --prefix=$PRODUCT_INSTALL --with-harfbuzz=no"
 $SOURCE_DIR/configure --prefix=$PRODUCT_INSTALL --with-harfbuzz=no
 
 if [ $? -ne 0 ]
