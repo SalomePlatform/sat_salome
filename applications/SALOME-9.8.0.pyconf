@@ -5,7 +5,7 @@ APPLICATION :
 {
     name : 'SALOME-9.8.0'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag : 'V9_8_0rc1'
+    tag : 'V9_8_0'
     dev : 'no'
     verbose :'no'
     debug : 'no'
@@ -146,7 +146,7 @@ APPLICATION :
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
-        'SOLVERLAB' : {tag : 'master'}
+        'SOLVERLAB' : {tag : 'a9937a9'}
         'DOCUMENTATION'
         'SAMPLES'
         'COMPONENT'
