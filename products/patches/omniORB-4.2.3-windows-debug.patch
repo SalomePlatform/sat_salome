@@ -1,0 +1,12 @@
+diff -Naur omniORB-4.2.3_ref/config/config.mk omniORB-4.2.3_new/config/config.mk
+--- omniORB-4.2.3_ref/config/config.mk	2017-05-11 15:01:56.000000000 +0200
++++ omniORB-4.2.3_new/config/config.mk	2021-12-10 15:49:15.278207366 +0100
+@@ -116,7 +116,7 @@
+ # libraries. Setting this variable causes the build to break in subtle
+ # ways. DO NOT SET THIS UNLESS YOU KNOW WHAT YOU ARE DOING.
+ #
+-#BuildDebugBinary = 1
++BuildDebugBinary = 1
+ #
+ 
+ EXPORT_TREE =  $(TOP)
