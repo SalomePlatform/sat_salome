@@ -82,7 +82,7 @@ APPLICATION :
         omniORBpy : '4.2.3'
         opencv : '3.2.0'
         openVKL: '0.11.0'
-        openturns: '1.16'
+        openturns: '1.17'
         ospray : '2.4.0'
         packaging : '19.0'
         ParaView : '5.9.0'
