@@ -30,19 +30,33 @@ default :
         apt_dev : ["libssl-dev", "gcc", "make", "sed", "g++", "libexpat1-dev", "libfontconfig1-dev", "flex", "bison",
                    "libglu1-mesa-dev", "perl", "libxcb-dri2-0-dev", "libxkbcommon-dev", "libxkbcommon-x11-dev", "bzip2",
                    "libxi-dev", "libxt-dev", "libxmu-dev", "libxpm-dev", "libxft-dev", "automake", "libtool", "libjpeg-dev",
-                   "cmake", "libicu-dev", "libopenmpi-dev", "libreadline-dev", "libhwloc-dev", "libsqlite3-dev",
-		   "qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools"]
+                   "cmake", "libicu-dev", "libopenmpi-dev", "libreadline-dev", "libhwloc-dev", "libsqlite3-dev"]
 
-        # specific to some plateform(s)
+        # specific to some platform(s)
         "CO7" :
         {
             rpm : ["lz4"]
-            rpm_dev : ["perl", "qt5-devel"]
+            rpm_dev : ["perl"]
         }
-        "CO8-FD30-FD32" :
+        "CO8" :
         {
             rpm : ["lz4"]
             rpm_dev : ["perl-interpreter", "qt5-devel"]
+        }
+        "FD30" :
+        {
+           rpm : ["lz4"]
+           rpm_dev : ["perl-interpreter", "qt5-devel"]
+        }
+        "FD32" :
+        {
+           rpm : ["lz4"]
+           rpm_dev : ["perl-interpreter", "qt5-devel"]
+        }
+        "FD34" :
+        {
+           rpm : ["lz4-libs"]
+           rpm_dev : ["lz4-devel", "qt5-qtbase-devel"]
         }
         "DB08" :
         {
@@ -59,7 +73,8 @@ default :
         {
             apt : ["libopenexr23", "libwebp6", "libgfortran5", "libilmbase23", "libevent-2.1-6", "libpng16-16", "libgcc-8-dev",
                    "libffi6", "libtinfo6", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0"]
-            apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev"]
+            apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev",
+                       "qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools"]
 
         }
         "UB16.04" :
@@ -78,12 +93,8 @@ default :
         {
             apt : ["libopenexr24", "libwebp6", "libgfortran5", "libilmbase24", "libevent-2.1-7", "libpng16-16", "libgcc-9-dev",
                    "libffi7", "libtinfo6", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0"]
-            apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev"]
-        }
-        "FD34" :
-        {
-           rpm : ["lz4-libs"] 
-           rpm_dev : ["lz4-devel", "qt5-qtbase-devel"]
+            apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev",
+                       "qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools"]
         }
         
     }
