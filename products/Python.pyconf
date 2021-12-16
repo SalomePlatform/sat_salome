@@ -45,6 +45,11 @@ version_3_6_5 :
  patches : []
 }
 
+version_3_6_5_FD34:
+{
+  patches: ["python_3.6.5-allocation.patch"] # https://github.com/pyenv/pyenv/issues/1889
+}
+
 version_3_6_5_win :
 {
     compil_script : "Python-3.6.5.bat"

@@ -91,7 +91,8 @@ __overwrite__ :
         'APPLICATION.products.scipy' : '1.5.2' # gcc https://github.com/scipy/scipy/issues/11611 - either patch numpy to include -fallow-argument-mismatch or move to that version
     }
     {
+        # https://github.com/pyenv/pyenv/issues/1889
         __condition__: "VARS.dist in ['FD34']"
-        'PRODUCTS.Python.version_3_6_5.patches' : ["python_3.6.5-allocation.patch"] # https://github.com/pyenv/pyenv/issues/1889
+        'APPLICATION.products.Python' : {tag: '3.6.5', base: 'no', section: 'version_3_6_5_FD34'}
     }
 ]
