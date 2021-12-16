@@ -26,11 +26,12 @@ default :
     }
 }
 
-version_2_5 :
+version_2_5_no_pip :
 {
+    compil_script : "PyFMI-2.5.sh"
     properties:
     {
       incremental : "yes"
-      pip : "yes"
+      pip : "no"
     }
 }

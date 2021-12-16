@@ -4,13 +4,6 @@ default:
     build_source : "script"
     compil_script : $name + $VARS.scriptExtension
     get_source : "archive"
-    system_info : 
-    {
-        rpm : []
-        rpm_dev : ["qt5-devel"]
-        apt : []
-        apt_dev : ["qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools"]
-    }
     environ :
     {
        env_script : $name + ".py"

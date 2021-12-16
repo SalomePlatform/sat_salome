@@ -13,10 +13,10 @@ cd $BUILD_DIR
 cp -R $SOURCE_DIR/* .
 
 rm -f $BUILD_DIR/src/pyfmi/*.c
-mkdir -p $PRODUCT_INSTALL/lib/python${PYTHON_VERSION:0:3}/site-packages
+#mkdir -p $PRODUCT_INSTALL/lib/python${PYTHON_VERSION:0:3}/site-packages
 export PATH=$(pwd)/bin:$PATH
 export PYTHONPATH=$(pwd):$PYTHONPATH
-export PYTHONPATH=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION:0:3}/site-packages:$PYTHONPATH
+#export PYTHONPATH=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION:0:3}/site-packages:$PYTHONPATH
 
 echo
 echo "*** build with $PYTHONBIN"
@@ -29,11 +29,17 @@ fi
 
 echo
 echo "*** install with $PYTHONBIN"
-$PYTHONBIN setup.py install --prefix=$PRODUCT_INSTALL --fmil-home=$PRODUCT_INSTALL
+$PYTHONBIN setup.py install --prefix=$PRODUCT_INSTALL --fmil-home=$FMIL_HOME
 if [ $? -ne 0 ]
 then
     echo "ERROR on install"
     exit 3
+fi
+
+# ensure that lib is used
+if [ -d "$PRODUCT_INSTALL/lib64" ]; then
+    echo "WARNING: renaming lib64 directory to lib"
+    mv $PRODUCT_INSTALL/lib64 $PRODUCT_INSTALL/lib
 fi
 
 echo

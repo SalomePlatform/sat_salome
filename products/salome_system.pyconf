@@ -30,18 +30,19 @@ default :
         apt_dev : ["libssl-dev", "gcc", "make", "sed", "g++", "libexpat1-dev", "libfontconfig1-dev", "flex", "bison",
                    "libglu1-mesa-dev", "perl", "libxcb-dri2-0-dev", "libxkbcommon-dev", "libxkbcommon-x11-dev", "bzip2",
                    "libxi-dev", "libxt-dev", "libxmu-dev", "libxpm-dev", "libxft-dev", "automake", "libtool", "libjpeg-dev",
-                   "cmake", "libicu-dev", "libopenmpi-dev", "libreadline-dev", "libhwloc-dev", "libsqlite3-dev"]
+                   "cmake", "libicu-dev", "libopenmpi-dev", "libreadline-dev", "libhwloc-dev", "libsqlite3-dev",
+		   "qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools"]
 
         # specific to some plateform(s)
         "CO7" :
         {
             rpm : ["lz4"]
-            rpm_dev : ["perl"]
+            rpm_dev : ["perl", "qt5-devel"]
         }
         "CO8-FD30-FD32" :
         {
             rpm : ["lz4"]
-            rpm_dev : ["perl-interpreter"]
+            rpm_dev : ["perl-interpreter", "qt5-devel"]
         }
         "DB08" :
         {
@@ -82,7 +83,7 @@ default :
         "FD34" :
         {
            rpm : ["lz4-libs"] 
-           rpm_dev : ["lz4-devel"]
+           rpm_dev : ["lz4-devel", "qt5-qtbase-devel"]
         }
         
     }

@@ -53,3 +53,12 @@ version_2_0_0_win_dbg :
       pip : "no"
     }
 }
+
+version_0_9_10_no_pip :
+{
+    properties:
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+}

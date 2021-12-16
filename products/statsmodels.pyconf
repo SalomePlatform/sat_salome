@@ -44,3 +44,13 @@ version_0_6_1:
       pip : "yes"
     }
 }
+
+version_0_6_1_no_pip:
+{
+   compil_script : "statsmodels-0.6.1" + $VARS.scriptExtension
+   properties:
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+}
