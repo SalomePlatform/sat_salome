@@ -42,9 +42,9 @@ def set_paraview_env(env, version):
     env.prepend('PATH', os.path.join(root, 'bin'))
     
     if platform.system() == "Windows" :
-        paralib = os.path.join(root, 'lib', 'paraview-' + version)
-        env.prepend('PATH', paralib)
-        env.prepend('PV_PLUGIN_PATH', paralib)
+        parabin = os.path.join(root, 'bin', 'paraview-' + version)
+        env.prepend('PATH', parabin)
+        env.prepend('PV_PLUGIN_PATH', parabin)
         env.prepend('PYTHONPATH', os.path.join(root,'bin', 'Lib', 'site-packages', 'paraview'))
         env.prepend('PYTHONPATH', os.path.join(root,'bin', 'Lib', 'site-packages', 'vtk'))
         env.prepend('PYTHONPATH', os.path.join(root,'bin', 'Lib', 'site-packages'))
@@ -66,9 +66,6 @@ def set_vtk_env(env, version):
 
     env.set('VTK_ROOT_DIR', root)
     env.set('VTK_DIR', os.path.join(root, lib_dir, 'cmake', 'paraview-' + version))
-    # OP TEST
-    #env.prepend('VTK_ROOT_DIR', os.path.join(root, lib_dir, 'cmake', 'paraview-' + version))
-    #env.prepend('VTK_ROOT_DIR', os.path.join(root, lib_dir, 'paraview-' + version))
     
     if not platform.system() == "Windows" :
         #http://computer-programming-forum.com/57-tcl/1dfddc136afccb94.htm
