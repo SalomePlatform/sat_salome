@@ -182,7 +182,7 @@ APPLICATION :
     }
     properties :
     {
-        mesa_launcher_in_package : "yes"
+        mesa_launcher_in_package : "no"
         repo_dev : "yes"
         pip : 'yes'
         pip_install_dir : 'python'
