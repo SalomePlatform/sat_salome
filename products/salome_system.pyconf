@@ -35,8 +35,8 @@ default :
         # specific to some platform(s)
         "CO7" :
         {
-            rpm : ["lz4"]
-            rpm_dev : ["perl"]
+            rpm : ["lz4", "gsl"]
+            rpm_dev : ["perl", "gsl-devel"]
         }
         "CO8" :
         {
@@ -45,18 +45,18 @@ default :
         }
         "FD30" :
         {
-           rpm : ["lz4"]
-           rpm_dev : ["perl-interpreter", "qt5-devel"]
+           rpm : ["lz4", "gsl"]
+           rpm_dev : ["perl-interpreter", "qt5-devel", "gsl-devel"]
         }
         "FD32" :
         {
-           rpm : ["lz4"]
-           rpm_dev : ["perl-interpreter", "qt5-devel"]
+           rpm : ["lz4", "gsl"]
+           rpm_dev : ["perl-interpreter", "qt5-devel", "gsl-devel"]
         }
         "FD34" :
         {
-           rpm : ["lz4-libs"]
-           rpm_dev : ["lz4-devel", "qt5-qtbase-devel"]
+           rpm : ["lz4-libs", "gsl"]
+           rpm_dev : ["lz4-devel", "qt5-qtbase-devel", "gsl-devel"]
         }
         "DB08" :
         {
