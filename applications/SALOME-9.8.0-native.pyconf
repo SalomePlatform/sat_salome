@@ -68,7 +68,7 @@ APPLICATION :
         llvm : 'native'
         markupsafe : 'native'
         matplotlib : 'native'
-        medfile : {section: 'default_Autotools', tag: '4.1.1rc1'}
+        medfile : {section: 'default_Autotools', tag: '4.1.1'}
         mesa : 'native'
         MeshGems : '2.13-1'
         metis : 'native'
