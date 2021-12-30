@@ -160,7 +160,7 @@ APPLICATION :
         'HELLO'
         'PYHELLO'
         'EFICAS'
-        'EFICAS_TOOLS' :  {tag : 'V9_8_0rc1'}
+        'EFICAS_TOOLS'
         'ADAO'
         'PARAVISADDONS'
         'TESTBASE': {tag: 'master'}
