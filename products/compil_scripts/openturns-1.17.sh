@@ -249,6 +249,16 @@ if [[ -d "$SOURCE_DIR/otfftw-0.11" ]]; then
 		    exit 6
 		fi
 	    fi
+	else
+	    if [[ $DIST_NAME == "FD" && $DIST_VERSION == "32" && $k == "otpod" ]]; then
+		echo "INFO: install scikit-learn-0.24.2"
+		${PYTHONBIN} -m pip install $SOURCE_DIR/scikit-learn-0.24.2/scikit-learn-0.24.2.tar.gz --no-deps  --prefix=$PRODUCT_INSTALL
+		if [ $? -ne 0 ]
+		then
+		    echo "FATAL: could not install scikit-0.24.2"
+		    exit 6
+		fi
+	    fi
 	fi
 
         cd  $BUILD_DIR
