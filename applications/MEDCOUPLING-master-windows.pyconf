@@ -14,14 +14,14 @@ APPLICATION :
     {
         build : 
         {
-          CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
-          SALOME_HAS_GLOBAL_ENV: "1"
-          SALOME_USE_64BIT_IDS : '1'
-          CMAKE_GENERATOR : '"Visual Studio 15 2017 Win64"' # strangely not exposed in scripts...
+            CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
+            SALOME_HAS_GLOBAL_ENV: "1"
+            SALOME_USE_64BIT_IDS : '1'
+            CMAKE_GENERATOR : '"Visual Studio 15 2017 Win64"' # strangely not exposed in scripts...
         }
         launch :
         {
-          PYTHONIOENCODING:"UTF_8"
+            PYTHONIOENCODING:"UTF_8"
         }
     }
     products :
@@ -81,8 +81,8 @@ APPLICATION :
         zlib : '1.2.5'
 
         # SALOME MODULES :
-        'CONFIGURATION': {dev: 'yes'}
-        'MEDCOUPLING': {dev: 'yes'}
+        'CONFIGURATION'
+        'MEDCOUPLING'
     }
     test_base :
     {
