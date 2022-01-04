@@ -15,10 +15,10 @@ APPLICATION :
     {
         build : 
         {
-           CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
-           RESTRICTED_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "RESTRICTED"
-           SALOME_USE_64BIT_IDS : '1'
-           VTK_SMP_IMPLEMENTATION_TYPE : OpenMP # OpenMP # choose among: sequential / OpenMP / TBB switches
+            CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
+            RESTRICTED_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "RESTRICTED"
+            SALOME_USE_64BIT_IDS : '1'
+            VTK_SMP_IMPLEMENTATION_TYPE : OpenMP # OpenMP # choose among: sequential / OpenMP / TBB switches
         }
         launch : {PYTHONIOENCODING:"UTF_8", SALOME_MODULES_ORDER:"SHAPER:SHAPERSTUDY:GEOM:SMESH"}
         SALOME_trace : "local" # local/file:.../with_logger
@@ -31,7 +31,7 @@ APPLICATION :
         alabaster : '0.7.6'
         Babel : '2.7.0'
         boost : '1.71.0'
-        CAS : {tag: 'b08cd044f9', section: 'version_7_5_3p1'}
+        CAS : {tag: 'V7_5_3p1', section: 'version_V7_5_3p1'}
         certifi : '2018.8.24'
         cgns : {tag : '4.1.1', hpc : 'yes'}
         chardet : '3.0.4'
@@ -127,7 +127,7 @@ APPLICATION :
         'SHAPER'
         'SHAPERSTUDY'
         'RESTRICTED'
-        'LIBBATCH' : {tag :'V2_4_5'}
+        'LIBBATCH' : {tag : 'V2_4_5'}
         'KERNEL' : {section : 'default_MPI', verbose : 'yes'}
         'MEDCOUPLING' : {section : 'default_MPI', verbose : 'yes'}
         'GUI' : {verbose : 'yes'}
@@ -162,8 +162,9 @@ APPLICATION :
         'ADAO'
         'ADAO_INTERFACE'
         'PARAVISADDONS'
-        'TESTBASE'
-        'CEATESTBASE' : {tag: 'SalomeV9'}
+        'YDEFX'
+        'TESTBASE': {tag: 'master'}
+        'CEATESTBASE' : {tag: 'SSL'}
     }
     profile :
     {
@@ -190,18 +191,18 @@ APPLICATION :
 }
 __overwrite__ :
 [
-  {
-   __condition__ : "VARS.dist in ['FD32']"
-   # https://github.com/scipy/scipy/issues/11611
-   'APPLICATION.products.scipy' : '1.5.2'
-  }
-  {
-   __condition__ : "VARS.dist in ['FD30']"
-   # https://github.com/scipy/scipy/issues/11611
-   'APPLICATION.products.gcc' : '9.3.0'
-  }
-  {
-   __condition__ : "VARS.dist not in ['DB08','DB09', 'FD30']"
-   'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
-  }
+    {
+        __condition__ : "VARS.dist in ['FD32']"
+        # https://github.com/scipy/scipy/issues/11611
+        'APPLICATION.products.scipy' : '1.5.2'
+    }
+    {
+        __condition__ : "VARS.dist in ['FD30']"
+        # https://github.com/scipy/scipy/issues/11611
+        'APPLICATION.products.gcc' : '9.3.0'
+    }
+    {
+        __condition__ : "VARS.dist not in ['DB08','DB09', 'FD30']"
+        'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
+    }
 ]

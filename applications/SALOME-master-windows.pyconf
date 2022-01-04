@@ -16,12 +16,12 @@ APPLICATION :
     {
         build : 
         {
-           CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
-           RESTRICTED_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "RESTRICTED"
-           SALOME_HAS_GLOBAL_ENV : "1"
-           SALOME_USE_64BIT_IDS : '1'
-           SET_usr_docs_VARS : "1" # required for PyEditor build
-           CMAKE_GENERATOR : '"Visual Studio 15 2017 Win64"'
+            CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
+            RESTRICTED_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "RESTRICTED"
+            SALOME_HAS_GLOBAL_ENV : "1"
+            SALOME_USE_64BIT_IDS : '1'
+            SET_usr_docs_VARS : "1" # required for PyEditor build
+            CMAKE_GENERATOR : '"Visual Studio 15 2017 Win64"'
         }
         launch : {PYTHONIOENCODING:"UTF_8", SALOME_MODULES_ORDER:"SHAPER:SHAPERSTUDY:GEOM:SMESH"}
         SALOME_trace : "local" # local/file:.../with_logger
@@ -36,7 +36,7 @@ APPLICATION :
         alabaster : '0.7.6'
         Babel : '2.7.0'
         boost : '1.67.0'
-        CAS : 'V7_5_3p1'
+        CAS : {tag: 'V7_5_3p1', section: 'version_V7_5_3p1_win'}
         certifi : '2019.6.16'
         cgns : '4.1.1'
         chardet : '3.0.4'
@@ -94,7 +94,7 @@ APPLICATION :
         Pygments : '2.4.2'
         pyparsing : '2.4.0'
         PyQt : '5.15.3'
-       # PyQtChart : '5.15.4'
+        # PyQtChart : '5.15.4'
         pyreadline : '2.1'
         Python : '3.6.5'
         pytz : '2019.1'
@@ -163,7 +163,7 @@ APPLICATION :
         'EFICAS_TOOLS'
         'ADAO'
         'PARAVISADDONS'
-        'TESTBASE'
+        'TESTBASE': {tag: 'master'}
         'CEATESTBASE' : {tag: 'SSL'}
     }
     profile :
@@ -192,13 +192,4 @@ APPLICATION :
 
 __overwrite__ :
 [
-  {
-    __condition__ : "APPLICATION.debug == 'yes'"
-    'APPLICATION.products.numpy'      : '1.16.4-win-dbg'
-    'APPLICATION.products.sphinxintl' : '2.0.0-win-dbg'
-    'PRODUCTS.llvm.version_8_0_1_clang_win.build_source' : 'script'
-    'PRODUCTS.llvm.version_8_0_1_clang_win.compil_script' : 'llvm-8.0.1.bat'
-    'PRODUCTS.tbb.version_2019_U8_win.patches' : ['tbb-2019_U8_windows10.patch', 'tbb-2019_U8_windows10_debug.patch']
-    'PRODUCTS.omniORB.default.patches': ['omniORB-4.2.3-windows-debug.patch']
-  }
 ]
