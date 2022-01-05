@@ -70,7 +70,7 @@ APPLICATION :
         matplotlib : 'native'
         medfile : {section: 'default_Autotools', tag: '4.1.1'}
         mesa : 'native'
-        MeshGems : '2.13-1'
+        MeshGems : '2.14-1'
         metis : 'native'
         netgen : '6.2.2101'
         nlopt : '2.4.2'

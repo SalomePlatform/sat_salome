@@ -66,7 +66,7 @@ APPLICATION :
         matplotlib : '3.0.3'
         medfile : {section: 'default_Autotools', tag: '4.1.1'}
         mesa : '19.0.8'
-        MeshGems : '2.13-1'
+        MeshGems : '2.14-1'
         metis : '5.1.0'
         netgen : '6.2.2101'
         nlopt : '2.5.0'
@@ -158,8 +158,9 @@ APPLICATION :
         'ADAO'
         'ADAO_INTERFACE'
         'PARAVISADDONS'
-        'TESTBASE'
-        'CEATESTBASE' : {tag: 'SalomeV9'}
+        'YDEFX'
+        'TESTBASE': {tag: 'master'}
+        'CEATESTBASE' : {tag: 'SSL'}
     }
     profile :
     {
@@ -186,18 +187,18 @@ APPLICATION :
 }
 __overwrite__ :
 [
-  {
-   __condition__ : "VARS.dist in ['FD32']"
-   # https://github.com/scipy/scipy/issues/11611
-   'APPLICATION.products.scipy' : '1.5.2'
-  }
-  {
-   __condition__ : "VARS.dist in ['FD30']"
-   # https://github.com/scipy/scipy/issues/11611
-   'APPLICATION.products.gcc' : '9.3.0'
-  }
-  {
-   __condition__ : "VARS.dist not in ['DB08','DB09', 'FD30']"
-   'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
-  }
+    {
+        __condition__ : "VARS.dist in ['FD32']"
+        # https://github.com/scipy/scipy/issues/11611
+        'APPLICATION.products.scipy' : '1.5.2'
+    }
+    {
+        __condition__ : "VARS.dist in ['FD30']"
+        # https://github.com/scipy/scipy/issues/11611
+        'APPLICATION.products.gcc' : '9.3.0'
+    }
+    {
+        __condition__ : "VARS.dist not in ['DB08','DB09', 'FD30']"
+        'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
+    }
 ]
