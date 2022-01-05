@@ -30,7 +30,7 @@ if NOT %ERRORLEVEL% == 0 (
 
 rem ## Lib
 set SRC_FOLDER=%SRC_FOLDER_VC15%
-if exist "%SRC_FOLDER_VC14%" (
+if exist lib\"%SRC_FOLDER_VC14%" (
    set SRC_FOLDER=%SRC_FOLDER_VC14%
 )
 
