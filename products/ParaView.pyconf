@@ -273,6 +273,24 @@ version_5_9_0_DB10 :
               ]
 }
 
+version_5_9_0_DB11 :
+{
+    compil_script :  'ParaView-5.9.0.sh'
+    archive_info : {archive_name : "ParaView-5.9.0-lata.tar.gz"}
+    # two other LATA patches already included in archive
+    patches : ['paraview.0003-ParaViewClient.patch',
+               'paraview.0005-ParaView_find_cgns.patch',
+               'paraview-5.9_qt-minimum-version.patch',
+               'paraview.0003-ParaViewClient_native.patch',
+               'paraview.0010-ParaView_CATALYST_cmake.patch',
+               'paraview.0008-ParaView_coincident_rendering.patch',
+               'paraview.0017-ParaView_protobuf_crash.patch',
+               'paraview.0015-Paraview_VTKM_ioss.patch'
+               'paraview.0018-spns-26351-autoconvert.patch',
+               'paraview.0019-spns-26344-VTK-OpenMP.patch'
+              ]
+}
+
 version_5_8_0 :
 {
     compil_script :  'ParaView-5.8.0.sh'

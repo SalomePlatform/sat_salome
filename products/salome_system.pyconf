@@ -22,7 +22,7 @@ default :
                    "libXpm-devel", "libXft-devel", "sqlite-devel"]
         apt : ["libbsd0", "libbz2-1.0", "libc6", "libdc1394-22", "libdrm2", "libegl1", "libexif12", "libexpat1",
                "libfftw3-double3", "libfontconfig1", "libgl1", "libglu1-mesa", "libgomp1", "libgphoto2-6", "libice6",
-               "libjbig0", "libjsoncpp1", "libltdl7", "liblzma5", "libncurses5", "libnuma1", "libpcre3", "libquadmath0",
+               "libjbig0", "libltdl7", "liblzma5", "libncurses5", "libnuma1", "libpcre3", "libquadmath0",
                "libraw1394-11", "libsm6", "libstdc++6", "libtiff5", "libudev1", "libusb-1.0-0", "libuuid1", "libx11-6",
                "libx11-xcb1", "libxau6", "libxcb1", "libxcb-glx0", "libxcb-xfixes0", "libxcb-xkb1", "libxdmcp6",
                "libxext6", "libxft2", "libxi6", "libxkbcommon0", "libxkbcommon-x11-0", "libxmu6", "libxpm4", "libxrender1",
@@ -61,18 +61,26 @@ default :
         "DB08" :
         {
             apt : ["libopenexr6", "libwebp5", "libgfortran3", "libilmbase6", "libevent-2.0-5", "libpng12-0", "libgcc-4.9-dev",
-                   "libffi6", "libtinfo5", "libgphoto2-port10"]
+                   "libffi6", "libtinfo5", "libgphoto2-port10", "libjsoncpp1"]
         }
         "DB09" :
         {
             apt : ["libopenexr22", "libwebp6", "libgfortran3", "libilmbase12", "libevent-2.0-5", "libpng16-16", "libgcc-6-dev",
-                   "libffi6", "libtinfo5", "libgphoto2-port12", "libglx0", "libopengl0"]
+                   "libffi6", "libtinfo5", "libgphoto2-port12", "libglx0", "libopengl0", "libjsoncpp1"]
             apt_dev : ["libtbb-dev"]
         }
         "DB10" :
         {
             apt : ["libopenexr23", "libwebp6", "libgfortran5", "libilmbase23", "libevent-2.1-6", "libpng16-16", "libgcc-8-dev",
-                   "libffi6", "libtinfo6", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0"]
+                   "libffi6", "libtinfo6", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0", "libjsoncpp1"]
+            apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev",
+                       "qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools"]
+
+        }
+        "DB11" :
+        {
+            apt : ["libopenexr25", "libwebp6", "libgfortran5", "libilmbase25", "libevent-2.1-7", "libpng16-16", "libgcc-10-dev",
+                   "libffi7", "libtinfo6", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0", "libjsoncpp24"]
             apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev",
                        "qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools"]
 
