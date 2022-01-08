@@ -1,0 +1,74 @@
+diff -pruN Top2VolMesher_ref/CMakeLists.txt Topo2VolMesh/CMakeLists.txt
+--- Topo2VolMesh_ref/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
++++ Topo2VolMesh/CMakeLists.txt	2020-08-03 11:06:43.200739464 +0200
+@@ -0,0 +1,47 @@
++# Copyright (C) 2012-2020  CEA/DEN, EDF R&D, OPEN CASCADE
++#
++# This library is free software; you can redistribute it and/or
++# modify it under the terms of the GNU Lesser General Public
++# License as published by the Free Software Foundation; either
++# version 2.1 of the License, or (at your option) any later version.
++#
++# This library is distributed in the hope that it will be useful,
++# but WITHOUT ANY WARRANTY; without even the implied warranty of
++# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++# Lesser General Public License for more details.
++#
++# You should have received a copy of the GNU Lesser General Public
++# License along with this library; if not, write to the Free Software
++# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
++#
++# See http://www.salome-platform.org/ or email : webmaster.salome@opencascade.com
++#
++CMAKE_MINIMUM_REQUIRED(VERSION 2.8.8 FATAL_ERROR)
++if (NOT DEFINED CMAKE_BUILD_TYPE)
++  set (CMAKE_BUILD_TYPE Release CACHE STRING "Build type")
++endif ()
++PROJECT(Topo2VolMesh C CXX)
++
++# Versioning
++# ===========
++# Project name, upper case
++STRING(TOUPPER ${PROJECT_NAME} PROJECT_NAME_UC)
++
++SET(${PROJECT_NAME_UC}_MAJOR_VERSION 1)
++SET(${PROJECT_NAME_UC}_MINOR_VERSION 0)
++SET(${PROJECT_NAME_UC}_PATCH_VERSION 0)
++SET(${PROJECT_NAME_UC}_VERSION
++  ${${PROJECT_NAME_UC}_MAJOR_VERSION}.${${PROJECT_NAME_UC}_MINOR_VERSION}.${${PROJECT_NAME_UC}_PATCH_VERSION})
++SET(${PROJECT_NAME_UC}_VERSION_DEV 1)
++
++# Sources 
++# ========
++if(WIN32)
++  set(WIN32 1)
++  add_definitions(-DWIN32)
++else(WIN32)
++  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
++endif(WIN32)
++
++ADD_SUBDIRECTORY(src)
++  
+diff -pruN Topo2VolMesh_ref/src/CMakeLists.txt Topo2VolMesh/src/CMakeLists.txt
+--- Topo2VolMesh_ref/src/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
++++ Topo2VolMesh/src/CMakeLists.txt	2020-08-03 11:14:25.553942048 +0200
+@@ -0,0 +1,8 @@
++add_executable (Top2Vol-Mesher Top2Vol-Mesher.cpp) 
++IF(WIN32)
++  install(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE}/Top2Vol-Mesher.exe
++          DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
++ELSE(WIN32)
++  install(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/Top2Vol-Mesher
++          DESTINATION ${CMAKE_INSTALL_PREFIX}/bin RENAME Top2Vol-Mesher.exe)
++ENDIF(WIN32)
+diff -pruN Topo2VolMesh_ref/src/Top2Vol-Mesher.cpp Topo2VolMesh/src/Top2Vol-Mesher.cpp
+--- Topo2VolMesh_ref/src/Top2Vol-Mesher.cpp	2020-03-04 10:51:22.000000000 +0100
++++ Topo2VolMesh/src/Top2Vol-Mesher.cpp	2020-08-03 11:16:04.563854456 +0200
+@@ -1,6 +1,7 @@
+ #include <iostream>
+ #include <fstream>
+ #include <iomanip>
++#include <string>
+ using namespace std;
+ 
+ 
