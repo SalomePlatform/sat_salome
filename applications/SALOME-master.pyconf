@@ -117,6 +117,7 @@ APPLICATION :
         tbb : '2019_U8'
         tcl : '8.6.0'
         tk : '8.6.0'
+        topo2volmesh: '0.0.1'
         urllib3 : '1.23'
         URANIE : '4.5.0'
         # SALOME MODULES :
@@ -130,7 +131,7 @@ APPLICATION :
         'MEDCOUPLING'
         'GUI'
         'GEOM'
-        'SMESH'
+        'SMESH': {tag: 'master', base: 'no', section: 'version_topo2volmesh'}
         'NETGENPLUGIN'
         'BLSURFPLUGIN'
         'GHS3DPLUGIN'
