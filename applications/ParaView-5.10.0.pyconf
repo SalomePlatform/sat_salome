@@ -64,7 +64,7 @@ APPLICATION :
         openVKL: '0.11.0'
         ospray : '2.4.0'
         packaging : '17.1'
-        ParaView : '5.9.1'
+        ParaView : '5.10.0'
         Pillow : '7.1.1'
         planegcs : '0.18-3cb6890'
         pockets : '0.6.2'
