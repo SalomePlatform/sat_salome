@@ -30,6 +30,71 @@ default :
     }
 }
 
+version_5_10_0 :
+{
+    compil_script :  'ParaView-5.10.0.sh'
+    archive_info : {archive_name : "ParaView-5.10.0-lata.tar.gz"}
+    # two other LATA patches already included in archive
+    patches : ['paraview.0003-ParaViewClient.patch',
+               'paraview.0004-ParaView_hdf5.patch',
+               'paraview.0005-ParaView_find_cgns.patch',
+               'paraview.0006-ParaView_find_libxml2.patch',
+               'paraview.0007-ParaView_find_freetype.patch',
+               'paraview.0010-ParaView_CATALYST_cmake.patch',
+               'paraview.0008-ParaView_coincident_rendering.patch',
+               'paraview.0011-ParaView_protobuf_crash.patch',
+               'paraview.0015-Paraview_VTKM_ioss.patch'
+              ]
+}
+
+version_5_10_0_win :
+{
+    compil_script :  'ParaView-5.10.0.bat'
+    archive_info : {archive_name : "ParaView-5.10.0-lata.tar.gz"}
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments',
+              'pthreads',
+              'zlib'
+             ]
+    patches : ['paraview.0003-ParaViewClient.patch',
+               'paraview.0004-ParaView_hdf5.patch',
+               'paraview.0005-ParaView_find_cgns.patch',
+               'paraview.0006-ParaView_find_libxml2.patch',
+               'paraview.0007-ParaView_find_freetype.patch',
+               'paraview.0009-ParaView_find_zlib.patch',
+               'paraview.0010-ParaView_CATALYST_cmake.patch',
+               'paraview.1001-ParaView_windows_catalyst_cmake.patch',
+               'paraview.0008-ParaView_coincident_rendering.patch',
+               'paraview.0011-ParaView_protobuf_crash.patch'
+              ]
+}
+
+version_5_10_0_MPI :
+{
+    compil_script :  'ParaView-5.10.0.sh'
+    archive_info : {archive_name : "ParaView-5.10.0-lata.tar.gz"}
+    patches : ['paraview.0003-ParaViewClient.patch',
+               'paraview.0004-ParaView_hdf5.patch',
+               'paraview.0005-ParaView_find_cgns.patch',
+               'paraview.0006-ParaView_find_libxml2.patch',
+               'paraview.0007-ParaView_find_freetype.patch',
+               'paraview-5.9-VTKM_MPI.patch',
+               'paraview.0010-ParaView_CATALYST_cmake.patch',
+               'paraview.0008-ParaView_coincident_rendering.patch',
+               'paraview.0011-ParaView_protobuf_crash.patch',
+               'paraview.0015-Paraview_VTKM_ioss.patch',
+               'paraview.0017-VTK-openMPI-if-devtoolset.patch'
+              ]
+}
+
 version_5_9_1 :
 {
     compil_script :  'ParaView-5.9.1.sh'
