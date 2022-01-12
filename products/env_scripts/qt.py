@@ -24,9 +24,8 @@ def set_env(env, prereq_dir, version):
 
 def set_nativ_env(env):
 
-    # Adapt Qt libraries dir according to the current distribution (generic -> Ubuntu)
     import distro
-    if any(distribution in distro.name().lower() for distribution in ["debian", "generic", "ubuntu"]) :
+    if any(distribution in distro.name().lower() for distribution in ["debian", "ubuntu"]) :
         qt_lib_dir='/usr/lib/x86_64-linux-gnu'
     else :
         qt_lib_dir='/usr/lib64'
