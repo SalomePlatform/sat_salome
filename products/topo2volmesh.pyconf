@@ -1,7 +1,7 @@
 default :
 {
     name : "topo2volmesh"
-    build_source : "cmake"
+    build_source : "script"
     compil_script :  $name + $VARS.scriptExtension
     get_source : "archive"
     system_info :
@@ -28,7 +28,7 @@ default :
     }
 }
 
-version_0_0_1:
+version_1_3_0:
 {
-  patches : ['topo2volmesh-0.0.1-00001.patch']
+   compil_script : "topo2volmesh-1.3.0.sh"
 }

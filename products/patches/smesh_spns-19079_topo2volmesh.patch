@@ -1,8 +1,7 @@
-diff --git a/src/Tools/CMakeLists.txt b/src/Tools/CMakeLists.txt
-index 2c8c207..e91875d 100644
---- a/src/Tools/CMakeLists.txt
-+++ b/src/Tools/CMakeLists.txt
-@@ -26,6 +26,7 @@ ADD_SUBDIRECTORY(MacMesh)
+diff -Naur SMESH_ref/src/Tools/CMakeLists.txt SMESH_new/src/Tools/CMakeLists.txt
+--- SMESH_ref/src/Tools/CMakeLists.txt	2022-01-14 16:13:39.350133329 +0100
++++ SMESH_new/src/Tools/CMakeLists.txt	2022-01-14 16:35:41.543110352 +0100
+@@ -26,6 +26,7 @@
  IF(SALOME_BUILD_GUI)
    ADD_SUBDIRECTORY(MGCleanerPlug)
    ADD_SUBDIRECTORY(YamsPlug)
@@ -10,11 +9,27 @@ index 2c8c207..e91875d 100644
  #  ADD_SUBDIRECTORY(ZCracksPlug)
  ENDIF(SALOME_BUILD_GUI)
  
-diff --git a/src/Tools/Topo2VolMeshPlug/CMakeLists.txt b/src/Tools/Topo2VolMeshPlug/CMakeLists.txt
-new file mode 100755
-index 0000000..c9ab7ca
---- /dev/null
-+++ b/src/Tools/Topo2VolMeshPlug/CMakeLists.txt
+diff -Naur SMESH_ref/src/Tools/smesh_plugins.py SMESH_new/src/Tools/smesh_plugins.py
+--- SMESH_ref/src/Tools/smesh_plugins.py	2022-01-14 16:13:39.506135336 +0100
++++ SMESH_new/src/Tools/smesh_plugins.py	2022-01-14 16:35:41.543110352 +0100
+@@ -91,3 +91,14 @@
+   #print 'probleme zcracks'
+   salome_pluginsmanager.logger.info('ERROR: Zcrack plug-in is unavailable: {}'.format(e))
+   pass
++
++# Topological to volumic mesh plugin
++try:
++  from Topo2VolMeshPlugin import Topo2VolMeshLct
++  salome_pluginsmanager.AddFunction('Run Topological Volumic mesher',
++                                    'run topological volumic meshing',
++                                    Topo2VolMeshLct)
++except Exception as e:
++  #print 'probleme zcracks'
++  salome_pluginsmanager.logger.info('ERROR: topo2volmesh plug-in is unavailable: {}'.format(e))
++  pass
+diff -Naur SMESH_ref/src/Tools/Topo2VolMeshPlug/CMakeLists.txt SMESH_new/src/Tools/Topo2VolMeshPlug/CMakeLists.txt
+--- SMESH_ref/src/Tools/Topo2VolMeshPlug/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
++++ SMESH_new/src/Tools/Topo2VolMeshPlug/CMakeLists.txt	2022-01-14 16:35:41.543110352 +0100
 @@ -0,0 +1,56 @@
 +# Copyright (C) 2013-2021  EDF R&D
 +#
@@ -44,8 +59,8 @@ index 0000000..c9ab7ca
 +# scripts / static
 +SET(_plugin_SCRIPTS
 +  Topo2VolMeshPluginDialog.py
-+  Topo2VolMeshPlugin.py 
-+  Topo2VolMeshPlugin_plugin.py 
++  Topo2VolMeshPlugin.py
++  Topo2VolMeshPlugin_plugin.py
 +  Topo2VolMeshMonitor.py
 +  README
 +)
@@ -72,11 +87,9 @@ index 0000000..c9ab7ca
 +  # Install the CMake configuration files:
 +  INSTALL(FILES "${PROJECT_SOURCE_DIR}/README" DESTINATION "${SALOME_INSTALL_CMAKE_LOCAL}")
 +ENDIF(SALOME_BUILD_GUI)
-diff --git a/src/Tools/Topo2VolMeshPlug/README b/src/Tools/Topo2VolMeshPlug/README
-new file mode 100755
-index 0000000..073fdf3
---- /dev/null
-+++ b/src/Tools/Topo2VolMeshPlug/README
+diff -Naur SMESH_ref/src/Tools/Topo2VolMeshPlug/README SMESH_new/src/Tools/Topo2VolMeshPlug/README
+--- SMESH_ref/src/Tools/Topo2VolMeshPlug/README	1970-01-01 01:00:00.000000000 +0100
++++ SMESH_new/src/Tools/Topo2VolMeshPlug/README	2022-01-14 16:35:41.543110352 +0100
 @@ -0,0 +1,109 @@
 +******************************
 +About SALOME HexaBlock plug-in
@@ -125,7 +138,7 @@ index 0000000..073fdf3
 +
 +  <http://www.salome-platform.org/downloads/license/>
 +
-+Note: SALOME HexaBlock plug-in needs SALOME KERNEL, SALOME GUI, SALOME Geometry, 
++Note: SALOME HexaBlock plug-in needs SALOME KERNEL, SALOME GUI, SALOME Geometry,
 +SALOME Mesh and SALOME HexaBlock as pre-requisites.
 +
 +------------------
@@ -133,7 +146,7 @@ index 0000000..073fdf3
 +------------------
 +
 +The build procedure of the SALOME platform is implemented with CMake.
-+In order to build the plug-in you have to do the following actions: 
++In order to build the plug-in you have to do the following actions:
 +
 +1. Set up environment for pre-requisites (see "Pre-requisites" section above).
 +
@@ -149,7 +162,7 @@ index 0000000..073fdf3
 +   where
 +   - <mode> is either Release or Debug (default: Release);
 +   - <installation_directory> is a destination folder to install SALOME HexaBlock
-+     plug-in (default: /usr); 
++     plug-in (default: /usr);
 +   - <path_to_src_dir> is a path to the SALOME HexaBlock plug-in sources directory.
 +
 +   Note: by default (if CMAKE_INSTALL_PREFIX option is not given), SALOME HexaBlock
@@ -187,11 +200,9 @@ index 0000000..073fdf3
 +===============
 +
 +Please, send a mail to webmaster.salome@opencascade.com.
-diff --git a/src/Tools/Topo2VolMeshPlug/Topo2VolMeshMonitor.py b/src/Tools/Topo2VolMeshPlug/Topo2VolMeshMonitor.py
-new file mode 100755
-index 0000000..455738b
---- /dev/null
-+++ b/src/Tools/Topo2VolMeshPlug/Topo2VolMeshMonitor.py
+diff -Naur SMESH_ref/src/Tools/Topo2VolMeshPlug/Topo2VolMeshMonitor.py SMESH_new/src/Tools/Topo2VolMeshPlug/Topo2VolMeshMonitor.py
+--- SMESH_ref/src/Tools/Topo2VolMeshPlug/Topo2VolMeshMonitor.py	1970-01-01 01:00:00.000000000 +0100
++++ SMESH_new/src/Tools/Topo2VolMeshPlug/Topo2VolMeshMonitor.py	2022-01-14 16:35:41.543110352 +0100
 @@ -0,0 +1,97 @@
 +# -*- coding: utf-8 -*-
 +# Copyright (C) 2013-2020  EDF R&D
@@ -246,7 +257,7 @@ index 0000000..455738b
 +    self.myExecutable.finished.connect( self.computationFinished )
 +    self.myExecutable.errorOccurred.connect( self.computationOnError )
 +    if os.path.exists(self.parent().outputMesh):
-+       os.remove(self.parent().outputMesh)    
++       os.remove(self.parent().outputMesh)
 +    self.myExecutable.start(txt)
 +    self.myExecutable.closeWriteChannel()
 +    self.show()
@@ -290,11 +301,9 @@ index 0000000..455738b
 +    self.qpbOK.setEnabled(True)
 +    QMessageBox.critical(self, 'Computation failed',
 +                               'The computation has failed.<br>Please, check the log message.')
-diff --git a/src/Tools/Topo2VolMeshPlug/Topo2VolMeshMonitor.ui b/src/Tools/Topo2VolMeshPlug/Topo2VolMeshMonitor.ui
-new file mode 100755
-index 0000000..ea6d196
---- /dev/null
-+++ b/src/Tools/Topo2VolMeshPlug/Topo2VolMeshMonitor.ui
+diff -Naur SMESH_ref/src/Tools/Topo2VolMeshPlug/Topo2VolMeshMonitor.ui SMESH_new/src/Tools/Topo2VolMeshPlug/Topo2VolMeshMonitor.ui
+--- SMESH_ref/src/Tools/Topo2VolMeshPlug/Topo2VolMeshMonitor.ui	1970-01-01 01:00:00.000000000 +0100
++++ SMESH_new/src/Tools/Topo2VolMeshPlug/Topo2VolMeshMonitor.ui	2022-01-14 16:35:41.543110352 +0100
 @@ -0,0 +1,38 @@
 +<?xml version="1.0" encoding="UTF-8"?>
 +<ui version="4.0">
@@ -334,54 +343,10 @@ index 0000000..ea6d196
 + <resources/>
 + <connections/>
 +</ui>
-diff --git a/src/Tools/Topo2VolMeshPlug/Topo2VolMeshPlugin.py b/src/Tools/Topo2VolMeshPlug/Topo2VolMeshPlugin.py
-new file mode 100755
-index 0000000..136cd63
---- /dev/null
-+++ b/src/Tools/Topo2VolMeshPlug/Topo2VolMeshPlugin.py
-@@ -0,0 +1,36 @@
-+# -*- coding: utf-8 -*-
-+# Copyright (C) 2013-2020  EDF R&D
-+#
-+# This library is free software; you can redistribute it and/or
-+# modify it under the terms of the GNU Lesser General Public
-+# License as published by the Free Software Foundation; either
-+# version 2.1 of the License, or (at your option) any later version.
-+#
-+# This library is distributed in the hope that it will be useful,
-+# but WITHOUT ANY WARRANTY; without even the implied warranty of
-+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-+# Lesser General Public License for more details.
-+#
-+# You should have received a copy of the GNU Lesser General Public
-+# License along with this library; if not, write to the Free Software
-+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
-+#
-+# See http://www.salome-platform.org/ or email : webmaster.salome@opencascade.com
-+#
-+
-+# if you already have plugins defined in a salome_plugins.py file, add this file at the end.
-+# if not, copy this file as ${HOME}/Plugins/smesh_plugins.py or ${APPLI}/Plugins/smesh_plugins.py
-+
-+def Topo2VolMeshLct(context):
-+  # get context study, salomeGui
-+  study = context.study
-+  sg = context.sg
-+  
-+  import os
-+  import subprocess
-+  import tempfile
-+  from qtsalome import QFileDialog, QMessageBox
-+  
-+  import Topo2VolMeshPluginDialog
-+  window = Topo2VolMeshPluginDialog.getInstance()
-+  window.show()
-diff --git a/src/Tools/Topo2VolMeshPlug/Topo2VolMeshPluginDialog.py b/src/Tools/Topo2VolMeshPlug/Topo2VolMeshPluginDialog.py
-new file mode 100755
-index 0000000..ac4a32c
---- /dev/null
-+++ b/src/Tools/Topo2VolMeshPlug/Topo2VolMeshPluginDialog.py
-@@ -0,0 +1,129 @@
+diff -Naur SMESH_ref/src/Tools/Topo2VolMeshPlug/Topo2VolMeshPluginDialog.py SMESH_new/src/Tools/Topo2VolMeshPlug/Topo2VolMeshPluginDialog.py
+--- SMESH_ref/src/Tools/Topo2VolMeshPlug/Topo2VolMeshPluginDialog.py	1970-01-01 01:00:00.000000000 +0100
++++ SMESH_new/src/Tools/Topo2VolMeshPlug/Topo2VolMeshPluginDialog.py	2022-01-14 16:36:18.691585755 +0100
+@@ -0,0 +1,162 @@
 +# -*- coding: utf-8 -*-
 +# Copyright (C) 2013-2020  EDF R&D
 +#
@@ -405,6 +370,9 @@ index 0000000..ac4a32c
 +
 +import os, subprocess
 +import random
++import getpass
++import time
++import pathlib
 +
 +# set seed
 +from datetime import datetime
@@ -425,10 +393,22 @@ index 0000000..ac4a32c
 +    QWidget.__init__(self)
 +    self.setupUi(self)
 +    self.qpbHelp.clicked.connect(self.OnQpbHelpClicked)
-+    self.qpbCompute.clicked.connect(self.OnQpbComputeClicked)    
++    self.qpbCompute.clicked.connect(self.OnQpbComputeClicked)
 +    self.qpbMeshFile.clicked.connect(self.OnQpbMeshFileClicked)
 +    self.qpbMeshFile.setToolTip("hypothesis from Salome Object Browser")
 +    self.qpbClose.clicked.connect(self.OnQpbCloseClicked)
++    self.qcbDistributed.stateChanged[int].connect(self.OnqcbDistributedClicked)
++    self.qlbXParts.setVisible(False)
++    self.qlbYParts.setVisible(False)
++    self.qlbZParts.setVisible(False)
++    self.qsbXParts.setVisible(False)
++    self.qsbYParts.setVisible(False)
++    self.qsbZParts.setVisible(False)
++    self.SALOME_TMP_DIR = None
++    try:
++      self.qleTmpDir.setText(os.path.join('/tmp',getpass.getuser(),'top-ii-vol'))
++    except:
++      self.qleTmpDir.setText('/tmp')
 +    self.resize(800, 500)
 +    self.outputMesh = ''
 +
@@ -450,7 +430,7 @@ index 0000000..ac4a32c
 +      infile = fd.selectedFiles()[0]
 +      self.qleMeshFile.setText(infile)
 +
-+  def OnQpbComputeClicked(self):  
++  def OnQpbComputeClicked(self):
 +    if self.qleMeshFile.text() == '':
 +      QMessageBox.critical(self, "Mesh", "select an input mesh")
 +      return
@@ -460,41 +440,60 @@ index 0000000..ac4a32c
 +    yPoints = self.qsbYPoints.value()
 +    zPoints = self.qsbZPoints.value()
 +    depth   = self.qsbDepth.value()
-+    
-+    shellCmd = "Top2Vol-Mesher.exe"
-+    shellCmd+= " --xpoints " + str(xPoints)
-+    shellCmd+= " --ypoints " + str(yPoints)
-+    shellCmd+= " --zpoints " + str(zPoints)
-+    shellCmd+= " --zdepth  " + str(depth)
-+    shellCmd+= " --in " + inputMesh
-+
-+    if platform.system()=="Windows" :
-+      SALOME_TMP_DIR = os.getenv("SALOME_TMP_DIR")
++    nProcs  = self.qsbNBprocs.value()
++    if not self.qcbDistributed.isChecked():
++      if nProcs == 1:
++        shellCmd = "topIIvol_Mesher"
++      else:
++        shellCmd = "mpirun -np {} topIIvol_ParMesher".format(nProcs)
++      shellCmd+= " --xpoints " + str(xPoints)
++      shellCmd+= " --ypoints " + str(yPoints)
++      shellCmd+= " --zpoints " + str(zPoints)
++      shellCmd+= " --depth   " + str(depth)
++      shellCmd+= " --in " + inputMesh
 +    else:
-+      SALOME_TMP_DIR = '/tmp'
-+    n=random.random()
-+    self.outputMesh= os.path.join(SALOME_TMP_DIR,'top2Vol_' + str(n) + '.mesh')
++      xParts = self.qsbXParts.value()
++      yParts = self.qsbYParts.value()
++      zParts = self.qsbZParts.value()
++      shellCmd = "mpirun -np {} topIIvol_DistMesher".format(nProcs)
++      shellCmd+= " --xpoints " + str(xPoints)
++      shellCmd+= " --ypoints " + str(yPoints)
++      shellCmd+= " --zpoints " + str(zPoints)
++      shellCmd+= " --depth   " + str(depth)
++      shellCmd+= " --partition_x " + str(xParts)
++      shellCmd+= " --partition_y " + str(xParts)
++      shellCmd+= " --partition_z " + str(xParts)
++      shellCmd+= " --in " + inputMesh
++    if platform.system()=="Windows" :
++      self.SALOME_TMP_DIR = os.getenv("SALOME_TMP_DIR")
++    else:
++      self.SALOME_TMP_DIR = os.path.join(self.qleTmpDir.text(), time.strftime("%Y-%m-%d-%H-%M-%S"))
++      pathlib.Path(self.SALOME_TMP_DIR).mkdir(parents=True, exist_ok=True)
++    self.outputMesh= os.path.join(self.SALOME_TMP_DIR, inputMesh.split('/').pop().replace('.xyz','.mesh'))
 +    shellCmd+= " --out " + self.outputMesh
++    print("INFO: ", shellCmd)
 +    myMonitorView=Topo2VolMeshMonitor(self, shellCmd)
++
++  def OnqcbDistributedClicked(self):
++    state = self.qcbDistributed.isChecked()
++    self.qlbXParts.setVisible(state)
++    self.qlbYParts.setVisible(state)
++    self.qlbZParts.setVisible(state)
++    self.qsbXParts.setVisible(state)
++    self.qsbYParts.setVisible(state)
++    self.qsbZParts.setVisible(state)
 +
 +  def OnQpbCloseClicked(self):
 +    self.close()
 +
 +  def saveOutputMesh(self):
-+    if not os.path.isfile(self.outputMesh):
-+      QMessageBox.warning(self, "Compute", "Result file " + self.outputMesh + " not found")
-+      return False
-+
 +    import salome
 +    import  SMESH, SALOMEDS
 +    from salome.smesh import smeshBuilder
 +    smesh = smeshBuilder.New()
-+    meshName=str(self.qleMeshFile.text())
-+    meshName=os.path.basename(os.path.splitext(meshName)[0])#.replace('-','_').replace(' ','')
-+    meshName= 'Top2Vol_' + meshName
-+    
-+    (outputMesh, status) = smesh.CreateMeshesFromGMF(self.outputMesh)
-+    smesh.SetName(outputMesh.GetMesh(), meshName)
++    self.outputMesh.split('/')
++    for mesh in pathlib.Path(self.SALOME_TMP_DIR).glob('*.mesh'):
++      (outputMesh, status) = smesh.CreateMeshesFromGMF(os.path.join(self.SALOME_TMP_DIR, mesh))
 +    if salome.sg.hasDesktop():
 +        salome.sg.updateObjBrowser()
 +    return True
@@ -510,13 +509,10 @@ index 0000000..ac4a32c
 +  if __instance is None:
 +    __instance = Topo2VolMeshPluginDialog()
 +  return __instance
-+
-diff --git a/src/Tools/Topo2VolMeshPlug/Topo2VolMeshPluginDialog.ui b/src/Tools/Topo2VolMeshPlug/Topo2VolMeshPluginDialog.ui
-new file mode 100755
-index 0000000..9a9ea35
---- /dev/null
-+++ b/src/Tools/Topo2VolMeshPlug/Topo2VolMeshPluginDialog.ui
-@@ -0,0 +1,268 @@
+diff -Naur SMESH_ref/src/Tools/Topo2VolMeshPlug/Topo2VolMeshPluginDialog.ui SMESH_new/src/Tools/Topo2VolMeshPlug/Topo2VolMeshPluginDialog.ui
+--- SMESH_ref/src/Tools/Topo2VolMeshPlug/Topo2VolMeshPluginDialog.ui	1970-01-01 01:00:00.000000000 +0100
++++ SMESH_new/src/Tools/Topo2VolMeshPlug/Topo2VolMeshPluginDialog.ui	2022-01-14 16:35:41.543110352 +0100
+@@ -0,0 +1,448 @@
 +<?xml version="1.0" encoding="UTF-8"?>
 +<ui version="4.0">
 + <class>Topo2VolMeshMainFrame</class>
@@ -525,12 +521,12 @@ index 0000000..9a9ea35
 +   <rect>
 +    <x>0</x>
 +    <y>0</y>
-+    <width>779</width>
-+    <height>389</height>
++    <width>780</width>
++    <height>411</height>
 +   </rect>
 +  </property>
 +  <property name="windowTitle">
-+   <string>Tetra Mesh from cloud of x y points mesh generator</string>
++   <string>Tetra Mesh from cloud of xyz points mesh generator</string>
 +  </property>
 +  <widget class="QGroupBox" name="groupBox">
 +   <property name="geometry">
@@ -538,7 +534,7 @@ index 0000000..9a9ea35
 +     <x>10</x>
 +     <y>10</y>
 +     <width>761</width>
-+     <height>120</height>
++     <height>101</height>
 +    </rect>
 +   </property>
 +   <property name="font">
@@ -554,7 +550,7 @@ index 0000000..9a9ea35
 +     <rect>
 +      <x>10</x>
 +      <y>50</y>
-+      <width>190</width>
++      <width>151</width>
 +      <height>31</height>
 +     </rect>
 +    </property>
@@ -564,7 +560,7 @@ index 0000000..9a9ea35
 +     </font>
 +    </property>
 +    <property name="text">
-+     <string>Mesh File XY format</string>
++     <string>Mesh file (XYZ format)</string>
 +    </property>
 +    <property name="iconSize">
 +     <size>
@@ -576,9 +572,9 @@ index 0000000..9a9ea35
 +   <widget class="QLineEdit" name="qleMeshFile">
 +    <property name="geometry">
 +     <rect>
-+      <x>220</x>
++      <x>170</x>
 +      <y>50</y>
-+      <width>481</width>
++      <width>531</width>
 +      <height>31</height>
 +     </rect>
 +    </property>
@@ -593,9 +589,9 @@ index 0000000..9a9ea35
 +   <property name="geometry">
 +    <rect>
 +     <x>10</x>
-+     <y>150</y>
++     <y>120</y>
 +     <width>761</width>
-+     <height>201</height>
++     <height>231</height>
 +    </rect>
 +   </property>
 +   <property name="title">
@@ -604,7 +600,7 @@ index 0000000..9a9ea35
 +   <widget class="QSpinBox" name="qsbXPoints">
 +    <property name="geometry">
 +     <rect>
-+      <x>40</x>
++      <x>10</x>
 +      <y>30</y>
 +      <width>62</width>
 +      <height>22</height>
@@ -623,9 +619,9 @@ index 0000000..9a9ea35
 +   <widget class="QLabel" name="qlXpoints">
 +    <property name="geometry">
 +     <rect>
-+      <x>120</x>
++      <x>80</x>
 +      <y>30</y>
-+      <width>551</width>
++      <width>201</width>
 +      <height>20</height>
 +     </rect>
 +    </property>
@@ -636,7 +632,7 @@ index 0000000..9a9ea35
 +   <widget class="QSpinBox" name="qsbYPoints">
 +    <property name="geometry">
 +     <rect>
-+      <x>40</x>
++      <x>10</x>
 +      <y>70</y>
 +      <width>62</width>
 +      <height>22</height>
@@ -655,7 +651,7 @@ index 0000000..9a9ea35
 +   <widget class="QSpinBox" name="qsbZPoints">
 +    <property name="geometry">
 +     <rect>
-+      <x>40</x>
++      <x>10</x>
 +      <y>110</y>
 +      <width>62</width>
 +      <height>22</height>
@@ -674,9 +670,9 @@ index 0000000..9a9ea35
 +   <widget class="QLabel" name="qlYpoints">
 +    <property name="geometry">
 +     <rect>
-+      <x>120</x>
++      <x>80</x>
 +      <y>70</y>
-+      <width>551</width>
++      <width>211</width>
 +      <height>20</height>
 +     </rect>
 +    </property>
@@ -687,9 +683,9 @@ index 0000000..9a9ea35
 +   <widget class="QLabel" name="qlZpoints">
 +    <property name="geometry">
 +     <rect>
-+      <x>120</x>
++      <x>80</x>
 +      <y>110</y>
-+      <width>551</width>
++      <width>211</width>
 +      <height>20</height>
 +     </rect>
 +    </property>
@@ -700,7 +696,7 @@ index 0000000..9a9ea35
 +   <widget class="QSpinBox" name="qsbDepth">
 +    <property name="geometry">
 +     <rect>
-+      <x>40</x>
++      <x>10</x>
 +      <y>150</y>
 +      <width>62</width>
 +      <height>22</height>
@@ -719,9 +715,9 @@ index 0000000..9a9ea35
 +   <widget class="QLabel" name="qlDepth">
 +    <property name="geometry">
 +     <rect>
-+      <x>120</x>
++      <x>80</x>
 +      <y>150</y>
-+      <width>551</width>
++      <width>201</width>
 +      <height>20</height>
 +     </rect>
 +    </property>
@@ -729,14 +725,194 @@ index 0000000..9a9ea35
 +     <string>Depth in Z direction</string>
 +    </property>
 +   </widget>
++   <widget class="QCheckBox" name="qcbDistributed">
++    <property name="geometry">
++     <rect>
++      <x>630</x>
++      <y>30</y>
++      <width>91</width>
++      <height>21</height>
++     </rect>
++    </property>
++    <property name="text">
++     <string/>
++    </property>
++   </widget>
++   <widget class="QLabel" name="qlbNbProcs">
++    <property name="geometry">
++     <rect>
++      <x>370</x>
++      <y>30</y>
++      <width>151</width>
++      <height>16</height>
++     </rect>
++    </property>
++    <property name="text">
++     <string>Number of processors</string>
++    </property>
++   </widget>
++   <widget class="QLabel" name="qlDistributed">
++    <property name="geometry">
++     <rect>
++      <x>660</x>
++      <y>30</y>
++      <width>101</width>
++      <height>16</height>
++     </rect>
++    </property>
++    <property name="text">
++     <string>Distributed</string>
++    </property>
++   </widget>
++   <widget class="QLabel" name="qlbXParts">
++    <property name="geometry">
++     <rect>
++      <x>370</x>
++      <y>70</y>
++      <width>261</width>
++      <height>16</height>
++     </rect>
++    </property>
++    <property name="text">
++     <string>Number of partitions in X direction</string>
++    </property>
++   </widget>
++   <widget class="QLabel" name="qlbYParts">
++    <property name="geometry">
++     <rect>
++      <x>370</x>
++      <y>110</y>
++      <width>251</width>
++      <height>16</height>
++     </rect>
++    </property>
++    <property name="text">
++     <string>Number of partitions in Y direction</string>
++    </property>
++   </widget>
++   <widget class="QLabel" name="qlbZParts">
++    <property name="geometry">
++     <rect>
++      <x>370</x>
++      <y>150</y>
++      <width>251</width>
++      <height>16</height>
++     </rect>
++    </property>
++    <property name="text">
++     <string>Number of partitions in Z direction</string>
++    </property>
++   </widget>
++   <widget class="QSpinBox" name="qsbNBprocs">
++    <property name="geometry">
++     <rect>
++      <x>300</x>
++      <y>30</y>
++      <width>62</width>
++      <height>22</height>
++     </rect>
++    </property>
++    <property name="minimum">
++     <number>0</number>
++    </property>
++    <property name="maximum">
++     <number>999999999</number>
++    </property>
++    <property name="value">
++     <number>1</number>
++    </property>
++   </widget>
++   <widget class="QSpinBox" name="qsbXParts">
++    <property name="geometry">
++     <rect>
++      <x>300</x>
++      <y>70</y>
++      <width>62</width>
++      <height>22</height>
++     </rect>
++    </property>
++    <property name="minimum">
++     <number>0</number>
++    </property>
++    <property name="maximum">
++     <number>999999999</number>
++    </property>
++    <property name="value">
++     <number>1</number>
++    </property>
++   </widget>
++   <widget class="QSpinBox" name="qsbYParts">
++    <property name="geometry">
++     <rect>
++      <x>300</x>
++      <y>110</y>
++      <width>62</width>
++      <height>22</height>
++     </rect>
++    </property>
++    <property name="minimum">
++     <number>0</number>
++    </property>
++    <property name="maximum">
++     <number>999999999</number>
++    </property>
++    <property name="value">
++     <number>1</number>
++    </property>
++   </widget>
++   <widget class="QSpinBox" name="qsbZParts">
++    <property name="geometry">
++     <rect>
++      <x>300</x>
++      <y>150</y>
++      <width>62</width>
++      <height>22</height>
++     </rect>
++    </property>
++    <property name="minimum">
++     <number>0</number>
++    </property>
++    <property name="maximum">
++     <number>999999999</number>
++    </property>
++    <property name="value">
++     <number>1</number>
++    </property>
++   </widget>
++   <widget class="QLineEdit" name="qleTmpDir">
++    <property name="geometry">
++     <rect>
++      <x>10</x>
++      <y>200</y>
++      <width>611</width>
++      <height>23</height>
++     </rect>
++    </property>
++    <property name="text">
++     <string/>
++    </property>
++   </widget>
++   <widget class="QLabel" name="qlTmpDir">
++    <property name="geometry">
++     <rect>
++      <x>10</x>
++      <y>180</y>
++      <width>391</width>
++      <height>16</height>
++     </rect>
++    </property>
++    <property name="text">
++     <string>Workspace</string>
++    </property>
++   </widget>
 +  </widget>
 +  <widget class="QWidget" name="layoutWidget">
 +   <property name="geometry">
 +    <rect>
 +     <x>10</x>
-+     <y>360</y>
++     <y>370</y>
 +     <width>761</width>
-+     <height>26</height>
++     <height>27</height>
 +    </rect>
 +   </property>
 +   <layout class="QHBoxLayout" name="horizontalLayout">
@@ -785,12 +961,10 @@ index 0000000..9a9ea35
 + <resources/>
 + <connections/>
 +</ui>
-diff --git a/src/Tools/Topo2VolMeshPlug/Topo2VolMeshPlugin_plugin.py b/src/Tools/Topo2VolMeshPlug/Topo2VolMeshPlugin_plugin.py
-new file mode 100755
-index 0000000..a17b00c
---- /dev/null
-+++ b/src/Tools/Topo2VolMeshPlug/Topo2VolMeshPlugin_plugin.py
-@@ -0,0 +1,37 @@
+diff -Naur SMESH_ref/src/Tools/Topo2VolMeshPlug/Topo2VolMeshPlugin_plugin.py SMESH_new/src/Tools/Topo2VolMeshPlug/Topo2VolMeshPlugin_plugin.py
+--- SMESH_ref/src/Tools/Topo2VolMeshPlug/Topo2VolMeshPlugin_plugin.py	1970-01-01 01:00:00.000000000 +0100
++++ SMESH_new/src/Tools/Topo2VolMeshPlug/Topo2VolMeshPlugin_plugin.py	2022-01-14 16:36:28.963717213 +0100
+@@ -0,0 +1,36 @@
 +# -*- coding: utf-8 -*-
 +# Copyright (C) 2013-2020  EDF R&D
 +#
@@ -818,32 +992,52 @@ index 0000000..a17b00c
 +  # get context study, salomeGui
 +  study = context.study
 +  sg = context.sg
-+  
++
 +  import os
 +  import subprocess
 +  import tempfile
 +  from qtsalome import QFileDialog, QMessageBox
-+  
++
 +  import Topo2VolMeshPluginDialog
 +  window = Topo2VolMeshPluginDialog.getDialog()
 +  window.show()
+diff -Naur SMESH_ref/src/Tools/Topo2VolMeshPlug/Topo2VolMeshPlugin.py SMESH_new/src/Tools/Topo2VolMeshPlug/Topo2VolMeshPlugin.py
+--- SMESH_ref/src/Tools/Topo2VolMeshPlug/Topo2VolMeshPlugin.py	1970-01-01 01:00:00.000000000 +0100
++++ SMESH_new/src/Tools/Topo2VolMeshPlug/Topo2VolMeshPlugin.py	2022-01-14 16:35:41.543110352 +0100
+@@ -0,0 +1,36 @@
++# -*- coding: utf-8 -*-
++# Copyright (C) 2013-2020  EDF R&D
++#
++# This library is free software; you can redistribute it and/or
++# modify it under the terms of the GNU Lesser General Public
++# License as published by the Free Software Foundation; either
++# version 2.1 of the License, or (at your option) any later version.
++#
++# This library is distributed in the hope that it will be useful,
++# but WITHOUT ANY WARRANTY; without even the implied warranty of
++# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++# Lesser General Public License for more details.
++#
++# You should have received a copy of the GNU Lesser General Public
++# License along with this library; if not, write to the Free Software
++# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
++#
++# See http://www.salome-platform.org/ or email : webmaster.salome@opencascade.com
++#
 +
-diff --git a/src/Tools/smesh_plugins.py b/src/Tools/smesh_plugins.py
-index 7c72682..134965c 100644
---- a/src/Tools/smesh_plugins.py
-+++ b/src/Tools/smesh_plugins.py
-@@ -91,3 +91,14 @@ except Exception as e:
-   #print 'probleme zcracks'
-   salome_pluginsmanager.logger.info('ERROR: Zcrack plug-in is unavailable: {}'.format(e))
-   pass
++# if you already have plugins defined in a salome_plugins.py file, add this file at the end.
++# if not, copy this file as ${HOME}/Plugins/smesh_plugins.py or ${APPLI}/Plugins/smesh_plugins.py
 +
-+# Topological to volumic mesh plugin
-+try:
-+  from Topo2VolMeshPlugin import Topo2VolMeshLct
-+  salome_pluginsmanager.AddFunction('Run Topological Volumic mesher',
-+                                    'run topological volumic meshing',
-+                                    Topo2VolMeshLct)
-+except Exception as e:
-+  #print 'probleme zcracks'
-+  salome_pluginsmanager.logger.info('ERROR: topo2volmesh plug-in is unavailable: {}'.format(e))
-+  pass
++def Topo2VolMeshLct(context):
++  # get context study, salomeGui
++  study = context.study
++  sg = context.sg
++
++  import os
++  import subprocess
++  import tempfile
++  from qtsalome import QFileDialog, QMessageBox
++
++  import Topo2VolMeshPluginDialog
++  window = Topo2VolMeshPluginDialog.getInstance()
++  window.show()
