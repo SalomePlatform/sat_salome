@@ -94,6 +94,6 @@ APPLICATION :
         repo_dev : "yes"
         pip : 'yes'
         pip_install_dir : 'python'
-        single_install_dir : "no"
+        single_install_dir : "yes"
     }
 }
