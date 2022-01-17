@@ -72,7 +72,7 @@ default :
         "DB10" :
         {
             apt : ["libopenexr23", "libwebp6", "libgfortran5", "libilmbase23", "libevent-2.1-6", "libpng16-16", "libgcc-8-dev",
-                   "libffi6", "libtinfo6", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0", "libjsoncpp1"]
+                   "libffi6", "libtinfo6", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0", "libjsoncpp1", "libopenblas-base", "libscotch-6.0"]
             apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev",
                        "qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools"]
 
@@ -94,7 +94,7 @@ default :
         "UB18.04" :
         {
             apt : ["libopenexr22", "libwebp6", "libgfortran4", "libilmbase12", "libevent-2.1-6", "libpng16-16", "libgcc-7-dev",
-                   "libffi6", "libtinfo5", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0"]
+                   "libffi6", "libtinfo5", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0", "libopenblas-base"]
             apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev"]
         }
         "UB20.04" :
