@@ -18,3 +18,12 @@ default :
       incremental : "yes"
     }
 }
+
+default_win :
+{
+    properties :
+    {
+      incremental : "yes"
+      single_install_dir : "yes"
+    }
+}

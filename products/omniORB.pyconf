@@ -18,3 +18,8 @@ default :
     }
     patches : []
 }
+
+version_4_2_3_win_dbg:
+{
+  patches: ['omniORB-4.2.3-windows-debug.patch']
+}

@@ -41,3 +41,17 @@ version_2019_U8_win :
       single_install_dir : "yes"
     }
 }
+
+version_2019_U8_win_dbg :
+{
+    archive_info : {archive_name : "tbb-2019_U8.tar.gz"}
+    patches : ['tbb-2019_U8_windows10.patch', 'tbb-2019_U8_windows10_debug.patch']
+    depend : ['Python']
+    opt_depend : ['ispc']
+    build_depend : ['swig']
+    properties :
+    {
+      incremental : "yes"
+      single_install_dir : "yes"
+    }
+}

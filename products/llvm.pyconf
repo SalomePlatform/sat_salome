@@ -51,3 +51,20 @@ version_8_0_1_clang_win :
    }
    patches : []
 }
+
+version_8_0_1_clang_win_dbg :
+{
+   build_source : "script"
+   compil_script: "llvm-8.0.1.bat"
+   depend : [ 'Python' ]
+   archive_info:
+   {
+     archive_name : "llvm-8.0.1-clang.tar.gz"
+   }
+   properties:
+   {
+     incremental : "yes"
+     compile_time : "yes"
+   }
+   patches : []
+}

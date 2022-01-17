@@ -54,13 +54,13 @@ version_5_10_0_win :
               'boost',
               'libxml2',
               'freetype',
-              'matplotlib',
               'cgns',
               'Pygments',
               'pthreads',
               'zlib'
              ]
-    patches : ['paraview.0003-ParaViewClient.patch',
+   opt_depend: ['matplotlib']
+   patches : ['paraview.0003-ParaViewClient.patch',
                'paraview.0004-ParaView_hdf5.patch',
                'paraview.0006-ParaView_find_libxml2.patch',
                'paraview.0007-ParaView_find_freetype.patch',
@@ -111,12 +111,12 @@ version_5_9_1_win :
               'boost',
               'libxml2',
               'freetype',
-              'matplotlib',
               'cgns',
               'Pygments',
               'pthreads',
               'zlib'
              ]
+    opt_depend: ['matplotlib'] # in debug mode, do not build this product
     patches : ['paraview.0003-ParaViewClient.patch',
                'paraview.0004-ParaView_hdf5.patch',
                'paraview.0005-ParaView_find_cgns.patch',
@@ -199,12 +199,12 @@ version_5_9_0_win :
               'boost',
               'libxml2',
               'freetype',
-              'matplotlib',
               'cgns',
               'Pygments',
               'pthreads',
               'zlib'
              ]
+    opt_depend: ['matplotlib'] # in debug mode, do not build this product
     patches : ['paraview.0003-ParaViewClient.patch',
                'paraview.0004-ParaView_hdf5.patch',
                'paraview.0005-ParaView_find_cgns.patch',
@@ -231,12 +231,12 @@ version_5_9_0_win_int32 :
               'boost',
               'libxml2',
               'freetype',
-              'matplotlib',
               'cgns',
               'Pygments',
               'pthreads',
               'zlib'
              ]
+    opt_depend: ['matplotlib'] # in debug mode, do not build this product
     patches : ['paraview.0003-ParaViewClient.patch',
                'paraview.0004-ParaView_hdf5.patch',
                'paraview.0005-ParaView_find_cgns.patch',

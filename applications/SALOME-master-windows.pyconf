@@ -192,4 +192,15 @@ APPLICATION :
 
 __overwrite__ :
 [
+  {
+    __condition__ : "APPLICATION.debug == 'yes'"
+    'APPLICATION.rm_products' : ['matplotlib']
+    'APPLICATION.products.numpy'      : {tag: '1.16.4',  base: 'no', section : 'version_1_16_4_win_dbg'     }
+    'APPLICATION.products.Cython'     : {tag: '0.29.12', base: 'no', section : 'version_0_29_12_win_dbg'    }
+    'APPLICATION.products.sphinxintl' : {tag: '2.0.0',   base: 'no', section : 'version_2_0_0_win_dbg'      }
+    'APPLICATION.products.llvm'       : {tag: '8.0.1',   base: 'no', section : 'version_8_0_1_clang_win_dbg'}
+    'APPLICATION.products.tbb'        : {tag: '2019_U8', base: 'no', section : 'version_2019_U8_win_dbg'    }
+    'APPLICATION.products.omniORB'    : {tag: '4.2.3',   base: 'no', section : 'version_4_2_3_win_dbg'      }
+    'APPLICATION.products.psutil'     : {tag: '5.7.2',   base: 'no', section : 'version_5_7_2_win_dbg'      }
+  }
 ]

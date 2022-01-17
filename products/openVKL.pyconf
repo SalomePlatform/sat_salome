@@ -18,3 +18,14 @@ default :
       incremental : "yes"
     }
 }
+
+default_win:
+{
+    build_source : "cmake"
+    cmake_options : "-DBUILD_TESTING=OFF -DCMAKE_INSTALL_LIBDIR=lib -DBUILD_EXAMPLES=OFF -Dembree_DIR:PATH=%EMBREE_ROOT_DIR:\=/%"
+    properties :
+    {
+      incremental : "yes"
+      single_install_dir : "yes"
+    }
+}
