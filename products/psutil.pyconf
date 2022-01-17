@@ -26,12 +26,6 @@ default :
     }
 }
 
-default_win :
-{
-   compil_script :  'pip_install_whl' + $VARS.scriptExtension
-   archive_info : {archive_name : "psutil-" + $APPLICATION.products.psutil + "_windows.tar.gz"}
-}
-
 
 version_5_7_2_win_dbg:
 {
