@@ -32,3 +32,8 @@ version_1_3_0:
 {
    compil_script : "topo2volmesh-1.3.0.sh"
 }
+
+version_1_3_0:
+{
+  patches : ['topo2volmesh-1.3.0-00001.patch']
+}

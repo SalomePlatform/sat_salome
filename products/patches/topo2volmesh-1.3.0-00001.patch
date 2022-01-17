@@ -1,0 +1,70 @@
+diff --git a/src/lib/TopiiVolPartitionPointCloudAlgo.h b/src/lib/TopiiVolPartitionPointCloudAlgo.h
+index 501fb60..4aa4734 100644
+--- a/src/lib/TopiiVolPartitionPointCloudAlgo.h
++++ b/src/lib/TopiiVolPartitionPointCloudAlgo.h
+@@ -53,7 +53,7 @@ double tst = MPI_Wtime();
+ //---- opening files -----
+ //====================================================================================//
+ 
+-snprintf (pathString, sizeof(pathString), "%s", inpurfile);
++snprintf (pathString, sizeof(pathString), "%s", inputfile);
+ 
+ readFile = fopen(pathString,"r");
+ 
+diff --git a/src/par-mesher/topIIvol_ParMesher.cpp b/src/par-mesher/topIIvol_ParMesher.cpp
+index 4978c49..09a1be8 100644
+--- a/src/par-mesher/topIIvol_ParMesher.cpp
++++ b/src/par-mesher/topIIvol_ParMesher.cpp
+@@ -148,8 +148,8 @@ int main(int argc, char *argv[])
+     int pnty = 29  ;
+     int pntz = 100 ;
+ 
+-    char inpurfile[80] = "./../../data/DEM_160m.xyz" ;
+-    char outpufile[80] = "Tetra-ParTop2Vol.mesh"     ;
++    char inputfile[] = "./../../data/DEM_160m.xyz" ;
++    char outputfile[] = "Tetra-ParTop2Vol.mesh"     ;
+ 
+ //====================================================================================//
+ //---- Comandline Parameters -----
+@@ -170,10 +170,10 @@ int main(int argc, char *argv[])
+                 pntz = atoi(argv[i+1]);
+ 
+             if (!strcmp(argv[i], "--in"))
+-                strcpy(inpurfile, argv[i+1]);
++                strcpy(inputfile, argv[i+1]);
+ 
+             if (!strcmp(argv[i], "--out"))
+-                strcpy(outpufile, argv[i+1]);
++                strcpy(outputfile, argv[i+1]);
+ 
+             if (!strcmp(argv[i], "--depth"))
+                 zmax= atol(argv[i+1]);
+@@ -240,7 +240,7 @@ if(ParallelPart == 1)
+ //-----------------------------------------------------------------------------------//
+ 
+     char strname[80]="";
+-    strcat (strname, inpurfile);
++    strcat (strname, inputfile);
+ 
+     MPI_File_open( MPI_COMM_WORLD, strname, 
+                    MPI_MODE_RDONLY,
+@@ -309,7 +309,7 @@ if(ParallelPart == 1)
+ //---- Name of partitioned mesh cloud -----
+ //====================================================================================//
+ 
+-    char partCloudName[80] = "pc_part";
++    char partCloudName[] = "pc_part";
+ 
+     MPI_Barrier(MPI_COMM_WORLD);
+ 
+@@ -437,8 +437,8 @@ if(ParallelPart == 1)
+ //---- open the file, and set the view -----
+ //====================================================================================//
+ 
+-    char str[80]="";
+-    strcat (str, outpufile);
++    char str[]="";
++    strcat (str, outputfile);
+ 
+     MPI_File_open(MPI_COMM_WORLD, str,
+                   MPI_MODE_CREATE|MPI_MODE_WRONLY,
