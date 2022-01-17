@@ -10,19 +10,25 @@ then
     echo "WARNING: setting CC and CXX environment variables and target MPI wrapper"
     export CC=${MPI_ROOT_DIR}/bin/mpicc
     export CXX=${MPI_ROOT_DIR}/bin/mpicxx
+    CONFIGURE_FLAGS+=" --with-MPICXX=${MPI_ROOT_DIR}/bin/mpic++"
 else
-    if [[ $DIST_NAME == "CO" && $DIST_VERSION == "7" ]]; then
-	# check whether openmpi is installed
-	x=$(yum list installed |grep openmpi)
-	if [ $? -ne 0 ]; then
-	    echo "ERROR: openMPI is not installed!"
-	    exit 1
-	fi
-	export CC=/usr/lib64/openmpi/bin/mpicc
-	export CXX=/usr/lib64/openmpi/bin/mpicxx
-	export PATH=$PATH:/usr/lib64/openmpi/bin
-	CONFIGURE_FLAGS+=" --with-MPICXX=/usr/lib64/openmpi/bin/mpic++"
-    fi
+    LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
+    case $LINUX_DISTRIBUTION in
+        CO7|CO8|FD30|FD32|FD34)
+	    # check whether openmpi is installed
+	    x=$(yum list installed |grep openmpi)
+	    if [ $? -ne 0 ]; then
+		echo "ERROR: openMPI is not installed!"
+		exit 1
+	    fi
+	    export CC=/usr/lib64/openmpi/bin/mpicc
+	    export CXX=/usr/lib64/openmpi/bin/mpicxx
+	    export PATH=$PATH:/usr/lib64/openmpi/bin
+	    CONFIGURE_FLAGS+=" --with-MPICXX=/usr/lib64/openmpi/bin/mpic++"
+	    ;;
+	*)
+	    ;;
+    esac
 fi
 
 rm -rf $BUILD_DIR
