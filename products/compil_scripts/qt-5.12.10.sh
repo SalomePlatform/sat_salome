@@ -4,11 +4,14 @@ echo "##########################################################################
 echo "Qt" $VERSION
 echo "##########################################################################"
 
-
-if [[ $DIST_NAME == "FD" && $DIST_VERSION == "32" ]]
-then
-    export  QMAKE_CXXFLAGS="-std=c++11"
-fi
+LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
+case $LINUX_DISTRIBUTION in
+    FD32|DB11)
+	export  QMAKE_CXXFLAGS="-std=c++11"
+	;;
+    *)
+	;;
+esac
 
 if [ -n "$SAT_DEBUG" ]
 then
