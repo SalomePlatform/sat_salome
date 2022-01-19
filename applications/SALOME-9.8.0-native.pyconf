@@ -243,4 +243,10 @@ __overwrite__ :
         'APPLICATION.products.PyFMI'       : {tag:'2.5',   base: 'no',  section: 'version_2_5_no_pip'  }
         'APPLICATION.products.statsmodels' : {tag:'0.6.1', base : 'no', section: 'version_0_6_1_no_pip'}
     }
+    {
+        __condition__ : "VARS.dist in ['DB11']"
+        'APPLICATION.products.cminpack': 'native'
+        'APPLICATION.products.PyFMI'    : {tag:'2.5', base: 'no', section: 'version_2_5_no_pip'}
+        'APPLICATION.products.ParaView' : {tag: '5.9.0', base : 'no', section: 'version_5_9_0_DB11'}
+    }
 ]
