@@ -560,7 +560,7 @@ diff -Naur SMESH_ref/src/Tools/Topo2VolMeshPlug/Topo2VolMeshPluginDialog.ui SMES
 +     </font>
 +    </property>
 +    <property name="text">
-+     <string>Mesh file (XYZ format)</string>
++     <string>DEM input file</string>
 +    </property>
 +    <property name="iconSize">
 +     <size>

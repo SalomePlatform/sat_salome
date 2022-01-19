@@ -3,7 +3,12 @@ default :
     name : "topo2volmesh"
     build_source : "script"
     compil_script :  $name + $VARS.scriptExtension
-    get_source : "archive"
+    get_source : "git"
+    git_info:
+    {
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/top_ii_mesh.git"
+        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + /top_ii_mesh.git"
+    }
     system_info :
     {
         rpm : []
@@ -26,10 +31,4 @@ default :
       incremental : "yes"
       single_install_dir : "yes"
     }
-}
-
-version_1_3_0:
-{
-  compil_script : "topo2volmesh-1.3.0.sh"
-  patches : ['topo2volmesh-1.3.0-00001.patch']
 }

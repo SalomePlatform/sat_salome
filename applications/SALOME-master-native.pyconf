@@ -118,7 +118,7 @@ APPLICATION :
         tbb : 'native'
         tcl : 'native'
         tk : 'native'
-        topo2volmesh: '1.3.0'
+        topo2volmesh: 'develop'
         urllib3 : 'native'
         URANIE : '4.5.0'
 
