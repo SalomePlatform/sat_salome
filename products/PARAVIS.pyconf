@@ -67,7 +67,7 @@ default_win:
        "docutils",
        "libxml2",
        "six",
-       "pytz",
+       "pytz"
     ]
 }
 
@@ -245,6 +245,31 @@ version_alamos :
        "MEDCOUPLING",
        "SMESH",
        "FIELDS",
+       "Python",
+       "qt",
+       "boost",
+       "hdf5",
+       "medfile",
+       "ParaView",
+       "CAS",
+       "omniORB",
+       "docutils",
+       "libxml2",
+       "six",
+       "pytz"
+    ]
+}
+
+version_alamos_win :
+{
+    cmake_options : "-DSALOME_PARAVIS_USE_GEOM_SOURCE=OFF -DSALOME_PARAVIS_USE_SMESH_SOURCE=OFF"
+    depend : [
+       "KERNEL",
+       "GUI",
+       "MEDCOUPLING",
+       "FIELDS",
+       "GEOM",
+       "SMESH",
        "Python",
        "qt",
        "boost",
