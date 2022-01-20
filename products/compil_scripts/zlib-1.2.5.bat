@@ -19,9 +19,16 @@ if "%SALOME_APPLICATION_NAME%" == "URANIE" (
 )
 
 if NOT exist "%PRODUCT_INSTALL%" mkdir %PRODUCT_INSTALL%
+
+REM remove zconf.h - one could also patch the CMakeLists.txt file...
+cd  %SOURCE_DIR%
+rm -f zconf.h
+
+
 REM clean BUILD directory
 if exist "%BUILD_DIR%" rmdir /Q /S %BUILD_DIR%
 mkdir %BUILD_DIR%
+
 
 cd %BUILD_DIR%
 set CMAKE_OPTIONS=
