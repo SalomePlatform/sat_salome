@@ -37,3 +37,13 @@ version_1_2_11_win:
    archive_info : {archive_name : "zlib-" + $APPLICATION.products.zlib + ".tar.gz"}
    compil_script : 'zlib-1.2.11.bat'
 }
+
+version_1_2_5:
+{
+}
+
+version_1_2_5_win:
+{
+   archive_info : {archive_name : "zlib-" + $APPLICATION.products.zlib + ".tar.gz"}
+   compil_script : 'zlib-1.2.5.bat'
+}

@@ -8,6 +8,11 @@ IF NOT DEFINED SAT_DEBUG (
   SET SAT_DEBUG=0
 )
 
+set BUILD_OPT=
+if %SAT_DEBUG% == 1 (
+   set BUILD_OPT=--debug
+)
+
 if NOT exist "%PRODUCT_INSTALL%" mkdir %PRODUCT_INSTALL%
 REM clean BUILD directory
 if exist "%BUILD_DIR%" rmdir /Q /S %BUILD_DIR%
@@ -21,9 +26,9 @@ set PYTHONPATH=%PYTHONPATH%;%PRODUCT_INSTALL%\Lib\site-packages
 
 echo.
 echo *** 
-%PYTHONBIN% setup.py build --debug install --prefix=%PRODUCT_INSTALL%
+%PYTHONBIN% setup.py build %BUILD_OPT% install --prefix=%PRODUCT_INSTALL%
 if NOT %ERRORLEVEL% == 0 (
-  echo ERROR on psutil running %PYTHONBIN% setup.py build --debug install --prefix=%PRODUCT_INSTALL%
+  echo ERROR on psutil running %PYTHONBIN% setup.py build %BUILD_OPT% install --prefix=%PRODUCT_INSTALL%
   exit 1
 )
 echo.
