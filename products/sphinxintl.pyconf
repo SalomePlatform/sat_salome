@@ -15,7 +15,7 @@ default :
     {
         env_script : "sphinxintl.py"
     }
-    depend : ['Python', 'setuptools', 'click', 'Sphinx','Babel','six','pytz', 'colorama']
+    depend : ['Python', 'setuptools', 'click', 'Sphinx','Babel','six','pytz']
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     install_dir : 'base'
@@ -30,7 +30,8 @@ default_win :
 {
    compil_script :  'pip_install_whl' + $VARS.scriptExtension
    archive_info : {archive_name : "sphinxintl-" + $APPLICATION.products.sphinxintl + "_windows.tar.gz"}
-    depend : ['Python', 'setuptools', 'click', 'Sphinx','Babel','six','pytz', 'colorama']
+   depend : ['Python', 'setuptools', 'click', 'Sphinx','Babel','six','pytz']
+   opt_depend: ['colorama']
 }
 
 version_2_0_0_win_dbg :
@@ -44,7 +45,7 @@ version_2_0_0_win_dbg :
     {
         env_script : "sphinxintl.py"
     }
-    depend : ['Python', 'setuptools', 'click', 'Sphinx','Babel','six','pytz', 'colorama']
+    depend : ['Python', 'setuptools', 'click', 'Sphinx','Babel','six','pytz']
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     install_dir : 'base'
