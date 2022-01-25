@@ -1,0 +1,29 @@
+default :
+{
+    name : "C3PO"
+    build_source : "script"
+    compil_script  : $name + $VARS.scriptExtension
+    get_source : "archive"
+    archive_info : {archive_name : "C3PO_public-" + $APPLICATION.products.C3PO + ".tar.gz"}
+    environ :
+    {
+      env_script : $name + ".py"
+    }
+    depend : [
+        "docutils",
+        "Sphinx",
+        "setuptools",
+        "scipy",
+        "Python",
+        "numpy",
+        "MEDCOUPLING",
+        "medfile",
+        "openmpi"
+    ]
+    build_depend : ["cmake", "swig", "cppunit"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+    }
+}

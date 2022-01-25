@@ -32,6 +32,7 @@ APPLICATION :
         Babel : '2.7.0'
         boost : '1.71.0'
         CAS : {tag: 'V7_5_3p1', section: 'version_V7_5_3p1'}
+        C3PO: 'v2.0'
         certifi : '2018.8.24'
         cgns : {tag : '4.1.1', hpc : 'yes'}
         chardet : '3.0.4'
