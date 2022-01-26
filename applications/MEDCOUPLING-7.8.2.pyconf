@@ -3,10 +3,11 @@
 
 APPLICATION :
 {
-    name : 'MEDCOUPLING-7.8.2-SAT5'
+    name : 'MEDCOUPLING-7.8.2'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
     tag : 'V7_8_0'
-    #base : 'no'
+    base : 'no'
+    debug : 'no'
     environ :
     {
     }
@@ -14,14 +15,12 @@ APPLICATION :
     {
         # PREREQUISITES :
 
-        Python : '2.7.10'
-# OP 18/04/2017 Artifact 8489 : passage a boost 1.58.0
-        #boost : '1.52.0'
+        Python : '2.7.16'
         boost : '1.58.0'
         hdf5 : '1.8.14'
         swig : '2.0.8'
         medfile : '3.2.0'
-        doxygen : '1.8.3.1'
+        doxygen : '1.8.14'
         graphviz : '2.38.0'
         libxml2 : '2.9.0'
         cppunit : '1.12.1'
@@ -35,12 +34,7 @@ APPLICATION :
         Jinja2 : '2.7.3'
         docutils : '0.12'
         markupsafe : '0.23'
-
-        # SALOME MODULES :
-# OP 18/04/2017 Artifact 8489 : passage au tag V7_8_2
-        #'MEDCOUPLING' : {section: 'version_V7_8_0', tag : 'V7_8_BR'}
         'MEDCOUPLING' : {section: 'version_V7_8_0', tag : 'V7_8_2'}
-
     }
     test_base : 
     {
@@ -49,15 +43,10 @@ APPLICATION :
     }
 }
 
-
 __overwrite__ :
 [
-  {
-    __condition__ : "VARS.dist in ['FD24']"
-# OP 18/04/2017 Artifact 8498 : Passage de la compilation de medfile a cmake
-#                               La section CMake devient la section par defaut
-#    # medfile does not compile under Fedora 24 using autotools
-#    'PRODUCTS.medfile.default.compil_script' : "medCMake.sh"
-#    'PRODUCTS.medfile.default.test_build' : "make test"
-  }
+    {
+        __condition__ : "VARS.dist in ['CO8']"
+        'APPLICATION.products.MEDCOUPLING' : {tag:'V7_8_2', base : 'no', section: 'version_V7_8_2_CO8'}
+    }
 ]

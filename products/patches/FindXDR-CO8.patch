@@ -1,0 +1,83 @@
+diff --git a/cmake_files/FindXDR.cmake b/cmake_files/FindXDR.cmake
+index e8e86253..d8b4bb7a 100644
+--- a/cmake_files/FindXDR.cmake
++++ b/cmake_files/FindXDR.cmake
+@@ -21,8 +21,16 @@ MESSAGE(STATUS "Check for XDR ...")
+ 
+ FIND_PATH(XDR_INCLUDE_DIRS rpc/xdr.h)
+ IF(XDR_INCLUDE_DIRS)
+-   SET(XDR_DEFINITIONS "-DHAS_XDR")
+-ENDIF()
++  SET(XDR_DEFINITIONS "-DHAS_XDR")
++ELSE(XDR_INCLUDE_DIRS)
++  IF(EXISTS "/usr/include/tirpc/rpc/xdr.h")
++    MESSAGE(STATUS "XDR was found in /usr/include/tirpc ...")
++    include_directories(/usr/include/tirpc)
++    SET(XDR_DEFINITIONS "-DHAS_XDR")
++    SET(XDR_INCLUDE_DIRS "/usr/include/tirpc")
++    FIND_LIBRARY(XDR_LIBRARIES tirpc xdr)
++  ENDIF()
++ENDIF(XDR_INCLUDE_DIRS)
+ 
+ IF(WIN32)
+   FIND_LIBRARY(XDR_LIBRARIES xdr)                 # To get the .lib file from XDR
+diff --git a/src/INTERP_KERNELTest/CMakeLists.txt b/src/INTERP_KERNELTest/CMakeLists.txt
+index b63df2ac..d6178314 100644
+--- a/src/INTERP_KERNELTest/CMakeLists.txt
++++ b/src/INTERP_KERNELTest/CMakeLists.txt
+@@ -81,12 +81,12 @@ IF(NOT MEDCOUPLING_MICROMED)
+     PerfTest.cxx
+     )
+   ADD_EXECUTABLE(PerfTest ${PerfTest_SOURCES})
+-  TARGET_LINK_LIBRARIES(PerfTest InterpKernelTest ${CPPUNIT_LIBRARIES} ${PLATFORM_LIBS})
++  TARGET_LINK_LIBRARIES(PerfTest InterpKernelTest ${CPPUNIT_LIBRARIES} ${PLATFORM_LIBS} ${XDR_LIBRARIES})
+   INSTALL(TARGETS PerfTest DESTINATION ${MEDCOUPLING_INSTALL_BINS})
+ ENDIF(NOT MEDCOUPLING_MICROMED)
+ 
+ ADD_LIBRARY(InterpKernelTestUtils ${InterpKernelTestUtils_SOURCES})
+-TARGET_LINK_LIBRARIES(InterpKernelTestUtils interpkernel)
++TARGET_LINK_LIBRARIES(InterpKernelTestUtils interpkernel )
+ ADD_LIBRARY(InterpKernelTest ${InterpKernelTest_SOURCES})
+ 
+ SET(InterpKernelTest_LIBS medcoupling interpkernel ${CPPUNIT_LIBRARIES})
+@@ -96,7 +96,7 @@ ENDIF(NOT MEDCOUPLING_MICROMED)
+ TARGET_LINK_LIBRARIES(InterpKernelTest ${InterpKernelTest_LIBS} InterpKernelTestUtils)
+ 
+ ADD_EXECUTABLE(TestINTERP_KERNEL ${TestINTERP_KERNEL_SOURCES})
+-TARGET_LINK_LIBRARIES(TestINTERP_KERNEL InterpKernelTest ${CPPUNIT_LIBRARIES} ${PLATFORM_LIBS})
++TARGET_LINK_LIBRARIES(TestINTERP_KERNEL InterpKernelTest ${CPPUNIT_LIBRARIES} ${PLATFORM_LIBS}  ${XDR_LIBRARIES})
+ ADD_TEST(TestINTERP_KERNEL TestINTERP_KERNEL)
+ SALOME_GENERATE_TESTS_ENVIRONMENT(tests_env)
+ SET_TESTS_PROPERTIES(TestINTERP_KERNEL PROPERTIES ENVIRONMENT "${tests_env}")
+diff --git a/src/MEDLoader/CMakeLists.txt b/src/MEDLoader/CMakeLists.txt
+index 6d0ed57c..9ea3b7b6 100644
+--- a/src/MEDLoader/CMakeLists.txt
++++ b/src/MEDLoader/CMakeLists.txt
+@@ -39,6 +39,7 @@ IF(WIN32)
+   ENDIF(MEDCOUPLING_MEDLOADER_USE_XDR)
+ ELSE(WIN32)
+   SET(MEDLOADER_XDR_INCLUDE_DIRS ${XDR_INCLUDE_DIRS})
++    SET(MEDLOADER_XDR_LIBRARIES ${XDR_LIBRARIES})
+ ENDIF(WIN32)
+ 
+ INCLUDE_DIRECTORIES(
+diff --git a/src/MEDLoader/Test/CMakeLists.txt b/src/MEDLoader/Test/CMakeLists.txt
+index a230e8e5..36640deb 100644
+--- a/src/MEDLoader/Test/CMakeLists.txt
++++ b/src/MEDLoader/Test/CMakeLists.txt
+@@ -42,13 +42,13 @@ SET(TestSauvLoader_SOURCES
+ SALOME_GENERATE_TESTS_ENVIRONMENT(tests_env)
+ 
+ ADD_EXECUTABLE(TestMEDLoader ${TestMEDLoader_SOURCES})
+-TARGET_LINK_LIBRARIES(TestMEDLoader medloader InterpKernelTestUtils ${CPPUNIT_LIBRARIES} ${PLATFORM_LIBS})
++TARGET_LINK_LIBRARIES(TestMEDLoader medloader InterpKernelTestUtils ${CPPUNIT_LIBRARIES} ${PLATFORM_LIBS} ${XDR_LIBRARIES})
+ ADD_TEST(TestMEDLoader TestMEDLoader)
+ SET_TESTS_PROPERTIES(TestMEDLoader PROPERTIES ENVIRONMENT "${tests_env}")
+ 
+ ADD_EXECUTABLE(TestSauvLoader ${TestSauvLoader_SOURCES})
+ 
+-TARGET_LINK_LIBRARIES(TestSauvLoader medloader InterpKernelTestUtils ${CPPUNIT_LIBRARIES} ${PLATFORM_LIBS})
++TARGET_LINK_LIBRARIES(TestSauvLoader medloader InterpKernelTestUtils ${CPPUNIT_LIBRARIES} ${PLATFORM_LIBS}  ${XDR_LIBRARIES})
+ ADD_TEST(TestSauvLoader TestSauvLoader)
+ SET_TESTS_PROPERTIES(TestSauvLoader PROPERTIES ENVIRONMENT "${tests_env}")
+ 
