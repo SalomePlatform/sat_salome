@@ -78,12 +78,13 @@ APPLICATION :
         omniORB : '4.2.3'
         omniORBpy : '4.2.3'
         opencv : 'native'
+        openmpi: 'native'
         openVKL : '0.11.0'
         openturns: '1.17'
         ospray : '2.4.0'
         packaging : 'native'
         pandas : 'native'
-        ParaView : '5.9.0'
+        ParaView : {tag:'5.9.0',  base: 'no',  section: 'version_5_9_0_MPI', hpc: 'yes'}
         petsc : {tag : '3.16.0', section: 'version_3_16_0'}
         Pillow : 'native'
         # 'native' not exists : freeCAD part but not delivered with it from package handler
@@ -130,10 +131,10 @@ APPLICATION :
         'RESTRICTED'
         'LIBBATCH' : {tag : 'V2_4_5'}
         'KERNEL'
-        'MEDCOUPLING'
+        'MEDCOUPLING' : {tag:'master', base: 'no',  section: 'default_MPI',       hpc: 'yes'}
         'GUI'
         'GEOM'
-        'SMESH': {tag: 'master', base: 'no', section: 'version_topo2volmesh'}
+        'SMESH' : {tag: 'master', base: 'no', section: 'version_topo2volmesh'}
         'NETGENPLUGIN'
         'BLSURFPLUGIN'
         'GHS3DPLUGIN'
@@ -145,7 +146,7 @@ APPLICATION :
         'HEXABLOCKPLUGIN'
         'HOMARD'
         'FIELDS'
-        'PARAVIS'
+        'PARAVIS': {tag:'master', base: 'no',  section: 'default_MPI',       hpc: 'yes'}
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
@@ -202,7 +203,7 @@ __overwrite__ :
     {
         #
         __condition__ : "VARS.dist in ['UB20.04', 'CO8', 'FD32']"
-       'APPLICATION.products.ParaView' : {tag: '5.9.0', base: 'no', section: 'version_5_9_0_CO8_FD32_UB20_0_4'}
+       'APPLICATION.products.ParaView' : {tag: '5.9.0', base: 'no', section: 'version_5_9_0_CO8_FD32_UB20_0_4', hpc: 'yes'}
     }
     {
         # On DB10, ParaView fails to find xmlpatterns executable : ParaViewClient.cmake try to find it
@@ -211,11 +212,11 @@ __overwrite__ :
         # What is more, ParaView 5.9 CMake procedure requires Qt 5.12 as minimum version (5.11 here).
         # As this version is compliant too, let's force it as the new minimum needed version.
         __condition__ : "VARS.dist in ['DB10']"
-        'APPLICATION.products.ParaView' : {tag: '5.9.0', base : 'no', section: 'version_5_9_0_DB10'}
+        'APPLICATION.products.ParaView' : {tag: '5.9.0', base : 'no', section: 'version_5_9_0_DB10', hpc: 'yes'}
     }
     {
         __condition__ : "VARS.dist in ['DB11']"
-        'APPLICATION.products.ParaView' : {tag: '5.9.0', base : 'no', section: 'version_5_9_0_DB11'}
+        'APPLICATION.products.ParaView' : {tag: '5.9.0', base : 'no', section: 'version_5_9_0_DB11', hpc: 'yes'}
     }
     {
         # CentOS 8 repositories don't include sphinxintl package which must be installed through pip.

@@ -75,7 +75,6 @@ default_MPI :
               "hdf5",
               "medfile",
               "scotch",
-              "ParMetis",
               "docutils",
               "libxml2",
               "Sphinx",
@@ -89,6 +88,7 @@ default_MPI :
               "CONFIGURATION",
               "openmpi"
               ]
+    opt_depend : ["ParMetis"]
 }
 
 default_32BIT_IDS:
