@@ -2,7 +2,7 @@ default :
 {
     name : "GUI"
     build_source : "cmake"
-    cmake_options : "-DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DMPI_C_FOUND=${MPI_C_FOUND}"
+    cmake_options : "-DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig"
     get_source : "git"
     git_info:
     {
