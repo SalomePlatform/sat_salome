@@ -25,5 +25,12 @@ default :
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     properties:
     {
-    }
+      incremental : "yes"
+     }
+    patches: []
+ }
+
+version_v2_0 :
+{
+    patches: ['C3PO-v2.0.patch']
 }

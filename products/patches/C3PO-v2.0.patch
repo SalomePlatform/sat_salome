@@ -1,0 +1,219 @@
+diff --git a/sources/c3po/mpi/MPICollaborativeDataManager.py b/sources/c3po/mpi/MPICollaborativeDataManager.py
+index 4d8a937..865839a 100755
+--- a/sources/c3po/mpi/MPICollaborativeDataManager.py
++++ b/sources/c3po/mpi/MPICollaborativeDataManager.py
+@@ -11,7 +11,10 @@
+ """ Contain the class MPICollaborativeDataManager. """
+ from __future__ import print_function, division
+ import math
+-from mpi4py import MPI
++try:
++    from mpi4py import MPI
++except:
++    from openmpi.mpi4py import MPI
+ 
+ from c3po.CollaborativeDataManager import CollaborativeDataManager
+ from c3po.mpi.MPIRemoteProcess import MPIRemoteProcess
+diff --git a/sources/c3po/mpi/MPICoupler.py b/sources/c3po/mpi/MPICoupler.py
+index 8f82edb..805cacf 100755
+--- a/sources/c3po/mpi/MPICoupler.py
++++ b/sources/c3po/mpi/MPICoupler.py
+@@ -10,7 +10,10 @@
+ 
+ """ Contain the class MPICoupler. """
+ from __future__ import print_function, division
+-from mpi4py import MPI
++try:
++    from mpi4py import MPI
++except:
++    from openmpi.mpi4py import MPI
+ 
+ from c3po.Coupler import Coupler
+ from c3po.mpi.MPIRemoteProcess import MPIRemoteProcess
+diff --git a/sources/c3po/mpi/MPIMasterDataManager.py b/sources/c3po/mpi/MPIMasterDataManager.py
+index c72b87d..1af67aa 100755
+--- a/sources/c3po/mpi/MPIMasterDataManager.py
++++ b/sources/c3po/mpi/MPIMasterDataManager.py
+@@ -11,7 +11,10 @@
+ """ Contain the class MPIMasterDataManager. """
+ from __future__ import print_function, division
+ import math
+-from mpi4py import MPI
++try:
++    from mpi4py import MPI
++except:
++    from openmpi.mpi4py import MPI
+ 
+ from c3po.mpi.MPITag import MPITag
+ 
+diff --git a/sources/c3po/mpi/MPIMasterPhysicsDriver.py b/sources/c3po/mpi/MPIMasterPhysicsDriver.py
+index d9c7da5..25a1b4c 100755
+--- a/sources/c3po/mpi/MPIMasterPhysicsDriver.py
++++ b/sources/c3po/mpi/MPIMasterPhysicsDriver.py
+@@ -10,7 +10,10 @@
+ 
+ """ Contain the class MPIMasterPhysicsDriver. """
+ from __future__ import print_function, division
+-from mpi4py import MPI
++try:
++    from mpi4py import MPI
++except:
++    from openmpi.mpi4py import MPI
+ 
+ from c3po.PhysicsDriver import PhysicsDriver
+ from c3po.mpi.MPICollectiveProcess import MPICollectiveProcess
+diff --git a/sources/c3po/mpi/MPIRecipient.py b/sources/c3po/mpi/MPIRecipient.py
+index 3991c43..0948c4d 100755
+--- a/sources/c3po/mpi/MPIRecipient.py
++++ b/sources/c3po/mpi/MPIRecipient.py
+@@ -12,7 +12,10 @@
+ These classes recieve data from a remote process.
+ """
+ from __future__ import print_function, division
+-from mpi4py import MPI
++try:
++    from mpi4py import MPI
++except:
++    from openmpi.mpi4py import MPI
+ import numpy
+ 
+ import c3po.medcouplingCompat as mc
+diff --git a/sources/c3po/mpi/MPISender.py b/sources/c3po/mpi/MPISender.py
+index 8d3b418..234c343 100755
+--- a/sources/c3po/mpi/MPISender.py
++++ b/sources/c3po/mpi/MPISender.py
+@@ -14,7 +14,10 @@ These classes send data to another process.
+ from __future__ import print_function, division
+ import os
+ 
+-from mpi4py import MPI
++try:
++    from mpi4py import MPI
++except:
++    from openmpi.mpi4py import MPI
+ 
+ import c3po.medcouplingCompat as mc
+ from c3po.mpi.MPITag import MPITag
+diff --git a/sources/c3po/mpi/MPIWorker.py b/sources/c3po/mpi/MPIWorker.py
+index 2d731eb..6553b83 100755
+--- a/sources/c3po/mpi/MPIWorker.py
++++ b/sources/c3po/mpi/MPIWorker.py
+@@ -10,7 +10,10 @@
+ 
+ """ Contain the class MPIWorker. """
+ from __future__ import print_function, division
+-from mpi4py import MPI
++try:
++    from mpi4py import MPI
++except:
++    from openmpi.mpi4py import MPI
+ 
+ from c3po.mpi.MPITag import MPITag
+ from c3po.mpi.MPIRemoteProcess import MPIRemoteProcess
+diff --git a/sources/c3po/physicsDrivers/ALCYONE2Driver.py b/sources/c3po/physicsDrivers/ALCYONE2Driver.py
+index f9fc05c..b5a06e1 100755
+--- a/sources/c3po/physicsDrivers/ALCYONE2Driver.py
++++ b/sources/c3po/physicsDrivers/ALCYONE2Driver.py
+@@ -11,7 +11,10 @@
+ """ Contain the class ALCYONE2Driver. """
+ from __future__ import print_function, division
+ from ctypes import cdll
+-import mpi4py.MPI as mpi
++try:
++    from mpi4py import MPI as mpi
++except:
++    from openmpi.mpi4py import MPI as mpi
+ 
+ import pleiades
+ import pleiadesMPI
+diff --git a/tests/Couplage_2_mailles_Dussaix/main_collaborative.py b/tests/Couplage_2_mailles_Dussaix/main_collaborative.py
+index 5915e94..3cac2a2 100755
+--- a/tests/Couplage_2_mailles_Dussaix/main_collaborative.py
++++ b/tests/Couplage_2_mailles_Dussaix/main_collaborative.py
+@@ -1,6 +1,9 @@
+ # -*- coding: utf-8 -*-
+ from __future__ import print_function, division
+-from mpi4py import MPI
++try:
++    from mpi4py import MPI
++except:
++    from openmpi.mpi4py import MPI
+ import unittest
+ 
+ import c3po.medcouplingCompat as mc
+diff --git a/tests/Couplage_2_mailles_Dussaix/main_master.py b/tests/Couplage_2_mailles_Dussaix/main_master.py
+index 4256eb0..8dc75a9 100755
+--- a/tests/Couplage_2_mailles_Dussaix/main_master.py
++++ b/tests/Couplage_2_mailles_Dussaix/main_master.py
+@@ -1,6 +1,9 @@
+ # -*- coding: utf-8 -*-
+ from __future__ import print_function, division
+-import mpi4py.MPI as mpi
++try:
++    from mpi4py import MPI as mpi
++except:
++    from openmpi.mpi4py import MPI as mpi
+ import unittest
+ 
+ import c3po.medcouplingCompat as mc
+diff --git a/tests/Couplage_2_mailles_Dussaix/main_sequential.py b/tests/Couplage_2_mailles_Dussaix/main_sequential.py
+index 0774f80..fb6b7ec 100755
+--- a/tests/Couplage_2_mailles_Dussaix/main_sequential.py
++++ b/tests/Couplage_2_mailles_Dussaix/main_sequential.py
+@@ -1,6 +1,9 @@
+ # -*- coding: utf-8 -*-
+ from __future__ import print_function, division
+-from mpi4py import MPI
++try:
++    from mpi4py import MPI
++except:
++    from openmpi.mpi4py import MPI
+ import unittest
+ 
+ import c3po.medcouplingCompat as mc
+diff --git a/tests/Couplage_2_mailles_Dussaix/main_workerNeutro.py b/tests/Couplage_2_mailles_Dussaix/main_workerNeutro.py
+index 76a6489..13f5a74 100755
+--- a/tests/Couplage_2_mailles_Dussaix/main_workerNeutro.py
++++ b/tests/Couplage_2_mailles_Dussaix/main_workerNeutro.py
+@@ -1,6 +1,9 @@
+ # -*- coding: utf-8 -*-
+ from __future__ import print_function, division
+-import mpi4py.MPI as mpi
++try:
++    from mpi4py import MPI as mpi
++except:
++    from openmpi.mpi4py import MPI as mpi
+ 
+ from NeutroDriver import NeutroDriver
+ import c3po
+diff --git a/tests/Couplage_2_mailles_Dussaix/main_workerThermo.py b/tests/Couplage_2_mailles_Dussaix/main_workerThermo.py
+index e1de24d..1679228 100755
+--- a/tests/Couplage_2_mailles_Dussaix/main_workerThermo.py
++++ b/tests/Couplage_2_mailles_Dussaix/main_workerThermo.py
+@@ -1,6 +1,9 @@
+ # -*- coding: utf-8 -*-
+ from __future__ import print_function, division
+-import mpi4py.MPI as mpi
++try:
++    from mpi4py import MPI as mpi
++except:
++    from openmpi.mpi4py import MPI as mpi
+ 
+ from ThermoDriver import ThermoDriver
+ import c3po
+diff --git a/tests/Listings/main_listings_collaboratif.py b/tests/Listings/main_listings_collaboratif.py
+index 848c2b9..b5fd601 100755
+--- a/tests/Listings/main_listings_collaboratif.py
++++ b/tests/Listings/main_listings_collaboratif.py
+@@ -1,7 +1,10 @@
+ # -*- coding: utf-8 -*-
+ from __future__ import print_function
+ import sys
+-from mpi4py import MPI
++try:
++    from mpi4py import MPI
++except:
++    from openmpi.mpi4py import MPI
+ import unittest
+ 
+ import c3po
