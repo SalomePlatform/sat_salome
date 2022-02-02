@@ -196,13 +196,18 @@ __overwrite__ :
     {
         __condition__ : "VARS.dist in ['FD30']"
         'APPLICATION.products.gcc' : '9.3.0'
-        'APPLICATION.rm_products' : ['openmpi', 'mpi4py']
+        'APPLICATION.products.ParaView'    : {tag:'5.9.0',  base: 'no',  section: 'version_5_9_0_MPI', hpc: 'yes'}
+        'APPLICATION.products.PARAVIS'     : {tag:'master', base: 'no',  section: 'default_MPI',       hpc: 'yes'}
+        'APPLICATION.products.MEDCOUPLING' : {tag:'master', base: 'no',  section: 'default_MPI',       hpc: 'yes'}
     }
     {
         __condition__ : "VARS.dist in ['FD32']"
         # https://github.com/scipy/scipy/issues/11611
         'APPLICATION.products.scipy' : '1.5.2'
-        'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr', 'openmpi', 'mpi4py']
+        'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
+        'APPLICATION.products.ParaView'    : {tag:'5.9.0',  base: 'no',  section: 'version_5_9_0_MPI', hpc: 'yes'}
+        'APPLICATION.products.PARAVIS'     : {tag:'master', base: 'no',  section: 'default_MPI',       hpc: 'yes'}
+        'APPLICATION.products.MEDCOUPLING' : {tag:'master', base: 'no',  section: 'default_MPI',       hpc: 'yes'}
     }
     {
         __condition__ : "VARS.dist in ['CO7']"
@@ -210,7 +215,10 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['CO8']"
-        'APPLICATION.rm_products' : ['openmpi', 'mpi4py', 'gcc', 'gmp', 'mpc', 'mpfr']
+        'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
+        'APPLICATION.products.ParaView'    : {tag:'5.9.0',  base: 'no',  section: 'version_5_9_0_MPI', hpc: 'yes'}
+        'APPLICATION.products.PARAVIS'     : {tag:'master', base: 'no',  section: 'default_MPI',       hpc: 'yes'}
+        'APPLICATION.products.MEDCOUPLING' : {tag:'master', base: 'no',  section: 'default_MPI',       hpc: 'yes'}
     }
     {
         __condition__ : "VARS.dist in ['DB09']"
