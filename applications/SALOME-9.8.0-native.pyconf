@@ -192,15 +192,9 @@ APPLICATION :
 __overwrite__ :
 [
     {
-        # Although recent adaptations of GEOM CMake procedure to be compliant with openCV 4.X, some
-        # deeper investigations need to be done in its sources. Use embedded openCV product where
-        # native one is 4.X.
-        __condition__ : "VARS.dist in ['FD32', 'UB20.04', 'FD34']"
-        'APPLICATION.products.opencv' : '3.2.0'
-    }
-    {
         #
         __condition__ : "VARS.dist in ['UB20.04']"
+        'APPLICATION.products.opencv'  : '3.2.0'
         'APPLICATION.products.cminpack': 'native'
         'APPLICATION.products.PyFMI'    : {tag: '2.5',   base: 'no', section: 'version_2_5_no_pip'                }
         'APPLICATION.products.ParaView' : {tag: '5.9.0', base: 'no', section: 'version_5_9_0_UB20_0_4'}
@@ -218,7 +212,8 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['DB11']"
-        'APPLICATION.products.cminpack': 'native'
+        'APPLICATION.products.opencv'   : '3.2.0'
+        'APPLICATION.products.cminpack' : 'native'
         'APPLICATION.products.PyFMI'    : {tag:'2.5',    base: 'no',  section: 'version_2_5_no_pip'}
         'APPLICATION.products.ParaView' : {tag: '5.9.0', base : 'no', section: 'version_5_9_0_DB11'}
     }
@@ -234,6 +229,7 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['FD32']"
+        'APPLICATION.products.opencv'    : '3.2.0'
         'APPLICATION.products.PyFMI'     : {tag: '2.5',   base: 'no', section: 'version_2_5_no_pip'}
         'APPLICATION.products.openturns' : {tag: '1.17',  base: 'no', section: 'version_1_17_FD32' }
         'APPLICATION.products.ParaView'  : {tag: '5.9.0', base: 'no', section: 'version_5_9_0_FD32'}
@@ -241,6 +237,7 @@ __overwrite__ :
     {
         # FD 34 qt5 package is qt5-qtbase-devel.
         __condition__ : "VARS.dist in ['FD34']"
+        'APPLICATION.products.opencv'   : '3.2.0'
         'APPLICATION.products.omniORB'  : '4.2.4'
         'APPLICATION.products.omniORBpy': '4.2.4'
         'APPLICATION.products.PyFMI'    : {tag: '2.5',    base: 'no', section: 'version_2_5_no_pip'  }

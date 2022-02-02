@@ -166,7 +166,7 @@ APPLICATION :
         'PARAVISADDONS'
         'YDEFX'
         'TESTBASE': {tag: 'master'}
-        'CEATESTBASE' : {tag: 'SSL'}
+        'CEATESTBASE' : {tag: 'SalomeV9'}
     }
     profile :
     {

@@ -32,6 +32,7 @@ APPLICATION :
         Babel : '2.7.0'
         boost : '1.71.0'
         CAS : 'V7_5_3p1'
+        C3PO: 'v2.0'
         certifi : '2018.8.24'
         cgns : '4.1.1'
         chardet : '3.0.4'
@@ -165,7 +166,7 @@ APPLICATION :
         'PARAVISADDONS'
         'YDEFX'
         'TESTBASE': {tag: 'master'}
-        'CEATESTBASE' : {tag: 'SSL'}
+        'CEATESTBASE' : {tag: 'SalomeV9'}
     }
     profile :
     {
@@ -204,18 +205,18 @@ __overwrite__ :
         'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr', 'openmpi', 'mpi4py']
     }
     {
-        __condition__ : "VARS.dist in ['DB09']"
-        'APPLICATION.products.ParaView'    : {tag:'5.9.0',  base: 'no',  section: 'version_5_9_0_MPI', hpc: 'yes'}
-        'APPLICATION.products.PARAVIS'     : {tag:'master', base: 'no',  section: 'default_MPI',       hpc: 'yes'}
-        'APPLICATION.products.MEDCOUPLING' : {tag:'master', base: 'no',  section: 'default_MPI',       hpc: 'yes'}
-    }
-    {
         __condition__ : "VARS.dist in ['CO7']"
         'APPLICATION.rm_products' : ['openmpi', 'mpi4py', 'gcc', 'gmp', 'mpc', 'mpfr']
     }
     {
         __condition__ : "VARS.dist in ['CO8']"
         'APPLICATION.rm_products' : ['openmpi', 'mpi4py', 'gcc', 'gmp', 'mpc', 'mpfr']
+    }
+    {
+        __condition__ : "VARS.dist in ['DB09']"
+        'APPLICATION.products.ParaView'    : {tag:'5.9.0',  base: 'no',  section: 'version_5_9_0_MPI', hpc: 'yes'}
+        'APPLICATION.products.PARAVIS'     : {tag:'master', base: 'no',  section: 'default_MPI',       hpc: 'yes'}
+        'APPLICATION.products.MEDCOUPLING' : {tag:'master', base: 'no',  section: 'default_MPI',       hpc: 'yes'}
     }
     {
         __condition__ : "VARS.dist in ['DB10']"

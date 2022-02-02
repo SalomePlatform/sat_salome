@@ -163,7 +163,7 @@ version_5_9_0 :
                'paraview.0010-ParaView_CATALYST_cmake.patch',
                'paraview.0008-ParaView_coincident_rendering.patch',
                'paraview.0011-ParaView_protobuf_crash.patch',
-               'paraview.0015-Paraview_VTKM_ioss.patch'
+               'paraview.0015-Paraview_VTKM_ioss.patch',
                'paraview-5.9.0-gcc.11.0.patch',
                'paraview.0018-spns-26351-autoconvert.patch',
                'paraview.0019-spns-26344-VTK-OpenMP.patch'
@@ -305,7 +305,7 @@ version_5_9_0_FD32 :
                'paraview.0005-ParaView_find_cgns.patch',
                'paraview.0010-ParaView_CATALYST_cmake.patch',
                'paraview.0008-ParaView_coincident_rendering.patch',
-               'paraview.0017-ParaView_protobuf_crash.patch',
+               'paraview.0011-ParaView_protobuf_crash.patch',
                'paraview.0015-Paraview_VTKM_ioss.patch'
                'paraview.0018-spns-26351-autoconvert.patch',
                'paraview.0019-spns-26344-VTK-OpenMP.patch'
@@ -321,7 +321,7 @@ version_5_9_0_UB_20_0_4 :
                'paraview.0005-ParaView_find_cgns.patch',
                'paraview.0010-ParaView_CATALYST_cmake.patch',
                'paraview.0008-ParaView_coincident_rendering.patch',
-               'paraview.0017-ParaView_protobuf_crash.patch',
+               'paraview.0011-ParaView_protobuf_crash.patch',
                'paraview.0015-Paraview_VTKM_ioss.patch'
                'paraview.0018-spns-26351-autoconvert.patch',
                'paraview.0019-spns-26344-VTK-OpenMP.patch'
@@ -337,8 +337,8 @@ version_5_9_0_CO8 :
                'paraview.0005-ParaView_find_cgns.patch',
                'paraview.0010-ParaView_CATALYST_cmake.patch',
                'paraview.0008-ParaView_coincident_rendering.patch',
-               'paraview.0017-ParaView_protobuf_crash.patch',
-               'paraview.0015-Paraview_VTKM_ioss.patch'
+               'paraview.0011-ParaView_protobuf_crash.patch',
+               'paraview.0015-Paraview_VTKM_ioss.patch',
                'paraview.0018-spns-26351-autoconvert.patch',
                'paraview.0019-spns-26344-VTK-OpenMP.patch',
                'paraview.0020.findMPI.patch'
@@ -356,8 +356,8 @@ version_5_9_0_DB10 :
                'paraview.0003-ParaViewClient_native.patch',
                'paraview.0010-ParaView_CATALYST_cmake.patch',
                'paraview.0008-ParaView_coincident_rendering.patch',
-               'paraview.0017-ParaView_protobuf_crash.patch',
-               'paraview.0015-Paraview_VTKM_ioss.patch'
+               'paraview.0011-ParaView_protobuf_crash.patch',
+               'paraview.0015-Paraview_VTKM_ioss.patch',
                'paraview.0018-spns-26351-autoconvert.patch',
                'paraview.0019-spns-26344-VTK-OpenMP.patch',
                'paraview.0020.findMPI.patch'
@@ -375,8 +375,8 @@ version_5_9_0_DB11 :
                'paraview.0003-ParaViewClient_native.patch',
                'paraview.0010-ParaView_CATALYST_cmake.patch',
                'paraview.0008-ParaView_coincident_rendering.patch',
-               'paraview.0017-ParaView_protobuf_crash.patch',
-               'paraview.0015-Paraview_VTKM_ioss.patch'
+               'paraview.0011-ParaView_protobuf_crash.patch',
+               'paraview.0015-Paraview_VTKM_ioss.patch',
                'paraview.0018-spns-26351-autoconvert.patch',
                'paraview.0019-spns-26344-VTK-OpenMP.patch'
               ]
