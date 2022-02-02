@@ -15,7 +15,7 @@ CONFIGURE_FLAGS+=" --with-debugging=0" # by default Petsc is build in debug mode
 CONFIGURE_FLAGS+=" --with-petsc4py=yes"
 CONFIGURE_FLAGS+=" --download-slepc-configure-arguments=--with-slepc4py=yes "
 echo
-if [ -n "${MPI_ROOT_DIR}" ]
+if [ -n "${SAT_HPC}" ]
 then
   CONFIGURE_FLAGS+=" --download-hypre=ext/hypre-2.20.0.tar.gz"
   CONFIGURE_FLAGS+=" --download-parms=ext/parms-3.2-p5.tar.gz"
