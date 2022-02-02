@@ -1,0 +1,14 @@
+diff -Naur ParaView_ref/VTK/CMake/patches/3.17/FindMPI.cmake ParaView_new/VTK/CMake/patches/3.17/FindMPI.cmake
+--- ParaView_ref/VTK/CMake/patches/3.17/FindMPI.cmake	2022-02-02 10:45:40.273534527 +0100
++++ ParaView_new/VTK/CMake/patches/3.17/FindMPI.cmake	2022-02-02 12:20:19.005537074 +0100
+@@ -1727,6 +1727,10 @@
+   list(APPEND _MPI_REQ_VARS "MPI_MPICXX_FOUND")
+ endif()
+ 
++if(DEFINED ENV{MPI_C_FOUND})
++  set(MPI_C_FOUND $ENV{MPI_C_FOUND})
++endif()  
++
+ find_package_handle_standard_args(MPI
+     REQUIRED_VARS ${_MPI_REQ_VARS}
+     VERSION_VAR ${_MPI_MIN_VERSION}

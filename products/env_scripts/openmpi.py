@@ -29,6 +29,12 @@ def set_nativ_env(env):
     env.set('MPI_ROOT_DIR', prereq_dir)
     env.set('OPENMPIDIR', prereq_dir)
     env.set('MPI_ROOT', prereq_dir)
-    env.set('MPI_C_FOUND', os.path.join(prereq_dir,'lib','libmpi.so'))
+    mpiclib_dir=prereq_dir
+    try:
+        if "debian" in distro.name().lower() and any(version in distro.version() for version in ["10"]) :
+            mpiclib_dir='/usr/lib/x86_64-linux-gnu/openmpi'
+    except:
+        pass
+    env.set('MPI_C_FOUND', os.path.join(mpiclib_dir,'lib','libmpi.so'))
     env.prepend('PATH', os.path.join(prereq_dir, 'bin'))
     env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir,'lib'))

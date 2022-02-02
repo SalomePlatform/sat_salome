@@ -326,7 +326,8 @@ version_5_9_0_DB10 :
                'paraview.0017-ParaView_protobuf_crash.patch',
                'paraview.0015-Paraview_VTKM_ioss.patch'
                'paraview.0018-spns-26351-autoconvert.patch',
-               'paraview.0019-spns-26344-VTK-OpenMP.patch'
+               'paraview.0019-spns-26344-VTK-OpenMP.patch',
+               'paraview.0020.findMPI.patch'
               ]
 }
 
