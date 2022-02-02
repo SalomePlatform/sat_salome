@@ -26,7 +26,12 @@ export LD_LIBRARY_PATH="${MEDCOUPLING_ROOT_DIR}/lib:${LD_LIBRARY_PATH}"
 export PYTHONPATH="${MEDCOUPLING_ROOT_DIR}/${PYTHON_LIBDIR}:${PYTHONPATH}"
 export PYTHONPATH="${MEDCOUPLING_ROOT_DIR}/lib:${PYTHONPATH}"
 export PYTHONPATH="${MEDCOUPLING_ROOT_DIR}/bin:${PYTHONPATH}"
-ctest .
+if [ -n "$MPI_ROOT_DIR" ]; then
+    ctest .
+else
+    # these tests use MPI...
+    ctest -E "Dussaix_seq|Dussaix_master_worker|Dussaix_collaborative|Listings_collaboratif"
+fi
 if [ $? -ne 0 ]
 then
     echo "ERROR on ctest"
