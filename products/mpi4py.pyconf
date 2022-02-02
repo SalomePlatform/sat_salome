@@ -6,7 +6,7 @@ default :
     get_source : "archive"
     system_info : 
     {
-        rpm : ["python3-mpi4py"]
+        rpm : ["python3-mpi4py-openmpi"]
         rpm_dev : []
         apt : ["python3-mpi4py"]
         apt_dev : []
