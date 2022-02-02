@@ -202,8 +202,10 @@ __overwrite__ :
     }
     {
         #
-        __condition__ : "VARS.dist in ['UB20.04', 'CO8', 'FD32']"
-       'APPLICATION.products.ParaView' : {tag: '5.9.0', base: 'no', section: 'version_5_9_0_CO8_FD32_UB20_0_4', hpc: 'yes'}
+        __condition__ : "VARS.dist in ['UB20.04']"
+        'APPLICATION.products.cminpack': 'native'
+        'APPLICATION.products.PyFMI'    : {tag: '2.5',   base: 'no', section: 'version_2_5_no_pip'                }
+        'APPLICATION.products.ParaView' : {tag: '5.9.0', base: 'no', section: 'version_5_9_0_UB20_0_4', hpc: 'yes'}
     }
     {
         # On DB10, ParaView fails to find xmlpatterns executable : ParaViewClient.cmake try to find it
@@ -212,23 +214,31 @@ __overwrite__ :
         # What is more, ParaView 5.9 CMake procedure requires Qt 5.12 as minimum version (5.11 here).
         # As this version is compliant too, let's force it as the new minimum needed version.
         __condition__ : "VARS.dist in ['DB10']"
+        'APPLICATION.products.cminpack': 'native'
+        'APPLICATION.products.PyFMI'    : {tag:'2.5',    base: 'no',  section: 'version_2_5_no_pip'            }
         'APPLICATION.products.ParaView' : {tag: '5.9.0', base : 'no', section: 'version_5_9_0_DB10', hpc: 'yes'}
     }
     {
         __condition__ : "VARS.dist in ['DB11']"
+        'APPLICATION.products.cminpack': 'native'
+        'APPLICATION.products.PyFMI'    : {tag:'2.5',    base: 'no',  section: 'version_2_5_no_pip'            }
         'APPLICATION.products.ParaView' : {tag: '5.9.0', base : 'no', section: 'version_5_9_0_DB11', hpc: 'yes'}
     }
     {
         # CentOS 8 repositories don't include sphinxintl package which must be installed through pip.
         # To avoid its missing (system_info pyconf key doesn't handle this use case), we embed it.
         __condition__ : "VARS.dist in ['CO8']"
-        'APPLICATION.products.sphinxintl' : {tag: '0.9.10', base: 'no', section: 'version_0_9_10_no_pip'}
-        'APPLICATION.products.cmake' : '3.12.1'
+        'APPLICATION.products.sphinxintl' : {tag: '0.9.10', base: 'no', section: 'version_0_9_10_no_pip'          }
+        'APPLICATION.products.cminpack'    : '1.3.6'
+        'APPLICATION.products.PyFMI'       : {tag: '2.5',   base: 'no', section: 'version_2_5_no_pip'             }
+        'APPLICATION.products.statsmodels' : {tag: '0.6.1', base: 'no', section: 'version_0_6_1_no_pip'           }
+        'APPLICATION.products.ParaView'    : {tag: '5.9.0', base: 'no', section: 'version_5_9_0_CO8',   hpc: 'yes'}
     }
     {
         __condition__ : "VARS.dist in ['FD32']"
-        'APPLICATION.products.PyFMI'     : {tag:'2.5',  base:  'no', section: 'version_2_5_no_pip'}
-        'APPLICATION.products.openturns' : {tag:'1.17', base:  'no', section: 'version_1_17_FD32' }
+        'APPLICATION.products.PyFMI'     : {tag: '2.5',   base: 'no', section: 'version_2_5_no_pip'}
+        'APPLICATION.products.openturns' : {tag: '1.17',  base: 'no', section: 'version_1_17_FD32' }
+        'APPLICATION.products.ParaView'  : {tag: '5.9.0', base: 'no', section: 'version_5_9_0_FD32'}
     }
     {
         # FD 34 qt5 package is qt5-qtbase-devel.
@@ -237,16 +247,5 @@ __overwrite__ :
         'APPLICATION.products.omniORBpy': '4.2.4'
         'APPLICATION.products.PyFMI'    : {tag: '2.5',    base: 'no', section: 'version_2_5_no_pip'  }
         'APPLICATION.products.root'     : {tag:'6.22.02', base: 'no', section: 'version_6_22_02_FD34'}
-    }
-    {
-        __condition__ : "VARS.dist in ['DB10', 'DB11', 'UB20.04']"
-        'APPLICATION.products.cminpack': 'native'
-        'APPLICATION.products.PyFMI'    : {tag:'2.5', base: 'no', section: 'version_2_5_no_pip'}
-    }
-    {
-        __condition__ : "VARS.dist in ['CO8']"
-        'APPLICATION.products.cminpack'    : '1.3.6'
-        'APPLICATION.products.PyFMI'       : {tag:'2.5',   base: 'no',  section: 'version_2_5_no_pip'  }
-        'APPLICATION.products.statsmodels' : {tag:'0.6.1', base : 'no', section: 'version_0_6_1_no_pip'}
     }
 ]

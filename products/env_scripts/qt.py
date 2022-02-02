@@ -23,13 +23,13 @@ def set_env(env, prereq_dir, version):
         env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib'))
 
 def set_nativ_env(env):
-
-    import distro
-    if any(distribution in distro.name().lower() for distribution in ["debian", "ubuntu"]) :
-        qt_lib_dir='/usr/lib/x86_64-linux-gnu'
-    else :
-        qt_lib_dir='/usr/lib64'
-
+    qt_lib_dir='/usr/lib64'
+    try:
+        import distro
+        if any(distribution in distro.name().lower() for distribution in ["debian", "ubuntu"]) :
+            qt_lib_dir='/usr/lib/x86_64-linux-gnu'
+    except:
+        pass
     env.set('QT5_ROOT_DIR', '/usr')
     env.set('Qt5Core_DIR', os.path.join(qt_lib_dir, 'cmake/Qt5Core'))
     env.set('Qt5Gui_DIR', os.path.join(qt_lib_dir, 'cmake/Qt5Gui'))

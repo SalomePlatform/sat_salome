@@ -296,7 +296,7 @@ version_5_9_0_MPI_int32 :
               ]
 }
 
-version_5_9_0_CO8_FD32_UB20_0_4 :
+version_5_9_0_FD32 :
 {
     compil_script :  'ParaView-5.9.0.sh'
     archive_info : {archive_name : "ParaView-5.9.0-lata.tar.gz"}
@@ -309,6 +309,39 @@ version_5_9_0_CO8_FD32_UB20_0_4 :
                'paraview.0015-Paraview_VTKM_ioss.patch'
                'paraview.0018-spns-26351-autoconvert.patch',
                'paraview.0019-spns-26344-VTK-OpenMP.patch'
+              ]
+}
+
+version_5_9_0_UB_20_0_4 :
+{
+    compil_script :  'ParaView-5.9.0.sh'
+    archive_info : {archive_name : "ParaView-5.9.0-lata.tar.gz"}
+    # two other LATA patches already included in archive
+    patches : ['paraview.0003-ParaViewClient.patch',
+               'paraview.0005-ParaView_find_cgns.patch',
+               'paraview.0010-ParaView_CATALYST_cmake.patch',
+               'paraview.0008-ParaView_coincident_rendering.patch',
+               'paraview.0017-ParaView_protobuf_crash.patch',
+               'paraview.0015-Paraview_VTKM_ioss.patch'
+               'paraview.0018-spns-26351-autoconvert.patch',
+               'paraview.0019-spns-26344-VTK-OpenMP.patch'
+              ]
+}
+
+version_5_9_0_CO8 :
+{
+    compil_script :  'ParaView-5.9.0.sh'
+    archive_info : {archive_name : "ParaView-5.9.0-lata.tar.gz"}
+    # two other LATA patches already included in archive
+    patches : ['paraview.0003-ParaViewClient.patch',
+               'paraview.0005-ParaView_find_cgns.patch',
+               'paraview.0010-ParaView_CATALYST_cmake.patch',
+               'paraview.0008-ParaView_coincident_rendering.patch',
+               'paraview.0017-ParaView_protobuf_crash.patch',
+               'paraview.0015-Paraview_VTKM_ioss.patch'
+               'paraview.0018-spns-26351-autoconvert.patch',
+               'paraview.0019-spns-26344-VTK-OpenMP.patch',
+               'paraview.0020.findMPI.patch'
               ]
 }
 
