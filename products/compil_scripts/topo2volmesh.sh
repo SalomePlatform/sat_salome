@@ -72,6 +72,16 @@ then
     exit 4
 fi
 
+echo
+echo "*** Check if node is a virtual machine"
+ISVM=$(hostnamectl status|grep -i chassis:|grep vm)
+if [ $? -ne 0 ]; then
+    echo "*** oversubscribe..."
+    sed -i 's/mpirun -np \$(NP)/mpirun -np \$(NP) --oversubscribe/g' src/*/Makefile.am
+else
+    echo "*** hostnamectl says that $HOSTNAME is *NOT* a virtual machine"
+fi
+
 make check
 if [ $? -ne 0 ]
 then
