@@ -234,9 +234,10 @@ __overwrite__ :
     {
         __condition__ : "VARS.dist in ['FD32']"
         'APPLICATION.products.opencv'    : '3.2.0'
-        'APPLICATION.products.PyFMI'     : {tag: '2.5',   base: 'no', section: 'version_2_5_no_pip'}
-        'APPLICATION.products.openturns' : {tag: '1.17',  base: 'no', section: 'version_1_17_FD32' }
-        'APPLICATION.products.ParaView'  : {tag: '5.9.0', base: 'no', section: 'version_5_9_0_FD32'}
+        'APPLICATION.products.PyFMI'     : {tag: '2.5',   base: 'no', section: 'version_2_5_no_pip'              }
+        'APPLICATION.products.openturns' : {tag: '1.17',  base: 'no', section: 'version_1_17_FD32'               }
+        'APPLICATION.products.ParaView'  : {tag: '5.9.0', base: 'no', section: 'version_5_9_0_FD32',   hpc: 'yes'}
+
     }
     {
         # FD 34 qt5 package is qt5-qtbase-devel.
