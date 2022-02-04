@@ -4,32 +4,12 @@ echo "##########################################################################
 echo "topo2volmesh" $VERSION
 echo "##########################################################################"
 
+export CC=$(which mpicc)
+export CXX=$(which mpicxx)
+export MPICXX=$(which mpic++)
+
 CONFIGURE_FLAGS=
-if [ -n "$MPI_ROOT_DIR" ]
-then
-    echo "WARNING: setting CC and CXX environment variables and target MPI wrapper"
-    export CC=${MPI_ROOT_DIR}/bin/mpicc
-    export CXX=${MPI_ROOT_DIR}/bin/mpicxx
-    CONFIGURE_FLAGS+=" --with-MPICXX=${MPI_ROOT_DIR}/bin/mpic++"
-else
-    LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
-    case $LINUX_DISTRIBUTION in
-        CO7|CO8|FD30|FD32|FD34)
-	    # check whether openmpi is installed
-	    x=$(yum list installed |grep openmpi)
-	    if [ $? -ne 0 ]; then
-		echo "ERROR: openMPI is not installed!"
-		exit 1
-	    fi
-	    export CC=/usr/lib64/openmpi/bin/mpicc
-	    export CXX=/usr/lib64/openmpi/bin/mpicxx
-	    export PATH=$PATH:/usr/lib64/openmpi/bin
-	    CONFIGURE_FLAGS+=" --with-MPICXX=/usr/lib64/openmpi/bin/mpic++"
-	    ;;
-	*)
-	    ;;
-    esac
-fi
+CONFIGURE_FLAGS+=" --with-MPICXX=${MPICXX}"
 
 rm -rf $BUILD_DIR
 mkdir $BUILD_DIR

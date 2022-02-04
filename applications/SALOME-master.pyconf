@@ -211,7 +211,8 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['CO7']"
-        'APPLICATION.rm_products' : ['openmpi', 'mpi4py', 'gcc', 'gmp', 'mpc', 'mpfr']
+        'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
+        'APPLICATION.products.ParaView'    : {tag:'5.9.0',  base: 'no',  section: 'version_5_9_0_MPI', hpc: 'yes'}
     }
     {
         __condition__ : "VARS.dist in ['CO8']"
