@@ -19,7 +19,7 @@ default :
         "MEDCOUPLING",
         "medfile"
     ]
-    opt_depend: ["openmpi"]
+    opt_depend: ["openmpi", "mpi4py"]
     build_depend : ["cmake", "swig", "cppunit"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
