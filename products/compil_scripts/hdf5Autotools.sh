@@ -19,7 +19,7 @@ then
     CONFIGURE_FLAGS=$CONFIGURE_FLAGS" --enable-parallel"
 #    export FC=mpif90
 #    export CXX=mpicxx
-#    export CC=${MPI_ROOT_DIR}/bin/mpiCC
+#    export CC=mpiCC
 else
     CONFIGURE_FLAGS=$CONFIGURE_FLAGS" --enable-threadsafe"
     CONFIGURE_FLAGS=$CONFIGURE_FLAGS" --enable-cxx"  # not compatible with --enable-parallel

@@ -10,14 +10,13 @@ export PATH=$(pwd)/bin:$PATH
 export PYTHONPATH=$(pwd):$PYTHONPATH
 export PYTHONPATH=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION:0:3}/site-packages:$PYTHONPATH
 
-if [ -n "$MPI_ROOT_DIR" ]
-then
+CMAKE_OPTIONS=""
+if [-n "$SAT_HPC" ] && [ -n "$MPI_ROOT_DIR" ]; then
     echo "WARNING: setting CC and CXX environment variables and target MPI wrapper"
-    export CC=${MPI_ROOT_DIR}/bin/mpicc
-    export CXX=${MPI_ROOT_DIR}/bin/mpicxx
+    CMAKE_OPTIONS+=" -DCMAKE_CXX_COMPILER:STRING=${MPI_CXX_COMPILER}"
+    CMAKE_OPTIONS+=" -DCMAKE_C_COMPILER:STRING=${MPI_C_COMPILER}"
 fi
 
-CMAKE_OPTIONS=""
 CMAKE_OPTIONS+=" -DCMAKE_INSTALL_PREFIX:STRING=${PRODUCT_INSTALL}"
 CMAKE_OPTIONS+=" -DCMAKE_BUILD_TYPE:STRING=Release"
 CMAKE_OPTIONS+=" -DPYTHON_EXECUTABLE=${PYTHONBIN}"

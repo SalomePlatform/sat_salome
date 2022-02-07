@@ -15,8 +15,7 @@ CONFIGURE_FLAGS=$CONFIGURE_FLAGS" --with-hdf5-dir=${HDF5_ROOT_DIR}"
 CONFIGURE_FLAGS=$CONFIGURE_FLAGS" --download-metis=ext/metis-5.1.0-p10.tar.gz"
 CONFIGURE_FLAGS=$CONFIGURE_FLAGS" --with-debugging=0" # by default Petsc is build in debug mode
 echo
-if [ -n "${MPI_ROOT_DIR}" ]
-then
+if [-n "$SAT_HPC" ] && [ -n "$MPI_ROOT_DIR" ]; then
   echo "*** configure with mpi"
   CONFIGURE_FLAGS=$CONFIGURE_FLAGS" --download-hypre=ext/hypre-2.20.0.tar.gz"
   CONFIGURE_FLAGS=$CONFIGURE_FLAGS" --download-parms=ext/parms-3.2-p5.tar.gz"

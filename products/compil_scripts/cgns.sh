@@ -28,8 +28,10 @@ if [ -n "$SAT_HPC" ]
 then
     echo "HPC mode, activate -DHDF5_NEEDS_MPI:BOOL=ON option"
     CMAKE_OPTIONS+=" -DHDF5_NEEDS_MPI:BOOL=ON"
-    CMAKE_OPTIONS+=" -DCMAKE_CXX_COMPILER:STRING=${MPI_ROOT_DIR}/bin/mpic++"
-    CMAKE_OPTIONS+=" -DCMAKE_C_COMPILER:STRING=${MPI_ROOT_DIR}/bin/mpicc"
+    if [ -n "$MPI_ROOT_DIR" ]; then
+	CMAKE_OPTIONS+=" -DCMAKE_CXX_COMPILER:STRING=$(which mpic++)"
+	CMAKE_OPTIONS+=" -DCMAKE_C_COMPILER:STRING=$(which mpicc)"
+    fi
 fi
 
 echo

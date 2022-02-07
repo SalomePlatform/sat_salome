@@ -33,6 +33,8 @@ def set_nativ_env(env):
     env.set('MPI_ROOT_DIR', prereq_dir)
     env.set('OPENMPIDIR', prereq_dir)
     env.set('MPI_ROOT', prereq_dir)
+    env.set('MPI_C_COMPILER', os.path.join(mpibin_dir,'mpicc'))
+    env.set('MPI_CXX_COMPILER', os.path.join(mpibin_dir,'mpicxx'))
     env.set('MPI_C_FOUND', os.path.join(prereq_dir,'lib','libmpi.so'))
     env.prepend('PATH', mpibin_dir)
     env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir,'lib'))

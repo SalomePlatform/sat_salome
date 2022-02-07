@@ -9,8 +9,7 @@ CMAKE_OPTIONS+=" -DPython_ROOT_DIR=${PYTHON_ROOT_DIR}"
 CMAKE_OPTIONS+=" -DPython_EXECUTABLE=${PYTHONBIN}"
 CMAKE_OPTIONS+=" -DCMAKE_INSTALL_PREFIX=${PRODUCT_INSTALL}"
 
-if [ $VERSION == "V9_6_0" ]
-then
+if [ $VERSION == "V9_6_0" ]; then
     # GUI was ported after 9.6.0
     CMAKE_OPTIONS+=" -DCOREFLOWS_WITH_GUI=OFF"
     # following variables are automatically detected in environment after 9.6.0
@@ -30,19 +29,18 @@ else
     CMAKE_OPTIONS+=" -DCOREFLOWS_WITH_GUI=ON"
 fi
 
-if [ -n "$SAT_HPC" ]
-then
-    if [ $VERSION == "V9_6_0" ]
-    then
+if [ -n "$SAT_HPC" ]; then
+    if [ $VERSION == "V9_6_0" ] && [ -n "$MPI_ROOT_DIR" ]; then
         # following variable is automatically detected in environment after 9.6.0
         CMAKE_OPTIONS+=" -DMPI_HOME=${MPI_ROOT_DIR}"
     fi
     CMAKE_OPTIONS+=" -DMPI_ROOT_DIR=${MPI_ROOT_DIR}"
-    CMAKE_OPTIONS+=" -DCMAKE_CXX_COMPILER:STRING=${MPI_ROOT_DIR}/bin/mpic++"
-    CMAKE_OPTIONS+=" -DCMAKE_C_COMPILER:STRING=${MPI_ROOT_DIR}/bin/mpicc"
     CMAKE_OPTIONS+=" -DSOLVERLAB_WITH_MPI=ON"
-    if [ -n "$MPI4PY_ROOT_DIR" ]
-    then
+    if [ -n "$MPI_ROOT_DIR" ]; then
+	CMAKE_OPTIONS+=" -DCMAKE_CXX_COMPILER:STRING=${MPI_CXX_COMPILER}"
+	CMAKE_OPTIONS+=" -DCMAKE_C_COMPILER:STRING=${MPI_C_COMPILER}"
+    fi
+    if [ -n "$MPI4PY_ROOT_DIR" ]; then
 	CMAKE_OPTIONS+=" -DMPI4PY_ROOT_DIR:PATH=${MPI4PY_ROOT_DIR}"
     else
         echo "WARNING: mpi4py environment variable not detected"
@@ -52,8 +50,7 @@ fi
 echo
 echo "*** cmake "$CMAKE_OPTIONS
 cmake $CMAKE_OPTIONS $SOURCE_DIR
-if [ $? -ne 0 ]
-then
+if [ $? -ne 0 ]; then
     echo "ERROR on cmake"
     exit 1
 fi
@@ -62,8 +59,7 @@ fi
 echo
 echo "*** make" $MAKE_OPTIONS
 make $MAKE_OPTIONS
-if [ $? -ne 0 ]
-then
+if [ $? -ne 0 ]; then
     echo "ERROR on make"
     exit 2
 fi
@@ -71,8 +67,7 @@ fi
 echo
 echo "*** make doc install"
 make docCDMATH docCoreFlows install
-if [ $? -ne 0 ]
-then
+if [ $? -ne 0 ]; then
     echo "ERROR on make install"
     exit 3
 fi
