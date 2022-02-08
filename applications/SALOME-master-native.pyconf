@@ -210,13 +210,15 @@ __overwrite__ :
         # As this version is compliant too, let's force it as the new minimum needed version.
         __condition__ : "VARS.dist in ['DB10']"
         'APPLICATION.products.cminpack': 'native'
-        'APPLICATION.products.PyFMI'    : {tag:'2.5',    base: 'no',  section: 'version_2_5_no_pip'            }
+        'APPLICATION.products.PyFMI'    : {tag:'2.5',    base: 'no',  section: 'version_2_5_no_pip'}
+        'APPLICATION.products.ParaView' : {tag: '5.9.0', base : 'no', section: 'version_5_9_0_DB10'}
     }
     {
         __condition__ : "VARS.dist in ['DB11']"
         'APPLICATION.products.opencv' : '3.2.0'
         'APPLICATION.products.cminpack': 'native'
         'APPLICATION.products.PyFMI'    : {tag:'2.5',    base: 'no',  section: 'version_2_5_no_pip'            }
+        'APPLICATION.products.ParaView' : {tag: '5.9.0', base : 'no', section: 'version_5_9_0_DB11'}
     }
     {
         # CentOS 8 repositories don't include sphinxintl package which must be installed through pip.
