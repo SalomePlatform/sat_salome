@@ -8,6 +8,8 @@ def set_env(env, prereq_dir, version):
     env.set('OPAL_PREFIX', prereq_dir) # be able to move openmpi install (packages)
     env.set('MPI_ROOT_DIR', prereq_dir)  # update for cmake  
     env.set('MPI_ROOT', prereq_dir)
+    env.set('MPI_C_COMPILER', os.path.join(prereq_dir, 'bin', 'mpicc'))
+    env.set('MPI_CXX_COMPILER', os.path.join(prereq_dir, 'bin', 'mpicxx'))
     env.set('MPI_C_FOUND', os.path.join(prereq_dir,'lib','libmpi.so'))
     env.prepend('PATH', os.path.join(prereq_dir, 'bin'))
     env.prepend('PATH', os.path.join(prereq_dir, 'include'))
