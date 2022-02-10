@@ -163,6 +163,11 @@ version_V9_3_0_win :
     patches : ['GUI-V9_3_0-LightApplication_windows.patch']
 }
 
+version_9_2_0_PPGP:
+{
+  patches: ['GUI-V9_2_0-visualCode.patch']
+}
+
 # OP 19/04/2018 Add section for SALOME 7.8.0 to 8.4.0 due to new dependencies in SALOME 8.5.0
 version_7_8_0_to_8_4_0 :
 {

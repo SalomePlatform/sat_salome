@@ -1,0 +1,54 @@
+diff --git a/src/SalomeApp/pluginsdemo/salome_plugins.py b/src/SalomeApp/pluginsdemo/salome_plugins.py
+index 451b944e4..f8fbda4a9 100755
+--- a/src/SalomeApp/pluginsdemo/salome_plugins.py
++++ b/src/SalomeApp/pluginsdemo/salome_plugins.py
+@@ -261,17 +261,16 @@ if DEMO_IS_ACTIVATED:
+ def runSalomeShellSession(context):
+     import os,subprocess
+     import salome_version
++    from PyQt5.Qt import QMessageBox
++    from SalomePyQt import SalomePyQt
+     version = salome_version.getVersion(full=True)
+     kernel_appli_dir = os.environ['KERNEL_ROOT_DIR']
+     command = ""
+-    if os.path.exists("/usr/bin/gnome-terminal"):
+-      command = 'gnome-terminal -t "SALOME %s - Shell session" -e "%s/salome shell" &'%(version,kernel_appli_dir)
+-    elif os.path.exists("/usr/bin/konsole"):
+-      command = 'PATH="/usr/bin:/sbin:/bin" LD_LIBRARY_PATH="" konsole -e "%s/salome shell" &'%(kernel_appli_dir)
+-    elif os.path.exists("/usr/bin/xterm"):
+-      command = 'xterm -T "SALOME %s - Shell session" -e "%s/salome shell" &'%(version,kernel_appli_dir)
++    if os.path.exists("/usr/bin/xterm"):
++      command = 'xterm -T "SALOME %s - Shell session" -e "%s" shell &' % (version, command)
+     else:
+-      print("Neither xterm nor gnome-terminal nor konsole is installed.")
++      QMessageBox.critical(SalomePyQt.getDesktop(), "Error", "xterm does not seem to be installed")
++      return
+ 
+     if command is not "":
+       try:
+@@ -283,3 +282,25 @@ def runSalomeShellSession(context):
+ salome_pluginsmanager.AddFunction('SALOME shell session',
+                                   'Execute a SALOME shell session in an external xterm',
+                                   runSalomeShellSession)
++# Example 4: run CODE
++def runCodeEditor(context):
++    import os,subprocess
++    import salome_version
++    import shutil
++    from PyQt5.Qt import QMessageBox
++    from SalomePyQt import SalomePyQt
++    try:
++      command = shutil.which('code')
++      if command:
++        try:
++          subprocess.check_call(command, shell = True)
++        except Exception as e:
++          print("Error: ",e)
++      else:
++        QMessageBox.critical(SalomePyQt.getDesktop(), "Error", "Visual Studio Code executable is not found")
++    except Exception as e:
++      print("Error: ",e)
++
++salome_pluginsmanager.AddFunction('Launch VS Code (debugger)',
++                                  'Execute Visual Studio Code',
++                                  runCodeEditor)
