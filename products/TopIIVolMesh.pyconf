@@ -1,6 +1,6 @@
 default :
 {
-    name : "topo2volmesh"
+    name : "TopIIVolMesh"
     build_source : "script"
     compil_script :  $name + $VARS.scriptExtension
     get_source : "git"

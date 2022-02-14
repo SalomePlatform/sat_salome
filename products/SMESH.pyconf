@@ -42,7 +42,7 @@ default :
               "tbb"
              ]
     build_depend : ["cmake", "swig", "doxygen", "cppunit"]
-    opt_depend : ['SHAPERSTUDY']
+    opt_depend : ['SHAPERSTUDY', 'TopIIVolMesh']
     patches : []
     check_install : ["share/doc/salome/gui/SMESH/yams/index.html"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
@@ -118,11 +118,6 @@ default_MPI :
               "tbb",
 	      "openmpi"
              ]
-}
-
-version_topo2volmesh:
-{
-   patches : ['smesh_spns-19079_topo2volmesh.patch']
 }
 
 version_V9_3_0 :

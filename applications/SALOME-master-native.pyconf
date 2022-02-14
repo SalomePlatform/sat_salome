@@ -121,7 +121,7 @@ APPLICATION :
         tbb : 'native'
         tcl : 'native'
         tk : 'native'
-        topo2volmesh: 'develop'
+        TopIIVolMesh: 'develop'
         urllib3 : 'native'
         URANIE : '4.5.0'
 
@@ -136,7 +136,7 @@ APPLICATION :
         'MEDCOUPLING' : {tag:'master', base: 'no',  section: 'default_MPI',       hpc: 'yes'}
         'GUI'
         'GEOM'
-        'SMESH' : {tag: 'master', base: 'no', section: 'version_topo2volmesh'}
+        'SMESH' : 'spns/19079'
         'NETGENPLUGIN'
         'BLSURFPLUGIN'
         'GHS3DPLUGIN'
