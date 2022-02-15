@@ -82,7 +82,7 @@ APPLICATION :
 
         # SALOME MODULES :
         'CONFIGURATION'
-        'MEDCOUPLING': 'abn/static_fix'
+        'MEDCOUPLING'
     }
     test_base :
     {
