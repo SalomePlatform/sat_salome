@@ -134,7 +134,7 @@ APPLICATION :
         'MEDCOUPLING'
         'GUI'
         'GEOM'
-        'SMESH': 'spns/19079'
+        'SMESH'
         'NETGENPLUGIN'
         'BLSURFPLUGIN'
         'GHS3DPLUGIN'
