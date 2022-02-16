@@ -1,3 +1,29 @@
+default :
+{
+    name : "XDATA"
+    build_source : "cmake"
+    get_source : "git"
+    git_info:
+    {
+        repo : "https://codev-tuleap.cea.fr/plugins/git/oscar/xdata.git"
+        repo_dev : "https://codev-tuleap.cea.fr/plugins/git/oscar/xdata.git"
+
+    }
+    environ :
+    {
+	   env_script : $name + ".py"
+    }
+    depend : [Python, omniORB, boost, cppunit, PyQt, KERNEL]
+    type : "salome"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        is_SALOME_module : "yes"
+        incremental: "yes"
+    }
+}
+
 version_0_9_11 :
 {
     name : "XDATA"
