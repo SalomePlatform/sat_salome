@@ -7,6 +7,7 @@ import platform
 def set_env(env, prereq_dir, version):
     env.set('SPHINXDIR', prereq_dir)
     env.set('SPHINX_ROOT_DIR', prereq_dir)   
+    env.set('SPHINX_INSTALL_DIR', prereq_dir)   
     if not platform.system() == "Windows" :
         env.prepend('PATH',prereq_dir)
         env.set('SPHINX_EXECUTABLE',os.path.join(prereq_dir, 'Scripts','sphinx-build.exe'))
@@ -17,4 +18,5 @@ def set_env(env, prereq_dir, version):
 
 def set_nativ_env(env):
     env.set('SPHINXDIR', '/usr')
+    env.set('SPHINX_INSTALL_DIR', '/usr')   
     env.set('SPHINX_ROOT_DIR', '/usr')

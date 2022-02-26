@@ -1,0 +1,61 @@
+default :
+{
+    name : "PERSALYS"
+    build_source : "script"
+    compil_script :  $name + "-" + $APPLICATION.products.PERSALYS + $VARS.scriptExtension
+    get_source : "archive"
+    archive_info :
+    {
+       archive_name : "persalys_" + $APPLICATION.products.PERSALYS + ".tar.gz"
+    }
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : ['Python',
+              'lapack',
+	      'hdf5',
+	      'tbb',
+	      'nlopt',
+	      'libxml2',
+	      'eigen',
+	      'netcdf',
+	      'gdal',
+	      'ADAO',
+	      'boost',
+	      'KERNEL',
+	      'GUI',
+	      'Sphinx',
+	      'qwt',
+	      'YACS',
+	      'YDEFX',
+	      'CAS',
+	      'CONFIGURATION'
+	      ]
+    build_depend : ["cmake", "swig"]
+    opt_depend : ['openmpi', 'openturns']
+    patches : []
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+      single_install_dir : "no"
+      incremental : "yes"
+    }
+}
+
+default_win :
+{
+    properties :
+    {
+      single_install_dir : "yes"
+    }
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'pthreads', 'netcdf', 'gdal']
+    opt_depend : []
+}
+
+version_v11_0 :
+{
+   patches : ['PERSALYS-v11-001.patch']
+}

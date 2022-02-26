@@ -1,0 +1,27 @@
+--- PERSALYS_ref/CMakeLists.txt	2022-01-11 16:27:50.000000000 +0100
++++ PERSALYS_new/CMakeLists.txt	2022-02-26 22:36:24.413388375 +0100
+@@ -27,6 +27,16 @@
+ # set module dir to find custom scripts
+ list ( APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake )
+ 
++# Common CMake macros
++# ===================
++SET(CONFIGURATION_ROOT_DIR $ENV{CONFIGURATION_ROOT_DIR} CACHE PATH "Path to the Salome CMake configuration files")
++IF(EXISTS ${CONFIGURATION_ROOT_DIR})
++  LIST(APPEND CMAKE_MODULE_PATH "${CONFIGURATION_ROOT_DIR}/cmake")
++  INCLUDE(SalomeMacros NO_POLICY_SCOPE)
++ELSE()
++  MESSAGE(FATAL_ERROR "We absolutely need the Salome CMake configuration files, please define CONFIGURATION_ROOT_DIR !")
++ENDIF()
++
+ 
+ if (USE_COTIRE)
+   if (POLICY CMP0058)
+@@ -63,6 +73,7 @@
+   list (APPEND PERSALYS_DEFINITIONS "-DPERSALYS_STATIC -DPYINTERP_STATIC -DPYCONSOLE_STATIC")
+ endif ()
+ 
++FIND_PACKAGE(SalomeBoost REQUIRED)
+ find_package (Boost COMPONENTS filesystem locale REQUIRED)
+ if (TARGET Boost::filesystem)
+   set (Boost_LIBRARIES Boost::filesystem Boost::locale)

@@ -1,18 +1,18 @@
 default :
 {
-    name : "netcdf"
+    name : "zeromq"
     build_source : "script"
     compil_script :  $name + $VARS.scriptExtension
     get_source : "archive"
     archive_info :
     {
-       archive_name : "netcdf-c-" + $APPLICATION.products.netcdf + ".tar.gz"
+       archive_name : "zeromq-" + $APPLICATION.products.zeromq + ".tar.gz"
     }
     environ :
     {
        env_script : $name + ".py"
     }
-    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen']
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'netcdf', 'gdal']
     build_depend : ["cmake", "swig"]
     opt_depend : ['openmpi']
     patches : []
@@ -32,12 +32,11 @@ default_win :
     {
       single_install_dir : "yes"
     }
-    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'pthreads']
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'pthreads', 'netcdf', 'gdal']
     opt_depend : []
 }
 
-version_4_6_2:
+version_4_3_1:
 {
-    compil_script :  'netcdf-4.6.2' + $VARS.scriptExtension
-    patches : ['netcdf-4.6.2-001.patch']
+    compil_script :  'zeromq-4.3.1' + $VARS.scriptExtension
 }
