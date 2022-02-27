@@ -4,36 +4,10 @@ echo "##########################################################################
 echo "PERSALYS" $VERSION
 echo "##########################################################################"
 
-if [ -n "$MPI_ROOT_DIR" ]
-then
+if [ -n "$SAT_HPC" ]  && [ -n "$MPI_ROOT_DIR" ]; then
     echo "WARNING: setting CC and CXX environment variables and target MPI wrapper"
-    export CC=${MPI_ROOT_DIR}/bin/mpicc
-    export CXX=${MPI_ROOT_DIR}/bin/mpicxx
-fi
-
-CMAKE_OPTIONS=""
-CMAKE_OPTIONS+=" -DCMAKE_INSTALL_PREFIX:STRING=$PRODUCT_INSTALL"
-CMAKE_OPTIONS+=" -DCMAKE_INSTALL_LIBDIR:STRING=lib"
-CMAKE_OPTIONS+=" -DADAO_ROOT_DIR=$ADAO_ROOT_DIR"
-CMAKE_OPTIONS+=" -DADAO_INTERFACE_ROOT_DIR=$ADAO_INTERFACE_ROOT_DIR"
-#CMAKE_OPTIONS+=" -DBOOST_ROOT:PATH=${BOOST_ROOT_DIR}"
-CMAKE_OPTIONS+=" -DGUI_ROOT_DIR=$GUI_ROOT_DIR"
-CMAKE_OPTIONS+=" -DKERNEL_ROOT_DIR=$KERNEL_ROOT_DIR"
-CMAKE_OPTIONS+=" -DOpenTURNS_DIR=$OPENTURNS_ROOT_DIR"
-CMAKE_OPTIONS+=" -DPY2CPP_ROOT_DIR=$PY2CPP_ROOT_DIR"
-CMAKE_OPTIONS+=" -DPYTHON_ROOT_DIR=$PYTHON_ROOT_DIR"
-CMAKE_OPTIONS+=" -DQWT_ROOT_DIR=$QWT_ROOT_DIR"
-#!/bin/bash
-
-echo "##########################################################################"
-echo "PERSALYS" $VERSION
-echo "##########################################################################"
-
-if [ -n "$MPI_ROOT_DIR" ]
-then
-    echo "WARNING: setting CC and CXX environment variables and target MPI wrapper"
-    export CC=${MPI_ROOT_DIR}/bin/mpicc
-    export CXX=${MPI_ROOT_DIR}/bin/mpicxx
+    CMAKE_OPTIONS+=" -DCMAKE_CXX_COMPILER:STRING=${MPI_CXX_COMPILER}"
+    CMAKE_OPTIONS+=" -DCMAKE_C_COMPILER:STRING=${MPI_C_COMPILER}"
 fi
 
 CMAKE_OPTIONS=""
