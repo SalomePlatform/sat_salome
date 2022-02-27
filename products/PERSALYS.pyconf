@@ -58,5 +58,5 @@ default_win :
 
 version_v11_0 :
 {
-   patches : ['PERSALYS-v11-001.patch']
+   patches : ['PERSALYS-v11-001.patch', 'PERSALYS-v11-002.patch']
 }
