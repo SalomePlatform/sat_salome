@@ -21,19 +21,21 @@ default :
 	      'eigen',
 	      'netcdf',
 	      'gdal',
-	      'ADAO',
 	      'boost',
+	      'ADAO',
 	      'KERNEL',
 	      'GUI',
 	      'Sphinx',
 	      'qwt',
+	      'openturns',
+	      'numpydoc',
 	      'YACS',
 	      'YDEFX',
 	      'CAS',
 	      'CONFIGURATION'
 	      ]
     build_depend : ["cmake", "swig"]
-    opt_depend : ['openmpi', 'openturns']
+    opt_depend : ['openmpi']
     patches : []
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
@@ -50,9 +52,8 @@ default_win :
     properties :
     {
       single_install_dir : "yes"
+      incremental : "yes"
     }
-    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'pthreads', 'netcdf', 'gdal']
-    opt_depend : []
 }
 
 version_v11_0 :
