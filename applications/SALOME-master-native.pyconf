@@ -54,6 +54,7 @@ APPLICATION :
         freeimage : 'native'
         freetype : 'native'
         gl2ps : 'native'
+        gdal : '2.4.0'
         # 'native' too difficult here : need python-pip package (gmsh-sdk) besides system packages
         gmsh : '4.8.4'
         graphviz : 'native'
@@ -75,8 +76,11 @@ APPLICATION :
         metis : 'native'
         mpi4py: 'native'
         netgen : '6.2.2101'
+        netcdf : '4.6.2'
         nlopt : '2.4.2'
+        nose: 'native'
         numpy : 'native'
+        numpydoc : 'native'
         omniORB : '4.2.3'
         omniORBpy : '4.2.3'
         opencv : 'native'
@@ -87,6 +91,7 @@ APPLICATION :
         packaging : 'native'
         pandas : 'native'
         ParaView : {tag:'5.9.0',  base: 'no',  section: 'version_5_9_0_MPI', hpc: 'yes'}
+        PERSALYS: 'v11.0'
         petsc : {tag : '3.16.0', section: 'version_3_16_0'}
         Pillow : 'native'
         # 'native' not exists : freeCAD part but not delivered with it from package handler
@@ -123,6 +128,7 @@ APPLICATION :
         tk : 'native'
         TopIIVolMesh: 'develop'
         urllib3 : 'native'
+        zeromq: '4.3.1'
         URANIE : '4.5.0'
 
         # SALOME MODULES :
