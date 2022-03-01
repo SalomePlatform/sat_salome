@@ -16,10 +16,11 @@ CONFIGURE_FLAGS+=" --with-geos=yes"
 CONFIGURE_FLAGS+=" --with-sqlite3=yes"
 CONFIGURE_FLAGS+=" --with-threads"
 CONFIGURE_FLAGS+=" --with-python=${PYTHONBIN}"
-CONFIGURE_FLAGS+=" --with-xml2=${LIBXML_ROOT_DIR}"
 CONFIGURE_FLAGS+=" --with-hdf5=${HDF5_ROOT_DIR}"
 CONFIGURE_FLAGS+=" --with-netcdf=${NETCDF_ROOT_DIR}"
-
+if [ ! -z "$LIBXML_ROOT_DIR" ]; then
+    CONFIGURE_FLAGS+=" --with-xml2=${LIBXML_ROOT_DIR}"
+fi
 echo
 echo "*** configure $CONFIGURE_FLAGS LDFLAGS=\"-L${HDF5HOME}/lib/ -lhdf5 -lhdf5_hl -L${NETCDF_ROOT_DIR}/lib -lnetcdf\" HDF5_CFLAGS=\"-I${HDF5HOME}/include -L${HDF5HOME}/lib/ -lhdf5 -lhdf5_hl\" LIBS=\"-L${HDF5HOME}/lib/ -lhdf5 -lhdf5_hl -L${NETCDF_INSTALL_DIR}/lib -lnetcdf\" HDF5_LIBS=\"-L${HDF5HOME}/lib/ -lhdf5 -lhdf5_hl \" HDF5_INCLUDE=\"-I${HDF5HOME}/include\""
 

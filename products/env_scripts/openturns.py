@@ -2,9 +2,9 @@
 import os.path
 
 def set_env(env, prereq_dir, version):
-    env.set('OPENTURNS_ROOT_DIR', prereq_dir)
-    env.set('OPENTURNS_HOME', prereq_dir)
-    env.set('OPENTURNS_VERSION',version)
+    env.set('OT_ROOT_DIR', prereq_dir)
+    env.set('OT_HOME', prereq_dir)
+    env.set('OT_VERSION',version)
     env.prepend('PATH', os.path.join(prereq_dir,'bin'))
     env.prepend('LD_LIBRARY_PATH',os.path.join(prereq_dir, 'lib'))
     pyver = 'python' + env.get('PYTHON_VERSION')

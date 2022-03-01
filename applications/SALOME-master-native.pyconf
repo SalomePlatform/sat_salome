@@ -54,7 +54,7 @@ APPLICATION :
         freeimage : 'native'
         freetype : 'native'
         gl2ps : 'native'
-        gdal : '2.4.0'
+        gdal : 'native'
         # 'native' too difficult here : need python-pip package (gmsh-sdk) besides system packages
         gmsh : '4.8.4'
         graphviz : 'native'
@@ -76,7 +76,7 @@ APPLICATION :
         metis : 'native'
         mpi4py: 'native'
         netgen : '6.2.2101'
-        netcdf : '4.6.2'
+        netcdf : 'native'
         nlopt : '2.4.2'
         nose: 'native'
         numpy : 'native'
@@ -155,6 +155,7 @@ APPLICATION :
         'HOMARD'
         'FIELDS'
         'PARAVIS': {tag:'master', base: 'no',  section: 'default_MPI',       hpc: 'yes'}
+        'OPENTURNS_SALOME': '9.8.0'
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
@@ -204,9 +205,11 @@ __overwrite__ :
     {
         #
         __condition__ : "VARS.dist in ['UB20.04']"
-        'APPLICATION.products.opencv' : '3.2.0'
+        'APPLICATION.products.opencv'  : '3.2.0'
         'APPLICATION.products.cminpack': 'native'
-        'APPLICATION.products.PyFMI'    : {tag: '2.5',   base: 'no', section: 'version_2_5_no_pip'                }
+        'APPLICATION.products.PyFMI'   : {tag: '2.5',   base: 'no', section: 'version_2_5_no_pip'                }
+        'APPLICATION.products.netcdf'  : '4.6.2'
+        'APPLICATION.products.gdal'    : '2.4.0'
     }
     {
         # On DB10, ParaView fails to find xmlpatterns executable : ParaViewClient.cmake try to find it

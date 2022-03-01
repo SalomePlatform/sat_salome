@@ -152,6 +152,7 @@ APPLICATION :
         'HEXABLOCKPLUGIN'
         'HOMARD'
         'FIELDS'
+        'OPENTURNS_SALOME' : '9.8.0'
         'PARAVIS'
         'JOBMANAGER'
         'YACS'

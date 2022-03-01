@@ -220,14 +220,14 @@ CMAKE_OPTIONS="${CMAKE_OPTIONS} -DPARAVIEW_PLUGIN_ENABLE_pvblot:BOOL=OFF"
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DVTK_ALL_NEW_OBJECT_FACTORY:BOOL=ON"
 
 # Openturns:
-if [ -n "$OPENTURNS_VERSION" ]; then
+if [ -n "$OT_VERSION" ]; then
     function version_ge() { test "$(echo "$@" | tr " " "\n" | sort -rV | head -n 1)" == "$1"; }
-    if version_ge $OPENTURNS_VERSION "1.17" ; then
-        echo "INFO: Adding OpenTURNS version ${OPENTURNS_VERSION} support..."
+    if version_ge $OT_VERSION "1.17" ; then
+        echo "INFO: Adding OpenTURNS version ${OT_VERSION} support..."
         CMAKE_OPTIONS="${CMAKE_OPTIONS} -DPARAVIEW_ENABLE_OPENTURNS=ON"
-        CMAKE_OPTIONS="${CMAKE_OPTIONS} -DOpenTURNS_DIR=$OPENTURNS_ROOT_DIR/lib/cmake/openturns"
+        CMAKE_OPTIONS="${CMAKE_OPTIONS} -DOpenTURNS_DIR=$OT_ROOT_DIR/lib/cmake/openturns"
     else
-        echo "WARNING: OpenTURNS ${OPENTURNS_VERSON} is not supported with current ParaView build..."
+        echo "WARNING: OpenTURNS ${OT_VERSON} is not supported with current ParaView build..."
     fi
 else
     echo "WARNING: No OpenTURNS environment variable is found..."

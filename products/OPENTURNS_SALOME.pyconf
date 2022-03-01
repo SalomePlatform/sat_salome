@@ -1,0 +1,33 @@
+default :
+{
+    name : "OPENTURNS"
+    build_source : "cmake"
+    cmake_options: " -DOTGUI_ROOT_DIR=$PERSALYS_ROOT_DIR"
+    compil_script :  $name + "-" + $APPLICATION.products.OPENTURNS_SALOME + $VARS.scriptExtension
+    get_source : "archive"
+    archive_info :
+    {
+       archive_name : "OPENTURNS-" + $APPLICATION.products.OPENTURNS_SALOME + ".tar.gz"
+    }
+    environ :
+    {
+        SalomeAppConfig_ : $install_dir + $VARS.sep + "share" + $VARS.sep + "salome" + $VARS.sep + "resources" + $VARS.sep + "openturns"
+    }
+    depend : [
+              'KERNEL',
+              'GUI',
+	      'PERSALYS',
+	      'gdal',
+	      'YACS'
+             ]
+    build_depend : ["cmake", "swig", "doxygen"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        has_salome_gui : "yes"
+        is_SALOME_module : "yes"
+        incremental : "yes"
+        has_unit_tests : "yes"
+    }
+}
