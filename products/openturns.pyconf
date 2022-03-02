@@ -1,6 +1,6 @@
 default :
 {
-    name : "OT"
+    name : "openturns"
     build_source : "script"
     compil_script :  $name + $VARS.scriptExtension
     get_source : "archive"

@@ -155,6 +155,10 @@ if [[ -d "$SOURCE_DIR/otfftw-0.11" ]]; then
         mkdir ${BUILD_DIR}/$k
         cd ${BUILD_DIR}/$k 
         CMAKE_EXTRA_OPTIONS=
+	if [[ $DIST_NAME == "CO" && $DIST_VERSION == "7" ]]; then
+            CMAKE_EXTRA_OPTIONS+=" -DBUILD_DOC=OFF"  # needs extra latex modules on CentOS 7
+            CMAKE_EXTRA_OPTIONS+=" -DUSE_SPHINX=OFF"
+        fi
         if [[ $k == "otmixmod" ]]; then
             CMAKE_EXTRA_OPTIONS+=" -DBUILD_DOC=OFF"
             CMAKE_EXTRA_OPTIONS+=" -DSOURCEFILES=$SOURCE_DIR/$k-${OTC[$k]}"
@@ -163,9 +167,9 @@ if [[ -d "$SOURCE_DIR/otfftw-0.11" ]]; then
             CMAKE_EXTRA_OPTIONS+=" -DCMAKE_SKIP_INSTALL_RPATH:BOOL=ON"
             CMAKE_EXTRA_OPTIONS+=" -DUSE_SPHINX=OFF"
         elif  [[ $k == "otfftw" ]]; then
-            CMAKE_EXTRA_OPTIONS+=" -DBUILD_DOC=OFF"  # needs extra latex modules on CentOS 7
+            CMAKE_EXTRA_OPTIONS+=" -DBUILD_DOC=OFF"
         elif  [[ $k == "otpmml" ]]; then
-            CMAKE_EXTRA_OPTIONS+=" -DBUILD_DOC=OFF"  # needs extra latex modules on CentOS 7
+            CMAKE_EXTRA_OPTIONS+=" -DBUILD_DOC=OFF"
         fi
 
         echo
