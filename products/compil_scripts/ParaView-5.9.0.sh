@@ -36,7 +36,7 @@ then
     EGL_FOUND=false
     LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
     case $LINUX_DISTRIBUTION in
-        CO*||FD*)
+        CO*|FD*)
             if [ -f /usr/include/EGL/egl.h ] && [ -f /usr/lib64/libEGL.so ] && [ -f /usr/lib64/libOpenGL.so ]
             then
                 EGL_FOUND=true
