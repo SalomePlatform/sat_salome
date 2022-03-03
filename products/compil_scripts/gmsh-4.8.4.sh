@@ -60,14 +60,16 @@ then
 fi
 
 echo
-echo "*** copy all .h in sources to install"
-cp -f --backup=numbered `find $SOURCE_DIR -name "*.h"` $PRODUCT_INSTALL/include/ && \
-    mv $PRODUCT_INSTALL/include/gmsh/* $PRODUCT_INSTALL/include/ && \
-    rmdir $PRODUCT_INSTALL/include/gmsh/
-if [ $? -ne 0 ]
-then
-    echo "ERROR on copy"
-    exit 4
+if [ $VERSION == "V9_8_0" ]; then
+    echo "*** copy all .h in sources to install"
+    cp -f --backup=numbered `find $SOURCE_DIR -name "*.h"` $PRODUCT_INSTALL/include/ && \
+        mv $PRODUCT_INSTALL/include/gmsh/* $PRODUCT_INSTALL/include/ && \
+        rmdir $PRODUCT_INSTALL/include/gmsh/
+    if [ $? -ne 0 ]
+    then
+        echo "ERROR on copy"
+        exit 4
+    fi
 fi
 
 
