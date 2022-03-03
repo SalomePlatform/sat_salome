@@ -32,7 +32,7 @@ default_win :
 
 version_V2_4_5:
 {
-    cmake_options : "-DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DLIBBATCH_CXX_STANDARD=17"
+    cmake_options : "-DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DLIBBATCH_CXX_STANDARD=17 -DLIBBATCH_MKDIR_COMMAND=/bin/mkdir -DLIBBATCH_CP_COMMAND=/bin/cp -DLIBBATCH_SH_COMMAND=/bin/sh"
 }
 
 version_V2_4_5_win:
