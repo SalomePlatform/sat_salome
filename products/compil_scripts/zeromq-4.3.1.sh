@@ -4,13 +4,6 @@ echo "##########################################################################
 echo "zeromq" $VERSION
 echo "##########################################################################"
 
-if [ -n "$MPI_ROOT_DIR" ]
-then
-    echo "WARNING: setting CC and CXX environment variables and target MPI wrapper"
-    export CC=${MPI_ROOT_DIR}/bin/mpicc
-    export CXX=${MPI_ROOT_DIR}/bin/mpicxx
-fi
-
 CMAKE_OPTIONS=""
 CMAKE_OPTIONS+=" -DCMAKE_INSTALL_PREFIX:STRING=${PRODUCT_INSTALL}"
 CMAKE_OPTIONS+=" -DCMAKE_INSTALL_LIBDIR:STRING=lib"
@@ -19,6 +12,10 @@ if [ -n "$LIBXML2_ROOT_DIR" ] && [ "${LIBXML2_ROOT_DIR}" != "/usr" ]; then
     CMAKE_OPTIONS+=" -DLIBXML2_INCLUDE_DIR:STRING=${LIBXML2_ROOT_DIR}/include/libxml2"
     CMAKE_OPTIONS+=" -DLIBXML2_LIBRARIES:STRING=${LIBXML2_ROOT_DIR}/lib/libxml2.so"
     CMAKE_OPTIONS+=" -DLIBXML2_XMLLINT_EXECUTABLE=${LIBXML2_ROOT_DIR}/bin/xmllint"
+fi
+if [ -n "$MPI_ROOT_DIR" ]; then
+    CMAKE_OPTIONS+=" -DCMAKE_CXX_COMPILER:STRING=${MPI_CXX_COMPILER}"
+    CMAKE_OPTIONS+=" -DCMAKE_C_COMPILER:STRING=${MPI_C_COMPILER}"
 fi
 
 echo
