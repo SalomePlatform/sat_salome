@@ -7,7 +7,6 @@ import platform
 def set_env(env, prereq_dir, version):
     env.set('CASROOT', prereq_dir)
     env.set('CAS_ROOT_DIR', prereq_dir)
-    # [CMake GUI] Nouveau nom pour CASROOT = CAS_ROOT_DIR 22/03/2013
     env.set('OPENCASCADE_ROOT_DIR', prereq_dir)
     env.prepend('PATH', prereq_dir)
     
@@ -16,7 +15,6 @@ def set_env(env, prereq_dir, version):
     else :
         env.prepend('PATH', os.path.join(prereq_dir, 'bin'))
         env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib'))
-   
 
 def set_nativ_env(env):
     pass

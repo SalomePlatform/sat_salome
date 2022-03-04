@@ -151,7 +151,7 @@ version_5_9_1_MPI :
 
 version_5_9_0 :
 {
-    opt_depend : ['openmpi', 'ospray','tbb', 'openturns']
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal']
     compil_script :  'ParaView-5.9.0.sh'
     archive_info : {archive_name : "ParaView-5.9.0-lata.tar.gz"}
     # two other LATA patches already included in archive
