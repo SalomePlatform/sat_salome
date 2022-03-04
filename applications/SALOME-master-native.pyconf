@@ -36,7 +36,7 @@ APPLICATION :
         certifi : 'native'
         # Standalone native cgns works well. Unfortunately, it's directly linked to native hdf which uses a higher version than us.
         # Rollback to embedded version to avoid versions mismatch between both of them (see imp_1538_cgns_export_import.py)
-        cgns : '4.1.1'
+        cgns : '4.2.0'
         chardet : 'native'
         click : 'native'
         cmake : 'native'
