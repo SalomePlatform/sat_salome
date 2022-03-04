@@ -209,7 +209,6 @@ __overwrite__ :
         'APPLICATION.products.cminpack': 'native'
         'APPLICATION.products.PyFMI'   : {tag: '2.5',   base: 'no', section: 'version_2_5_no_pip'                }
         'APPLICATION.products.netcdf'  : '4.6.2'
-        'APPLICATION.products.gdal'    : '2.4.0'
     }
     {
         # On DB10, ParaView fails to find xmlpatterns executable : ParaViewClient.cmake try to find it
