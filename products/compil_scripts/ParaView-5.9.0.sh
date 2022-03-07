@@ -239,6 +239,8 @@ if [ -n "$GDAL_ROOT_DIR" ]; then
     CMAKE_OPTIONS+=" -DPARAVIEW_ENABLE_GDAL=ON"
     if [ "$GDAL_ROOT_DIR" != "/usr" ]; then
         CMAKE_OPTIONS+=" -DGDAL_ROOT_DIR=$GDAL_ROOT_DIR"
+	CMAKE_OPTIONS+=" -DGDAL_LIBRARY=$GDAL_ROOT_DIR/lib/libgdal.so"
+	CMAKE_OPTIONS+=" -DGDAL_INCLUDE_DIR=$GDAL_ROOT_DIR/include"
     fi
 fi
 
