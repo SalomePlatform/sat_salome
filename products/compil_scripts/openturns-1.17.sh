@@ -155,8 +155,8 @@ if [[ -d "$SOURCE_DIR/otfftw-0.11" ]]; then
         mkdir ${BUILD_DIR}/$k
         cd ${BUILD_DIR}/$k 
         CMAKE_EXTRA_OPTIONS=
-	if [[ $DIST_NAME == "CO" && $DIST_VERSION == "7" ]]; then
-            CMAKE_EXTRA_OPTIONS+=" -DBUILD_DOC=OFF"  # needs extra latex modules on CentOS 7
+	if [[ $DIST_NAME == "CO" ]]; then
+            CMAKE_EXTRA_OPTIONS+=" -DBUILD_DOC=OFF"  # needs extra latex modules on CentOS 7, 8
             CMAKE_EXTRA_OPTIONS+=" -DUSE_SPHINX=OFF"
         fi
         if [[ $k == "otmixmod" ]]; then
