@@ -1,0 +1,13 @@
+--- ParaView-5.9.0-ref/VTK/CMake/patches/99/FindGDAL.cmake	2021-02-04 15:22:02.000000000 +0100
++++ ParaView-5.9.0-new/VTK/CMake/patches/99/FindGDAL.cmake	2022-03-08 12:58:13.514095102 +0100
+@@ -60,6 +60,10 @@
+ #
+ #include "gdal.h"
+ 
++SET(GDAL_ROOT_DIR $ENV{GDAL_ROOT_DIR} CACHE PATH "Path to the GDAL.")
++IF(GDAL_ROOT_DIR)
++ LIST(APPEND CMAKE_PREFIX_PATH "${GDAL_ROOT_DIR}")
++ENDIF(GDAL_ROOT_DIR)
+ find_path(GDAL_INCLUDE_DIR gdal.h
+   HINTS
+     ${GDAL_ROOT}

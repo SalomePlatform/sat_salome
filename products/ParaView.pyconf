@@ -240,7 +240,8 @@ version_5_9_0_MPI :
                'paraview.0017-VTK-openMPI-if-devtoolset.patch',
                'paraview.0018-spns-26351-autoconvert.patch',
                'paraview.0019-spns-26344-VTK-OpenMP.patch',
-               'paraview.0020.findMPI.patch'
+               'paraview.0020.findMPI.patch',
+               'paraview.0021-FindGDAL.patch'
               ]
 }
 
