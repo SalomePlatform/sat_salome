@@ -38,7 +38,7 @@ APPLICATION :
         boost : '1.67.0'
         CAS : {tag: 'V7_5_3p1', section: 'version_V7_5_3p1_win'}
         certifi : '2019.6.16'
-        cgns : '4.1.1'
+        cgns : '4.2.0'
         chardet : '3.0.4'
         click : '7.0'
         cmake : '3.12.1'

@@ -34,6 +34,11 @@ then
     fi
 fi
 
+# bos #26398
+if [ $VERSION == "4.2.0" ]; then
+    echo "WARNING: switching OFF 64 bits support!"
+    CMAKE_OPTIONS+=" -DCGNS_ENABLE_64BIT:BOOL=OFF"
+fi
 echo
 echo "*** cmake" $CMAKE_OPTIONS
 cmake $CMAKE_OPTIONS $SOURCE_DIR
