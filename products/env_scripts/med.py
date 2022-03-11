@@ -14,6 +14,8 @@ def set_env(env, prereq_dir, version):
         env.prepend('PATH', os.path.join(prereq_dir, 'lib'))
     else :
         env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib'))
+        pyver = 'python' + env.get('PYTHON_VERSION')
+        env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'lib', pyver, 'site-packages'))
 
 def set_nativ_env(env):
     env.set('MEDFILE_ROOT_DIR', '/usr')    # update for cmake

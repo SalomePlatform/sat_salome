@@ -69,7 +69,7 @@ APPLICATION :
         llvm : '8.0.1-clang'
         markupsafe : '0.23'
         matplotlib : '3.0.3'
-        medfile : {section: 'default_Autotools', tag: '4.1.1'}
+        medfile : '4.1.1'
         mesa : '19.0.8'
         MeshGems : '2.14-1'
         metis : '5.1.0'

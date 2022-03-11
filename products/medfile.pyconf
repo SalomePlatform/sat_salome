@@ -34,7 +34,9 @@ default_Autotools :
 # needed in order to screen with windows version - see below
 version_4_1_1 :
 {
-  patches : []
+    compil_script : 'med-4.1.1.sh'
+    test_build : "make check"
+    build_depend : []
 }
 
 version_4_1_1_win :
