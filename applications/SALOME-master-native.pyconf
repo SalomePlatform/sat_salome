@@ -242,7 +242,7 @@ __overwrite__ :
         'APPLICATION.products.opencv'    : '3.2.0'
         'APPLICATION.products.PyFMI'     : {tag: '2.5',   base: 'no', section: 'version_2_5_no_pip'              }
         'APPLICATION.products.openturns' : {tag: '1.17',  base: 'no', section: 'version_1_17_FD32'               }
-
+        'APPLICATION.products.Sphinx'    : {tag: '1.7.6', base: 'no', section: 'version_1_7_6_no_pip'            }
     }
     {
         # FD 34 qt5 package is qt5-qtbase-devel.

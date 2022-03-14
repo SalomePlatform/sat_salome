@@ -44,6 +44,15 @@ version_2_1_2:
 
 }
 
+version_1_7_6_no_pip:
+{
+    properties:
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+}
+
 version_1_1_3_to_1_2_3 :
 {
     name : "Sphinx"

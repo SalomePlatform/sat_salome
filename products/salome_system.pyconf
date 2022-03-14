@@ -36,7 +36,7 @@ default :
         "CO7" :
         {
             rpm : ["lz4", "gsl", "libgeotiff", "giflib", "geos"]
-            rpm_dev : ["perl", "gsl-devel", "libpng-devel", "libtiff-devel", "libgeotiff-devel", "giflib-devel", "geos-devel" ]
+            rpm_dev : ["perl", "gsl-devel", "libpng-devel", "libtiff-devel", "libgeotiff-devel", "giflib-devel", "geos-devel"]
         }
         "CO8" :
         {
@@ -51,7 +51,7 @@ default :
         "FD32" :
         {
            rpm : ["lz4", "gsl", "openmpi", "netcdf", "gdal"]
-           rpm_dev : ["perl-interpreter", "qt5-devel", "gsl-devel", "openmpi-devel", "netcdf-devel"]
+           rpm_dev : ["perl-interpreter", "qt5-devel", "gsl-devel", "openmpi-devel", "netcdf-devel", "protobuf-devel", "python3-protobuf"]
         }
         "FD34" :
         {
