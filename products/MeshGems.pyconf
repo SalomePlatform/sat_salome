@@ -35,6 +35,28 @@ default_win :
     }
 }
 
+version_2_14_4 :
+{
+    properties :
+    {
+      is_distene : "no"
+      licence : "libSalomeMeshGemsKeyGenerator"
+      incremental : "yes"
+    }
+}
+
+version_2_14_4_win :
+{
+    properties :
+    {
+      is_distene : "no"
+      licence : "libSalomeMeshGemsKeyGenerator"
+      incremental : "yes"
+      single_install_dir : "yes" # aimed to solve sat #18914
+    }
+}
+
+
 version_2_14_1 :
 {
     properties :
