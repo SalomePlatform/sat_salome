@@ -1,0 +1,12 @@
+diff -Naur gdal_ref/gdal/ogr/ogrsf_frmts/cad/libopencad/dwg/r2000.cpp gdal_new/gdal/ogr/ogrsf_frmts/cad/libopencad/dwg/r2000.cpp
+--- gdal_ref/gdal/ogr/ogrsf_frmts/cad/libopencad/dwg/r2000.cpp	2022-01-10 21:48:58.000000000 +0100
++++ gdal_new/gdal/ogr/ogrsf_frmts/cad/libopencad/dwg/r2000.cpp	2022-03-15 12:09:23.888534108 +0100
+@@ -38,7 +38,7 @@
+ #include <iostream>
+ #include <memory>
+ #include <string>
+-
++#include <limits>
+ #if ((defined(__sun__) || defined(__FreeBSD__)) && __GNUC__ == 4 && __GNUC_MINOR__ == 8) || defined(__ANDROID__)
+ // gcc 4.8 on Solaris 11.3 or FreeBSD 11 doesn't have std::string
+ #include <sstream>

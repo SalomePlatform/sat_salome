@@ -60,7 +60,9 @@ then
 fi
 
 echo
-if [ $VERSION == "V9_8_0" ]; then
+if [ -n "$SALOME_GMSH_HEADERS_STD" ]; then
+    echo "Using standard directory structure"
+else
     echo "*** copy all .h in sources to install"
     cp -f --backup=numbered `find $SOURCE_DIR -name "*.h"` $PRODUCT_INSTALL/include/ && \
         mv $PRODUCT_INSTALL/include/gmsh/* $PRODUCT_INSTALL/include/ && \
@@ -71,7 +73,6 @@ if [ $VERSION == "V9_8_0" ]; then
         exit 4
     fi
 fi
-
 
 echo
 echo "########## END"

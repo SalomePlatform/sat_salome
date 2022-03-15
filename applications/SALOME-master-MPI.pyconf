@@ -24,6 +24,7 @@ APPLICATION :
         SALOME_trace : "local" # local/file:.../with_logger
         SALOME_MODULES : "SHAPER,SHAPERSTUDY,GEOM,SMESH,PARAVIS,YACS,JOBMANAGER"  # specify the first modules to display in gui
         SALOME_ACTOR_DELEGATE_TO_VTK : '1'
+        SALOME_GMSH_HEADERS_STD : '1'
     }
     products :
     {

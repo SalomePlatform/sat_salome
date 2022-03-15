@@ -24,6 +24,7 @@ APPLICATION :
         SALOME_trace : "local" # local/file:.../with_logger
         SALOME_MODULES : "SHAPER,SHAPERSTUDY,GEOM,SMESH,PARAVIS,YACS,JOBMANAGER"  # specify the first modules to display in gui
         SALOME_ACTOR_DELEGATE_TO_VTK : '1'
+        SALOME_GMSH_HEADERS_STD : '1'
     }
     products :
     {
@@ -245,12 +246,12 @@ __overwrite__ :
         'APPLICATION.products.Sphinx'    : {tag: '1.7.6', base: 'no', section: 'version_1_7_6_no_pip'            }
     }
     {
-        # FD 34 qt5 package is qt5-qtbase-devel.
         __condition__ : "VARS.dist in ['FD34']"
         'APPLICATION.products.opencv'   : '3.2.0'
         'APPLICATION.products.omniORB'  : '4.2.4'
         'APPLICATION.products.omniORBpy': '4.2.4'
-        'APPLICATION.products.PyFMI'    : {tag: '2.5',    base: 'no', section: 'version_2_5_no_pip'  }
-        'APPLICATION.products.root'     : {tag:'6.22.02', base: 'no', section: 'version_6_22_02_FD34'}
+        'APPLICATION.products.PyFMI'    : {tag: '2.5',    base: 'no', section: 'version_2_5_no_pip'             }
+        'APPLICATION.products.root'     : {tag:'6.22.02', base: 'no', section: 'version_6_22_02_FD34'           }
+        'APPLICATION.products.gdal'     : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_FD34'             } # spns #29324
     }
 ]
