@@ -24,6 +24,7 @@ default :
     properties :
     {
        incremental : "yes"
+       is_SALOME_module:"no"
     }
 }
 
