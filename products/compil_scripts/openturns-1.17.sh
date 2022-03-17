@@ -150,7 +150,6 @@ if [[ -d "$SOURCE_DIR/otfftw-0.11" ]]; then
             echo "WARNING: skipping $k.."
             continue
         fi
-
         cd  $BUILD_DIR
         mkdir ${BUILD_DIR}/$k
         cd ${BUILD_DIR}/$k 
@@ -208,6 +207,31 @@ if [[ -d "$SOURCE_DIR/otfftw-0.11" ]]; then
         echo
         echo "*** C O M P O N E N T : $k-${OTP[$k]} "
 	
+	if [[ $DIST_NAME == "DB" && $DIST_VERSION == "10" && $APPLICATION_NAME =~ native && $k == "otfmi" ]]; then
+	    echo "INFO: install dill-0.3.4"
+	    ${PYTHONBIN} -m pip install $SOURCE_DIR/dill-0.3.4/dill-0.3.4-py2.py3-none-any.whl --no-deps  --prefix=$PRODUCT_INSTALL
+	    if [ $? -ne 0 ]
+	    then
+		echo "FATAL: could not install dill-0.3.4"
+		exit 6
+	    fi
+	fi
+	if [[ $DIST_NAME == "DB" && $DIST_VERSION == "10" && $APPLICATION_NAME =~ native && $k == "otpod" ]]; then
+	    echo "INFO: install scikit-learn-0.24.2"
+	    ${PYTHONBIN} -m pip install $SOURCE_DIR/scikit-learn-0.24.2/scikit-learn-0.24.2.tar.gz --no-deps  --prefix=$PRODUCT_INSTALL
+	    if [ $? -ne 0 ]
+	    then
+		echo "FATAL: could not install scikit-0.24.2"
+		exit 6
+	    fi
+	    echo "INFO: install threadpoolctl-3.0.0"
+	    ${PYTHONBIN} -m pip install $SOURCE_DIR/threadpoolctl-3.0.0/threadpoolctl-3.0.0-py3-none-any.whl --no-deps --prefix=$PRODUCT_INSTALL
+	    if [ $? -ne 0 ]
+	    then
+		echo "FATAL: could not install threadpoolctl 3.0.0"
+		exit 6
+	    fi
+	fi
         if [[ $DIST_NAME == "CO" && $DIST_VERSION == "8" && $APPLICATION_NAME =~ native && $k == "otpod" ]]; then
             echo "*** skipping: since system Cython too old"
             continue

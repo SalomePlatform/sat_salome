@@ -247,19 +247,19 @@ if [ -n "$GDAL_ROOT_DIR" ]; then
 	CMAKE_OPTIONS+=" -DGDAL_LIBRARY=$GDAL_ROOT_DIR/lib/libgdal.so"
 	CMAKE_OPTIONS+=" -DGDAL_INCLUDE_DIR=$GDAL_ROOT_DIR/include"
     fi
-    CMAKE_OPTIONS+=" -DPARAVIEW_GENERATE_PROXY_DOCUMENTATION:BOOL=ON"
-    CMAKE_OPTIONS+=" -DPARAVIEW_PLUGIN_ENABLE_GeographicalMap:BOOL=ON"
+#    CMAKE_OPTIONS+=" -DPARAVIEW_GENERATE_PROXY_DOCUMENTATION:BOOL=ON"
+#    CMAKE_OPTIONS+=" -DPARAVIEW_PLUGIN_ENABLE_GeographicalMap:BOOL=ON"
 fi
 
 # NETCDF see bos #26944
-if [ -n "$NETCDF_ROOT_DIR" ]; then
-    echo "INFO: switching ON NETCDF"
-    CMAKE_OPTIONS+=" -DVTK_MODULE_USE_EXTERNAL_VTK_netcdf:BOOL=ON"
-    if [ "NETCDF_ROOT_DIR" != "/usr" ]; then
-        CMAKE_OPTIONS+=" -DNETCDF_ROOT_DIR=$NETCDF_ROOT_DIR"
-    fi
-    CMAKE_OPTIONS+=" -DVTK_MODULE_ENABLE_VTK_FiltersParallelGeometry=YES"
-fi
+# if [ -n "$NETCDF_ROOT_DIR" ]; then
+#     echo "INFO: switching ON NETCDF"
+#     CMAKE_OPTIONS+=" -DVTK_MODULE_USE_EXTERNAL_VTK_netcdf:BOOL=ON"
+#     if [ "NETCDF_ROOT_DIR" != "/usr" ]; then
+#         CMAKE_OPTIONS+=" -DNETCDF_ROOT_DIR=$NETCDF_ROOT_DIR"
+#     fi
+#     CMAKE_OPTIONS+=" -DVTK_MODULE_ENABLE_VTK_FiltersParallelGeometry=YES"
+# fi
 
 echo
 echo "*** cmake" ${CMAKE_OPTIONS}

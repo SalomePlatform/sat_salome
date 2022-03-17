@@ -41,7 +41,8 @@ version_4_1_1 :
 
 version_4_1_1_win :
 {
-  patches : ['med-4.1.0_win_3x_files_support.patch']
+    compil_script :  "medCMake.bat"
+    patches : ['med-4.1.0_win_3x_files_support.patch']
 }
 
 # needed in order to screen with windows version - see below
