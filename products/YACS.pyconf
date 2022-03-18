@@ -33,10 +33,6 @@ default :
     opt_depend : ['pmml']
     build_depend : ["cmake", "swig", "doxygen", "cppunit"]
 
-    patches : [
-               "yacs_cea_v2.patch" 
-              ]
-
     nb_proc : 4
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
@@ -48,6 +44,11 @@ default :
         incremental : "yes"
     }
 } 
+
+version_9_2_0_to_9_8_0 :
+{
+    patches : ["yacs_cea_v2.patch"]
+}
 
 # bug in cmake for multi proc compilation
 from_7_7_0_to_8_5_0 :

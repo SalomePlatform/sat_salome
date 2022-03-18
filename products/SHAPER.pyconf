@@ -45,12 +45,16 @@ default :
         has_unit_tests : "yes"
     }
     cmake_options :   "-DCMAKE_CXX_FLAGS=-fpermissive -DNO_SolveSpace=TRUE -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DADD_COMPATIBILITY_TESTS=ON -DADD_MODELS_TESTS=ON -DADD_HDF_TESTS=ON"
-    patches : ['patch_shaper_cursor_cross.diff']
 }
 
 default_win :
 {
     cmake_options :   " -DNO_SolveSpace=TRUE  -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR:\=/%/bin/swig.exe " 
+}
+
+version_9_5_0_to_9_8_0 :
+{
+    patches : ["patch_shaper_cursor_cross.diff"]
 }
 
 version_9_3_0_to_9_4_0 :
