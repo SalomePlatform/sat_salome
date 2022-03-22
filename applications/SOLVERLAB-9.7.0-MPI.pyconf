@@ -90,7 +90,7 @@ APPLICATION :
         'LIBBATCH' : {tag :'V2_4_5'}
         'KERNEL' : {section : 'default_MPI', verbose : 'yes'}
         'GUI' : {verbose : 'yes'}
-        'MEDCOUPLING' : {section : 'default_MPI', verbose : 'yes'}
+        'MEDCOUPLING' : {section : 'version_V9_7_0_MPI', verbose : 'yes'}
         'SOLVERLAB' : {tag: 'master', section : 'default_MPI', hpc: 'yes'}
     }
     profile :

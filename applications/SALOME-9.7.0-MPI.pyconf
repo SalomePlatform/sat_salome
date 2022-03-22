@@ -119,7 +119,7 @@ APPLICATION :
         'RESTRICTED'
         'LIBBATCH' : {tag :'V2_4_5'}
         'KERNEL' : {section : 'default_MPI', verbose : 'yes'}
-        'MEDCOUPLING' : {section : 'default_MPI', verbose : 'yes'}
+        'MEDCOUPLING' : {section : 'version_V9_7_0_MPI', verbose : 'yes'}
         'GUI' : {verbose : 'yes'}
         'GEOM'
         'SMESH'
@@ -179,9 +179,5 @@ APPLICATION :
 }
 __overwrite__ :
 [
-    {
-        # with cmake 3.17.5 issue with Python2 detection - remove it since not required
-        'PRODUCTS.opencv.version_3_2_0.patches' : ['opencv-3.2.0-ccache.patch','opencv-3.2.0-python2-cmake-3.17.5.patch']
-    }
 ]
 

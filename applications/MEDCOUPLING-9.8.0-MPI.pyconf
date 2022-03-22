@@ -69,7 +69,7 @@ APPLICATION :
 
         # SALOME MODULES :
         'CONFIGURATION'
-        'MEDCOUPLING' : {section: 'default_MPI'}
+        'MEDCOUPLING' : {section: 'version_V9_8_0_MPI'}
     }
     test_base : 
     {

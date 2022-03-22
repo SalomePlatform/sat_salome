@@ -111,7 +111,7 @@ APPLICATION :
         'RESTRICTED'
         'LIBBATCH' : {tag :'V2_4_3'}
         'KERNEL' : {tag: 'V9_5_0', section : 'default_MPI', verbose : 'yes'}
-        'MEDCOUPLING' : {tag: 'V9_5_0', section : 'default_MPI', verbose : 'yes'}
+        'MEDCOUPLING' : {tag: 'V9_5_0', section : 'version_V9_5_0_MPI', verbose : 'yes'}
         'GUI' : {verbose : 'yes'}
         'GEOM'
         'SMESH'

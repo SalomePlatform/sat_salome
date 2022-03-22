@@ -65,7 +65,7 @@ APPLICATION :
 
         # SALOME MODULES :
         'CONFIGURATION'
-        'MEDCOUPLING' : {tag : 'V9_5_0', section: 'default_MPI'}
+        'MEDCOUPLING' : {tag : 'V9_5_0', section: 'version_V9_5_0_MPI'}
     }
     test_base : 
     {

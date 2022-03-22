@@ -82,7 +82,7 @@ APPLICATION :
 
         # SALOME MODULES :
         'CONFIGURATION'
-        'MEDCOUPLING' : {tag : 'abn_akr/int'}
+        'MEDCOUPLING'
     }
     test_base :
     {

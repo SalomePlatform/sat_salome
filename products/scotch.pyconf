@@ -16,9 +16,14 @@ default :
        env_script : $name + ".py"
     }
     depend : []
+    patches: []
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     install_dir : 'base'
+    properties :
+    {
+      incremental : "yes"
+    }
 }
 
 version_5_1_12b :
@@ -37,5 +42,24 @@ version_5_1_12b :
     install_dir : 'base'
 }
 
+version_6_0_4 :
+{
+    compil_script: "scotch-6.0.4.sh"
+}
 
-
+version_6_0_4_MPI :
+{
+    system_info :
+    {
+        rpm : ["ptscotch-openmpi"]
+        rpm_dev : ["ptscotch-openmpi-devel"]
+        apt : ["libptscotch"]
+        apt_dev : ["libptscotch-dev"]
+    }
+    environ :
+    {
+       env_script : "scotch.py"
+    }
+    compil_script: "scotch-6.0.4.sh"
+    depend: ['openmpi']
+}
