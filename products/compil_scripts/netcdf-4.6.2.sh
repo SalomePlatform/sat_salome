@@ -33,6 +33,8 @@ if [ -n "$HDF5_ROOT_DIR" ] && [ "${HDF5_ROOT_DIR}" != "/usr" ]; then
     CMAKE_OPTIONS+=" -DHDF5_USE_STATIC_LIBRARIES:BOOL=OFF"
     CMAKE_OPTIONS+=" -DHDF5_ROOT:PATH=${HDF5_ROOT_DIR}"
     CMAKE_OPTIONS+=" -DHDF5_HL_LIBRARY=${HDF5_ROOT_DIR}/lib/libhdf5_hl.so"
+    CMAKE_OPTIONS+=" -DHDF5_C_LIBRARY=${HDF5_ROOT_DIR}/lib/libhdf5.so"
+    CMAKE_OPTIONS+=" -DHDF5_INCLUDE_DIR=${HDF5_ROOT_DIR}/include"
 fi
 
 ### libxml2 settings

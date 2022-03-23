@@ -19,7 +19,7 @@ default :
               'cgns',
               'Pygments'
               ]
-    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'rkCommon', 'gdal']
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'rkCommon', 'gdal', 'netcdf']
     build_depend : ["cmake"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
@@ -151,7 +151,7 @@ version_5_9_1_MPI :
 
 version_5_9_0 :
 {
-    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal']
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf']
     compil_script :  'ParaView-5.9.0.sh'
     archive_info : {archive_name : "ParaView-5.9.0-lata.tar.gz"}
     # two other LATA patches already included in archive
