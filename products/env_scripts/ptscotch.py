@@ -3,7 +3,7 @@
 
 import os.path
 def set_env(env, prereq_dir, version):
-  SCOTCH_HPC=False
+  SCOTCH_HPC=True
   #SCOTCH_HPC=env.get('SCOTCH_HPC') == '1'
   if SCOTCH_HPC: 
     env.set('SCOTCH_ROOT_DIR', prereq_dir)
@@ -16,7 +16,7 @@ def set_env(env, prereq_dir, version):
     env.set('SCOTCH_ROOT_DIR', prereq_dir)
 
 def set_nativ_env(env):
-  SCOTCH_HPC=False
+  SCOTCH_HPC=True
 
   #SCOTCH_HPC=env.get('SCOTCH_HPC') == '1'
   if SCOTCH_HPC:

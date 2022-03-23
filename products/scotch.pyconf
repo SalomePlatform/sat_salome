@@ -58,7 +58,7 @@ version_6_0_4_MPI :
     }
     environ :
     {
-       env_script : "scotch.py"
+       env_script : "ptscotch.py"
     }
     compil_script: "scotch-6.0.4.sh"
     depend: ['openmpi']
