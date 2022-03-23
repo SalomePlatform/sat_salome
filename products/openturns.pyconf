@@ -35,14 +35,31 @@ default_win :
     opt_depend : []
 }
 
-version_1_16 :
+version_1_18 :
 {
-    compil_script :  "openturns-1.16" + $VARS.scriptExtension
-    patches : ['openturns-1.16.0001.patch','openturns-1.16.0002.patch']
+    compil_script :  "openturns-1.18" + $VARS.scriptExtension
+    patches : ['openturns-1.18.0001.patch']
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
+    opt_depend : ['pandas', 'statsmodels']
 }
 
-version_1_16_win :
+version_1_18_FD32 :
 {
+    compil_script :  "openturns-1.18" + $VARS.scriptExtension
+    patches : ['openturns-1.18.0001.patch', 'openturns-1.18.0002.patch']
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
+    opt_depend : ['pandas', 'statsmodels']
+}
+
+version_1_18_win :
+{
+    properties :
+    {
+      incremental : "yes"
+      pip : "yes"
+    }
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'pthreads']
+    opt_depend : []
     patches : []
 }
 
@@ -71,5 +88,16 @@ version_1_17_win :
     }
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'pthreads']
     opt_depend : []
+    patches : []
+}
+
+version_1_16 :
+{
+    compil_script :  "openturns-1.16" + $VARS.scriptExtension
+    patches : ['openturns-1.16.0001.patch','openturns-1.16.0002.patch']
+}
+
+version_1_16_win :
+{
     patches : []
 }
