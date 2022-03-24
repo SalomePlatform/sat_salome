@@ -35,8 +35,8 @@ default :
         # specific to some platform(s)
         "CO7" :
         {
-            rpm : ["lz4", "gsl", "libgeotiff", "giflib", "geos"]
-            rpm_dev : ["perl", "gsl-devel", "libpng-devel", "libtiff-devel", "libgeotiff-devel", "giflib-devel", "geos-devel"]
+            rpm : ["lz4", "gsl", "libgeotiff", "giflib", "geos", "fftw3"]
+            rpm_dev : ["perl", "gsl-devel", "libpng-devel", "libtiff-devel", "libgeotiff-devel", "giflib-devel", "geos-devel", "ftw3-devel", "devtoolset-8-gcc-g++"]
         }
         "CO8" :
         {
@@ -67,7 +67,7 @@ default :
         {
             apt : ["libopenexr22", "libwebp6", "libgfortran3", "libilmbase12", "libevent-2.0-5", "libpng16-16", "libgcc-6-dev",
                    "libffi6", "libtinfo5", "libgphoto2-port12", "libglx0", "libopengl0", "libjsoncpp1"]
-            apt_dev : ["libtbb-dev", "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev"]
+            apt_dev : ["libtbb-dev", "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev", "texlive-latex-base", "texlive-latex-extra"]
         }
         "DB10" :
         {

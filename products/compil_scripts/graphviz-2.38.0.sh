@@ -30,6 +30,13 @@ then
 fi
 
 echo "*** make install"
+
+# 23/03/2022
+# feedback sent by Vadim SANDERS
+# cannot run 'dot -c': failed to open /usr/lib/graphviz/config6a for write
+# strangely on some Debian 9, the dot command triggers
+export PATH=${PRODUCT_INSTALL}/bin:${PATH}
+export LD_LIBRARY_PATH=${PRODUCT_INSTALL}/lib:${PRODUCT_INSTALL}/lib/graphviz:${LD_LIBRARY_PATH}
 make install
 if [ $? -ne 0 ]
 then
