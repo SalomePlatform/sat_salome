@@ -35,8 +35,8 @@ default :
         # specific to some platform(s)
         "CO7" :
         {
-            rpm : ["lz4", "gsl", "libgeotiff", "giflib", "geos", "fftw3"]
-            rpm_dev : ["perl", "gsl-devel", "libpng-devel", "libtiff-devel", "libgeotiff-devel", "giflib-devel", "geos-devel", "ftw3-devel", "devtoolset-8-gcc-g++"]
+            rpm : ["lz4", "gsl", "libgeotiff", "giflib", "geos", "fftw"]
+            rpm_dev : ["perl", "gsl-devel", "libpng-devel", "libtiff-devel", "libgeotiff-devel", "giflib-devel", "geos-devel", "fftw-devel", "devtoolset-8-gcc"]
         }
         "CO8" :
         {
