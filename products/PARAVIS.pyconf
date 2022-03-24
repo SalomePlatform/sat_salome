@@ -73,6 +73,37 @@ default_win:
 
 default_MPI :
 {
+    cmake_options : "-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON  -DSALOME_USE_MPI=ON "
+    depend : [
+       "KERNEL",
+       "GUI",
+       "MEDCOUPLING",
+       "FIELDS",
+       "GEOM",
+       "SMESH",
+       "Python",
+       "qt",
+       "boost",
+       "hdf5",
+       "medfile",
+       "ParaView",
+       "CAS",
+       "omniORB",
+       "docutils",
+       "libxml2",
+       "six",
+       "pytz",
+       "openmpi"
+    ]
+}
+
+version_V9_7_0_to_V9_8_0 :
+{
+    cmake_options : "-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON -DBUILD_TESTING=ON"
+}
+
+version_V9_8_0_MPI :
+{
     cmake_options : "-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON -DMEDCOUPLING_USE_MPI=ON -DSALOME_USE_MPI=ON"
     depend : [
        "KERNEL",
