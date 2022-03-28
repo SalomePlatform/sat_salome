@@ -87,12 +87,12 @@ APPLICATION :
         opencv : 'native'
         openmpi: 'native'
         openVKL : '0.11.0'
-        openturns: '1.17'
+        openturns: '1.18'
         ospray : '2.4.0'
         packaging : 'native'
         pandas : 'native'
         ParaView : {tag:'5.9.0',  base: 'no',  section: 'version_5_9_0_MPI', hpc: 'yes'}
-        PERSALYS: 'v11.0'
+        PERSALYS: 'v12.0'
         petsc : {tag : '3.16.0', section: 'version_3_16_0'}
         Pillow : 'native'
         # 'native' not exists : freeCAD part but not delivered with it from package handler
@@ -156,7 +156,7 @@ APPLICATION :
         'HOMARD'
         'FIELDS'
         'PARAVIS': {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
-        'OPENTURNS_SALOME': '9.8.0'
+        'OPENTURNS_SALOME'
         'JOBMANAGER'
         'YACS'
         'YACSGEN'

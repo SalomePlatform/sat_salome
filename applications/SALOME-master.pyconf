@@ -84,14 +84,14 @@ APPLICATION :
         omniORBpy : '4.2.2'
         opencv : '3.2.0'
         openmpi : '3.1.6'
-        openturns: '1.17'
+        openturns: '1.18'
         openVKL: '0.11.0'
         ospray : '2.4.0'
         packaging : '17.1'
         pandas : '0.25.2'
         patsy : '0.5.2'
         ParaView : {tag:'5.9.0', base: 'no',  section: 'version_5_9_0_MPI', hpc: 'yes'}
-        PERSALYS: 'v11.0'
+        PERSALYS: 'v12.0'
         petsc : {tag : '3.16.0', section: 'version_3_16_0'}
         Pillow : '7.1.1'
         planegcs : '0.18-3cb6890'
@@ -152,7 +152,7 @@ APPLICATION :
         'HEXABLOCKPLUGIN'
         'HOMARD'
         'FIELDS'
-        'OPENTURNS_SALOME' : '9.8.0'
+        'OPENTURNS_SALOME'
         'PARAVIS' : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'JOBMANAGER'
         'YACS'

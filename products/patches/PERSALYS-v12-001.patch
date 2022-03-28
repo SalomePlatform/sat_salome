@@ -1,0 +1,51 @@
+--- PERSALYS_ref/CMakeLists.txt	2022-01-11 16:27:50.000000000 +0100
++++ PERSALYS_new/CMakeLists.txt	2022-02-27 12:45:01.757523273 +0100
+@@ -10,6 +10,10 @@
+ option (USE_COTIRE "Use cotire for unity builds" OFF)
+ option (USE_PARAVIEW "use ParaView" ON)
+ set (PERSALYS_QT_VERSION 5 CACHE STRING "Qt version")
++SET(KERNEL_ROOT_DIR $ENV{KERNEL_ROOT_DIR} CACHE PATH "Path to the Salome KERNEL")
++SET(GUI_ROOT_DIR $ENV{GUI_ROOT_DIR} CACHE PATH "Path to the Salome GUI")
++SET(YACS_ROOT_DIR $ENV{YACS_ROOT_DIR} CACHE PATH "Path to the Salome YACS")
++SET(ADAO_ROOT_DIR $ENV{ADAO_ROOT_DIR} CACHE PATH "Path to the Salome ADAO")
+ 
+ # By default, build in Release mode. Must appear before project() command
+ if ( NOT DEFINED CMAKE_BUILD_TYPE )
+@@ -27,6 +31,17 @@
+ # set module dir to find custom scripts
+ list ( APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake )
+ 
++# Common CMake macros
++# ===================
++if (USE_SALOME)
++  SET(CONFIGURATION_ROOT_DIR $ENV{CONFIGURATION_ROOT_DIR} CACHE PATH "Path to the Salome CMake configuration files")
++  IF(EXISTS ${CONFIGURATION_ROOT_DIR})
++    LIST(APPEND CMAKE_MODULE_PATH "${CONFIGURATION_ROOT_DIR}/cmake")
++    INCLUDE(SalomeMacros NO_POLICY_SCOPE)
++  ELSE()
++    MESSAGE(FATAL_ERROR "We absolutely need the Salome CMake configuration files, please define CONFIGURATION_ROOT_DIR !")
++  ENDIF()
++endif()
+ 
+ if (USE_COTIRE)
+   if (POLICY CMP0058)
+@@ -63,6 +78,9 @@
+   list (APPEND PERSALYS_DEFINITIONS "-DPERSALYS_STATIC -DPYINTERP_STATIC -DPYCONSOLE_STATIC")
+ endif ()
+ 
++if (USE_SALOME)
++  FIND_PACKAGE(SalomeBoost REQUIRED)
++endif(USE_SALOME)
+ find_package (Boost COMPONENTS filesystem locale REQUIRED)
+ if (TARGET Boost::filesystem)
+   set (Boost_LIBRARIES Boost::filesystem Boost::locale)
+@@ -91,6 +109,9 @@
+     endmacro ()
+   endif ()
+ 
++  if (USE_SALOME)
++    find_package (SalomeQwt)
++  endif()
+   find_package (Qwt 6 REQUIRED)
+ 
+   if (USE_PARAVIEW)
