@@ -111,7 +111,7 @@ APPLICATION :
         root: '6.22.02'
         salome_system : 'native'
         scipy : '1.4.1'
-        scotch : '6.0.4'
+        scotch : '6.1.2'
         setuptools : '38.4.0'
         sip : '5.5.0'
         six : '1.10.0'

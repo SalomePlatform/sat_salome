@@ -26,6 +26,50 @@ default :
     }
 }
 
+version_6_1_2 :
+{
+    compil_script: "scotch-6.1.2.sh"
+}
+
+version_6_1_2_MPI :
+{
+    system_info :
+    {
+        rpm : []
+        rpm_dev : [] # not compatible  on FD34 -  so embed
+        apt : ["libptscotch"]
+        apt_dev : ["libptscotch-dev"]
+    }
+    environ :
+    {
+       env_script : "ptscotch.py"
+    }
+    compil_script: "scotch-6.1.2.sh"
+    depend: ['openmpi']
+}
+
+version_6_0_4 :
+{
+    compil_script: "scotch-6.0.4.sh"
+}
+
+version_6_0_4_MPI :
+{
+    system_info :
+    {
+        rpm : []
+        rpm_dev : []
+        apt : ["libptscotch"]
+        apt_dev : ["libptscotch-dev"]
+    }
+    environ :
+    {
+       env_script : "ptscotch.py"
+    }
+    compil_script: "scotch-6.0.4.sh"
+    depend: ['openmpi']
+}
+
 version_5_1_12b :
 {
     name : "scotch"
@@ -40,26 +84,4 @@ version_5_1_12b :
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     install_dir : 'base'
-}
-
-version_6_0_4 :
-{
-    compil_script: "scotch-6.0.4.sh"
-}
-
-version_6_0_4_MPI :
-{
-    system_info :
-    {
-        rpm : ["ptscotch-openmpi"]
-        rpm_dev : ["ptscotch-openmpi-devel"]
-        apt : ["libptscotch"]
-        apt_dev : ["libptscotch-dev"]
-    }
-    environ :
-    {
-       env_script : "ptscotch.py"
-    }
-    compil_script: "scotch-6.0.4.sh"
-    depend: ['openmpi']
 }

@@ -8,7 +8,7 @@ default :
     {
        env_script : $name + ".py"
     }
-    depend : ['Python']
+    depend : ['Python', 'numpy'] # numpy mandatory otherwise no python API is generated
     build_depend : ["cmake", "swig"]
     patches : []
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
@@ -23,7 +23,6 @@ default :
 
 default_win:
 {
-   depend : ['Python']
    properties :
    {
      incremental : "yes"

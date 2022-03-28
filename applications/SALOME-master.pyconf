@@ -25,7 +25,6 @@ APPLICATION :
         SALOME_trace : "local" # local/file:.../with_logger
         SALOME_MODULES : "SHAPER,SHAPERSTUDY,GEOM,SMESH,PARAVIS,YACS,JOBMANAGER"  # specify the first modules to display in gui
         SALOME_ACTOR_DELEGATE_TO_VTK : '1'
-        SCOTCH_HPC : '1'
     }
     products :
     {
@@ -111,7 +110,7 @@ APPLICATION :
         root: '6.22.02'
         salome_system : 'native'
         scipy : '1.4.1'
-        scotch : {tag: '6.0.4', section: 'version_6_0_4_MPI', hpc: 'yes', base: 'no'}
+        scotch : {tag: '6.1.2', section: 'version_6_1_2_MPI', hpc: 'yes', base: 'no'}
         setuptools : '38.4.0'
         sip : '5.5.0'
         six : '1.10.0'

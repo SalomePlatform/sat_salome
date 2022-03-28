@@ -26,8 +26,14 @@ sed -e "s%LDFLAGS\([[:space:]]*\)=\([[:space:]]*\)\(.*\)%LDFLAGS\1=\2 \3 -lpthre
 mv Makefile.in_new Makefile.inc
 
 echo
-echo "*** make" $MAKE_OPTIONS
-make $MAKE_OPTIONS
+if [ -n "$SAT_HPC" ]; then
+    SCOTCH_TARGET=ptscotch
+else
+    SCOTCH_TARGET=scotch
+fi
+
+echo "*** make" $MAKE_OPTIONS $SCOTCH_TARGET
+make $MAKE_OPTIONS $SCOTCH_TARGET
 if [ $? -ne 0 ]
 then
     echo "ERROR on make"
