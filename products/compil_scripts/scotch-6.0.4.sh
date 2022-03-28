@@ -34,15 +34,15 @@ then
     exit 2
 fi
 
-NO_CHECK=0
+DO_CHECK=0
 LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
 case $LINUX_DISTRIBUTION in
     CO*|FD*)
-	NO_CHECK=1
+	DO_CHECK=1
 	;;
 esac
 
-if [ $NO_CHECK -eq 1 ]; then
+if [ $DO_CHECK -eq 1 ]; then
     echo
     echo "*** Check if node is a virtual machine"
     ISVM=$(hostnamectl status|grep -i chassis:|grep vm)
