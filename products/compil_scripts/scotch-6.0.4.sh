@@ -44,18 +44,16 @@ else
     echo "*** hostnamectl says that $HOSTNAME is *NOT* a virtual machine"
 fi
 
-echo
-echo "*** make ptcheck"
 cd $BUILD_DIR/src
 if [ -n "$SAT_HPC" ]; then
+    echo
+    echo "*** make ptcheck"
     make ptcheck
-else
-    make check
-fi
-if [ $? -ne 0 ]
-then
-    echo "ERROR on make check"
-    exit 3
+    if [ $? -ne 0 ]
+    then
+	echo "ERROR on make check"
+	exit 3
+    fi
 fi
 
 echo
