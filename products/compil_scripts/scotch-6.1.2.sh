@@ -40,13 +40,15 @@ then
     exit 2
 fi
 
-DO_CHECK=1
-LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
-case $LINUX_DISTRIBUTION in
-    CO*|FD*)
-	DO_CHECK=0
-	;;
-esac
+# TODO: Open ARTIFACT
+DO_CHECK=0
+# DO_CHECK=1
+# LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
+# case $LINUX_DISTRIBUTION in
+#     CO*|FD*)
+# 	DO_CHECK=0
+# 	;;
+# esac
 
 if [ $DO_CHECK -eq 1 ]; then
     echo
