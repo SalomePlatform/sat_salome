@@ -11,7 +11,7 @@ export PYTHONPATH=$(pwd):$PYTHONPATH
 export PYTHONPATH=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION:0:3}/site-packages:$PYTHONPATH
 
 CMAKE_OPTIONS=""
-if [-n "$SAT_HPC" ] && [ -n "$MPI_ROOT_DIR" ]; then
+if [ -n "$SAT_HPC" ] && [ -n "$MPI_ROOT_DIR" ]; then
     echo "WARNING: setting CC and CXX environment variables and target MPI wrapper"
     CMAKE_OPTIONS+=" -DCMAKE_CXX_COMPILER:STRING=${MPI_CXX_COMPILER}"
     CMAKE_OPTIONS+=" -DCMAKE_C_COMPILER:STRING=${MPI_C_COMPILER}"
