@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "##########################################################################"
-echo "ptscotch" $VERSION
+echo "scotch" $VERSION
 echo "##########################################################################"
 
 echo
@@ -20,7 +20,7 @@ echo "*** create Makefile"
 if [ -n "$SAT_HPC" ]; then
     sed -e "s%CFLAGS\([[:space:]]*\)=\([[:space:]]*\)\(.*\)%CFLAGS\1=\2-fPIC -DPIC -DINTSIZE64 -DSCOTCH_PTHREAD -I${MPI_INCLUDE_DIR} \3%g" Make.inc/Makefile.inc.x86-64_pc_linux2 > Makefile.inc
 else
-    sed -e "s%CFLAGS\([[:space:]]*\)=\([[:space:]]*\)\(.*\)%CFLAGS\1=\2-fPIC -DPIC -DINTSIZE64 -DSCOTCH_PTHREAD \3%g" Make.inc/Makefile.inc.x86-64_pc_linux2 > Makefile.inc
+    sed -e "s%CFLAGS\([[:space:]]*\)=\([[:space:]]*\)\(.*\)%CFLAGS\1=\2-fPIC \3%g" Make.inc/Makefile.inc.x86-64_pc_linux2 > Makefile.inc
 fi
 sed -e "s%LDFLAGS\([[:space:]]*\)=\([[:space:]]*\)\(.*\)%LDFLAGS\1=\2 \3 -lpthread%g" Makefile.inc > Makefile.in_new
 mv Makefile.in_new Makefile.inc
