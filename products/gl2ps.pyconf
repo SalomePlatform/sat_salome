@@ -80,6 +80,17 @@ version_1_4_0_4037312 :
     patches : ["gl2ps-1.4.0-GLUT.patch"]
 }
 
+version_1_4_0_4037312_DB10 :
+{
+    build_source : "script"
+    compil_script: "gl2ps-1.4.0.sh"
+    archive_info:
+    {
+       archive_name : "gl2ps-1.4.0_4037312.tar.gz"
+    }
+    patches : ["gl2ps-1.4.0-GLUT.patch"]
+}
+
 version_1_4_0_4037312_win :
 {
    build_source : "script"

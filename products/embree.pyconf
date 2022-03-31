@@ -28,3 +28,28 @@ default_win :
       single_install_dir: "yes"
    }
 }
+
+version_3_3_0_CO6 :
+{
+  patches : ['embree-3.5.2-centos6.patch']
+}
+
+version_3_5_2_CO6 :
+{
+  patches : ['embree-3.5.2-centos6.patch']
+}
+
+version_3_3_0_DB10 :
+{
+  depend: ['ispc']
+}
+
+version_3_3_0_UB18_0_4 :
+{
+  depend: ['ispc']
+}
+
+version_3_3_0_UB16_0_4 :
+{
+  depend: ['ispc']
+}

@@ -177,6 +177,6 @@ __overwrite__ :
   {
     #
     __condition__ : "VARS.dist in ['UB20.04']"
-    'PRODUCTS.qt.version_5_9_1.patches' : ['qt-5.9.1-UB20-FD32-socketcanbackend.patch']
+      'APPLICATION.products.qt'    : {tag: '5.9.1', base: 'no', section: 'version_5_9_1_UB20_0_4'}
   }
 ]

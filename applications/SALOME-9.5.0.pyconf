@@ -171,10 +171,10 @@ __overwrite__ :
    # GTK  compilation issue
     __condition__ : "VARS.dist in ['CO6']"
     'APPLICATION.products.opencv' : '2.4.13.5'
-    'APPLICATION.products.tbb' : '4.4'
-    'APPLICATION.products.llvm' : '3.9.1-clang'
-    'APPLICATION.products.mesa' : '13.0.6'
-    'PRODUCTS.embree.default.patches' : ['embree-3.5.2-centos6.patch']
+    'APPLICATION.products.tbb'    : '4.4'
+    'APPLICATION.products.llvm'   : '3.9.1-clang'
+    'APPLICATION.products.mesa'   : '13.0.6'
+    'APPLICATION.products.embree' : {tag:'3.3.0',   base: 'no', section: 'version_3_3_0_CO6'}
    }
 
   {

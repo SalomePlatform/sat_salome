@@ -65,3 +65,12 @@ version_1_9_2_src :
     patches : ['ispc-makefile_WERROR.patch']
     depend : ['llvm']
 }
+
+version_1_9_2_CO6 :
+{
+  build_source : "script"
+  compil_script :  "ispc-1.9.2.sh"
+  archive_info : {archive_name : "ispc-1.9.2.tar.gz"}
+  patches : ['ispc-1.9.2-centos6.patch']
+  depend : ['llvm']
+}

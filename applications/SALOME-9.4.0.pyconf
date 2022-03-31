@@ -159,24 +159,30 @@ __overwrite__ :
    # GTK  compilation issue
     __condition__ : "VARS.dist in ['CO6']"
     'APPLICATION.products.opencv' : '2.4.13.5'
-    'PRODUCTS.embree.default.patches' : ['embree-3.5.2-centos6.patch']
-    'PRODUCTS.ispc.version_1_9_2_src.patches' : ['ispc-1.9.2-centos6.patch']
+    'APPLICATION.products.embree' : {tag:'3.5.2',   base: 'no', section: 'version_3_5_2_CO6'}
+    'APPLICATION.products.ispc'   : {tag:'1.9.2',   base: 'no', section: 'version_1_9_2_CO6'}
    }
 
    {
       #
-      __condition__ : "VARS.dist in ['UB16.04', 'UB18.04']"
-      'APPLICATION.products.tbb' : 'native'
-      'PRODUCTS.embree.default.depend' : ['ispc']
+      __condition__ : "VARS.dist in ['UB18.04']"
+      'APPLICATION.products.tbb'    : 'native'
+      'APPLICATION.products.embree' : {tag:'3.3.0',   base: 'no', section: 'version_3_3_0_UB18_0_4'}
+   }
+
+   {
+      #
+      __condition__ : "VARS.dist in ['UB16.04']"
+      'APPLICATION.products.tbb'    : 'native'
+      'APPLICATION.products.embree' : {tag:'3.3.0',   base: 'no', section: 'version_3_3_0_UB16_0_4'}
    }
 
    {
       #
       __condition__ : "VARS.dist in ['DB10']"
-      'APPLICATION.products.tbb' : 'native'
-      'PRODUCTS.embree.default.depend' : ['ispc']
-      'PRODUCTS.gl2ps.version_1_4_0_4037312.build_source' : 'script'
-      'PRODUCTS.gl2ps.version_1_4_0_4037312.compil_script' : 'gl2ps-1.4.0.sh'
+      'APPLICATION.products.tbb'    : 'native'
+      'APPLICATION.products.embree' : {tag:'3.3.0',         base: 'no', section: 'version_3_3_0_DB10'        }
+      'APPLICATION.products.gl2ps'  : {tag:'1.4.0_4037312', base: 'no', section: 'version_1_4_0_4037312_DB10'}
    }
 
    {
