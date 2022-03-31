@@ -247,6 +247,7 @@ __overwrite__ :
         'APPLICATION.products.PyFMI'     : {tag: '2.5',   base: 'no', section: 'version_2_5_no_pip'              }
         'APPLICATION.products.openturns' : {tag: '1.17',  base: 'no', section: 'version_1_17_FD32'               }
         'APPLICATION.products.Sphinx'    : {tag: '1.7.6', base: 'no', section: 'version_1_7_6_no_pip'            }
+        'APPLICATION.products.gdal'      : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_FD32'             } # spns #29324
     }
     {
         __condition__ : "VARS.dist in ['FD34']"

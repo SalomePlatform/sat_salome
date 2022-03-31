@@ -42,3 +42,9 @@ version_2_4_0_FD34:
     compil_script :  'gdal-2.4.0.sh'
     patches : ["gdal.0001-r2000.patch"]
 }
+
+version_2_4_0_FD32:
+{
+    compil_script :  'gdal-2.4.0.sh'
+    patches : ["gdal.0001-r2000.patch"]
+}
