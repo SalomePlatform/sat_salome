@@ -172,6 +172,7 @@ APPLICATION :
         'ADAO_INTERFACE'
         'PARAVISADDONS'
         'YDEFX'
+        'pmml'
         'TESTBASE': {tag: 'master'}
         'CEATESTBASE' : {tag: 'SalomeV9'}
     }

@@ -18,4 +18,18 @@ default :
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     install_dir : 'base'
+    properties :
+    {
+      incremental : "yes"
+      single_install_dir : "no"
+    }
+}
+
+default_win :
+{
+    properties :
+    {
+      incremental : "yes"
+      single_install_dir : "yes"
+    }
 }

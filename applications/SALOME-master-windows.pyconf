@@ -166,6 +166,7 @@ APPLICATION :
         'EFICAS_TOOLS'
         'ADAO'
         'PARAVISADDONS'
+        'pmml'
         'TESTBASE': {tag: 'master'}
         'CEATESTBASE' : {tag: 'SalomeV9'}
     }

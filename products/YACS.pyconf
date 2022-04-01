@@ -2,6 +2,7 @@ default :
 {
     name : "YACS"
     build_source : "cmake"
+    cmake_options : " -DSALOME_YACS_USE_EMBEDDED_PMML=OFF"
     get_source : "git"
     git_info:
     {
