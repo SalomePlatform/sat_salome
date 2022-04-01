@@ -18,6 +18,11 @@ CONFIGURE_FLAGS+=" --with-threads"
 CONFIGURE_FLAGS+=" --with-python=${PYTHONBIN}"
 CONFIGURE_FLAGS+=" --with-hdf5=${HDF5_ROOT_DIR}"
 CONFIGURE_FLAGS+=" --with-netcdf=${NETCDF_ROOT_DIR}"
+
+if [[ "$DIST_NAME$DIST_VERSION" == "CO8" ]]; then
+    CONFIGURE_FLAGS+=" --without-jasper"
+fi
+
 if [ ! -z "$LIBXML_ROOT_DIR" ]; then
     CONFIGURE_FLAGS+=" --with-xml2=${LIBXML_ROOT_DIR}"
 fi

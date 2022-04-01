@@ -240,6 +240,7 @@ __overwrite__ :
         'APPLICATION.products.cminpack'    : '1.3.6'
         'APPLICATION.products.PyFMI'       : {tag: '2.5',    base: 'no', section: 'version_2_5_no_pip'             }
         'APPLICATION.products.statsmodels' : {tag: '0.6.1',  base: 'no', section: 'version_0_6_1_no_pip'           }
+        'APPLICATION.products.gdal'        : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_CO8'              } # spns #29324
     }
     {
         __condition__ : "VARS.dist in ['FD32']"
