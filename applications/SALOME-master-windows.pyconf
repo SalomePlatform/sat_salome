@@ -23,12 +23,15 @@ APPLICATION :
             SET_usr_docs_VARS : "1" # required for PyEditor build
             CMAKE_GENERATOR : '"Visual Studio 15 2017 Win64"'
         }
-        launch : {PYTHONIOENCODING:"UTF_8", SALOME_MODULES_ORDER:"SHAPER:SHAPERSTUDY:GEOM:SMESH"}
+        launch :
+        {
+            PYTHONIOENCODING:"UTF_8",
+            SALOME_MODULES_ORDER:"SHAPER:SHAPERSTUDY:GEOM:SMESH"
+        }
         SALOME_trace : "local" # local/file:.../with_logger
         SALOME_MODULES : "SHAPER,SHAPERSTUDY,GEOM,SMESH,PARAVIS,YACS,JOBMANAGER"  # specify the first modules to display in gui
         SALOME_TMP_DIR : "%appdata%"
         HOME : "%userprofile%"
-        SALOME_ACTOR_DELEGATE_TO_VTK : '1'
     }
     products :
     {
@@ -36,7 +39,7 @@ APPLICATION :
         alabaster : '0.7.6'
         Babel : '2.7.0'
         boost : '1.67.0'
-        CAS : {tag: 'V7_5_3p1', section: 'version_V7_5_3p1_win'}
+        CAS : {tag: 'V7_5_3p2', section: 'version_V7_5_3p2_win'}
         certifi : '2019.6.16'
         cgns : '4.2.0'
         chardet : '3.0.4'
@@ -47,6 +50,7 @@ APPLICATION :
         cycler : '0.10.0'
         Cython : '0.29.12'
         dateutil : '2.8.0'
+        dill : '0.3.4'
         docutils : '0.14'
         doxygen : '1.8.3.1'
         eigen : '3.3.4'
@@ -82,7 +86,7 @@ APPLICATION :
         omniORBpy : '4.2.3'
         opencv : '3.2.0'
         openVKL: '0.11.0'
-        openturns: '1.17'
+        openturns: '1.18'
         ospray : '2.4.0'
         packaging : '19.0'
         ParaView : '5.9.0'
@@ -94,7 +98,6 @@ APPLICATION :
         Pygments : '2.4.2'
         pyparsing : '2.4.0'
         PyQt : '5.15.3'
-        # PyQtChart : '5.15.4'
         pyreadline : '2.1'
         Python : '3.6.5'
         pytz : '2019.1'
@@ -164,7 +167,7 @@ APPLICATION :
         'ADAO'
         'PARAVISADDONS'
         'TESTBASE': {tag: 'master'}
-        'CEATESTBASE' : {tag: 'SSL'}
+        'CEATESTBASE' : {tag: 'SalomeV9'}
     }
     profile :
     {

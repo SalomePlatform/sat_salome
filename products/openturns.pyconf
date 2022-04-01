@@ -58,7 +58,7 @@ version_1_18_win :
       incremental : "yes"
       pip : "yes"
     }
-    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'pthreads']
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'pthreads', 'dill', 'psutil']
     opt_depend : []
     patches : []
 }

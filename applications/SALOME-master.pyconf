@@ -24,12 +24,10 @@ APPLICATION :
         launch :
         {
             PYTHONIOENCODING:"UTF_8",
-            SALOME_MODULES_ORDER:"SHAPER:SHAPERSTUDY:GEOM:SMESH",
-            ROOT_SALOME_INSTALL: '$PRODUCT_ROOT_DIR'
+            SALOME_MODULES_ORDER:"SHAPER:SHAPERSTUDY:GEOM:SMESH"
         }
         SALOME_trace : "local" # local/file:.../with_logger
         SALOME_MODULES : "SHAPER,SHAPERSTUDY,GEOM,SMESH,PARAVIS,YACS,JOBMANAGER"  # specify the first modules to display in gui
-        SALOME_ACTOR_DELEGATE_TO_VTK : '1'
     }
     products :
     {
@@ -37,7 +35,7 @@ APPLICATION :
         alabaster : '0.7.6'
         Babel : '2.7.0'
         boost : '1.71.0'
-        CAS : 'V7_5_3p1'
+        CAS : 'V7_5_3p2'
         C3PO: 'v2.0'
         certifi : '2018.8.24'
         cgns : '4.2.0'

@@ -1,0 +1,35 @@
+default :
+{
+    name : "dill"
+    build_source : "script"
+    compil_script :  $name + $VARS.scriptExtension
+    get_source : "archive"
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen']
+	opt_depend: []
+    patches : []
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+      single_install_dir : "no"
+      incremental : "yes"
+      pip : "yes"
+    }
+}
+
+default_win :
+{
+    compil_script :  'pip_install' + $VARS.scriptExtension
+    properties :
+    {
+      single_install_dir : "no"
+      incremental : "yes"
+      pip : "yes"
+    }
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'pthreads']
+}
