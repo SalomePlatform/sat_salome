@@ -247,17 +247,18 @@ __overwrite__ :
         __condition__ : "VARS.dist in ['FD32']"
         'APPLICATION.products.opencv'    : '3.2.0'
         'APPLICATION.products.PyFMI'     : {tag: '2.5',   base: 'no', section: 'version_2_5_no_pip'              }
-        'APPLICATION.products.openturns' : {tag: '1.17',  base: 'no', section: 'version_1_17_FD32'               }
+        'APPLICATION.products.openturns' : {tag: '1.18',  base: 'no', section: 'version_1_18_FD32'               }
         'APPLICATION.products.Sphinx'    : {tag: '1.7.6', base: 'no', section: 'version_1_7_6_no_pip'            }
-        'APPLICATION.products.gdal'      : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_FD32'             } # spns #29324
+        'APPLICATION.products.gdal'      : {tag:'2.4.0',  base: 'no', section: 'version_2_4_0_FD32'              } # spns #29324
     }
     {
         __condition__ : "VARS.dist in ['FD34']"
-        'APPLICATION.products.opencv'   : '3.2.0'
-        'APPLICATION.products.omniORB'  : '4.2.4'
-        'APPLICATION.products.omniORBpy': '4.2.4'
-        'APPLICATION.products.PyFMI'    : {tag: '2.5',    base: 'no', section: 'version_2_5_no_pip'             }
-        'APPLICATION.products.root'     : {tag:'6.22.02', base: 'no', section: 'version_6_22_02_FD34'           }
-        'APPLICATION.products.gdal'     : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_FD34'             } # spns #29324
+        'APPLICATION.products.opencv'    : '3.2.0'
+        'APPLICATION.products.omniORB'   : '4.2.4'
+        'APPLICATION.products.omniORBpy' : '4.2.4'
+        'APPLICATION.products.PyFMI'     : {tag: '2.5',    base: 'no', section: 'version_2_5_no_pip'             }
+        'APPLICATION.products.openturns' : {tag: '1.18',   base: 'no', section: 'version_1_18_FD34'              }
+        'APPLICATION.products.root'      : {tag:'6.22.02', base: 'no', section: 'version_6_22_02_FD34'           }
+        'APPLICATION.products.gdal'      : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_FD34'             } # spns #29324
     }
 ]

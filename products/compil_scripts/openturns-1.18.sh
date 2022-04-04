@@ -20,21 +20,32 @@ fi
 CMAKE_OPTIONS+=" -DCMAKE_INSTALL_PREFIX:STRING=${PRODUCT_INSTALL}"
 CMAKE_OPTIONS+=" -DCMAKE_BUILD_TYPE:STRING=Release"
 CMAKE_OPTIONS+=" -DPYTHON_EXECUTABLE=${PYTHONBIN}"
-CMAKE_OPTIONS+=" -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig"
 
-if [ -n "$TBB_ROOT_DIR" ] && [ "${TBB_ROOT_DIR}" != "/usr" ]; then
+if [ -n "$SWIG_ROOT_DIR" ] && [ "$SAT_swig_IS_NATIVE" != "1" ]; then
+    CMAKE_OPTIONS+=" -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig"
+fi
+
+if [ -n "$TBB_ROOT_DIR" ] && [ "$SAT_tbb_IS_NATIVE" != "1" ]; then
     CMAKE_OPTIONS+=" -DTBB_ROOT_DIR=${TBB_ROOT_DIR}"
 fi
 
+# Blas/Lapack
+if [ -n "$LAPACK_ROOT_DIR" ] && [ "$SAT_lapack_IS_NATIVE" != "1" ]; then
+    CMAKE_OPTIONS+=" -DLAPACK_DIR=${LAPACK_ROOT_DIR}/lib/cmake/lapack-3.8.0"
+    CMAKE_OPTIONS+=" -DCBLAS_DIR=${LAPACK_ROOT_DIR}/lib/cmake/cblas-3.8.0"
+    CMAKE_OPTIONS+=" -DCBLAS_LIBRARIES=$LAPACK_ROOT_DIR/lib/libcblas.so"
+    CMAKE_OPTIONS+=" -DBLAS_LIBRARIES=$LAPACK_ROOT_DIR/lib/libblas.so"
+fi
+
 ### libxml2 settings
-if [ -n "$LIBXML2_ROOT_DIR" ] && [ "${LIBXML2_ROOT_DIR}" != "/usr" ]; then
+if [ -n "$LIBXML2_ROOT_DIR" ] && [ "$SAT_libxml2_IS_NATIVE" != "1" ]; then
     CMAKE_OPTIONS+=" -DLIBXML2_INCLUDE_DIR:STRING=${LIBXML2_ROOT_DIR}/include/libxml2"
     CMAKE_OPTIONS+=" -DLIBXML2_LIBRARIES:STRING=${LIBXML2_ROOT_DIR}/lib/libxml2.so"
     CMAKE_OPTIONS+=" -DLIBXML2_XMLLINT_EXECUTABLE=${LIBXML2_ROOT_DIR}/bin/xmllint"
 fi
 
 # HDF5
-if [ -n "$HDF5_ROOT_DIR" ] && [ "${HDF5_ROOT_DIR}" != "/usr" ]; then
+if [ -n "$HDF5_ROOT_DIR" ] && [ "$SAT_hdf5_IS_NATIVE" != "1" ]; then
     CMAKE_OPTIONS+=" -DHDF5_DIR:PATH=${HDF5_ROOT_DIR}/share/cmake/hdf5"
     CMAKE_OPTIONS+=" -DHDF5_USE_STATIC_LIBRARIES:BOOL=OFF"
     CMAKE_OPTIONS+=" -DHDF5_ROOT:PATH=${HDF5_ROOT_DIR}"
@@ -45,7 +56,7 @@ if [ -n "$HDF5_ROOT_DIR" ] && [ "${HDF5_ROOT_DIR}" != "/usr" ]; then
 fi
 
 # CMINPACK
-if [ -n "$CMINPACK_ROOT_DIR" ] && [ "${CMINPACK_ROOT_DIR}" != "/usr" ]; then
+if [ -n "$CMINPACK_ROOT_DIR" ] && [ "$SAT_cminpack_IS_NATIVE" != "1" ]; then
     CMAKE_OPTIONS+=" -DCMINPACK_ROOT_DIR=${CMINPACK_ROOT_DIR}"
     CMAKE_OPTIONS+=" -DCMINPACK_INCLUDE_DIR=${CMINPACK_ROOT_DIR}/include/cminpack-1"
     CMAKE_OPTIONS+=" -DCMINPACK_LIBRARY=$CMINPACK_ROOT_DIR/lib/libcminpack_s.a"
@@ -55,35 +66,38 @@ else
 fi
 
 # Blas/Lapack
-if [ -n "$LAPACK_ROOT_DIR" ] && [ "${LAPACK_ROOT_DIR}" != "/" ]; then
+if [ -n "$LAPACK_ROOT_DIR" ] && [ "$SAT_lapack_IS_NATIVE" != "1" ]; then
     CMAKE_OPTIONS+=" -DLAPACK_DIR=${LAPACK_ROOT_DIR}/lib/cmake/lapack-3.8.0"
     CMAKE_OPTIONS+=" -DCBLAS_DIR=${LAPACK_ROOT_DIR}/lib/cmake/cblas-3.8.0"
     CMAKE_OPTIONS+=" -DCBLAS_LIBRARIES=$LAPACK_ROOT_DIR/lib/libcblas.so"
     CMAKE_OPTIONS+=" -DBLAS_LIBRARIES=$LAPACK_ROOT_DIR/lib/libblas.so"
 fi
 
-if [[ $DIST_NAME == "CO" && $DIST_VERSION == "8" && $APPLICATION_NAME =~ native && -f /usr/lib64/libcblas.so && -f /usr/lib64/libblas.so ]]; then
+if [[ $DIST_NAME == "CO" && $DIST_VERSION == "8" &&  -f /usr/lib64/libcblas.so && -f /usr/lib64/libblas.so ]]; then
     CMAKE_OPTIONS+=" -DCBLAS_LIBRARIES=/usr/lib64/libcblas.so"
     CMAKE_OPTIONS+=" -DBLAS_LIBRARIES=/usr/lib64/libblas.so"
 fi
 
 ### libxml2 settings
-if [ -n "$LIBXML2_ROOT_DIR" ] && [ "${LIBXML2_ROOT_DIR}" != "/usr" ]; then
+if [ -n "$LIBXML2_ROOT_DIR" ] && [ "$SAT_libxml2_IS_NATIVE" != "1" ]; then
     CMAKE_OPTIONS+=" -DLIBXML2_INCLUDE_DIR:STRING=${LIBXML2_ROOT_DIR}/include/libxml2"
     CMAKE_OPTIONS+=" -DLIBXML2_LIBRARIES:STRING=${LIBXML2_ROOT_DIR}/lib/libxml2.so"
     CMAKE_OPTIONS+=" -DLIBXML2_XMLLINT_EXECUTABLE=${LIBXML2_ROOT_DIR}/bin/xmllint"
 fi
 
 ## nlopt
-if [ -n "$NLOPT_ROOT_DIR" ] && [ "${NLOPT_ROOT_DIR}" != "/usr" ]; then
+if [ -n "$NLOPT_ROOT_DIR" ] && [ "$SAT_nlopt_IS_NATIVE" != "1" ]; then
     CMAKE_OPTIONS+=" -DNLOPT_INCLUDE_DIRS:STRING=${NLOPT_ROOT_DIR}/include"
     CMAKE_OPTIONS+=" -DNLOPT_LIBRARIES:STRING=${NLOPT_ROOT_DIR}/lib"
     CMAKE_OPTIONS+=" -DNLOPT_DIR:STRING=${NLOPT_ROOT_DIR}"
 fi
 
+
 echo
 echo "*** cmake" $CMAKE_OPTIONS
+
 mkdir -p $BUILD_DIR/openturns
+mkdir -p  $BUILD_DIR/cache/pip
 cd  $BUILD_DIR/openturns
 cmake $CMAKE_OPTIONS $SOURCE_DIR/openturns-1.18
 if [ $? -ne 0 ]
@@ -167,6 +181,9 @@ if [[ -d "$SOURCE_DIR/otfftw-0.11" ]]; then
             CMAKE_EXTRA_OPTIONS+=" -DUSE_SPHINX=OFF"
         elif  [[ $k == "otfftw" ]]; then
             CMAKE_EXTRA_OPTIONS+=" -DBUILD_DOC=OFF"
+	elif [ $k == "otmorris" ] &&  [ "$DIST_NAME$DIST_VERSION" == "FD32" ]; then
+            CMAKE_EXTRA_OPTIONS+=" -DBUILD_DOC=OFF"
+            CMAKE_EXTRA_OPTIONS+=" -DUSE_SPHINX=OFF" # missing package to be installed.
         elif  [[ $k == "otpmml" ]]; then
             CMAKE_EXTRA_OPTIONS+=" -DBUILD_DOC=OFF"
         fi
@@ -206,41 +223,40 @@ if [[ -d "$SOURCE_DIR/otfftw-0.11" ]]; then
     do 
         echo
         echo "*** C O M P O N E N T : $k-${OTP[$k]} "
-	
-	if [[ $DIST_NAME == "DB" && $DIST_VERSION == "10" && $APPLICATION_NAME =~ native && $k == "otfmi" ]]; then
-	    echo "INFO: install dill-0.3.4"
-	    ${PYTHONBIN} -m pip install $SOURCE_DIR/dill-0.3.4/dill-0.3.4-py2.py3-none-any.whl --no-deps  --prefix=$PRODUCT_INSTALL
-	    if [ $? -ne 0 ]
-	    then
-		echo "FATAL: could not install dill-0.3.4"
-		exit 6
+
+	if [ "$SAT_Python_IS_NATIVE" == "1" ]; then
+	    if [ $k == "otfmi" ]; then
+		echo "INFO: install dill-0.3.4"
+		${PYTHONBIN} -m pip install  --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/dill-0.3.4/dill-0.3.4-py2.py3-none-any.whl --no-deps  --prefix=$PRODUCT_INSTALL 
+		if [ $? -ne 0 ]
+		then
+		    echo "FATAL: could not install dill-0.3.4"
+		    exit 6
+		fi
+	    elif [ $k == "otpod" ]; then
+		if [[ $DIST_NAME == "CO" && $DIST_VERSION == "8" ]]; then
+		    echo "*** skipping: since system Cython too old"
+		    continue
+		fi
+		echo "INFO: install scikit-learn-0.24.2"
+		${PYTHONBIN} -m pip install  --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/scikit-learn-0.24.2/scikit-learn-0.24.2.tar.gz --no-deps  --prefix=$PRODUCT_INSTALL
+		if [ $? -ne 0 ]
+		then
+		    echo "FATAL: could not install scikit-0.24.2"
+		    exit 6
+		fi
+		echo "INFO: install threadpoolctl-3.0.0"
+		${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip  $SOURCE_DIR/threadpoolctl-3.0.0/threadpoolctl-3.0.0-py3-none-any.whl --no-deps --prefix=$PRODUCT_INSTALL
+		if [ $? -ne 0 ]
+		then
+		    echo "FATAL: could not install threadpoolctl 3.0.0"
+		    exit 6
+		fi
 	    fi
-	fi
-	if [[ $DIST_NAME == "DB" && $DIST_VERSION == "10" && $APPLICATION_NAME =~ native && $k == "otpod" ]]; then
-	    echo "INFO: install scikit-learn-0.24.2"
-	    ${PYTHONBIN} -m pip install $SOURCE_DIR/scikit-learn-0.24.2/scikit-learn-0.24.2.tar.gz --no-deps  --prefix=$PRODUCT_INSTALL
-	    if [ $? -ne 0 ]
-	    then
-		echo "FATAL: could not install scikit-0.24.2"
-		exit 6
-	    fi
-	    echo "INFO: install threadpoolctl-3.0.0"
-	    ${PYTHONBIN} -m pip install $SOURCE_DIR/threadpoolctl-3.0.0/threadpoolctl-3.0.0-py3-none-any.whl --no-deps --prefix=$PRODUCT_INSTALL
-	    if [ $? -ne 0 ]
-	    then
-		echo "FATAL: could not install threadpoolctl 3.0.0"
-		exit 6
-	    fi
-	fi
-        if [[ $DIST_NAME == "CO" && $DIST_VERSION == "8" && $APPLICATION_NAME =~ native && $k == "otpod" ]]; then
-            echo "*** skipping: since system Cython too old"
-            continue
-        fi
-	# For non native builds install everything, since Python is embedded
-	if [[ ! $APPLICATION_NAME =~ native ]]; then
+	else # non native Python
             if [[ $k == "otfmi" ]]; then
 		echo "INFO: install dill-0.3.4"
-		${PYTHONBIN} -m pip install $SOURCE_DIR/dill-0.3.4/dill-0.3.4-py2.py3-none-any.whl --no-deps
+		${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/dill-0.3.4/dill-0.3.4-py2.py3-none-any.whl --no-deps
 		if [ $? -ne 0 ]
 		then
 		    echo "FATAL: could not install dikk-0.3.4"
@@ -248,38 +264,28 @@ if [[ -d "$SOURCE_DIR/otfftw-0.11" ]]; then
 		fi
 	    elif [[ $k == "otpod" ]]; then
 		echo "INFO: install threadpoolctl-3.0.0"
-		${PYTHONBIN} -m pip install $SOURCE_DIR/threadpoolctl-3.0.0/threadpoolctl-3.0.0-py3-none-any.whl --no-deps
+		${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/threadpoolctl-3.0.0/threadpoolctl-3.0.0-py3-none-any.whl --no-deps
 		if [ $? -ne 0 ]
 		then
 		    echo "FATAL: could not install readpoolctl 3.0.0"
 		    exit 6
 		fi
 		echo "INFO: install joblib-1.1.0"
-		${PYTHONBIN} -m pip install $SOURCE_DIR/joblib-1.1.0/joblib-1.1.0-py2.py3-none-any.whl --no-deps
+		${PYTHONBIN} -m pip install  --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/joblib-1.1.0/joblib-1.1.0-py2.py3-none-any.whl --no-deps
 		if [ $? -ne 0 ]
 		then
 		    echo "FATAL: could not install joblib-1.1.0"
 		    exit 6
 		fi
 		echo "INFO: install decorator-5.1.0"
-		${PYTHONBIN} -m pip install $SOURCE_DIR/decorator-5.1.0/decorator-5.1.0-py3-none-any.whl --no-deps
+		${PYTHONBIN} -m pip install  --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/decorator-5.1.0/decorator-5.1.0-py3-none-any.whl --no-deps
 		if [ $? -ne 0 ]
 		then
 		    echo "FATAL: could not install decorator-5.1.0"
 		    exit 6
 		fi
 		echo "INFO: install scikit-learn-0.24.2"
-		${PYTHONBIN} -m pip install $SOURCE_DIR/scikit-learn-0.24.2/scikit-learn-0.24.2.tar.gz --no-deps
-		if [ $? -ne 0 ]
-		then
-		    echo "FATAL: could not install scikit-0.24.2"
-		    exit 6
-		fi
-	    fi
-	else
-	    if [[ $DIST_NAME == "FD" && $DIST_VERSION == "32" && $k == "otpod" ]]; then
-		echo "INFO: install scikit-learn-0.24.2"
-		${PYTHONBIN} -m pip install $SOURCE_DIR/scikit-learn-0.24.2/scikit-learn-0.24.2.tar.gz --no-deps  --prefix=$PRODUCT_INSTALL
+		${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/scikit-learn-0.24.2/scikit-learn-0.24.2.tar.gz --no-deps
 		if [ $? -ne 0 ]
 		then
 		    echo "FATAL: could not install scikit-0.24.2"
@@ -307,7 +313,55 @@ if [[ -d "$SOURCE_DIR/otfftw-0.11" ]]; then
             exit 5
         fi
     done
+
+    #
+    # O P E N T U R N S
+    #
+    if [ -f ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages/site.py ]; then
+        echo "INFO: site.py already installed"
+    elif [ "$SAT_Python_IS_NATIVE" == "1" ]; then
+        # check first whether the init.py file is installed
+        echo "WARNING: missing init.py file. Installing it from system Python installation"
+        SITE_PATCH=
+        LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
+        case $LINUX_DISTRIBUTION in
+	    DB11)
+                SITE_PATCH=/usr/lib/pypy/dist-packages/setuptools/site-patch.py
+                ;;
+	    DB10)
+                SITE_PATCH=/usr/lib/python3/dist-packages/setuptools/site-patch.py
+                ;;
+	    UB20*)
+                SITE_PATCH=/usr/lib/pypy/dist-packages/setuptools/site-patch.py
+                ;;
+	    FD32)
+                SITE_PATCH=/usr/lib/pypy/dist-packages/setuptools/site-patch.py
+                ;;
+	    FD34)
+                SITE_PATCH=
+                ;;
+	    CO8*)
+                SITE_PATCH=/usr/lib/pypy/dist-packages/setuptools/site-patch.py
+                ;;
+	    *)
+                SITE_PATCH=$SOURCE_DIR/addons/site-patch.py
+		;;
+        esac
+        # check whether this file exists
+        if [ "${SITE_PATCH}" == "" ]; then
+            cp $SOURCE_DIR/addons/site-patch.py ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages/site.py
+        else
+            cp $SITE_PATCH ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages/site.py
+        fi
+    elif [ -f ${PYTHON_ROOT_DIR}/lib/python${PYTHON_VERSION}/site-packages/setuptools/site-patch.py ]; then
+        cp ${PYTHON_ROOT_DIR}/lib/python${PYTHON_VERSION}/site-packages/setuptools/site-patch.py ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages/site.py
+    else
+	echo "ERROR: could not find site-patch.py"
+	exit 7
+    fi
 fi
+
+# add the site.py file
 
 echo
 echo "########## END"

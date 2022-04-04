@@ -4,6 +4,13 @@ default :
     build_source : "script"
     compil_script :  'pip_install' + $VARS.scriptExtension
     get_source : "archive"
+    system_info :
+    {
+        rpm : ["python3-setuptools"]
+        rpm_dev : []
+        apt : ["python3-setuptools"]
+        apt_dev : []
+    }
     environ :
     {
        env_script : $name + ".py"

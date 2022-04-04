@@ -76,7 +76,7 @@ default :
                    "libnetcdf13", "libgdal20"]
             apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev",
                        "qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools", "libopenmpi-dev",
-		       "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev", "libnetcdf-dev", "libgdal-dev"]
+		       "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev", "libnetcdf-dev", "libgdal-dev", "texlive-latex-base", "texlive-latex-extra"]
         }
         "DB11" :
         {
@@ -85,7 +85,7 @@ default :
 		   "openmpi-bin", "libnetcdf18", "libgdal28"]
             apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev",
                        "qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools", "libopenmpi-dev",
-		       "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev", "libnetcdf-dev", "libgdal-dev"]
+		       "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev", "libnetcdf-dev", "libgdal-dev", "texlive-latex-base", "texlive-latex-extra"]
         }
         "UB16.04" :
         {
