@@ -5,7 +5,7 @@ APPLICATION :
 {
     name : 'SALOME-master'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag : 'master'
+    tag : 'V9_9_0a2'
     dev : 'no'
     verbose :'no'
     debug : 'no'
@@ -128,7 +128,7 @@ APPLICATION :
         tbb : '2019_U8'
         tcl : '8.6.0'
         tk : '8.6.0'
-        TopIIVolMesh: 'develop'
+        TopIIVolMesh
         urllib3 : '1.23'
         zeromq: '4.3.1'
         URANIE : '4.5.0'
@@ -140,7 +140,7 @@ APPLICATION :
         'RESTRICTED'
         'LIBBATCH' : {tag : 'V2_4_5'}
         'KERNEL'
-        'MEDCOUPLING' : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'MEDCOUPLING' : {tag:'V9_9_0a2', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'GUI'
         'GEOM'
         'SMESH'
@@ -156,7 +156,7 @@ APPLICATION :
         'HOMARD'
         'FIELDS'
         'OPENTURNS_SALOME'
-        'PARAVIS' : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'PARAVIS' : {tag:'V9_9_0a2', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
@@ -172,7 +172,7 @@ APPLICATION :
         'EFICAS_TOOLS'
         'PY2CPP'
         'ADAO'
-        'ADAO_INTERFACE'
+        'ADAO_INTERFACE' : 'ce77875' #FIXME
         'PARAVISADDONS'
         'YDEFX'
         'pmml'
@@ -233,5 +233,10 @@ __overwrite__ :
     {
         __condition__ : "VARS.dist in ['UB20.04']"
         'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
+    }
+
+    {
+        __condition__ : "VARS.dist not in ['DB09', 'DB10', 'DB11']"
+        'APPLICATION.products.MeshGems' : '2.13-1'
     }
 ]

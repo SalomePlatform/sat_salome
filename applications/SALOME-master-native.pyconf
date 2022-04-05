@@ -5,7 +5,7 @@ APPLICATION :
 {
     name : 'SALOME-master-native'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag : 'master'
+    tag : 'V9_9_0a2'
     dev : 'no'
     verbose :'no'
     debug : 'no'
@@ -132,7 +132,7 @@ APPLICATION :
         tbb : 'native'
         tcl : 'native'
         tk : 'native'
-        TopIIVolMesh: 'develop'
+        TopIIVolMesh
         urllib3 : 'native'
         zeromq: '4.3.1'
         URANIE : '4.5.0'
@@ -145,7 +145,7 @@ APPLICATION :
         'RESTRICTED'
         'LIBBATCH' : {tag : 'V2_4_5'}
         'KERNEL'
-        'MEDCOUPLING' : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'MEDCOUPLING' : {tag:'V9_9_0a2', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'GUI'
         'GEOM'
         'SMESH'
@@ -160,8 +160,8 @@ APPLICATION :
         'HEXABLOCKPLUGIN'
         'HOMARD'
         'FIELDS'
-        'PARAVIS': {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'OPENTURNS_SALOME'
+        'PARAVIS': {tag:'V9_9_0a2', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
@@ -177,7 +177,7 @@ APPLICATION :
         'EFICAS_TOOLS'
         'PY2CPP'
         'ADAO'
-        'ADAO_INTERFACE'
+        'ADAO_INTERFACE' : 'ce77875' #FIXME
         'PARAVISADDONS'
         'YDEFX'
         'pmml'
@@ -260,5 +260,10 @@ __overwrite__ :
         'APPLICATION.products.openturns' : {tag: '1.18',   base: 'no', section: 'version_1_18_FD34'              }
         'APPLICATION.products.root'      : {tag:'6.22.02', base: 'no', section: 'version_6_22_02_FD34'           }
         'APPLICATION.products.gdal'      : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_FD34'             } # spns #29324
+    }
+    {
+        # FIXME: to be removed once CEA License for 2.14-4 is renewed.
+        __condition__ : "VARS.dist not in ['DB09', 'DB10', 'DB11']"
+        'APPLICATION.products.MeshGems' : '2.13-1'
     }
 ]
