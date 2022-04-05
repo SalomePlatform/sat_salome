@@ -1,0 +1,15 @@
+diff --git a/src/GMSHPlugin/GMSHPlugin_Mesher.cxx b/src/GMSHPlugin/GMSHPlugin_Mesher.cxx
+index 847526e..556c7bb 100644
+--- a/src/GMSHPlugin/GMSHPlugin_Mesher.cxx
++++ b/src/GMSHPlugin/GMSHPlugin_Mesher.cxx
+@@ -320,8 +320,10 @@ void GMSHPlugin_Mesher::SetGmshOptions()
+   ok = GmshSetOption("Mesh", "MaxNumThreads3D"          , 0. )  ; // Fine-grain algo threads HXT
+   ASSERT(ok);
+ **/
++  #ifndef WIN32
+   ok = GmshSetOption("General", "NumThreads"            , _maxThreads )  ; // system default i.e. OMP_NUM_THREADS
+   ASSERT(ok);
++  #endif WIN32
+ #endif
+ }
+ 

@@ -34,7 +34,7 @@ default :
 
 default_win :
 {
-   patches : ['GMSHPlugin_Mesher-ctx.patch']
+   patches : ['GMSHPLUGIN-BOS-18709.patch']
 }
 
 version_8_1_0_to_9_1_0 :
