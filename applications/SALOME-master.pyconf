@@ -213,6 +213,7 @@ __overwrite__ :
         # https://github.com/scipy/scipy/issues/11611
         'APPLICATION.products.scipy' : '1.5.2'
         'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
+        'APPLICATION.products.gdal': {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_FD32'} # spns #29324
     }
     {
         __condition__ : "VARS.dist in ['CO7']"
@@ -220,12 +221,13 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['CO8']"
-        'APPLICATION.rm_products'  : ['gcc', 'gmp', 'mpc', 'mpfr']
+        'APPLICATION.rm_products'  : ['gcc', 'gmp', 'mpc', 'mpfr', 'zeromq']
         'APPLICATION.products.gdal': {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_CO8'} # spns #29324
     }
     {
         __condition__ : "VARS.dist in ['DB10']"
         'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
+        'APPLICATION.products.gdal': {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_DB10'} # spns #29324
     }
     {
         __condition__ : "VARS.dist in ['UB18.04']"
@@ -234,6 +236,7 @@ __overwrite__ :
     {
         __condition__ : "VARS.dist in ['UB20.04']"
         'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
+        'APPLICATION.products.gdal': {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_UB20_0_4'} # spns #29324
     }
 
     {

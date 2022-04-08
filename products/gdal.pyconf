@@ -56,3 +56,19 @@ version_2_4_0_CO8:
                "gdal.0002-GNUmakefile-tooLongLine.patch"
               ]
 }
+
+version_2_4_0_DB10:
+{
+    compil_script :  'gdal-2.4.0.sh'
+    patches : ["gdal.0001-r2000.patch",
+               "gdal.0002-GNUmakefile-tooLongLine.patch"
+              ]
+}
+
+version_2_4_0_UB20_0_4:
+{
+    compil_script :  'gdal-2.4.0.sh'
+    patches : ["gdal.0001-r2000.patch",
+               "gdal.0002-GNUmakefile-tooLongLine.patch"
+              ]
+}
