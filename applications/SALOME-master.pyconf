@@ -5,7 +5,7 @@ APPLICATION :
 {
     name : 'SALOME-master'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag : 'V9_9_0a2'
+    tag : 'master'
     dev : 'no'
     verbose :'no'
     debug : 'no'
@@ -140,7 +140,7 @@ APPLICATION :
         'RESTRICTED'
         'LIBBATCH' : {tag : 'V2_4_5'}
         'KERNEL'
-        'MEDCOUPLING' : {tag:'V9_9_0a2', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'MEDCOUPLING' : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'GUI'
         'GEOM'
         'SMESH'
@@ -156,7 +156,7 @@ APPLICATION :
         'HOMARD'
         'FIELDS'
         'OPENTURNS_SALOME'
-        'PARAVIS' : {tag:'V9_9_0a2', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'PARAVIS' : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
@@ -172,7 +172,7 @@ APPLICATION :
         'EFICAS_TOOLS'
         'PY2CPP'
         'ADAO'
-        'ADAO_INTERFACE' : 'ce77875' #FIXME
+        'ADAO_INTERFACE'
         'PARAVISADDONS'
         'YDEFX'
         'pmml'
