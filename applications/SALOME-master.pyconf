@@ -220,7 +220,8 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['CO8']"
-        'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
+        'APPLICATION.rm_products'  : ['gcc', 'gmp', 'mpc', 'mpfr']
+        'APPLICATION.products.gdal': {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_CO8'} # spns #29324
     }
     {
         __condition__ : "VARS.dist in ['DB10']"
