@@ -225,7 +225,7 @@ __overwrite__ :
 
   {
     __condition__ : "VARS.dist in ['UB20.04']"
-    'APPLICATION.products.qt'       : {tag: '5.9.1', base: 'no', section: 'version_5_9_1_UB20_0_4' }
+    'APPLICATION.products.qt'       : {tag: '5.9.1', base: 'no', section: 'version_5_9_1_UB20_04' }
   }
 
 ]

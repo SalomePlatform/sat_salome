@@ -197,7 +197,7 @@ __overwrite__ :
         'APPLICATION.products.opencv'  : '3.2.0'
         'APPLICATION.products.cminpack': 'native'
         'APPLICATION.products.PyFMI'    : {tag: '2.5',   base: 'no', section: 'version_2_5_no_pip'                }
-        'APPLICATION.products.ParaView' : {tag: '5.9.0', base: 'no', section: 'version_5_9_0_UB20_0_4'}
+        'APPLICATION.products.ParaView' : {tag: '5.9.0', base: 'no', section: 'version_5_9_0_UB20_04'             }
     }
     {
         # On DB10, ParaView fails to find xmlpatterns executable : ParaViewClient.cmake try to find it

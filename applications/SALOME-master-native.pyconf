@@ -77,7 +77,7 @@ APPLICATION :
         markupsafe : 'native'
         matplotlib : 'native'
         medfile : '4.1.1'
-        mesa : 'native'
+        mesa : {tag : '19.0.8', base: 'no', section: 'version_19_0_8_x86_64'}
         MeshGems : '2.14-4'
         metis : 'native'
         mpi4py: 'native'
@@ -200,7 +200,7 @@ APPLICATION :
     }
     properties :
     {
-        mesa_launcher_in_package : "no"
+        mesa_launcher_in_package : "yes"
         repo_dev : "yes"
         pip : 'yes'
         pip_install_dir : 'python'

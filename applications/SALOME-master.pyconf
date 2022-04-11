@@ -236,7 +236,7 @@ __overwrite__ :
     {
         __condition__ : "VARS.dist in ['UB20.04']"
         'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
-        'APPLICATION.products.gdal': {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_UB20_0_4'} # spns #29324
+        'APPLICATION.products.gdal': {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_UB20_04'} # spns #29324
     }
 
     {

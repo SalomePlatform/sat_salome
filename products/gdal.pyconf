@@ -65,7 +65,7 @@ version_2_4_0_DB10:
               ]
 }
 
-version_2_4_0_UB20_0_4:
+version_2_4_0_UB20_04:
 {
     compil_script :  'gdal-2.4.0.sh'
     patches : ["gdal.0001-r2000.patch",

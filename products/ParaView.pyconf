@@ -261,7 +261,7 @@ version_5_9_0_FD32 :
               ]
 }
 
-version_5_9_0_UB20_0_4 :
+version_5_9_0_UB20_04 :
 {
     compil_script :  'ParaView-5.9.0.sh'
     archive_info : {archive_name : "ParaView-5.9.0-lata.tar.gz"}
