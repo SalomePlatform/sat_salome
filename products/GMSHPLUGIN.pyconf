@@ -32,11 +32,6 @@ default :
     patches: []
 }
 
-default_win :
-{
-   patches : ['GMSHPLUGIN-BOS-18709.patch']
-}
-
 version_8_1_0_to_9_1_0 :
 {
     name : "GMSHPLUGIN"
