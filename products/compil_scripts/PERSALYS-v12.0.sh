@@ -57,6 +57,11 @@ fi
 
 CMAKE_OPTIONS+=" -DCMAKE_FIND_ROOT_PATH=ON"
 CMAKE_OPTIONS+=" -DSWIG_EXECUTABLE:PATH=$(which swig)"
+f [ -n "$SAT_DEBUG" ]; then
+    CMAKE_OPTIONS+=" -DCMAKE_BUILD_TYPE:STRING=Debug"
+else
+    CMAKE_OPTIONS+=" -DCMAKE_BUILD_TYPE:STRING=Release"
+fi
 
 echo
 echo "*** cmake" $CMAKE_OPTIONS
