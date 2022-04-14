@@ -31,6 +31,14 @@ version_6_2_2101 :
    patches : ['netgen62ForSalome.patch']
 }
 
+version_6_2_2101_MPI :
+{
+   build_source : "cmake"
+   cmake_options : " -DUSE_GUI=OFF -DUSE_PYTHON=OFF -DUSE_MPI=ON -DUSE_OCC=ON -DUSE_INTERNAL_TCL=OFF -DBUILD_STUB_FILES=OFF -DOCC_INCLUDE_DIR=$CAS_ROOT_DIR/include/opencascade -DOCC_LIBRARY_DIR=$CAS_ROOT_DIR/lib -DCMAKE_INSTALL_LIBDIR=lib -DCMAKE_CXX_STANDARD=17  -DUSE_NATIVE_ARCH=OFF -DCMAKE_CXX_COMPILER:STRING=${MPI_CXX_COMPILER} -DCMAKE_C_COMPILER:STRING=${MPI_C_COMPILER} -DMETIS_DIR=${METIS_ROOT_DIR}"
+   patches : ['netgen62ForSalome.patch']
+    depend : ['CAS', 'tcl', 'tk', 'openmpi', 'metis']
+}
+
 version_6_2_2101_win :
 {
    build_source : "script"
