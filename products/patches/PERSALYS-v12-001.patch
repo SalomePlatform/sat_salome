@@ -1,5 +1,5 @@
---- PERSALYS_ref/CMakeLists.txt	2022-01-11 16:27:50.000000000 +0100
-+++ PERSALYS_new/CMakeLists.txt	2022-02-27 12:45:01.757523273 +0100
+--- persalys_v12.0_ref/CMakeLists.txt	2022-03-24 11:47:43.000000000 +0100
++++ persalys_v12.0_new/CMakeLists.txt	2022-04-14 12:07:55.519159319 +0200
 @@ -10,6 +10,10 @@
  option (USE_COTIRE "Use cotire for unity builds" OFF)
  option (USE_PARAVIEW "use ParaView" ON)
@@ -39,7 +39,7 @@
  find_package (Boost COMPONENTS filesystem locale REQUIRED)
  if (TARGET Boost::filesystem)
    set (Boost_LIBRARIES Boost::filesystem Boost::locale)
-@@ -91,6 +109,9 @@
+@@ -91,12 +109,22 @@
      endmacro ()
    endif ()
  
@@ -49,3 +49,19 @@
    find_package (Qwt 6 REQUIRED)
  
    if (USE_PARAVIEW)
+-    find_package (ParaView 5.8 CONFIG)
++    SET(PARAVIEW_ROOT_DIR $ENV{PARAVIEW_ROOT_DIR} CACHE PATH "Path to the PARAVIEW")
++    IF(PARAVIEW_ROOT_DIR)
++     LIST(APPEND CMAKE_PREFIX_PATH "${PARAVIEW_ROOT_DIR}")
++    ENDIF(PARAVIEW_ROOT_DIR)
++    FIND_PACKAGE(ParaView 5.9 CONFIG)
+     if (ParaView_FOUND)
+       message(STATUS "Found ParaView: ${ParaView_DIR} (found version \"${ParaView_VERSION}\")")
+       list (APPEND PERSALYS_DEFINITIONS -DPERSALYS_HAVE_PARAVIEW)
++    else()
++      message(FATAL "We absolutely need PARAVIEW!")
+     endif ()
++
+   endif ()
+
+ endif ()
