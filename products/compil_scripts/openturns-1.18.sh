@@ -361,7 +361,14 @@ if [[ -d "$SOURCE_DIR/otfftw-0.11" ]]; then
     fi
 fi
 
-# add the site.py file
+cd ${PRODUCT_INSTALL}/lib
+# On some nodes, the link to OT is not done properly.
+if [[ ! -f libOT.so.0 ]]; then
+    echo "INFO: Fixing libOT.so"
+    ln -sf libOT.so.0.19.0 libOT.so.0.19
+    ln -sf libOT.so.0.19 libOT.so.0
+    ln -sf libOT.so libOT.so.0
+fi
 
 echo
 echo "########## END"
