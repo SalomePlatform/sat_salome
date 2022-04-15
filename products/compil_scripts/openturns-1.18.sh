@@ -367,7 +367,7 @@ if [[ ! -f libOT.so.0 ]]; then
     echo "INFO: Fixing libOT.so"
     ln -sf libOT.so.0.19.0 libOT.so.0.19
     ln -sf libOT.so.0.19 libOT.so.0
-    ln -sf libOT.so libOT.so.0
+    ln -sf libOT.so.0 libOT.so
 fi
 
 echo
