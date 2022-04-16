@@ -103,10 +103,10 @@ default :
         "UB20.04" :
         {
             apt : ["libdc1394-22", "libopenexr24", "libwebp6", "libgfortran5", "libilmbase24", "libevent-2.1-7", "libpng16-16", "libgcc-9-dev",
-                   "libffi7", "libtinfo6", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0", "openmpi-bin"]
+                   "libffi7", "libtinfo6", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0", "openmpi-bin", "libgdal26"]
             apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev",
                        "qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools", "libopenmpi-dev",
-		       "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev"]
+		       "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev", "libgdal-dev"]
         }
         
     }
