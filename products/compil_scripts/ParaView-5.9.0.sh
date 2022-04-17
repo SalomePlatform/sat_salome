@@ -105,7 +105,7 @@ CMAKE_OPTIONS+=" -DVTK_BUILD_QT_DESIGNER_PLUGIN:BOOL=OFF"
 ### Python settings
 CMAKE_OPTIONS+=" -DPARAVIEW_USE_PYTHON:BOOL=ON"
 CMAKE_OPTIONS+=" -DVTK_WRAP_PYTHON:BOOL=ON"
-if [ "${PYTHON_ROOT_DIR}" != "/usr" ]
+if [ "${SAT_Python_IS_NATIVE}" != "1" ]
 then
     CMAKE_OPTIONS+=" -DPython3_INCLUDE_DIR:STRING=${PYTHON_ROOT_DIR}/include/python${PYTHON_VERSION}"
     CMAKE_OPTIONS+=" -DPython3_LIBRARY:STRING=${PYTHON_ROOT_DIR}/lib/libpython${PYTHON_VERSION}.so"
@@ -122,8 +122,8 @@ if [ -n "$SAT_HPC" ]
 then
     CMAKE_OPTIONS+=" -DPARAVIEW_USE_MPI:BOOL=ON"
     if [ -n "$MPI_ROOT_DIR" ]; then
-	CMAKE_OPTIONS+=" -DCMAKE_CXX_COMPILER:STRING=${MPI_CXX_COMPILER}"
-	CMAKE_OPTIONS+=" -DCMAKE_C_COMPILER:STRING=${MPI_C_COMPILER}"
+        CMAKE_OPTIONS+=" -DCMAKE_CXX_COMPILER:STRING=${MPI_CXX_COMPILER}"
+        CMAKE_OPTIONS+=" -DCMAKE_C_COMPILER:STRING=${MPI_C_COMPILER}"
     fi
     CMAKE_OPTIONS+=" -DVTK_SMP_IMPLEMENTATION_TYPE=OpenMP -DVTKm_ENABLE_OPENMP=ON"
     CMAKE_OPTIONS+=" -DVTK_MODULE_ENABLE_VTK_FiltersParallelMPI=YES"
@@ -162,7 +162,7 @@ fi
 
 ### HDF5 settings
 CMAKE_OPTIONS+=" -DVTK_MODULE_USE_EXTERNAL_VTK_hdf5:BOOL=ON"
-###CMAKE_OPTIONS+=" -DHDF5_DIR:PATH=${HDF5_ROOT_DIR}/share/cmake/hdf5"
+CMAKE_OPTIONS+=" -DHDF5_DIR:PATH=${HDF5_ROOT_DIR}/share/cmake/hdf5"
 CMAKE_OPTIONS+=" -DHDF5_USE_STATIC_LIBRARIES:BOOL=OFF"
 CMAKE_OPTIONS+=" -DHDF5_ROOT:PATH=${HDF5_ROOT_DIR}"
 CMAKE_OPTIONS+=" -DHDF5_hdf5_LIBRARY_RELEASE=${HDF5_ROOT_DIR}/lib"
@@ -173,9 +173,11 @@ CMAKE_OPTIONS+=" -DHDF5_C_INCLUDE_DIR=${HDF5_ROOT_DIR}/include"
 CMAKE_OPTIONS+=" -DHDF5_HL_LIBRARY=${HDF5_ROOT_DIR}/lib/libhdf5_hl.so"
 CMAKE_OPTIONS+=" -DHDF5_C_LIBRARY=${HDF5_ROOT_DIR}/lib/libhdf5.so"
 CMAKE_OPTIONS+=" -DHDF5_INCLUDE_DIR=${HDF5_ROOT_DIR}/include"
+CMAKE_OPTIONS+=" -DHDF5_IS_PARALLEL=OFF"
+
 ### CGNS
 CMAKE_OPTIONS+=" -DVTK_MODULE_USE_EXTERNAL_ParaView_cgns:BOOL=ON"
-if [ "$CGNS_ROOT_DIR" != "/usr" ]
+if [ "${SAT_cgns_IS_NATIVE}" != "1" ]
 then
     CMAKE_OPTIONS+=" -DCGNS_INCLUDE_DIR:PATH=${CGNS_ROOT_DIR}/include"
     CMAKE_OPTIONS+=" -DCGNS_LIBRARY:PATH=${CGNS_ROOT_DIR}/lib/libcgns.so"
@@ -200,7 +202,7 @@ if [ -n "$LIBXML2_ROOT_DIR" ]
 then
     # with a native libxml2, do not use these options
     CMAKE_OPTIONS+=" -DVTK_MODULE_USE_EXTERNAL_VTK_libxml2:BOOL=ON"
-    if [ "${LIBXML2_ROOT_DIR}" != "/usr" ]
+    if [ "${SAT_libxml2_IS_NATIVE}" != "1" ]
     then
         CMAKE_OPTIONS+=" -DLIBXML2_INCLUDE_DIR:STRING=${LIBXML2_ROOT_DIR}/include/libxml2"
         CMAKE_OPTIONS+=" -DLIBXML2_LIBRARIES:STRING=${LIBXML2_ROOT_DIR}/lib/libxml2.so"
@@ -235,7 +237,7 @@ if [ -n "$OT_VERSION" ]; then
         CMAKE_OPTIONS+=" -DPARAVIEW_ENABLE_OPENTURNS=ON"
         CMAKE_OPTIONS+=" -DOpenTURNS_DIR=$OT_ROOT_DIR/lib/cmake/openturns"
     else
-        echo "WARNING: OpenTURNS ${OT_VERSON} is not supported with current ParaView build..."
+        echo "WARNING: OpenTURNS ${OT_VERSION} is not supported with current ParaView build..."
     fi
 else
     echo "WARNING: No OpenTURNS environment variable is found..."
@@ -245,10 +247,10 @@ fi
 if [ -n "$GDAL_ROOT_DIR" ]; then
     echo "INFO: switching ON GDAL"
     CMAKE_OPTIONS+=" -DPARAVIEW_ENABLE_GDAL:BOOL=ON"
-    if [ "$GDAL_ROOT_DIR" != "/usr" ]; then
+    if [ "${SAT_gdal_IS_NATIVE}" != "1" ]; then
         CMAKE_OPTIONS+=" -DGDAL_ROOT_DIR=$GDAL_ROOT_DIR"
-	CMAKE_OPTIONS+=" -DGDAL_LIBRARY=$GDAL_ROOT_DIR/lib/libgdal.so"
-	CMAKE_OPTIONS+=" -DGDAL_INCLUDE_DIR=$GDAL_ROOT_DIR/include"
+        CMAKE_OPTIONS+=" -DGDAL_LIBRARY=$GDAL_ROOT_DIR/lib/libgdal.so"
+        CMAKE_OPTIONS+=" -DGDAL_INCLUDE_DIR=$GDAL_ROOT_DIR/include"
     fi
     CMAKE_OPTIONS+=" -DPARAVIEW_GENERATE_PROXY_DOCUMENTATION:BOOL=ON"
     CMAKE_OPTIONS+=" -DPARAVIEW_PLUGIN_ENABLE_GeographicalMap:BOOL=ON"
@@ -258,10 +260,9 @@ fi
 if [ -n "$NETCDF_ROOT_DIR" ]; then
     echo "INFO: switching ON NETCDF"
     CMAKE_OPTIONS+=" -DVTK_MODULE_USE_EXTERNAL_VTK_netcdf:BOOL=ON"
-    if [ "NETCDF_ROOT_DIR" != "/usr" ]; then
+    if [ "${SAT_netcdf_IS_NATIVE}" != "1" ]; then
         CMAKE_OPTIONS+=" -DNETCDF_ROOT_DIR=$NETCDF_ROOT_DIR"
-	CMAKE_OPTIONS+=" -Dnetcdf_DIR=$NETCDF_ROOT_DIR/lib/cmake/netCDF"
-#        CMAKE_OPTIONS+=" -DCMAKE_PREFIX_PATH=$NETCDF_ROOT_DIR/lib/cmake/netCDF"
+        CMAKE_OPTIONS+=" -Dnetcdf_DIR=$NETCDF_ROOT_DIR/lib/cmake/netCDF"
     fi
     CMAKE_OPTIONS+=" -DVTK_MODULE_ENABLE_VTK_FiltersParallelGeometry=YES"
 fi
