@@ -34,17 +34,17 @@ then
     echo "ERROR on make install"
     exit 3
 fi
+function version_ge() { test "$(echo "$@" | tr " " "\n" | sort -rV | head -n 1)" == "$1"; }
 
-if [[ $VERSION == "4.1.6" ]]
-then
+if version_ge $OT_VERSION "4.1" ; then
     # fix headers
     echo
     echo "*** fix headers"
     cd $PRODUCT_INSTALL/bin
-    sed -e "s%#\!.*python%#\!/usr/bin/env python%" omniidl > _omniidl
+    sed -e "s%#\!.*python%#\!/usr/bin/env python3%" omniidl > _omniidl
     mv -f _omniidl omniidl
     chmod a+x omniidl
-    sed -e "s%#\!.*python%#\!/usr/bin/env python%" omniidlrun.py > _omniidlrun.py
+    sed -e "s%#\!.*python%#\!/usr/bin/env python3%" omniidlrun.py > _omniidlrun.py
     mv -f _omniidlrun.py omniidlrun.py
     chmod a+x omniidlrun.py
 fi
