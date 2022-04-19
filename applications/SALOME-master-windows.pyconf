@@ -199,7 +199,7 @@ __overwrite__ :
 [
   {
     __condition__ : "APPLICATION.debug == 'yes'"
-    'APPLICATION.rm_products' : ['matplotlib']
+    'APPLICATION.rm_products' : ['matplotlib', 'openturns']
     'APPLICATION.products.numpy'      : {tag: '1.16.4',  base: 'no', section : 'version_1_16_4_win_dbg'     }
     'APPLICATION.products.Cython'     : {tag: '0.29.12', base: 'no', section : 'version_0_29_12_win_dbg'    }
     'APPLICATION.products.sphinxintl' : {tag: '2.0.0',   base: 'no', section : 'version_2_0_0_win_dbg'      }
