@@ -55,13 +55,13 @@ if NOT %ERRORLEVEL% == 0 (
 
 echo.
 echo *********************************************************************
-echo *** msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=%PLATFORM_TARGET% ALL_BUILD.vcxproj"
+echo *** msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=%PLATFORM_TARGET% ALL_BUILD.vcxproj
 echo *********************************************************************
 echo.
 
 msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=%PLATFORM_TARGET% ALL_BUILD.vcxproj
 if NOT %ERRORLEVEL% == 0 (
-    echo ERROR on msbuild gmsh.vcxproj
+    echo ERROR on msbuild ALL_BUILD.vcxproj
     exit 2
 )
 
@@ -77,5 +77,10 @@ if NOT %ERRORLEVEL% == 0 (
     exit 3
 )
 
+if %SAT_DEBUG% == 1 (
+  copy /Y /B  %PRODUCT_INSTALL%\lib\zlibd.lib %PRODUCT_INSTALL%\lib\zlib.lib
+  copy /Y /B  %PRODUCT_INSTALL%\bin\zlibd1.dll %PRODUCT_INSTALL%\bin\zlib1.dll
+)
+if
 echo.
 echo ########## END

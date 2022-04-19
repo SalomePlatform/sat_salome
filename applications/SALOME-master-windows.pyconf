@@ -207,5 +207,6 @@ __overwrite__ :
     'APPLICATION.products.tbb'        : {tag: '2019_U8', base: 'no', section : 'version_2019_U8_win_dbg'    }
     'APPLICATION.products.omniORB'    : {tag: '4.2.3',   base: 'no', section : 'version_4_2_3_win_dbg'      }
     'APPLICATION.products.psutil'     : {tag: '5.7.2',   base: 'no', section : 'version_5_7_2_win_dbg'      }
+    'APPLICATION.products.ParaView'   : {tag: '5.9.0',   base: 'no', section : 'version_5_9_0_win_dbg'      }
   }
 ]
