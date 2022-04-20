@@ -18,6 +18,7 @@ if [ -n "$SAT_HPC" ] && [ -n "$MPI_ROOT_DIR" ]; then
 fi
 
 CMAKE_OPTIONS+=" -DCMAKE_INSTALL_PREFIX:STRING=${PRODUCT_INSTALL}"
+CMAKE_OPTIONS+=" -DCMAKE_INSTALL_LIBDIR:STRING=lib"
 CMAKE_OPTIONS+=" -DCMAKE_BUILD_TYPE:STRING=Release"
 CMAKE_OPTIONS+=" -DPYTHON_EXECUTABLE=${PYTHONBIN}"
 
@@ -338,7 +339,8 @@ if [[ -d "$SOURCE_DIR/otfftw-0.11" ]]; then
                 SITE_PATCH=/usr/lib/pypy/dist-packages/setuptools/site-patch.py
                 ;;
 	    FD34)
-                SITE_PATCH=
+                ###SITE_PATCH=
+                SITE_PATCH=$SOURCE_DIR/addons/site-patch.py
                 ;;
 	    CO8*)
                 SITE_PATCH=/usr/lib/pypy/dist-packages/setuptools/site-patch.py

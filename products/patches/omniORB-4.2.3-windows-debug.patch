@@ -1,6 +1,14 @@
-diff -Naur omniORB-4.2.3_ref/config/config.mk omniORB-4.2.3_new/config/config.mk
---- omniORB-4.2.3_ref/config/config.mk	2017-05-11 15:01:56.000000000 +0200
-+++ omniORB-4.2.3_new/config/config.mk	2021-12-10 15:49:15.278207366 +0100
+--- omniORB-4.2.3_ref/config/config.mk	2022-04-20 12:57:28.336536788 +0200
++++ omniORB-4.2.3_new/config/config.mk	2022-04-20 12:57:36.864615145 +0200
+@@ -25,7 +25,7 @@
+ # You should also look at <top>/mk/platforms/$(platform).mk and if necessary
+ # edit the make variables, such as CC and CXX, in the file.
+ 
+-#platform = x86_win32_vs_15
++platform = x86_win32_vs_15
+ #platform = x86_win32_vs_14
+ #platform = x86_win32_vs_12
+ #platform = x86_win32_vs_11
 @@ -116,7 +116,7 @@
  # libraries. Setting this variable causes the build to break in subtle
  # ways. DO NOT SET THIS UNLESS YOU KNOW WHAT YOU ARE DOING.
@@ -10,3 +18,14 @@ diff -Naur omniORB-4.2.3_ref/config/config.mk omniORB-4.2.3_new/config/config.mk
  #
  
  EXPORT_TREE =  $(TOP)
+--- omniORB-4.2.3_ref/src/tool/omniidl/cxx/dir.mk	2018-05-08 18:57:00.000000000 +0200
++++ omniORB-4.2.3_new/src/tool/omniidl/cxx/dir.mk	2022-04-20 12:41:47.273874626 +0200
+@@ -196,7 +196,7 @@
+ PYLIB     := -lpython$(subst .,,$(PYVERSION))
+ CXXLINKOPTIONS += $(patsubst %,-L%,$(PYLIBDIR))
+ else
+-PYLIB     := python$(subst .,,$(PYVERSION)).lib
++PYLIB     := python$(subst .,,$(PYVERSION))_d.lib
+ CXXLINKOPTIONS += $(patsubst %,-libpath:%,$(PYLIBDIR))
+ endif
+ 
