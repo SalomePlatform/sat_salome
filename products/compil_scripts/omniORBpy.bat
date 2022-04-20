@@ -41,8 +41,16 @@ if NOT %ERRORLEVEL% == 0 (
 )
 
 if %SAT_DEBUG% == 1 (
-  cd %PRODUCT_INSTALL%
+  cd %OMNIORB_ROOT_DIR%
   powershell -Command "Get-ChildItem -File -Recurse *.pyd| ForEach-Object {if ((!$_.Name.EndsWith('_d.pyd'))) {  $_ | Copy-Item -Destination {$_.Name  -replace '.pyd','_d.pyd'}}}"
 )
+
+if %SAT_DEBUG% == 1 (
+  cd %OMNIORB_ROOT_DIR%\lib\x86_win32
+  copy /B /Y _omnicodesets.pyd _omnicodesets_d.pyd
+  copy /B /Y _omniConnMgmt.pyd _omniConnMgmt_d.pyd
+  copy /B /Y _omnipy.pyd _omnipy_d.pyd
+)
+
 echo.
 echo ########## END

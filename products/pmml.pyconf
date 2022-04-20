@@ -27,9 +27,11 @@ default :
 
 default_win :
 {
+    cmake_options : "-DCPPUNIT_ROOT_DIR=%CPPUNIT_ROOT_DIR:\=/%"
     properties :
     {
       incremental : "yes"
       single_install_dir : "yes"
     }
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
 }

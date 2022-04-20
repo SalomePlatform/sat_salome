@@ -4,6 +4,9 @@ echo ##########################################################################
 echo psutil %VERSION%
 echo ##########################################################################
 
+REM install in python directly
+SET INSTALL_CENTRALLY=1
+
 IF NOT DEFINED SAT_DEBUG (
   SET SAT_DEBUG=0
 )
@@ -26,7 +29,11 @@ set PYTHONPATH=%PYTHONPATH%;%PRODUCT_INSTALL%\Lib\site-packages
 
 echo.
 echo *** 
-%PYTHONBIN% setup.py build %BUILD_OPT% install --prefix=%PRODUCT_INSTALL%
+if %INSTALL_CENTRALLY% == 1 (
+    %PYTHONBIN% setup.py build %BUILD_OPT% install
+) else (
+    %PYTHONBIN% setup.py build %BUILD_OPT% install --prefix=%PRODUCT_INSTALL%
+)
 if NOT %ERRORLEVEL% == 0 (
   echo ERROR on psutil running %PYTHONBIN% setup.py build %BUILD_OPT% install --prefix=%PRODUCT_INSTALL%
   exit 1
