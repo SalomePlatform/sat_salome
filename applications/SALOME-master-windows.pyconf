@@ -8,9 +8,9 @@ APPLICATION :
     cmake_generator : 'Visual Studio 15 2017 Win64'
     tag : 'master'
     dev : 'no'
-    verbose :'no'
-    debug : 'no'
-    base : 'no'
+    verbose : 'no'
+    debug   : 'no'
+    base    : 'no'
     python3 : 'yes'
     environ :
     {
@@ -208,5 +208,6 @@ __overwrite__ :
     'APPLICATION.products.omniORB'    : {tag: '4.2.3',   base: 'no', section : 'version_4_2_3_win_dbg'      }
     'APPLICATION.products.psutil'     : {tag: '5.7.2',   base: 'no', section : 'version_5_7_2_win_dbg'      }
     'APPLICATION.products.ParaView'   : {tag: '5.9.0',   base: 'no', section : 'version_5_9_0_win_dbg'      }
+    'APPLICATION.products.zlib'       : {tag: '1.2.5',   base: 'no', section : 'version_1_2_5_win_dbg'      }
   }
 ]

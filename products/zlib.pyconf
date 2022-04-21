@@ -47,3 +47,14 @@ version_1_2_5_win:
    archive_info : {archive_name : "zlib-" + $APPLICATION.products.zlib + ".tar.gz"}
    compil_script : 'zlib-1.2.5.bat'
 }
+
+version_1_2_5_win_dbg:
+{
+   archive_info : {archive_name : "zlib-1.2.5.tar.gz"}
+   compil_script : 'zlib-1.2.5.bat'
+   properties:
+   {
+     incremental : "yes"
+     single_install_dir : "no"
+   }
+}

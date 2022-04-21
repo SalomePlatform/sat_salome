@@ -67,7 +67,8 @@ default_win:
        "docutils",
        "libxml2",
        "six",
-       "pytz"
+       "pytz",
+       "sphinxintl"
     ]
 }
 
