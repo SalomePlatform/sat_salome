@@ -22,3 +22,8 @@ default :
         incremental : "yes"
     }
 }
+
+default_win :
+{
+    depend : ["KERNEL", "GUI", "Python", "Sphinx", "qt", "sphinxintl"]
+}
