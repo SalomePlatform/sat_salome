@@ -166,7 +166,7 @@ APPLICATION :
         'JOBMANAGER' : {tag:'V9_9_0b1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'} # FIXME
         'YACS'
         'YACSGEN'
-        'SOLVERLAB' : {tag:'master', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'} # FIXME
+        'SOLVERLAB' : {tag:'V9_9_0b1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'} # FIXME
         'DOCUMENTATION'
         'SAMPLES'
         'COMPONENT'

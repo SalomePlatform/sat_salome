@@ -164,7 +164,7 @@ APPLICATION :
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
-        'SOLVERLAB': 'master' # FIXME
+        'SOLVERLAB': 'V9_9_0b1' # FIXME
         'DOCUMENTATION'
         'SAMPLES'
         'COMPONENT'
