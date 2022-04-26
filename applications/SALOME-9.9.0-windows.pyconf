@@ -7,8 +7,7 @@ APPLICATION :
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name
     cmake_generator : 'Visual Studio 15 2017 Win64'
     # ne pas oublier de rallumer lundi et bien fixer pour MEDCOUPLING, PARAVIS, etc. BIEN REGARDER LES FIXME!!!
-    #tag : 'V9_9_BR'
-    tag : 'V9_9_0b1'
+    tag : 'V9_9_BR'
     dev : 'no'
     verbose : 'no'
     debug   : 'no'
@@ -166,8 +165,8 @@ APPLICATION :
         'CALCULATOR'
         'HELLO'
         'PYHELLO'
-        'EFICAS' : 'master' # FIXME
-        'EFICAS_TOOLS' : 'master' # FIXME
+        'EFICAS' : 'V9_9_0b1' # FIXME
+        'EFICAS_TOOLS' : 'V9_9_0b1' # FIXME
         'ADAO' : 'V9_9_0b1' # FIXME
         'PARAVISADDONS' : 'V9_9_0b1' # FIXME
         'pmml' : 'V9_9_0b1' # FIXME

@@ -8,8 +8,7 @@ APPLICATION :
     # ne pas oublier de rallumer lundi et bien fixer pour MEDCOUPLING, PARAVIS, etc. BIEN REGARDER LES FIXME!!!
     # Lundi: pour les FIXME: si la branch V9_9_BR existe, passer à la branch
     #                        si la branch n'existe pas, repasser sur la branch master
-    #tag : 'V9_9_BR'
-    tag : 'V9_9_0b1'
+    tag : 'V9_9_BR'
     dev : 'no'
     verbose :'no'
     debug : 'no'
@@ -145,8 +144,8 @@ APPLICATION :
         'SHAPERSTUDY'
         'RESTRICTED'
         'LIBBATCH' : {tag : 'V2_4_5'}
-        'KERNEL' : {tag:'V9_9_0b1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'} # FIXME
-        'MEDCOUPLING' : {tag:'V9_9_0b1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'} # FIXME
+        'KERNEL' : {tag:'V9_9_BR', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
+        'MEDCOUPLING' : {tag:'V9_9_BR', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
         'GUI'
         'GEOM'
         'SMESH'
@@ -157,13 +156,13 @@ APPLICATION :
         'HYBRIDPLUGIN'
         'HexoticPLUGIN'
         'GMSHPLUGIN'
-        'HEXABLOCK' : {tag:'V9_9_0b1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'} # FIXME
+        'HEXABLOCK' : {tag:'V9_9_BR', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
         'HEXABLOCKPLUGIN'
         'HOMARD'
         'FIELDS' : {tag:'V9_9_0b1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'} # FIXME
         'OPENTURNS_SALOME': 'master' # FIXME
         'PARAVIS' : {tag:'V9_9_0b1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'} # FIXME
-        'JOBMANAGER' : {tag:'V9_9_0b1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'} # FIXME
+        'JOBMANAGER' : {tag:'V9_9_BR', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'} # FIXME
         'YACS'
         'YACSGEN'
         'SOLVERLAB' : {tag:'V9_9_0b1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'} # FIXME
@@ -174,8 +173,8 @@ APPLICATION :
         'CALCULATOR'
         'HELLO'
         'PYHELLO'
-        'EFICAS' : 'master' # FIXME
-        'EFICAS_TOOLS' : 'master' # FIXME
+        'EFICAS' : 'V9_9_0b1' # FIXME
+        'EFICAS_TOOLS' : 'V9_9_0b1' # FIXME
         'PY2CPP'
         'ADAO' : 'V9_9_0b1' # FIXME
         'ADAO_INTERFACE': 'master' # FIXME

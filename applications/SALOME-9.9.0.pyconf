@@ -6,8 +6,7 @@ APPLICATION :
     name : 'SALOME-9.9.0'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
     # ne pas oublier de rallumer lundi et bien fixer pour MEDCOUPLING, PARAVIS, etc. BIEN REGARDER LES FIXME!!!
-    #tag : 'V9_9_BR'
-    tag : 'V9_9_0b1'
+    tag : 'V9_9_BR'
     dev : 'no'
     verbose :'no'
     debug : 'no'
@@ -144,7 +143,7 @@ APPLICATION :
         'RESTRICTED'
         'LIBBATCH' : {tag : 'V2_4_5'}
         'KERNEL'
-        'MEDCOUPLING' : {tag:'V9_9_0b1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'} # FIXME
+        'MEDCOUPLING' : {tag:'V9_9_BR', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
         'GUI'
         'GEOM'
         'SMESH'
@@ -172,8 +171,8 @@ APPLICATION :
         'CALCULATOR'
         'HELLO'
         'PYHELLO'
-        'EFICAS' : 'master' # FIXME
-        'EFICAS_TOOLS' : 'master' # FIXME
+        'EFICAS' : 'V9_9_0b1' # FIXME
+        'EFICAS_TOOLS' : 'V9_9_0b1' # FIXME
         'PY2CPP'
         'ADAO' : 'V9_9_0b1' # FIXME
         'ADAO_INTERFACE': 'master' # FIXME
