@@ -174,7 +174,7 @@ APPLICATION :
         'PYHELLO'
         'EFICAS' : 'V9_9_0b1' # FIXME
         'EFICAS_TOOLS' : 'V9_9_0b1' # FIXME
-        'PY2CPP'
+        'PY2CPP' : 'V9_9_0b1' # FIXME
         'ADAO' : 'V9_9_0b1' # FIXME
         'ADAO_INTERFACE': 'master' # FIXME
         'PARAVISADDONS' : 'V9_9_0b1' # FIXME
