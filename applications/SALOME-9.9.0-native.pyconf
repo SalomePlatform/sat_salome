@@ -131,7 +131,7 @@ APPLICATION :
         tbb : 'native'
         tcl : 'native'
         tk : 'native'
-        TopIIVolMesh : 'master' # FIXME
+        TopIIVolMesh : 'V9_9_0b1' # FIXME
         urllib3 : 'native'
         zeromq: '4.3.1'
         URANIE : '4.5.0'

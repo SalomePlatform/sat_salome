@@ -131,7 +131,7 @@ APPLICATION :
         tbb : '2019_U8'
         tcl : '8.6.0'
         tk : '8.6.0'
-        TopIIVolMesh : 'master' # FIXME
+        TopIIVolMesh : 'V9_9_0b1' # FIXME
         urllib3 : '1.23'
         zeromq: '4.3.1'
         URANIE : '4.5.0'
