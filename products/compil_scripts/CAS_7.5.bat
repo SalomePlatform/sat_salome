@@ -58,7 +58,7 @@ if NOT %ERRORLEVEL% == 0 (
 
 echo.
 echo *********************************************************************
-echo *** msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64 ALL_BUILD.vcxproj"
+echo *** msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64 ALL_BUILD.vcxproj
 echo *********************************************************************
 echo.
 
@@ -92,6 +92,11 @@ if NOT %ERRORLEVEL% == 1 (
 )
 
 taskkill /F /IM "mspdbsrv.exe"
+
+
+if %SAT_DEBUG% == 1 (
+    xcopy %PRODUCT_INSTALL%\win64\vc14\bind %PRODUCT_INSTALL%\win64\vc14\bin  /E /I /Q
+)
 
 echo.
 echo ########## END
