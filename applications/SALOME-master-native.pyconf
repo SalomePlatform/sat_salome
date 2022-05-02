@@ -223,6 +223,7 @@ __overwrite__ :
         #   - Qt minimal version 5.12
         #   - xmlpatterns executable
         __condition__ : "VARS.dist in ['DB10']"
+        'APPLICATION.products.opencv': '3.2.0'
         'APPLICATION.products.cminpack': 'native'
         'APPLICATION.products.PyFMI'    : {tag:'2.5',    base: 'no',  section: 'version_2_5_no_pip'            }
         'APPLICATION.products.ParaView' : {tag: '5.9.0', base: 'no',  section: 'version_5_9_0_DB10', hpc: 'yes'}
