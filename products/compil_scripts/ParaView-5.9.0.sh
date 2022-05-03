@@ -122,8 +122,16 @@ if [ -n "$SAT_HPC" ]
 then
     CMAKE_OPTIONS+=" -DPARAVIEW_USE_MPI:BOOL=ON"
     if [ -n "$MPI_ROOT_DIR" ]; then
-        CMAKE_OPTIONS+=" -DCMAKE_CXX_COMPILER:STRING=${MPI_CXX_COMPILER}"
-        CMAKE_OPTIONS+=" -DCMAKE_C_COMPILER:STRING=${MPI_C_COMPILER}"
+	# On CentOS, Fedora, hdf5-openmpi-devel system package installs HDF5 headers in the openmpi include directory
+	# This screws up ParaView at runtime since xdmf2 is built with the wrong HDF5 files
+	# Attempts to fix at Xdmf2 CMakeLists file did not help to resolve this issue
+	#  tried include_directories(BEFORE "${HDF_INCLUDE_DIRS}")
+	if [ "${SAT_openmpi_IS_NATIVE}" == "1" ] &&  [ -f "${MPI_INCLUDE_DIR}/hdf5.h" ] &&  [ "$SAT_hdf5_IS_NATIVE" != "1" ]; then
+            echo "WARNING: openMPI is system based and hdf5-openmpi-devel is installed on your node (${MPI_INCLUDE_DIR}/hdf5.h detected...)"
+	else
+            CMAKE_OPTIONS+=" -DCMAKE_CXX_COMPILER:STRING=${MPI_CXX_COMPILER}"
+            CMAKE_OPTIONS+=" -DCMAKE_C_COMPILER:STRING=${MPI_C_COMPILER}"
+	fi
     fi
     CMAKE_OPTIONS+=" -DVTK_SMP_IMPLEMENTATION_TYPE=OpenMP -DVTKm_ENABLE_OPENMP=ON"
     CMAKE_OPTIONS+=" -DVTK_MODULE_ENABLE_VTK_FiltersParallelMPI=YES"
