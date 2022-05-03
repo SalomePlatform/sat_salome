@@ -160,7 +160,7 @@ APPLICATION :
         'HOMARD'
         'FIELDS'
         'OPENTURNS_SALOME': 'master' # FIXME
-        'PARAVIS' : {tag:'V9_9_0b1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
+        'PARAVIS' : {tag:'V9_9_BR', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
