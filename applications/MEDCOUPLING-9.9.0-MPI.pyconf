@@ -69,7 +69,8 @@ APPLICATION :
 
         # SALOME MODULES :
         'CONFIGURATION'
-        'MEDCOUPLING' : {tag:'V9_9_BR', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'} # FIXME
+        #'MEDCOUPLING' : {tag:'V9_9_BR', base: 'no', section: 'version_V9_9_0_MPI_STD', hpc: 'yes'} # FIXME
+        'MEDCOUPLING' : {tag:'abn/minors', base: 'no', section: 'version_V9_9_0_MPI_STD', hpc: 'yes'} # FIXME
     }
     test_base : 
     {
