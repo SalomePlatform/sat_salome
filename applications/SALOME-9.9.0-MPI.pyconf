@@ -5,9 +5,6 @@ APPLICATION :
 {
     name : 'SALOME-9.9.0-MPI'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    # ne pas oublier de rallumer lundi et bien fixer pour MEDCOUPLING, PARAVIS, etc. BIEN REGARDER LES FIXME!!!
-    # Lundi: pour les FIXME: si la branch V9_9_BR existe, passer à la branch
-    #                        si la branch n'existe pas, repasser sur la branch master
     tag : 'V9_9_BR'
     dev : 'no'
     verbose :'no'
@@ -181,7 +178,6 @@ APPLICATION :
         'PARAVISADDONS' : 'V9_9_0b1' # FIXME
         'YDEFX' : 'master' # FIXME
         'pmml' : 'V9_9_0b1' # FIXME
-        'PY2CPP': 'V9_9_0b1' # FIXME
         'CEATESTBASE' : {tag: 'SalomeV9'}
     }
     profile :

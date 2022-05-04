@@ -5,7 +5,6 @@ APPLICATION :
 {
     name : 'SALOME-9.9.0'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    # ne pas oublier de rallumer lundi et bien fixer pour MEDCOUPLING, PARAVIS, etc. BIEN REGARDER LES FIXME!!!
     tag : 'V9_9_BR'
     dev : 'no'
     verbose :'no'
