@@ -21,7 +21,7 @@ APPLICATION :
         Python  : 'native'
         medfile : {tag: '4.1.1' , hpc: 'yes'}
         hdf5    : {tag: '1.10.3', hpc: 'yes'}
-        openmpi : 'native'
+        openmpi : '4.0.7'
         CONFIGURATION
         MEDCOUPLING : {tag:'master', base: 'no', section: 'version_micro', hpc: 'yes'}
     }
@@ -42,6 +42,5 @@ __overwrite__ :
         __condition__ : "VARS.dist in ['CO7']"
         'APPLICATION.products.cmake': '3.12.1'
         'APPLICATION.products.Python': '3.6.5'
-        'APPLICATION.products.openmpi': '4.0.7'
     }
 ]
