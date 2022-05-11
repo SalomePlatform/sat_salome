@@ -57,6 +57,15 @@ version_6_1_2_win :
     }
 }
 
+version_6_1_6 :
+{
+    compil_script :  "qwt-6.1.6.sh"
+    archive_info:
+    {
+        archive_name : "qwt-6.1.6.tar.gz"
+    }
+}
+
 version_5_2_1 :
 {
     archive_info:

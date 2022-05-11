@@ -257,13 +257,13 @@ __overwrite__ :
     {
         __condition__ : "VARS.dist in ['FD34']"
         'APPLICATION.products.opencv'    : '3.2.0'
+        'APPLICATION.products.qwt'       : '6.1.6'
         'APPLICATION.products.omniORB'   : '4.2.4'
         'APPLICATION.products.omniORBpy' : '4.2.4'
         'APPLICATION.products.PyFMI'     : {tag: '2.5',    base: 'no', section: 'version_2_5_no_pip'             }
         'APPLICATION.products.openturns' : {tag: '1.18',   base: 'no', section: 'version_1_18_FD34'              }
         'APPLICATION.products.root'      : {tag:'6.22.02', base: 'no', section: 'version_6_22_02_FD34'           }
         'APPLICATION.products.gdal'      : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_FD34'             } # spns #29324
-        'APPLICATION.rm_products' : ['PERSALYS', 'OPENTURNS_SALOME'] # bos #29735
     }
     {
         # FIXME: to be removed once CEA License for 2.14-4 is renewed.
