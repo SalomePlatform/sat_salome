@@ -245,11 +245,11 @@ __overwrite__ :
     {
         __condition__ : "VARS.dist in ['FD32']"
         'APPLICATION.products.opencv'    : '3.2.0'
+        'APPLICATION.products.qwt'       : '6.1.6'
         'APPLICATION.products.PyFMI'     : {tag: '2.5',   base: 'no', section: 'version_2_5_no_pip'              }
         'APPLICATION.products.openturns' : {tag: '1.18',  base: 'no', section: 'version_1_18_FD32'               }
         'APPLICATION.products.Sphinx'    : {tag: '1.7.6', base: 'no', section: 'version_1_7_6_no_pip'            }
         'APPLICATION.products.gdal'      : {tag:'2.4.0',  base: 'no', section: 'version_2_4_0_FD32'              } # spns #29324
-        'APPLICATION.rm_products' : ['PERSALYS', 'OPENTURNS_SALOME'] # bos #29735
     }
     {
         __condition__ : "VARS.dist in ['FD34']"
