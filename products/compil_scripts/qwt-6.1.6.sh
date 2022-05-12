@@ -16,9 +16,18 @@ mkdir -p ${PRODUCT_INSTALL}
 cd $SOURCE_DIR
 
 QMAKE_BIN=qmake
-if [ "$DIST_NAME" == "FD" ] && [ "$DIST_VERSION" == "34" ] && [ "$SAT_qt_IS_NATIVE" == "1" ]; then
-    QMAKE_BIN=$(which qmake-qt5)
+if [ "$SAT_qt_IS_NATIVE" == "1" ]; then
+    LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
+    case $LINUX_DISTRIBUTION in
+        FD3*)
+            QMAKE_BIN=$(which qmake-qt5)
+            ;;
+        *)
+            echo "WARNING: using QMAKE_BIN = ${QMAKE_BIN}"
+            ;;
+    esac
 fi
+
 echo
 echo "*** prepare $QMAKE_BIN"
 sed -i "s|\(QWT_INSTALL_PREFIX[[:space:]]*\)=\([[:space:]]*\)\(.*\)|\1=\2${PRODUCT_INSTALL}|g" qwtconfig.pri
