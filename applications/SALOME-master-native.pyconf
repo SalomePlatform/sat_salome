@@ -29,7 +29,6 @@ APPLICATION :
         }
         SALOME_trace : "local" # local/file:.../with_logger
         SALOME_MODULES : "SHAPER,SHAPERSTUDY,GEOM,SMESH,PARAVIS,YACS,JOBMANAGER"  # specify the first modules to display in gui
-        SALOME_ACTOR_DELEGATE_TO_VTK : '1'
    }
     products :
     {
@@ -40,8 +39,6 @@ APPLICATION :
         CAS : 'V7_5_3p2'
         C3PO: 'v2.0'
         certifi : 'native'
-        # Standalone native cgns works well. Unfortunately, it's directly linked to native hdf which uses a higher version than us.
-        # Rollback to embedded version to avoid versions mismatch between both of them (see imp_1538_cgns_export_import.py)
         cgns : '4.2.0'
         chardet : 'native'
         click : 'native'
@@ -82,6 +79,7 @@ APPLICATION :
         metis : 'native'
         mpi4py: 'native'
         netgen : '5.3.1_with_CAS_7.2'
+        # comment out line above and uncomment the line below to use Netgen 6.
         #netgen : '6.2.2101'
         netcdf : 'native'
         nlopt : '2.4.2'
@@ -101,7 +99,6 @@ APPLICATION :
         PERSALYS: 'v12.0'
         petsc : {tag : '3.16.0', section: 'version_3_16_0'}
         Pillow : 'native'
-        # 'native' not exists : freeCAD part but not delivered with it from package handler
         planegcs : '0.18-3cb6890'
         psutil : 'native'
         PyFMI : '2.5'
@@ -248,26 +245,22 @@ __overwrite__ :
     {
         __condition__ : "VARS.dist in ['FD32']"
         'APPLICATION.products.opencv'    : '3.2.0'
+        'APPLICATION.products.qwt'       : '6.1.4'
         'APPLICATION.products.PyFMI'     : {tag: '2.5',   base: 'no', section: 'version_2_5_no_pip'              }
         'APPLICATION.products.openturns' : {tag: '1.18',  base: 'no', section: 'version_1_18_FD32'               }
         'APPLICATION.products.Sphinx'    : {tag: '1.7.6', base: 'no', section: 'version_1_7_6_no_pip'            }
         'APPLICATION.products.gdal'      : {tag:'2.4.0',  base: 'no', section: 'version_2_4_0_FD32'              } # spns #29324
-        'APPLICATION.rm_products' : ['PERSALYS', 'OPENTURNS_SALOME'] # bos #29735
     }
     {
         __condition__ : "VARS.dist in ['FD34']"
         'APPLICATION.products.opencv'    : '3.2.0'
         'APPLICATION.products.qwt'       : '6.1.6'
+        'APPLICATION.products.swig'      : '3.0.12'
         'APPLICATION.products.omniORB'   : '4.2.4'
         'APPLICATION.products.omniORBpy' : '4.2.4'
         'APPLICATION.products.PyFMI'     : {tag: '2.5',    base: 'no', section: 'version_2_5_no_pip'             }
         'APPLICATION.products.openturns' : {tag: '1.18',   base: 'no', section: 'version_1_18_FD34'              }
         'APPLICATION.products.root'      : {tag:'6.22.02', base: 'no', section: 'version_6_22_02_FD34'           }
         'APPLICATION.products.gdal'      : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_FD34'             } # spns #29324
-    }
-    {
-        # FIXME: to be removed once CEA License for 2.14-4 is renewed.
-        __condition__ : "VARS.dist not in ['DB09', 'DB10', 'DB11']"
-        'APPLICATION.products.MeshGems' : '2.13-1'
     }
 ]

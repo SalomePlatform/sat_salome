@@ -80,7 +80,7 @@ APPLICATION :
         metis : 'native'
         mpi4py: 'native'
         netgen : '5.3.1_with_CAS_7.2'
-        # comment out above line and uncomment the line below to use Netgen 6.
+        # comment out line above and uncomment the line below to use Netgen 6.
         #netgen : '6.2.2101'
         netcdf : 'native'
         nlopt : '2.4.2'
