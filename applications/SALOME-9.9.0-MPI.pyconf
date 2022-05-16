@@ -58,7 +58,7 @@ APPLICATION :
         mpc : 'native'
         gmp : 'native'
         mpfr : 'native'
-        gdal : '2.4.0'
+        gdal :  {tag : '2.4.0', hpc : 'yes'}
         gmsh : '4.8.4'
         graphviz : '2.38.0'
         hdf5 : {tag : '1.10.3', hpc : 'yes'}
@@ -80,7 +80,7 @@ APPLICATION :
         netgen : '5.3.1_with_CAS_7.2'
         # comment out above line and uncomment the line below to use Netgen 6.
         #netgen : '6.2.2101'
-        netcdf : '4.6.2'
+        netcdf : {tag : '4.6.2', hpc : 'yes'}
         nlopt : '2.5.0'
         nose: '1.3.7'
         numpy : '1.16.4'
@@ -89,7 +89,7 @@ APPLICATION :
         omniORBpy : '4.2.2'
         opencv : '3.2.0'
         openmpi : '3.1.6'
-        openturns: '1.18'
+        openturns:  {tag : '1.18', hpc : 'yes'}
         openVKL: '0.11.0'
         ospray : '2.4.0'
         packaging : '17.1'

@@ -38,6 +38,10 @@ default_win :
 
 version_4_6_2:
 {
-    compil_script :  'netcdf-4.6.2' + $VARS.scriptExtension
+    archive_info :
+    {
+      archive_name  : "netcdf-c-4.6.2.tar.gz"
+    }
+    compil_script :  "netcdf-4.6.2.sh"
     patches : ['netcdf-4.6.2-001.patch']
 }

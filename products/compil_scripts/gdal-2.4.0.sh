@@ -4,6 +4,12 @@ echo "##########################################################################
 echo "gdal" $VERSION
 echo "##########################################################################"
 
+if [ -n "$SAT_HPC" ]  && [ -n "$MPI_ROOT_DIR" ]; then
+   echo "WARNING: setting CC and CXX environment variables and target MPI wrapper"
+   export CXX=${MPI_CXX_COMPILER}
+   export C=${MPI_C_COMPILER}
+fi
+
 CONFIGURE_FLAGS=
 CONFIGURE_FLAGS+=" --with-pcraster=internal"
 CONFIGURE_FLAGS+=" --with-png=internal"
