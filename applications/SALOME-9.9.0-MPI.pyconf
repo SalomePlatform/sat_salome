@@ -155,10 +155,10 @@ APPLICATION :
         'GMSHPLUGIN'
         'HEXABLOCK' : {tag:'V9_9_BR', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
         'HEXABLOCKPLUGIN'
-        'HOMARD'
-        'FIELDS' : {tag:'V9_9_0b1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'} # FIXME
+        'HOMARD' : {tag:'V9_9_BR', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
+        'FIELDS' : {tag:'V9_9_BR', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
         'OPENTURNS_SALOME': 'master' # FIXME
-        'PARAVIS' : {tag:'V9_9_0b1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'} # FIXME
+        'PARAVIS' : {tag:'V9_9_BR', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'} # FIXME
         'JOBMANAGER' : {tag:'V9_9_BR', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'} # FIXME
         'YACS'
         'YACSGEN'

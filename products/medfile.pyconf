@@ -36,7 +36,7 @@ version_4_1_1 :
 {
     compil_script : 'med-4.1.1.sh'
     test_build : "make check"
-    build_depend : []
+    build_depend : ['swig']
 }
 
 version_4_1_1_win :

@@ -7,7 +7,7 @@ echo "##########################################################################
 if [ -n "$SAT_HPC" ]  && [ -n "$MPI_ROOT_DIR" ]; then
    echo "WARNING: setting CC and CXX environment variables and target MPI wrapper"
    export CXX=${MPI_CXX_COMPILER}
-   export C=${MPI_C_COMPILER}
+   export CC=${MPI_C_COMPILER}
 fi
 
 CONFIGURE_FLAGS=

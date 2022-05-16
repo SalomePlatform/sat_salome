@@ -141,8 +141,8 @@ APPLICATION :
         'SHAPERSTUDY'
         'RESTRICTED'
         'LIBBATCH' : {tag : 'V2_4_5'}
-        'KERNEL' : {section : 'default_MPI', verbose : 'yes'}
-        'MEDCOUPLING' : {section : 'default_MPI', verbose : 'yes'}
+        'KERNEL'      : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes', verbose: 'yes'}
+        'MEDCOUPLING' : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes', verbose: 'yes'}
         'GUI' : {verbose : 'yes'}
         'GEOM'
         'SMESH'
@@ -153,15 +153,15 @@ APPLICATION :
         'HYBRIDPLUGIN'
         'HexoticPLUGIN'
         'GMSHPLUGIN'
-        'HEXABLOCK' : {section : "default_MPI", verbose: 'yes'}
+        'HEXABLOCK' : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes', verbose: 'yes'}
         'HEXABLOCKPLUGIN'
-        'HOMARD'
-        'FIELDS' : {section : "default_MPI", verbose: 'yes'}
-        'PARAVIS' : {section : "default_MPI", verbose: 'yes'}
-        'JOBMANAGER' : {section : "default_MPI", verbose: 'yes'}
+        'HOMARD'    : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'FIELDS'    : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'PARAVIS'   : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'JOBMANAGER': {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'YACS'
         'YACSGEN'
-        'SOLVERLAB' : {section : "default_MPI", hpc: 'yes'}
+        'SOLVERLAB': {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'DOCUMENTATION'
         'SAMPLES'
         'COMPONENT'

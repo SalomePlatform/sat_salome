@@ -10,6 +10,9 @@ CONFIGURE_FLAGS+=' --enable-python=yes'
 CONFIGURE_FLAGS+=' --enable-mesgerr'
 if [ -n "$SAT_HPC" ]
 then
+    export CXX=${MPI_CXX_COMPILER}
+    export CC=${MPI_C_COMPILER}
+    CONFIGURE_FLAGS+=' --with-swig=yes'
     CONFIGURE_FLAGS+=' --enable-parallel'
 else
     export F77=gfortran
