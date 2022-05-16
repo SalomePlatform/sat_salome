@@ -36,7 +36,7 @@ then
 fi
 function version_ge() { test "$(echo "$@" | tr " " "\n" | sort -rV | head -n 1)" == "$1"; }
 
-if version_ge $OT_VERSION "4.1" ; then
+if version_ge $VERSION "4.1" ; then
     # fix headers
     echo
     echo "*** fix headers"
