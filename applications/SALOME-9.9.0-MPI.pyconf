@@ -174,10 +174,10 @@ APPLICATION :
         'EFICAS_TOOLS'
         'PY2CPP'
         'ADAO'
-        'ADAO_INTERFACE': 'master' # FIXME
+        'ADAO_INTERFACE'
         'PARAVISADDONS'
         'YDEFX'
-        'pmml'
+        'pmml' : 'master' #FIXME
         'TopIIVolMesh'
         'CEATESTBASE' : {tag: 'SalomeV9'}
     }
