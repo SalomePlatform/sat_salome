@@ -155,7 +155,7 @@ APPLICATION :
         'HEXABLOCKPLUGIN'
         'HOMARD'
         'FIELDS'
-        'OPENTURNS_SALOME': 'master' # FIXME
+        'OPENTURNS_SALOME'
         'PARAVIS' : {tag:'V9_9_0rc1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
         'JOBMANAGER'
         'YACS'
@@ -172,9 +172,9 @@ APPLICATION :
         'EFICAS_TOOLS'
         'PY2CPP'
         'ADAO'
-        'ADAO_INTERFACE': 'master' # FIXME
+        'ADAO_INTERFACE'
         'PARAVISADDONS'
-        'YDEFX' : 'master' # FIXME
+        'YDEFX'
         'pmml'
         'TopIIVolMesh'
         'CEATESTBASE' : {tag: 'SalomeV9'}

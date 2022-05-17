@@ -157,7 +157,7 @@ APPLICATION :
         'HEXABLOCKPLUGIN'
         'HOMARD' : {tag:'V9_9_0rc1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
         'FIELDS' : {tag:'V9_9_0rc1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
-        'OPENTURNS_SALOME': 'master' # FIXME
+        'OPENTURNS_SALOME'
         'PARAVIS' : {tag:'V9_9_0rc1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'} # FIXME
         'JOBMANAGER' : {tag:'V9_9_0rc1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'} # FIXME
         'YACS'
@@ -176,7 +176,7 @@ APPLICATION :
         'ADAO'
         'ADAO_INTERFACE': 'master' # FIXME
         'PARAVISADDONS'
-        'YDEFX' : 'master' # FIXME
+        'YDEFX'
         'pmml'
         'TopIIVolMesh'
         'CEATESTBASE' : {tag: 'SalomeV9'}
