@@ -97,7 +97,7 @@ APPLICATION :
         patsy : '0.5.2'
         ParaView : {tag:'5.9.0', base: 'no',  section: 'version_5_9_0_MPI', hpc: 'yes'}
         PERSALYS: 'v12.0'
-        petsc : {tag : '3.16.0', section: 'version_3_16_0'}
+        petsc : {tag : '3.16.0', base: 'no', section: 'version_3_16_0', hpc: 'yes'}
         Pillow : '7.1.1'
         planegcs : '0.18-3cb6890'
         psutil : '5.7.2'
@@ -130,7 +130,7 @@ APPLICATION :
         tbb : '2019_U8'
         tcl : '8.6.0'
         tk : '8.6.0'
-        TopIIVolMesh: 'develop'
+        TopIIVolMesh: 'master'
         urllib3 : '1.23'
         zeromq: '4.3.1'
         URANIE : '4.5.0'
@@ -157,6 +157,7 @@ APPLICATION :
         'HEXABLOCKPLUGIN'
         'HOMARD'    : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'FIELDS'    : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'OPENTURNS_SALOME'
         'PARAVIS'   : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'JOBMANAGER': {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'YACS'
