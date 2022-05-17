@@ -5,8 +5,7 @@ APPLICATION :
 {
     name : 'SALOME-9.9.0-native'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    # ne pas oublier de rallumer lundi et bien fixer pour MEDCOUPLING, PARAVIS, etc. BIEN REGARDER LES FIXME!!!
-    tag : 'V9_9_BR'
+    tag : 'V9_9_0rc1'
     dev : 'no'
     verbose :'no'
     debug : 'no'
@@ -59,13 +58,11 @@ APPLICATION :
         freetype : 'native'
         gl2ps : 'native'
         gdal : 'native'
-        # 'native' too difficult here : need python-pip package (gmsh-sdk) besides system packages
         gmsh : '4.8.4'
         graphviz : 'native'
         hdf5 : '1.10.3'
         idna : 'native'
         imagesize : 'native'
-        # 'native' not exists (only available on Fedora platform)
         ispc : '1.15.0'
         Jinja2 : 'native'
         kiwisolver : 'native'
@@ -131,7 +128,6 @@ APPLICATION :
         tbb : 'native'
         tcl : 'native'
         tk : 'native'
-        TopIIVolMesh : 'V9_9_0b1' # FIXME
         urllib3 : 'native'
         zeromq: '4.3.1'
         URANIE : '4.5.0'
@@ -144,7 +140,7 @@ APPLICATION :
         'RESTRICTED'
         'LIBBATCH' : {tag : 'V2_4_5'}
         'KERNEL'
-        'MEDCOUPLING' : {tag:'V9_9_BR', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
+        'MEDCOUPLING' : {tag:'V9_9_0rc1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
         'GUI'
         'GEOM'
         'SMESH'
@@ -160,11 +156,11 @@ APPLICATION :
         'HOMARD'
         'FIELDS'
         'OPENTURNS_SALOME': 'master' # FIXME
-        'PARAVIS' : {tag:'V9_9_BR', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
+        'PARAVIS' : {tag:'V9_9_0rc1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
-        'SOLVERLAB': 'V9_9_0b1' # FIXME
+        'SOLVERLAB'
         'DOCUMENTATION'
         'SAMPLES'
         'COMPONENT'
@@ -172,14 +168,15 @@ APPLICATION :
         'CALCULATOR'
         'HELLO'
         'PYHELLO'
-        'EFICAS' : 'V9_9_0b1' # FIXME
-        'EFICAS_TOOLS' : 'V9_9_0b1' # FIXME
-        'PY2CPP' : 'V9_9_0b1' # FIXME
-        'ADAO' : 'V9_9_0b1' # FIXME
+        'EFICAS'
+        'EFICAS_TOOLS'
+        'PY2CPP'
+        'ADAO'
         'ADAO_INTERFACE': 'master' # FIXME
-        'PARAVISADDONS' : 'V9_9_0b1' # FIXME
+        'PARAVISADDONS'
         'YDEFX' : 'master' # FIXME
-        'pmml' : 'V9_9_0b1' # FIXME
+        'pmml'
+        'TopIIVolMesh'
         'CEATESTBASE' : {tag: 'SalomeV9'}
     }
     profile :

@@ -5,7 +5,7 @@ APPLICATION :
 {
     name : 'SALOME-9.9.0-MPI'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag : 'V9_9_BR'
+    tag : 'V9_9_0rc1'
     dev : 'no'
     verbose :'no'
     debug : 'no'
@@ -25,6 +25,7 @@ APPLICATION :
         {
             PYTHONIOENCODING:"UTF_8",
             SALOME_MODULES_ORDER:"SHAPER:SHAPERSTUDY:GEOM:SMESH"
+            ROOT_SALOME_INSTALL: '$PRODUCT_ROOT_DIR'
         }
         SALOME_trace : "local" # local/file:.../with_logger
         SALOME_MODULES : "SHAPER,SHAPERSTUDY,GEOM,SMESH,PARAVIS,YACS,JOBMANAGER"  # specify the first modules to display in gui
@@ -130,7 +131,6 @@ APPLICATION :
         tbb : '2019_U8'
         tcl : '8.6.0'
         tk : '8.6.0'
-        TopIIVolMesh : 'V9_9_0b1' # FIXME
         urllib3 : '1.23'
         zeromq: '4.3.1'
         URANIE : '4.5.0'
@@ -141,8 +141,8 @@ APPLICATION :
         'SHAPERSTUDY'
         'RESTRICTED'
         'LIBBATCH' : {tag : 'V2_4_5'}
-        'KERNEL' : {tag:'V9_9_BR', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
-        'MEDCOUPLING' : {tag:'V9_9_BR', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
+        'KERNEL' : {tag:'V9_9_0rc1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
+        'MEDCOUPLING' : {tag:'V9_9_0rc1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
         'GUI'
         'GEOM'
         'SMESH'
@@ -153,16 +153,16 @@ APPLICATION :
         'HYBRIDPLUGIN'
         'HexoticPLUGIN'
         'GMSHPLUGIN'
-        'HEXABLOCK' : {tag:'V9_9_BR', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
+        'HEXABLOCK' : {tag:'V9_9_0rc1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
         'HEXABLOCKPLUGIN'
-        'HOMARD' : {tag:'V9_9_BR', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
-        'FIELDS' : {tag:'V9_9_BR', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
+        'HOMARD' : {tag:'V9_9_0rc1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
+        'FIELDS' : {tag:'V9_9_0rc1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
         'OPENTURNS_SALOME': 'master' # FIXME
-        'PARAVIS' : {tag:'V9_9_BR', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'} # FIXME
-        'JOBMANAGER' : {tag:'V9_9_BR', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'} # FIXME
+        'PARAVIS' : {tag:'V9_9_0rc1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'} # FIXME
+        'JOBMANAGER' : {tag:'V9_9_0rc1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'} # FIXME
         'YACS'
         'YACSGEN'
-        'SOLVERLAB' : {tag:'V9_9_0b1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'} # FIXME
+        'SOLVERLAB' : {tag:'V9_9_0rc1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'} # FIXME
         'DOCUMENTATION'
         'SAMPLES'
         'COMPONENT'
@@ -170,14 +170,15 @@ APPLICATION :
         'CALCULATOR'
         'HELLO'
         'PYHELLO'
-        'EFICAS' : 'V9_9_0b1' # FIXME
-        'EFICAS_TOOLS' : 'V9_9_0b1' # FIXME
-        'PY2CPP': 'V9_9_0b1' # FIXME
-        'ADAO' : 'V9_9_0b1' # FIXME
+        'EFICAS'
+        'EFICAS_TOOLS'
+        'PY2CPP'
+        'ADAO'
         'ADAO_INTERFACE': 'master' # FIXME
-        'PARAVISADDONS' : 'V9_9_0b1' # FIXME
+        'PARAVISADDONS'
         'YDEFX' : 'master' # FIXME
-        'pmml' : 'V9_9_0b1' # FIXME
+        'pmml'
+        'TopIIVolMesh'
         'CEATESTBASE' : {tag: 'SalomeV9'}
     }
     profile :
