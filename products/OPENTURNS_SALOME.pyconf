@@ -2,7 +2,7 @@ default :
 {
     name : "OPENTURNS"
     build_source : "cmake"
-    cmake_options: " -DOTGUI_ROOT_DIR=$PERSALYS_ROOT_DIR"
+    cmake_options: " -DOTGUI_ROOT_DIR=$PERSALYS_ROOT_DIR -DOPENTURNS_HOME=${OT_ROOT_DIR} "
     compil_script :  $name + "-" + $APPLICATION.products.OPENTURNS_SALOME + $VARS.scriptExtension
     get_source : "git"
     git_info:
