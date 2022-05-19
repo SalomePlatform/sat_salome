@@ -177,7 +177,7 @@ APPLICATION :
         'ADAO_INTERFACE'
         'PARAVISADDONS'
         'YDEFX'
-        'pmml' : 'master' #FIXME
+        'pmml'
         'TopIIVolMesh'
         'CEATESTBASE' : {tag: 'SalomeV9'}
     }
