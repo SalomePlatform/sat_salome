@@ -1,0 +1,56 @@
+--- persalys_v12.0_ref/CMakeLists.txt	2022-03-24 11:47:43.000000000 +0100
++++ persalys_v12.0_new/CMakeLists.txt	2022-05-19 16:39:19.503355921 +0200
+@@ -6,7 +6,7 @@
+ option (USE_SALOME "use salome" ON)
+ option (USE_OTFMI "use otfmi" ON)
+ option (USE_OTMORRIS "use otmorris" ON)
+-option (USE_SPHINX "use sphinx" ON)
++option (USE_SPHINX "use sphinx" OFF)
+ option (USE_COTIRE "Use cotire for unity builds" OFF)
+ option (USE_PARAVIEW "use ParaView" ON)
+ set (PERSALYS_QT_VERSION 5 CACHE STRING "Qt version")
+@@ -63,9 +63,11 @@
+   list (APPEND PERSALYS_DEFINITIONS "-DPERSALYS_STATIC -DPYINTERP_STATIC -DPYCONSOLE_STATIC")
+ endif ()
+ 
+-find_package (Boost COMPONENTS filesystem locale REQUIRED)
++find_package (Boost COMPONENTS filesystem locale regex REQUIRED)
++unset(Boost_USE_DEBUG_RUNTIME)
+ if (TARGET Boost::filesystem)
+   set (Boost_LIBRARIES Boost::filesystem Boost::locale)
++  message(">>>>>>>>>>>>>>>>> ${Boost_LIBRARIES}")
+ endif ()
+ include_directories (${Boost_INCLUDE_DIRS})
+ 
+@@ -94,7 +96,7 @@
+   find_package (Qwt 6 REQUIRED)
+ 
+   if (USE_PARAVIEW)
+-    find_package (ParaView 5.8 CONFIG)
++    find_package (ParaView 5.9 CONFIG)
+     if (ParaView_FOUND)
+       message(STATUS "Found ParaView: ${ParaView_DIR} (found version \"${ParaView_VERSION}\")")
+       list (APPEND PERSALYS_DEFINITIONS -DPERSALYS_HAVE_PARAVIEW)
+@@ -103,13 +105,21 @@
+ 
+ endif ()
+ 
+-if (USE_SALOME)
++if (USE_SALOME)#${_BOOST_QUIET}
++  #set(__boost_comp_nv "thread") # filesystem
++  
++  #find_package(boost_${__boost_comp_nv} "1.71.0" EXACT CONFIG QUIET REQUIRED  HINTS "/home/H87074/salome/TMP/SALOME-9.9.0-DB09-SRC/INSTALL/boost/lib/cmake")
++  set(PERSALYS_Boost_LIBRARIES ${Boost_LIBRARIES})
++  unset(Boost_LIBRARIES)
+   find_package (SalomeKERNEL CONFIG)
+   find_package (Qt5WebEngine CONFIG)
+   find_package (Qt5WebEngineWidgets CONFIG)
+   find_package (SalomeGUI CONFIG)
+   find_package (SalomeYACS CONFIG)
++  set(Boost_LIBRARIES ${Boost_LIBRARIES} ${PERSALYS_Boost_LIBRARIES})
++  unset(PERSALYS_Boost_LIBRARIES)
+   if (SalomeYACS_FOUND)
++    message("FOUND Yacs.")
+     list (APPEND PERSALYS_DEFINITIONS ${YACS_DEFINITIONS})
+     list (APPEND PERSALYS_DEFINITIONS -DPERSALYS_HAVE_YACS)
+     include_directories (${YACS_INCLUDE_DIRS})

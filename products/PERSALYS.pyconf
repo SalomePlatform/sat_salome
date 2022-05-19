@@ -61,7 +61,8 @@ default_win :
 
 version_v12_0 :
 {
-   patches : ['PERSALYS-v12-001.patch', 'PERSALYS-v12-002.patch']
+   patches : ['PERSALYS-v12-003.patch']
+#   patches : ['PERSALYS-v12-001.patch', 'PERSALYS-v12-002.patch']
 }
 
 version_v11_0 :
