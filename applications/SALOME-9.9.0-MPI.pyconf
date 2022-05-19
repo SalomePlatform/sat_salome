@@ -142,7 +142,7 @@ APPLICATION :
         'RESTRICTED'
         'LIBBATCH' : {tag : 'V2_4_5'}
         'KERNEL' : {tag:'V9_9_0rc1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
-        'MEDCOUPLING' : {tag:'V9_9_0rc1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
+        'MEDCOUPLING' : {tag:'V9_9_0rc1', base: 'no', section: 'version_V9_9_0_MPI_STD', hpc: 'yes'}
         'GUI'
         'GEOM'
         'SMESH'
