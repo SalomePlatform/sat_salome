@@ -1,0 +1,22 @@
+diff --git a/src/ModuleBase/ModuleBase_WidgetSelector.cpp b/src/ModuleBase/ModuleBase_WidgetSelector.cpp
+index 6876a337f..65444345e 100644
+--- a/src/ModuleBase/ModuleBase_WidgetSelector.cpp
++++ b/src/ModuleBase/ModuleBase_WidgetSelector.cpp
+@@ -73,7 +73,9 @@ void ModuleBase_WidgetSelector::getGeomSelection(const ModuleBase_ViewerPrsPtr&
+   theShape = aSelection->getShape(thePrs);
+ 
+   FeaturePtr aFeature = ModelAPI_Feature::feature(theObject);
+-  while (aFeature && aFeature->lastResult()->groupName() == ModelAPI_ResultGroup::group()) {
++  while (aFeature.get() &&
++         aFeature->lastResult().get() &&
++         aFeature->lastResult()->groupName() == ModelAPI_ResultGroup::group()) {
+     if (!getObjectFromGroup(theObject, theShape))
+       break;
+     aFeature = ModelAPI_Feature::feature(theObject);
+@@ -297,4 +299,4 @@ bool getObjectFromGroup(ObjectPtr& theObject, GeomShapePtr& theShape)
+     }
+   }
+   return false;
+-}
+\ No newline at end of file
++}
