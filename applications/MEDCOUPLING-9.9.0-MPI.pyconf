@@ -46,7 +46,7 @@ APPLICATION :
         medfile : {tag : '4.1.1', hpc : 'yes', section : 'default_Autotools' }
         mpi4py: '3.0.3'
         numpy : '1.15.1'
-        openmpi : '3.1.6'
+        openmpi : '4.0.7'
         ParMetis : '3.1.1'
         pockets : '0.6.2'
         Pygments : '2.0.2'
