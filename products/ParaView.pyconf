@@ -279,6 +279,30 @@ version_5_9_0_MPI :
               ]
 }
 
+version_5_9_0_MPI_LATA_64BITS_IDS :
+{
+    compil_script :  'ParaView-5.9.0.sh'
+    archive_info : {archive_name : "ParaView-5.9.0-lata.tar.gz"}
+    patches : ['paraview.0003-ParaViewClient.patch',
+               'paraview.0004-ParaView_hdf5.patch',
+               'paraview.0005-ParaView_find_cgns.patch',
+               'paraview.0006-ParaView_find_libxml2.patch',
+               'paraview.0007-ParaView_find_freetype.patch',
+               'paraview-5.9-VTKM_MPI.patch',
+               'paraview.0010-ParaView_CATALYST_cmake.patch',
+               'paraview.0008-ParaView_coincident_rendering.patch',
+               'paraview.0011-ParaView_protobuf_crash.patch',
+               'paraview.0015-Paraview_VTKM_ioss.patch',
+               'paraview-5.9.0-gcc.11.0.patch',
+               'paraview.0017-VTK-openMPI-if-devtoolset.patch',
+               'paraview.0018-spns-26351-autoconvert.patch',
+               'paraview.0019-spns-26344-VTK-OpenMP.patch',
+               'paraview.0020.findMPI.patch',
+               'paraview.0021-FindGDAL.patch',
+               'paraview-0012-LATA_64BITS_IDS.patch'
+              ]
+}
+
 version_5_9_0_FD32 :
 {
     compil_script :  'ParaView-5.9.0.sh'
@@ -397,8 +421,7 @@ version_5_8_0 :
                'paraview.0007-ParaView_find_freetype.patch',
                'paraview.0009-ParaView_volume_mapper.patch',
                'paraview.0010-ParaView_find_python.patch',
-               'pv_coincident.patch',
-               'paraview-0012-LATA_64BITS_IDS.patch'
+               'pv_coincident.patch'
               ]
 }
 
@@ -441,9 +464,8 @@ version_5_8_0_win :
                'paraview.0007-ParaView_find_freetype.patch',
                'paraview.0008-ParaView_find_zlib.patch',
                'paraview.0009-ParaView_volume_mapper.patch',
-               'pv_coincident.patch',
-               'paraview-0012-LATA_64BITS_IDS.patch'
-              ]
+               'pv_coincident.patch'
+             ]
 }
 
 version_5_8_0_win_int32 :
@@ -484,10 +506,26 @@ version_5_8_0_MPI :
                'paraview.0007-ParaView_find_freetype.patch',
                'paraview.0009-ParaView_volume_mapper.patch',
                'paraview.0012-VTKM_MPI.patch',
+               'pv_coincident.patch'
+              ]
+}
+
+version_5_8_0_MPI_LATA_64BITS_IDS :
+{
+    compil_script :  'ParaView-5.8.0.sh'
+    archive_info : {archive_name : "ParaView-5.8.0-lata.tar.gz"}
+    patches : ['paraview.0003-ParaViewClient.patch',
+               'paraview.0004-ParaView_hdf5.patch',
+               'paraview.0005-ParaView_find_cgns.patch',
+               'paraview.0006-ParaView_find_libxml2.patch',
+               'paraview.0007-ParaView_find_freetype.patch',
+               'paraview.0009-ParaView_volume_mapper.patch',
+               'paraview.0012-VTKM_MPI.patch',
                'pv_coincident.patch',
                'paraview-0012-LATA_64BITS_IDS.patch'
               ]
 }
+
 
 version_5_8_0_MPI_int32 :
 {
@@ -515,8 +553,7 @@ version_5_8_0_FD30 :
                'paraview.0006-ParaView_find_libxml2.patch',
                'paraview.0007-ParaView_find_freetype.patch',
                'paraview.0009-ParaView_volume_mapper.patch',
-               'pv_coincident.patch',
-               'paraview-0012-LATA_64BITS_IDS.patch'
+               'pv_coincident.patch'
               ]
 }
 
@@ -531,9 +568,8 @@ version_5_8_0_FD32 :
                 'paraview.0006-ParaView_find_libxml2.patch',
                 'paraview.0007-ParaView_find_freetype.patch',
                 'paraview.0009-ParaView_volume_mapper.patch',
-                'pv_coincident.patch',
-                'paraview-0012-LATA_64BITS_IDS.patch'
-              ]
+                'pv_coincident.patch'
+	      ]
 }
 
 version_5_8_0_CO7_OpenMP :
@@ -548,8 +584,7 @@ version_5_8_0_CO7_OpenMP :
                 'paraview.0007-ParaView_find_freetype.patch',
                 'paraview.0009-ParaView_volume_mapper.patch',
                 'paraview.0011-vtkSMPSelection.patch',
-                'pv_coincident.patch',
-                'paraview-0012-LATA_64BITS_IDS.patch'
+                'pv_coincident.patch'
               ]
 }
 
@@ -564,8 +599,7 @@ version_5_8_0_CO8 :
                'paraview.0006-ParaView_find_libxml2.patch',
                'paraview.0007-ParaView_find_freetype.patch',
                'paraview.0009-ParaView_volume_mapper.patch',
-               'pv_coincident.patch',
-               'paraview-0012-LATA_64BITS_IDS.patch'
+               'pv_coincident.patch'
               ]
 }
 
