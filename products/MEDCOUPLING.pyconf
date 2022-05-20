@@ -185,7 +185,7 @@ version_V9_9_0_MPI:
               "openmpi"
               ]
     opt_depend : ["ParMetis", "metis"]
-    patches: ["SPNS_30091.patch"]
+    patches: []
 }
 
 version_V9_9_0_MPI_STD:

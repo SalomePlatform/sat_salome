@@ -45,7 +45,7 @@ default :
         has_unit_tests : "yes"
     }
     cmake_options :   "-DCMAKE_CXX_FLAGS=-fpermissive -DNO_SolveSpace=TRUE -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DADD_COMPATIBILITY_TESTS=ON -DADD_MODELS_TESTS=ON -DADD_HDF_TESTS=ON"
-    patches : ["SPNS_29944.patch"]
+    patches : []
 }
 
 default_win :
