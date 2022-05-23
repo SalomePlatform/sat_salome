@@ -159,7 +159,6 @@ APPLICATION :
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
-        'SOLVERLAB'
         'DOCUMENTATION'
         'SAMPLES'
         'COMPONENT'
