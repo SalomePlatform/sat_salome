@@ -48,12 +48,14 @@ default :
 
 version_9_2_0_to_9_8_0 :
 {
+    cmake_options : ""
     patches : ["yacs_cea_v2.patch"]
 }
 
 # bug in cmake for multi proc compilation
 from_7_7_0_to_8_5_0 :
 {
+    cmake_options : ""
     nb_proc : 1
 } 
 
