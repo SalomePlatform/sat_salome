@@ -5,7 +5,7 @@ APPLICATION :
 {
     name : 'SALOME-9.9.0-MPI'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag : 'V9_9_0rc1'
+    tag : 'V9_9_BR'
     dev : 'no'
     verbose :'no'
     debug : 'no'
@@ -79,7 +79,7 @@ APPLICATION :
         mpi4py: '3.0.3'
         ParMetis : '3.1.1'
         netgen : '5.3.1_with_CAS_7.2'
-        # comment out above line and uncomment the line below to use Netgen 6.
+        # comment out line above and uncomment the line below to use Netgen 6.
         #netgen : '6.2.2101'
         netcdf : {tag : '4.6.2', hpc : 'yes'}
         nlopt : '2.5.0'
@@ -140,9 +140,9 @@ APPLICATION :
         'SHAPER'
         'SHAPERSTUDY'
         'RESTRICTED'
-        'LIBBATCH' : {tag : 'V2_4_5'}
-        'KERNEL' : {tag:'V9_9_0rc1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
-        'MEDCOUPLING' : {tag:'V9_9_0rc1', base: 'no', section: 'version_V9_9_0_MPI_STD', hpc: 'yes'}
+        'LIBBATCH' : 'V2_4_5'
+        'KERNEL'      : {tag:'V9_9_BR', base: 'no', section: 'version_V9_9_0_MPI',     hpc: 'yes'}
+        'MEDCOUPLING' : {tag:'V9_9_BR', base: 'no', section: 'version_V9_9_0_MPI_STD', hpc: 'yes'}
         'GUI'
         'GEOM'
         'SMESH'
@@ -153,16 +153,14 @@ APPLICATION :
         'HYBRIDPLUGIN'
         'HexoticPLUGIN'
         'GMSHPLUGIN'
-        'HEXABLOCK' : {tag:'V9_9_0rc1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
+        'HEXABLOCK'  : {tag:'V9_9_BR', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
         'HEXABLOCKPLUGIN'
-        'HOMARD' : {tag:'V9_9_0rc1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
-        'FIELDS' : {tag:'V9_9_0rc1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
-        'OPENTURNS_SALOME'
-        'PARAVIS' : {tag:'V9_9_0rc1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'} # FIXME
-        'JOBMANAGER' : {tag:'V9_9_0rc1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'} # FIXME
+        'HOMARD'     : {tag:'V9_9_BR', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
+        'FIELDS'     : {tag:'V9_9_BR', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
+        'PARAVIS'    : {tag:'V9_9_BR', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
+        'JOBMANAGER' : {tag:'V9_9_BR', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
         'YACS'
         'YACSGEN'
-        'SOLVERLAB' : {tag:'V9_9_0rc1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'} # FIXME
         'DOCUMENTATION'
         'SAMPLES'
         'COMPONENT'
@@ -170,15 +168,17 @@ APPLICATION :
         'CALCULATOR'
         'HELLO'
         'PYHELLO'
-        'EFICAS'
-        'EFICAS_TOOLS'
-        'PY2CPP'
-        'ADAO'
-        'ADAO_INTERFACE'
-        'PARAVISADDONS'
-        'YDEFX'
-        'pmml'
-        'TopIIVolMesh'
+        'EFICAS'           : 'V9_9_0rc1'
+        'EFICAS_TOOLS'     : 'V9_9_0rc1'
+        'PY2CPP'           : 'V9_9_0rc1'
+        'ADAO'             : 'V9_9_0rc1'
+        'ADAO_INTERFACE'   : 'V9_9_0rc1'
+        'PARAVISADDONS'    : 'V9_9_0rc1'
+        'OPENTURNS_SALOME' : 'V9_9_0rc1'
+        'YDEFX'            : 'V9_9_0rc1'
+        'pmml'             : 'V9_9_0rc1'
+        'SOLVERLAB'        : {tag:'V9_9_0rc1', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
+        'TopIIVolMesh'     : 'V9_9_0rc1'
         'CEATESTBASE' : {tag: 'SalomeV9'}
     }
     profile :

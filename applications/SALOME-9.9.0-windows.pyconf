@@ -6,8 +6,7 @@ APPLICATION :
     name : 'SALOME-9.9.0'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name
     cmake_generator : 'Visual Studio 15 2017 Win64'
-    # ne pas oublier de rallumer lundi et bien fixer pour MEDCOUPLING, PARAVIS, etc. BIEN REGARDER LES FIXME!!!
-    tag : 'V9_9_0rc1'
+    tag : 'V9_9_BR'
     dev : 'no'
     verbose : 'no'
     debug   : 'no'
@@ -81,7 +80,7 @@ APPLICATION :
         metis : '5.1.0'
         msvc : '2017'
         netgen : '5.3.1_with_CAS_7.2'
-        # comment out above line and uncomment the line below to use Netgen 6.
+        # comment out line above and uncomment the line below to use Netgen 6.
         #netgen : '6.2.2101'
         nlopt : '2.5.0'
         numpy : '1.16.4'
@@ -165,11 +164,11 @@ APPLICATION :
         'CALCULATOR'
         'HELLO'
         'PYHELLO'
-        'EFICAS'
-        'EFICAS_TOOLS'
-        'ADAO'
-        'PARAVISADDONS'
-        'pmml'
+        'EFICAS'        : 'V9_9_0rc1'
+        'EFICAS_TOOLS'  : 'V9_9_0rc1'
+        'ADAO'          : 'V9_9_0rc1'
+        'PARAVISADDONS' : 'V9_9_0rc1'
+        'pmml'          : 'V9_9_0rc1'
         'CEATESTBASE' : {tag: 'SalomeV9'}
     }
     profile :
