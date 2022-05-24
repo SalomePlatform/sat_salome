@@ -9,6 +9,12 @@ mkdir $BUILD_DIR
 cd $BUILD_DIR
 cp -r $SOURCE_DIR/* .
 
+# spns #29973
+for X in env.sh runAllTests.sh; do
+    echo "INFO: remove $X if present..."
+    find . -name $X |xargs rm -f
+done
+
 mkdir -p $PRODUCT_INSTALL/lib/python${PYTHON_VERSION:0:3}/site-packages
 export PATH=${PRODUCT_INSTALL}/bin:$PATH
 export PYTHONPATH=$PWD:$PYTHONPATH
@@ -45,7 +51,7 @@ fi
 if [ $? -ne 0 ]
 then
     echo "ERROR on ctest"
-    exit 4
+    exit 5
 fi
 
 echo
