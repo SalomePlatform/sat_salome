@@ -172,7 +172,7 @@ APPLICATION :
         'ADAO'             : 'V9_9_0rc2'
         'ADAO_INTERFACE'   : 'V9_9_0rc2'
         'PARAVISADDONS'    : 'V9_9_0rc2'
-        'OPENTURNS_SALOME' : 'V9_9_0rc1'
+        'OPENTURNS_SALOME' : 'V9_9_0rc2'
         'YDEFX'            : 'V9_9_0rc2'
         'pmml'             : 'V9_9_0rc2'
         'SOLVERLAB'        : 'V9_9_0rc2'
