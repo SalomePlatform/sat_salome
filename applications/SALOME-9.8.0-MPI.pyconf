@@ -85,7 +85,7 @@ APPLICATION :
         pandas : '0.25.2'
         patsy : '0.5.2'
         ParaView : {tag : '5.9.0', hpc : 'yes', section: 'version_5_9_0_MPI'}
-        petsc : {tag : '3.16.0', section: 'version_3_16_0'}
+        petsc : {tag : '3.16.0', section: 'version_3_16_0', hpc: 'yes'}
         Pillow : '7.1.1'
         planegcs : '0.18-3cb6890'
         psutil : '5.7.2'
@@ -142,7 +142,7 @@ APPLICATION :
         'GMSHPLUGIN'
         'HEXABLOCK' : {section : "default_MPI", verbose: 'yes'}
         'HEXABLOCKPLUGIN'
-        'HOMARD'
+        'HOMARD'     : {tag:'V9_8_0', base: 'no', section: 'version_V9_8_0_MPI', hpc: 'yes'}
         'FIELDS' : {section : "default_MPI", verbose: 'yes'}
         'PARAVIS' : {section : "default_MPI", verbose: 'yes'}
         'JOBMANAGER' : {section : "default_MPI", verbose: 'yes'}

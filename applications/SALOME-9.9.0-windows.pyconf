@@ -6,7 +6,7 @@ APPLICATION :
     name : 'SALOME-9.9.0'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name
     cmake_generator : 'Visual Studio 15 2017 Win64'
-    tag : 'V9_9_BR'
+    tag : 'V9_9_0rc2'
     dev : 'no'
     verbose : 'no'
     debug   : 'no'
@@ -166,10 +166,10 @@ APPLICATION :
         'PYHELLO'
         'EFICAS'        : 'V9_9_0rc1'
         'EFICAS_TOOLS'  : 'V9_9_0rc1'
-        'ADAO'          : 'V9_9_0rc1'
-        'PARAVISADDONS' : 'V9_9_0rc1'
-        'pmml'          : 'V9_9_0rc1'
-        'CEATESTBASE' : {tag: 'SalomeV9'}
+        'ADAO'          : 'V9_9_0rc2'
+        'PARAVISADDONS' : 'V9_9_0rc2'
+        'pmml'          : 'V9_9_0rc2'
+        'CEATESTBASE'   : 'V9_9_0rc2'
     }
     profile :
     {
