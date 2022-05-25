@@ -23,6 +23,11 @@ default :
 default_win:
 {
     depend : ["CAS", "pthreads"]
+    properties :
+    {
+      incremental : "yes"
+      single_install_dir : "yes" # aimed to solve sat #18914
+    }
 }
 
 version_4_8_4:
