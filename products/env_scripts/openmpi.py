@@ -23,7 +23,7 @@ def set_nativ_env(env):
     prereq_inc='/usr/include/openmpi'
     try:
         import distro
-        if any(distribution in distro.name().lower() for distribution in ["centos", "fedora"]) :
+        if any(distribution in distro.name().lower() for distribution in ["rocky", "centos", "fedora"]) :
             prereq_dir='/usr/lib64/openmpi'
             prereq_bin='/usr/lib64/openmpi/bin'
             prereq_inc='/usr/include/openmpi-x86_64'
@@ -32,7 +32,7 @@ def set_nativ_env(env):
             prereq_inc= '/usr/lib/x86_64-linux-gnu/openmpi/include'
     except:
         import platform
-        if any(distribution in platform.linux_distribution()[0].lower() for distribution in ["centos", "fedora"]) :
+        if any(distribution in platform.linux_distribution()[0].lower() for distribution in ["rocky", "centos", "fedora"]) :
             prereq_dir='/usr/lib64/openmpi'
             prereq_bin='/usr/lib64/openmpi/bin'
             prereq_inc='/usr/include/openmpi-x86_64'

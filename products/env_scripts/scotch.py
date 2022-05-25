@@ -25,7 +25,7 @@ def set_nativ_env(env):
     prereq_lib= None
     try:
       import distro
-      if any(distribution in distro.name().lower() for distribution in ["centos", "fedora"]) :
+      if any(distribution in distro.name().lower() for distribution in ["rocky", "centos", "fedora"]) :
         prereq_dir='/usr'
         prereq_inc= '/usr/include/openmpi-x86_64'
         prereq_lib='/usr/lib64/openmpi/lib'
@@ -37,7 +37,7 @@ def set_nativ_env(env):
         print("Unimplemented distribution (1): {}".format(distro.name.lower()))
     except:
         import platform
-        if any(distribution in platform.linux_distribution()[0].lower() for distribution in ["centos", "fedora"]) :
+        if any(distribution in platform.linux_distribution()[0].lower() for distribution in ["rocky", "centos", "fedora"]) :
             prereq_dir='/usr'
             prereq_inc= '/usr/include/openmpi-x86_64'
             prereq_lib='/usr/lib64/openmpi/lib'
