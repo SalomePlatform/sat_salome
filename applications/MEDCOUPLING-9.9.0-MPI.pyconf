@@ -87,7 +87,7 @@ APPLICATION :
 __overwrite__ :
 [
     {
-        __condition__ : "VARS.dist in ['FD32', 'FD34']"
+        __condition__ : "VARS.dist in ['FD32', 'FD34', 'DB11']"
         'APPLICATION.products.scipy' : '1.5.2' # gcc https://github.com/scipy/scipy/issues/11611 - either patch numpy to include -fallow-argument-mismatch or move to that version
     }
     {
