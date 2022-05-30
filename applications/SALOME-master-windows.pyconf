@@ -76,10 +76,11 @@ APPLICATION :
         matplotlib : '3.1.0'
         medfile : '4.1.1'
         mesa : '19.2.3'
-        MeshGems : '2.13-1'  # FIXME: to be removed once CEA License for 2.14-4 is renewed.
+        MeshGems : '2.14-4'
         metis : '5.1.0'
         msvc : '2017'
         netgen : '5.3.1_with_CAS_7.2'
+        # comment out line above and uncomment the line below to use Netgen 6.
         #netgen : '6.2.2101'
         nlopt : '2.5.0'
         numpy : '1.16.4'
@@ -168,8 +169,8 @@ APPLICATION :
         'ADAO'
         'PARAVISADDONS'
         'pmml'
-        'TESTBASE': {tag: 'master'}
-        'CEATESTBASE' : {tag: 'SalomeV9'}
+        'TESTBASE'
+        'CEATESTBASE' : 'SalomeV9'
     }
     profile :
     {

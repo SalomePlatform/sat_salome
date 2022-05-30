@@ -17,11 +17,17 @@ APPLICATION :
         {
            CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
            RESTRICTED_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "RESTRICTED"
+           VTK_SMP_IMPLEMENTATION_TYPE : OpenMP # OpenMP # choose among: sequential / OpenMP / TBB switches
+           SALOME_GMSH_HEADERS_STD : '1'
         }
-        launch : {PYTHONIOENCODING:"UTF_8", SALOME_MODULES_ORDER:"SHAPER:SHAPERSTUDY:GEOM:SMESH"}
+        launch :
+        {
+            PYTHONIOENCODING:"UTF_8",
+            SALOME_MODULES_ORDER:"SHAPER:SHAPERSTUDY:GEOM:SMESH"
+            ROOT_SALOME_INSTALL: '$PRODUCT_ROOT_DIR'
+        }
         SALOME_trace : "local" # local/file:.../with_logger
         SALOME_MODULES : "SHAPER,SHAPERSTUDY,GEOM,SMESH,PARAVIS,YACS,JOBMANAGER"  # specify the first modules to display in gui
-        SALOME_ACTOR_DELEGATE_TO_VTK : '1'
     }
     products :
     {
@@ -29,9 +35,10 @@ APPLICATION :
         alabaster : '0.7.6'
         Babel : '2.7.0'
         boost : '1.71.0'
-        CAS : 'V7_5_3p1'
+        CAS : 'V7_5_3p2'
+        C3PO: 'v2.0'
         certifi : '2018.8.24'
-        cgns : '4.1.1'
+        cgns : '4.2.0'
         chardet : '3.0.4'
         click : '6.7'
         cmake : '3.12.1'
@@ -51,6 +58,7 @@ APPLICATION :
         mpc : 'native'
         gmp : 'native'
         mpfr : 'native'
+        gdal : '2.4.0'
         gmsh : '4.8.4'
         graphviz : '2.38.0'
         hdf5 : '1.10.3'
@@ -64,23 +72,31 @@ APPLICATION :
         llvm : '8.0.1-clang'
         markupsafe : '0.23'
         matplotlib : '3.0.3'
-        medfile : {section: 'default_Autotools', tag: '4.1.1'}
+        medfile : '4.1.1'
         mesa : '19.0.8'
         MeshGems : '2.14-4'
+        mpi4py: '3.0.3'
         metis : '5.1.0'
-        netgen : '6.2.2101'
+        netgen : '5.3.1_with_CAS_7.2'
+        # comment out line above and uncomment the line below to use Netgen 6.
+        #netgen : '6.2.2101'
+        netcdf : '4.6.2'
         nlopt : '2.5.0'
+        nose: '1.3.7'
         numpy : '1.16.4'
+        numpydoc : '0.9.0'
         omniORB : '4.2.2'
         omniORBpy : '4.2.2'
         opencv : '3.2.0'
-        openturns: '1.17'
+        openmpi : '3.1.6'
+        openturns: '1.18'
         openVKL: '0.11.0'
         ospray : '2.4.0'
         packaging : '17.1'
         pandas : '0.25.2'
         patsy : '0.5.2'
-        ParaView : '5.9.0'
+        ParaView : {tag:'5.9.0', base: 'no',  section: 'version_5_9_0_MPI', hpc: 'yes'}
+        PERSALYS: 'v12.0'
         petsc : {tag : '3.16.0', section: 'version_3_16_0'}
         Pillow : '7.1.1'
         planegcs : '0.18-3cb6890'
@@ -89,7 +105,6 @@ APPLICATION :
         Pygments : '2.0.2'
         pyparsing : '2.0.3'
         PyQt : '5.15.3'
-        #PyQtChart : '5.9'
         pyreadline : '2.0'
         Python : '3.6.5'
         pytz : '2017.2'
@@ -100,7 +115,7 @@ APPLICATION :
         root: '6.22.02'
         salome_system : 'native'
         scipy : '1.4.1'
-        scotch : '6.0.4'
+        scotch : {tag: '6.1.2', section: 'version_6_1_2_MPI', hpc: 'yes', base: 'no'}
         setuptools : '38.4.0'
         sip : '5.5.0'
         six : '1.10.0'
@@ -116,6 +131,7 @@ APPLICATION :
         tcl : '8.6.0'
         tk : '8.6.0'
         urllib3 : '1.23'
+        zeromq: '4.3.1'
         URANIE : '4.5.0'
         # SALOME MODULES :
         'CONFIGURATION'
@@ -123,9 +139,9 @@ APPLICATION :
         'SHAPER'
         'SHAPERSTUDY'
         'RESTRICTED'
-        'LIBBATCH' : {tag : 'V2_4_5'}
+        'LIBBATCH' : 'V2_4_5'
         'KERNEL'
-        'MEDCOUPLING': {section: 'default_32BIT_IDS'}
+        'MEDCOUPLING' : {tag:'master', base: 'no', section: 'default_32BIT_IDS', hpc: 'yes'}
         'GUI'
         'GEOM'
         'SMESH'
@@ -140,11 +156,10 @@ APPLICATION :
         'HEXABLOCKPLUGIN'
         'HOMARD'
         'FIELDS'
-        'PARAVIS'
+        'PARAVIS' : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
-        'SOLVERLAB'
         'DOCUMENTATION'
         'SAMPLES'
         'COMPONENT'
@@ -158,9 +173,13 @@ APPLICATION :
         'ADAO'
         'ADAO_INTERFACE'
         'PARAVISADDONS'
+        'OPENTURNS_SALOME'
         'YDEFX'
-        'TESTBASE': {tag: 'master'}
-        'CEATESTBASE' : {tag: 'SalomeV9'}
+        'pmml'
+        'SOLVERLAB'
+        'TopIIVolMesh'
+        'TESTBASE'
+        'CEATESTBASE' : 'SalomeV9'
     }
     profile :
     {
@@ -188,17 +207,37 @@ APPLICATION :
 __overwrite__ :
 [
     {
-        __condition__ : "VARS.dist in ['FD32']"
-        # https://github.com/scipy/scipy/issues/11611
-        'APPLICATION.products.scipy' : '1.5.2'
-    }
-    {
         __condition__ : "VARS.dist in ['FD30']"
-        # https://github.com/scipy/scipy/issues/11611
         'APPLICATION.products.gcc' : '9.3.0'
     }
     {
-        __condition__ : "VARS.dist not in ['DB08','DB09', 'FD30']"
+        __condition__ : "VARS.dist in ['FD32']"
+        # https://github.com/scipy/scipy/issues/11611
+        'APPLICATION.products.scipy' : '1.5.2'
         'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
+        'APPLICATION.products.gdal': {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_FD32'} # spns #29324
+    }
+    {
+        __condition__ : "VARS.dist in ['CO7']"
+        'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
+    }
+    {
+        __condition__ : "VARS.dist in ['CO8']"
+        'APPLICATION.rm_products'  : ['gcc', 'gmp', 'mpc', 'mpfr', 'zeromq']
+        'APPLICATION.products.gdal': {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_CO8'} # spns #29324
+    }
+    {
+        __condition__ : "VARS.dist in ['DB10']"
+        'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
+        'APPLICATION.products.gdal': {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_DB10'} # spns #29324
+    }
+    {
+        __condition__ : "VARS.dist in ['UB18.04']"
+        'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
+    }
+    {
+        __condition__ : "VARS.dist in ['UB20.04']"
+        'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
+        'APPLICATION.products.gdal': {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_UB20_04'} # spns #29324
     }
 ]

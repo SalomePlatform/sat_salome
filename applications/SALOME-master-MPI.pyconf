@@ -25,6 +25,7 @@ APPLICATION :
         {
             PYTHONIOENCODING:"UTF_8",
             SALOME_MODULES_ORDER:"SHAPER:SHAPERSTUDY:GEOM:SMESH"
+            ROOT_SALOME_INSTALL: '$PRODUCT_ROOT_DIR'
         }
         SALOME_trace : "local" # local/file:.../with_logger
         SALOME_MODULES : "SHAPER,SHAPERSTUDY,GEOM,SMESH,PARAVIS,YACS,JOBMANAGER"  # specify the first modules to display in gui
@@ -78,7 +79,7 @@ APPLICATION :
         mpi4py: '3.0.3'
         ParMetis : '3.1.1'
         netgen : '5.3.1_with_CAS_7.2'
-        # comment out above line and uncomment the line below to use Netgen 6.
+        # comment out line above and uncomment the line below to use Netgen 6.
         #netgen : '6.2.2101'
         netcdf : {tag : '4.6.2', hpc : 'yes'}
         nlopt : '2.5.0'
@@ -97,7 +98,7 @@ APPLICATION :
         patsy : '0.5.2'
         ParaView : {tag:'5.9.0', base: 'no',  section: 'version_5_9_0_MPI', hpc: 'yes'}
         PERSALYS: 'v12.0'
-        petsc : {tag : '3.16.0', base: 'no', section: 'version_3_16_0', hpc: 'yes'}
+        petsc : {tag : '3.16.0', hpc: 'yes'}
         Pillow : '7.1.1'
         planegcs : '0.18-3cb6890'
         psutil : '5.7.2'
@@ -130,7 +131,6 @@ APPLICATION :
         tbb : '2019_U8'
         tcl : '8.6.0'
         tk : '8.6.0'
-        TopIIVolMesh: 'master'
         urllib3 : '1.23'
         zeromq: '4.3.1'
         URANIE : '4.5.0'
@@ -140,7 +140,7 @@ APPLICATION :
         'SHAPER'
         'SHAPERSTUDY'
         'RESTRICTED'
-        'LIBBATCH' : {tag : 'V2_4_5'}
+        'LIBBATCH' : 'V2_4_5'
         'KERNEL'      : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes', verbose: 'yes'}
         'MEDCOUPLING' : {tag:'master', base: 'no', section: 'default_MPI_STD', hpc: 'yes', verbose: 'yes'}
         'GUI' : {verbose : 'yes'}
@@ -157,12 +157,10 @@ APPLICATION :
         'HEXABLOCKPLUGIN'
         'HOMARD'    : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'FIELDS'    : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
-        'OPENTURNS_SALOME'
         'PARAVIS'   : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'JOBMANAGER': {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'YACS'
         'YACSGEN'
-        'SOLVERLAB': {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'DOCUMENTATION'
         'SAMPLES'
         'COMPONENT'
@@ -176,10 +174,13 @@ APPLICATION :
         'ADAO'
         'ADAO_INTERFACE'
         'PARAVISADDONS'
+        'OPENTURNS_SALOME'
         'YDEFX'
         'pmml'
-        'TESTBASE': {tag: 'master'}
-        'CEATESTBASE' : {tag: 'SalomeV9'}
+        'SOLVERLAB': {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'TopIIVolMesh'
+        'TESTBASE'
+        'CEATESTBASE' : 'SalomeV9'
     }
     profile :
     {
@@ -207,8 +208,9 @@ APPLICATION :
 __overwrite__ :
 [
     {
-        __condition__ : "VARS.dist in ['FD32']"
-        # https://github.com/scipy/scipy/issues/11611
+        __condition__ : "VARS.dist in ['FD32', 'FD34', 'DB11']"
+        # gcc https://github.com/scipy/scipy/issues/11611
+        # either patch numpy to include -fallow-argument-mismatch or move to that version        
         'APPLICATION.products.scipy' : '1.5.2'
     }
     {

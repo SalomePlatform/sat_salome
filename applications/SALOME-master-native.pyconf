@@ -24,7 +24,7 @@ APPLICATION :
         launch :
         {
             PYTHONIOENCODING:"UTF_8",
-            SALOME_MODULES_ORDER:"SHAPER:SHAPERSTUDY:GEOM:SMESH",
+            SALOME_MODULES_ORDER:"SHAPER:SHAPERSTUDY:GEOM:SMESH"
             ROOT_SALOME_INSTALL: '$PRODUCT_ROOT_DIR'
         }
         SALOME_trace : "local" # local/file:.../with_logger
@@ -58,13 +58,11 @@ APPLICATION :
         freetype : 'native'
         gl2ps : 'native'
         gdal : 'native'
-        # 'native' too difficult here : need python-pip package (gmsh-sdk) besides system packages
         gmsh : '4.8.4'
         graphviz : 'native'
         hdf5 : '1.10.3'
         idna : 'native'
         imagesize : 'native'
-        # 'native' not exists (only available on Fedora platform)
         ispc : '1.15.0'
         Jinja2 : 'native'
         kiwisolver : 'native'
@@ -130,7 +128,6 @@ APPLICATION :
         tbb : 'native'
         tcl : 'native'
         tk : 'native'
-        TopIIVolMesh
         urllib3 : 'native'
         zeromq: '4.3.1'
         URANIE : '4.5.0'
@@ -158,12 +155,10 @@ APPLICATION :
         'HEXABLOCKPLUGIN'
         'HOMARD'
         'FIELDS'
-        'OPENTURNS_SALOME'
         'PARAVIS': {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
-        'SOLVERLAB'
         'DOCUMENTATION'
         'SAMPLES'
         'COMPONENT'
@@ -177,10 +172,13 @@ APPLICATION :
         'ADAO'
         'ADAO_INTERFACE'
         'PARAVISADDONS'
+        'OPENTURNS_SALOME'
         'YDEFX'
         'pmml'
-        'TESTBASE': {tag: 'master'}
-        'CEATESTBASE' : {tag: 'SalomeV9'}
+        'SOLVERLAB'
+        'TopIIVolMesh'
+        'TESTBASE'
+        'CEATESTBASE' : 'SalomeV9'
     }
     profile :
     {
@@ -255,10 +253,8 @@ __overwrite__ :
         __condition__ : "VARS.dist in ['FD34']"
         'APPLICATION.products.opencv'    : '3.2.0'
         'APPLICATION.products.qwt'       : '6.1.6'
-        'APPLICATION.products.swig'      : '3.0.12'
         'APPLICATION.products.omniORB'   : '4.2.4'
         'APPLICATION.products.omniORBpy' : '4.2.4'
-        'APPLICATION.products.PyQt'      : '5.15.3'
         'APPLICATION.products.PyFMI'     : {tag: '2.5',    base: 'no', section: 'version_2_5_no_pip'             }
         'APPLICATION.products.openturns' : {tag: '1.18',   base: 'no', section: 'version_1_18_FD34'              }
         'APPLICATION.products.root'      : {tag:'6.22.02', base: 'no', section: 'version_6_22_02_FD34'           }

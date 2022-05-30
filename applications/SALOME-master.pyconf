@@ -57,7 +57,6 @@ APPLICATION :
         freetype : '2.9.1'
         gcc  :  '8.5.0'
         mpc : 'native'
-        mpi4py: '3.0.3'
         gmp : 'native'
         mpfr : 'native'
         gdal : '2.4.0'
@@ -77,8 +76,10 @@ APPLICATION :
         medfile : '4.1.1'
         mesa : '19.0.8'
         MeshGems : '2.14-4'
+        mpi4py: '3.0.3'
         metis : '5.1.0'
         netgen : '5.3.1_with_CAS_7.2'
+        # comment out line above and uncomment the line below to use Netgen 6.
         #netgen : '6.2.2101'
         netcdf : '4.6.2'
         nlopt : '2.5.0'
@@ -130,7 +131,6 @@ APPLICATION :
         tbb : '2019_U8'
         tcl : '8.6.0'
         tk : '8.6.0'
-        TopIIVolMesh
         urllib3 : '1.23'
         zeromq: '4.3.1'
         URANIE : '4.5.0'
@@ -140,7 +140,7 @@ APPLICATION :
         'SHAPER'
         'SHAPERSTUDY'
         'RESTRICTED'
-        'LIBBATCH' : {tag : 'V2_4_5'}
+        'LIBBATCH' : 'V2_4_5'
         'KERNEL'
         'MEDCOUPLING' : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'GUI'
@@ -157,12 +157,10 @@ APPLICATION :
         'HEXABLOCKPLUGIN'
         'HOMARD'
         'FIELDS'
-        'OPENTURNS_SALOME'
         'PARAVIS' : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
-        'SOLVERLAB'
         'DOCUMENTATION'
         'SAMPLES'
         'COMPONENT'
@@ -176,10 +174,13 @@ APPLICATION :
         'ADAO'
         'ADAO_INTERFACE'
         'PARAVISADDONS'
+        'OPENTURNS_SALOME'
         'YDEFX'
         'pmml'
-        'TESTBASE': {tag: 'master'}
-        'CEATESTBASE' : {tag: 'SalomeV9'}
+        'SOLVERLAB'
+        'TopIIVolMesh'
+        'TESTBASE'
+        'CEATESTBASE' : 'SalomeV9'
     }
     profile :
     {
@@ -239,10 +240,5 @@ __overwrite__ :
         __condition__ : "VARS.dist in ['UB20.04']"
         'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
         'APPLICATION.products.gdal': {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_UB20_04'} # spns #29324
-    }
-
-    {
-        __condition__ : "VARS.dist not in ['DB09', 'DB10', 'DB11']"
-        'APPLICATION.products.MeshGems' : '2.13-1'
     }
 ]
