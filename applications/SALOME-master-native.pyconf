@@ -177,7 +177,7 @@ APPLICATION :
         'pmml'
         'SOLVERLAB'
         'TopIIVolMesh'
-        'TESTBASE'
+        #'TESTBASE'
         'CEATESTBASE' : 'SalomeV9'
     }
     profile :
