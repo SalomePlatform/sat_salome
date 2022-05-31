@@ -141,8 +141,8 @@ APPLICATION :
         'SHAPERSTUDY'
         'RESTRICTED'
         'LIBBATCH' : 'V2_4_5'
-        'KERNEL'      : {tag:'V9_9_0rc2', base: 'no', section: 'version_V9_9_0_MPI',     hpc: 'yes'}
-        'MEDCOUPLING' : {tag:'V9_9_0rc2', base: 'no', section: 'version_V9_9_0_MPI_STD', hpc: 'yes'}
+        'KERNEL'      : {tag:'V9_9_0', base: 'no', section: 'version_V9_9_0_MPI',     hpc: 'yes'}
+        'MEDCOUPLING' : {tag:'V9_9_0', base: 'no', section: 'version_V9_9_0_MPI_STD', hpc: 'yes'}
         'GUI'
         'GEOM'
         'SMESH'
@@ -153,12 +153,12 @@ APPLICATION :
         'HYBRIDPLUGIN'
         'HexoticPLUGIN'
         'GMSHPLUGIN'
-        'HEXABLOCK'  : {tag:'V9_9_0rc2', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
+        'HEXABLOCK'  : {tag:'V9_9_0', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
         'HEXABLOCKPLUGIN'
-        'HOMARD'     : {tag:'V9_9_0rc2', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
-        'FIELDS'     : {tag:'V9_9_0rc2', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
-        'PARAVIS'    : {tag:'V9_9_0rc2', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
-        'JOBMANAGER' : {tag:'V9_9_0rc2', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
+        'HOMARD'     : {tag:'V9_9_0', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
+        'FIELDS'     : {tag:'V9_9_0', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
+        'PARAVIS'    : {tag:'V9_9_0', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
+        'JOBMANAGER' : {tag:'V9_9_0', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
         'YACS'
         'YACSGEN'
         'DOCUMENTATION'
@@ -168,18 +168,18 @@ APPLICATION :
         'CALCULATOR'
         'HELLO'
         'PYHELLO'
-        'EFICAS'           : 'V9_9_0rc2'
-        'EFICAS_TOOLS'     : 'V9_9_0rc2'
-        'PY2CPP'           : 'V9_9_0rc2'
-        'ADAO'             : 'V9_9_0rc2'
-        'ADAO_INTERFACE'   : 'V9_9_0rc2'
-        'PARAVISADDONS'    : 'V9_9_0rc2'
-        'OPENTURNS_SALOME' : 'V9_9_0rc2'
-        'YDEFX'            : 'V9_9_0rc2'
-        'pmml'             : 'V9_9_0rc2'
-        'SOLVERLAB'        : {tag:'V9_9_0rc2', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
-        'TopIIVolMesh'     : 'V9_9_0rc2'
-        'CEATESTBASE'      : 'V9_9_0rc2'
+        'EFICAS'
+        'EFICAS_TOOLS'
+        'PY2CPP'
+        'ADAO'
+        'ADAO_INTERFACE'
+        'PARAVISADDONS'
+        'OPENTURNS_SALOME'
+        'YDEFX'
+        'pmml'
+        'SOLVERLAB'        : {tag:'V9_9_0', base: 'no', section: 'version_V9_9_0_MPI', hpc: 'yes'}
+        'TopIIVolMesh'
+        'CEATESTBASE'
     }
     profile :
     {
