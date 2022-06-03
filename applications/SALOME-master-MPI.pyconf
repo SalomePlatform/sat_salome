@@ -75,7 +75,7 @@ APPLICATION :
         matplotlib : '3.0.3'
         medfile : {tag : '4.1.1', hpc : 'yes'}
         mesa : '19.0.8'
-        MeshGems : {tag : '2.14-4', hpc : 'yes'}
+        MeshGems : {tag : '2.13-1', hpc : 'yes'}
         mpi4py: '3.0.3'
         ParMetis : '3.1.1'
         netgen : '5.3.1_with_CAS_7.2'
