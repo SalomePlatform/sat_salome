@@ -16,7 +16,8 @@ default :
         env_script : $name + ".py"
     }
     # OP distribute is not useful anymore
-    depend : ['Python', 'setuptools', 'PyQt',  'numpy', 'freetype', 'six', 'pytz', 'pyparsing', 'dateutil', 'cycler', 'kiwisolver']
+    depend : ['Python', 'setuptools', 'PyQt',  'numpy', 'freetype', 'six', 'pytz', 'pyparsing', 'dateutil', 'cycler']
+    opt_depend : ['kiwisolver']
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     install_dir : 'base'
@@ -31,7 +32,8 @@ default_win :
 {
    compil_script : 'pip_install_whl' + $VARS.scriptExtension
    archive_info : {archive_name : "matplotlib-" + $APPLICATION.products.matplotlib + "_windows.tar.gz"}
-   depend : ['Python', 'PyQt',  'numpy', 'freetype', 'six', 'pytz', 'pyparsing', 'dateutil', 'setuptools', 'cycler', 'kiwisolver']
+   depend : ['Python', 'PyQt',  'numpy', 'freetype', 'six', 'pytz', 'pyparsing', 'dateutil', 'setuptools', 'cycler']
+   opt_depend : ['kiwisolver']
    properties:
    {
      incremental : "yes"

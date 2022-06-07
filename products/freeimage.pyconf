@@ -41,6 +41,7 @@ version_3_16_0 :
 # NOTE: do not delete this section, it was added in order to be able to overload it for Windows
 version_3_18_0:
 {
+  compil_script :  "freeimage-3.18.0.sh"
   patches : [] 
 }
 
