@@ -88,8 +88,8 @@ then
     #
     if [ "${SAT_ENABLE_PYTHON_PYMALLOC}" == "1" ]; then
 	cd ${PRODUCT_INSTALL}/include
-	if [ ! -d python36 ]; then
-	    ln -s python36m python36
+	if [ ! -d python3.6 ]; then
+	    ln -s python3.6m python3.6
 	fi
     fi
 fi
