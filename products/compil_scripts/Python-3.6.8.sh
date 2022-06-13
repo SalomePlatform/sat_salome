@@ -21,7 +21,13 @@ if version_ge $VERSION "3.6"; then
     # --without-pymalloc: disable specialized mallocs
     # --with-ensurepip  : installation using bundled pip
     # --enable-optimizations:  recommandé et utilisé par Nijni -> mais trop long!
-    CONFIGURE_ARGUMENTS="--enable-shared --with-threads --with-pymalloc --with-ensurepip=install --with-ssl --enable-loadable-sqlite-extensions"
+    # spns #30153 :  pymalloc on demand
+    CONFIGURE_ARGUMENTS="--enable-shared --with-threads --with-ensurepip=install --with-ssl --enable-loadable-sqlite-extensions"
+    if [ "${SAT_ENABLE_PYTHON_PYMALLOC}" == "1" ]; then
+	CONFIGURE_ARGUMENTS+=" --with-pymalloc"
+    else
+	CONFIGURE_ARGUMENTS+=" --without-pymalloc"
+    fi
 else
     echo "*** Python version is older than version 3.6 ..."
     CONFIGURE_ARGUMENTS="--enable-shared --with-threads --without-pymalloc --enable-unicode=ucs4"
@@ -79,6 +85,13 @@ then
     cd ${PRODUCT_INSTALL}/bin
     ln -s python3 python
     ln -s pip3 pip
+    #
+    if [ "${SAT_ENABLE_PYTHON_PYMALLOC}" == "1" ]; then
+	cd ${PRODUCT_INSTALL}/include
+	if [ ! -d python36 ]; then
+	    ln -s python36m python36
+	fi
+    fi
 fi
 
 # fix the path... 
