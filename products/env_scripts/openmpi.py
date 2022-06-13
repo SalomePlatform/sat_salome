@@ -11,6 +11,7 @@ def set_env(env, prereq_dir, version):
     env.set('MPI_INCLUDE_DIR', os.path.join(prereq_dir, 'include'))
     env.set('MPI_C_COMPILER', os.path.join(prereq_dir, 'bin', 'mpicc'))
     env.set('MPI_CXX_COMPILER', os.path.join(prereq_dir, 'bin', 'mpicxx'))
+    env.set('MPI_Fortran_COMPILER', os.path.join(prereq_dir, 'bin', 'mpifort'))
     env.set('MPI_C_FOUND', os.path.join(prereq_dir,'lib','libmpi.so'))
     env.prepend('PATH', os.path.join(prereq_dir, 'bin'))
     env.prepend('PATH', os.path.join(prereq_dir, 'include'))
