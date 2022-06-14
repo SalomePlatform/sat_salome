@@ -30,6 +30,17 @@ default_win:
     }
 }
 
+version_4_10_3:
+{
+  compil_script : "gmsh-4.10.3.sh"
+}
+
+version_4_10_3_win:
+{
+  compil_script : "gmsh-4.10.3.bat"
+  patches: ['gmsh-4.10.3-windows.patch']
+}
+
 version_4_8_4:
 {
   compil_script : "gmsh-4.8.4.sh"
