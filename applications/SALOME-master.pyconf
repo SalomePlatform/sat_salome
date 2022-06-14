@@ -61,7 +61,7 @@ APPLICATION :
         gmp : 'native'
         mpfr : 'native'
         gdal : '2.4.0'
-        gmsh : '4.8.4'
+        gmsh : '4.10.3'
         graphviz : '2.38.0'
         hdf5 : '1.10.3'
         idna : '2.7'
