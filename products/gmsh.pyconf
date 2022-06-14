@@ -8,7 +8,7 @@ default :
     {
        env_script : $name + ".py"
     }
-    depend : ["CAS","lapack"]
+    depend : ["CAS","lapack","hdf5","medfile"]
     build_depend : ["cmake"]
     patches : []
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
@@ -22,7 +22,7 @@ default :
 
 default_win:
 {
-    depend : ["CAS", "pthreads"]
+    depend : ["CAS", "pthreads","hdf5","medfile"]
     properties :
     {
       incremental : "yes"
