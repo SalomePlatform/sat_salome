@@ -60,7 +60,7 @@ APPLICATION :
         freetype : 'native'
         gl2ps : 'native'
         gdal : 'native'
-        gmsh : '4.8.4'
+        gmsh : '4.10.3'
         graphviz : 'native'
         hdf5 : '1.10.3'
         idna : 'native'
