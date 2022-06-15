@@ -60,7 +60,7 @@ APPLICATION :
         gmp : 'native'
         mpfr : 'native'
         gdal :  {tag : '2.4.0', hpc : 'yes'}
-        gmsh : '4.8.4'
+        gmsh : '4.10.3'
         graphviz : '2.38.0'
         hdf5 : {tag : '1.10.3', hpc : 'yes'}
         idna : '2.7'
