@@ -41,7 +41,7 @@ if NOT %ERRORLEVEL% == 0 (
 
 echo.
 echo *********************************************************************
-echo *** msbuild %MAKE_OPTIONS% /p:Configuration=Release /p:Platform=x64 ALL_BUILD.vcxproj"
+echo *** msbuild %MAKE_OPTIONS% /p:Configuration=Release /p:Platform=x64 ALL_BUILD.vcxproj
 echo *********************************************************************
 echo.
 
