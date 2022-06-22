@@ -98,7 +98,7 @@ APPLICATION :
         patsy : '0.5.2'
         ParaView : {tag:'5.9.0', base: 'no',  section: 'version_5_9_0_MPI', hpc: 'yes'}
         PERSALYS: 'v12.0'
-        petsc : {tag : '3.16.0', section: 'version_3_16_0'}
+        petsc : {tag : '3.16.0', base: 'no', section: 'version_3_16_0', hpc: 'yes'}
         Pillow : '7.1.1'
         planegcs : '0.18-3cb6890'
         psutil : '5.7.2'
@@ -177,7 +177,7 @@ APPLICATION :
         'OPENTURNS_SALOME'
         'YDEFX'
         'pmml'
-        'SOLVERLAB'
+        'SOLVERLAB' : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'TopIIVolMesh'
         #'TESTBASE'
         'CEATESTBASE' : 'SalomeV9'
