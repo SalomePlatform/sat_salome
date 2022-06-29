@@ -1,6 +1,5 @@
-diff -Naur gmsh_ref/CMakeLists.txt gmsh_new/CMakeLists.txt
---- gmsh_ref/CMakeLists.txt	2022-05-26 10:51:23.000000000 +0200
-+++ gmsh_new/CMakeLists.txt	2022-06-14 15:01:11.502544660 +0200
+--- gmsh-4.10.3-source_ref/CMakeLists.txt	2022-05-26 10:51:23.000000000 +0200
++++ gmsh-4.10.3-source_new/CMakeLists.txt	2022-06-29 14:45:50.976422373 +0200
 @@ -1340,9 +1340,6 @@
      set_config_option(HAVE_OCC "OpenCASCADE")
      list(APPEND EXTERNAL_LIBRARIES ${OCC_LIBS})
@@ -11,3 +10,42 @@ diff -Naur gmsh_ref/CMakeLists.txt gmsh_new/CMakeLists.txt
    endif()
  endif()
  
+--- gmsh-4.10.3-source_ref/contrib/QuadMeshingTools/qmtMeshGeometryOptimization.cpp	2022-05-26 10:51:23.000000000 +0200
++++ gmsh-4.10.3-source_new/contrib/QuadMeshingTools/qmtMeshGeometryOptimization.cpp	2022-06-29 14:46:37.287921297 +0200
+@@ -26,6 +26,7 @@
+ #include "meshOctreeLibOL.h"
+ #include "Context.h"
+ #include "gmsh.h" // api
++#include "GmshConfig.h"
+ 
+ /* QuadMeshingTools includes */
+ #include "cppUtils.h"
+@@ -2422,8 +2423,12 @@
+   std::vector<std::array<vec2, 3> > triIdealShapes;
+   std::vector<std::array<uint32_t, 3> > triangles;
+   bool preserveQuadAnisotropy = false;
++#if defined(HAVE_WINSLOWUNTANGLER)
+   buildTrianglesAndTargetsFromElements(points_2D, quads, triangles,
+                                        triIdealShapes, preserveQuadAnisotropy);
++#else
++  Msg::Error("smoothWithWinslowUntangler requires WinslowUntangler");
++#endif
+ 
+   /* Planar smoothing with Winslow untangler */
+   Msg::Debug("- Untangle/Smooth quad mesh (%li quads -> %li optim tris, %li "
+@@ -2438,10 +2443,15 @@
+   double timeMax = 1000;
+   if(Msg::GetVerbosity() >= 99) verbosity = 1;
+   std::string pp = "Debug   : ---- ";
++#if defined(HAVE_WINSLOWUNTANGLER)
+   bool oku =
+     untangle_triangles_2D(points_2D, locked, triangles, triIdealShapes, lambda,
+                           iterMaxInner, iterMaxOuter, nFailMax, timeMax);
+   if(!oku) { Msg::Debug("---- failed to untangle"); }
++#else
++  Msg::Error("smoothWithWinslowUntangler requires WinslowUntangler");
++#endif
++
+   // {
+   //   for (size_t v = 0; v < points_2D.size(); ++v) {
+   //     GeoLog::add({points_2D[v][0],points_2D[v][1],0.},double(locked[v]),"2D_aftersmooth");
