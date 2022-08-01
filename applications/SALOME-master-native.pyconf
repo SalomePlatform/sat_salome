@@ -260,4 +260,8 @@ __overwrite__ :
         'APPLICATION.products.root'      : {tag:'6.22.02', base: 'no', section: 'version_6_22_02_FD34'           }
         'APPLICATION.products.gdal'      : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_FD34'             } # spns #29324
     }
+    {
+        __condition__ : "VARS.dist not in ['DB09','DB10', 'DB10']"
+        'APPLICATION.products.MeshGems' : '2.13-1'
+    }
 ]

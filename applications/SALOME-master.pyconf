@@ -241,4 +241,8 @@ __overwrite__ :
         'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
         'APPLICATION.products.gdal': {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_UB20_04'} # spns #29324
     }
+    {
+        __condition__ : "VARS.dist not in ['DB09','DB10', 'DB10']"
+        'APPLICATION.products.MeshGems' : '2.13-1'
+    }
 ]
