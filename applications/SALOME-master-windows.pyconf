@@ -211,8 +211,4 @@ __overwrite__ :
     'APPLICATION.products.ParaView'   : {tag: '5.9.0',   base: 'no', section : 'version_5_9_0_win_dbg'      }
     'APPLICATION.products.zlib'       : {tag: '1.2.5',   base: 'no', section : 'version_1_2_5_win_dbg'      }
   }
-  {
-        __condition__ : "VARS.dist not in ['DB09','DB10', 'DB10']"
-        'APPLICATION.products.MeshGems' : '2.13-1'
-    }
 ]

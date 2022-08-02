@@ -221,9 +221,4 @@ __overwrite__ :
         __condition__ : "VARS.dist not in ['DB08','DB09', 'FD30']"
         'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
     }
-
-    {
-        __condition__ : "VARS.dist not in ['DB09','DB10', 'DB10']"
-        'APPLICATION.products.MeshGems' : {tag : '2.14-4', hpc : 'yes'}
-    }
 ]
