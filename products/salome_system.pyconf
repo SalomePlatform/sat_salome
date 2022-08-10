@@ -96,7 +96,7 @@ default :
         "UB18.04" :
         {
             apt : ["libdc1394-22", "libopenexr22", "libwebp6", "libgfortran4", "libilmbase12", "libevent-2.1-6", "libpng16-16", "libgcc-7-dev",
-                   "libffi6", "libtinfo5", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0", "libopenblas-base"]
+                   "libffi6", "libtinfo5", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0", "libopenblas-base", "libgeos-c1v5"]
             apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev",
 		       "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev"]
         }
