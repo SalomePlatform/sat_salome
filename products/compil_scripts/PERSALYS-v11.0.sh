@@ -24,10 +24,11 @@ CMAKE_OPTIONS+=" -DOpenTURNS_DIR=$OT_ROOT_DIR/lib/cmake/openturns"
 CMAKE_OPTIONS+=" -DPy2cpp_DIR=$PY2CPP_ROOT_DIR//lib/cmake/py2cpp"
 
 # strangely Centos 8 fails to guess qwt installation
-if [[ $DIST_NAME == "CO" && $DIST_VERSION == "8" && $APPLICATION_NAME =~ native ]]; then
+
+if [[ $DIST_NAME == "CO" && $DIST_VERSION == "8" && "${SAT_qwt_IS_NATIVE}" == "1" ]]; then
     CMAKE_OPTIONS+=" -DQWT_LIBRARY=/usr/lib64/libqwt-qt5.so"
     CMAKE_OPTIONS+=" -DQWT_INCLUDE_DIR=/usr/include/qt5/qwt"
-elif [ "$QWT_ROOT_DIR" != "/usr" ]; then
+if [ "${SAT_qwt_IS_NATIVE}" != "1" ]; then
     CMAKE_OPTIONS+=" -DQWT_LIBRARY=$QWT_ROOT_DIR/lib/libqwt.so"
     CMAKE_OPTIONS+=" -DQWT_INCLUDE_DIR=$QWT_ROOT_DIR/include"
 fi
@@ -46,11 +47,11 @@ fi
 CMAKE_OPTIONS+=" -DPYTHON_EXECUTABLE=$PYTHONBIN"
 
 CMAKE_OPTIONS+=" -DPYTHON_INCLUDE_DIR=$PYTHON_INCLUDE"
-if [ "$PYTHON_ROOT_DIR" != "/usr" ]; then
+if [ "${SAT_Python_IS_NATIVE}" != "1" ]; then
     CMAKE_OPTIONS+=" -DPYTHON_LIBRARY=$PYTHON_ROOT_DIR/lib/libpython$PYTHON_VERSION.so"
 fi
 
-if [ "$SPHINX_ROOT_DIR" != "/usr" ]; then
+if [ "${SAT_Sphinx_IS_NATIVE}" != "1" ]; then
     CMAKE_OPTIONS+=" -DSPHINX_ROOT_DIR:FILEPATH=$SPHINX_ROOT_DIR"
     CMAKE_OPTIONS+=" -DSPHINX_EXECUTABLE:FILEPATH=$SPHINX_ROOT_DIR/bin/sphinx-build"
 fi

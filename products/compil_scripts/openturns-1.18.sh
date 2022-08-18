@@ -332,11 +332,18 @@ if [[ -d "$SOURCE_DIR/otfftw-0.11" ]]; then
 	    DB10)
                 SITE_PATCH=/usr/lib/python3/dist-packages/setuptools/site-patch.py
                 ;;
+	    UB22*)
+                SITE_PATCH=/usr/lib/pypy/dist-packages/setuptools/site-patch.py
+                ;;
 	    UB20*)
                 SITE_PATCH=/usr/lib/pypy/dist-packages/setuptools/site-patch.py
                 ;;
 	    FD32)
                 SITE_PATCH=/usr/lib/pypy/dist-packages/setuptools/site-patch.py
+                ;;
+	    FD36)
+                ###SITE_PATCH=
+                SITE_PATCH=$SOURCE_DIR/addons/site-patch.py
                 ;;
 	    FD34)
                 ###SITE_PATCH=

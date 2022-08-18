@@ -185,8 +185,7 @@ CMAKE_OPTIONS+=" -DHDF5_IS_PARALLEL=OFF"
 
 ### CGNS
 CMAKE_OPTIONS+=" -DVTK_MODULE_USE_EXTERNAL_ParaView_cgns:BOOL=ON"
-if [ "${SAT_cgns_IS_NATIVE}" != "1" ]
-then
+if [ -n "$CGNS_ROOT_DIR" ] && [ "${SAT_cgns_IS_NATIVE}" != "1" ]; then
     CMAKE_OPTIONS+=" -DCGNS_INCLUDE_DIR:PATH=${CGNS_ROOT_DIR}/include"
     CMAKE_OPTIONS+=" -DCGNS_LIBRARY:PATH=${CGNS_ROOT_DIR}/lib/libcgns.so"
 fi
