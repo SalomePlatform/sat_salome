@@ -1,0 +1,161 @@
+diff -Naur  ParaView-5.9.0-ref/VTK/ThirdParty/mpi4py/vtkmpi4py/src/mpi4py.MPI.c  ParaView-5.9.0-new//VTK/ThirdParty/mpi4py/vtkmpi4py/src/mpi4py.MPI.c
+--- ParaView-5.9.0-ref/VTK/ThirdParty/mpi4py/vtkmpi4py/src/mpi4py.MPI.c	2021-02-04 15:22:04.000000000 +0100
++++ ParaView-5.9.0-new//VTK/ThirdParty/mpi4py/vtkmpi4py/src/mpi4py.MPI.c	2022-08-19 13:11:53.452998255 +0200
+@@ -496,6 +496,13 @@
+ #ifndef PySet_CheckExact
+   #define PySet_CheckExact(obj)        (Py_TYPE(obj) == &PySet_Type)
+ #endif
++#if PY_VERSION_HEX >= 0x030900A4
++  #define __Pyx_SET_REFCNT(obj, refcnt) Py_SET_REFCNT(obj, refcnt)
++  #define __Pyx_SET_SIZE(obj, size) Py_SET_SIZE(obj, size)
++#else
++  #define __Pyx_SET_REFCNT(obj, refcnt) Py_REFCNT(obj) = (refcnt)
++  #define __Pyx_SET_SIZE(obj, size) Py_SIZE(obj) = (size)
++#endif
+ #if CYTHON_ASSUME_SAFE_MACROS
+   #define __Pyx_PySequence_SIZE(seq)  Py_SIZE(seq)
+ #else
+@@ -154207,9 +154214,9 @@
+   {
+     PyObject *etype, *eval, *etb;
+     PyErr_Fetch(&etype, &eval, &etb);
+-    ++Py_REFCNT(o);
++    Py_SET_REFCNT(o, Py_REFCNT(o) + 1);
+     __pyx_pw_6mpi4py_3MPI_8Datatype_3__dealloc__(o);
+-    --Py_REFCNT(o);
++    Py_SET_REFCNT(o, Py_REFCNT(o) - 1);
+     PyErr_Restore(etype, eval, etb);
+   }
+   (*Py_TYPE(o)->tp_free)(o);
+@@ -154497,9 +154504,9 @@
+   {
+     PyObject *etype, *eval, *etb;
+     PyErr_Fetch(&etype, &eval, &etb);
+-    ++Py_REFCNT(o);
++    Py_SET_REFCNT(o, Py_REFCNT(o) + 1);
+     __pyx_pw_6mpi4py_3MPI_7Request_3__dealloc__(o);
+-    --Py_REFCNT(o);
++    Py_SET_REFCNT(o, Py_REFCNT(o) - 1);
+     PyErr_Restore(etype, eval, etb);
+   }
+   Py_CLEAR(p->ob_buf);
+@@ -154877,9 +154884,9 @@
+   {
+     PyObject *etype, *eval, *etb;
+     PyErr_Fetch(&etype, &eval, &etb);
+-    ++Py_REFCNT(o);
++    Py_SET_REFCNT(o, Py_REFCNT(o) + 1);
+     __pyx_pw_6mpi4py_3MPI_7Message_3__dealloc__(o);
+-    --Py_REFCNT(o);
++    Py_SET_REFCNT(o, Py_REFCNT(o) - 1);
+     PyErr_Restore(etype, eval, etb);
+   }
+   Py_CLEAR(p->ob_buf);
+@@ -155073,9 +155080,9 @@
+   {
+     PyObject *etype, *eval, *etb;
+     PyErr_Fetch(&etype, &eval, &etb);
+-    ++Py_REFCNT(o);
++    Py_SET_REFCNT(o, Py_REFCNT(o) + 1);
+     __pyx_pw_6mpi4py_3MPI_2Op_3__dealloc__(o);
+-    --Py_REFCNT(o);
++    Py_SET_REFCNT(o, Py_REFCNT(o) - 1);
+     PyErr_Restore(etype, eval, etb);
+   }
+   (*Py_TYPE(o)->tp_free)(o);
+@@ -155260,9 +155267,9 @@
+   {
+     PyObject *etype, *eval, *etb;
+     PyErr_Fetch(&etype, &eval, &etb);
+-    ++Py_REFCNT(o);
++    Py_SET_REFCNT(o, Py_REFCNT(o) + 1);
+     __pyx_pw_6mpi4py_3MPI_5Group_3__dealloc__(o);
+-    --Py_REFCNT(o);
++    Py_SET_REFCNT(o, Py_REFCNT(o) - 1);
+     PyErr_Restore(etype, eval, etb);
+   }
+   (*Py_TYPE(o)->tp_free)(o);
+@@ -155456,9 +155463,9 @@
+   {
+     PyObject *etype, *eval, *etb;
+     PyErr_Fetch(&etype, &eval, &etb);
+-    ++Py_REFCNT(o);
++    Py_SET_REFCNT(o, Py_REFCNT(o) + 1);
+     __pyx_pw_6mpi4py_3MPI_4Info_3__dealloc__(o);
+-    --Py_REFCNT(o);
++    Py_SET_REFCNT(o, Py_REFCNT(o) - 1);
+     PyErr_Restore(etype, eval, etb);
+   }
+   (*Py_TYPE(o)->tp_free)(o);
+@@ -155675,9 +155682,9 @@
+   {
+     PyObject *etype, *eval, *etb;
+     PyErr_Fetch(&etype, &eval, &etb);
+-    ++Py_REFCNT(o);
++    Py_SET_REFCNT(o, Py_REFCNT(o) + 1);
+     __pyx_pw_6mpi4py_3MPI_10Errhandler_3__dealloc__(o);
+-    --Py_REFCNT(o);
++    Py_SET_REFCNT(o, Py_REFCNT(o) - 1);
+     PyErr_Restore(etype, eval, etb);
+   }
+   (*Py_TYPE(o)->tp_free)(o);
+@@ -155845,9 +155852,9 @@
+   {
+     PyObject *etype, *eval, *etb;
+     PyErr_Fetch(&etype, &eval, &etb);
+-    ++Py_REFCNT(o);
++    Py_SET_REFCNT(o, Py_REFCNT(o) + 1);
+     __pyx_pw_6mpi4py_3MPI_4Comm_3__dealloc__(o);
+-    --Py_REFCNT(o);
++    Py_SET_REFCNT(o, Py_REFCNT(o) - 1);
+     PyErr_Restore(etype, eval, etb);
+   }
+   (*Py_TYPE(o)->tp_free)(o);
+@@ -156860,9 +156867,9 @@
+   {
+     PyObject *etype, *eval, *etb;
+     PyErr_Fetch(&etype, &eval, &etb);
+-    ++Py_REFCNT(o);
++    Py_SET_REFCNT(o, Py_REFCNT(o) + 1);
+     __pyx_pw_6mpi4py_3MPI_3Win_3__dealloc__(o);
+-    --Py_REFCNT(o);
++    Py_SET_REFCNT(o, Py_REFCNT(o) - 1);
+     PyErr_Restore(etype, eval, etb);
+   }
+   Py_CLEAR(p->ob_mem);
+@@ -157166,9 +157173,9 @@
+   {
+     PyObject *etype, *eval, *etb;
+     PyErr_Fetch(&etype, &eval, &etb);
+-    ++Py_REFCNT(o);
++    Py_SET_REFCNT(o, Py_REFCNT(o) + 1);
+     __pyx_pw_6mpi4py_3MPI_4File_3__dealloc__(o);
+-    --Py_REFCNT(o);
++    Py_SET_REFCNT(o, Py_REFCNT(o) - 1);
+     PyErr_Restore(etype, eval, etb);
+   }
+   (*Py_TYPE(o)->tp_free)(o);
+@@ -157436,9 +157443,9 @@
+   {
+     PyObject *etype, *eval, *etb;
+     PyErr_Fetch(&etype, &eval, &etb);
+-    ++Py_REFCNT(o);
++    Py_SET_REFCNT(o, Py_REFCNT(o) + 1);
+     __pyx_pw_6mpi4py_3MPI_6memory_3__dealloc__(o);
+-    --Py_REFCNT(o);
++    Py_SET_REFCNT(o, Py_REFCNT(o) - 1);
+     PyErr_Restore(etype, eval, etb);
+   }
+   (*Py_TYPE(o)->tp_free)(o);
+@@ -157609,9 +157616,9 @@
+   {
+     PyObject *etype, *eval, *etb;
+     PyErr_Fetch(&etype, &eval, &etb);
+-    ++Py_REFCNT(o);
++    Py_SET_REFCNT(o, Py_REFCNT(o) + 1);
+     __pyx_pw_6mpi4py_3MPI_6_p_mem_3__dealloc__(o);
+-    --Py_REFCNT(o);
++    Py_SET_REFCNT(o, Py_REFCNT(o) - 1);
+     PyErr_Restore(etype, eval, etb);
+   }
+   (*Py_TYPE(o)->tp_free)(o);

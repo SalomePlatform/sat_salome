@@ -223,6 +223,7 @@ __overwrite__ :
         'APPLICATION.rm_products'      : ['mesa']
         'APPLICATION.products.omniORB'   : '4.2.5'
         'APPLICATION.products.omniORBpy' : '4.2.5'
+        'APPLICATION.products.ParaView' : {tag: '5.9.0', base: 'no',  section: 'version_5_9_0_UB22_04', hpc: 'yes'}
     }
     {
         # DB10:
