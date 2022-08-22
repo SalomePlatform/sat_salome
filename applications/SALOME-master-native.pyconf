@@ -36,7 +36,7 @@ APPLICATION :
         alabaster : 'native'
         Babel : 'native'
         boost : 'native'
-        CAS : 'V7_5_3p2'
+        CAS : 'CR753-SALOME-PATCH'
         C3PO: 'v2.0'
         certifi : 'native'
         cgns : '4.2.0'
