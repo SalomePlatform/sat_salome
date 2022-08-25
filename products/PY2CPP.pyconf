@@ -30,6 +30,9 @@ default :
 
 default_win :
 {
-#    cmake_options : " -DPYTHON_ROOT_DIR=%PYTHON_ROOT_DIR:\=/% -DPYTHON_EXECUTABLE=%PYTHONBIN:\=/% -DPYTHON_INCLUDE_PATH=%PYTHON_INCLUDE:\=/% -DPYTHON_LIBRARY=%PYTHON_ROOT_DIR:\=/%/lib/libpython%PYTHON_VERSION%.lib"
-    cmake_options : " -DPYTHON_EXECUTABLE=%PYTHONBIN:\=/% -DPYTHON_INCLUDE_PATH=%PYTHON_INCLUDE:\=/% -DPYTHON_LIBRARY=%PYTHON_ROOT_DIR:\=/%/libs/libpython%PYTHON_VERSION%.lib"
+    properties:
+    {
+      incremental : "yes"
+      single_install_dir : "yes" # aimed to solve sat #18914
+    }
 }
