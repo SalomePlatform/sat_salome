@@ -10,7 +10,7 @@ PYTHON_HOME=$PYTHONHOME
 
 echo
 echo "*** configure --prefix=$PRODUCT_INSTALL --disable-ipv6"
-$SOURCE_DIR/configure --prefix=$PRODUCT_INSTALL --disable-ipv6 
+$SOURCE_DIR/configure --prefix=$PRODUCT_INSTALL --disable-ipv6
 if [ $? -ne 0 ]
 then
     echo "ERROR on configure"
@@ -34,6 +34,7 @@ then
     echo "ERROR on make install"
     exit 3
 fi
+
 function version_ge() { test "$(echo "$@" | tr " " "\n" | sort -rV | head -n 1)" == "$1"; }
 
 if version_ge $VERSION "4.1" ; then

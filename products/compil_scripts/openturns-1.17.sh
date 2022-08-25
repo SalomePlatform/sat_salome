@@ -5,10 +5,10 @@ echo "openturns" $VERSION
 echo "##########################################################################"
 
 # we don't install in python directory -> modify environment as described in INSTALL file
-mkdir -p $PRODUCT_INSTALL/lib/python${PYTHON_VERSION:0:3}/site-packages
+mkdir -p $PRODUCT_INSTALL/lib/python${PYTHON_VERSION}/site-packages
 export PATH=$(pwd)/bin:$PATH
 export PYTHONPATH=$(pwd):$PYTHONPATH
-export PYTHONPATH=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION:0:3}/site-packages:$PYTHONPATH
+export PYTHONPATH=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages:$PYTHONPATH
 
 CMAKE_OPTIONS=""
 if [ -n "$SAT_HPC" ] && [ -n "$MPI_ROOT_DIR" ]; then

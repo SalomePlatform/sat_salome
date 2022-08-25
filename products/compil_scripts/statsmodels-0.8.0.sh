@@ -17,10 +17,10 @@ if [[ $DIST_NAME == "CO" && $DIST_VERSION == "8" && $APPLICATION_NAME =~ native 
 else
     PRODUCT_LIB=lib
 fi
-mkdir -p $PRODUCT_INSTALL/${PRODUCT_LIB}/python${PYTHON_VERSION:0:3}/site-packages
+mkdir -p $PRODUCT_INSTALL/${PRODUCT_LIB}/python${PYTHON_VERSION}/site-packages
 export PATH=$(pwd)/bin:$PATH
 export PYTHONPATH=$(pwd):$PYTHONPATH
-export PYTHONPATH=${PRODUCT_INSTALL}/${PRODUCT_LIB}/python${PYTHON_VERSION:0:3}/site-packages:$PYTHONPATH
+export PYTHONPATH=${PRODUCT_INSTALL}/${PRODUCT_LIB}/python${PYTHON_VERSION}/site-packages:$PYTHONPATH
     
 echo
 echo "*** build with $PYTHONBIN"

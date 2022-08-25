@@ -15,10 +15,10 @@ for X in env.sh runAllTests.sh; do
     find . -name $X |xargs rm -f
 done
 
-mkdir -p $PRODUCT_INSTALL/lib/python${PYTHON_VERSION:0:3}/site-packages
+mkdir -p $PRODUCT_INSTALL/lib/python${PYTHON_VERSION}/site-packages
 export PATH=${PRODUCT_INSTALL}/bin:$PATH
 export PYTHONPATH=$PWD:$PYTHONPATH
-export PYTHONPATH=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION:0:3}/site-packages:$PYTHONPATH
+export PYTHONPATH=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages:$PYTHONPATH
 
 echo
 echo "*** build and install with $PYTHONBIN sources/setup.py install --prefix=$PRODUCT_INSTALL"

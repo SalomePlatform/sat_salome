@@ -9,10 +9,10 @@ echo  "*** build in SOURCE directory"
 cd $SOURCE_DIR/sip-5.5.0
 
 # we don't install in python directory -> modify environment as described in INSTALL file
-mkdir -p $PRODUCT_INSTALL/lib/python${PYTHON_VERSION:0:3}/site-packages
+mkdir -p $PRODUCT_INSTALL/lib/python${PYTHON_VERSION}/site-packages
 export PATH=$(pwd)/bin:$PATH
 export PYTHONPATH=$(pwd):$PYTHONPATH
-export PYTHONPATH=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION:0:3}/site-packages:$PYTHONPATH
+export PYTHONPATH=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages:$PYTHONPATH
 
 echo
 echo "*** build with $PYTHONBIN"

@@ -48,7 +48,7 @@ echo "Compile ADAO MODULE"
 echo "##########################################################################"
 export ADAO_PYTHON_ROOT_DIR=${CURRENT_SOFTWARE_INSTALL_DIR}
 export ADAO_ENGINE_ROOT_DIR==${CURRENT_SOFTWARE_INSTALL_DIR}
-export PYTHONPATH=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION:0:3}/site-packages:$PYTHONPATH
+export PYTHONPATH=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages:$PYTHONPATH
 
 
 CMAKE_OPTIONS=""

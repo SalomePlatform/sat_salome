@@ -5,7 +5,7 @@ echo "omniORBpy" $VERSION
 echo "##########################################################################"
 
 echo
-echo "*** configure"
+echo "*** configure  --prefix=${OMNIORB_ROOT_DIR}"
 $SOURCE_DIR/configure --prefix=${OMNIORB_ROOT_DIR}
 if [ $? -ne 0 ]
 then

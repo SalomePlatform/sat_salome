@@ -17,3 +17,9 @@ default :
       incremental : "yes"
     }
 }
+
+
+version_4_2_5:
+{
+  patches: ['omniORBpy-4.2.5.p1.patch']
+}

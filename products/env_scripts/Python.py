@@ -39,10 +39,9 @@ def set_env(env,prereq_dir,version,forBuild=None):
 
 def set_nativ_env(env):
     import sys, sysconfig
-    #env.set('PYTHONHOME',"%s.%s" % sys.version_info[0:2])
     env.set('PYTHON_ROOT_DIR', "/usr")
     env.set('PYTHON_INCLUDE',  "%s" % sysconfig.get_paths()['include'])
-    env.set('PYTHON_VERSION', "%s.%s" % sys.version_info[0:2])
+    env.set('PYTHON_VERSION', sysconfig.get_python_version())
     if sys.version_info[0] == 3 :
         env.set('PYTHONBIN','/usr/bin/python3')
     else:

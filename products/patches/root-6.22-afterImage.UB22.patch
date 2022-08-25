@@ -1,0 +1,11 @@
+--- root-6.22.02_ref/graf2d/asimage/src/libAfterImage/Makefile.in	2020-08-17 14:41:56.000000000 +0200
++++ root-6.22.02_new/graf2d/asimage/src/libAfterImage/Makefile.in	2022-08-25 13:18:49.848451106 +0200
+@@ -78,7 +78,7 @@
+ EXTRA_DEFINES	= @DEFINE_XLOCALE@
+ 
+ RANLIB		= @RANLIB@
+-AR		= ar clq
++AR		= ar cq
+ CP		= @CP@
+ MV		= @MV@
+ RM		= @RM@

@@ -5,10 +5,11 @@ echo "openturns" $VERSION
 echo "##########################################################################"
 
 # we don't install in python directory -> modify environment as described in INSTALL file
-mkdir -p $PRODUCT_INSTALL/lib/python${PYTHON_VERSION:0:3}/site-packages
+
+mkdir -p $PRODUCT_INSTALL/lib/python${PYTHON_VERSION}/site-packages
 export PATH=$(pwd)/bin:$PATH
 export PYTHONPATH=$(pwd):$PYTHONPATH
-export PYTHONPATH=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION:0:3}/site-packages:$PYTHONPATH
+export PYTHONPATH=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages:$PYTHONPATH
 
 CMAKE_OPTIONS=""
 if [ -n "$SAT_HPC" ] && [ -n "$MPI_ROOT_DIR" ]; then
@@ -29,6 +30,17 @@ fi
 if [ -n "$TBB_ROOT_DIR" ] && [ "$SAT_tbb_IS_NATIVE" != "1" ]; then
     CMAKE_OPTIONS+=" -DTBB_ROOT_DIR=${TBB_ROOT_DIR}"
 fi
+
+# https://github.com/persalys/persalys/issues/745
+LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
+case $LINUX_DISTRIBUTION in
+    UB22*|CO8*|CO9*)
+	echo "WARNING: switching OFF TBB support"
+	CMAKE_OPTIONS+=" -DUSE_TBB=OFF"
+	;;
+    *)
+	;;
+esac
 
 # Blas/Lapack
 if [ -n "$LAPACK_ROOT_DIR" ] && [ "$SAT_lapack_IS_NATIVE" != "1" ]; then
@@ -92,6 +104,7 @@ if [ -n "$NLOPT_ROOT_DIR" ] && [ "$SAT_nlopt_IS_NATIVE" != "1" ]; then
     CMAKE_OPTIONS+=" -DNLOPT_LIBRARIES:STRING=${NLOPT_ROOT_DIR}/lib"
     CMAKE_OPTIONS+=" -DNLOPT_DIR:STRING=${NLOPT_ROOT_DIR}"
 fi
+
 
 
 echo
