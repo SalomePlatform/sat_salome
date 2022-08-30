@@ -18,16 +18,16 @@ CMAKE_OPTIONS+=" -DUSE_BLAS=ON"
 CMAKE_OPTIONS+=" -DUSE_FPIC=ON"
 CMAKE_OPTIONS+=" -DBUILD_EXAMPLES=OFF"
 CMAKE_OPTIONS+=" -DCMAKE_INSTALL_LIBDIR:STRING=lib"
-# strangely on CentOS 8 - CMake fails to find CBLAS include directory
-if [[ $DIST_NAME == "CO" && $DIST_VERSION == "8" && -d /usr/include/cblas ]]; then
-    CMAKE_OPTIONS+=" -DCBLAS_INCLUDE_DIRS=/usr/include/cblas "
+
 # Blas/Lapack
-elif [ -n "$LAPACK_ROOT_DIR" ] && [ "${SAT_lapack_IS_NATIVE}" != "1" ]; then
+if [ -n "$LAPACK_ROOT_DIR" ] && [ "${SAT_lapack_IS_NATIVE}" != "1" ]; then
     CMAKE_OPTIONS+=" -DLAPACK_DIR=${LAPACK_ROOT_DIR}/lib/cmake/lapack-3.8.0"
     CMAKE_OPTIONS+=" -DCBLAS_DIR=${LAPACK_ROOT_DIR}/lib/cmake/cblas-3.8.0"
     CMAKE_OPTIONS+=" -DCBLAS_LIBRARIES=$LAPACK_ROOT_DIR/lib/libcblas.so"
     CMAKE_OPTIONS+=" -DBLAS_LIBRARIES=$LAPACK_ROOT_DIR/lib/libblas.so"
     CMAKE_OPTIONS+=" -DCBLAS_INCLUDE_DIRS=${LAPACK_ROOT_DIR}/include "
+elif [ -d /usr/include/cblas ]; then
+    CMAKE_OPTIONS+=" -DCBLAS_INCLUDE_DIRS=/usr/include/cblas "
 fi
 
 echo
