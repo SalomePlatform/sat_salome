@@ -24,7 +24,7 @@ default :
     properties:
     {
       incremental : "yes"
-      compile_time : "yes"
+      compile_and_runtime : "yes"
     }
 }
 
