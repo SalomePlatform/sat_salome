@@ -186,11 +186,6 @@ APPLICATION :
     {
         launcher_name : "salome"
     }
-    virtual_app:
-    {
-        name : "salome"
-        application_name : "APPLI"
-    }
     test_base : 
     {
         name : "SALOME"
