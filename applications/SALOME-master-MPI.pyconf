@@ -203,6 +203,10 @@ APPLICATION :
 __overwrite__ :
 [
     {
+        __condition__ : "VARS.dist not in ['DB09','DB10', 'DB10']"
+        'APPLICATION.products.MeshGems' : {tag : '2.13-1', hpc : 'yes'}
+    }
+    {
         __condition__ : "VARS.dist in ['FD32', 'FD34', 'DB11']"
         # gcc https://github.com/scipy/scipy/issues/11611
         # either patch numpy to include -fallow-argument-mismatch or move to that version        

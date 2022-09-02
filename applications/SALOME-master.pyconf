@@ -203,6 +203,10 @@ APPLICATION :
 __overwrite__ :
 [
     {
+        __condition__ : "VARS.dist not in ['DB09','DB10', 'DB10']"
+        'APPLICATION.products.MeshGems' : {tag : '2.13-1', hpc : 'yes'}
+    }
+    {
         __condition__ : "VARS.dist in ['FD30']"
         'APPLICATION.products.gcc' : '9.3.0'
     }
