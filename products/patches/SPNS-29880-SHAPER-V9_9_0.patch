@@ -1,0 +1,13 @@
+diff --git a/src/ModelHighAPI/ModelHighAPI_Tools.cpp b/src/ModelHighAPI/ModelHighAPI_Tools.cpp
+index 65f536b..87f24f8 100644
+--- a/src/ModelHighAPI/ModelHighAPI_Tools.cpp
++++ b/src/ModelHighAPI/ModelHighAPI_Tools.cpp
+@@ -559,7 +559,7 @@ static bool checkDump(SessionPtr theSession,
+   // execute the dumped
+   PyGILState_STATE gstate = PyGILState_Ensure(); /* acquire python thread */
+   static char aReadMode[] = "r";
+-  FILE* PyFileObject = _Py_fopen(theFilename, aReadMode);
++  FILE* PyFileObject = fopen(theFilename, aReadMode);
+   PyRun_SimpleFileEx(PyFileObject, theFilename, 1);
+   PyGILState_Release(gstate); /* release python thread */
+ 

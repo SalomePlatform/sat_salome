@@ -215,17 +215,20 @@ __overwrite__ :
     {
         #
         __condition__ : "VARS.dist in ['UB22.04']"
-        'APPLICATION.products.opencv'  : '3.2.0'
-        'APPLICATION.products.nlopt'   : '2.5.0'
-        'APPLICATION.products.cminpack': 'native'
-        'APPLICATION.products.PyFMI'   : {tag: '2.5',   base: 'no', section: 'version_2_5_no_pip'           }
-        'APPLICATION.products.netcdf'  : '4.6.2'
-        'APPLICATION.rm_products'      : ['mesa']
-        'APPLICATION.products.omniORB'   : '4.2.5'
-        'APPLICATION.products.omniORBpy' : '4.2.5'
-        'APPLICATION.products.ParaView'  : {tag: '5.9.0', base: 'no',  section: 'version_5_9_0_UB22_04', hpc: 'yes'}
-        'APPLICATION.products.root'      : {tag: '6.22.02', base: 'no',  section: 'version_6_22_02_UB22_04'}
-        'APPLICATION.products.medfile'   : {tag: '4.1.1', base: 'no',  section: 'version_4_1_1_UB22_04'}
+        'APPLICATION.products.opencv'      : '3.2.0'
+        'APPLICATION.products.nlopt'       : '2.5.0'
+        'APPLICATION.products.cminpack'    : 'native'
+        'APPLICATION.products.PyFMI'       : {tag: '2.5',   base: 'no', section: 'version_2_5_no_pip'}
+        'APPLICATION.products.netcdf'      : '4.6.2'
+        'APPLICATION.rm_products'          : ['mesa']
+        'APPLICATION.products.omniORB'     : '4.2.5'
+        'APPLICATION.products.omniORBpy'   : '4.2.5'
+        'APPLICATION.products.ParaView'    : {tag: '5.9.0',   base: 'no',  section: 'version_5_9_0_UB22_04', hpc: 'yes'}
+        'APPLICATION.products.root'        : {tag: '6.22.02', base: 'no',  section: 'version_6_22_02_UB22_04'}
+        'APPLICATION.products.medfile'     : {tag: '4.1.1',   base: 'no',  section: 'version_4_1_1_UB22_04'}
+        'APPLICATION.products.MEDCOUPLING' : {tag:'V9_9_0',   base: 'no', section: 'version_V9_9_0_MPI_UB22_04', hpc: 'yes'}
+        'APPLICATION.products.HEXABLOCK'   : {tag:'V9_9_0',   base: 'no', section: 'version_V9_9_0_UB22_04', hpc: 'no'}
+        'APPLICATION.products.SHAPER'      : {tag:'V9_9_0',   base: 'no', section: 'version_V9_9_0_UB22_04', hpc: 'no'}
     }
     {
         # DB10:

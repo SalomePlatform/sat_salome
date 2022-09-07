@@ -1,0 +1,30 @@
+diff --git a/doc/tutorial/conf.py.in b/doc/tutorial/conf.py.in
+index 1f16fab3..fc6efeb8 100644
+--- a/doc/tutorial/conf.py.in
++++ b/doc/tutorial/conf.py.in
+@@ -183,8 +183,8 @@ htmlhelp_basename = 'MEDCouplingTutorial'
+ # Grouping the document tree into LaTeX files. List of tuples
+ # (source start file, target name, title, author, document class [howto/manual]).
+ latex_documents = [
+-  ('index', 'MEDCouplingTutorial.tex', ur'MEDCoupling tutorial',
+-   ur'A. Geay, A. Bruneton', 'manual'),
++  ('index', 'MEDCouplingTutorial.tex', 'MEDCoupling tutorial',
++   'A. Geay, A. Bruneton', 'manual'),
+ ]
+ 
+ # The name of an image file (relative to this directory) to place at the top of
+diff --git a/doc/user/conf.py.in b/doc/user/conf.py.in
+index 412d8866..74819303 100644
+--- a/doc/user/conf.py.in
++++ b/doc/user/conf.py.in
+@@ -185,8 +185,8 @@ htmlhelp_basename = 'MEDCouplingUsersGuide'
+ # Grouping the document tree into LaTeX files. List of tuples
+ # (source start file, target name, title, author, document class [howto/manual]).
+ latex_documents = [
+-  ('index', 'MEDCouplingUserGuide.tex', ur"MEDCoupling User's Guide",
+-   ur'A. Geay, A. Bruneton', 'manual'),
++  ('index', 'MEDCouplingUserGuide.tex', "MEDCoupling User's Guide",
++   'A. Geay, A. Bruneton', 'manual'),
+ ]
+ 
+ # The name of an image file (relative to this directory) to place at the top of

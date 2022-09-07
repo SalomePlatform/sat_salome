@@ -53,6 +53,10 @@ default_win :
     cmake_options :   " -DNO_SolveSpace=TRUE  -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR:\=/%/bin/swig.exe " 
 }
 
+version_V9_9_0_UB22_04:
+{
+  patches : ['SPNS-29880-SHAPER-V9_9_0.patch']
+}
 version_9_5_0_to_9_8_0 :
 {
     patches : ["patch_shaper_cursor_cross.diff"]

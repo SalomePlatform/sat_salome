@@ -43,6 +43,7 @@ default :
         is_SALOME_module : "yes"
         has_unit_tests
     }
+    patches: []
 } 
 
 default_MPI :
@@ -97,3 +98,7 @@ version_V9_9_0_MPI :
             ]
 } 
 
+version_V9_9_0_UB22_04 :
+{
+    patches: ['SPNS-29880-HEXABLOCK_V9_9_0.patch']
+}
