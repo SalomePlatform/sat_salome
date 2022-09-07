@@ -69,7 +69,10 @@ version_6_22_02:
 version_6_22_02_UB22_04:
 {
     get_source : "archive"
-    patches : ['root-6.22.02.patch', 'root-6.22-afterImage.UB22.patch']
+    patches : ['root-6.22.02.patch',
+               'root-6.22-afterImage.UB22.patch',
+               'root-6.22-string_view.UB22.patch'
+               ]
 }
 
 version_6_22_02_win:
