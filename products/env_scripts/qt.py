@@ -42,4 +42,3 @@ def set_nativ_env(env):
     env.set('Qt5Test_DIR', os.path.join(qt_lib_dir, 'cmake/Qt5Test'))
     env.set('Qt5X11Extras_DIR', os.path.join(qt_lib_dir, 'cmake/Qt5X11Extras'))
     env.set('QT_QPA_PLATFORM_PLUGIN_PATH', os.path.join(qt_lib_dir, 'qt5/plugins'))
-    env.prepend('LD_LIBRARY_PATH',qt_lib_dir)
