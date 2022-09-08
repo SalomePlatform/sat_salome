@@ -220,7 +220,6 @@ __overwrite__ :
         'APPLICATION.products.cminpack'    : 'native'
         'APPLICATION.products.PyFMI'       : {tag: '2.5',   base: 'no', section: 'version_2_5_no_pip'}
         'APPLICATION.products.netcdf'      : '4.6.2'
-        'APPLICATION.rm_products'          : ['mesa']
         'APPLICATION.products.omniORB'     : '4.2.5'
         'APPLICATION.products.omniORBpy'   : '4.2.5'
         'APPLICATION.products.ParaView'    : {tag: '5.9.0',   base: 'no',  section: 'version_5_9_0_UB22_04', hpc: 'yes'}
