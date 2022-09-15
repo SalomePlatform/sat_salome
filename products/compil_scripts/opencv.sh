@@ -5,7 +5,6 @@ echo "opencv" $VERSION
 echo "##########################################################################"
 
 function version_ge() { test "$(echo "$@" | tr " " "\n" | sort -rV | head -n 1)" == "$1"; }
-CPPSTD="\"-std=c++14\""
 CMAKE_OPTIONS=""
 CMAKE_OPTIONS+=" -DCMAKE_INSTALL_PREFIX:STRING=${PRODUCT_INSTALL}"
 CMAKE_OPTIONS+=" -DCMAKE_BUILD_TYPE:STRING=Release"
@@ -28,13 +27,13 @@ if version_ge $VERSION "3."; then
     CMAKE_OPTIONS+=" -DENABLE_PRECOMPILED_HEADERS:BOOL=OFF"
     CMAKE_OPTIONS+=" -DCMAKE_CXX_FLAGS=-fPIC"
     CMAKE_OPTIONS+=" -DCMAKE_C_FLAGS=-fPIC"
-
     LINUX_DIST="$DIST_NAME$DIST_VERSION"
     LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
     case $LINUX_DISTRIBUTION in
-	FD34|FD35|FD36|UB22*)
-            CMAKE_OPTIONS+=" -DCMAKE_CXX_FLAGS=${CPPSTD}"
-	    ;;
+      FD34|FD35|FD36|UB22*)
+          CMAKE_OPTIONS+=" -DCMAKE_CXX_FLAGS=\"-std=c++14\""
+          CMAKE_OPTIONS+=" -DCMAKE_CXX_STANDARD=14"
+          ;;
     esac
     CMAKE_OPTIONS+=" -DCMAKE_C_FLAGS=-fPIC"
     # 

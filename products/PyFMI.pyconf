@@ -15,7 +15,7 @@ default :
     {
        env_script : $name + ".py"
     }
-    depend : ["Python", "setuptools", "FMILibrary"]
+    depend : ["Python", "setuptools", "FMILibrary", "numpy"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     install_dir : 'base'
@@ -23,6 +23,16 @@ default :
     {
       incremental : "yes"
       pip : "yes"
+    }
+}
+
+version_2_6_no_pip :
+{
+    compil_script : "PyFMI-2.6.sh"
+    properties:
+    {
+      incremental : "yes"
+      pip : "no"
     }
 }
 

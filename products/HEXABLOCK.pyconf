@@ -102,3 +102,8 @@ version_V9_9_0_UB22_04 :
 {
     patches: ['SPNS-29880-HEXABLOCK_V9_9_0.patch']
 }
+
+version_V9_9_0_FD36 :
+{
+    patches: ['SPNS-29880-HEXABLOCK_V9_9_0.patch']
+}

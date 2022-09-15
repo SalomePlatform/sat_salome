@@ -1,0 +1,26 @@
+diff -Naur  opencv_ref/modules/core/src/persistence.cpp opencv_new/modules/core/src/persistence.cpp
+--- opencv_ref/modules/core/src/persistence.cpp	2022-09-06 10:54:09.727231236 +0200
++++ opencv_new/modules/core/src/persistence.cpp	2022-09-06 10:53:54.839309485 +0200
+@@ -7509,7 +7509,10 @@
+ bool base64::base64_valid(uint8_t const * src, size_t off, size_t cnt)
+ {
+     /* check parameters */
+-    if (src == 0 || src + off == 0)
++    /* initialize beginning and end */
++    uint8_t const * beg = src + off;
++    uint8_t const * end = beg + cnt;
++    if (src == 0 || beg == 0)
+         return false;
+     if (cnt == 0U)
+         cnt = std::strlen(reinterpret_cast<char const *>(src));
+@@ -7518,10 +7521,6 @@
+     if (cnt & 0x3U)
+         return false;
+ 
+-    /* initialize beginning and end */
+-    uint8_t const * beg = src + off;
+-    uint8_t const * end = beg + cnt;
+-
+     /* skip padding */
+     if (*(end - 1U) == base64_padding) {
+         end--;

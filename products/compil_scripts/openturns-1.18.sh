@@ -34,7 +34,7 @@ fi
 # https://github.com/persalys/persalys/issues/745
 LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
 case $LINUX_DISTRIBUTION in
-    UB22*|CO8*|CO9*)
+    UB22*|CO8*|CO9*|FD36)
 	echo "WARNING: switching OFF TBB support"
 	CMAKE_OPTIONS+=" -DUSE_TBB=OFF"
 	;;

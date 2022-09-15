@@ -277,4 +277,22 @@ __overwrite__ :
         'APPLICATION.products.root'      : {tag:'6.22.02', base: 'no', section: 'version_6_22_02_FD34'           }
         'APPLICATION.products.gdal'      : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_FD34'             } # spns #29324
     }
+    {
+        __condition__ : "VARS.dist in ['FD36']"
+        'APPLICATION.products.opencv'    : '3.2.0'
+        'APPLICATION.products.omniORB'   : '4.2.5'
+        'APPLICATION.products.omniORBpy' : '4.2.5'
+        'APPLICATION.products.qwt'       : '6.1.6'
+        'APPLICATION.rm_products'      : ['mesa']
+        'APPLICATION.products.nlopt'   : '2.6'
+        'APPLICATION.products.numpy'     : {tag: '1.22.2',    base: 'no', section: 'version_1_22_2'              }
+        'APPLICATION.products.PyFMI'     : {tag: '2.5',    base: 'no', section: 'version_2_5_no_pip'             }
+        'APPLICATION.products.netcdf'  : '4.6.2'
+        'APPLICATION.products.ParaView'  : {tag: '5.9.0', base: 'no',  section: 'version_5_9_0_FD36', hpc: 'yes'}
+        'APPLICATION.products.root'      : {tag: '6.22.02', base: 'no',  section: 'version_6_22_02_FD36'}
+        'APPLICATION.products.medfile'   : {tag: '4.1.1', base: 'no',  section: 'version_4_1_1_FD36'}
+        'APPLICATION.products.MEDCOUPLING' : {tag:'master',   base: 'no', section: 'version_V9_9_0_MPI_FD36', hpc: 'yes'}
+        'APPLICATION.products.HEXABLOCK'   : {tag:'master',   base: 'no', section: 'version_V9_9_0_FD36', hpc: 'no'}
+        'APPLICATION.products.SHAPER'      : {tag:'master',   base: 'no', section: 'version_V9_9_0_FD36', hpc: 'no'}
+    }
 ]

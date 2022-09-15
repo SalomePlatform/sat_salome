@@ -58,6 +58,11 @@ default :
            rpm : ["lz4-libs", "gsl", "openmpi", "netcdf", "gdal"]
            rpm_dev : ["lz4-devel", "qt5-qtbase-devel", "gsl-devel", "openmpi-devel", "netcdf-devel", "gdal-devel", "texlive-dvipng"]
         }
+        "FD36" :
+        {
+           rpm : ["lz4-libs", "gsl", "openmpi", "netcdf", "gdal"]
+           rpm_dev : ["lz4-devel", "qt5-qtbase-devel", "gsl-devel", "openmpi-devel", "netcdf-devel", "gdal-devel"]
+        }
         "DB08" :
         {
             apt : ["libopenexr6", "libwebp5", "libgfortran3", "libilmbase6", "libevent-2.0-5", "libpng12-0", "libgcc-4.9-dev",
