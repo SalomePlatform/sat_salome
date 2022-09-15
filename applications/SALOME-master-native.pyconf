@@ -284,7 +284,7 @@ __overwrite__ :
         'APPLICATION.products.omniORBpy' : '4.2.5'
         'APPLICATION.products.qwt'       : '6.1.6'
         'APPLICATION.rm_products'      : ['mesa']
-        'APPLICATION.products.nlopt'   : '2.6'
+        'APPLICATION.products.nlopt'   : '2.6.0'
         'APPLICATION.products.numpy'     : {tag: '1.22.2',    base: 'no', section: 'version_1_22_2'              }
         'APPLICATION.products.PyFMI'     : {tag: '2.5',    base: 'no', section: 'version_2_5_no_pip'             }
         'APPLICATION.products.netcdf'  : '4.6.2'
