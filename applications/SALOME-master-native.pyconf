@@ -85,22 +85,22 @@ APPLICATION :
         nose: 'native'
         numpy : 'native'
         numpydoc : 'native'
-        omniORB : '4.2.3'
-        omniORBpy : '4.2.3'
+        omniORB : '4.2.5'
+        omniORBpy : '4.2.5'
         opencv : 'native'
         openmpi: 'native'
         openVKL : '0.11.0'
-        openturns: '1.18'
+        openturns: '1.19'
         ospray : '2.4.0'
         packaging : 'native'
         pandas : 'native'
-        ParaView : {tag:'5.9.0',  base: 'no',  section: 'version_5_9_0_MPI', hpc: 'yes'}
+        ParaView : {tag:'08c5d057a8', base: 'no',  section: 'version_5_11_0_MPI', hpc: 'yes'}
         PERSALYS: 'v12.0'
         petsc : {tag : '3.16.0', section: 'version_3_16_0'}
         Pillow : 'native'
         planegcs : '0.18-3cb6890'
         psutil : 'native'
-        PyFMI : '2.5'
+        PyFMI : '2.6'
         Pygments : 'native'
         pyparsing : 'native'
         PyQt : 'native'
@@ -210,7 +210,7 @@ __overwrite__ :
         __condition__ : "VARS.dist in ['UB20.04']"
         'APPLICATION.products.opencv'  : '3.2.0'
         'APPLICATION.products.cminpack': 'native'
-        'APPLICATION.products.PyFMI'   : {tag: '2.5',   base: 'no', section: 'version_2_5_no_pip'           }
+        'APPLICATION.products.PyFMI'   : {tag: '2.6',   base: 'no', section: 'version_2_6_no_pip'           }
         'APPLICATION.products.netcdf'  : '4.6.2'
     }
     {
@@ -219,16 +219,15 @@ __overwrite__ :
         'APPLICATION.products.opencv'      : '3.2.0'
         'APPLICATION.products.nlopt'       : '2.5.0'
         'APPLICATION.products.cminpack'    : 'native'
-        'APPLICATION.products.PyFMI'       : {tag: '2.5',   base: 'no', section: 'version_2_5_no_pip'}
         'APPLICATION.products.netcdf'      : '4.6.2'
         'APPLICATION.products.omniORB'     : '4.2.5'
         'APPLICATION.products.omniORBpy'   : '4.2.5'
-        'APPLICATION.products.ParaView'    : {tag: '5.9.0',   base: 'no',  section: 'version_5_9_0_UB22_04', hpc: 'yes'}
-        'APPLICATION.products.root'        : {tag: '6.22.02', base: 'no',  section: 'version_6_22_02_UB22_04'}
-        'APPLICATION.products.medfile'     : {tag: '4.1.1',   base: 'no',  section: 'version_4_1_1_UB22_04'}
-        'APPLICATION.products.MEDCOUPLING' : {tag:'master',   base: 'no', section: 'version_V9_9_0_MPI_UB22_04', hpc: 'yes'}
-        'APPLICATION.products.HEXABLOCK'   : {tag:'master',   base: 'no', section: 'version_V9_9_0_UB22_04', hpc: 'no'}
-        'APPLICATION.products.SHAPER'      : {tag:'master',   base: 'no', section: 'version_V9_9_0_UB22_04', hpc: 'no'}
+        'APPLICATION.products.PyFMI'       : {tag: '2.6',       base: 'no', section: 'version_2_6_no_pip'                     }
+        'APPLICATION.products.root'        : {tag: '6.22.02',   base: 'no', section: 'version_6_22_02_UB22_04'                }
+        'APPLICATION.products.medfile'     : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_UB22_04'                  }
+        'APPLICATION.products.MEDCOUPLING' : {tag:'master',     base: 'no', section: 'version_V9_9_0_MPI_UB22_04', hpc: 'yes' }
+        'APPLICATION.products.HEXABLOCK'   : {tag:'master',     base: 'no', section: 'version_V9_9_0_UB22_04',     hpc: 'no'  }
+        'APPLICATION.products.SHAPER'      : {tag:'master',     base: 'no', section: 'version_V9_9_0_UB22_04',     hpc: 'no'  }
     }
     {
         # DB10:
@@ -237,15 +236,13 @@ __overwrite__ :
         __condition__ : "VARS.dist in ['DB10']"
         'APPLICATION.products.opencv': '3.2.0'
         'APPLICATION.products.cminpack': 'native'
-        'APPLICATION.products.PyFMI'    : {tag:'2.5',    base: 'no',  section: 'version_2_5_no_pip'            }
-        'APPLICATION.products.ParaView' : {tag: '5.9.0', base: 'no',  section: 'version_5_9_0_DB10', hpc: 'yes'}
+        'APPLICATION.products.PyFMI'    : {tag:'2.6',        base: 'no',  section: 'version_2_6_no_pip'             }
     }
     {
         __condition__ : "VARS.dist in ['DB11']"
         'APPLICATION.products.opencv' : '3.2.0'
         'APPLICATION.products.cminpack': 'native'
-        'APPLICATION.products.PyFMI'    : {tag:'2.5',    base: 'no',  section: 'version_2_5_no_pip'            }
-        'APPLICATION.products.ParaView' : {tag: '5.9.0', base: 'no',  section: 'version_5_9_0_DB11', hpc: 'yes'}
+        'APPLICATION.products.PyFMI'    : {tag:'2.6',    base: 'no',  section: 'version_2_6_no_pip'                 }
     }
     {
         # CentOS 8 repositories don't include sphinxintl package which must be installed through pip.
@@ -253,7 +250,7 @@ __overwrite__ :
         __condition__ : "VARS.dist in ['CO8']"
         'APPLICATION.products.sphinxintl'  : {tag: '0.9.10', base: 'no', section: 'version_0_9_10_no_pip'          }
         'APPLICATION.products.cminpack'    : '1.3.6'
-        'APPLICATION.products.PyFMI'       : {tag: '2.5',    base: 'no', section: 'version_2_5_no_pip'             }
+        'APPLICATION.products.PyFMI'       : {tag: '2.6',    base: 'no', section: 'version_2_6_no_pip'             }
         'APPLICATION.products.statsmodels' : {tag: '0.6.1',  base: 'no', section: 'version_0_6_1_no_pip'           }
         'APPLICATION.products.gdal'        : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_CO8'              } # spns #29324
     }
@@ -261,8 +258,8 @@ __overwrite__ :
         __condition__ : "VARS.dist in ['FD32']"
         'APPLICATION.products.opencv'    : '3.2.0'
         'APPLICATION.products.qwt'       : '6.1.4'
-        'APPLICATION.products.PyFMI'     : {tag: '2.5',   base: 'no', section: 'version_2_5_no_pip'              }
-        'APPLICATION.products.openturns' : {tag: '1.18',  base: 'no', section: 'version_1_18_FD32'               }
+        'APPLICATION.products.PyFMI'     : {tag: '2.6',   base: 'no', section: 'version_2_6_no_pip'              }
+        'APPLICATION.products.openturns' : {tag: '1.19',  base: 'no', section: 'version_1_19_FD32'               }
         'APPLICATION.products.Sphinx'    : {tag: '1.7.6', base: 'no', section: 'version_1_7_6_no_pip'            }
         'APPLICATION.products.gdal'      : {tag:'2.4.0',  base: 'no', section: 'version_2_4_0_FD32'              } # spns #29324
     }
@@ -272,27 +269,25 @@ __overwrite__ :
         'APPLICATION.products.qwt'       : '6.1.6'
         'APPLICATION.products.omniORB'   : '4.2.4'
         'APPLICATION.products.omniORBpy' : '4.2.4'
-        'APPLICATION.products.PyFMI'     : {tag: '2.5',    base: 'no', section: 'version_2_5_no_pip'             }
-        'APPLICATION.products.openturns' : {tag: '1.18',   base: 'no', section: 'version_1_18_FD34'              }
+        'APPLICATION.products.PyFMI'     : {tag: '2.6',    base: 'no', section: 'version_2_6_no_pip'             }
+        'APPLICATION.products.openturns' : {tag: '1.19',   base: 'no', section: 'version_1_19_FD34'              }
         'APPLICATION.products.root'      : {tag:'6.22.02', base: 'no', section: 'version_6_22_02_FD34'           }
         'APPLICATION.products.gdal'      : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_FD34'             } # spns #29324
     }
     {
         __condition__ : "VARS.dist in ['FD36']"
-        'APPLICATION.products.opencv'    : '3.2.0'
-        'APPLICATION.products.omniORB'   : '4.2.5'
-        'APPLICATION.products.omniORBpy' : '4.2.5'
-        'APPLICATION.products.qwt'       : '6.1.6'
-        'APPLICATION.rm_products'      : ['mesa']
-        'APPLICATION.products.nlopt'   : '2.6.0'
-        'APPLICATION.products.numpy'     : {tag: '1.22.2',    base: 'no', section: 'version_1_22_2'              }
-        'APPLICATION.products.PyFMI'     : {tag: '2.5',    base: 'no', section: 'version_2_5_no_pip'             }
-        'APPLICATION.products.netcdf'  : '4.6.2'
-        'APPLICATION.products.ParaView'  : {tag: '5.9.0', base: 'no',  section: 'version_5_9_0_FD36', hpc: 'yes'}
-        'APPLICATION.products.root'      : {tag: '6.22.02', base: 'no',  section: 'version_6_22_02_FD36'}
-        'APPLICATION.products.medfile'   : {tag: '4.1.1', base: 'no',  section: 'version_4_1_1_FD36'}
-        'APPLICATION.products.MEDCOUPLING' : {tag:'master',   base: 'no', section: 'version_V9_9_0_MPI_FD36', hpc: 'yes'}
-        'APPLICATION.products.HEXABLOCK'   : {tag:'master',   base: 'no', section: 'version_V9_9_0_FD36', hpc: 'no'}
-        'APPLICATION.products.SHAPER'      : {tag:'master',   base: 'no', section: 'version_V9_9_0_FD36', hpc: 'no'}
+        'APPLICATION.products.opencv'      : '3.2.0'
+        'APPLICATION.products.omniORB'     : '4.2.5'
+        'APPLICATION.products.omniORBpy'   : '4.2.5'
+        'APPLICATION.products.qwt'         : '6.1.6'
+        'APPLICATION.products.nlopt'       : '2.6.0'
+        'APPLICATION.products.netcdf'      : '4.6.2'
+        'APPLICATION.products.numpy'       : {tag: '1.22.2',    base: 'no', section: 'version_1_22_2'                      }
+        'APPLICATION.products.PyFMI'       : {tag: '2.6',       base: 'no', section: 'version_2_6_no_pip'                  }
+        'APPLICATION.products.root'        : {tag: '6.22.02',   base: 'no', section: 'version_6_22_02_FD36'                }
+        'APPLICATION.products.medfile'     : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD36'                  }
+        'APPLICATION.products.MEDCOUPLING' : {tag:'master',     base: 'no', section: 'version_V9_9_0_MPI_FD36', hpc: 'yes' }
+        'APPLICATION.products.HEXABLOCK'   : {tag:'master',     base: 'no', section: 'version_V9_9_0_FD36',     hpc: 'no'  }
+        'APPLICATION.products.SHAPER'      : {tag:'master',     base: 'no', section: 'version_V9_9_0_FD36',     hpc: 'no'  }
     }
 ]
