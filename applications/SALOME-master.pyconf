@@ -73,7 +73,7 @@ APPLICATION :
         libxml2 : '2.9.1'
         llvm : '8.0.1-clang'
         markupsafe : '0.23'
-        matplotlib : '3.6.0'
+        matplotlib : '3.3.4'
         medfile : '4.1.1'
         mesa : '19.0.8'
         MeshGems : '2.14-4'
