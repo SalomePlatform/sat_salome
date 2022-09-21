@@ -1,0 +1,240 @@
+diff -Naur openturns-1.19_ref/openturns-1.19/CMakeLists.txt openturns-1.19_new/openturns-1.19/CMakeLists.txt
+--- openturns-1.19_ref/openturns-1.19/CMakeLists.txt	2022-09-19 20:42:54.651892829 +0200
++++ openturns-1.19_new/openturns-1.19/CMakeLists.txt	2022-09-19 20:50:32.780078679 +0200
+@@ -140,6 +140,10 @@
+ 
+ set (CMAKE_CXX_STANDARD 11)
+ 
++SET(LAPACK_ROOT_DIR $ENV{LAPACK_ROOT_DIR})
++IF(LAPACK_ROOT_DIR)
++  LIST(APPEND CMAKE_PREFIX_PATH "${LAPACK_ROOT_DIR}")
++ENDIF(LAPACK_ROOT_DIR)
+ if (NOT DEFINED LAPACK_LIBRARIES)
+   find_package (LAPACK REQUIRED)
+   if (LAPACK_FOUND)
+@@ -148,6 +152,10 @@
+ endif ()
+ list (APPEND OPENTURNS_PRIVATE_LIBRARIES ${LAPACK_LIBRARIES})
+ 
++IF (DEFINED CBLAS_LIBRARIES)
++  MESSAGE(STATUS "CBLAS_LIBRARIES is defined... adding to the list of libraries ${CBLAS_LIBRARIES}")
++  LIST (APPEND OPENTURNS_PRIVATE_LIBRARIES ${CBLAS_LIBRARIES})
++ENDIF()
+ if (USE_SPECTRA)
+   find_package (Spectra 1.0 CONFIG)
+ endif ()
+@@ -192,7 +200,11 @@
+ endif ()
+ 
+ if (USE_TBB)
+-  find_package (TBB CONFIG)
++  SET(TBB_ROOT_DIR $ENV{TBB_ROOT_DIR})
++  if(TBB_ROOT_DIR)
++    LIST(APPEND CMAKE_PREFIX_PATH "${TBB_ROOT_DIR}")
++  endif(TBB_ROOT_DIR)
++  find_package (TBB CONFIG)
+   if (TBB_FOUND)
+     message (STATUS "Found TBB: ${TBB_DIR} (found version ${TBB_VERSION})")
+     set (TBB_LIBRARIES TBB::tbb)
+@@ -243,6 +255,10 @@
+ endif ()
+ 
+ if (USE_LIBXML2)
++  SET(LIBXML2_ROOT_DIR $ENV{LIBXLM2_ROOT_DIR})
++  if(LIBXML2_ROOT_DIR)
++    LIST(APPEND CMAKE_PREFIX_PATH "${LIBXML2_ROOT_DIR}")
++  endif(LIBXML2_ROOT_DIR)
+   find_package (LibXml2)
+ endif ()
+ if (LIBXML2_FOUND)
+@@ -252,7 +268,19 @@
+   list (APPEND OPENTURNS_PRIVATE_LIBRARIES ${LIBXML2_LIBRARIES})
+ endif ()
+ 
++SET(MPI_ROOT_DIR $ENV{MPI_ROOT_DIR} CACHE PATH "Path to the MPI.")
++IF(MPI_ROOT_DIR)
++ LIST(APPEND CMAKE_PREFIX_PATH "${MPI_ROOT_DIR}")
++ find_package(MPI)
++ list (APPEND OPENTURNS_PRIVATE_INCLUDE_DIRS ${MPI_INCLUDE_DIRS})
++ list (APPEND OPENTURNS_PRIVATE_LIBRARIES ${MPI_LIBRARIES})
++ENDIF(MPI_ROOT_DIR)
++
+ if (USE_HDF5)
++  SET(HDF5_ROOT_DIR $ENV{HDF5_ROOT_DIR} CACHE PATH "Path to the HDF5.")
++  IF(HDF5_ROOT_DIR)
++    LIST(APPEND CMAKE_PREFIX_PATH "${HDF5_ROOT_DIR}")
++  ENDIF(HDF5_ROOT_DIR)
+   find_package(HDF5 COMPONENTS C CXX)
+ endif ()
+ if (HDF5_FOUND)
+@@ -273,6 +301,10 @@
+ endif ()
+ 
+ if (USE_BOOST)
++  SET(BOOST_ROOT_DIR $ENV{BOOST_ROOT_DIR} CACHE PATH "Path to the BOOST.")
++  IF(BOOST_ROOT_DIR)
++    LIST(APPEND CMAKE_PREFIX_PATH "${BOOST_ROOT_DIR}")
++  ENDIF(BOOST_ROOT_DIR)
+   find_package (Boost 1.46)
+   if (Boost_FOUND)
+     if (CMAKE_VERSION VERSION_LESS 3.15)
+@@ -308,7 +340,11 @@
+ endif ()
+ 
+ if (USE_NLOPT)
+-  find_package (NLopt CONFIG QUIET)
++  SET(NLOPT_ROOT_DIR $ENV{NLOPT_ROOT_DIR} CACHE PATH "Path to the NLOPT.")
++  IF(NLOPT_ROOT_DIR)
++    LIST(APPEND CMAKE_PREFIX_PATH "${NLOPT_ROOT_DIR}")
++  ENDIF(NLOPT_ROOT_DIR)
++  find_package (NLopt)
+   if (NLopt_FOUND)
+     message(STATUS "Found NLopt: ${NLopt_DIR}  (found version \"${NLopt_VERSION}\")")
+   else ()
+@@ -372,22 +408,22 @@
+ endif ()
+ 
+ if (USE_CMINPACK)
+-  find_package (CMinpack CONFIG QUIET)
+-  if (CMinpack_FOUND)
+-    if (TARGET cminpack::cminpack)
+-      message (STATUS "Found CMinpack: ${CMinpack_DIR}")
+-      set (CMINPACK_LIBRARIES cminpack::cminpack)
+-    endif ()
+-  else ()
+-    # fallback to our macro if CMinpackConfig is not provided
+-    find_package (CMinpack)
+-    set (CMinpack_FOUND ${CMINPACK_FOUND})
+-  endif ()
+-  if (CMinpack_FOUND)
+-    set (OPENTURNS_HAVE_CMINPACK TRUE)
+-    list (APPEND OPENTURNS_PRIVATE_INCLUDE_DIRS ${CMINPACK_INCLUDE_DIRS})
+-    list (APPEND OPENTURNS_PRIVATE_LIBRARIES ${CMINPACK_LIBRARIES})
+-  endif ()
++  SET(CMINPACK_ROOT_DIR $ENV{CMINPACK_ROOT_DIR} CACHE PATH "Path to the CMINPACK.")
++  IF(CMINPACK_ROOT_DIR)
++    LIST(APPEND CMAKE_PREFIX_PATH "${CMINPACK_ROOT_DIR}")
++  ENDIF(CMINPACK_ROOT_DIR)
++  find_package (CMinpack)
++  set (CMinpack_FOUND ${CMINPACK_FOUND})
++endif ()
++if (CMinpack_FOUND)
++  MESSAGE(STATUS "Found CMkinpack ...")
++  MESSAGE(STATUS "      CMINPACK_LIBRARIES is set to: ${CMINPACK_LIBRARIES}")
++  set (OPENTURNS_HAVE_CMINPACK TRUE)
++  list (APPEND OPENTURNS_PRIVATE_INCLUDE_DIRS ${CMINPACK_INCLUDE_DIRS})
++  list (APPEND OPENTURNS_PRIVATE_LIBRARIES ${CMINPACK_LIBRARIES})
++else()
++  MESSAGE(STATUS "Could not find MinPack dependency")
++  set (OPENTURNS_HAVE_CMINPACK FALSE)
+ endif ()
+ 
+ if (USE_BONMIN)
+diff -Naur openturns-1.19_ref/openturns-1.19/cmake/FindCMinpack.cmake openturns-1.19_new/openturns-1.19/cmake/FindCMinpack.cmake
+--- openturns-1.19_ref/openturns-1.19/cmake/FindCMinpack.cmake	2022-09-19 20:42:54.983898861 +0200
++++ openturns-1.19_new/openturns-1.19/cmake/FindCMinpack.cmake	2022-09-19 20:53:05.646768854 +0200
+@@ -22,12 +22,18 @@
+ # (To distributed this file outside of CMake, substitute the full
+ #  License text for the above reference.)
+ 
++SET(CMINPACK_ROOT_DIR $ENV{CMINPACK_ROOT_DIR})
++if(CMINPACK_ROOT_DIR)
++ LIST(APPEND CMAKE_PREFIX_PATH "${CMINPACK_ROOT_DIR}")
++endif(CMINPACK_ROOT_DIR)
+ find_path (CMINPACK_INCLUDE_DIR cminpack.h
+   PATH_SUFFIXES cminpack cminpack-1
+ )
+ 
+ find_library (CMINPACK_LIBRARY
+   NAMES cminpack cminpack_s
++  HINTS ${CMINPACK_ROOT_DIR}/include
++  DOC   "CMINPACK include directory"
+ )
+ 
+ set (CMINPACK_LIBRARIES ${CMINPACK_LIBRARY})
+diff -Naur openturns-1.19_ref/openturns-1.19/cmake/FindNLopt.cmake openturns-1.19_new/openturns-1.19/cmake/FindNLopt.cmake
+--- openturns-1.19_ref/openturns-1.19/cmake/FindNLopt.cmake	2022-09-19 20:42:54.947898206 +0200
++++ openturns-1.19_new/openturns-1.19/cmake/FindNLopt.cmake	2022-09-19 20:58:34.988527189 +0200
+@@ -11,10 +11,20 @@
+ #  NLOPT_ROOT_DIR - root dir (ex. /usr/local)
+ 
+ # set NLOPT_INCLUDE_DIR
++SET(NLOPT_ROOT_DIR $ENV{NLOPT_ROOT_DIR})
++
++IF(NLOPT_ROOT_DIR)
++  LIST(APPEND CMAKE_PREFIX_PATH "${NLOPT_ROOT_DIR}")
++  LIST(APPEND CMAKE_PREFIX_PATH "${NLOPT_ROOT_DIR}/include")
++  LIST(APPEND CMAKE_PREFIX_PATH "${NLOPT_ROOT_DIR}/lib")
++ELSE(NLOPT_ROOT_DIR)
++  MESSAGE(FATAL_ERROR "PLEASE SET ENVIRONMENT VARIABLE NLOPT_ROOT_DIR")
++ENDIF(NLOPT_ROOT_DIR)
+ find_path (NLOPT_INCLUDE_DIR
+   NAMES nlopt.hpp
+   DOC
+     "Nlopt include directory"
++  HINTS ${NLOPT_ROOT_DIR}/include
+ )
+ 
+ # set NLOPT_INCLUDE_DIRS
+@@ -22,7 +32,8 @@
+ 
+ # set NLOPT_LIBRARY
+ find_library (NLOPT_LIBRARY
+-  NAMES nlopt_cxx nlopt
++  NAMES nlopt
++  HINTS ${NLOPT_ROOT_DIR}/lib 
+   DOC
+     "Nlopt library location"
+ )
+diff -Naur openturns-1.19_ref/openturns-1.19/cmake/FindTBB.cmake openturns-1.19_new/openturns-1.19/cmake/FindTBB.cmake
+--- openturns-1.19_ref/openturns-1.19/cmake/FindTBB.cmake	2022-09-19 20:42:54.943898134 +0200
++++ openturns-1.19_new/openturns-1.19/cmake/FindTBB.cmake	2022-09-19 20:59:43.185715121 +0200
+@@ -27,6 +27,10 @@
+ # (To distributed this file outside of CMake, substitute the full
+ #  License text for the above reference.)
+ 
++SET(TBB_ROOT_DIR $ENV{TBB_ROOT_DIR})
++IF(TBB_ROOT_DIR)
++  LIST(APPEND CMAKE_PREFIX_PATH "${TBB_ROOT_DIR}")
++ENDIF(TBB_ROOT_DIR)
+ find_path (TBB_INCLUDE_DIR NAMES tbb/tbb.h DOC "TBB include directory")
+ 
+ set (TBB_INCLUDE_DIRS ${TBB_INCLUDE_DIR})
+diff -Naur openturns-1.19_ref/openturns-1.19/lib/src/CMakeLists.txt  openturns-1.19_new/openturns-1.19/lib/src/CMakeLists.txt 
+--- openturns-1.19_ref/openturns-1.19/lib/src/CMakeLists.txt	2022-09-19 20:43:02.736039628 +0200
++++ openturns-1.19_new/openturns-1.19/lib/src/CMakeLists.txt	2022-09-19 21:14:17.908888927 +0200
+@@ -127,5 +127,5 @@
+ if (UNIX AND BUILD_SHARED_LIBS)
+   set (OT_GDB_PY ${CMAKE_SHARED_LIBRARY_PREFIX}OT${CMAKE_SHARED_LIBRARY_SUFFIX}.${LIB_VERSION}-gdb.py)
+   execute_process (COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_CURRENT_SOURCE_DIR}/libOT-gdb.py ${CMAKE_CURRENT_BINARY_DIR}/${OT_GDB_PY})
+-  install (FILES libOT-gdb.py DESTINATION ${OPENTURNS_DATA_PATH}/gdb/auto-load/${LIBRARY_PATH} RENAME ${OT_GDB_PY})
++  install (FILES libOT-gdb.py DESTINATION ${OPENTURNS_DATA_PATH}/gdb/auto-load RENAME ${OT_GDB_PY})
+ endif ()
+diff -Naur openturns-1.19_ref/openturns-1.19/lib/src/Base/Common/openturns/TBBImplementation.hxx openturns-1.19_new/openturns-1.19/lib/src/Base/Common/openturns/TBBImplementation.hxx
+--- openturns-1.19_ref/openturns-1.19/lib/src/Base/Common/openturns/TBBImplementation.hxx	2022-09-19 20:43:07.228121152 +0200
++++ openturns-1.19_new/openturns-1.19/lib/src/Base/Common/openturns/TBBImplementation.hxx	2022-09-19 21:16:38.747275561 +0200
+@@ -35,6 +35,7 @@
+ #  define __TBBMALLOC_NO_IMPLICIT_LINKAGE 1
+ # endif
+ #endif
++#define TBB_PREVIEW_TASK_ARENA 1
+ #include <tbb/task_arena.h>
+ #include <tbb/parallel_sort.h>
+ #include <tbb/parallel_reduce.h>
+diff -Naur openturns-1.19_ref/openturns-1.19/lib/src/Base/Algo/openturns/KarhunenLoeveAlgorithmImplementation.hxx openturns-1.19_new/openturns-1.19/lib/src//Base/Algo/openturns/KarhunenLoeveAlgorithmImplementation.hxx
+--- openturns-1.19_ref/openturns-1.19/lib/src/Base/Algo/openturns/KarhunenLoeveAlgorithmImplementation.hxx	2022-09-19 20:43:04.604073534 +0200
++++ openturns-1.19_new/openturns-1.19/lib/src//Base/Algo/openturns/KarhunenLoeveAlgorithmImplementation.hxx	2022-09-19 21:22:20.888944236 +0200
+@@ -24,6 +24,13 @@
+ #include "openturns/PersistentObject.hxx"
+ #include "openturns/CovarianceModel.hxx"
+ #include "openturns/KarhunenLoeveResult.hxx"
++#ifdef __GNUC__
++#  include <features.h>
++#  if __GNUC_PREREQ(11,0)
++#     include <limits>
++#  endif
++#endif // __GNUC__
++
+ 
+ BEGIN_NAMESPACE_OPENTURNS
+ 

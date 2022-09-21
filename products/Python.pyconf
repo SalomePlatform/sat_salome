@@ -62,6 +62,23 @@ version_3_6_8 :
  patches : []
 }
 
+version_3_6_15 :
+{
+ compil_script : "Python-3.6.15.sh"
+ patches : []
+}
+
+version_3_6_15_FD34:
+{
+  patches: ["python_3.6.15-allocation.patch"] # https://github.com/pyenv/pyenv/issues/1889
+}
+
+version_3_6_15_win :
+{
+    compil_script : "Python-3.6.15.bat"
+    patches : ['Python-3.6.15_windows.patch']
+}
+
 version_3_7_9 :
 {
  patches : []
@@ -70,6 +87,19 @@ version_3_7_9 :
 version_3_7_9_win :
 {
     compil_script : "Python-3.7.9.bat"
+    patches : []
+    build_depend : ['perl']
+}
+ 
+version_3_9_14 :
+{
+ compil_script : "Python-3.9.14.sh"
+ patches : []
+}
+
+version_3_9_14_win :
+{
+    compil_script : "Python-3.9.14.bat"
     patches : []
     build_depend : ['perl']
 }

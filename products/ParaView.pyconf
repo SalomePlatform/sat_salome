@@ -30,6 +30,161 @@ default :
     }
 }
 
+version_5_11_0 :
+{
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf']
+    compil_script :  'ParaView-5.11.0.sh'
+    archive_info : {archive_name : "ParaView-5.11.0-08c5d057a8.tar.gz"}
+    # two other LATA patches already included in archive
+    patches : ['paraview.0003-ParaViewClient.patch',
+               'paraview.0004-ParaView_hdf5.patch',
+               'paraview.0005-ParaView_find_cgns.patch',
+               'paraview.0006-ParaView_find_libxml2.patch',
+               'paraview.0007-ParaView_find_freetype.patch',
+               'paraview.0010-ParaView_CATALYST_cmake.patch',
+               'paraview.0008-ParaView_coincident_rendering.patch',
+               'paraview.0011-ParaView_protobuf_crash.patch',
+               'paraview.0015-Paraview_VTKM_ioss.patch',
+               'paraview-5.9.0-gcc.11.0.patch',
+               'paraview.0018-spns-26351-autoconvert.patch',
+               'paraview.0019-spns-26344-VTK-OpenMP.patch'
+              ]
+}
+
+version_5_11_0_int32 :
+{
+    compil_script :  'ParaView-5.11.0.sh'
+    archive_info : {archive_name : "ParaView-5.11.0-08c5d057a8.tar.gz"}
+    # two other LATA patches already included in archive
+    patches : ['paraview.0003-ParaViewClient.patch',
+               'paraview.0004-ParaView_hdf5.patch',
+               'paraview.0005-ParaView_find_cgns.patch',
+               'paraview.0006-ParaView_find_libxml2.patch',
+               'paraview.0007-ParaView_find_freetype.patch',
+               'paraview.0010-ParaView_CATALYST_cmake.patch',
+               'paraview.0008-ParaView_coincident_rendering.patch',
+               'paraview.0011-ParaView_protobuf_crash.patch',
+               'paraview.0015-Paraview_VTKM_ioss.patch',
+               'paraview.0018-spns-26351-autoconvert.patch',
+               'paraview.0019-spns-26344-VTK-OpenMP.patch'
+              ]
+}
+
+version_5_11_0_win :
+{
+    compil_script :  'ParaView-5.11.0.bat'
+    archive_info : {archive_name : "ParaView-5.11.0-08c5d057a8.tar.gz"}
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'boost',
+              'libxml2',
+              'freetype',
+              'cgns',
+              'Pygments',
+              'pthreads',
+              'zlib'
+             ]
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'rkCommon', 'matplotlib']
+    patches : ['paraview.0003-ParaViewClient.patch',
+               'paraview.0004-ParaView_hdf5.patch',
+               'paraview.0005-ParaView_find_cgns.patch',
+               'paraview.0006-ParaView_find_libxml2.patch',
+               'paraview.0007-ParaView_find_freetype.patch',
+               'paraview.0009-ParaView_find_zlib.patch',
+               'paraview.0010-ParaView_CATALYST_cmake.patch',
+               'paraview.1001-ParaView_windows_catalyst_cmake.patch',
+               'paraview.0008-ParaView_coincident_rendering.patch',
+               'paraview.0011-ParaView_protobuf_crash.patch',
+               'paraview.0018-spns-26351-autoconvert.patch',
+               'paraview.0019-spns-26344-VTK-OpenMP.patch',
+               'paraview.0015-Paraview_VTKM_ioss.patch'
+              ]
+}
+
+version_5_11_0_win_dbg :
+{
+    compil_script :  'ParaView-5.9.0.bat'
+    archive_info : {archive_name : "ParaView-5.11.0-08c5d057a8.tar.gz"}
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'boost',
+              'libxml2',
+              'freetype',
+              'cgns',
+              'Pygments',
+              'pthreads',
+              'zlib'
+             ]
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'rkCommon', 'matplotlib']
+    patches : ['paraview.0003-ParaViewClient.patch',
+               'paraview.0004-ParaView_hdf5.patch',
+               'paraview.0005-ParaView_find_cgns.patch',
+               'paraview.0006-ParaView_find_libxml2.patch',
+               'paraview.0007-ParaView_find_freetype.patch',
+               'paraview.0009-ParaView_find_zlib.patch',
+               'paraview.0010-ParaView_CATALYST_cmake.patch',
+               'paraview.1001-ParaView_windows_catalyst_cmake.patch',
+               'paraview.0008-ParaView_coincident_rendering.patch',
+               'paraview.0011-ParaView_protobuf_crash.patch',
+               'paraview.0018-spns-26351-autoconvert.patch',
+               'paraview.0019-spns-26344-VTK-OpenMP.patch',
+               'paraview.0015-Paraview_VTKM_ioss.patch',
+               'paraview-5.9.0-vs-debug.patch'
+              ]
+}
+
+version_5_11_0_MPI :
+{
+    compil_script :  'ParaView-5.11.0.sh'
+    archive_info : {archive_name : "ParaView-5.11.0-08c5d057a8.tar.gz"}
+    patches : []
+    # patches : ['paraview.0003-ParaViewClient.patch',
+    #            'paraview.0004-ParaView_hdf5.patch',
+    #            'paraview.0005-ParaView_find_cgns.patch',
+    #            'paraview.0006-ParaView_find_libxml2.patch',
+    #            'paraview.0007-ParaView_find_freetype.patch',
+    #            'paraview-5.9-VTKM_MPI.patch',
+    #            'paraview.0010-ParaView_CATALYST_cmake.patch',
+    #            'paraview.0008-ParaView_coincident_rendering.patch',
+    #            'paraview.0011-ParaView_protobuf_crash.patch',
+    #            'paraview.0015-Paraview_VTKM_ioss.patch',
+    #            'paraview-5.9.0-gcc.11.0.patch',
+    #            'paraview.0017-VTK-openMPI-if-devtoolset.patch',
+    #            'paraview.0018-spns-26351-autoconvert.patch',
+    #            'paraview.0019-spns-26344-VTK-OpenMP.patch',
+    #            'paraview.0020.findMPI.patch',
+    #            'paraview.0021-FindGDAL.patch'
+    #           ]
+}
+
+version_5_11_0_MPI_LATA_64BITS_IDS :
+{
+    compil_script :  'ParaView-5.11.0.sh'
+    archive_info : {archive_name : "ParaView-5.11.0-08c5d057a8.tar.gz"}
+    patches : ['paraview.0003-ParaViewClient.patch',
+               'paraview.0004-ParaView_hdf5.patch',
+               'paraview.0005-ParaView_find_cgns.patch',
+               'paraview.0006-ParaView_find_libxml2.patch',
+               'paraview.0007-ParaView_find_freetype.patch',
+               'paraview-5.9-VTKM_MPI.patch',
+               'paraview.0010-ParaView_CATALYST_cmake.patch',
+               'paraview.0008-ParaView_coincident_rendering.patch',
+               'paraview.0011-ParaView_protobuf_crash.patch',
+               'paraview.0015-Paraview_VTKM_ioss.patch',
+               'paraview-5.9.0-gcc.11.0.patch',
+               'paraview.0017-VTK-openMPI-if-devtoolset.patch',
+               'paraview.0018-spns-26351-autoconvert.patch',
+               'paraview.0019-spns-26344-VTK-OpenMP.patch',
+               'paraview.0020.findMPI.patch',
+               'paraview.0021-FindGDAL.patch',
+               'paraview-0012-LATA_64BITS_IDS.patch'
+              ]
+}
+
 version_5_10_0 :
 {
     compil_script :  'ParaView-5.10.0.sh'

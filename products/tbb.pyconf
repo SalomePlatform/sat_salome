@@ -28,12 +28,25 @@ default :
     }
 }
 
+version_2019_U8 :
+{
+    compil_script :  "tbb-2019_U8.sh"
+    archive_info : {archive_name : "tbb-2019_U8.tar.gz"}
+    depend : ['Python', 'llvm']
+    opt_depend : ['ispc']
+    build_depend : ['swig', "cmake"]
+    properties :
+    {
+      incremental : "yes"
+      single_install_dir : "no"
+    }
+}
+
 version_2019_U8_win :
 {
     archive_info : {archive_name : "tbb-2019_U8.tar.gz"}
     patches : ['tbb-2019_U8_windows10.patch']
     depend : ['Python']
-    opt_depend : ['ispc']
     build_depend : ['swig']
     properties :
     {
