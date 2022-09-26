@@ -6,7 +6,7 @@ echo "##########################################################################
 
 echo
 echo "*** configure  --prefix=${OMNIORB_ROOT_DIR}"
-$SOURCE_DIR/configure --prefix=${OMNIORB_ROOT_DIR}
+PYTHON=$PYTHONBIN $SOURCE_DIR/configure --prefix=${OMNIORB_ROOT_DIR}
 if [ $? -ne 0 ]
 then
     echo "ERROR on configure"

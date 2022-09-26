@@ -150,7 +150,7 @@ fi
 export PYTHONPATH=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages:${PYTHONPATH}
 export LD_LIBRARY_PATH=${PRODUCT_INSTALL}/lib:${LD_LIBRARY_PATH}
 chmod +x ${SOURCE_DIR}/openturns-1.18/python/test/t_features.py
-${SOURCE_DIR}/openturns-1.18/python/test/t_features.py
+${PYTHONBIN} ${SOURCE_DIR}/openturns-1.18/python/test/t_features.py
 if [ $? -ne 0 ]
 then
     echo "ERROR  testing Openturns features...."

@@ -10,7 +10,7 @@ PYTHON_HOME=$PYTHONHOME
 
 echo
 echo "*** configure --prefix=$PRODUCT_INSTALL --disable-ipv6"
-$SOURCE_DIR/configure --prefix=$PRODUCT_INSTALL --disable-ipv6
+PYTHON=$PYTHONBIN $SOURCE_DIR/configure --prefix=$PRODUCT_INSTALL --disable-ipv6
 if [ $? -ne 0 ]
 then
     echo "ERROR on configure"
