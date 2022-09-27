@@ -1,3 +1,5 @@
+default :
+{
     name : "catalyst"
     build_source : "cmake"
     get_source : "archive"
