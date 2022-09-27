@@ -240,6 +240,7 @@ __overwrite__ :
         'APPLICATION.products.PyFMI'   : {tag:'2.6',        base: 'no',  section: 'version_2_6_no_pip'             }
         'APPLICATION.products.qt'      : '5.12.10'
         'APPLICATION.products.PyQt'    : '5.15.3'
+        'APPLICATION.products.sip'     : '5.5.0'
     }
     {
         __condition__ : "VARS.dist in ['DB11']"
