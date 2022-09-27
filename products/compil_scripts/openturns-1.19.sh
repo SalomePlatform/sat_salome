@@ -148,6 +148,12 @@ then
     rmdir ${PRODUCT_INSTALL}/lib64
 fi
 
+if [[ -d "${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/dist-packages" ]]; then
+    cd  ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}
+    ln -sf dist-packages site-packages
+    cd  $BUILD_DIR/openturns
+fi
+
 export PYTHONPATH=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages:${PYTHONPATH}
 export LD_LIBRARY_PATH=${PRODUCT_INSTALL}/lib:${LD_LIBRARY_PATH}
 chmod +x ${SOURCE_DIR}/openturns-1.19/python/test/t_features.py
@@ -407,10 +413,11 @@ fi
 
 cd ${PRODUCT_INSTALL}/lib
 # On some nodes, the link to OT is not done properly.
+# In addition to this issue, it seems that there is a bug in openturns 1.19  which uses 20 instead of 19 as suffix.
 if [[ ! -f libOT.so.0 ]]; then
     echo "INFO: Fixing libOT.so"
-    ln -sf libOT.so.0.19.0 libOT.so.0.19
-    ln -sf libOT.so.0.19 libOT.so.0
+    ln -sf libOT.so.0.20.0 libOT.so.0.20
+    ln -sf libOT.so.0.20 libOT.so.0
     ln -sf libOT.so.0 libOT.so
 fi
 
