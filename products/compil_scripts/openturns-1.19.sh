@@ -196,9 +196,30 @@ if [[ -d "$SOURCE_DIR/otfftw-0.12" ]]; then
             CMAKE_EXTRA_OPTIONS+=" -DUSE_SPHINX=OFF"
         elif  [[ $k == "otfftw" ]]; then
             CMAKE_EXTRA_OPTIONS+=" -DBUILD_DOC=OFF"
-	elif [ $k == "otmorris" ] &&  [ "$DIST_NAME$DIST_VERSION" == "FD32" ]; then
-            CMAKE_EXTRA_OPTIONS+=" -DBUILD_DOC=OFF"
-            CMAKE_EXTRA_OPTIONS+=" -DUSE_SPHINX=OFF" # missing package to be installed.
+	elif [[ $k == "otmorris" ]]; then
+	    case $LINUX_DISTRIBUTION in
+		DB*|FD*)
+		    echo "WARNING: switching OFF documentation build"
+		    CMAKE_EXTRA_OPTIONS+=" -DBUILD_DOC=OFF"
+		    CMAKE_EXTRA_OPTIONS+=" -DUSE_SPHINX=OFF" # missing package to be installed.
+		    ;;
+	    esac
+	elif [[ $k == "otrobopt" ]]; then
+	    case $LINUX_DISTRIBUTION in
+		DB*|FD*)
+		    echo "WARNING: switching OFF documentation build"
+		    CMAKE_EXTRA_OPTIONS+=" -DBUILD_DOC=OFF"
+		    CMAKE_EXTRA_OPTIONS+=" -DUSE_SPHINX=OFF" # missing package to be installed.
+		    ;;
+	    esac
+	elif [[ $k == "otsvm" ]]; then
+	    case $LINUX_DISTRIBUTION in
+		DB*|FD*)
+		    echo "WARNING: switching OFF documentation build"
+		    CMAKE_EXTRA_OPTIONS+=" -DBUILD_DOC=OFF"
+		    CMAKE_EXTRA_OPTIONS+=" -DUSE_SPHINX=OFF" # missing package to be installed.
+		    ;;
+	    esac
         elif  [[ $k == "otpmml" ]]; then
             CMAKE_EXTRA_OPTIONS+=" -DBUILD_DOC=OFF"
         fi

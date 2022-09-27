@@ -4,25 +4,14 @@ echo "##########################################################################
 echo "Python" $VERSION
 echo "##########################################################################"
 
-if [ ${#VERSION} -lt 5 ]
-then
-    echo "ERROR : VERSION argument of Python compilation script has not the expected x.y.z format"
-    exit 1
-fi
-PYTHON_VERSION="${VERSION:0:3}"
+PYTHON_VERSION=3.7
 
 # --enable-shared   : enable building shared python library
 # --with-threads    : enable thread support
 # --without-pymalloc: disable specialized mallocs
 # --with-ensurepip  : installation using bundled pip
 # --enable-optimizations:  recommandé et utilisé par Nijni -> mais trop long!
-# spns #30153 :  pymalloc on demand
-CONFIGURE_ARGUMENTS="--enable-shared --with-threads --with-ensurepip=install --with-ssl --enable-loadable-sqlite-extensions"
-if [ "${SAT_ENABLE_PYTHON_PYMALLOC}" == "1" ]; then
-    CONFIGURE_ARGUMENTS+=" --with-pymalloc"
-else
-    CONFIGURE_ARGUMENTS+=" --without-pymalloc"
-fi
+CONFIGURE_ARGUMENTS="--enable-shared --with-threads --with-ensurepip=install --with-ssl --enable-loadable-sqlite-extensions --with-pymalloc"
 
 echo
 echo   "*** configure --prefix=$PRODUCT_INSTALL $CONFIGURE_ARGUMENTS"
@@ -70,13 +59,13 @@ ln -s pip3 pip
 #
 if [ "${SAT_ENABLE_PYTHON_PYMALLOC}" == "1" ]; then
     cd ${PRODUCT_INSTALL}/include
-    if [ ! -d python3.9 ]; then
-	ln -s python3.9m python3.9
+    if [ ! -d python3.7 ]; then
+	ln -s python3.7m python3.7
     fi
 fi
 
 # fix the path... 
-L="2to3  2to3-3.9 easy_install-3.9 idle3 idle3.9 pip3 pip3.9 pydoc3 pydoc3.9 pyvenv pyvenv-3.9"
+L="2to3  2to3-3.7 easy_install-3.7 idle3 idle3.7 pip3 pip3.7 pydoc3 pydoc3.7 pyvenv pyvenv-3.7"
 cd ${PRODUCT_INSTALL}/bin
 for f in  $L; do
     awk '$0 = NR==1 ? replace : $0' replace="#!/usr/bin/env python3" $f > $f.t && mv $f.t $f && chmod 755 $f

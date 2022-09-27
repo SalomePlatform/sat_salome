@@ -32,6 +32,11 @@ default_win :
     opt_depend : []
 }
 
+version_2_4_4:
+{
+    compil_script :  'gdal-2.4.4' + $VARS.scriptExtension
+}
+
 version_2_4_0:
 {
     compil_script :  'gdal-2.4.0' + $VARS.scriptExtension

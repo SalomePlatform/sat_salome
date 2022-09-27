@@ -27,6 +27,17 @@ default :
     }
 }
 
+version_5_15_7 :
+{
+    archive_info : {archive_name : "PyQt5-5.15.7.tar.gz"}
+    compil_script :  "PyQt-5.15" + $VARS.scriptExtension
+}
+
+version_5_15_7_win :
+{
+    depend : ['Python','setuptools', 'toml', 'sip', 'qt']
+}
+
 version_5_15_3 :
 {
     compil_script :  "PyQt-5.15" + $VARS.scriptExtension

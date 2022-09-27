@@ -91,15 +91,28 @@ version_3_7_9_win :
     build_depend : ['perl']
 }
  
+version_3_7_14 :
+{
+ compil_script : "Python-3.7.sh"
+ patches : []
+}
+
+version_3_7_14_win :
+{
+    compil_script : "Python-3.9.bat"
+    patches : []
+    build_depend : ['perl']
+}
+ 
 version_3_9_14 :
 {
- compil_script : "Python-3.9.14.sh"
+ compil_script : "Python-3.9.sh"
  patches : []
 }
 
 version_3_9_14_win :
 {
-    compil_script : "Python-3.9.14.bat"
+    compil_script : "Python-3.9.bat"
     patches : []
     build_depend : ['perl']
 }
