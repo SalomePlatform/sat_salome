@@ -108,7 +108,7 @@ APPLICATION :
         pyparsing : '2.0.3'
         PyQt : '5.15.3'
         pyreadline : '2.0'
-        Python : '3.6.15'
+        Python : '3.6.5'
         pytz : '2017.2'
         qt : '5.12.10'
         qwt : '6.1.2'
