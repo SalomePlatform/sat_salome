@@ -159,6 +159,7 @@ version_5_11_0_MPI :
     #            'paraview.0020.findMPI.patch',
     #            'paraview.0021-FindGDAL.patch'
     #           ]
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst']
 }
 
 version_5_11_0_MPI_LATA_64BITS_IDS :
