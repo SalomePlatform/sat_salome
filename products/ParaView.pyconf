@@ -141,7 +141,9 @@ version_5_11_0_MPI :
 {
     compil_script :  'ParaView-5.11.0.sh'
     archive_info : {archive_name : "ParaView-5.11.0-08c5d057a8.tar.gz"}
-    patches : ['paraview-5.11.0.p001-FindCGNS.patch']
+    patches : ['paraview-5.11.0.p001-FindCGNS.patch',
+               'paraview-5.11.0.p002-FindMPI.patch
+              ]
     depend : [
               'Python',
               'hdf5',

@@ -1,0 +1,12 @@
+--- ParaView-5.11.0_ref/VTK/CMake/patches/3.22/FindMPI.cmake	2022-09-28 16:25:01.988368372 +0200
++++ ParaView-5.11.0_new/VTK/CMake/patches/3.22/FindMPI.cmake	2022-09-28 16:22:50.932061970 +0200
+@@ -1820,6 +1820,9 @@
+   list(APPEND _MPI_REQ_VARS "MPI_MPICXX_FOUND")
+ endif()
+ 
++if(DEFINED ENV{MPI_C_FOUND})
++  set(MPI_C_FOUND $ENV{MPI_C_FOUND})
++endif()
+ set(_mpi_extra_args "")
+ if (NOT CMAKE_VERSION VERSION_LESS "3.16") # XXX(cmake-3.16)
+   list(APPEND _mpi_extra_args
