@@ -31,7 +31,8 @@ version_6_6_2 :
     compil_script :  'sip-6.6.2' + $VARS.scriptExtension
     archive_info : {archive_name : "sip-6.6.2-PyQt5_sip-12.11.0.tar.gz"}
     patches : []
-    depend : ['Python', 'qt', 'toml']
+    depend : ['Python', 'qt']
+    opt_depend: ['toml']
 }
 
 version_5_5_0 :
@@ -39,11 +40,11 @@ version_5_5_0 :
     compil_script :  'sip-5.5.0' + $VARS.scriptExtension
     archive_info : {archive_name : "sip-5.5.0-PyQt5_sip-12.8.1.tar.gz"}
     patches : ['sip-5.5.0-sipSetBool.patch']
-    depend : ['Python', 'qt', 'toml']
+    depend : ['Python', 'qt']
+    opt_depend: ['toml']
 }
 
 version_4_19_24 :
 {
     compil_script :  'sip' + $VARS.scriptExtension
-#    archive_info : {archive_name : "sip-4.19.24_PyQt5-12.8.1.tar.gz"}
 }

@@ -4,37 +4,31 @@ echo "##########################################################################
 echo "PyQt" $VERSION
 echo "##########################################################################"
 
-
-
 python_name=python$PYTHON_VERSION
 
-# OP 01/08/2017 Artifact 8859 : test compilation PyQt 5.9
-#                               On fait tout dans les sources
-#CURRENT_DIR=`pwd`
 cd $SOURCE_DIR
-if [ $? -ne 0 ]
+
+if [ "${SAT_Python_IS_NATIVE}" == "1" ]
 then
-    echo "ERROR on $SOURCE_DIR access"
-    exit 1
+    # if not set, will try to install in system path...
+    mkdir -p $PRODUCT_INSTALL/lib/python${PYTHON_VERSION}/site-packages
+    export PATH=$(pwd)/bin:$PATH
+    export PYTHONPATH=$(pwd):$PYTHONPATH
+    export PYTHONPATH=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages:$PYTHONPATH
 fi
 
-
 echo
-echo "*** configure.py --confirm-license --no-designer-plugin --verbose --bindir=${PRODUCT_INSTALL}/bin --destdir=${PRODUCT_INSTALL}/lib/$python_name/site-packages --sipdir=${SIP_ROOT_DIR} --disable=QtNetwork --disable=QtWebSockets"
+echo "*** configure.py --confirm-license --no-designer-plugin --verbose --bindir=${PRODUCT_INSTALL}/bin --destdir=${PRODUCT_INSTALL}/lib/$python_name/site-packages --stubsdir=${PRODUCT_INSTALL}/lib/$python_name/site-packages --sipdir=${SIP_ROOT_DIR} --disable=QtNetwork --disable=QtWebSockets"
 $PYTHONBIN ./configure.py --confirm-license --no-designer-plugin --verbose \
     --bindir=${PRODUCT_INSTALL}/bin \
     --destdir=${PRODUCT_INSTALL}/lib/$python_name/site-packages \
+    --stubsdir=${PRODUCT_INSTALL}/lib/$python_name/site-packages \
     --sipdir=${SIP_ROOT_DIR} \
     --disable=QtNetwork --disable=QtWebSockets 2>&1
-#    --disable=QtNetwork --disable=QtWebSockets --disable=QtWebKit  --disable=QtWebKitWidgets --disable=QAxContainer --disable=QtMacExtras --disable=QtWinExtras --disable=QtX11Extras --disable=Enginio 2>&1
 
 if [ $? -ne 0 ]
 then
     echo "ERROR on configure"
-# OP 01/08/2017 Artifact 8859 : test compilation PyQt 5.9
-#                               On fait tout dans les sources
-#    exit 1
-#    cd $CURRENT_DIR
     exit 2
 fi
 
@@ -44,10 +38,6 @@ make $MAKE_OPTIONS
 if [ $? -ne 0 ]
 then
     echo "ERROR on make"
-# OP 01/08/2017 Artifact 8859 : test compilation PyQt 5.9
-#                               On fait tout dans les sources
-#    exit 2
-#    cd $CURRENT_DIR
     exit 3
 fi
 
@@ -57,22 +47,15 @@ make install
 if [ $? -ne 0 ]
 then
     echo "ERROR on make install"
-# OP 01/08/2017 Artifact 8859 : test compilation PyQt 5.9
-#                               On fait tout dans les sources
-#    exit 3
-#    cd $CURRENT_DIR
     exit 4
 fi
 
-# OP 01/08/2017 Artifact 8859 : test compilation PyQt 5.9
-#                               Ajout du make clean
 echo
 echo "*** make clean"
 make clean
 if [ $? -ne 0 ]
 then
     echo "ERROR on make clean"
-#    cd $CURRENT_DIR
     exit 5
 fi
 

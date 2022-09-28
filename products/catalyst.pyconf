@@ -2,8 +2,8 @@ default :
 {
     name : "catalyst"
     build_source : "cmake"
+    cmake_options: " -DCMAKE_INSTALL_LIBDIR:STRING=lib "
     get_source : "archive"
-    archive_info : {archive_name : "catalyst-2.0-431a8a1.tar.gz"}
     environ :
     {
        env_script : $name + ".py"
@@ -29,3 +29,9 @@ default :
       incremental : "yes"
     }
 }
+
+version_2_0:
+{
+    archive_info : {archive_name : "catalyst-2.0-431a8a1.tar.gz"}
+}
+  

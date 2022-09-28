@@ -130,6 +130,7 @@ APPLICATION :
         tbb : 'native'
         tcl : 'native'
         tk : 'native'
+        toml: 'native'
         urllib3 : 'native'
         zeromq: '4.3.1'
         URANIE : '4.5.0'
@@ -239,6 +240,7 @@ __overwrite__ :
         'APPLICATION.products.cminpack': 'native'
         'APPLICATION.products.PyFMI'   : {tag:'2.6',        base: 'no',  section: 'version_2_6_no_pip'             }
         'APPLICATION.products.qt'      : '5.12.10'
+        'APPLICATION.products.qwt'     : '6.1.2'
         'APPLICATION.products.PyQt'    : '5.15.3'
         'APPLICATION.products.sip'     : '5.5.0'
     }

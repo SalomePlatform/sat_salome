@@ -159,6 +159,19 @@ version_5_11_0_MPI :
     #            'paraview.0020.findMPI.patch',
     #            'paraview.0021-FindGDAL.patch'
     #           ]
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'PyQt',
+              'sip',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
     opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst']
 }
 
