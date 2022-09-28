@@ -144,9 +144,9 @@ APPLICATION :
         'LIBBATCH' : {tag : 'V2_4_5'}
         'KERNEL'
         'MEDCOUPLING' : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
-        'GUI'
+        'GUI' : 'po/pv-master'
         'GEOM'
-        'SMESH'
+        'SMESH' : 'po/pv-master'
         'NETGENPLUGIN'
         'BLSURFPLUGIN'
         'GHS3DPLUGIN'
@@ -158,7 +158,7 @@ APPLICATION :
         'HEXABLOCKPLUGIN'
         'HOMARD'
         'FIELDS'
-        'PARAVIS': {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'PARAVIS': {tag:'agy/pv-master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
@@ -174,7 +174,7 @@ APPLICATION :
         'PY2CPP'
         'ADAO'
         'ADAO_INTERFACE'
-        'PARAVISADDONS'
+        'PARAVISADDONS' : 'po/pv-master'
         'OPENTURNS_SALOME'
         'YDEFX'
         'pmml'
