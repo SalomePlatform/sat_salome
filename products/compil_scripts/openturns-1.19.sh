@@ -109,6 +109,7 @@ fi
 echo
 echo "*** cmake" $CMAKE_OPTIONS
 
+rm -rf $BUILD_DIR
 mkdir -p $BUILD_DIR/openturns
 mkdir -p  $BUILD_DIR/cache/pip
 cd  $BUILD_DIR/openturns
