@@ -36,11 +36,11 @@ fi
 LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
 case $LINUX_DISTRIBUTION in
     UB22*|CO8*|CO9*|FD36)
-	echo "WARNING: switching OFF TBB support"
-	CMAKE_OPTIONS+=" -DUSE_TBB=OFF"
-	;;
+        echo "WARNING: switching OFF TBB support"
+        CMAKE_OPTIONS+=" -DUSE_TBB=OFF"
+        ;;
     *)
-	;;
+        ;;
 esac
 
 # Blas/Lapack
@@ -106,8 +106,6 @@ if [ -n "$NLOPT_ROOT_DIR" ] && [ "$SAT_nlopt_IS_NATIVE" != "1" ]; then
     CMAKE_OPTIONS+=" -DNLOPT_DIR:STRING=${NLOPT_ROOT_DIR}"
 fi
 
-
-
 echo
 echo "*** cmake" $CMAKE_OPTIONS
 
@@ -149,8 +147,11 @@ then
 fi
 
 if [[ -d "${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/dist-packages" ]]; then
+    echo "WARNING: renaming ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/dist-packages as ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages"
     cd  ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}
-    ln -sf dist-packages site-packages
+    ls -l
+    mv dist-packages site-packages
+    ls -l
     cd  $BUILD_DIR/openturns
 fi
 
@@ -166,7 +167,6 @@ fi
 
 LD_LIBRARY_PATH_REF=${LD_LIBRARY_PATH}
 if [[ -d "$SOURCE_DIR/otfftw-0.12" ]]; then
-
     declare -A OTC
     OTC["otagrum"]="0.6"
     OTC["otfftw"]="0.12"
@@ -189,7 +189,7 @@ if [[ -d "$SOURCE_DIR/otfftw-0.12" ]]; then
         mkdir ${BUILD_DIR}/$k
         cd ${BUILD_DIR}/$k 
         CMAKE_EXTRA_OPTIONS=
-	if [[ $DIST_NAME == "CO" ]]; then
+        if [[ $DIST_NAME == "CO" ]]; then
             CMAKE_EXTRA_OPTIONS+=" -DBUILD_DOC=OFF"  # needs extra latex modules on CentOS 7, 8
             CMAKE_EXTRA_OPTIONS+=" -DUSE_SPHINX=OFF"
         fi
@@ -202,30 +202,30 @@ if [[ -d "$SOURCE_DIR/otfftw-0.12" ]]; then
             CMAKE_EXTRA_OPTIONS+=" -DUSE_SPHINX=OFF"
         elif  [[ $k == "otfftw" ]]; then
             CMAKE_EXTRA_OPTIONS+=" -DBUILD_DOC=OFF"
-	elif [[ $k == "otmorris" ]]; then
-	    case $LINUX_DISTRIBUTION in
-		DB*|FD*)
-		    echo "WARNING: switching OFF documentation build"
-		    CMAKE_EXTRA_OPTIONS+=" -DBUILD_DOC=OFF"
-		    CMAKE_EXTRA_OPTIONS+=" -DUSE_SPHINX=OFF" # missing package to be installed.
-		    ;;
-	    esac
-	elif [[ $k == "otrobopt" ]]; then
-	    case $LINUX_DISTRIBUTION in
-		DB*|FD*)
-		    echo "WARNING: switching OFF documentation build"
-		    CMAKE_EXTRA_OPTIONS+=" -DBUILD_DOC=OFF"
-		    CMAKE_EXTRA_OPTIONS+=" -DUSE_SPHINX=OFF" # missing package to be installed.
-		    ;;
-	    esac
-	elif [[ $k == "otsvm" ]]; then
-	    case $LINUX_DISTRIBUTION in
-		DB*|FD*)
-		    echo "WARNING: switching OFF documentation build"
-		    CMAKE_EXTRA_OPTIONS+=" -DBUILD_DOC=OFF"
-		    CMAKE_EXTRA_OPTIONS+=" -DUSE_SPHINX=OFF" # missing package to be installed.
-		    ;;
-	    esac
+        elif [[ $k == "otmorris" ]]; then
+            case $LINUX_DISTRIBUTION in
+                DB*|FD*)
+                    echo "WARNING: switching OFF documentation build"
+                    CMAKE_EXTRA_OPTIONS+=" -DBUILD_DOC=OFF"
+                    CMAKE_EXTRA_OPTIONS+=" -DUSE_SPHINX=OFF" # missing package to be installed.
+                    ;;
+            esac
+        elif [[ $k == "otrobopt" ]]; then
+            case $LINUX_DISTRIBUTION in
+                DB*|FD*)
+                    echo "WARNING: switching OFF documentation build"
+                    CMAKE_EXTRA_OPTIONS+=" -DBUILD_DOC=OFF"
+                    CMAKE_EXTRA_OPTIONS+=" -DUSE_SPHINX=OFF" # missing package to be installed.
+                    ;;
+            esac
+        elif [[ $k == "otsvm" ]]; then
+            case $LINUX_DISTRIBUTION in
+                DB*|FD*)
+                    echo "WARNING: switching OFF documentation build"
+                    CMAKE_EXTRA_OPTIONS+=" -DBUILD_DOC=OFF"
+                    CMAKE_EXTRA_OPTIONS+=" -DUSE_SPHINX=OFF" # missing package to be installed.
+                    ;;
+            esac
         elif  [[ $k == "otpmml" ]]; then
             CMAKE_EXTRA_OPTIONS+=" -DBUILD_DOC=OFF"
         fi
@@ -257,6 +257,7 @@ if [[ -d "$SOURCE_DIR/otfftw-0.12" ]]; then
             exit 3
         fi
     done
+
     declare -A OTP
     OTP["otfmi"]="0.15"
     OTP["otpod"]="0.6.8"
@@ -266,75 +267,75 @@ if [[ -d "$SOURCE_DIR/otfftw-0.12" ]]; then
         echo
         echo "*** C O M P O N E N T : $k-${OTP[$k]} "
 
-	if [ "$SAT_Python_IS_NATIVE" == "1" ]; then
-	    if [ $k == "otfmi" ]; then
-		echo "INFO: install dill-0.3.4"
-		${PYTHONBIN} -m pip install  --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/dill-0.3.4/dill-0.3.4-py2.py3-none-any.whl --no-deps  --prefix=$PRODUCT_INSTALL 
-		if [ $? -ne 0 ]
-		then
-		    echo "FATAL: could not install dill-0.3.4"
-		    exit 6
-		fi
-	    elif [ $k == "otpod" ]; then
-		if [[ $DIST_NAME == "CO" && $DIST_VERSION == "8" ]]; then
-		    echo "*** skipping: since system Cython too old"
-		    continue
-		fi
-		echo "INFO: install scikit-learn-0.24.2"
-		${PYTHONBIN} -m pip install  --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/scikit-learn-0.24.2/scikit-learn-0.24.2.tar.gz --no-deps  --prefix=$PRODUCT_INSTALL
-		if [ $? -ne 0 ]
-		then
-		    echo "FATAL: could not install scikit-0.24.2"
-		    exit 6
-		fi
-		echo "INFO: install threadpoolctl-3.0.0"
-		${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip  $SOURCE_DIR/threadpoolctl-3.0.0/threadpoolctl-3.0.0-py3-none-any.whl --no-deps --prefix=$PRODUCT_INSTALL
-		if [ $? -ne 0 ]
-		then
-		    echo "FATAL: could not install threadpoolctl 3.0.0"
-		    exit 6
-		fi
-	    fi
-	else # non native Python
+        if [ "$SAT_Python_IS_NATIVE" == "1" ]; then
+            if [ $k == "otfmi" ]; then
+                echo "INFO: install dill-0.3.4"
+                ${PYTHONBIN} -m pip install  --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/dill-0.3.4/dill-0.3.4-py2.py3-none-any.whl --no-deps  --prefix=$PRODUCT_INSTALL
+                if [ $? -ne 0 ]
+                then
+                    echo "FATAL: could not install dill-0.3.4"
+                    exit 6
+                fi
+            elif [ $k == "otpod" ]; then
+                if [[ $DIST_NAME == "CO" && $DIST_VERSION == "8" ]]; then
+                    echo "*** skipping: since system Cython too old"
+                    continue
+                fi
+                echo "INFO: install scikit-learn-0.24.2"
+                ${PYTHONBIN} -m pip install  --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/scikit-learn-0.24.2/scikit-learn-0.24.2.tar.gz --no-deps  --prefix=$PRODUCT_INSTALL
+                if [ $? -ne 0 ]
+                then
+                    echo "FATAL: could not install scikit-0.24.2"
+                    exit 6
+                fi
+                echo "INFO: install threadpoolctl-3.0.0"
+                ${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip  $SOURCE_DIR/threadpoolctl-3.0.0/threadpoolctl-3.0.0-py3-none-any.whl --no-deps --prefix=$PRODUCT_INSTALL
+                if [ $? -ne 0 ]
+                then
+                    echo "FATAL: could not install threadpoolctl 3.0.0"
+                    exit 6
+                fi
+            fi
+        else # non native Python
             if [[ $k == "otfmi" ]]; then
-		echo "INFO: install dill-0.3.4"
-		${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/dill-0.3.4/dill-0.3.4-py2.py3-none-any.whl --no-deps
-		if [ $? -ne 0 ]
-		then
-		    echo "FATAL: could not install dikk-0.3.4"
-		    exit 5
-		fi
-	    elif [[ $k == "otpod" ]]; then
-		echo "INFO: install threadpoolctl-3.0.0"
-		${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/threadpoolctl-3.0.0/threadpoolctl-3.0.0-py3-none-any.whl --no-deps
-		if [ $? -ne 0 ]
-		then
-		    echo "FATAL: could not install readpoolctl 3.0.0"
-		    exit 6
-		fi
-		echo "INFO: install joblib-1.1.0"
-		${PYTHONBIN} -m pip install  --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/joblib-1.1.0/joblib-1.1.0-py2.py3-none-any.whl --no-deps
-		if [ $? -ne 0 ]
-		then
-		    echo "FATAL: could not install joblib-1.1.0"
-		    exit 6
-		fi
-		echo "INFO: install decorator-5.1.0"
-		${PYTHONBIN} -m pip install  --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/decorator-5.1.0/decorator-5.1.0-py3-none-any.whl --no-deps
-		if [ $? -ne 0 ]
-		then
-		    echo "FATAL: could not install decorator-5.1.0"
-		    exit 6
-		fi
-		echo "INFO: install scikit-learn-0.24.2"
-		${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/scikit-learn-0.24.2/scikit-learn-0.24.2.tar.gz --no-deps
-		if [ $? -ne 0 ]
-		then
-		    echo "FATAL: could not install scikit-0.24.2"
-		    exit 6
-		fi
-	    fi
-	fi
+                echo "INFO: install dill-0.3.4"
+                ${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/dill-0.3.4/dill-0.3.4-py2.py3-none-any.whl --no-deps
+                if [ $? -ne 0 ]
+                then
+                    echo "FATAL: could not install dikk-0.3.4"
+                    exit 5
+                fi
+            elif [[ $k == "otpod" ]]; then
+                echo "INFO: install threadpoolctl-3.0.0"
+                ${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/threadpoolctl-3.0.0/threadpoolctl-3.0.0-py3-none-any.whl --no-deps
+                if [ $? -ne 0 ]
+                then
+                    echo "FATAL: could not install readpoolctl 3.0.0"
+                    exit 6
+                fi
+                echo "INFO: install joblib-1.1.0"
+                ${PYTHONBIN} -m pip install  --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/joblib-1.1.0/joblib-1.1.0-py2.py3-none-any.whl --no-deps
+                if [ $? -ne 0 ]
+                then
+                    echo "FATAL: could not install joblib-1.1.0"
+                    exit 6
+                fi
+                echo "INFO: install decorator-5.1.0"
+                ${PYTHONBIN} -m pip install  --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/decorator-5.1.0/decorator-5.1.0-py3-none-any.whl --no-deps
+                if [ $? -ne 0 ]
+                then
+                    echo "FATAL: could not install decorator-5.1.0"
+                    exit 6
+                fi
+                echo "INFO: install scikit-learn-0.24.2"
+                ${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/scikit-learn-0.24.2/scikit-learn-0.24.2.tar.gz --no-deps
+                if [ $? -ne 0 ]
+                then
+                    echo "FATAL: could not install scikit-0.24.2"
+                    exit 6
+                fi
+            fi
+        fi
 
         cd  $BUILD_DIR
         mkdir ${BUILD_DIR}/$k
@@ -367,35 +368,35 @@ if [[ -d "$SOURCE_DIR/otfftw-0.12" ]]; then
         SITE_PATCH=
         LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
         case $LINUX_DISTRIBUTION in
-	    DB11)
+            DB11)
                 SITE_PATCH=/usr/lib/pypy/dist-packages/setuptools/site-patch.py
                 ;;
-	    DB10)
+            DB10)
                 SITE_PATCH=/usr/lib/python3/dist-packages/setuptools/site-patch.py
                 ;;
-	    UB22*)
+            UB22*)
                 SITE_PATCH=/usr/lib/pypy/dist-packages/setuptools/site-patch.py
                 ;;
-	    UB20*)
+            UB20*)
                 SITE_PATCH=/usr/lib/pypy/dist-packages/setuptools/site-patch.py
                 ;;
-	    FD32)
+            FD32)
                 SITE_PATCH=/usr/lib/pypy/dist-packages/setuptools/site-patch.py
                 ;;
-	    FD36)
+            FD36)
                 ###SITE_PATCH=
                 SITE_PATCH=$SOURCE_DIR/addons/site-patch.py
                 ;;
-	    FD34)
+            FD34)
                 ###SITE_PATCH=
                 SITE_PATCH=$SOURCE_DIR/addons/site-patch.py
                 ;;
-	    CO8*)
+            CO8*)
                 SITE_PATCH=/usr/lib/pypy/dist-packages/setuptools/site-patch.py
                 ;;
-	    *)
+            *)
                 SITE_PATCH=$SOURCE_DIR/addons/site-patch.py
-		;;
+                ;;
         esac
         # check whether this file exists
         if [ "${SITE_PATCH}" == "" ]; then
@@ -406,8 +407,8 @@ if [[ -d "$SOURCE_DIR/otfftw-0.12" ]]; then
     elif [ -f ${PYTHON_ROOT_DIR}/lib/python${PYTHON_VERSION}/site-packages/setuptools/site-patch.py ]; then
         cp ${PYTHON_ROOT_DIR}/lib/python${PYTHON_VERSION}/site-packages/setuptools/site-patch.py ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages/site.py
     else
-	echo "ERROR: could not find site-patch.py"
-	exit 7
+        echo "ERROR: could not find site-patch.py"
+        exit 7
     fi
 fi
 
