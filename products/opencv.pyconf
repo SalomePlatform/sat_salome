@@ -38,7 +38,7 @@ default_win:
 
 version_3_2_0 :
 {
-    patches : ["opencv-3.2.0-ccache.patch", "SPNS-29988-opencv-3.2.0-persistence.patch"]
+    patches : ["opencv-3.2.0-ccache.patch", "SPNS-29988-opencv-3.2.0-persistence.patch", "opencv-3.2.0-python2-cmake.patch"]
 }
 
 version_3_2_0_win :
