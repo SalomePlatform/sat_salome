@@ -1,0 +1,13 @@
+diff --git a/src/PVGUI/PVGUI_Module.cxx b/src/PVGUI/PVGUI_Module.cxx
+index 04da6b6a..f047729a 100644
+--- a/src/PVGUI/PVGUI_Module.cxx
++++ b/src/PVGUI/PVGUI_Module.cxx
+@@ -951,7 +951,7 @@ void PVGUI_Module::onShowTrace()
+   if (!myTraceWindow) {
+     myTraceWindow = new pqPythonScriptEditor(getApp()->desktop());
+   }
+-  myTraceWindow->setText(getTraceString());
++  //myTraceWindow->setText(getTraceString());
+   myTraceWindow->show();
+   myTraceWindow->raise();
+   myTraceWindow->activateWindow();
