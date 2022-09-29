@@ -95,7 +95,7 @@ APPLICATION :
         ospray : '2.4.0'
         packaging : 'native'
         pandas : 'native'
-        ParaView : {tag:'08c5d057a8', base: 'no',  section: 'version_5_11_0_MPI', hpc: 'yes'}
+        ParaView : {tag:'5.11.0', base: 'no',  section: 'version_5_11_0_MPI', hpc: 'yes'}
         PERSALYS: 'v12.0'
         petsc : {tag : '3.16.0', section: 'version_3_16_0'}
         Pillow : 'native'
