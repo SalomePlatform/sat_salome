@@ -38,6 +38,7 @@ default :
         incremental : "yes"
         has_salome_gui : "yes"
     }
+    patches: []
 }
 
 default_MPI :
@@ -57,6 +58,7 @@ default_MPI :
         'openmpi'
     ]
     opt_depend : ['mpi4py']
+    patches: ['SOLVERLAB-paraview-5.11.patch']
 }
 
 version_V9_9_0_MPI :
