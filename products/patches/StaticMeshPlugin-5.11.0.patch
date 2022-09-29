@@ -1,0 +1,14 @@
+diff --git a/plugin/CMakeLists.txt b/plugin/CMakeLists.txt
+index 04bff27..40e81c6 100644
+--- a/plugin/CMakeLists.txt
++++ b/plugin/CMakeLists.txt
+@@ -4,3 +4,9 @@ paraview_add_plugin(StaticMesh
+   MODULE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/StaticMeshModule/vtk.module"
+   SERVER_MANAGER_XML sources.xml readers.xml filters.xml
+ )
++
++install(TARGETS StaticMesh
++  RUNTIME DESTINATION lib/paraview
++  LIBRARY DESTINATION lib/paraview
++  ARCHIVE DESTINATION lib/paraview
++)

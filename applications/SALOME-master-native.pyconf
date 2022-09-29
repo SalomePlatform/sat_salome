@@ -123,7 +123,7 @@ APPLICATION :
         sphinxcontrib_websupport : 'native'
         sphinxintl: 'native'
         sphinx_rtd_theme : 'native'
-        StaticMeshPlugin: '5.8.0'
+        StaticMeshPlugin: '5.11.0'
         statsmodels : 'native'
         swig : 'native'
         salome_system : 'native'
