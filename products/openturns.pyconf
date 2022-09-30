@@ -43,6 +43,18 @@ version_1_19 :
     opt_depend : ['pandas', 'statsmodels']
 }
 
+version_1_19_win :
+{
+    properties :
+    {
+      incremental : "yes"
+      pip : "yes"
+    }
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'pthreads', 'dill', 'psutil']
+    opt_depend : []
+    patches : []
+}
+
 version_1_18 :
 {
     compil_script :  "openturns-1.18" + $VARS.scriptExtension
