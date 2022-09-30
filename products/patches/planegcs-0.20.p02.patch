@@ -1,0 +1,11 @@
+--- planegcs-0.20_ref/planegcs/GCS.cpp	2022-09-30 13:30:52.206867543 +0200
++++ planegcs-0.20_dev/planegcs/GCS.cpp	2022-09-30 13:31:35.938263775 +0200
+@@ -95,7 +95,7 @@
+ #define CASE_NOT_IMP(X) case X: { subsystemfile << "//" #X "not yet implemented" << std::endl; break; }
+ #endif
+ 
+-#include <FCConfig.h>
++//#include <FCConfig.h>
+ #ifdef _GCS_USE_STL_OUTPUT
+ #include <cstdio>
+ #else

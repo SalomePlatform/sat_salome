@@ -1,0 +1,37 @@
+--- planegcs-0.20_ref/CMakeLists.txt	2022-09-30 13:30:12.273508312 +0200
++++ planegcs-0.20_dev/CMakeLists.txt	2022-09-30 13:31:31.379222453 +0200
+@@ -35,15 +35,18 @@
+ 
+ 
+ # -------------------------------- Boost --------------------------------
+-
+-set(Boost_INCLUDE_DIR "${Boost_DIR}/include/boost-1_67" CACHE PATH "" FORCE)
+-set(Boost_LIBRARY_DIR "${Boost_DIR}/lib" CACHE PATH "" FORCE)
++file(TO_CMAKE_PATH "$ENV{BOOST_ROOT_DIR}" BOOST_ROOT_DIR)
++if(EXISTS "${BOOST_ROOT_DIR}")
++  set(BOOST_ROOT "${BOOST_ROOT_DIR}" CACHE PATH "Boost root directory" FORCE)
++endif()
++#set(Boost_INCLUDE_DIR "${Boost_DIR}/include/boost-1_67" CACHE PATH "" FORCE)
++#set(Boost_LIBRARY_DIR "${Boost_DIR}/lib" CACHE PATH "" FORCE)
+ #set(Boost_GRAPH_LIBRARY_DEBUG "${Boost_LIBRARY_DIR}/boost_graph-vc120-mt-gd-x64-1_66.lib" CACHE FILEPATH "" FORCE)
+ #set(Boost_GRAPH_LIBRARY_RELEASE "${Boost_LIBRARY_DIR}/boost_graph-vc140-mt-x64-1_66.lib" CACHE FILEPATH "" FORCE)
+ set(Boost_USE_DEBUG_LIBS   OFF) # ignore debug libs and
+ set(Boost_USE_RELEASE_LIBS ON)  # only find release libs
+ 
+-find_package(Boost 1.67 REQUIRED COMPONENTS graph)
++find_package(Boost COMPONENTS REQUIRED COMPONENTS graph)
+ 
+ if(NOT Boost_FOUND)
+   message(FATAL_ERROR "========================================\n"
+@@ -54,8 +57,9 @@
+ 
+ # -------------------------------- Eigen --------------------------------
+ 
+-#FILE(TO_CMAKE_PATH "$ENV{EIGEN_ROOT_DIR}" EIGEN_ROOT_DIR)
+-set(EIGEN3_INCLUDE_DIR "${Eigen3_DIR}/include/eigen3")
++FILE(TO_CMAKE_PATH "$ENV{EIGEN_ROOT_DIR}" EIGEN_ROOT_DIR)
++set(EIGEN3_INCLUDE_DIR "${EIGEN_ROOT_DIR}/include/eigen3")
++MESSAGE("EIGEN3_INCLUDE_DIR: " ${EIGEN3_INCLUDE_DIR})
+ find_package(Eigen3 3.3.4 REQUIRED)
+ if(NOT EIGEN3_FOUND)
+   message("====================\n"
