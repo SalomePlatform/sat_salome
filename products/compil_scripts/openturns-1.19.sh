@@ -6,7 +6,7 @@ echo "##########################################################################
 
 # we don't install in python directory -> modify environment as described in INSTALL file
 
-mkdir -p $PRODUCT_INSTALL/lib/python${PYTHON_VERSION}/site-packages
+#mkdir -p $PRODUCT_INSTALL/lib/python${PYTHON_VERSION}/site-packages
 export PATH=$(pwd)/bin:$PATH
 export PYTHONPATH=$(pwd):$PYTHONPATH
 export PYTHONPATH=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages:$PYTHONPATH
@@ -140,11 +140,18 @@ fi
 
 echo
 echo "*** check installation"
+if [! -d "${PRODUCT_INSTALL}/lib" ]; then
+    mkdir -p ${PRODUCT_INSTALL}/lib
+fi
 
-if [ -d "${PRODUCT_INSTALL}/lib64" ]
-then
-    mv ${PRODUCT_INSTALL}/lib64/* ${PRODUCT_INSTALL}/lib
+if [ -d "${PRODUCT_INSTALL}/lib64" ]; then
+    echo "WARNING: moving lib64 to lib"
+    mv ${PRODUCT_INSTALL}/lib64/* ${PRODUCT_INSTALL}/lib/
     rmdir ${PRODUCT_INSTALL}/lib64
+elif [ -d "${PRODUCT_INSTALL}/local/lib64" ]; then
+    echo "WARNING: moving local/lib64 to lib"
+    mv ${PRODUCT_INSTALL}/local/lib64/* ${PRODUCT_INSTALL}/lib/
+    rmdir ${PRODUCT_INSTALL}/local/lib64
 fi
 
 if [[ -d "${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/dist-packages" ]]; then
