@@ -61,7 +61,13 @@ default_win :
 version_5_11_0:
 {
  archive_info : {archive_name : "StaticMeshPlugin-5.11.0-8801743.tar.gz"}
- patches: ['StaticMeshPlugin-5.11.0.patch']
+ patches: ['StaticMeshPlugin-5.11.0.p001.patch']
+}
+
+version_5_11_0_DB11:
+{
+ archive_info : {archive_name : "StaticMeshPlugin-5.11.0-8801743.tar.gz"}
+ patches: ['StaticMeshPlugin-5.11.0.p001.patch', 'StaticMeshPlugin-5.11.0.p002.patch']
 }
 
 version_5_8_0:

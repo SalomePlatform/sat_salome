@@ -249,7 +249,8 @@ __overwrite__ :
         __condition__ : "VARS.dist in ['DB11']"
         'APPLICATION.products.opencv' : '3.2.0'
         'APPLICATION.products.cminpack': 'native'
-        'APPLICATION.products.PyFMI'    : {tag:'2.6',    base: 'no',  section: 'version_2_6_no_pip'                 }
+        'APPLICATION.products.PyFMI'            : {tag:'2.6',    base: 'no',  section: 'version_2_6_no_pip' }
+        'APPLICATION.products.StaticMeshPlugin' : {tag:'5.11.0', base: 'no',  section: 'version_5_11_0_DB11'}
     }
     {
         # CentOS 8 repositories don't include sphinxintl package which must be installed through pip.
