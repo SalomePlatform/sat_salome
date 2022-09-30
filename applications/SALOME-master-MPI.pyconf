@@ -100,7 +100,7 @@ APPLICATION :
         PERSALYS: 'v12.0'
         petsc : {tag : '3.16.0', hpc: 'yes'}
         Pillow : '7.1.1'
-        planegcs : '0.18-3cb6890'
+        planegcs : '0.20'
         psutil : '5.7.2'
         PyFMI : '2.5'
         Pygments : '2.0.2'

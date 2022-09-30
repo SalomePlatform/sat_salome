@@ -98,7 +98,7 @@ APPLICATION :
         PERSALYS: 'v12.0'
         petsc : {tag : '3.16.0', section: 'version_3_16_0'}
         Pillow : 'native'
-        planegcs : '0.18-3cb6890'
+        planegcs : '0.20'
         psutil : 'native'
         PyFMI : '2.5'
         Pygments : 'native'
@@ -139,7 +139,7 @@ APPLICATION :
         'SHAPER'
         'SHAPERSTUDY'
         'RESTRICTED'
-        'LIBBATCH' : {tag : 'V2_4_5'}
+        'LIBBATCH' : {tag : 'V2_4_6'}
         'KERNEL'
         'MEDCOUPLING' : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'GUI'
