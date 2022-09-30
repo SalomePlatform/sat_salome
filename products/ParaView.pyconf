@@ -87,19 +87,8 @@ version_5_11_0_win :
               'zlib'
              ]
     opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'rkCommon', 'matplotlib']
-    patches : ['paraview.0003-ParaViewClient.patch',
-               'paraview.0004-ParaView_hdf5.patch',
-               'paraview.0005-ParaView_find_cgns.patch',
-               'paraview.0006-ParaView_find_libxml2.patch',
-               'paraview.0007-ParaView_find_freetype.patch',
-               'paraview.0009-ParaView_find_zlib.patch',
-               'paraview.0010-ParaView_CATALYST_cmake.patch',
-               'paraview.1001-ParaView_windows_catalyst_cmake.patch',
-               'paraview.0008-ParaView_coincident_rendering.patch',
-               'paraview.0011-ParaView_protobuf_crash.patch',
-               'paraview.0018-spns-26351-autoconvert.patch',
-               'paraview.0019-spns-26344-VTK-OpenMP.patch',
-               'paraview.0015-Paraview_VTKM_ioss.patch'
+    patches : ['paraview-5.11.0.p001-FindCGNS.patch',
+               'paraview-5.11.0.p002-FindMPI.patch'
               ]
 }
 
@@ -120,20 +109,8 @@ version_5_11_0_win_dbg :
               'zlib'
              ]
     opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'rkCommon', 'matplotlib']
-    patches : ['paraview.0003-ParaViewClient.patch',
-               'paraview.0004-ParaView_hdf5.patch',
-               'paraview.0005-ParaView_find_cgns.patch',
-               'paraview.0006-ParaView_find_libxml2.patch',
-               'paraview.0007-ParaView_find_freetype.patch',
-               'paraview.0009-ParaView_find_zlib.patch',
-               'paraview.0010-ParaView_CATALYST_cmake.patch',
-               'paraview.1001-ParaView_windows_catalyst_cmake.patch',
-               'paraview.0008-ParaView_coincident_rendering.patch',
-               'paraview.0011-ParaView_protobuf_crash.patch',
-               'paraview.0018-spns-26351-autoconvert.patch',
-               'paraview.0019-spns-26344-VTK-OpenMP.patch',
-               'paraview.0015-Paraview_VTKM_ioss.patch',
-               'paraview-5.9.0-vs-debug.patch'
+    patches : ['paraview-5.11.0.p001-FindCGNS.patch',
+               'paraview-5.11.0.p002-FindMPI.patch'
               ]
 }
 

@@ -18,7 +18,7 @@ if %SAT_DEBUG% == 1 (
   set PRODUCT_BUILD_TYPE=Debug
 )
 
-set PVLIBVERSION=5.9
+set PVLIBVERSION=5.11
 
 set python_name=python%PYTHON_VERSION%
 
