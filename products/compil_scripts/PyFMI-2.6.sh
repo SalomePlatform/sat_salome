@@ -40,6 +40,10 @@ fi
 if [ -d "$PRODUCT_INSTALL/lib64" ]; then
     echo "WARNING: renaming lib64 directory to lib"
     mv $PRODUCT_INSTALL/lib64 $PRODUCT_INSTALL/lib
+elif [ -d "$PRODUCT_INSTALL/local/lib64" ]; then
+    echo "WARNING: renaming local/lib64 directory to lib"
+    mv $PRODUCT_INSTALL/local/lib64 $PRODUCT_INSTALL/lib
+    rm -rf $PRODUCT_INSTALL/local
 fi
 
 echo
