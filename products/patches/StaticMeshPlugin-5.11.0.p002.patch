@@ -1,0 +1,15 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 527c65f..e5a31ae 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -8,6 +8,10 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_INSTALL_
+ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}")
+ 
+ set("_paraview_plugin_default_${CMAKE_PROJECT_NAME}" ON)
++if(DEFINED ENV{MPI_ROOT_DIR})
++  FIND_PACKAGE(MPI)
++endif()
++
+ paraview_plugin_scan(
+   ENABLE_BY_DEFAULT YES
+   PLUGIN_FILES      "${CMAKE_CURRENT_SOURCE_DIR}/plugin/paraview.plugin"
