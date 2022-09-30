@@ -178,7 +178,7 @@ APPLICATION :
         'OPENTURNS_SALOME'
         'YDEFX'
         'pmml'
-        'SOLVERLAB' : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'SOLVERLAB'
         'TopIIVolMesh'
         #'TESTBASE'
         'CEATESTBASE' : 'SalomeV9'
