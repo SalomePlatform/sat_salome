@@ -244,6 +244,7 @@ __overwrite__ :
         'APPLICATION.products.qwt'     : '6.1.2'
         'APPLICATION.products.PyQt'    : '5.15.3'
         'APPLICATION.products.sip'     : '5.5.0'
+        'APPLICATION.products.ParaView' : {tag: '5.11.0', base: 'no',  section: 'version_5_11_0_MPI_DB10', hpc: 'yes'}
     }
     {
         __condition__ : "VARS.dist in ['DB11']"
