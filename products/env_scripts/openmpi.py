@@ -46,6 +46,6 @@ def set_nativ_env(env):
     env.set('MPI_CXX_COMPILER', os.path.join(prereq_bin,'mpicxx'))
     env.set('MPI_C_FOUND', os.path.join(prereq_dir,'lib','libmpi.so'))
     env.set('MPI_INCLUDE_DIR', prereq_inc)
-    env.prepend('PATH', prereq_bin)
+    if prereq_bin != "/usr/bin":
+        env.prepend('PATH', prereq_bin)
     env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir,'lib'))
-
