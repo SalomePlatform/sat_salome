@@ -274,8 +274,8 @@ __overwrite__ :
         __condition__ : "VARS.dist in ['FD34']"
         'APPLICATION.products.opencv'    : '3.2.0'
         'APPLICATION.products.qwt'       : '6.1.6'
-        'APPLICATION.products.omniORB'   : '4.2.4'
-        'APPLICATION.products.omniORBpy' : '4.2.4'
+        'APPLICATION.products.omniORB'   : '4.2.5'
+        'APPLICATION.products.omniORBpy' : '4.2.5'
         'APPLICATION.products.PyFMI'     : {tag: '2.6',    base: 'no', section: 'version_2_6_no_pip'             }
         'APPLICATION.products.root'      : {tag:'6.22.02', base: 'no', section: 'version_6_22_02_FD34'           }
         'APPLICATION.products.gdal'      : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_FD34'             } # spns #29324
