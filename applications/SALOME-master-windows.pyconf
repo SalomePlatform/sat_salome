@@ -95,7 +95,7 @@ APPLICATION :
         ParaView : {tag:'5.11.0', base: 'no',  section: 'version_5_11_0'}
         perl : '5.28.1.1'
         Pillow : '7.1.1'
-        planegcs : '0.18-3cb6890'
+        planegcs : '0.20'
         psutil : '5.7.2'
         pthreads : '2.9.1'
         Pygments : '2.4.2'
@@ -138,7 +138,7 @@ APPLICATION :
         'SHAPER'
         'SHAPERSTUDY'
         'RESTRICTED'
-        'LIBBATCH' : {tag :'V2_4_5'}
+        'LIBBATCH' : {tag :'V2_4_6'}
         'KERNEL'
         'MEDCOUPLING'
         'GUI' : 'po/pv-master'
