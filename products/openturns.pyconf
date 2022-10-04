@@ -55,6 +55,14 @@ version_1_19_win :
     patches : []
 }
 
+version_1_19_UB20_04 :
+{
+    compil_script :  "openturns-1.19" + $VARS.scriptExtension
+    patches : ['openturns-1.19.0002.patch']
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
+    opt_depend : ['pandas', 'statsmodels']
+}
+
 version_1_18 :
 {
     compil_script :  "openturns-1.18" + $VARS.scriptExtension
