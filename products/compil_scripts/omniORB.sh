@@ -42,10 +42,10 @@ if version_ge $VERSION "4.1" ; then
     echo
     echo "*** fix headers"
     cd $PRODUCT_INSTALL/bin
-    sed -e "s%#\!.*python%#\!/usr/bin/env python3%" omniidl > _omniidl
+    sed -e "s%#\!.*python[0-9]*%#\!/usr/bin/env python3%" omniidl > _omniidl
     mv -f _omniidl omniidl
     chmod a+x omniidl
-    sed -e "s%#\!.*python%#\!/usr/bin/env python3%" omniidlrun.py > _omniidlrun.py
+    sed -e "s%#\!.*python[0-9]*%#\!/usr/bin/env python3%" omniidlrun.py > _omniidlrun.py
     mv -f _omniidlrun.py omniidlrun.py
     chmod a+x omniidlrun.py
 fi
