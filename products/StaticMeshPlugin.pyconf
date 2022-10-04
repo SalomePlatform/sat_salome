@@ -82,6 +82,12 @@ version_5_11_0_FD34:
  patches: ['StaticMeshPlugin-5.11.0.p001.patch', 'StaticMeshPlugin-5.11.0.p002.patch']
 }
 
+version_5_11_0_FD32:
+{
+ archive_info : {archive_name : "StaticMeshPlugin-5.11.0-8801743.tar.gz"}
+ patches: ['StaticMeshPlugin-5.11.0.p001.patch', 'StaticMeshPlugin-5.11.0.p002.patch']
+}
+
 version_5_8_0:
 {
  patches: ['StaticMeshPlugin-5.8.0.patch']
