@@ -37,7 +37,7 @@ APPLICATION :
         Babel : 'native'
         boost : 'native'
         #CAS : 'CR753-SALOME-PATCH'
-        CAS : {tag : 'cfcbf4e', section: 'version_CR753_SALOME_PATCH', base: 'no'}
+        CAS : {tag : '080db9d', section: 'version_CR753_SALOME_PATCH', base: 'no'}
         catalyst: '2.0'
         C3PO: 'v2.0'
         certifi : 'native'
