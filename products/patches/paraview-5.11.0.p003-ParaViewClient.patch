@@ -6,7 +6,7 @@ diff -Naur ParaView_ref/CMake/ParaViewClient.cmake ParaView_new/CMake/ParaViewCl
    include("${_ParaViewClient_cmake_dir}/paraview-find-package-helpers.cmake" OPTIONAL)
    find_program(qt_xmlpatterns_executable
 -    NAMES xmlpatterns-qt5 xmlpatterns
-+    NAMES xmlpatterns-qt5 xmlpatterns-qt5
++    NAMES xmlpatterns xmlpatterns-qt5
      HINTS "${Qt5_DIR}/../../../bin"
            "${Qt5_DIR}/../../../libexec/qt5/bin"
 +    NO_CMAKE_PATH
