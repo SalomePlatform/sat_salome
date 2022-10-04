@@ -70,6 +70,7 @@ default_win:
        "pytz",
        "sphinxintl"
     ]
+    patches : ['PARAVIS-paraview-5.11.0-trace.patch']
 }
 
 default_MPI :
