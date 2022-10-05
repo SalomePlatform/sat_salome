@@ -19,7 +19,7 @@ default :
         rpm_dev : ["openssl-devel", "tbb-devel", "gcc", "make", "sed", "gcc-c++", "expat-devel", "fontconfig-devel", "flex",
                    "bison", "mesa-libGLU-devel", "libxcb-devel", "xcb-util-devel", "libxkbcommon-devel", "libxkbcommon-x11-devel",
                    "bzip2-devel", "libXi-devel", "libXmu-devel", "automake", "libtool", "libjpeg-turbo-devel", "cmake",
-                   "libXpm-devel", "libXft-devel", "sqlite-devel", "libcurl-devel"]
+                   "libXpm-devel", "libXft-devel", "sqlite-devel", "libcurl-devel", "libXt-devel", "libXcursor-devel"]
         apt : ["libbsd0", "libbz2-1.0", "libc6", "libdrm2", "libegl1", "libexif12", "libexpat1",
                "libfftw3-double3", "libfontconfig1", "libgl1", "libglu1-mesa", "libgomp1", "libgphoto2-6", "libice6",
                "libjbig0", "libltdl7", "liblzma5", "libncurses5", "libnuma1", "libpcre3", "libquadmath0",
@@ -30,7 +30,9 @@ default :
         apt_dev : ["libssl-dev", "gcc", "make", "sed", "g++", "libexpat1-dev", "libfontconfig1-dev", "flex", "bison",
                    "libglu1-mesa-dev", "perl", "libxcb-dri2-0-dev", "libxkbcommon-dev", "libxkbcommon-x11-dev", "bzip2",
                    "libxi-dev", "libxt-dev", "libxmu-dev", "libxpm-dev", "libxft-dev", "automake", "libtool", "libjpeg-dev",
-                   "cmake", "libicu-dev", "libopenmpi-dev", "libreadline-dev", "libhwloc-dev", "libsqlite3-dev", "libcurl4-openssl-dev"]
+                   "cmake", "libicu-dev", "libopenmpi-dev", "libreadline-dev", "libhwloc-dev", "libsqlite3-dev", "libcurl4-openssl-dev",
+                   "libxt-dev", "libxcursor-dev"]
+  ]
 
         # specific to some platform(s)
         "CO7" :
