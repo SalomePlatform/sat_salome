@@ -210,11 +210,12 @@ __overwrite__ :
     {
         #
         __condition__ : "VARS.dist in ['UB20.04']"
-        'APPLICATION.products.opencv'    : '3.2.0'
-        'APPLICATION.products.cminpack'  : 'native'
-        'APPLICATION.products.netcdf'    : '4.6.2'
-        'APPLICATION.products.PyFMI'     : {tag: '2.6',   base: 'no', section: 'version_2_6_no_pip'  }
-        'APPLICATION.products.openturns' : {tag: '1.19',  base: 'no', section: 'version_1_19_UB20_04'}
+        'APPLICATION.products.opencv'           : '3.2.0'
+        'APPLICATION.products.cminpack'         : 'native'
+        'APPLICATION.products.netcdf'           : '4.6.2'
+        'APPLICATION.products.PyFMI'            : {tag: '2.6',   base: 'no', section: 'version_2_6_no_pip'     }
+        'APPLICATION.products.openturns'        : {tag: '1.19',  base: 'no', section: 'version_1_19_UB20_04'   }
+        'APPLICATION.products.StaticMeshPlugin' : {tag:'5.11.0', base: 'no', section: 'version_5_11_0_UB20_04' }
     }
     {
         #
