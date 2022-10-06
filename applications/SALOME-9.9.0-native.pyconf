@@ -278,7 +278,7 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['FD36']"
-        'APPLICATION.products.opencv'    : '3.2.0'
+        'APPLICATION.products.opencv'    : {tag: '3.2.0',   base: 'no', section: 'version_3_2_0_FD36'}
         'APPLICATION.products.omniORB'   : '4.2.5'
         'APPLICATION.products.omniORBpy' : '4.2.5'
         'APPLICATION.products.qwt'       : '6.1.6'
