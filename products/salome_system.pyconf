@@ -32,7 +32,6 @@ default :
                    "libxi-dev", "libxt-dev", "libxmu-dev", "libxpm-dev", "libxft-dev", "automake", "libtool", "libjpeg-dev",
                    "cmake", "libicu-dev", "libopenmpi-dev", "libreadline-dev", "libhwloc-dev", "libsqlite3-dev", "libcurl4-openssl-dev",
                    "libxt-dev", "libxcursor-dev"]
-  ]
 
         # specific to some platform(s)
         "CO7" :
