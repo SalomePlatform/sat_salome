@@ -7,8 +7,13 @@ echo "##########################################################################
 CMAKE_OPTIONS=""
 CMAKE_OPTIONS+=" -DCMAKE_INSTALL_PREFIX:STRING=${PRODUCT_INSTALL}"
 CMAKE_OPTIONS+=" -DCMAKE_INSTALL_LIBDIR:STRING=lib"
-CMAKE_OPTIONS+=" -DCMAKE_BUILD_TYPE:STRING=Release"
+if [ -n "$SAT_DEBUG" ]; then
+    CMAKE_OPTIONS+=" -DCMAKE_BUILD_TYPE:STRING=Debug"
+else
+    CMAKE_OPTIONS+=" -DCMAKE_BUILD_TYPE:STRING=Release"
+fi
 CMAKE_OPTIONS+=" -DTK_BUILD_PARAVIEW_PLUGINS=ON"
+CMAKE_OPTIONS+=" -Dembree_DIR:PATH=${EMBREE_ROOT_DIR}/lib/cmake/embree-${EMBREE_VERSION}"
 
 echo
 echo "*** cmake" $CMAKE_OPTIONS

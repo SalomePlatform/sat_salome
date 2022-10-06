@@ -8,7 +8,7 @@ default :
     {
        env_script : "TTK.py"
     }
-    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'ParaView', 'boost', 'qt', 'embree']
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'ParaView', 'boost', 'qt', 'embree', "graphviz"]
     build_depend : ["cmake", "swig"]
     opt_depend : ['openmpi']
     patches : []
@@ -20,4 +20,9 @@ default :
       single_install_dir : "no"
       incremental : "yes"
     }
+}
+
+version_f8dafde2d7 :
+{
+  patches: ['ttk-f8dafde2d7-p01.patch']
 }

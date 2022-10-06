@@ -1,0 +1,24 @@
+--- ttk_ref/CMake/config.cmake	2022-10-06 12:09:21.179305232 +0200
++++ ttk_dev/CMake/config.cmake	2022-10-06 12:08:43.950092714 +0200
+@@ -160,6 +160,10 @@
+   message(STATUS "Zlib not found, disabling Zlib support in TTK.")
+ endif()
+ 
++SET(EMBREE_ROOT_DIR $ENV{EMBREE_ROOT_DIR} CACHE PATH "Path to the EMBREE.")
++IF(EMBREE_ROOT_DIR)
++ LIST(APPEND CMAKE_PREFIX_PATH "${EMBREE_ROOT_DIR}")
++ENDIF(EMBREE_ROOT_DIR)
+ find_package(EMBREE 3.4 QUIET)
+ if(EMBREE_FOUND)
+   option(TTK_ENABLE_EMBREE "Enable embree raytracing for ttkCinemaImaging" ON)
+@@ -169,6 +173,10 @@
+   message(STATUS "EMBREE library not found, disabling embree support in TTK.")
+ endif()
+ 
++SET(GRAPHVIZ_ROOT_DIR $ENV{GRAPHVIZ_ROOT_DIR} CACHE PATH "Path to the GRAPHVIZ.")
++IF(GRAPHVIZ_ROOT_DIR)
++ LIST(APPEND CMAKE_PREFIX_PATH "${GRAPHVIZ_ROOT_DIR}")
++ENDIF(GRAPHVIZ_ROOT_DIR)
+ find_package(Graphviz QUIET)
+ if(Graphviz_FOUND)
+   option(TTK_ENABLE_GRAPHVIZ "Enable GraphViz support" ON)
