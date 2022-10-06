@@ -128,6 +128,7 @@ APPLICATION :
         tbb : '2019_U8_win'
         toml : '0.10.2'
         tcltk : '8.6.9'
+        TTK : 'f8dafde2d7'
         urllib3 : '1.25.3'
         zlib : '1.2.5'
 

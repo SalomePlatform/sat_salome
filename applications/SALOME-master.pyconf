@@ -207,10 +207,6 @@ APPLICATION :
 __overwrite__ :
 [
     {
-        __condition__ : "VARS.dist not in ['DB09']"
-        'APPLICATION.rm_products' : ['TTK']
-    }
-    {
         __condition__ : "VARS.dist not in ['DB09','DB10', 'DB11']"
         'APPLICATION.products.MeshGems' : {tag : '2.13-1', hpc : 'yes', base: 'no'}
     }
