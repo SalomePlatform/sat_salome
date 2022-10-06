@@ -14,7 +14,8 @@ else
 fi
 CMAKE_OPTIONS+=" -DTK_BUILD_PARAVIEW_PLUGINS=ON"
 CMAKE_OPTIONS+=" -Dembree_DIR:PATH=${EMBREE_ROOT_DIR}/lib/cmake/embree-${EMBREE_VERSION}"
-
+# Embree CMake defines EMBREE_INCLUDE_DIRS but TTK uses EMBREE_INCUDE_DIR which is undefined.
+CMAKE_OPTIONS+=" -DEMBREE_INCLUDE_DIR=${EMBREE_ROOT_DIR}/include"
 echo
 echo "*** cmake" $CMAKE_OPTIONS
 rm -rf $BUILD_DIR
