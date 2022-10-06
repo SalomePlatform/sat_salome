@@ -44,7 +44,7 @@ APPLICATION :
         cgns : '4.2.0'
         chardet : 'native'
         click : 'native'
-        cmake : 'native'
+        cmake : '3.24.2'
         cppunit : 'native'
         cminpack: '1.3.6'
         cycler : 'native'
@@ -221,6 +221,7 @@ __overwrite__ :
     {
         #
         __condition__ : "VARS.dist in ['UB22.04']"
+        'APPLICATION.products.cmake'       : 'native' # TTK requires cmake > 3.21
         'APPLICATION.products.opencv'      : '3.2.0'
         'APPLICATION.products.nlopt'       : '2.5.0'
         'APPLICATION.products.cminpack'    : 'native'
@@ -239,8 +240,7 @@ __overwrite__ :
         #   - Qt minimal version 5.12
         #   - xmlpatterns executable
         __condition__ : "VARS.dist in ['DB10']"
-        'APPLICATION.products.cmake': '3.24.2'
-        'APPLICATION.products.opencv': '3.2.0'
+        'APPLICATION.products.opencv'  : '3.2.0'
         'APPLICATION.products.cminpack': 'native'
         'APPLICATION.products.PyFMI'   : {tag:'2.6',        base: 'no',  section: 'version_2_6_no_pip'             }
         'APPLICATION.products.qt'      : '5.12.10'
@@ -251,8 +251,8 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['DB11']"
-        'APPLICATION.products.opencv' : '3.2.0'
-        'APPLICATION.products.cminpack': 'native'
+        'APPLICATION.products.opencv'           : '3.2.0'
+        'APPLICATION.products.cminpack'         : 'native'
         'APPLICATION.products.PyFMI'            : {tag:'2.6',    base: 'no',  section: 'version_2_6_no_pip' }
         'APPLICATION.products.StaticMeshPlugin' : {tag:'5.11.0', base: 'no',  section: 'version_5_11_0_DB11'}
     }
@@ -289,6 +289,7 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['FD36']"
+        'APPLICATION.products.cmake'            : 'native' # TTK requires cmake > 3.21
         'APPLICATION.products.opencv'           : {tag: '3.2.0',   base: 'no', section: 'version_3_2_0_FD36'}
         'APPLICATION.products.omniORB'          : '4.2.5'
         'APPLICATION.products.omniORBpy'        : '4.2.5'
