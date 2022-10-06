@@ -41,6 +41,11 @@ version_3_2_0 :
     patches : ["opencv-3.2.0-ccache.patch", "SPNS-29988-opencv-3.2.0-persistence.patch", "opencv-3.2.0-python2-cmake.patch"]
 }
 
+version_3_2_0_FD36 :
+{
+    patches : ["opencv-3.2.0-ccache.patch", "SPNS-29988-opencv-3.2.0-persistence.patch", "SPNS-29988-opencv-3.2.0-cv2.patch"]
+}
+
 version_3_2_0_win :
 {
     patches : ["opencv-3.2.0-ccache.patch","opencv-3.2.0_windows.patch"]
