@@ -13,7 +13,7 @@ default :
     {
        env_script : $name + ".py"
     }
-    depend : ['PyQt', 'Sphinx']
+    depend : ['PyQt', 'Sphinx', 'sip']
     build_depend : ["cmake"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name

@@ -58,5 +58,15 @@ cp *.h $PRODUCT_INSTALL/include
 cd $PRODUCT_INSTALL/bin
 ln -sf sip5 sip
 
+LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
+case $LINUX_DISTRIBUTION in
+    DB10)
+        cd $PRODUCT_INSTALL/lib/python3.7/site-packages
+        ln -sf PyQt5_sip-12.8.1-py3.7-linux-x86_64.egg/PyQt5
+        ;;
+    *)
+        ;;
+esac
+
 echo
 echo "########## END"
