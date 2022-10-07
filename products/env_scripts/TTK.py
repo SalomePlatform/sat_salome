@@ -15,7 +15,7 @@ def set_env(env, prereq_dir, version):
         env.prepend('PATH', os.path.join(prereq_dir,'bin'))
         env.prepend('LD_LIBRARY_PATH',os.path.join(prereq_dir, 'lib'))
         env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'lib', pyver, 'site-packages'))
-        env.prepend('PV_PLUGIN_PATH',os.path.join(prereq_dir,'bin','plugins')
+        env.prepend('PV_PLUGIN_PATH',os.path.join(prereq_dir,'bin','plugins'))
 
 def set_nativ_env(env):
     pass
