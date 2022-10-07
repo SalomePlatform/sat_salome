@@ -112,6 +112,18 @@ echo "*** cmake" $CMAKE_OPTIONS
 rm -rf $BUILD_DIR
 mkdir -p $BUILD_DIR/openturns
 mkdir -p  $BUILD_DIR/cache/pip
+
+# since we are using several nodes and share the same $HOME
+# compilation can get screwed up.
+# following this discussion: https://tex.stackexchange.com/questions/467824/is-it-possible-to-relocate-my-texmf-directory
+# we define the following environment variables
+export TEXMFHOME=$BUILD_DIR/texmf
+export TEXMFVAR=$BUILD_DIR/texlive
+export TEXMFCONFIG=$BUILD_DIR/texlive
+mkdir -p $TEXMFHOME
+mkdir -p $TEXMFVAR
+mkdir -p $TEXMFCONFIG
+
 cd  $BUILD_DIR/openturns
 cmake $CMAKE_OPTIONS $SOURCE_DIR/openturns-1.19
 if [ $? -ne 0 ]
