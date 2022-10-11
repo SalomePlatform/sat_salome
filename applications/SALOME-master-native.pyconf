@@ -99,7 +99,7 @@ APPLICATION :
         PERSALYS: 'v12.0'
         petsc : {tag : '3.16.0', section: 'version_3_16_0'}
         Pillow : 'native'
-        planegcs : '0.20'
+        planegcs : '0.18-3cb6890'
         psutil : 'native'
         PyFMI : '2.6'
         Pygments : 'native'
