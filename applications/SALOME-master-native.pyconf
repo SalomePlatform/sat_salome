@@ -205,10 +205,6 @@ APPLICATION :
 __overwrite__ :
 [
     {
-        __condition__ : "VARS.dist not in ['DB09','DB10', 'DB11']"
-        'APPLICATION.products.MeshGems' : {tag : '2.13-1', hpc : 'yes', base: 'no'}
-    }
-    {
         #
         __condition__ : "VARS.dist in ['UB20.04']"
         'APPLICATION.products.opencv'           : '3.2.0'
