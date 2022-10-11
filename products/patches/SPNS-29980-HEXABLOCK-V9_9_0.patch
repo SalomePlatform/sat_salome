@@ -1,0 +1,15 @@
+diff --git a/doc/conf.py.in b/doc/conf.py.in
+index ba7daa4..f958234 100644
+--- a/doc/conf.py.in
++++ b/doc/conf.py.in
+@@ -201,8 +201,8 @@ htmlhelp_basename = 'HexaBlockdoc'
+ # Grouping the document tree into LaTeX files. List of tuples
+ # (source start file, target name, title, author, document class [howto/manual]).
+ latex_documents = [
+-  ('index', 'HexaBlock.tex', ur'HexaBlock Documentation',
+-   ur'CS', 'manual'),
++  ('index', 'HexaBlock.tex', 'HexaBlock Documentation',
++   'CS', 'manual'),
+ ]
+ 
+ # The name of an image file (relative to this directory) to place at the top of

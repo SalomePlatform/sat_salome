@@ -299,6 +299,7 @@ __overwrite__ :
         'APPLICATION.products.PyFMI'            : {tag: '2.6',       base: 'no', section: 'version_2_6_no_pip'                  }
         'APPLICATION.products.root'             : {tag: '6.22.02',   base: 'no', section: 'version_6_22_02_FD36'                }
         'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD36'                  }
+        'APPLICATION.products.SMESH'            : {tag:'master',     base: 'no', section: 'version_V9_9_0_FD36',     hpc: 'no'  }
         'APPLICATION.products.HEXABLOCK'        : {tag:'master',     base: 'no', section: 'version_V9_9_0_FD36',     hpc: 'no'  }
         'APPLICATION.products.SHAPER'           : {tag:'master',     base: 'no', section: 'version_V9_9_0_FD36',     hpc: 'no'  }
         'APPLICATION.products.StaticMeshPlugin' : {tag:'5.11.0',     base: 'no', section: 'version_5_11_0_FD36'                 }

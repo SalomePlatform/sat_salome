@@ -1,0 +1,45 @@
+diff --git a/src/FeaturesPlugin/FeaturesPlugin_Measurement.cpp b/src/FeaturesPlugin/FeaturesPlugin_Measurement.cpp
+index 9f3f9f003..3d0fe58e6 100644
+--- a/src/FeaturesPlugin/FeaturesPlugin_Measurement.cpp
++++ b/src/FeaturesPlugin/FeaturesPlugin_Measurement.cpp
+@@ -49,6 +49,7 @@
+ 
+ #include <iomanip>
+ #include <sstream>
++#include <array>
+ 
+ FeaturesPlugin_Measurement::FeaturesPlugin_Measurement() : mySceenScale(1)
+ {
+diff --git a/src/GeomAlgoAPI/GeomAlgoAPI_ShapeTools.cpp b/src/GeomAlgoAPI/GeomAlgoAPI_ShapeTools.cpp
+index f95671f3e..6d4de8e6f 100644
+--- a/src/GeomAlgoAPI/GeomAlgoAPI_ShapeTools.cpp
++++ b/src/GeomAlgoAPI/GeomAlgoAPI_ShapeTools.cpp
+@@ -16,7 +16,6 @@
+ //
+ // See http://www.salome-platform.org/ or email : webmaster.salome@opencascade.com
+ //
+-
+ #include "GeomAlgoAPI_ShapeTools.h"
+ 
+ #include "GeomAlgoAPI_SketchBuilder.h"
+@@ -101,6 +100,7 @@
+ #include <NCollection_Vector.hxx>
+ 
+ #include <LocalAnalysis_SurfaceContinuity.hxx>
++#include<array>
+ 
+ //==================================================================================================
+ static GProp_GProps props(const TopoDS_Shape& theShape)
+diff --git a/src/ModelHighAPI/ModelHighAPI_Tools.cpp b/src/ModelHighAPI/ModelHighAPI_Tools.cpp
+index 65f536b38..87f24f815 100644
+--- a/src/ModelHighAPI/ModelHighAPI_Tools.cpp
++++ b/src/ModelHighAPI/ModelHighAPI_Tools.cpp
+@@ -559,7 +559,7 @@ static bool checkDump(SessionPtr theSession,
+   // execute the dumped
+   PyGILState_STATE gstate = PyGILState_Ensure(); /* acquire python thread */
+   static char aReadMode[] = "r";
+-  FILE* PyFileObject = _Py_fopen(theFilename, aReadMode);
++  FILE* PyFileObject = fopen(theFilename, aReadMode);
+   PyRun_SimpleFileEx(PyFileObject, theFilename, 1);
+   PyGILState_Release(gstate); /* release python thread */
+ 

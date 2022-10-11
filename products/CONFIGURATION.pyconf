@@ -15,7 +15,13 @@ default :
         configure_dependency : "yes"  # the source of this module is required for the configuration of salome
         is_SALOME_module : "yes"
         sources_in_package : "yes"
+        incremental: "yes"
     }
 
     patches : []
+}
+
+version_V9_9_0_FD36 :
+{
+  patches: ['SPNS-29988-CONFIGURATION-V9_9_0.patch']
 }

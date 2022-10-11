@@ -60,7 +60,7 @@ version_V9_9_0_UB22_04:
 
 version_V9_9_0_FD36:
 {
-  patches : ['SPNS-29880-SHAPER-V9_9_0.patch']
+  patches : ['SPNS-29988-SHAPER-V9_9_0.patch']
 }
 
 version_9_5_0_to_9_8_0 :

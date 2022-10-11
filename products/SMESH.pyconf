@@ -120,6 +120,11 @@ default_MPI :
              ]
 }
 
+version_V9_9_0_FD36:
+{
+  patches : ['SPNS-29988-SMESH_V9_9_0.patch']
+}
+
 version_V9_3_0 :
 {
     cmake_options : "-DSALOME_SMESH_USE_CGNS:BOOL=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_SMESH_DYNLOAD_LOCAL:BOOL=ON -DSALOME_SMESH_BUILD_FRENCH_DOC=OFF"
