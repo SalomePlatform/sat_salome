@@ -55,10 +55,42 @@ version_1_19_win :
     patches : []
 }
 
+version_1_19_UB22_04 :
+{
+    compil_script :  "openturns-1.19" + $VARS.scriptExtension
+    patches : ['openturns-1.19.0001.patch', 'openturns-1.19.0003.patch', 'openturns-1.19.0004.patch']
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
+    opt_depend : ['pandas', 'statsmodels']
+}
+
 version_1_19_UB20_04 :
 {
     compil_script :  "openturns-1.19" + $VARS.scriptExtension
     patches : ['openturns-1.19.0002.patch']
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
+    opt_depend : ['pandas', 'statsmodels']
+}
+
+version_1_19_FD36 :
+{
+    compil_script :  "openturns-1.19" + $VARS.scriptExtension
+    patches : ['openturns-1.19.0001.patch', 'openturns-1.19.0003.patch']
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
+    opt_depend : ['pandas', 'statsmodels']
+}
+
+version_1_19_FD34 :
+{
+    compil_script :  "openturns-1.19" + $VARS.scriptExtension
+    patches : ['openturns-1.19.0001.patch', 'openturns-1.19.0003.patch']
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
+    opt_depend : ['pandas', 'statsmodels']
+}
+
+version_1_19_FD32 :
+{
+    compil_script :  "openturns-1.19" + $VARS.scriptExtension
+    patches : ['openturns-1.19.0001.patch', 'openturns-1.19.0003.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
     opt_depend : ['pandas', 'statsmodels']
 }

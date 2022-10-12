@@ -1,0 +1,11 @@
+--- openturns-1.19_ref/otfmi-0.15/setup.py	2022-09-19 09:58:00.000000000 +0200
++++ openturns-1.19_new/otfmi-0.15/setup.py	2022-10-12 10:43:27.094002087 +0200
+@@ -64,7 +64,7 @@
+     # https://packaging.python.org/en/latest/requirements.html
+     install_requires=['numpy',
+                       'pyfmi>=2.6',
+-                      'dill'],
++                      'dill==0.3.4'],
+ 
+     # List additional groups of dependencies here (e.g. development
+     # dependencies). You can install these using the following syntax,
