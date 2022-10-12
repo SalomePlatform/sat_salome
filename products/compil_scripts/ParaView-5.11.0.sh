@@ -276,6 +276,9 @@ if [ -n "$NETCDF_ROOT_DIR" ]; then
     CMAKE_OPTIONS+=" -DVTK_MODULE_ENABLE_VTK_FiltersParallelGeometry=YES"
 fi
 
+# https://gitlab.kitware.com/paraview/paraview/-/issues/21594
+CMAKE_OPTIONS+=" -DPARAVIEW_PLUGIN_ENABLE_NodeEditor=OFF"
+
 echo
 echo "*** cmake" ${CMAKE_OPTIONS}
 cmake ${CMAKE_OPTIONS} $SOURCE_DIR
