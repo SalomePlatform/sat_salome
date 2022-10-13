@@ -44,8 +44,7 @@ version_19_0_8_win:
   patches: []
 }
 
-version_19_0_8_x86_64:
+version_bin:
 {
-  compil_script: 'mesa-19.0.8-x86_64.sh'
-  archive_info : {archive_name : "mesa-19.0.8-x86_64-" + $VARS.dist + ".tar.gz"}
+  compil_script: 'mesa-bin.sh'
 }

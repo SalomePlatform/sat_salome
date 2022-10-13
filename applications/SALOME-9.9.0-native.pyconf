@@ -72,7 +72,7 @@ APPLICATION :
         markupsafe : 'native'
         matplotlib : 'native'
         medfile : '4.1.1'
-        mesa : {tag : '19.0.8', base: 'no', section: 'version_19_0_8_x86_64'}
+        mesa : {tag : '19.0.8-x86_64-'+$VARS.dist, base: 'no', section: 'version_bin'}
         MeshGems : '2.14-4'
         metis : 'native'
         mpi4py: 'native'

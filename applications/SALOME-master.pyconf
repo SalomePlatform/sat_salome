@@ -11,6 +11,7 @@ APPLICATION :
     debug : 'no'
     base : 'no'
     python3 : 'yes'
+    platform : ["CO8", "DB9"]
     environ :
     {
         build : 
