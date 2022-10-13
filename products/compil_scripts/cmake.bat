@@ -29,11 +29,16 @@ set MSBUILDDISABLENODEREUSE=1
 
 cd %BUILD_DIR%
 
+REM bootstrap either with the Visual embedded Cmake or one external
+IF NOT DEFINED CMAKE_PRODUCT_EXECUTABLE (
+  SET CMAKE_PRODUCT_EXECUTABLE=cmake
+)
+
 echo.
 echo --------------------------------------------------------------------------
-echo cmake %CMAKE_OPTIONS% %SOURCE_DIR%
+echo %CMAKE_PRODUCT_EXECUTABLE%  %CMAKE_OPTIONS% %SOURCE_DIR%
 echo --------------------------------------------------------------------------
-cmake %CMAKE_OPTIONS% %SOURCE_DIR%
+%CMAKE_PRODUCT_EXECUTABLE% %CMAKE_OPTIONS% %SOURCE_DIR%
 if NOT %ERRORLEVEL% == 0 (
     echo "ERROR on cmake"
     exit 1
