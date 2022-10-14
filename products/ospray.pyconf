@@ -35,6 +35,12 @@ version_2_4_0 :
   depend : ['embree','openVKL', 'rkCommon']
 }
 
+version_2_4_0_win :
+{
+    cmake_options : '  -Dembree_DIR=%embree_DIR:\=/% -DTBB_ROOT=%TBB_DIR:\=/% -DOSPRAY_TASKING_SYSTEM=TBB  -DOSPRAY_ENABLE_APPS=OFF -DOSPRAY_ENABLE_TUTORIALS=OFF '
+    depend : ['embree']
+}
+
 version_1_7_3 :
 {
     # OSPRAY_ENABLE_APPS not needed here, otherwise compilation issues on several Fedora nodes.
