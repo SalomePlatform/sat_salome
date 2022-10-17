@@ -28,4 +28,16 @@ default_win:
       incremental : "yes"
       single_install_dir : "yes"
     }
+    depend : ['Python', 'tbb', 'ispc', 'rkCommon', 'embree', 'pthreads']
+    build_depend : ['cmake']
+}
+
+version_0_11_0:
+{
+}
+
+version_0_11_0_win:
+{
+  build_source : "script"
+  compil_script: "openVKL-0.11.0.bat"
 }

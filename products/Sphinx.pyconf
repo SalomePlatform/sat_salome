@@ -34,15 +34,16 @@ default_win :
     properties:
     {
       incremental : "yes"
-      pip : "no"
+      pip : "yes"
     }
 }
+
 
 version_2_1_2:
 {
    depend : ["Python", "setuptools", "Pygments", "Jinja2", "docutils", "sphinxcontrib_applehelp", "sphinxcontrib_serializinghtml","sphinxcontrib_websupport", "sphinxcontrib_htmlhelp", "sphinxcontrib_qthelp", "sphinxcontrib_devhelp", "sphinxcontrib_jsmath", "packaging", "requests", "imagesize", "alabaster", "Babel", "snowballstemmer", "markupsafe"]
-
 }
+
 
 version_1_7_6_no_pip:
 {
