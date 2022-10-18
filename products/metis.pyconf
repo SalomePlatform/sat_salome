@@ -37,6 +37,11 @@ version_5_1_0  :
 version_5_1_0_win  :
 {
     patches: [ 'metis-use_cat_not_more.patch','metis-5.1.0_windows.patch']
+    properties :
+    {
+       incremental : "yes"
+       single_install_dir: 'yes' # aimed to solve sat #18914
+    }
 }
 
 version_5_0_2  :

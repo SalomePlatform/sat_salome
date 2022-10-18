@@ -43,6 +43,12 @@ version_4_1_1_win :
 {
     compil_script :  "medCMake.bat"
     patches : ['med-4.1.0_win_3x_files_support.patch', 'med-4.1.1-symlink-or-copy.patch']
+    properties :
+    {
+       incremental : "yes"
+       single_install_dir: "yes" # aimed to solve sat #18914
+       has_unit_tests : "yes"
+    }
 }
 
 # needed in order to screen with windows version - see below
