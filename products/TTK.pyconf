@@ -26,3 +26,8 @@ version_f8dafde2d7 :
 {
   patches: ['ttk-f8dafde2d7-p01.patch']
 }
+
+version_f8dafde2d7_win :
+{
+  patches: ['ttk-f8dafde2d7-p01.patch', 'ttk-f8dafde2d7-p02.patch']
+}

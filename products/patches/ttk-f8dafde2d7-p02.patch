@@ -1,0 +1,10 @@
+--- ttk_ref/core/base/discreteGradient/DiscreteGradient_Template.h	2022-09-29 17:26:37.000000000 +0200
++++ ttk_dev/core/base/discreteGradient/DiscreteGradient_Template.h	2022-10-18 13:47:11.215790817 +0200
+@@ -23,6 +23,7 @@
+ using ttk::dcg::DiscreteGradient;
+ using ttk::dcg::SaddleSaddleVPathComparator;
+ using ttk::dcg::VPath;
++using ttk::VisitedMask;
+ 
+ template <typename dataType, typename triangulationType>
+ dataType DiscreteGradient::getPersistence(
