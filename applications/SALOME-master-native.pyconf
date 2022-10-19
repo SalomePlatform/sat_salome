@@ -97,7 +97,7 @@ APPLICATION :
         packaging : 'native'
         pandas : 'native'
         ParaView : {tag:'5.11.0', base: 'no',  section: 'version_5_11_0_MPI', hpc: 'yes'}
-        PERSALYS: 'v12.0'
+        PERSALYS: 'v13.0'
         petsc : {tag : '3.16.0', section: 'version_3_16_0'}
         Pillow : 'native'
         planegcs : '0.18-3cb6890'
