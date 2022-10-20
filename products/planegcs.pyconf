@@ -20,29 +20,7 @@ default :
   patches: []
 }
 
-version_0_18_3cb6890 :
-{
-}
-
-version_0_18_3cb6890_win :
-{
-    properties :
-    {
-       incremental : 'yes'
-       single_install_dir: 'yes' # aimed to solve sat #18914
-    }
-}
-
 version_0_20 :
 {
   patches: ['planegcs-0.20.p01.patch', 'planegcs-0.20.p02.patch']
-}
-
-version_0_20_win :
-{
-    properties :
-    {
-       incremental : 'yes'
-       single_install_dir: 'yes' # aimed to solve sat #18914
-    }
 }
