@@ -43,9 +43,10 @@ APPLICATION :
         lapack : 'native'
         libxml2 : 'native'
         markupsafe : 'native'
-        medfile : {section: 'default_Autotools', tag: '4.1.1rc1'}
+        medfile : {tag : '4.1.1', hpc : 'yes', section : 'default_Autotools' }
         metis : 'native'
         numpy : 'native'
+        openmpi: 'native'
         pockets : 'native'
         Pygments : 'native'
         pyparsing : 'native'
@@ -84,11 +85,4 @@ APPLICATION :
 }
 __overwrite__ :
 [
-   {
-      # sphinxintl is missing on this node
-      __condition__ : "VARS.dist in ['CO8']"
-      'APPLICATION.products.sphinxintl' : '0.9.10'
-      'PRODUCTS.sphinxintl.default.properties.pip' : "no"
-      'APPLICATION.products.cmake' : '3.12.1'
-   }
 ]
