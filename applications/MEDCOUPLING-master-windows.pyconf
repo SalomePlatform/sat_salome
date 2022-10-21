@@ -32,7 +32,7 @@ APPLICATION :
         boost : '1.67.0'
         certifi : '2019.6.16'
         click : '7.0'
-        cmake : '3.12.1'
+        cmake : '3.24.2'
         colorama: '0.4.1'
         cppunit : '1.13.2'
         chardet : '3.0.4'
@@ -40,7 +40,7 @@ APPLICATION :
         docutils : '0.14'
         doxygen : '1.8.3.1'
         expat : '2.0.1'
-        graphviz : '2.38.0'
+        graphviz : '2.44.1'
         hdf5 : '1.10.3'
         idna : '2.8'
         imagesize : '1.1.0'
@@ -82,7 +82,7 @@ APPLICATION :
 
         # SALOME MODULES :
         'CONFIGURATION'
-        'MEDCOUPLING'
+        'MEDCOUPLING' : 'abn/cygwin'
     }
     test_base :
     {
