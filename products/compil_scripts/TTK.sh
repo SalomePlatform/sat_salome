@@ -20,13 +20,14 @@ CMAKE_OPTIONS+=" -DEMBREE_INCLUDE_DIR=${EMBREE_ROOT_DIR}/include"
 LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
 
 case $LINUX_DISTRIBUTION in
-    DB10)
-	# A.Geay (Sous debian10 sur nos VM de prod, on a pas mal de nos tests qui plantent avec des SIGILL)
-	echo "WARNING: switching off cpu optimization!"
-	CMAKE_OPTIONS+=" -DTTK_ENABLE_CPU_OPTIMIZATION=OFF"
-	;;
+    DB09|DB10)
+        # A.Geay (Sous debian10 sur nos VM de prod, on a pas mal de nos tests qui plantent avec des SIGILL)
+        # D.Hoang: application à Debian 9
+        echo "WARNING: switching off cpu optimization!"
+        CMAKE_OPTIONS+=" -DTTK_ENABLE_CPU_OPTIMIZATION=OFF"
+        ;;
     *)
-	;;
+        ;;
 esac
 
 echo

@@ -32,7 +32,7 @@ elif [ "$SAT_qwt_IS_NATIVE" != "1" ]; then
     CMAKE_OPTIONS+=" -DQWT_INCLUDE_DIR=$QWT_ROOT_DIR/include"
 fi
 
-if [[ "$DIST_NAME$DIST_VERSION" == "8" ]]; then
+if [[ "$DIST_NAME$DIST_VERSION" == "CO8" ]]; then
     CMAKE_OPTIONS+=" -DUSE_SPHINX=OFF" # missing tex-preview LateX package for CentOS 8
 elif [ "$DIST_NAME$DIST_VERSION" == "FD36" ]; then
     CMAKE_OPTIONS+=" -DUSE_SPHINX=OFF" #
