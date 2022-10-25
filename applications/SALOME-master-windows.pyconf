@@ -143,7 +143,7 @@ APPLICATION :
         'MEDCOUPLING'
         'GUI'
         'GEOM'
-        'SMESH'
+        'SMESH' : 'V9_10_0a2'
         'NETGENPLUGIN'
         'BLSURFPLUGIN'
         'GHS3DPLUGIN'
