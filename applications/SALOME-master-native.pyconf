@@ -150,7 +150,6 @@ APPLICATION :
         'GEOM'
         'SMESH' : 'V9_10_0a2'
         'NETGENPLUGIN' : 'V9_10_0a2'
-        'NETGENPLUGIN'
         'BLSURFPLUGIN'
         'GHS3DPLUGIN'
         'GHS3DPRLPLUGIN'
