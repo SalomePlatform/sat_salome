@@ -149,6 +149,7 @@ APPLICATION :
         'GUI'
         'GEOM'
         'SMESH' : 'V9_10_0a2'
+        'NETGENPLUGIN' : 'V9_10_0a2'
         'NETGENPLUGIN'
         'BLSURFPLUGIN'
         'GHS3DPLUGIN'
@@ -236,6 +237,7 @@ __overwrite__ :
         #   - xmlpatterns executable
         __condition__ : "VARS.dist in ['DB10']"
         'APPLICATION.products.SMESH'    : 'master'
+        'APPLICATION.products.NETGENPLUGIN'    : 'master'
         'APPLICATION.products.opencv'   : '3.2.0'
         'APPLICATION.products.cminpack' : 'native'
         'APPLICATION.products.PyFMI'    : {tag:'2.6',     base: 'no',  section: 'version_2_6_no_pip'                  }

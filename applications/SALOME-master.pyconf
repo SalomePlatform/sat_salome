@@ -151,7 +151,7 @@ APPLICATION :
         'GUI'
         'GEOM'
         'SMESH' : 'V9_10_0a2'
-        'NETGENPLUGIN'
+        'NETGENPLUGIN' : 'V9_10_0a2'
         'BLSURFPLUGIN'
         'GHS3DPLUGIN'
         'GHS3DPRLPLUGIN'
@@ -231,12 +231,14 @@ __overwrite__ :
     {
         __condition__ : "VARS.dist in ['DB09']"
         'APPLICATION.products.SMESH' : 'master'
+        'APPLICATION.products.NETGENPLUGIN' : 'master'
     }
     {
         __condition__ : "VARS.dist in ['DB10']"
         'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
         'APPLICATION.products.gdal': {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_DB10'} # spns #29324
         'APPLICATION.products.SMESH' : 'master'
+        'APPLICATION.products.NETGENPLUGIN' : 'master'
     }
     {
         __condition__ : "VARS.dist in ['UB18.04']"

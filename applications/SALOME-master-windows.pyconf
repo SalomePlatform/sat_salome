@@ -144,7 +144,7 @@ APPLICATION :
         'GUI'
         'GEOM'
         'SMESH' : 'V9_10_0a2'
-        'NETGENPLUGIN'
+        'NETGENPLUGIN' : 'V9_10_0a2'
         'BLSURFPLUGIN'
         'GHS3DPLUGIN'
         'HYBRIDPLUGIN'
