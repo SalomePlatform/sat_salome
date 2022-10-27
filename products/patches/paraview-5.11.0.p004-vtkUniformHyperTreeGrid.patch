@@ -1,0 +1,10 @@
+--- ParaView-5.11-RC2-ref/VTK/Common/DataModel/vtkUniformHyperTreeGrid.h	2022-10-27 17:11:36.740861077 +0200
++++ ParaView-5.11-RC2-fix/VTK/Common/DataModel/vtkUniformHyperTreeGrid.h	2022-10-27 17:11:46.572811110 +0200
+@@ -30,6 +30,7 @@
+ #ifndef vtkUniformHyperTreeGrid_h
+ #define vtkUniformHyperTreeGrid_h
+ 
++#include <algorithm> // std::min/std::max
+ #include "limits.h" // UINT_MAX
+ 
+ #include <cmath>  // std::round
