@@ -181,7 +181,7 @@ APPLICATION :
         'YDEFX'
         'pmml'
         'SOLVERLAB'
-        'TopIIVolMesh'
+        'TopIIVolMesh' : 'develop'
         #'TESTBASE'
         'CEATESTBASE' : 'SalomeV9'
     }
@@ -235,6 +235,7 @@ __overwrite__ :
         #   - Qt minimal version 5.12
         #   - xmlpatterns executable
         __condition__ : "VARS.dist in ['DB10']"
+        'APPLICATION.products.TopIIVolMesh'    : 'master'
         'APPLICATION.products.SMESH'    : 'master'
         'APPLICATION.products.NETGENPLUGIN'    : 'master'
         'APPLICATION.products.opencv'   : '3.2.0'

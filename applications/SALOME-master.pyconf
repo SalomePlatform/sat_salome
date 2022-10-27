@@ -183,7 +183,7 @@ APPLICATION :
         'YDEFX'
         'pmml'
         'SOLVERLAB' : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
-        'TopIIVolMesh'
+        'TopIIVolMesh' : 'develop'
         #'TESTBASE'
         'CEATESTBASE' : 'SalomeV9'
     }
@@ -230,8 +230,9 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['DB09']"
-        'APPLICATION.products.SMESH' : 'master'
+        'APPLICATION.products.SMESH'        : 'master'
         'APPLICATION.products.NETGENPLUGIN' : 'master'
+        'APPLICATION.products.TopIIVolMesh' : 'master'
     }
     {
         __condition__ : "VARS.dist in ['DB10']"
