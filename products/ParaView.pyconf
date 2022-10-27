@@ -49,7 +49,7 @@ version_5_11_0_int32 :
 version_5_11_0_win :
 {
     compil_script :  'ParaView-5.11.0.bat'
-    archive_info : {archive_name : "ParaView-5.11.0-08c5d057a8.tar.gz"}
+    archive_info : {archive_name : "ParaView-5.11.0-RC2.tar.gz"}
     depend : [
               'Python',
               'hdf5',
@@ -64,7 +64,8 @@ version_5_11_0_win :
              ]
     opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'rkCommon', 'matplotlib']
     patches : ['paraview-5.11.0.p001-FindCGNS.patch',
-               'paraview-5.11.0.p002-FindMPI.patch'
+               'paraview-5.11.0.p002-FindMPI.patch',
+               'paraview-5.11.0.p004-vtkUniformHyperTreeGrid.patch'
               ]
 }
 
@@ -86,7 +87,8 @@ version_5_11_0_win_dbg :
              ]
     opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'rkCommon', 'matplotlib']
     patches : ['paraview-5.11.0.p001-FindCGNS.patch',
-               'paraview-5.11.0.p002-FindMPI.patch'
+               'paraview-5.11.0.p002-FindMPI.patch',
+               'paraview-5.11.0.p004-vtkUniformHyperTreeGrid.patch'
               ]
 }
 
