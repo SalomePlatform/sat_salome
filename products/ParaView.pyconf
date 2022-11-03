@@ -32,18 +32,49 @@ default :
 
 version_5_11_0 :
 {
-    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf']
     compil_script :  'ParaView-5.11.0.sh'
-    archive_info : {archive_name : "ParaView-5.11.0-08c5d057a8.tar.gz"}
-    patches : []
+    archive_info : {archive_name : "ParaView-5.11.0-RC2.tar.gz"}
+    patches : [
+               'paraview-5.11.0.p001-FindCGNS.patch'
+              ]
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'PyQt',
+              'sip',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
+    opt_depend : ['ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst']
 }
 
 version_5_11_0_int32 :
 {
     compil_script :  'ParaView-5.11.0.sh'
-    archive_info : {archive_name : "ParaView-5.11.0-08c5d057a8.tar.gz"}
+    archive_info : {archive_name : "ParaView-5.11.0-RC2.tar.gz"}
     # two other LATA patches already included in archive
-    patches : []
+    patches : [
+               'paraview-5.11.0.p001-FindCGNS.patch'
+              ]
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'PyQt',
+              'sip',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
+    opt_depend : ['ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst']
 }
 
 version_5_11_0_win :
@@ -72,7 +103,7 @@ version_5_11_0_win :
 version_5_11_0_win_dbg :
 {
     compil_script :  'ParaView-5.9.0.bat'
-    archive_info : {archive_name : "ParaView-5.11.0-08c5d057a8.tar.gz"}
+    archive_info : {archive_name : "ParaView-5.11.0-RC2.tar.gz"}
     depend : [
               'Python',
               'hdf5',
@@ -95,7 +126,7 @@ version_5_11_0_win_dbg :
 version_5_11_0_MPI :
 {
     compil_script :  'ParaView-5.11.0.sh'
-    archive_info : {archive_name : "ParaView-5.11.0-08c5d057a8.tar.gz"}
+    archive_info : {archive_name : "ParaView-5.11.0-RC2.tar.gz"}
     patches : ['paraview-5.11.0.p001-FindCGNS.patch',
                'paraview-5.11.0.p002-FindMPI.patch'
               ]
@@ -118,7 +149,7 @@ version_5_11_0_MPI :
 version_5_11_0_MPI_LATA_64BITS_IDS :
 {
     compil_script :  'ParaView-5.11.0.sh'
-    archive_info : {archive_name : "ParaView-5.11.0-08c5d057a8.tar.gz"}
+    archive_info : {archive_name : "ParaView-5.11.0-RC2.tar.gz"}
     patches : ['paraview-5.11.0.p001-FindCGNS.patch',
                'paraview-5.11.0.p002-FindMPI.patch',
                'paraview-0012-LATA_64BITS_IDS.patch'
@@ -128,7 +159,7 @@ version_5_11_0_MPI_LATA_64BITS_IDS :
 version_5_11_0_MPI_DB10 :
 {
     compil_script :  'ParaView-5.11.0.sh'
-    archive_info : {archive_name : "ParaView-5.11.0-08c5d057a8.tar.gz"}
+    archive_info : {archive_name : "ParaView-5.11.0-RC2.tar.gz"}
     patches : ['paraview-5.11.0.p001-FindCGNS.patch',
                'paraview-5.11.0.p002-FindMPI.patch',
                'paraview-5.11.0.p003-ParaViewClient.patch'
@@ -152,7 +183,7 @@ version_5_11_0_MPI_DB10 :
 version_5_11_0_MPI_CO8 :
 {
     compil_script :  'ParaView-5.11.0.sh'
-    archive_info : {archive_name : "ParaView-5.11.0-08c5d057a8.tar.gz"}
+    archive_info : {archive_name : "ParaView-5.11.0-RC2.tar.gz"}
     patches : ['paraview-5.11.0.p001-FindCGNS.patch',
                'paraview-5.11.0.p002-FindMPI.patch',
                'paraview-5.11.0.p003-ParaViewClient.patch'
