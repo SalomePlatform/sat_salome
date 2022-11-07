@@ -150,7 +150,7 @@ APPLICATION :
         'MEDCOUPLING' : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'GUI'
         'GEOM'
-        'SMESH'
+        'SMESH' : 'yan/parallel_mesh3'
         'NETGENPLUGIN'
         'BLSURFPLUGIN'
         'GHS3DPLUGIN'
@@ -227,6 +227,10 @@ __overwrite__ :
         'APPLICATION.rm_products'  : ['gcc', 'gmp', 'mpc', 'mpfr', 'zeromq']
         'APPLICATION.products.gdal'     : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_CO8'                 } # spns #29324
         'APPLICATION.products.ParaView' : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_CO8', hpc: 'yes'}
+    }
+    {
+        __condition__ : "VARS.dist in ['DB09']"
+        'APPLICATION.products.SMESH' :  'master'
     }
     {
         __condition__ : "VARS.dist in ['DB10']"
