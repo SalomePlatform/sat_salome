@@ -35,7 +35,8 @@ version_5_11_0 :
     compil_script :  'ParaView-5.11.0.sh'
     archive_info : {archive_name : "ParaView-5.11.0-RC2.tar.gz"}
     patches : [
-               'paraview-5.11.0.p001-FindCGNS.patch'
+               'paraview-5.11.0.p001-FindCGNS.patch',
+               'paraview-5.11.0.p003-ParaViewClient.patch'
               ]
     depend : [
               'Python',
