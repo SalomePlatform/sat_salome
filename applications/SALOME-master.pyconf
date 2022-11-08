@@ -150,7 +150,7 @@ APPLICATION :
         'MEDCOUPLING' : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'GUI'
         'GEOM'
-        'SMESH' : 'yan/parallel_mesh3'
+        'SMESH'
         'NETGENPLUGIN'
         'BLSURFPLUGIN'
         'GHS3DPLUGIN'
