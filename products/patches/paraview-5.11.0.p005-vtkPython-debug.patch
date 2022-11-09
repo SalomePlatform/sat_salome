@@ -1,0 +1,17 @@
+--- ParaView_ref/VTK/Utilities/Python/vtkPython.h	2022-10-25 18:16:21.000000000 +0200
++++ ParaView_new/VTK/Utilities/Python/vtkPython.h	2022-11-09 09:52:47.289203673 +0100
+@@ -76,8 +76,12 @@
+ #define HAVE_ROUND 1
+ #endif
+ 
+-#include <Python.h>
+-
++//#include <Python.h>
++#ifdef VTK_PYTHON_UNDEF_DEBUG
++ #define _DEBUG 1
++ #include <Python.h>
++ #undef _DEBUG
++#endif
+ #if defined(_MSC_VER) && _MSC_VER >= 1800
+ #undef HAVE_ROUND
+ #endif
