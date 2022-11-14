@@ -41,6 +41,17 @@ version_4_10_3_win:
   patches: ['gmsh-4.10.3-windows.patch']
 }
 
+version_4_10_3_win_dbg:
+{
+  compil_script : "gmsh-4.10.3.bat"
+  patches: ['gmsh-4.10.3-windows.patch']
+  properties :
+  {
+    incremental : "yes"
+    single_install_dir : "no"
+  }
+}
+
 version_4_8_4:
 {
   compil_script : "gmsh-4.8.4.sh"

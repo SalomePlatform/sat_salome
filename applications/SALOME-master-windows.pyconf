@@ -208,5 +208,6 @@ __overwrite__ :
     'APPLICATION.products.psutil'     : {tag: '5.7.2',   base: 'no', section : 'version_5_7_2_win_dbg'      }
     'APPLICATION.products.ParaView'   : {tag: '5.11.0',  base: 'no', section : 'version_5_11_0_win_dbg'     }
     'APPLICATION.products.zlib'       : {tag: '1.2.5',   base: 'no', section : 'version_1_2_5_win_dbg'      }
+    'APPLICATION.products.gmsh'       : {tag: '4.10.3',  base: 'no', section : 'version_4_10_3_win_dbg'     }
   }
 ]
