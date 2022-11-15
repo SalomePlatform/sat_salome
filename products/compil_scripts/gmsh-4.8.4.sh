@@ -4,9 +4,11 @@ echo "##########################################################################
 echo "gmsh" $VERSION
 echo "##########################################################################"
 
+rm -rf $BUILD_DIR
+mkdir $BUILD_DIR
+cd $BUILD_DIR
 
-
-CMAKE_OPTIONS=""
+CMAKE_OPTIONS=
 # common settings
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DCMAKE_INSTALL_PREFIX=${PRODUCT_INSTALL}"
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DCMAKE_VERBOSE_MAKEFILE=ON"
