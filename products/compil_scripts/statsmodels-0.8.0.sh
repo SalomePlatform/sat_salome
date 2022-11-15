@@ -1,18 +1,15 @@
-#!/bin/bash
-
 #!/bin/bash                                                                                                                                                                              
 
 echo "##########################################################################"
 echo "statsmodels " $VERSION
 echo "##########################################################################"
 
-echo  "*** build in SOURCE directory"
-
-
+rm -rf $BUILD_DIR
+mkdir $BUILD_DIR
 cd $BUILD_DIR
 cp -R $SOURCE_DIR/* .
 
-if [[ $DIST_NAME == "CO" && $DIST_VERSION == "8" && $APPLICATION_NAME =~ native ]]; then
+if [[ $DIST_NAME == "CO" && $DIST_VERSION == "8" && "$SAT_Python_IS_NATIVE" == "1" ]]; then
     PRODUCT_LIB=lib64
 else
     PRODUCT_LIB=lib
@@ -24,7 +21,6 @@ export PYTHONPATH=${PRODUCT_INSTALL}/${PRODUCT_LIB}/python${PYTHON_VERSION}/site
     
 echo
 echo "*** build with $PYTHONBIN"
-###$PYTHONBIN setup.py clean
 $PYTHONBIN setup.py build
 if [ $? -ne 0 ]
 then
