@@ -37,7 +37,6 @@ APPLICATION :
         alabaster : '0.7.6'
         Babel : '2.7.0'
         boost : '1.71.0'
-        #CAS : 'CR753-SALOME-PATCH'
         CAS : {tag : '6a189bda', section: 'version_CR753_SALOME_PATCH', base: 'no'}
         catalyst: '2.0'
         C3PO: 'v2.0'
