@@ -37,7 +37,7 @@ APPLICATION :
         alabaster : 'native'
         Babel : 'native'
         boost : 'native'
-        CAS : {tag : '6a189bda', section: 'version_CR753_SALOME_PATCH', base: 'no'}
+        CAS : {tag : '71a56532', section: 'version_CR753_SALOME_PATCH', base: 'no'}
         catalyst: '2.0'
         C3PO: 'v2.0'
         certifi : 'native'
