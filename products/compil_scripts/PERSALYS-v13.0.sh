@@ -38,6 +38,8 @@ elif [[ "$DIST_NAME$DIST_VERSION" == "CO7" ]]; then
     CMAKE_OPTIONS+=" -DUSE_SPHINX=OFF" # missing tex-preview LateX package for CentOS 7 - à installer
 elif [ "$DIST_NAME$DIST_VERSION" == "FD36" ]; then
     CMAKE_OPTIONS+=" -DUSE_SPHINX=OFF" #
+elif [ "$DIST_NAME$DIST_VERSION" == "FD37" ]; then
+    CMAKE_OPTIONS+=" -DUSE_SPHINX=OFF" #
 else
     CMAKE_OPTIONS+=" -DUSE_SPHINX=ON"
 fi

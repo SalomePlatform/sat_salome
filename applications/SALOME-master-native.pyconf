@@ -11,7 +11,7 @@ APPLICATION :
     debug : 'no'
     base : 'no'
     python3 : 'yes'
-    platform : ["FD32", "FD34", "FD36", "CO8", "DB10", "DB11", "UB20.04", "UB22.04"]
+    platform : ["FD32", "FD34", "FD36", "FD37", "CO8", "DB10", "DB11", "UB20.04", "UB22.04"]
     environ :
     {
         build :
@@ -297,5 +297,20 @@ __overwrite__ :
         'APPLICATION.products.root'             : {tag: '6.22.02',   base: 'no', section: 'version_6_22_02_FD36'                }
         'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD36'                  }
         'APPLICATION.products.StaticMeshPlugin' : {tag:'5.11.0',     base: 'no', section: 'version_5_11_0_FD36'                 }
+    }
+
+    {
+        __condition__ : "VARS.dist in ['FD37']"
+        'APPLICATION.products.opencv'           : {tag: '3.2.0',     base: 'no', section: 'version_3_2_0_FD37'                  }
+        'APPLICATION.products.omniORB'          : '4.2.5'
+        'APPLICATION.products.omniORBpy'        : '4.2.5'
+        'APPLICATION.products.qwt'              : '6.1.6'
+        'APPLICATION.products.nlopt'            : '2.6.0'
+        'APPLICATION.products.netcdf'           : '4.6.2'
+        'APPLICATION.products.numpy'            : {tag: '1.22.2',    base: 'no', section: 'version_1_22_2'                      }
+        'APPLICATION.products.PyFMI'            : {tag: '2.6',       base: 'no', section: 'version_2_6_no_pip'                  }
+        'APPLICATION.products.root'             : {tag: '6.22.02',   base: 'no', section: 'version_6_22_02_FD37'                }
+        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD37'                  }
+        'APPLICATION.products.StaticMeshPlugin' : {tag:'5.11.0',     base: 'no', section: 'version_5_11_0_FD37'                 }
     }
 ]

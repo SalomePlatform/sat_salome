@@ -35,7 +35,7 @@ fi
 # https://github.com/persalys/persalys/issues/745
 LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
 case $LINUX_DISTRIBUTION in
-    UB22*|CO8*|CO9*|FD36)
+    UB22*|CO8*|CO9*|FD36|FD37)
         echo "WARNING: switching OFF TBB support"
         CMAKE_OPTIONS+=" -DUSE_TBB=OFF"
         ;;
@@ -403,12 +403,13 @@ if [[ -d "$SOURCE_DIR/otfftw-0.12" ]]; then
             FD32)
                 SITE_PATCH=/usr/lib/pypy/dist-packages/setuptools/site-patch.py
                 ;;
-            FD36)
-                ###SITE_PATCH=
+            FD34)
                 SITE_PATCH=$SOURCE_DIR/addons/site-patch.py
                 ;;
-            FD34)
-                ###SITE_PATCH=
+            FD36)
+                SITE_PATCH=$SOURCE_DIR/addons/site-patch.py
+                ;;
+            FD37)
                 SITE_PATCH=$SOURCE_DIR/addons/site-patch.py
                 ;;
             CO8*)
