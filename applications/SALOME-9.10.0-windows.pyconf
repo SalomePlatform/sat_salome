@@ -167,9 +167,9 @@ APPLICATION :
         'PYHELLO'
         'EFICAS'
         'EFICAS_TOOLS'
-        'ADAO'
+        'ADAO' : 'master' #FIXME
         'PARAVISADDONS'
-        'pmml'
+        'pmml' : 'master' #FIXME
         'TESTBASE'
         'CEATESTBASE' : 'SalomeV9'
     }
