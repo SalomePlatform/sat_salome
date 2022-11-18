@@ -3,9 +3,9 @@
 
 APPLICATION :
 {
-    name : 'SALOME-master-MPI'
+    name : 'SALOME-9.10.0-MPI'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag : 'master'
+    tag : 'V9_10_0b1'
     dev : 'no'
     verbose :'no'
     debug : 'no'
@@ -146,8 +146,8 @@ APPLICATION :
         'SHAPERSTUDY'
         'RESTRICTED'
         'LIBBATCH' : 'V2_4_6'
-        'KERNEL'      : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes', verbose: 'yes'}
-        'MEDCOUPLING' : {tag:'master', base: 'no', section: 'default_MPI_STD', hpc: 'yes', verbose: 'yes'}
+        'KERNEL'      : {tag:'V9_10_0b1', base: 'no', section: 'version_V9_10_0_MPI',     hpc: 'yes', verbose: 'yes'}
+        'MEDCOUPLING' : {tag:'V9_10_0b1', base: 'no', section: 'version_V9_10_0_MPI_STD', hpc: 'yes', verbose: 'yes'}
         'GUI' : {verbose : 'yes'}
         'GEOM'
         'SMESH'
@@ -158,12 +158,12 @@ APPLICATION :
         'HYBRIDPLUGIN'
         'HexoticPLUGIN'
         'GMSHPLUGIN'
-        'HEXABLOCK' : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes', verbose: 'yes'}
+        'HEXABLOCK' : {tag:'V9_10_0b1', base: 'no', section: 'version_V9_10_0_MPI', hpc: 'yes', verbose: 'yes'}
         'HEXABLOCKPLUGIN'
-        'HOMARD'    : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
-        'FIELDS'    : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
-        'PARAVIS'   : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
-        'JOBMANAGER': {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'HOMARD'    : {tag:'V9_10_0b1', base: 'no', section: 'version_V9_10_0_MPI', hpc: 'yes'}
+        'FIELDS'    : {tag:'V9_10_0b1', base: 'no', section: 'version_V9_10_0_MPI', hpc: 'yes'}
+        'PARAVIS'   : {tag:'V9_10_0b1', base: 'no', section: 'version_V9_10_0_MPI', hpc: 'yes'}
+        'JOBMANAGER': {tag:'V9_10_0b1', base: 'no', section: 'version_V9_10_0_MPI', hpc: 'yes'}
         'YACS'
         'YACSGEN'
         'DOCUMENTATION'
@@ -182,7 +182,7 @@ APPLICATION :
         'OPENTURNS_SALOME'
         'YDEFX'
         'pmml'
-        'SOLVERLAB': {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'SOLVERLAB': {tag:'V9_10_0b1', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'TopIIVolMesh'
         'TESTBASE'
         'CEATESTBASE' : 'SalomeV9'

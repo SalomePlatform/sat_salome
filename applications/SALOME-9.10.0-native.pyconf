@@ -3,9 +3,9 @@
 
 APPLICATION :
 {
-    name : 'SALOME-master-native'
+    name : 'SALOME-9.10.0-native'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag : 'master'
+    tag : 'V9_10_0b1'
     dev : 'no'
     verbose :'no'
     debug : 'no'
@@ -144,7 +144,7 @@ APPLICATION :
         'RESTRICTED'
         'LIBBATCH' : {tag : 'V2_4_6'}
         'KERNEL'
-        'MEDCOUPLING' : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'MEDCOUPLING' : {tag:'V9_10_0b1', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'GUI'
         'GEOM'
         'SMESH'
@@ -159,7 +159,7 @@ APPLICATION :
         'HEXABLOCKPLUGIN'
         'HOMARD'
         'FIELDS'
-        'PARAVIS': {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'PARAVIS': {tag:'V9_10_0b1', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'JOBMANAGER'
         'YACS'
         'YACSGEN'

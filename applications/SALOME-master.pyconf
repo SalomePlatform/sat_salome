@@ -228,10 +228,6 @@ __overwrite__ :
         'APPLICATION.products.ParaView' : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_CO8', hpc: 'yes'}
     }
     {
-        __condition__ : "VARS.dist in ['DB09']"
-        'APPLICATION.products.SMESH' :  'master'
-    }
-    {
         __condition__ : "VARS.dist in ['DB10']"
         'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
         'APPLICATION.products.gdal': {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_DB10'} # spns #29324

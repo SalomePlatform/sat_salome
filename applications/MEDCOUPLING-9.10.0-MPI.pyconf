@@ -3,9 +3,9 @@
 
 APPLICATION :
 {
-    name : 'MEDCOUPLING-master-MPI'
+    name : 'MEDCOUPLING-9.10.0-MPI'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag : 'master'
+    tag : 'V9_10_0b1'
     base : 'no'
     debug : 'no'
     python3 : 'yes'
@@ -71,7 +71,7 @@ APPLICATION :
 
         # SALOME MODULES :
         'CONFIGURATION'
-        'MEDCOUPLING' : {tag:'master', base: 'no', section: 'default_MPI_STD', hpc: 'yes'} # FIXME
+        'MEDCOUPLING' : {tag:'V9_10_0b1', base: 'no', section: 'default_MPI_STD', hpc: 'yes'} # FIXME
     }
     test_base : 
     {
