@@ -10,7 +10,7 @@ default :
     }
     environ :
     {
-        SalomeAppConfig_ : $install_dir + $VARS.sep + "share" + $VARS.sep + "salome" + $VARS.sep + "resources" + $VARS.sep + "hexablock"
+        SalomeAppConfig_ : $install_dir + $VARS.sep + "share" + $VARS.sep + "salome" + $VARS.sep + "resources" + $VARS.sep + "hexablockplugin"
     }
     depend : [
        "SMESH", 

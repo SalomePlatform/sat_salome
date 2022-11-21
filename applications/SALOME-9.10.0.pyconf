@@ -175,13 +175,13 @@ APPLICATION :
         'EFICAS'
         'EFICAS_TOOLS'
         'PY2CPP'
-        'ADAO': 'master' #FIXME
-        'ADAO_INTERFACE' : 'master' #FIXME
+        'ADAO'
+        'ADAO_INTERFACE'
         'PARAVISADDONS'
-        'OPENTURNS_SALOME': 'master' # FIXME
-        'YDEFX' : 'master' # FIXME
-        'pmml' : 'master' # FIXME
-        'SOLVERLAB' : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'} #FIXME
+        'OPENTURNS_SALOME'
+        'YDEFX'
+        'pmml'
+        'SOLVERLAB' : {tag:'V9_10_0b1', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'TopIIVolMesh'
         'CEATESTBASE' : 'SalomeV9'
     }
