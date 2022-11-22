@@ -5,7 +5,7 @@ APPLICATION :
 {
     name : 'SALOME-9.10.0-native'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag : 'V9_10_0b1'
+    tag : 'V9_10_BR'
     dev : 'no'
     verbose :'no'
     debug : 'no'
@@ -142,9 +142,9 @@ APPLICATION :
         'SHAPER'
         'SHAPERSTUDY'
         'RESTRICTED'
-        'LIBBATCH' : {tag : 'V2_4_6'}
+        'LIBBATCH' : 'V2_4_6'
         'KERNEL'
-        'MEDCOUPLING' : {tag:'V9_10_0b1', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'MEDCOUPLING' : {tag:'V9_10_BR', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'GUI'
         'GEOM'
         'SMESH'
@@ -159,7 +159,7 @@ APPLICATION :
         'HEXABLOCKPLUGIN'
         'HOMARD'
         'FIELDS'
-        'PARAVIS': {tag:'V9_10_0b1', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'PARAVIS' : {tag:'V9_10_BR', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
@@ -170,16 +170,16 @@ APPLICATION :
         'CALCULATOR'
         'HELLO'
         'PYHELLO'
-        'EFICAS'
-        'EFICAS_TOOLS'
-        'PY2CPP'
-        'ADAO'
-        'ADAO_INTERFACE'
-        'PARAVISADDONS'
-        'OPENTURNS_SALOME'
-        'YDEFX'
-        'pmml'
-        'SOLVERLAB'
+        'EFICAS' :  'master'
+        'EFICAS_TOOLS' : 'master'
+        'PY2CPP' :  'master'
+        'ADAO' : 'master'
+        'ADAO_INTERFACE' : 'master'
+        'PARAVISADDONS' : 'master'
+        'OPENTURNS_SALOME':  'master'
+        'YDEFX' : 'master'
+        'pmml' :  'master'
+        'SOLVERLAB' : 'V9_10_0b1'
         'TopIIVolMesh'
         #'TESTBASE'
         'CEATESTBASE' : 'SalomeV9'
