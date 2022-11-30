@@ -14,8 +14,10 @@ else
 fi
 CMAKE_OPTIONS+=" -DTTK_BUILD_PARAVIEW_PLUGINS=ON"
 CMAKE_OPTIONS+=" -Dembree_DIR:PATH=${EMBREE_ROOT_DIR}/lib/cmake/embree-${EMBREE_VERSION}"
+
 # Embree CMake defines EMBREE_INCLUDE_DIRS but TTK uses EMBREE_INCUDE_DIR which is undefined.
 CMAKE_OPTIONS+=" -DEMBREE_INCLUDE_DIR=${EMBREE_ROOT_DIR}/include"
+
 
 LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
 
@@ -25,8 +27,12 @@ case $LINUX_DISTRIBUTION in
         # D.Hoang: application à Debian 9
         echo "WARNING: switching off cpu optimization!"
         CMAKE_OPTIONS+=" -DTTK_ENABLE_CPU_OPTIMIZATION=OFF"
+        CMAKE_OPTIONS+=" -DTTK_ENABLE_EIGEN=ON"
         ;;
     *)
+        # bos #32890 : conflict at runtime between PlaneGCS and TTK which uses Eigen as well
+        #              FIXME
+        CMAKE_OPTIONS+=" -DTTK_ENABLE_EIGEN=OFF"
         ;;
 esac
 
