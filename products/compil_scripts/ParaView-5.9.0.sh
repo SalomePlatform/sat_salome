@@ -274,6 +274,12 @@ if [ -n "$NETCDF_ROOT_DIR" ]; then
     CMAKE_OPTIONS+=" -DVTK_MODULE_ENABLE_VTK_FiltersParallelGeometry=YES"
 fi
 
+if [ "${SALOME_APPLICATION_NAME}" == "ALAMOS" ]; then
+    echo "WARNING: Assumming application is ALAMOS, switching on PDF export..."
+    CMAKE_OPTIONS+=" -DVTK_MODULE_ENABLE_VTK_PythonContext2D=YES"
+    CMAKE_OPTIONS+=" -DVTK_MODULE_ENABLE_VTK_IOExportPDF=YES"
+fi
+
 echo
 echo "*** cmake" ${CMAKE_OPTIONS}
 cmake ${CMAKE_OPTIONS} $SOURCE_DIR

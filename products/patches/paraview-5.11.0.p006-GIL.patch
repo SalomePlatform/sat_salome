@@ -1,0 +1,10 @@
+--- ParaView_ref/VTK/Rendering/Matplotlib/vtkMatplotlibMathTextUtilities.cxx	2022-12-01 10:35:02.476305685 +0100
++++ ParaView_dev/VTK/Rendering/Matplotlib/vtkMatplotlibMathTextUtilities.cxx	2022-12-01 10:35:41.811632384 +0100
+@@ -790,6 +790,7 @@
+ //------------------------------------------------------------------------------
+ bool vtkMatplotlibMathTextUtilities::SetMathTextFont(vtkTextProperty* tprop)
+ {
++  vtkPythonScopeGilEnsurer gilEnsurer;
+   vtkSmartPyObject mplBase(PyImport_ImportModule("matplotlib"));
+   if (this->CheckForError(mplBase))
+   {

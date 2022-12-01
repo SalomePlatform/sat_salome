@@ -36,7 +36,8 @@ version_5_11_0 :
     archive_info : {archive_name : "ParaView-5.11.0.tar.gz"}
     patches : [
                'paraview-5.11.0.p001-FindCGNS.patch',
-               'paraview-5.11.0.p003-ParaViewClient.patch'
+               'paraview-5.11.0.p003-ParaViewClient.patch',
+               'paraview-5.11.0.p006-GIL.patch'
               ]
     depend : [
               'Python',
@@ -60,7 +61,8 @@ version_5_11_0_int32 :
     archive_info : {archive_name : "ParaView-5.11.0.tar.gz"}
     # two other LATA patches already included in archive
     patches : [
-               'paraview-5.11.0.p001-FindCGNS.patch'
+               'paraview-5.11.0.p001-FindCGNS.patch',
+               'paraview-5.11.0.p006-GIL.patch'
               ]
     depend : [
               'Python',
@@ -97,7 +99,8 @@ version_5_11_0_win :
     opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'rkCommon', 'matplotlib']
     patches : ['paraview-5.11.0.p001-FindCGNS.patch',
                'paraview-5.11.0.p002-FindMPI.patch',
-               'paraview-5.11.0.p004-vtkUniformHyperTreeGrid.patch'
+               'paraview-5.11.0.p004-vtkUniformHyperTreeGrid.patch',
+               'paraview-5.11.0.p006-GIL.patch'
               ]
 }
 
@@ -121,7 +124,8 @@ version_5_11_0_win_dbg :
     patches : ['paraview-5.11.0.p001-FindCGNS.patch',
                'paraview-5.11.0.p002-FindMPI.patch',
                'paraview-5.11.0.p004-vtkUniformHyperTreeGrid.patch',
-               'paraview-5.11.0.p005-vtkPython-debug.patch'
+               'paraview-5.11.0.p005-vtkPython-debug.patch',
+               'paraview-5.11.0.p006-GIL.patch'
               ]
 }
 
@@ -154,7 +158,8 @@ version_5_11_0_MPI_LATA_64BITS_IDS :
     archive_info : {archive_name : "ParaView-5.11.0.tar.gz"}
     patches : ['paraview-5.11.0.p001-FindCGNS.patch',
                'paraview-5.11.0.p002-FindMPI.patch',
-               'paraview-0012-LATA_64BITS_IDS.patch'
+               'paraview-0012-LATA_64BITS_IDS.patch',
+               'paraview-5.11.0.p006-GIL.patch'
               ]
 }
 
@@ -164,7 +169,8 @@ version_5_11_0_MPI_DB10 :
     archive_info : {archive_name : "ParaView-5.11.0.tar.gz"}
     patches : ['paraview-5.11.0.p001-FindCGNS.patch',
                'paraview-5.11.0.p002-FindMPI.patch',
-               'paraview-5.11.0.p003-ParaViewClient.patch'
+               'paraview-5.11.0.p003-ParaViewClient.patch',
+               'paraview-5.11.0.p006-GIL.patch'
                 ]
     depend : [
               'Python',
@@ -188,7 +194,8 @@ version_5_11_0_MPI_CO8 :
     archive_info : {archive_name : "ParaView-5.11.0.tar.gz"}
     patches : ['paraview-5.11.0.p001-FindCGNS.patch',
                'paraview-5.11.0.p002-FindMPI.patch',
-               'paraview-5.11.0.p003-ParaViewClient.patch'
+               'paraview-5.11.0.p003-ParaViewClient.patch',
+               'paraview-5.11.0.p006-GIL.patch'
               ]
     depend : [
               'Python',
