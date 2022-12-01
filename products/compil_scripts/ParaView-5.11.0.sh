@@ -311,6 +311,12 @@ CMAKE_OPTIONS+=" -DPARAVIEW_PLUGIN_AUTOLOAD_SurfaceLIC=ON"
 CMAKE_OPTIONS+=" -DPARAVIEW_PLUGIN_AUTOLOAD_ThickenLayeredCells=ON"
 CMAKE_OPTIONS+=" -DPARAVIEW_PLUGIN_AUTOLOAD_VTKmFilters=ON"
 
+# ALAMOS build uses PDF export feature.
+if [ "${SALOME_APPLICATION_NAME}" == "ALAMOS" ]; then
+    echo "WARNING: Assumming application is ALAMOS, switching on PDF export..."
+    CMAKE_OPTIONS+=" -DVTK_MODULE_ENABLE_VTK_PythonContext2D=YES"
+    CMAKE_OPTIONS+=" -DVTK_MODULE_ENABLE_VTK_IOExportPDF=YES"
+fi
 
 echo
 echo "*** cmake" ${CMAKE_OPTIONS}
