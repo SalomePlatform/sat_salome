@@ -134,7 +134,8 @@ version_5_11_0_MPI :
     compil_script :  'ParaView-5.11.0.sh'
     archive_info : {archive_name : "ParaView-5.11.0.tar.gz"}
     patches : ['paraview-5.11.0.p001-FindCGNS.patch',
-               'paraview-5.11.0.p002-FindMPI.patch'
+               'paraview-5.11.0.p002-FindMPI.patch',
+               'paraview-5.11.0.p006-GIL.patch'
               ]
     depend : [
               'Python',
