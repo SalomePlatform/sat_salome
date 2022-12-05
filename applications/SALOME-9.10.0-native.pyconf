@@ -173,7 +173,7 @@ APPLICATION :
         'EFICAS'
         'EFICAS_TOOLS'
         'PY2CPP'
-        'ADAO' : 'master'
+        'ADAO'
         'ADAO_INTERFACE'
         'PARAVISADDONS'
         'OPENTURNS_SALOME' : 'master'

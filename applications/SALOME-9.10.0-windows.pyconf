@@ -167,7 +167,7 @@ APPLICATION :
         'PYHELLO'
         'EFICAS'
         'EFICAS_TOOLS'
-        'ADAO' : 'master'
+        'ADAO'
         'PARAVISADDONS'
         'pmml'
         #'TESTBASE'

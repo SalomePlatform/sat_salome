@@ -176,11 +176,11 @@ APPLICATION :
         'EFICAS'
         'EFICAS_TOOLS'
         'PY2CPP'
-        'ADAO' :  'master'
+        'ADAO'
         'ADAO_INTERFACE'
         'PARAVISADDONS'
         'OPENTURNS_SALOME':  'master'
-        'YDEFX' : 'master'
+        'YDEFX'
         'pmml'
         'SOLVERLAB' : {tag:'V9_10_0rc1', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'TopIIVolMesh'
