@@ -179,7 +179,7 @@ APPLICATION :
         'ADAO'
         'ADAO_INTERFACE'
         'PARAVISADDONS'
-        'OPENTURNS_SALOME':  'master'
+        'OPENTURNS_SALOME'
         'YDEFX'
         'pmml'
         'SOLVERLAB' : {tag:'V9_10_0rc1', base: 'no', section: 'default_MPI', hpc: 'yes'}

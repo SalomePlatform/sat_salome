@@ -176,7 +176,7 @@ APPLICATION :
         'ADAO'
         'ADAO_INTERFACE'
         'PARAVISADDONS'
-        'OPENTURNS_SALOME' : 'master'
+        'OPENTURNS_SALOME'
         'YDEFX'
         'pmml'
         'SOLVERLAB'

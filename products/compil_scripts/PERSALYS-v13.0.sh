@@ -106,6 +106,20 @@ then
     exit 3
 fi
 
+# spns #32377
+#  setting -DCMAKE_INSTALL_LIBDIR to lib is not enough on Fedora nodes
+echo
+echo "*** check installation"
+if [! -d "${PRODUCT_INSTALL}/lib" ]; then
+    mkdir -p ${PRODUCT_INSTALL}/lib
+fi
+
+if [ -d "${PRODUCT_INSTALL}/lib64" ]; then
+    echo "WARNING: moving lib64 to lib"
+    mv ${PRODUCT_INSTALL}/lib64/* ${PRODUCT_INSTALL}/lib/
+    rmdir ${PRODUCT_INSTALL}/lib64
+fi
+
 echo
 echo "########## END"
 
