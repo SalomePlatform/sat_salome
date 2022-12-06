@@ -33,16 +33,19 @@ default_win:
 version_4_10_3:
 {
   compil_script : "gmsh-4.10.3.sh"
+  depend : ["CAS","lapack","hdf5","medfile", "cgns"]
 }
 
 version_4_10_3_win:
 {
   compil_script : "gmsh-4.10.3.bat"
   patches: ['gmsh-4.10.3-windows.patch']
+  depend : ["CAS","lapack","hdf5","medfile", "cgns"]
 }
 
 version_4_10_3_win_dbg:
 {
+  depend : ["CAS","lapack","hdf5","medfile", "cgns"]
   compil_script : "gmsh-4.10.3.bat"
   patches: ['gmsh-4.10.3-windows.patch']
   properties :
