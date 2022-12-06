@@ -27,6 +27,12 @@ CMAKE_OPTIONS="${CMAKE_OPTIONS} -DENABLE_PRIVATE_API=ON"
 if [ -n "$CGNS_ROOT_DIR" ]; then
     # GMSH relies on the presence of this environment variable.
     export CGNS_ROOT=$CGNS_ROOT_DIR
+    if [ "${SAT_cgns_IS_NATIVE}" != "1" ]; then
+        # ensure that we are picking up the correct CGNS library
+        # e.g. Debian 10, cgns is centrally installed, CGNS_LIB will not target the embedded CGNS
+        # which will lead to compilation issue.
+        export LD_LIBRARY_PATH=$CGNS_ROOT/lib:$LD_LIBRARY_PATH
+    fi
     CMAKE_OPTIONS="${CMAKE_OPTIONS} -DENABLE_CGNS=ON"
 else
     CMAKE_OPTIONS="${CMAKE_OPTIONS} -DENABLE_CGNS=OFF"
