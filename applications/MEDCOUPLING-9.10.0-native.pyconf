@@ -5,10 +5,11 @@ APPLICATION :
 {
     name : 'MEDCOUPLING-9.10.0-native'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag : 'V9_10_0b1'
+    tag : 'V9_10_0rc1'
     base : 'no'
     debug : 'no'
     python3 : 'yes'
+    platform : ["FD32", "FD34", "FD36", "FD37", "CO8", "DB10", "DB11", "UB20.04", "UB22.04"]
     environ :
     {
         build :

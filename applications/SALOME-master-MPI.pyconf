@@ -34,11 +34,10 @@ APPLICATION :
     products :
     {
         # PREREQUISITES :
-
         alabaster : '0.7.6'
         Babel : '2.7.0'
         boost : '1.71.0'
-        CAS : {tag : '71a56532', section: 'version_CR753_SALOME_PATCH', base: 'no'}
+        CAS : {tag : 'V7_5_3p4', section: 'version_CR753_SALOME_PATCH', base: 'no'}
         catalyst: '2.0'
         C3PO: 'v2.0'
         certifi : '2018.8.24'
@@ -139,6 +138,7 @@ APPLICATION :
         urllib3 : '1.23'
         zeromq: '4.3.1'
         URANIE : '4.5.0'
+
         # SALOME MODULES :
         'CONFIGURATION'
         'SALOME'
@@ -182,9 +182,9 @@ APPLICATION :
         'OPENTURNS_SALOME'
         'YDEFX'
         'pmml'
-        'SOLVERLAB': {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'SOLVERLAB' : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'TopIIVolMesh'
-        'TESTBASE'
+        #'TESTBASE'
         'CEATESTBASE' : 'SalomeV9'
     }
     profile :
@@ -208,21 +208,38 @@ APPLICATION :
 __overwrite__ :
 [
     {
-        __condition__ : "VARS.dist not in ['DB09','DB10', 'DB11']"
-        'APPLICATION.products.MeshGems' : {tag : '2.13-1', hpc : 'yes', base: 'no'}
-    }
-    {
-        __condition__ : "VARS.dist in ['FD32', 'FD34', 'DB11']"
-        # gcc https://github.com/scipy/scipy/issues/11611
-        # either patch numpy to include -fallow-argument-mismatch or move to that version        
-        'APPLICATION.products.scipy' : '1.5.2'
-    }
-    {
         __condition__ : "VARS.dist in ['FD30']"
         'APPLICATION.products.gcc' : '9.3.0'
     }
     {
-        __condition__ : "VARS.dist not in ['DB08','DB09', 'FD30']"
+        __condition__ : "VARS.dist in ['FD32']"
+        # https://github.com/scipy/scipy/issues/11611
+        'APPLICATION.products.scipy' : '1.5.2'
         'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
+        'APPLICATION.products.gdal': {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_FD32'} # spns #29324
+    }
+    {
+        __condition__ : "VARS.dist in ['CO7']"
+        'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
+    }
+    {
+        __condition__ : "VARS.dist in ['CO8']"
+        'APPLICATION.rm_products'  : ['gcc', 'gmp', 'mpc', 'mpfr', 'zeromq']
+        'APPLICATION.products.gdal'     : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_CO8'                 } # spns #29324
+        'APPLICATION.products.ParaView' : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_CO8', hpc: 'yes'}
+    }
+    {
+        __condition__ : "VARS.dist in ['DB10']"
+        'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
+        'APPLICATION.products.gdal': {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_DB10'} # spns #29324
+    }
+    {
+        __condition__ : "VARS.dist in ['UB18.04']"
+        'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
+    }
+    {
+        __condition__ : "VARS.dist in ['UB20.04']"
+        'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
+        'APPLICATION.products.gdal': {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_UB20_04'} # spns #29324
     }
 ]

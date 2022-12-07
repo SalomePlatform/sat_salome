@@ -37,7 +37,7 @@ APPLICATION :
         alabaster : 'native'
         Babel : 'native'
         boost : 'native'
-        CAS : {tag : '71a56532', section: 'version_CR753_SALOME_PATCH', base: 'no'}
+        CAS : {tag : 'V7_5_3p4', section: 'version_CR753_SALOME_PATCH', base: 'no'}
         catalyst: '2.0'
         C3PO: 'v2.0'
         certifi : 'native'
@@ -142,7 +142,7 @@ APPLICATION :
         'SHAPER'
         'SHAPERSTUDY'
         'RESTRICTED'
-        'LIBBATCH' : {tag : 'V2_4_6'}
+        'LIBBATCH' : 'V2_4_6'
         'KERNEL'
         'MEDCOUPLING' : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'GUI'

@@ -5,12 +5,13 @@ APPLICATION :
 {
     name : 'SALOME-9.10.0-int32'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag : 'V9_10_0b1'
+    tag : 'V9_10_0rc1'
     dev : 'no'
     verbose :'no'
     debug : 'no'
     base : 'no'
     python3 : 'yes'
+    platform : ['CO7', 'CO8', 'DB09']
     environ :
     {
         build : 
@@ -35,7 +36,7 @@ APPLICATION :
         alabaster : '0.7.6'
         Babel : '2.7.0'
         boost : '1.71.0'
-        CAS : {tag : '71a56532', section: 'version_CR753_SALOME_PATCH', base: 'no'}
+        CAS : {tag : 'V7_5_3p4', section: 'version_CR753_SALOME_PATCH', base: 'no'}
         catalyst: '2.0'
         C3PO: 'v2.0'
         certifi : '2018.8.24'
@@ -132,19 +133,20 @@ APPLICATION :
         tcl : '8.6.0'
         tk : '8.6.0'
         toml: '0.10.2'
-        TTK : 'f8dafde2d7'        
+        TTK : 'f8dafde2d7'
         urllib3 : '1.23'
         zeromq: '4.3.1'
         URANIE : '4.5.0'
+
         # SALOME MODULES :
         'CONFIGURATION'
         'SALOME'
         'SHAPER'
         'SHAPERSTUDY'
         'RESTRICTED'
-        'LIBBATCH' : 'V2_4_5'
-        'KERNEL'      : {tag:'V9_10_0b1', base: 'no', section: 'default_32BIT_IDS', hpc: 'no' }
-        'MEDCOUPLING' : {tag:'V9_10_0b1', base: 'no', section: 'default_32BIT_IDS_MPI_STD', hpc: 'yes'}
+        'LIBBATCH' : 'V2_4_6'
+        'KERNEL'      : {tag:'V9_10_0rc1', base: 'no', section: 'default_32BIT_IDS', hpc: 'no' }
+        'MEDCOUPLING' : {tag:'V9_10_0rc1', base: 'no', section: 'default_32BIT_IDS_MPI_STD', hpc: 'yes'}
         'GUI'
         'GEOM'
         'SMESH'
@@ -159,7 +161,7 @@ APPLICATION :
         'HEXABLOCKPLUGIN'
         'HOMARD'
         'FIELDS'
-        'PARAVIS' : {tag:'V9_10_0b1', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'PARAVIS' : {tag:'V9_10_0rc1', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
@@ -179,10 +181,9 @@ APPLICATION :
         'OPENTURNS_SALOME'
         'YDEFX'
         'pmml'
-        'SOLVERLAB' : {tag:'V9_10_0b1', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'SOLVERLAB' : {tag:'V9_10_0rc1', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'TopIIVolMesh'
-        #'TESTBASE'
-        'CEATESTBASE' : 'SalomeV9'
+        'CEATESTBASE'
     }
     profile :
     {
@@ -222,7 +223,8 @@ __overwrite__ :
     {
         __condition__ : "VARS.dist in ['CO8']"
         'APPLICATION.rm_products'  : ['gcc', 'gmp', 'mpc', 'mpfr', 'zeromq']
-        'APPLICATION.products.gdal': {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_CO8'} # spns #29324
+        'APPLICATION.products.gdal'     : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_CO8'                 } # spns #29324
+        'APPLICATION.products.ParaView' : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_CO8', hpc: 'yes'}
     }
     {
         __condition__ : "VARS.dist in ['DB10']"
