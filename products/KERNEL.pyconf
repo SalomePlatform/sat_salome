@@ -98,6 +98,31 @@ default_32BIT_IDS :
     cmake_options : "-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_CMAKE_DEBUG=ON -DSALOME_USE_64BIT_IDS=OFF"
 }
 
+version_V9_10_0_MPI :
+{
+    cmake_options : "-DSALOME_USE_MPI=ON -DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_USE_64BIT_IDS=ON "
+    depend : ["Python",
+              "boost",
+              "numpy",
+              "lapack",
+              "hdf5",
+              "omniORB",
+              "omniORBpy",
+              "docutils",
+              "libxml2",
+              "Sphinx",
+              "sphinxintl",
+              "Jinja2",
+              "setuptools",
+              "Pygments",
+              "pytz",
+              "cppunit",
+              "openmpi",
+              "LIBBATCH",
+              "psutil"
+              ]
+}
+
 version_V9_9_0_MPI :
 {
     cmake_options : "-DSALOME_USE_MPI=ON -DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_USE_64BIT_IDS=ON "

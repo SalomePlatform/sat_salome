@@ -40,6 +40,12 @@ default_MPI :
   opt_depend : ['openmpi']
 }
 
+version_V9_10_0_MPI :
+{
+  cmake_options : "-DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DCMAKE_CXX_COMPILER:STRING=${MPI_CXX_COMPILER} -DCMAKE_C_COMPILER:STRING=${MPI_C_COMPILER} -DSALOME_USE_MPI=ON "
+  opt_depend : ['openmpi']
+}
+
 version_V9_9_0_MPI :
 {
   cmake_options : "-DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DCMAKE_CXX_COMPILER:STRING=${MPI_CXX_COMPILER} -DCMAKE_C_COMPILER:STRING=${MPI_C_COMPILER} -DSALOME_USE_MPI=ON "

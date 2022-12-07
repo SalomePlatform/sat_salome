@@ -60,6 +60,25 @@ default_MPI :
     opt_depend : ['mpi4py']
 }
 
+version_V9_10_0_MPI :
+{
+    depend :
+    [
+        'hdf5',
+        'matplotlib',
+        'medfile',
+        'numpy',
+        'ParaView',
+        'petsc',
+        'Python',
+        'KERNEL',
+        'GUI',
+        'MEDCOUPLING',
+        'openmpi'
+    ]
+    opt_depend : ['mpi4py']
+}
+
 version_V9_9_0_MPI :
 {
     depend :
