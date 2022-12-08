@@ -61,8 +61,8 @@ APPLICATION :
         mpc : 'native'
         gmp : 'native'
         mpfr : 'native'
-        gdal :  {tag : '2.4.0', hpc : 'yes'}
-        gmsh : '4.10.3'
+        gdal :  {tag : '2.4.0',  hpc : 'yes'}
+        gmsh :  {tag : '4.10.3', section :  'version_4_10_3_MPI', hpc : 'yes', base : 'no'}
         graphviz : '2.38.0'
         hdf5 : {tag : '1.10.3', hpc : 'yes'}
         idna : '2.7'

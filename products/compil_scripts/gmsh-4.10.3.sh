@@ -33,6 +33,13 @@ if [[ $DIST_NAME == "FD" && $DIST_VERSION == "32" ]]
 then
     CMAKE_OPTIONS="${CMAKE_OPTIONS} -DENABLE_MMG3D=OFF" # removed anyhow in GMS 4.6
 fi
+if [ -n "$SAT_HPC" ]
+then
+    if [ -n "$MPI_ROOT_DIR" ]; then
+	CMAKE_OPTIONS+=" -DCMAKE_CXX_COMPILER:STRING=$(which mpic++)"
+	CMAKE_OPTIONS+=" -DCMAKE_C_COMPILER:STRING=$(which mpicc)"
+    fi
+fi
 
 echo "*** cmake" $CMAKE_OPTIONS
 cmake $CMAKE_OPTIONS $SOURCE_DIR

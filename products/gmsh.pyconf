@@ -43,6 +43,12 @@ version_4_10_3_win:
   depend : ["CAS","lapack","hdf5","medfile", "cgns"]
 }
 
+version_4_10_3_MPI:
+{
+  compil_script : "gmsh-4.10.3.sh"
+  depend : ["CAS","lapack","hdf5","medfile", "cgns", "openmpi"]
+}
+
 version_4_10_3_win_dbg:
 {
   depend : ["CAS","lapack","hdf5","medfile", "cgns"]
