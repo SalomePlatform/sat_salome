@@ -18,6 +18,12 @@ default :
       incremental : "yes"
     }
 }
+
+version_4_0_3_p6 :
+{
+    compil_script :  "ParMetis-4.sh"
+}
+
 version_3_1_1 :
 {
     compil_script :  "ParMetis-3.sh"
