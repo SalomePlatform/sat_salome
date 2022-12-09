@@ -16,7 +16,7 @@ def set_env(env, prereq_dir, version):
     
     l = []
     l.append(os.path.join(root, 'lib'))
-    l.append(os.path.join(root, 'lib', 'tk', env.get('TCL_SHORT_VERSION')))
+    l.append(os.path.join(root, 'lib', 'tk' + env.get('TCL_SHORT_VERSION')))
     #http://computer-programming-forum.com/57-tcl/1dfddc136afccb94.htm
     #Tcl treats the contents of that variable as a list. Be happy, for you can now use drive letters on windows.
     env.prepend('TKLIBPATH', l, sep=" ")
