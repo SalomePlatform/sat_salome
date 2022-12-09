@@ -24,6 +24,8 @@ def set_env(env, prereq_dir, version):
   l.append(os.path.join(prereq_dir, 'lib'))
   l.append(os.path.join(prereq_dir, 'lib', 'tk' + env.get('TCL_SHORT_VERSION')))
   env.prepend('TKLIBPATH', l, sep=" ")
+  env.set('TCL_LIBRARY',os.path.join(prereq_dir, 'lib', 'tcl' + env.get('TCL_SHORT_VERSION')))
+  env.set('TK_LIBRARY', os.path.join(prereq_dir, 'lib', 'tk'  + env.get('TCL_SHORT_VERSION')))
 
   if not platform.system() == "Windows" :
     env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib'))

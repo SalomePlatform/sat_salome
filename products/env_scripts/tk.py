@@ -20,6 +20,7 @@ def set_env(env, prereq_dir, version):
     #http://computer-programming-forum.com/57-tcl/1dfddc136afccb94.htm
     #Tcl treats the contents of that variable as a list. Be happy, for you can now use drive letters on windows.
     env.prepend('TKLIBPATH', l, sep=" ")
+    env.set('TK_LIBRARY',os.path.join(prereq_dir, 'lib', 'tk' + env.get('TCL_SHORT_VERSION')))
 
     if not platform.system() == "Windows" :
         env.prepend('LD_LIBRARY_PATH', os.path.join(root, 'lib'))
