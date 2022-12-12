@@ -25,7 +25,7 @@ default :
         incremental : "yes"
         single_install_dir : "yes"
     }
-    post_script: 'fix_permissions.sh
+    post_script: "fix_permissions.sh"
 }
 
 default_win :
