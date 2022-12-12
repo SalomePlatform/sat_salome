@@ -17,6 +17,7 @@ default :
       incremental : "yes"
     }
     patches : []
+    post_script: "fix_permissions.sh"
 }
 
 version_4_2_3_win_dbg:

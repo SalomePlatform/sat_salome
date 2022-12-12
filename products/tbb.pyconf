@@ -4,13 +4,6 @@ default :
     build_source : "script"
     compil_script :  $name + $VARS.scriptExtension
     get_source : "archive"
-    system_info : 
-    {
-        rpm : ["tbb"]
-        rpm_dev : ["tbb-devel"]
-        apt : ["libtbb2"]
-        apt_dev : ["libtbb-dev"]
-    }
     environ :
     {
        env_script : $name + ".py"

@@ -18,6 +18,7 @@ default :
     {
       incremental : "yes"
     }
+    post_script: "fix_permissions.sh"
 } 
 
 default_win:
