@@ -18,7 +18,11 @@ cd ${BUILD_DIR}/src
 echo
 echo "*** create Makefile"
 if [ -n "$SAT_HPC" ]; then
-    sed -e "s%CFLAGS\([[:space:]]*\)=\([[:space:]]*\)\(.*\)%CFLAGS\1=\2-fPIC -DPIC -DINTSIZE64 -DSCOTCH_PTHREAD -I${MPI_INCLUDE_DIR} \3%g" Make.inc/Makefile.inc.x86-64_pc_linux2 > Makefile.inc
+    if [ "${SALOME_USE_64BIT_IDS}" == "1" ]; then
+	sed -e "s%CFLAGS\([[:space:]]*\)=\([[:space:]]*\)\(.*\)%CFLAGS\1=\2-fPIC -DPIC -DINTSIZE64 -DSCOTCH_PTHREAD -I${MPI_INCLUDE_DIR} \3%g" Make.inc/Makefile.inc.x86-64_pc_linux2 > Makefile.inc
+    else
+	sed -e "s%CFLAGS\([[:space:]]*\)=\([[:space:]]*\)\(.*\)%CFLAGS\1=\2-fPIC -DPIC -DINTSIZE32 -DSCOTCH_PTHREAD -I${MPI_INCLUDE_DIR} \3%g" Make.inc/Makefile.inc.x86-64_pc_linux2 > Makefile.inc
+    fi
 else
     sed -e "s%CFLAGS\([[:space:]]*\)=\([[:space:]]*\)\(.*\)%CFLAGS\1=\2-fPIC \3%g" Make.inc/Makefile.inc.x86-64_pc_linux2 > Makefile.inc
 fi
