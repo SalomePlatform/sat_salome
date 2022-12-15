@@ -36,12 +36,24 @@ fi
 # the embedded versioneer.py fails to retrieve the correct version - presumably because of missing .git information
 # let's fix this once for all - prevents openturns from not building.
 cd ${NUMPY_INSTALL}
-EGG_OLD=$(ls )
-EGG_DIR=numpy-$VERSION-py${PYTHON_VERSION}-linux-x86_64.egg
-echo "====> $EGG_DIR"
-mv numpy*-linux-x86_64.egg  $EGG_DIR
-ln -sf $EGG_DIR/numpy numpy
-sed -i "s/0+unknown/$VERSION/g" $EGG_DIR/numpy/_version.py
+if [ -f numpy/_version.py ]; then
+    echo "INFO: ensure that version is consistently set. In principle patches "
+    sed -i "s/0+unknown/$VERSION/g" numpy/_version.py
+else
+    f=$(find . -type d -name "numpy-$VERSION-py${PYTHON_VERSION}-*x86_64.egg")
+    if [ $? -eq 0 ]; then
+	EGG_DIR=$(ls numpy-$VERSION-py${PYTHON_VERSION}-*-x86_64.egg)
+	echo "INFO:  Found $EGG_DIR"
+	if [ ! -d $EGG_DIR/numpy ]; then
+	    ln -sf $EGG_DIR/numpy
+	    sed -i "s/0+unknown/$VERSION/g" $EGG_DIR/numpy/_version.py
+	else
+	    echo "WARNING: could not find $EGG_DIR/numpy"
+	fi
+    else
+	echo "WARNING: could not find egg directory with name: numpy-$VERSION-py${PYTHON_VERSION}-*-x86_64.egg"
+    fi
+fi
 
 if [ -d ${PRODUCT_INSTALL}/local/bin ]; then
     mv ${PRODUCT_INSTALL}/local/bin ${PRODUCT_INSTALL}/bin

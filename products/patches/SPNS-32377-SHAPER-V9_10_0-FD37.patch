@@ -1,0 +1,13 @@
+diff --git a/src/InitializationPlugin/InitializationPlugin_PyInterp.cpp b/src/InitializationPlugin/InitializationPlugin_PyInterp.cpp
+index 0aab9a2c7..40fb8fb82 100644
+--- a/src/InitializationPlugin/InitializationPlugin_PyInterp.cpp
++++ b/src/InitializationPlugin/InitializationPlugin_PyInterp.cpp
+@@ -118,7 +118,7 @@ std::list<std::wstring> InitializationPlugin_PyInterp::compile(const std::wstrin
+   }
+ 
+   PyCodeObject* aCodeObj = (PyCodeObject*) aCodePyObj;
+-  std::string aCodeName(PyBytes_AsString(aCodeObj->co_code));
++  std::string aCodeName(PyBytes_AsString(aCodeObj->_co_code));
+   // co_names should be tuple, but can be changed in modern versions of python (>2.7.3)
+   if(!PyTuple_Check(aCodeObj->co_names)) {
+     return aResult;

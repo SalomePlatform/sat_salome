@@ -21,6 +21,11 @@ default :
     patches : []
 }
 
+version_V9_10_0_FD37 :
+{
+  patches: ['SPNS-32377-CONFIGURATION-V9_10_0.patch']
+}
+
 version_V9_9_0_FD36 :
 {
   patches: ['SPNS-29988-CONFIGURATION-V9_9_0.patch']
