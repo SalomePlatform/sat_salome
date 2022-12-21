@@ -313,7 +313,7 @@ __overwrite__ :
         'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD37'                  }
         'APPLICATION.products.StaticMeshPlugin' : {tag:'5.11.0',     base: 'no', section: 'version_5_11_0_FD37'                 }
         'APPLICATION.products.ParaView'         : {tag: '5.11.0',    base: 'no',  section: 'version_5_11_0_MPI_FD37', hpc: 'yes'}
-        'APPLICATION.products.CONFIGURATION'    : {tag:'master',     base: 'no', section: 'version_V9_10_0_FD37'                }
-        'APPLICATION.products.SHAPER'           : {tag:'master',     base: 'no', section: 'version_V9_10_0_FD37',     hpc: 'no' }
+        'APPLICATION.products.CONFIGURATION'    : {tag:'master',     base: 'no', section: 'default'                             }
+        'APPLICATION.products.SHAPER'           : {tag:'master',     base: 'no', section: 'default',                  hpc: 'no' }
     }
 ]
