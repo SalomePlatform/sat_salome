@@ -113,5 +113,6 @@ __overwrite__ :
         # gcc https://github.com/scipy/scipy/issues/11611
         # either patch numpy to include -fallow-argument-mismatch or move to that version
         'APPLICATION.products.scipy' : '1.5.2'
+        'APPLICATION.products.Python' : {tag: '3.6.5', base: 'no', section: 'version_3_6_5_UB22_04'}
     }
 ]
