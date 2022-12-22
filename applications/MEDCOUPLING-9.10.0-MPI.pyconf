@@ -108,4 +108,10 @@ __overwrite__ :
         # either patch numpy to include -fallow-argument-mismatch or move to that version
         'APPLICATION.products.scipy' : '1.5.2'
     }
+    {
+        __condition__ : "VARS.dist in ['UB22.04']"
+        # gcc https://github.com/scipy/scipy/issues/11611
+        # either patch numpy to include -fallow-argument-mismatch or move to that version
+        'APPLICATION.products.scipy' : '1.5.2'
+    }
 ]
