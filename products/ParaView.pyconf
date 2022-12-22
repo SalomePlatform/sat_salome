@@ -162,6 +162,20 @@ version_5_11_0_MPI_LATA_64BITS_IDS :
                'paraview-0012-LATA_64BITS_IDS.patch',
                'paraview-5.11.0.p006-GIL.patch'
               ]
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'PyQt',
+              'sip',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst']
 }
 
 version_5_11_0_MPI_DB10 :
