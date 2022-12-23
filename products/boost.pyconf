@@ -45,6 +45,18 @@ version_1_71_0_UB22_04 :
     patches : ['boost-1.71-pthread-gcc-11.patch']
 }
 
+version_1_71_0_FD37 :
+{
+    compil_script : "boost-1.71.0.sh"
+    patches : ['boost-1.71-pthread-gcc-11.patch']
+}
+
+version_1_71_0_FD36 :
+{
+    compil_script : "boost-1.71.0.sh"
+    patches : ['boost-1.71-pthread-gcc-11.patch']
+}
+
 version_1_52_0 :
 {
     patches : 

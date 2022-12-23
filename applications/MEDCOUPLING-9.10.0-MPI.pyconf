@@ -95,12 +95,30 @@ __overwrite__ :
         'APPLICATION.products.scipy' : '1.5.2'
     }
     {
-        __condition__: "VARS.dist in ['FD34', 'FD36', 'FD37']"
+        __condition__: "VARS.dist in ['FD34']"
         # gcc https://github.com/scipy/scipy/issues/11611
         # either patch numpy to include -fallow-argument-mismatch or move to that version
         'APPLICATION.products.scipy' : '1.5.2'
         # https://github.com/pyenv/pyenv/issues/1889
         'APPLICATION.products.Python' : {tag: '3.6.5', base: 'no', section: 'version_3_6_5_FD34'}
+    }
+    {
+        __condition__: "VARS.dist in ['FD36']"
+        # gcc https://github.com/scipy/scipy/issues/11611
+        # either patch numpy to include -fallow-argument-mismatch or move to that version
+        'APPLICATION.products.scipy' : '1.5.2'
+        # https://github.com/pyenv/pyenv/issues/1889
+        'APPLICATION.products.Python' : {tag: '3.6.5', base: 'no', section: 'version_3_6_5_FD36'}
+        'APPLICATION.products.boost'  : {tag: '1.71.0', base: 'no', section: 'version_1_71_0_FD36'}
+    }
+    {
+        __condition__: "VARS.dist in ['FD37']"
+        # gcc https://github.com/scipy/scipy/issues/11611
+        # either patch numpy to include -fallow-argument-mismatch or move to that version
+        'APPLICATION.products.scipy' : '1.5.2'
+        # https://github.com/pyenv/pyenv/issues/1889
+        'APPLICATION.products.Python' : {tag: '3.6.5', base: 'no', section: 'version_3_6_5_FD37'}
+        'APPLICATION.products.boost'  : {tag: '1.71.0', base: 'no', section: 'version_1_71_0_FD37'}
     }
     {
         __condition__ : "VARS.dist in ['DB11']"
