@@ -1,0 +1,11 @@
+--- boost_ref/boost/thread/pthread/thread_data.hpp	2022-12-23 09:54:35.643656004 +0100
++++ boost_dev/boost/thread/pthread/thread_data.hpp	2022-12-23 10:04:30.775631054 +0100
+@@ -57,7 +57,7 @@
+ #else
+           std::size_t page_size = ::sysconf( _SC_PAGESIZE);
+ #endif
+-#if PTHREAD_STACK_MIN > 0
++#ifdef PTHREAD_STACK_MIN
+           if (size<PTHREAD_STACK_MIN) size=PTHREAD_STACK_MIN;
+ #endif
+           size = ((size+page_size-1)/page_size)*page_size;
