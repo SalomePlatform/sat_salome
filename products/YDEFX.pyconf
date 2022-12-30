@@ -30,7 +30,13 @@ default :
         is_SALOME_module : "yes"
 
     }
+    patches : []
+}
+
+version_V9_10_0 :
+{
     # prescription de EDF ne fonctionne pas en dehors de YAMS
     # solution temporaire pour utiliser l'approche standard de SALOME
+    # patch integre post-9.10
     patches : ['YDEFX-CMakeLists.patch']
 }
