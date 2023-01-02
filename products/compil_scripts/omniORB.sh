@@ -47,6 +47,8 @@ if version_ge $VERSION "4.1" ; then
     if [ $? -ne 0 ]; then
 	echo ERROR: Failed to extract major Python version -  assuming Python version equal to 3...
 	pyVersionMajor=python3
+    elif [ "${pyVersionMajor}" == "python2" ]; then
+	pyVersionMajor=python
     fi
     echo INFO: Python version major: ${pyVersionMajor}
     sed -e "s%#\!.*python[0-9]*%#\!/usr/bin/env ${pyVersionMajor}%" omniidl > _omniidl
