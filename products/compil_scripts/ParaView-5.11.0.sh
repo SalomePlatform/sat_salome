@@ -39,7 +39,7 @@ CMAKE_OPTIONS+=" -DPARAVIEW_ENABLE_CATALYST=ON"
 CMAKE_OPTIONS+=" -Dcatalyst_DIR=${CATALYST_ROOT_DIR}/lib/cmake/catalyst-2.0"
 
 ### spns #20550 - Headless mode
-if [ -n "$PARAVIEW_HEADLESS_MODE" ]; then
+if [ "$PARAVIEW_HEADLESS_MODE" == "1" ]; then
     EGL_FOUND=false
     LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
     case $LINUX_DISTRIBUTION in

@@ -21,6 +21,7 @@ APPLICATION :
            SALOME_USE_64BIT_IDS : '1'
            VTK_SMP_IMPLEMENTATION_TYPE : OpenMP # OpenMP # choose among: sequential / OpenMP / TBB switches
            SALOME_GMSH_HEADERS_STD : '1'
+           #PARAVIEW_HEADLESS_MODE : '1'
         }
         launch :
         {
