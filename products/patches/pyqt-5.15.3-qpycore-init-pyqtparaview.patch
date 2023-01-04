@@ -1,0 +1,28 @@
+diff -Naur PyQt5-5.15.3_init/qpy/QtCore/qpycore_init.cpp PyQt5-5.15.3/qpy/QtCore/qpycore_init.cpp
+--- PyQt5-5.15.3_init/qpy/QtCore/qpycore_init.cpp	2022-11-17 13:26:26.311645609 +0100
++++ PyQt5-5.15.3/qpy/QtCore/qpycore_init.cpp	2022-11-17 13:36:32.687598350 +0100
+@@ -28,6 +28,8 @@
+ #include "sipAPIQtCore.h"
+ 
+ #include <QCoreApplication>
++#include <QProcessEnvironment>
++#include <QString>
+ 
+ 
+ // Set if any QCoreApplication (or sub-class) instance was created from Python.
+@@ -45,11 +47,13 @@
+     if (qpycore_created_qapp)
+     {
+         QCoreApplication *app = QCoreApplication::instance();
+-
++        QProcessEnvironment pe(QProcessEnvironment::systemEnvironment());
++        QString pyqt5_not_master("PYQT5_NOT_MASTER");
+         if (app)
+         {
+             Py_BEGIN_ALLOW_THREADS
+-            delete app;
++            if( !pe.contains(pyqt5_not_master) || pe.value(pyqt5_not_master).isEmpty() )
++              delete app;
+             Py_END_ALLOW_THREADS
+         }
+     }

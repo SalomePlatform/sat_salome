@@ -41,6 +41,7 @@ version_5_15_7_win :
 version_5_15_3 :
 {
     compil_script :  "PyQt-5.15" + $VARS.scriptExtension
+    patches : ['pyqt-5.15.3-qpycore-init-pyqtparaview.patch'] # see bos #33259
 }
 
 version_5_15_3_win :
