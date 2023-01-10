@@ -17,7 +17,7 @@ diff -Naur numpy-1.22.2_ref/setup.py numpy-1.22.2_dev/setup.py
      if verbose:
          print("no suitable tags, using unknown + full revision id")
 -    return {"version": "0+unknown",
-+    return {"version": "1.22.0",
++    return {"version": "1.22.2",
              "full-revisionid": keywords["full"].strip(),
              "dirty": False, "error": "no suitable tags", "date": None}
  
@@ -26,7 +26,7 @@ diff -Naur numpy-1.22.2_ref/setup.py numpy-1.22.2_dev/setup.py
          print("unable to compute version")
  
 -    return {"version": "0+unknown", "full-revisionid": None,
-+    return {"version": "1.22.0", "full-revisionid": None,
++    return {"version": "1.22.2", "full-revisionid": None,
              "dirty": None, "error": "unable to compute version",
              "date": None}
  

@@ -27,8 +27,7 @@ PYTHONPATH=${NUMPY_INSTALL}:${PYTHONPATH}
 echo
 echo "*** setup.py build install"
 $PYTHONBIN setup.py build install --prefix=${PRODUCT_INSTALL} --install-lib=${NUMPY_INSTALL}
-if [ $? -ne 0 ]
-then
+if [ $? -ne 0 ]; then
     echo "ERROR on setup build install"
     rm -f site.cfg
     exit 1
@@ -42,16 +41,16 @@ if [ -f numpy/_version.py ]; then
 else
     f=$(find . -type d -name "numpy-$VERSION-py${PYTHON_VERSION}-*x86_64.egg")
     if [ $? -eq 0 ]; then
-	EGG_DIR=$(ls numpy-$VERSION-py${PYTHON_VERSION}-*-x86_64.egg)
-	echo "INFO:  Found $EGG_DIR"
-	if [ ! -d $EGG_DIR/numpy ]; then
-	    ln -sf $EGG_DIR/numpy
-	    sed -i "s/0+unknown/$VERSION/g" $EGG_DIR/numpy/_version.py
-	else
-	    echo "WARNING: could not find $EGG_DIR/numpy"
-	fi
+	      EGG_DIR=$(ls |grep numpy-$VERSION-py${PYTHON_VERSION} |grep x86_64.egg)
+	      echo "INFO:  Found $EGG_DIR"
+	      if [ -d $EGG_DIR/numpy ]; then
+	          ln -sf $EGG_DIR/numpy
+	          sed -i "s/0+unknown/$VERSION/g" $EGG_DIR/numpy/_version.py
+	      else
+	          echo "WARNING: could not find $EGG_DIR/numpy"
+	      fi
     else
-	echo "WARNING: could not find egg directory with name: numpy-$VERSION-py${PYTHON_VERSION}-*-x86_64.egg"
+	      echo "WARNING: could not find egg directory with name: numpy-$VERSION-py${PYTHON_VERSION}-*-x86_64.egg"
     fi
 fi
 
