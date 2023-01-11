@@ -33,6 +33,16 @@ default_win :
    archive_info : {archive_name : "scipy-" + $APPLICATION.products.scipy + "_windows.tar.gz"}
 }
 
+version_1_5_2_no_pip :
+{
+    compil_script : "scipy-1.5.2.sh"
+    properties :
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+}
+
 version_1_3_0 : 
 {
 }
@@ -45,7 +55,6 @@ version_1_3_0_win :
 version_0_18_1 :
 {
     compil_script : "scipy.sh"
-    # OP 29/03/2018 Suppress the dependency to setuptools
     depend : ['numpy','lapack']
 }
 
