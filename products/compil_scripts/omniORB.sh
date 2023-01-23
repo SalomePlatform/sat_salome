@@ -42,13 +42,12 @@ if version_ge $VERSION "4.1" ; then
     echo
     echo "*** fix headers"
     cd $PRODUCT_INSTALL/bin
-
     pyVersionMajor=python$($PYTHONBIN -c 'import sys; print(".".join(map(str, sys.version_info[0:1])))')
     if [ $? -ne 0 ]; then
-	echo ERROR: Failed to extract major Python version -  assuming Python version equal to 3...
-	pyVersionMajor=python3
+	      echo ERROR: Failed to extract major Python version -  assuming Python version equal to 3...
+	      pyVersionMajor=python3
     elif [ "${pyVersionMajor}" == "python2" ]; then
-	pyVersionMajor=python
+	      pyVersionMajor=python
     fi
     echo INFO: Python version major: ${pyVersionMajor}
     sed -e "s%#\!.*python[0-9]*%#\!/usr/bin/env ${pyVersionMajor}%" omniidl > _omniidl

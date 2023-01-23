@@ -27,7 +27,8 @@ default :
         'GUI',
         'MEDCOUPLING'
     ]
-    build_depend : ["cmake", "swig", "doxygen", "graphviz","cppunit"]   
+    build_depend : ["cmake", "swig", "doxygen", "graphviz","cppunit"]
+    opt_depend : ['packagespy']
     # mscgen
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
