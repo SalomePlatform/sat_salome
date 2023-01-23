@@ -398,10 +398,10 @@ if [[ -d "$SOURCE_DIR/otfftw-0.12" ]]; then
                 SITE_PATCH=/usr/lib/pypy/dist-packages/setuptools/site-patch.py
                 ;;
             UB20*)
-                SITE_PATCH=/usr/lib/pypy/dist-packages/setuptools/site-patch.py
+                SITE_PATCH=/usr/lib/python3/dist-packages/setuptools/site-patch.py
                 ;;
             FD32)
-                SITE_PATCH=/usr/lib/pypy/dist-packages/setuptools/site-patch.py
+                SITE_PATCH=/usr/lib/python3.8/site-packages/setuptools/site-patch.py
                 ;;
             FD34)
                 SITE_PATCH=$SOURCE_DIR/addons/site-patch.py

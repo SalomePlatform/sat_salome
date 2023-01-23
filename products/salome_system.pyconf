@@ -88,7 +88,7 @@ default :
         {
             apt : ["libdc1394-25", "libopenexr25", "libwebp6", "libgfortran5", "libilmbase25", "libevent-2.1-7", "libpng16-16", "libgcc-10-dev",
                    "libffi7", "libtinfo6", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0", "libjsoncpp24",
-		   "openmpi-bin", "libnetcdf18", "libgdal28", "libtbb2"]
+		   "openmpi-bin", "libnetcdf18", "libgdal28", "libtbb2", "pypy-setuptools"]
             apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev",
                        "qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools", "libopenmpi-dev",
 		       "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev", "libnetcdf-dev", "libgdal-dev", "texlive-latex-base", "texlive-latex-extra", "dvipng"]
