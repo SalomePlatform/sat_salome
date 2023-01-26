@@ -1,9 +1,15 @@
 # Only used as a native product for dedicated opencv compilation
 default :
 {
-    name : "ffmpeg" 
-    get_source : "system"
+    name : "ffmpeg"
+    build_source: "script"
+    compil_script :  $name + $VARS.scriptExtension
+    get_source : "archive"
     depend : []
+    build_depend: []
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
+    install_dir : 'base'
     system_info :
     {
        rpm : ["ffmpeg"]
@@ -11,4 +17,17 @@ default :
        apt : ["ffmpeg"]
        apt_dev : []
     }
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    properties :
+    {
+      incremental : "yes"
+    }
+}
+
+version_2_1_3:
+{
+    compil_script : "ffmpeg-2.1.3.sh"
 }
