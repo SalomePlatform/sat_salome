@@ -72,6 +72,17 @@ version_1_16_4_win_dbg:
     }
 }
 
+version_1_15_5:
+{
+    properties:
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+    compil_script : "numpy-1.15.1.sh"
+    patches: []
+}
+
 version_1_5_1_to_1_9_2 :
 {
     name : "numpy"
