@@ -24,7 +24,7 @@ APPLICATION :
         }
         launch :
         {
-            PYTHONIOENCODING:"UTF_8",
+            PYTHONIOENCODING:"UTF_8"
             SALOME_MODULES_ORDER:"SHAPER:SHAPERSTUDY:GEOM:SMESH"
             ROOT_SALOME_INSTALL: '$PRODUCT_ROOT_DIR'
         }

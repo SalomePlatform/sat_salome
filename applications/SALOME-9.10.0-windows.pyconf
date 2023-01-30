@@ -25,7 +25,7 @@ APPLICATION :
         }
         launch :
         {
-            PYTHONIOENCODING:"UTF_8",
+            PYTHONIOENCODING:"UTF_8"
             SALOME_MODULES_ORDER:"SHAPER:SHAPERSTUDY:GEOM:SMESH"
         }
         SALOME_trace : "local" # local/file:.../with_logger
