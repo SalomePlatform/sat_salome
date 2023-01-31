@@ -1,0 +1,45 @@
+diff --git a/cmake/FindXDR.cmake b/cmake/FindXDR.cmake
+index e8e8625..52f2de9 100644
+--- a/cmake/FindXDR.cmake
++++ b/cmake/FindXDR.cmake
+@@ -19,7 +19,7 @@
+ 
+ MESSAGE(STATUS "Check for XDR ...")
+ 
+-FIND_PATH(XDR_INCLUDE_DIRS rpc/xdr.h)
++FIND_PATH(XDR_INCLUDE_DIRS rpc/xdr.h PATH_SUFFIXES tirpc)
+ IF(XDR_INCLUDE_DIRS)
+    SET(XDR_DEFINITIONS "-DHAS_XDR")
+ ENDIF()
+@@ -34,6 +34,14 @@ IF(WIN32)
+       SET(XDR_INCLUDE_DIRS "${XDR_INCLUDE_DIRS2}")  # Make the detection fail
+     ENDIF()
+   ENDIF()
++ELSE(WIN32)
++  FIND_LIBRARY(XDR_LIBRARIES NAMES tirpc xdr)
++  IF(NOT XDR_LIBRARIES)
++    MESSAGE(STATUS  "Could not find XDR libraries ...")
++    SET(XDR_LIBRARIES) # reset variable tough
++  ELSE()
++    MESSAGE(STATUS "Found XDR libraries ${XDR_LIBRARIES} ...")
++  ENDIF()
+ ENDIF(WIN32)
+ 
+ INCLUDE(FindPackageHandleStandardArgs)
+diff --git a/cmake/SalomeMacros.cmake b/cmake/SalomeMacros.cmake
+index bc7baaa..6fa6fe0 100755
+--- a/cmake/SalomeMacros.cmake
++++ b/cmake/SalomeMacros.cmake
+@@ -120,10 +120,11 @@ MACRO(SALOME_INSTALL_SCRIPTS file_list path)
+     SET(_source_prefix "")
+     GET_FILENAME_COMPONENT(file_name ${file} NAME)
+     IF(NOT IS_ABSOLUTE ${file})
++      SET(_source_prefix "${CMAKE_CURRENT_SOURCE_DIR}/")
+       IF(SALOME_INSTALL_SCRIPTS_WORKING_DIRECTORY)
+         SET(PREFIX "${SALOME_INSTALL_SCRIPTS_WORKING_DIRECTORY}/")
++        SET(_source_prefix "${SALOME_INSTALL_SCRIPTS_WORKING_DIRECTORY}/")
+       ENDIF(SALOME_INSTALL_SCRIPTS_WORKING_DIRECTORY)
+-      SET(_source_prefix "${CMAKE_CURRENT_SOURCE_DIR}/")
+     ENDIF(NOT IS_ABSOLUTE ${file})
+     INSTALL(FILES ${PREFIX}${file} DESTINATION ${path} PERMISSIONS ${PERMS})
+     GET_FILENAME_COMPONENT(ext ${file} EXT)
