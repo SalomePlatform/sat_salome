@@ -1,0 +1,25 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index bd02fc5b5..c3da8a99e 100755
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -92,7 +92,7 @@ FIND_PACKAGE(SalomeSWIG REQUIRED)
+ FIND_PACKAGE(SalomeLibXml2 REQUIRED)
+ FIND_PACKAGE(SalomeHDF5 REQUIRED COMPONENTS C)
+ FIND_PACKAGE(SalomeBoost REQUIRED)
+-
++FIND_PACKAGE(SalomeXDR   REQUIRED)
+ # Optional prerequisites
+ # ======================
+ 
+diff --git a/src/Communication/CMakeLists.txt b/src/Communication/CMakeLists.txt
+index 643dd6f4b..c57270285 100755
+--- a/src/Communication/CMakeLists.txt
++++ b/src/Communication/CMakeLists.txt
+@@ -27,6 +27,7 @@ INCLUDE_DIRECTORIES(
+   ${CMAKE_CURRENT_SOURCE_DIR}/../SALOMELocalTrace
+   ${CMAKE_CURRENT_SOURCE_DIR}/../Utils
+   ${PROJECT_BINARY_DIR}/idl
++  ${XDR_INCLUDE_DIRS}
+ )
+ 
+ SET(COMMON_LIBS

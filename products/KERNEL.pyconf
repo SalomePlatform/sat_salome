@@ -41,6 +41,7 @@ default :
         has_unit_tests
         incremental : "yes"
     }
+    patches: []
 }
 
 default_win :
@@ -146,6 +147,30 @@ version_V9_9_0_MPI :
               "LIBBATCH",
               "psutil"
               ]
+}
+
+version_V9_2_0 :
+{
+    cmake_options : "-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_CMAKE_DEBUG=ON "
+    depend : ["Python",
+              "boost",
+              "cppunit",
+              "numpy",
+              "lapack",
+              "hdf5",
+              "omniORB",
+              "omniORBpy",
+              "docutils",
+              "libxml2",
+              "Sphinx",
+              "sphinxintl",
+              "Jinja2",
+              "setuptools",
+              "Pygments",
+              "pytz",
+              "LIBBATCH"
+              ]
+    patches: []
 }
 
 version_V8_5_0_to_V9_6_0:
