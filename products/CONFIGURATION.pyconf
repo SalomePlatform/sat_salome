@@ -31,7 +31,7 @@ version_V9_9_0_FD36 :
   patches: ['SPNS-29988-CONFIGURATION-V9_9_0.patch']
 }
 
-version_v9_2_0_CO8 :
+version_V9_2_0_CO8 :
 {
   patches: ['SPNS-32926-CONFIGURATION-V9_2_0.FindXDR.patch']
 }

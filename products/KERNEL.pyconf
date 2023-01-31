@@ -149,7 +149,7 @@ version_V9_9_0_MPI :
               ]
 }
 
-version_V9_2_0 :
+version_V9_2_0_CO8 :
 {
     cmake_options : "-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_CMAKE_DEBUG=ON "
     depend : ["Python",
@@ -170,7 +170,7 @@ version_V9_2_0 :
               "pytz",
               "LIBBATCH"
               ]
-    patches: []
+  patches: ['SPNS-32926-KERNEL-V9_2_0.FindXDR.patch']
 }
 
 version_V8_5_0_to_V9_6_0:
