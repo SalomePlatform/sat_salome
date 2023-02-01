@@ -4,7 +4,7 @@
 import os.path, platform
 
 def set_env(env, prereq_dir, version):
-  if platform.system() == "Windows"
+  if platform.system() == "Windows":
     pass
   else:
     env.set("FFMPEG_ROOT_DIR",prereq_dir)
@@ -13,4 +13,3 @@ def set_env(env, prereq_dir, version):
 
 def set_nativ_env(env):
   pass
-
