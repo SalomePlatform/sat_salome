@@ -30,7 +30,7 @@ default_win :
 {
    compil_script :  'pip_install_whl' + $VARS.scriptExtension
    archive_info : {archive_name : "Sphinx-" + $APPLICATION.products.Sphinx + "_windows.tar.gz"}
-   depend : ["Python", "setuptools", "Pygments", "Jinja2", "docutils", "sphinxcontrib_applehelp", "sphinxcontrib_serializinghtml","sphinxcontrib_websupport", "sphinxcontrib_htmlhelp", "sphinxcontrib_qthelp", "sphinxcontrib_devhelp", "sphinxcontrib_jsmath", "packaging", "requests", "imagesize", "alabaster", "Babel", "snowballstemmer", "markupsafe"]
+   depend : ["Python", "setuptools", "Pygments", "Jinja2", "docutils", "sphinxcontrib_applehelp", "sphinxcontrib_serializinghtml","sphinxcontrib_websupport", "sphinxcontrib_htmlhelp", "sphinxcontrib_qthelp", "sphinxcontrib_devhelp", "sphinxcontrib_jsmath", "packaging", "requests", "imagesize", "alabaster", "Babel", "snowballstemmer", "markupsafe", "colorama"]
     properties:
     {
       incremental : "yes"
@@ -41,7 +41,7 @@ default_win :
 
 version_2_1_2:
 {
-   depend : ["Python", "setuptools", "Pygments", "Jinja2", "docutils", "sphinxcontrib_applehelp", "sphinxcontrib_serializinghtml","sphinxcontrib_websupport", "sphinxcontrib_htmlhelp", "sphinxcontrib_qthelp", "sphinxcontrib_devhelp", "sphinxcontrib_jsmath", "packaging", "requests", "imagesize", "alabaster", "Babel", "snowballstemmer", "markupsafe"]
+   depend : ["Python", "setuptools", "Pygments", "Jinja2", "docutils", "sphinxcontrib_applehelp", "sphinxcontrib_serializinghtml","sphinxcontrib_websupport", "sphinxcontrib_htmlhelp", "sphinxcontrib_qthelp", "sphinxcontrib_devhelp", "sphinxcontrib_jsmath", "packaging", "requests", "imagesize", "alabaster", "Babel", "snowballstemmer", "markupsafe", "colorama"]
 }
 
 
