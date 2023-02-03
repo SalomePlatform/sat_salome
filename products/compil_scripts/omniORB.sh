@@ -59,6 +59,9 @@ if version_ge $VERSION "4.1" ; then
     chmod a+x omniidlrun.py
 fi
 
+cd $PRODUCT_INSTALL/lib
+find . -name "*.so*" |xargs chmod u+rwx 
+
 echo
 echo "########## END"
 

@@ -16,5 +16,9 @@ then
     echo "ERROR on make"
     exit 1
 fi
+
+cd $PRODUCT_INSTALL/lib
+find . -name "*.so*" |xargs chmod u+rwx 
+
 echo
 echo "########## END"

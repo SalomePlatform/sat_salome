@@ -69,6 +69,9 @@ else
     exit 6
 fi
 
+cd $PRODUCT_INSTALL/lib
+find . -name "*.so*" |xargs chmod u+rwx 
+
 echo
 echo "########## END"
 

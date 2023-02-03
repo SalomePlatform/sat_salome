@@ -34,6 +34,9 @@ fi
 mkdir -p $PRODUCT_INSTALL
 echo "omniORBpy is installed into omni dir ${OMNIORB_ROOT_DIR}" > $PRODUCT_INSTALL/README
 
+# fix 
+cd $OMNIORB_ROOT_DIR/lib
+find . -name "*.so*" |xargs chmod u+rwx 
+
 echo
 echo "########## END"
-
