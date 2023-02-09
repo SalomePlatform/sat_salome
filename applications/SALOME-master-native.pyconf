@@ -94,7 +94,7 @@ APPLICATION :
         openturns: '1.19'
         ospray : '2.4.0'
         packaging : 'native'
-        packagespy : '9bb05ac'
+        packagespy : '74152cd'
         pandas : 'native'
         ParaView : {tag:'5.11.0', base: 'no',  section: 'version_5_11_0_MPI', hpc: 'yes'}
         PERSALYS: 'v13.0'
@@ -180,6 +180,7 @@ APPLICATION :
         'YDEFX'
         'pmml'
         'SOLVERLAB'
+        'SOLVERLABGUI'
         'TopIIVolMesh'
         #'TESTBASE'
         'CEATESTBASE' : 'SalomeV9'

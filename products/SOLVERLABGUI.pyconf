@@ -1,0 +1,35 @@
+default :
+{
+    name : "SOLVERLABGUI"
+    build_source : "cmake"
+    build_command :  "-DPython_ROOT_DIR=${PYTHON_ROOT_DIR} -DPython_EXECUTABLE=${PYTHONBIN} -DPACKAGESPY_ROOT_DIR=${PACKAGESPY_ROOT_DIR}"
+    get_source : "dir"
+    dir_info :
+    {
+        dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + 'SOLVERLAB' + $VARS.sep + 'solverlabGUI'
+    }
+    environ :
+    {
+       SalomeAppConfig_ : $install_dir + $VARS.sep + "share" + $VARS.sep + "salome" + $VARS.sep + "resources" + $VARS.sep + "solverlabgui"
+       env_script : $name + ".py"
+    }
+    depend : 
+    [   
+        'KERNEL',
+        'GUI',
+        'SOLVERLAB',
+        'MEDCOUPLING',
+        'packagespy'
+    ]
+    build_depend : ["cmake", "swig", "doxygen", "graphviz","cppunit"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + 'SOLVERLAB' + $VARS.sep + 'solverlabGUI'
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    nb_proc : 1
+    properties:
+    {
+        is_SALOME_module : "yes"
+        incremental : "yes"
+        has_salome_gui : "yes"
+    }
+    patches: []
+}

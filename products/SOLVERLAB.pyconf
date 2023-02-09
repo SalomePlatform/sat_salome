@@ -37,7 +37,6 @@ default :
     {
         is_SALOME_module : "yes"
         incremental : "yes"
-        has_salome_gui : "yes"
     }
     patches: []
 }
@@ -61,6 +60,16 @@ default_MPI :
     opt_depend : ['mpi4py']
 }
 
+version_V9_10_0 :
+{
+    properties:
+    {
+        is_SALOME_module : "yes"
+        incremental : "yes"
+        has_salome_gui : "yes"
+    }
+}
+
 version_V9_10_0_MPI :
 {
     depend :
@@ -78,6 +87,22 @@ version_V9_10_0_MPI :
         'openmpi'
     ]
     opt_depend : ['mpi4py']
+    properties:
+    {
+        is_SALOME_module : "yes"
+        incremental : "yes"
+        has_salome_gui : "yes"
+    }
+}
+
+version_V9_9_0 :
+{
+    properties:
+    {
+        is_SALOME_module : "yes"
+        incremental : "yes"
+        has_salome_gui : "yes"
+    }
 }
 
 version_V9_9_0_MPI :
@@ -97,4 +122,20 @@ version_V9_9_0_MPI :
         'openmpi'
     ]
     opt_depend : ['mpi4py']
+    properties:
+    {
+        is_SALOME_module : "yes"
+        incremental : "yes"
+        has_salome_gui : "yes"
+    }
+}
+
+version_V9_8_0 :
+{
+    properties:
+    {
+        is_SALOME_module : "yes"
+        incremental : "yes"
+        has_salome_gui : "yes"
+    }
 }

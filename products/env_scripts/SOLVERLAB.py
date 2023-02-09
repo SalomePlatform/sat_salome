@@ -23,7 +23,9 @@ def set_env(env, product_dir, version):
     
     env.prepend('PATH', os.path.join(root, 'include'))
     env.prepend('LD_LIBRARY_PATH', os.path.join(root, 'lib'))
+    env.prepend('PYTHONPATH', root)
     env.prepend('PYTHONPATH', os.path.join(root, 'lib'))
+    env.prepend('PYTHONPATH', os.path.join(root, 'bin'))
     env.prepend('PYTHONPATH', os.path.join(root, 'lib', 'coreflows'))
     env.prepend('PYTHONPATH', os.path.join(root, 'bin', 'coreflows'))
     env.prepend('PYTHONPATH', os.path.join(root, 'lib', 'cdmath'))
