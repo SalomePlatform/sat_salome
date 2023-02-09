@@ -182,7 +182,7 @@ APPLICATION :
         'OPENTURNS_SALOME'
         'YDEFX'
         'pmml'
-        'SOLVERLAB' : 'bsr_newgui'
+        'SOLVERLAB' : {tag: 'bsr_newgui', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'SOLVERLABGUI'
         'TopIIVolMesh'
         #'TESTBASE'
