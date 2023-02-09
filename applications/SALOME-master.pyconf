@@ -96,7 +96,7 @@ APPLICATION :
         openVKL: '0.11.0'
         ospray : '2.4.0'
         packaging : '17.1'
-        packagespy : '9bb05ac'
+        packagespy : '74152cd'
         pandas : '0.25.2'
         patsy : '0.5.2'
         ParaView : {tag:'5.11.0', base: 'no',  section: 'version_5_11_0_MPI', hpc: 'yes'}
@@ -182,7 +182,8 @@ APPLICATION :
         'OPENTURNS_SALOME'
         'YDEFX'
         'pmml'
-        'SOLVERLAB' : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'SOLVERLAB' : 'bsr_newgui'
+        'SOLVERLABGUI'
         'TopIIVolMesh'
         #'TESTBASE'
         'CEATESTBASE' : 'SalomeV9'
