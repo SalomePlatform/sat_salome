@@ -35,3 +35,9 @@ version_V9_2_0_CO8 :
 {
   patches: ['SPNS-32926-CONFIGURATION-V9_2_0.FindXDR.patch', 'SPNS-32926-CONFIGURATION-V9_2_0.XDATA.patch']
 }
+
+version_V9_2_0_DB10 :
+{
+  patches: ['SPNS-32926-CONFIGURATION-V9_2_0.XDATA.patch']
+}
+
