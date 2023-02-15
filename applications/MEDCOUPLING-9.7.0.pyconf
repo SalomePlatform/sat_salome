@@ -88,4 +88,8 @@ __overwrite__ :
     __condition__ : "VARS.dist in ['FD32']"
     'APPLICATION.products.scipy' : '1.5.2' # gcc https://github.com/scipy/scipy/issues/11611 - either patch numpy to include -fallow-argument-mismatch or move to that version
   }
+  {
+    __condition__ : "VARS.dist in ['DB10']"
+      'APPLICATION.products.boost': {tag:'1.58.0',   base: 'no', section: 'version_1_58_0_DB10'}
+  }
 ]
