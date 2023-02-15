@@ -90,6 +90,8 @@ __overwrite__ :
   }
   {
     __condition__ : "VARS.dist in ['DB10']"
-      'APPLICATION.products.boost': {tag:'1.58.0',   base: 'no', section: 'version_1_58_0_DB10'}
+      'APPLICATION.products.boost' : {tag:'1.58.0',   base: 'no', section: 'version_1_58_0_DB10'}
+      'APPLICATION.products.Python': '3.7.9'
+      'APPLICATION.products.Cython': '0.29.33'
   }
 ]
