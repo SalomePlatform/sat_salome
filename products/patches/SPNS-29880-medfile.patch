@@ -1,5 +1,24 @@
---- med-4.1.1_ref/configure	2021-10-08 11:05:43.000000000 +0200
-+++ med-4.1.1_new/configure	2022-08-25 14:42:21.285947589 +0200
+--- med-4.1.1_ref/configure	2023-02-17 11:45:17.252461998 +0100
++++ med-4.1.1_dev/configure	2023-02-17 11:44:59.912317560 +0100
+@@ -8185,12 +8185,12 @@
+          H5_VER_MINOR=`  grep '#define *H5_VERS_MINOR' $HDF5_ABS_PATH | sed  's/^.*H5_VERS_MINOR[[ \t]]*\([0-9]*\)[[ \t]]*.*$/\1/g' `
+          H5_VER_RELEASE=`grep '#define *H5_VERS_RELEASE' $HDF5_ABS_PATH | sed  's/^.*H5_VERS_RELEASE[[ \t]]*\([0-9]*\)[[ \t]]*.*$/\1/g' `
+          HDF5_VERSION=`  expr 10000 \* ${H5_VER_MAJOR} + 100 \* ${H5_VER_MINOR} + ${H5_VER_RELEASE} `
+-         test "0${HDF5_VERSION}" -gt "11100" || test "0${HDF5_VERSION}" -lt "11002" && as_fn_error $? "
+-This HDF5 version ${H5_VER_MAJOR}.${H5_VER_MINOR}.${H5_VER_RELEASE} must not be used with med-fichier${MED_NUM_MAJEUR}.${MED_NUM_MINEUR}.${MED_NUM_RELEASE}.
+-The HDF5 library version used by med-fichier${MED_NUM_MAJEUR}.y.z MUST NOT be > 1.10 and have to be at least HDF${HDF_VERSION_REF}.
+-DO NOT TRY TO COMPILE med-fichier${MED_NUM_MAJEUR}.${MED_NUM_MINEUR}.${MED_NUM_RELEASE} version with an HDF5 library which would generate an hdf5 file not compliant with HDF5-${HDF_VERSION_MAJOR_REF}.${HDF_VERSION_MINOR_REF}.z library.
+-This would BREAK med-fichier compatibility between files with the same revision number !
+-      " "$LINENO" 5
++#          test "0${HDF5_VERSION}" -gt "11100" || test "0${HDF5_VERSION}" -lt "11002" && as_fn_error $? "
++# This HDF5 version ${H5_VER_MAJOR}.${H5_VER_MINOR}.${H5_VER_RELEASE} must not be used with med-fichier${MED_NUM_MAJEUR}.${MED_NUM_MINEUR}.${MED_NUM_RELEASE}.
++# The HDF5 library version used by med-fichier${MED_NUM_MAJEUR}.y.z MUST NOT be > 1.10 and have to be at least HDF${HDF_VERSION_REF}.
++# DO NOT TRY TO COMPILE med-fichier${MED_NUM_MAJEUR}.${MED_NUM_MINEUR}.${MED_NUM_RELEASE} version with an HDF5 library which would generate an hdf5 file not compliant with HDF5-${HDF_VERSION_MAJOR_REF}.${HDF_VERSION_MINOR_REF}.z library.
++# This would BREAK med-fichier compatibility between files with the same revision number !
++#       " "$LINENO" 5
+      else
+ ## In case user explicitly ask to not use hdf5 !
+       { printf "%s\n" "$as_me:${as_lineno-$LINENO}: WARNING: Can't compile MED without hdf5" >&5
 @@ -33062,7 +33062,8 @@
       case $am_cv_python_pythondir in
       $am_py_prefix*)
