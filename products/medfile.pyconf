@@ -82,6 +82,14 @@ version_4_1_0 :
   patches : []
 }
 
+# needed in order to screen with windows version - see below
+version_4_1_0_hdf5 :
+{
+  compil_script :  "med.sh"
+  test_build : "make check"
+  patches : ['medfile-4.1.0-hdf5.patch']
+}
+
 version_4_1_0_win : 
 {
   patches : ['med-4.1.0_win_3x_files_support.patch', 'med-4.1.0_hdf5_native_long.patch']
