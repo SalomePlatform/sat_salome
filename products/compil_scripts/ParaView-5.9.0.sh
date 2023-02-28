@@ -73,8 +73,7 @@ else
 fi
 
 ### VTK general settings
-if [ -n "$SALOME_USE_64BIT_IDS" ]
-then
+if [ "$SALOME_USE_64BIT_IDS" == "1" ]; then
     echo "WARNING: user requested VTK 64 bits encoding..."
     CMAKE_OPTIONS+=" -DVTK_USE_64BIT_IDS:BOOL=ON"
 else

@@ -18,8 +18,7 @@ else
     export F77=gfortran
 fi
 
-if [ -n "$SALOME_USE_64BIT_IDS" ]
-then
+if [ "$SALOME_USE_64BIT_IDS" == "1" ]; then
     echo "WARNING: user requested 64 bits encoding for integers..."
     export  FFLAGS="-g -O2 -ffixed-line-length-none -fdefault-integer-8"
     export FCFLAGS="-fdefault-integer-8"
