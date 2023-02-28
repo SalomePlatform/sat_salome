@@ -29,23 +29,25 @@ APPLICATION :
         boost : 'native'
         certifi : 'native'
         click : 'native'
-        cmake : 'native' 
+        cmake : '3.24.2' 
         cppunit : 'native'
         chardet : 'native'
         Cython : 'native'
         docutils : 'native'
         doxygen : 'native'
         graphviz : 'native'
-        hdf5 : '1.10.3'
+        hdf5 : 'native'
         idna : 'native'
         imagesize : 'native'
         Jinja2 : 'native'
         lapack : 'native'
         libxml2 : 'native'
-        markupsafe : 'native'
-        medfile : {section: 'default_Autotools', tag: '4.1.1rc1'}
+        markupsafe : 'native' 
+        medfile : {tag : '4.1.1', hpc : 'yes', section : 'version_4_1_1' }
         metis : 'native'
+        mpi4py: 'native'
         numpy : 'native'
+        openmpi : 'native'
         pockets : 'native'
         Pygments : 'native'
         pyparsing : 'native'
@@ -67,7 +69,7 @@ APPLICATION :
 
         # SALOME MODULES :
         'CONFIGURATION'
-        'MEDCOUPLING'
+        'MEDCOUPLING' : {tag:'V9_8_0', base: 'no', section: 'default_MPI_STD', hpc: 'yes'}
     }
     test_base : 
     {
@@ -85,10 +87,20 @@ APPLICATION :
 __overwrite__ :
 [
     {
-        # sphinxintl is missing on this node
         __condition__ : "VARS.dist in ['CO8']"
         'APPLICATION.products.sphinxintl' : '0.9.10'
         'PRODUCTS.sphinxintl.default.properties.pip' : "no"
-        'APPLICATION.products.cmake' : '3.12.1'
+    }
+    {
+        __condition__ : "VARS.dist in ['UB22.04']"
+        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_UB22_04'}
+    }
+    {
+        __condition__ : "VARS.dist in ['FD37']"
+        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD37'}
+    }
+    {
+        __condition__ : "VARS.dist in ['FD36']"
+        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD36'}
     }
 ]

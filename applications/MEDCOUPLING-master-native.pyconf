@@ -29,7 +29,7 @@ APPLICATION :
         boost : 'native'
         certifi : 'native'
         click : 'native'
-        cmake : 'native' 
+        cmake : '3.24.2' 
         cppunit : 'native'
         chardet : 'native'
         Cython : 'native'
@@ -45,6 +45,7 @@ APPLICATION :
         markupsafe : 'native'
         medfile : {tag : '4.1.1', hpc : 'yes', section : 'default_Autotools' }
         metis : 'native'
+        mpi4py : 'native'
         numpy : 'native'
         openmpi: 'native'
         pockets : 'native'
@@ -68,7 +69,7 @@ APPLICATION :
 
         # SALOME MODULES :
         'CONFIGURATION'
-        'MEDCOUPLING' : 'abn/cygwin'
+        'MEDCOUPLING' : {tag:'master', base:'no', section:'default_MPI_STD', hpc:'yes'}
     }
     test_base : 
     {
@@ -85,4 +86,21 @@ APPLICATION :
 }
 __overwrite__ :
 [
+    {
+        __condition__ : "VARS.dist in ['CO8']"
+        'APPLICATION.products.sphinxintl' : '0.9.10'
+        'PRODUCTS.sphinxintl.default.properties.pip' : "no"
+    }
+    {
+        __condition__ : "VARS.dist in ['UB22.04']"
+        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_UB22_04'}
+    }
+    {
+        __condition__ : "VARS.dist in ['FD37']"
+        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD37'}
+    }
+    {
+        __condition__ : "VARS.dist in ['FD36']"
+        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD36'}
+    }
 ]

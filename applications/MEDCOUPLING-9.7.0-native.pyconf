@@ -66,7 +66,6 @@ APPLICATION :
         swig : 'native'
         packaging : 'native'
         urllib3 : 'native'
-        salome_system : 'native'
         # SALOME MODULES :
         'CONFIGURATION'
         'MEDCOUPLING' : {tag:'V9_7_0', base: 'no', section: 'default_MPI_STD', hpc: 'yes'}
@@ -86,11 +85,9 @@ APPLICATION :
 }
 __overwrite__ :
 [
-   {
-      # sphinxintl is missing on this node
-      __condition__ : "VARS.dist in ['CO8']"
-      'APPLICATION.products.sphinxintl' : '0.9.10'
-      'PRODUCTS.sphinxintl.default.properties.pip' : "no"
-      'APPLICATION.products.cmake' : '3.24.2'
-   }
+    {
+        __condition__ : "VARS.dist in ['CO8']"
+        'APPLICATION.products.sphinxintl' : '0.9.10'
+        'PRODUCTS.sphinxintl.default.properties.pip' : "no"
+    }
 ]
