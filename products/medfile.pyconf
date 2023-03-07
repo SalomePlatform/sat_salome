@@ -79,15 +79,23 @@ version_4_1_1_FD36 :
 # needed in order to screen with windows version - see below
 version_4_1_0 :
 {
+  compil_script :  "med-4.1.0.sh"
   patches : []
 }
 
 # needed in order to screen with windows version - see below
 version_4_1_0_hdf5 :
 {
-  compil_script :  "med.sh"
+  compil_script :  "med-4.1.0.sh"
   test_build : "make check"
   patches : ['medfile-4.1.0-hdf5.patch']
+}
+
+version_4_1_0_hdf5_1_12 :
+{
+  compil_script :  "med-4.1.0.sh"
+  test_build : "make check"
+  patches : ['med-4.1.0_hdf5-1.12.0.patch']
 }
 
 version_4_1_0_win : 

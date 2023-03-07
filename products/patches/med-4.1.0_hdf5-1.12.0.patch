@@ -1,0 +1,123 @@
+--- med-4.1.0_ref/configure	2020-03-11 12:53:46.000000000 +0100
++++ med-4.1.0_dev/configure	2023-03-01 14:45:28.321320038 +0100
+@@ -3197,7 +3197,7 @@
+ #med_check_hdf5.m4
+ HDF_VERSION_REF=5-1.10.2
+ HDF_VERSION_MAJOR_REF=1
+-HDF_VERSION_MINOR_REF=10
++HDF_VERSION_MINOR_REF=13
+ HDF_VERSION_RELEASE_REF=2
+ 
+ 
+@@ -7573,16 +7573,16 @@
+       HDF5_VERSION="0"
+       if test -n "$HDF5_ABS_PATH" ; then
+          HDF5_USED_VER=` grep H5_VERS_INFO $HDF5_ABS_PATH | sed  's/\([^"]*\)\(".*"\)\([^"]*\)/\2/g' `
+-         H5_VER_MAJOR=`  grep '#define *H5_VERS_MAJOR' $HDF5_ABS_PATH | sed  's/^.*H5_VERS_MAJOR[[ \t]]*\([0-9]*\)[[ \t]]*.*$/\1/g' `
+-         H5_VER_MINOR=`  grep '#define *H5_VERS_MINOR' $HDF5_ABS_PATH | sed  's/^.*H5_VERS_MINOR[[ \t]]*\([0-9]*\)[[ \t]]*.*$/\1/g' `
+-         H5_VER_RELEASE=`grep '#define *H5_VERS_RELEASE' $HDF5_ABS_PATH | sed  's/^.*H5_VERS_RELEASE[[ \t]]*\([0-9]*\)[[ \t]]*.*$/\1/g' `
++         H5_VER_MAJOR=`  grep '#define *H5_VERS_MAJOR' $HDF5_ABS_PATH | cut -d ' ' -f3 `
++         H5_VER_MINOR=`  grep '#define *H5_VERS_MINOR' $HDF5_ABS_PATH | cut -d ' ' -f3 `
++         H5_VER_RELEASE=`grep '#define *H5_VERS_RELEASE' $HDF5_ABS_PATH | cut -d ' ' -f3 `
+          HDF5_VERSION=`  expr 10000 \* ${H5_VER_MAJOR} + 100 \* ${H5_VER_MINOR} + ${H5_VER_RELEASE} `
+-         test "0${HDF5_VERSION}" -gt "11100" || test "0${HDF5_VERSION}" -lt "11002" && as_fn_error $? "
+-This HDF5 version ${H5_VER_MAJOR}.${H5_VER_MINOR}.${H5_VER_RELEASE} must not be used with med-fichier${MED_NUM_MAJEUR}.${MED_NUM_MINEUR}.${MED_NUM_RELEASE}.
+-The HDF5 library version used by med-fichier${MED_NUM_MAJEUR}.y.z MUST NOT be > 1.10 and have to be at least HDF${HDF_VERSION_REF}.
+-DO NOT TRY TO COMPILE med-fichier${MED_NUM_MAJEUR}.${MED_NUM_MINEUR}.${MED_NUM_RELEASE} version with an HDF5 library which would generate an hdf5 file not compliant with HDF5-${HDF_VERSION_MAJOR_REF}.${HDF_VERSION_MINOR_REF}.z library.
+-This would BREAK med-fichier compatibility between files with the same revision number !
+-      " "$LINENO" 5
++#          test "0${HDF5_VERSION}" -gt "11100" || test "0${HDF5_VERSION}" -lt "11002" && as_fn_error $? "
++# This HDF5 version ${H5_VER_MAJOR}.${H5_VER_MINOR}.${H5_VER_RELEASE} must not be used with med-fichier${MED_NUM_MAJEUR}.${MED_NUM_MINEUR}.${MED_NUM_RELEASE}.
++# The HDF5 library version used by med-fichier${MED_NUM_MAJEUR}.y.z MUST NOT be > 1.10 and have to be at least HDF${HDF_VERSION_REF}.
++# DO NOT TRY TO COMPILE med-fichier${MED_NUM_MAJEUR}.${MED_NUM_MINEUR}.${MED_NUM_RELEASE} version with an HDF5 library which would generate an hdf5 file not compliant with HDF5-${HDF_VERSION_MAJOR_REF}.${HDF_VERSION_MINOR_REF}.z library.
++# This would BREAK med-fichier compatibility between files with the same revision number !
++#       " "$LINENO" 5
+      else
+ ## In case user explicitly ask to not use hdf5 !
+       { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Can't compile MED without hdf5" >&5
+@@ -31697,7 +31697,8 @@
+      case $am_cv_python_pythondir in
+      $am_py_prefix*)
+        am__strip_prefix=`echo "$am_py_prefix" | sed 's|.|.|g'`
+-       am_cv_python_pythondir=`echo "$am_cv_python_pythondir" | sed "s,^$am__strip_prefix,$PYTHON_PREFIX,"`
++       # am_cv_python_pythondir=`echo "$am_cv_python_pythondir" | sed "s,^$am__strip_prefix,$PYTHON_PREFIX,"`
++       am_cv_python_pythondir="\${PYTHON_PREFIX}/lib/python$PYTHON_VERSION/site-packages"
+        ;;
+      *)
+        case $am_py_prefix in
+@@ -31741,7 +31742,8 @@
+      case $am_cv_python_pyexecdir in
+      $am_py_exec_prefix*)
+        am__strip_prefix=`echo "$am_py_exec_prefix" | sed 's|.|.|g'`
+-       am_cv_python_pyexecdir=`echo "$am_cv_python_pyexecdir" | sed "s,^$am__strip_prefix,$PYTHON_EXEC_PREFIX,"`
++       # am_cv_python_pyexecdir=`echo "$am_cv_python_pyexecdir" | sed "s,^$am__strip_prefix,$PYTHON_EXEC_PREFIX,"`
++       am_cv_python_pyexecdir="\${PYTHON_EXEC_PREFIX}/lib/python$PYTHON_VERSION/site-packages"
+        ;;
+      *)
+        case $am_py_exec_prefix in
+--- med-4.1.0_ref/src/hdfi/_MEDparFileCreate.c	2020-03-11 10:36:37.000000000 +0100
++++ med-4.1.0_dev/src/hdfi/_MEDparFileCreate.c	2023-03-01 14:38:44.653666031 +0100
+@@ -64,7 +64,7 @@
+    * En HDF5-1.10.0p1 cela n'a aucun effet ! 
+    * Un test autoconf permet de fixer un intervalle de version HDF à MED.
+    */
+-#if H5_VERS_MINOR > 10
++#if H5_VERS_MINOR > 12
+ #error "Don't forget to change the compatibility version of the library !"
+ #endif
+    
+--- med-4.1.0_ref/src/hdfi/_MEDmemFileOpen.c	2020-03-11 11:06:04.000000000 +0100
++++ med-4.1.0_dev/src/hdfi/_MEDmemFileOpen.c	2023-03-01 14:39:16.990279182 +0100
+@@ -434,7 +434,7 @@
+     goto ERROR;
+   }
+ 
+-#if H5_VERS_MINOR > 10
++#if H5_VERS_MINOR > 12
+ #error "Don't forget to change the compatibility version of the library !"
+ #endif
+   if ( H5Pset_libver_bounds( _fapl, H5F_LIBVER_18, H5F_LIBVER_18) ) {
+--- med-4.1.0_ref/src/hdfi/_MEDfileCreate.c	2020-03-11 10:36:37.000000000 +0100
++++ med-4.1.0_dev/src/hdfi/_MEDfileCreate.c	2023-03-01 14:42:38.690103638 +0100
+@@ -159,7 +159,7 @@
+    * En HDF5-1.10.0p1 cela n'a aucun effet ! 
+    * Un test autoconf permet de fixer un intervalle de version HDF à MED.
+    */
+-#if H5_VERS_MINOR > 10
++#if H5_VERS_MINOR > 12
+ #error "Don't forget to change the compatibility version of the library !"
+ #endif
+    
+--- med-4.1.0_ref/src/hdfi/_MEDparFileOpen.c	2020-03-11 10:36:36.000000000 +0100
++++ med-4.1.0_dev/src/hdfi/_MEDparFileOpen.c	2023-03-01 14:43:12.134737789 +0100
+@@ -55,7 +55,7 @@
+     MED_ERR_(_fid,MED_ERR_INIT,MED_ERR_PROPERTY,MED_ERR_PARALLEL_MSG);
+     goto ERROR;
+   }
+-#if H5_VERS_MINOR > 10
++#if H5_VERS_MINOR > 12
+ #error "Don't forget to change the compatibility version of the library !"
+ #endif
+   if ( H5Pset_libver_bounds( _fapl, H5F_LIBVER_18, H5F_LIBVER_18 ) ) {
+--- med-4.1.0_ref/src/hdfi/_MEDfileOpen.c	2020-03-12 16:27:49.000000000 +0100
++++ med-4.1.0_dev/src/hdfi/_MEDfileOpen.c	2023-03-01 14:43:45.131363443 +0100
+@@ -72,7 +72,7 @@
+ 
+    •   The creation order tracking property, H5P_CRT_ORDER_TRACKED, has been set in the group creation property list (see H5Pset_link_creation_order). 
+   */
+-#if H5_VERS_MINOR > 10
++#if H5_VERS_MINOR > 12
+ #error "Don't forget to change the compatibility version of the library !"
+ #endif
+ /* L'avantage de bloquer le modèle interne HDF5 
+--- med-4.1.0_ref/src/ci/MEDfileCompatibility.c	2020-03-11 10:36:34.000000000 +0100
++++ med-4.1.0_dev/src/ci/MEDfileCompatibility.c	2023-03-01 14:38:09.220994176 +0100
+@@ -113,7 +113,7 @@
+ #if MED_NUM_MAJEUR != 4
+ #error "Don't forget to update the test version here when you change the major version of the library !"
+ #endif
+-#if H5_VERS_MINOR > 10
++#if H5_VERS_MINOR > 12
+ #error "Don't forget to check the compatibility version of the library, depending on the internal hdf model choice !"
+ #error "Cf. _MEDfileCreate ..."
+ #endif

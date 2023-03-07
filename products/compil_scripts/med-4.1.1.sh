@@ -8,8 +8,13 @@ CONFIGURE_FLAGS=
 CONFIGURE_FLAGS+=' CFLAGS=-m64 CXXFLAGS=-m64' 
 CONFIGURE_FLAGS+=' --enable-python=yes'
 CONFIGURE_FLAGS+=' --enable-mesgerr'
-if [ -n "$SAT_HPC" ]
-then
+
+if [ "$HDF5_VERSION" == "1.12.1" ]; then
+    echo "WARNING: ensure compatibility with HDF 1.12"
+    CONFIGURE_FLAGS+=' CPPFLAGS=-DH5_USE_110_API'
+fi
+
+if [ -n "$SAT_HPC" ]; then
     export CXX=${MPI_CXX_COMPILER}
     export CC=${MPI_C_COMPILER}
     CONFIGURE_FLAGS+=' --with-swig=yes'
@@ -39,8 +44,7 @@ fi
 echo
 echo "*** make" $MAKE_OPTIONS
 make $MAKE_OPTIONS
-if [ $? -ne 0 ]
-then
+if [ $? -ne 0 ]; then
     echo "ERROR on make"
     exit 2
 fi
@@ -48,8 +52,7 @@ fi
 echo
 echo "*** make install"
 make install
-if [ $? -ne 0 ]
-then
+if [ $? -ne 0 ]; then
     echo "ERROR on make install"
     exit 3
 fi
