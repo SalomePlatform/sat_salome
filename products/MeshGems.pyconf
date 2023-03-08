@@ -47,6 +47,7 @@ version_2_15_1 :
 
 version_2_15_1_win :
 {
+    compil_script :  "MeshGems-2.15.bat"
     properties :
     {
       is_distene : "no"

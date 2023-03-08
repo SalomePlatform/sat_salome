@@ -1,7 +1,7 @@
 @echo off
 
 echo ##########################################################################
-echo MeshGems $VERSION
+echo MeshGems %VERSION%
 echo ##########################################################################
 
 if NOT exist "%PRODUCT_INSTALL%" mkdir %PRODUCT_INSTALL%
@@ -18,7 +18,6 @@ cd %SOURCE_DIR%
 
 set SRC_FOLDER_VC14=Win7_64_VC14
 set SRC_FOLDER_VC15=Win7_64_VC15
-set SRC_FOLDER_VC16=Win10_64_VC16
 cd DISTENE\MeshGems-*\Products
 
 echo PRODUCT_INSTALL = %PRODUCT_INSTALL%
@@ -34,10 +33,6 @@ REM
 set SRC_FOLDER=%SRC_FOLDER_VC15%
 if exist "lib\%SRC_FOLDER_VC14%" (
    set SRC_FOLDER=%SRC_FOLDER_VC14%
-)
-
-if exist "lib\%SRC_FOLDER_VC16%" (
-   set SRC_FOLDER=%SRC_FOLDER_VC16%
 )
 
 echo SRC_FOLDER = %SRC_FOLDER%
