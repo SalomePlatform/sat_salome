@@ -10,7 +10,7 @@ cd $BUILD_DIR
 
 cp -r $SOURCE_DIR/* .
 
-if [ -f autogen.pl ]; then
+if [ -f autogen.pl ] && [ ! -f configure ]; then
     echo
     echo "*** autoreconf -i"
     chmod +x autogen.pl
