@@ -8,15 +8,15 @@ rm -rf $BUILD_DIR
 mkdir $BUILD_DIR
 cd $BUILD_DIR
 
-cp -r $SOURCE_DIR/* .
+# -p option ensures that the date remain the same.
+cp -p -r $SOURCE_DIR/* .
 
 if [ -f autogen.pl ] && [ ! -f configure ]; then
     echo
-    echo "*** autoreconf -i"
+    echo "*** autogen.pl"
     chmod +x autogen.pl
     ./autogen.pl
-    if [ $? -ne 0 ]
-    then
+    if [ $? -ne 0 ]; then
         echo "ERROR on autogen.pl"
         exit 1
     fi
