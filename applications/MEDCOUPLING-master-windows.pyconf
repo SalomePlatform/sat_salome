@@ -82,7 +82,7 @@ APPLICATION :
 
         # SALOME MODULES :
         'CONFIGURATION'
-        'MEDCOUPLING' : 'abn/cygwin'
+        'MEDCOUPLING' : 'abn/write40'
     }
     test_base :
     {
