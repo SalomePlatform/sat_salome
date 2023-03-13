@@ -129,7 +129,7 @@ APPLICATION :
         sphinx_rtd_theme : '0.4.3'
         sphinxintl: '0.9.10'
         statsmodels: '0.8.0'
-        swig : '4.1.1'
+        swig : '4.0.2'
         tbb : '2019_U8'
         tcl : '8.6.0'
         tk : '8.6.0'
