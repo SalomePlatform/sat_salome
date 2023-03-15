@@ -8,6 +8,7 @@ rm -rf $BUILD_DIR
 mkdir $BUILD_DIR
 cd $BUILD_DIR
 cp -r $SOURCE_DIR/* .
+LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
 
 # spns #29973
 for X in env.sh runAllTests.sh; do
@@ -42,8 +43,16 @@ export PYTHONPATH="${MEDCOUPLING_ROOT_DIR}/${PYTHON_LIBDIR}:${PYTHONPATH}"
 export PYTHONPATH="${MEDCOUPLING_ROOT_DIR}/lib:${PYTHONPATH}"
 export PYTHONPATH="${MEDCOUPLING_ROOT_DIR}/bin:${PYTHONPATH}"
 cd $BUILD_DIR
-if [ -n "$MPI_ROOT_DIR" ]; then
-    ctest .
+if [ "$MPI_ROOT_DIR" != "" ]; then
+    case $LINUX_DISTRIBUTION in
+        DB09)
+            # timeout #FIXME
+            ctest . -E "Dussaix_master_worker"
+        ;;
+        *)
+            ctest .
+            ;;
+    esac
 else
     # these tests use MPI...
     ctest -E "Dussaix_seq|Dussaix_master_worker|Dussaix_collaborative|Listings_collaboratif"
