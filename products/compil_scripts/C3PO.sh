@@ -46,9 +46,8 @@ cd $BUILD_DIR
 if [ "$MPI_ROOT_DIR" != "" ]; then
     case $LINUX_DISTRIBUTION in
         DB09)
-            # timeout #FIXME
-            ctest . -E "Dussaix_master_worker"
-        ;;
+            ctest -E "Dussaix_seq|Dussaix_master_worker|Dussaix_collaborative|Listings_collaboratif"
+            ;;
         *)
             ctest .
             ;;
