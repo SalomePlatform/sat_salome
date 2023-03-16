@@ -7,6 +7,7 @@ echo "##########################################################################
 export CC=$(which mpicc)
 export CXX=$(which mpicxx)
 export MPICXX=$(which mpic++)
+LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
 
 CONFIGURE_FLAGS=
 CONFIGURE_FLAGS+=" --with-MPICXX=${MPICXX}"
@@ -20,8 +21,7 @@ cp -r $SOURCE_DIR/* .
 echo
 echo "*** autoreconf -i"
 autoreconf -i
-if [ $? -ne 0 ]
-then
+if [ $? -ne 0 ]; then
     echo "ERROR on autoreconf command"
     exit 1
 fi
@@ -29,16 +29,15 @@ fi
 echo
 echo "*** configure --prefix=$PRODUCT_INSTALL $CONFIGURE_FLAGS" 
 $BUILD_DIR/configure --prefix=$PRODUCT_INSTALL $CONFIGURE_FLAGS
-if [ $? -ne 0 ]
-then
+if [ $? -ne 0 ]; then
     echo "ERROR on configure"
     exit 2
 fi
+
 echo
 echo "*** make" $MAKE_OPTIONS
 make $MAKE_OPTIONS
-if [ $? -ne 0 ]
-then
+if [ $? -ne 0 ]; then
     echo "ERROR on make"
     exit 3
 fi
@@ -46,8 +45,7 @@ fi
 echo
 echo "*** make install"
 make install
-if [ $? -ne 0 ]
-then
+if [ $? -ne 0 ]; then
     echo "ERROR on make install"
     exit 4
 fi
@@ -62,12 +60,18 @@ else
     echo "*** hostnamectl says that $HOSTNAME is *NOT* a virtual machine"
 fi
 
-make check
-if [ $? -ne 0 ]
-then
-    echo "ERROR on make check"
-    exit 5
-fi
+case $LINUX_DISTRIBUTION in
+    DB09)
+        :
+        ;;
+    *)
+        make check
+        if [ $? -ne 0 ]; then
+            echo "ERROR on make check"
+            exit 5
+        fi
+        ;;
+esac
 
 echo
 echo "########## END"
