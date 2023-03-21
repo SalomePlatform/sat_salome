@@ -18,6 +18,8 @@ def set_env(env, prereq_dir, version):
     env.prepend('PATH', os.path.join(prereq_dir, 'include'))
     env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib'))
     env.prepend('C_INCLUDE_PATH', os.path.join(prereq_dir, 'include'))  # needed for parallel h5py
+    if version in ['4.1.5'] :
+        env.set('PMIX_MCA_gds', 'hash')
 
 def set_nativ_env(env):
     prereq_dir='/usr'
