@@ -30,7 +30,7 @@ APPLICATION :
         boost : '1.71.0'
         certifi : '2018.8.24'
         click : '6.7'
-        cmake : '3.24.2' 
+        cmake : '3.25.2' 
         cppunit : '1.13.2'
         chardet : '3.0.4'
         Cython : '0.29.12'
@@ -71,7 +71,7 @@ APPLICATION :
 
         # SALOME MODULES :
         'CONFIGURATION'
-        'MEDCOUPLING' : {tag:'abn/write40', base: 'no', section: 'default_MPI_STD', hpc: 'yes'} # FIXME
+        'MEDCOUPLING' : {tag:'master', base: 'no', section: 'default_MPI_STD', hpc: 'yes'} # FIXME
     }
     test_base : 
     {

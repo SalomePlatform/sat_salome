@@ -29,7 +29,7 @@ APPLICATION :
         boost : 'native'
         certifi : 'native'
         click : 'native'
-        cmake : '3.24.2' 
+        cmake : '3.25.2' 
         cppunit : 'native'
         chardet : 'native'
         Cython : 'native'
@@ -69,7 +69,7 @@ APPLICATION :
 
         # SALOME MODULES :
         'CONFIGURATION'
-        'MEDCOUPLING' : {tag:'abn/write40', base:'no', section:'default_MPI_STD', hpc:'yes'}
+        'MEDCOUPLING' : {tag:'master', base:'no', section:'default_MPI_STD', hpc:'yes'}
     }
     test_base : 
     {
