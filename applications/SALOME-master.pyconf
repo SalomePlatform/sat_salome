@@ -91,7 +91,7 @@ APPLICATION :
         omniORB : '4.2.5'
         omniORBpy : '4.2.5'
         opencv : '3.2.0'
-        openmpi : '4.1.5'
+        openmpi : '4.0.3'
         openturns: '1.19'
         openVKL: '0.11.0'
         ospray : '2.4.0'
