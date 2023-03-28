@@ -222,6 +222,8 @@ __overwrite__ :
     {
         __condition__ : "VARS.dist in ['CO7']"
         'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
+        'APPLICATION.products.SMESH'        : 'yan/parallel_mesh_win'
+        'APPLICATION.products.NETGENPLUGIN' : 'yan/parallel_mesh_win'
     }
     {
         __condition__ : "VARS.dist in ['CO8']"
