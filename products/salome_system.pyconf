@@ -36,7 +36,7 @@ default :
         # specific to some platform(s)
         "CO7" :
         {
-            rpm : ["lz4", "gsl", "libgeotiff", "giflib", "geos", "fftw"]
+            rpm : ["lz4", "gsl", "libgeotiff", "giflib", "geos", "fftw", "postgresql-libs", "pcllib"]
             rpm_dev : ["perl", "gsl-devel", "libpng-devel", "libtiff-devel", "libgeotiff-devel", "giflib-devel", "geos-devel", "fftw-devel", "devtoolset-8-gcc", "texlive-dvipng"]
         }
         "CO8" :
