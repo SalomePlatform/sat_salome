@@ -38,29 +38,17 @@ default_win :
 version_1_20 :
 {
     compil_script :  "openturns-1.20" + $VARS.scriptExtension
+    patches : []
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
     opt_depend : ['pandas', 'statsmodels']
-    patches : []
 }
 
-version_1_20_win :
-{
-    properties :
-    {
-      incremental : "yes"
-      pip : "yes"
-    }
-    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'pthreads', 'dill', 'psutil']
-    opt_depend : []
-    patches : []
-}
-
-version_1_20_DB09 :
+version_1_20_UB20_04 :
 {
     compil_script :  "openturns-1.20" + $VARS.scriptExtension
+    patches : ['openturns-1.20.0002.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
     opt_depend : ['pandas', 'statsmodels']
-    patches : ['openturns-1.20.0001.patch']
 }
 
 version_1_19 :
