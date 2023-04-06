@@ -91,13 +91,13 @@ APPLICATION :
         opencv : 'native'
         openmpi: 'native'
         openVKL : '0.11.0'
-        openturns: '1.19'
+        openturns: '1.20'
         ospray : '2.4.0'
         packaging : 'native'
         packagespy : '74152cd'
         pandas : 'native'
         ParaView : {tag:'5.11.0', base: 'no',  section: 'version_5_11_0_MPI', hpc: 'yes'}
-        PERSALYS: 'v13.0'
+        PERSALYS: 'v14.0.1'
         petsc : {tag : '3.16.0', section: 'version_3_16_0'}
         Pillow : 'native'
         planegcs : '0.18-3cb6890'
