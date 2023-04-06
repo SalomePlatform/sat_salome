@@ -437,8 +437,8 @@ cd ${PRODUCT_INSTALL}/lib
 # On some nodes, the link to OT is not done properly.
 if [[ ! -f libOT.so.0 ]]; then
     echo "INFO: Fixing libOT.so"
-    ln -sf libOT.so.0.20.0 libOT.so.0.20
-    ln -sf libOT.so.0.20 libOT.so.0
+    ln -sf libOT.so.0.21.0 libOT.so.0.21
+    ln -sf libOT.so.0.21 libOT.so.0
     ln -sf libOT.so.0 libOT.so
 fi
 
