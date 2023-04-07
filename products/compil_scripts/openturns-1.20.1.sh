@@ -125,7 +125,7 @@ mkdir -p $TEXMFVAR
 mkdir -p $TEXMFCONFIG
 
 cd  $BUILD_DIR/openturns
-cmake $CMAKE_OPTIONS $SOURCE_DIR/openturns-1.20
+cmake $CMAKE_OPTIONS $SOURCE_DIR/openturns-1.20.1
 if [ $? -ne 0 ]
 then
     echo "ERROR on cmake"
@@ -177,8 +177,8 @@ fi
 
 export PYTHONPATH=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages:${PYTHONPATH}
 export LD_LIBRARY_PATH=${PRODUCT_INSTALL}/lib:${LD_LIBRARY_PATH}
-chmod +x ${SOURCE_DIR}/openturns-1.20/python/test/t_features.py
-${SOURCE_DIR}/openturns-1.20/python/test/t_features.py
+chmod +x ${SOURCE_DIR}/openturns-1.20.1/python/test/t_features.py
+${SOURCE_DIR}/openturns-1.20.1/python/test/t_features.py
 if [ $? -ne 0 ]
 then
     echo "ERROR  testing Openturns features...."
