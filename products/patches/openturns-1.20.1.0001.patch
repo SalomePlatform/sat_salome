@@ -1,6 +1,6 @@
-diff -Naur openturns-1.20_ref/openturns-1.20/CMakeLists.txt  openturns-1.20_dev/openturns-1.20/CMakeLists.txt
---- openturns-1.20_ref/openturns-1.20/CMakeLists.txt	2023-03-31 13:11:11.000000000 +0200
-+++ openturns-1.20_dev/openturns-1.20/CMakeLists.txt	2023-04-04 10:35:09.815050125 +0200
+diff -Naur openturns-1.20.1_ref/openturns-1.20.1/CMakeLists.txt  openturns-1.20.1_dev/openturns-1.20.1/CMakeLists.txt
+--- openturns-1.20.1_ref/openturns-1.20.1/CMakeLists.txt	2023-03-31 13:11:11.000000000 +0200
++++ openturns-1.20.1_dev/openturns-1.20.1/CMakeLists.txt	2023-04-04 10:35:09.815050125 +0200
 @@ -154,6 +154,10 @@
    endif ()
  endif ()

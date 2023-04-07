@@ -1,5 +1,5 @@
---- openturns_ref/openturns-1.20/CMakeLists.txt	2023-03-31 13:11:11.000000000 +0200
-+++ openturns_dev/openturns-1.20/CMakeLists.txt	2023-04-05 11:34:07.224075227 +0200
+--- openturns_ref/openturns-1.20.1/CMakeLists.txt	2023-03-31 13:11:11.000000000 +0200
++++ openturns_dev/openturns-1.20.1/CMakeLists.txt	2023-04-05 11:34:07.224075227 +0200
 @@ -315,7 +315,11 @@
  endif ()
  
