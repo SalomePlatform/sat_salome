@@ -110,7 +110,7 @@ fi
 #  setting -DCMAKE_INSTALL_LIBDIR to lib is not enough on Fedora nodes
 echo
 echo "*** check installation"
-if [! -d "${PRODUCT_INSTALL}/lib" ]; then
+if [ ! -d "${PRODUCT_INSTALL}/lib" ]; then
     mkdir -p ${PRODUCT_INSTALL}/lib
 fi
 
