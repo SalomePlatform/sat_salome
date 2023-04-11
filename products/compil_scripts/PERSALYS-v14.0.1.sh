@@ -23,10 +23,15 @@ CMAKE_OPTIONS+=" -DSalomeKERNEL_DIR=$KERNEL_ROOT_DIR/salome_adm/cmake_files"
 CMAKE_OPTIONS+=" -DOpenTURNS_DIR=$OT_ROOT_DIR/lib/cmake/openturns"
 CMAKE_OPTIONS+=" -DPy2cpp_DIR=$PY2CPP_ROOT_DIR//lib/cmake/py2cpp"
 
-# strangely Centos 8 fails to guess qwt installation
+# strangely some distributions fail to guess qwt installation location
+#  - CentOS 8
+#  - Ubuntu 20.04
 if [[ $DIST_NAME == "CO" && $DIST_VERSION == "8" && "$SAT_qwt_IS_NATIVE" == "1" ]]; then
     CMAKE_OPTIONS+=" -DQWT_LIBRARY=/usr/lib64/libqwt-qt5.so"
     CMAKE_OPTIONS+=" -DQWT_INCLUDE_DIR=/usr/include/qt5/qwt"
+elif [[ $DIST_NAME == "UB" && $DIST_VERSION == "20.04" && "$SAT_qwt_IS_NATIVE" == "1" ]]; then
+    CMAKE_OPTIONS+=" -DQWT_LIBRARY=/usr/lib/libqwt-qt5.so"
+    CMAKE_OPTIONS+=" -DQWT_INCLUDE_DIR=/usr/include/qwt"
 elif [ "$SAT_qwt_IS_NATIVE" != "1" ]; then
     CMAKE_OPTIONS+=" -DQWT_LIBRARY=$QWT_ROOT_DIR/lib/libqwt.so"
     CMAKE_OPTIONS+=" -DQWT_INCLUDE_DIR=$QWT_ROOT_DIR/include"
