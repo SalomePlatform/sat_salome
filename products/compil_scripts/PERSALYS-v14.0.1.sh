@@ -125,6 +125,13 @@ if [ -d "${PRODUCT_INSTALL}/lib64" ]; then
     rmdir ${PRODUCT_INSTALL}/lib64
 fi
 
+
+if [ -d "${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/dist-packages" ]; then
+    echo "WARNING: linking against dist-packages"
+    cd ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}
+    ln -sf dist-packages site-packages
+fi
+
 echo
 echo "########## END"
 
