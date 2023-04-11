@@ -47,6 +47,16 @@ version_2_6_UB22_04:
       pip : "no"
     }
 }
+version_2_6_FD37:
+{
+    patches: ['pyfmi-2.6-python-3.1x.01.patch']
+    compil_script : "PyFMI-2.6.sh"
+    properties:
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+}
 
 version_2_5_no_pip :
 {

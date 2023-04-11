@@ -311,7 +311,7 @@ __overwrite__ :
         'APPLICATION.products.nlopt'            : '2.6.0'
         'APPLICATION.products.netcdf'           : '4.6.2'
         'APPLICATION.products.numpy'            : {tag: '1.22.2',    base: 'no', section: 'version_1_22_2'                      }
-        'APPLICATION.products.PyFMI'            : {tag: '2.6',       base: 'no', section: 'version_2_6_no_pip'                  }
+        'APPLICATION.products.PyFMI'            : {tag: '2.6',       base: 'no', section: 'version_2_6_FD37'                    }
         'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD37'                  }
         'APPLICATION.products.ParaView'         : {tag: '5.11.0',    base: 'no',  section: 'version_5_11_0_MPI_FD37', hpc: 'yes'}
         'APPLICATION.products.CONFIGURATION'    : {tag:'master',     base: 'no', section: 'default'                             }
