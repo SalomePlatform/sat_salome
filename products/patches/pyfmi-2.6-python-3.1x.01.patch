@@ -1,0 +1,12 @@
+diff -Naur PyFMI-PyFMI-2.6_ref/src/pyfmi/fmi_util.pyx  PyFMI-PyFMI-2.6_dev/src/pyfmi/fmi_util.pyx
+--- PyFMI-PyFMI-2.6_ref/src/pyfmi/fmi_util.pyx	2020-03-04 22:13:53.000000000 +0100
++++ PyFMI-PyFMI-2.6_dev/src/pyfmi/fmi_util.pyx	2023-04-11 15:56:56.752107408 +0200
+@@ -465,7 +465,7 @@
+                 self._strongly_connected_components(node)
+         return self.connected_components
+ """
+-class OrderedSet(collections.MutableSet):
++class OrderedSet(collections.abc.MutableSet):
+ 
+     def __init__(self, iterable=None):
+         self.end = end = [] 
