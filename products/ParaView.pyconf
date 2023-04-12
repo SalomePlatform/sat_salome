@@ -190,7 +190,9 @@ version_5_11_1_MPI_CO8 :
 {
     compil_script :  'ParaView-5.11.1.sh'
     archive_info : {archive_name : "ParaView-5.11.1.tar.gz"}
-    patches : []
+    patches : [
+               'paraview-5.11.1.p002-ParaViewClient.patch'
+              ]
     depend : [
               'Python',
               'hdf5',
