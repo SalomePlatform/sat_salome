@@ -159,19 +159,17 @@ fi
 if [ -d "${PRODUCT_INSTALL}/lib64" ]; then
     echo "WARNING: moving lib64 to lib"
     mv ${PRODUCT_INSTALL}/lib64/* ${PRODUCT_INSTALL}/lib/
-    rmdir ${PRODUCT_INSTALL}/lib64
+    rm -rf ${PRODUCT_INSTALL}/lib64
 elif [ -d "${PRODUCT_INSTALL}/local/lib64" ]; then
     echo "WARNING: moving local/lib64 to lib"
     mv ${PRODUCT_INSTALL}/local/lib64/* ${PRODUCT_INSTALL}/lib/
-    rmdir ${PRODUCT_INSTALL}/local/lib64
+    rm -rf ${PRODUCT_INSTALL}/local/lib64
 fi
 
 if [[ -d "${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/dist-packages" ]]; then
     echo "WARNING: renaming ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/dist-packages as ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages"
     cd  ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}
-    ls -l
-    mv dist-packages site-packages
-    ls -l
+    ln -sf dist-packages site-packages
     cd  $BUILD_DIR/openturns
 fi
 
