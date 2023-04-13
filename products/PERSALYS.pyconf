@@ -54,7 +54,7 @@ default_win :
 {
     properties :
     {
-      single_install_dir : "yes"
+      single_install_dir : "no"
       incremental : "yes"
     }
 }
@@ -64,11 +64,60 @@ version_v14_0_1 :
    patches : []
 }
 
+version_v14_0_1_win :
+{
+   depend : ['Python',
+              'hdf5',
+              'cgns',
+              'tbb',
+              'nlopt',
+              'libxml2',
+              'eigen',
+              'boost',
+              'ADAO',
+              'KERNEL',
+              'GUI',
+              'Sphinx',
+              'qwt',
+              'qt',
+              'ParaView',
+              'openturns',
+              'YACS',
+              'YDEFX',
+              'CAS',
+              'CONFIGURATION'
+           ]
+}
+
 version_v13_0 :
 {
    patches : []
 }
 
+version_v13_0_win :
+{
+   depend : ['Python',
+              'hdf5',
+              'cgns',
+              'tbb',
+              'nlopt',
+              'libxml2',
+              'eigen',
+              'boost',
+              'ADAO',
+              'KERNEL',
+              'GUI',
+              'Sphinx',
+              'qwt',
+              'qt',
+              'ParaView',
+              'openturns',
+              'YACS',
+              'YDEFX',
+              'CAS',
+              'CONFIGURATION'
+           ]
+}
 version_v12_0 :
 {
    patches : ['PERSALYS-v12-002.patch', 'PERSALYS-v12-003.patch']

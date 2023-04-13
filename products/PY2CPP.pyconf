@@ -33,6 +33,6 @@ default_win :
     properties:
     {
       incremental : "yes"
-      single_install_dir : "yes" # aimed to solve sat #18914
+      single_install_dir : "no" # aimed to solve sat #18914
     }
 }
