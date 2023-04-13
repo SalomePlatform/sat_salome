@@ -43,6 +43,19 @@ version_1_20_1 :
     opt_depend : ['pandas', 'statsmodels']
 }
 
+version_1_20_1_win :
+{
+    compil_script :  'pip_install' + $VARS.scriptExtension
+    properties :
+    {
+      single_install_dir : "yes"
+      incremental : "yes"
+      pip : "yes"
+    }
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'pthreads']
+    opt_depend : []
+}
+
 version_1_20_1_UB22_04 :
 {
     compil_script :  "openturns-1.20.1" + $VARS.scriptExtension
