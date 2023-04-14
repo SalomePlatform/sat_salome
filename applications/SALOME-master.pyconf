@@ -77,7 +77,7 @@ APPLICATION :
         matplotlib : '3.3.4'
         medfile : '4.1.1'
         mesa : '19.0.8'
-        MeshGems : '2.14-4'
+        MeshGems : '2.15-1'
         mpi4py: '3.0.3'
         metis : '5.1.0'
         netgen : '5.3.1_with_CAS_7.2'

@@ -75,7 +75,7 @@ APPLICATION :
         matplotlib : 'native'
         medfile : '4.1.1'
         mesa : {tag : '19.0.8-x86_64-'+$VARS.dist, base: 'no', section: 'version_bin'}
-        MeshGems : '2.14-4'
+        MeshGems : '2.15-1'
         metis : 'native'
         mpi4py: 'native'
         netgen : '5.3.1_with_CAS_7.2'
