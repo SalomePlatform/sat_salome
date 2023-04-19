@@ -26,7 +26,8 @@ APPLICATION :
         launch :
         {
             PYTHONIOENCODING:"UTF_8",
-            SALOME_MODULES_ORDER:"SHAPER:SHAPERSTUDY:GEOM:SMESH"
+            SALOME_MODULES_ORDER:"SHAPER:SHAPERSTUDY:GEOM:SMESH",
+            SALOME_ON_DEMAND: "HIDE"
         }
         SALOME_trace : "local" # local/file:.../with_logger
         SALOME_MODULES : "SHAPER,SHAPERSTUDY,GEOM,SMESH,PARAVIS,YACS,JOBMANAGER"  # specify the first modules to display in gui
