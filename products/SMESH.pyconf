@@ -42,7 +42,7 @@ default :
               "tbb"
              ]
     build_depend : ["cmake", "swig", "doxygen", "cppunit"]
-    opt_depend : ['SHAPERSTUDY', 'TopIIVolMesh']
+    opt_depend : ['SHAPERSTUDY', 'TopIIVolMesh', 'MeshGems']
     patches : []
     check_install : ["share/doc/salome/gui/SMESH/yams/index.html"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
@@ -116,7 +116,7 @@ default_MPI :
               "pytz",
               "sphinxintl",
               "tbb",
-	      "openmpi"
+              "openmpi"
              ]
 }
 
