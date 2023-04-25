@@ -47,7 +47,8 @@ version_CR753_SALOME_PATCH :
     get_source : "archive"
     archive_info :
     {
-        archive_name : "CAS-V7_5_3p4.tar.gz"
+        #archive_name : "CAS-V7_5_3p4.tar.gz"
+        archive_name : "CAS-eefcafca.tar.gz"
     }
     git_info:
     {
@@ -83,7 +84,13 @@ version_CR753_SALOME_PATCH_win :
     name : "CAS"
     build_source : "script"
     compil_script :  "CAS_7.5.bat"
-    get_source : "git"
+    #FIXME
+    get_source : "archive"
+    archive_info :
+    {
+        #archive_name : "CAS-V7_5_3p4.tar.gz"
+        archive_name : "CAS-eefcafca.tar.gz"
+    }
     git_info:
     {
         repo : "http://git.dev.opencascade.org/repos/occt.git"

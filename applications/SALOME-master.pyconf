@@ -38,7 +38,7 @@ APPLICATION :
         alabaster : '0.7.6'
         Babel : '2.7.0'
         boost : '1.71.0'
-        CAS : {tag : 'V7_5_3p4', section: 'version_CR753_SALOME_PATCH', base: 'no'}
+        CAS : {tag : 'eefcafca', section: 'version_CR753_SALOME_PATCH', base: 'no'}
         catalyst: '2.0'
         C3PO: 'v2.0'
         certifi : '2018.8.24'
