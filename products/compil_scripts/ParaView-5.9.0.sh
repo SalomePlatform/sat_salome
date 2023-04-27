@@ -142,17 +142,17 @@ then
     CMAKE_OPTIONS+=" -DPARAVIEW_USE_MPI:BOOL=OFF"
     CMAKE_OPTIONS+=" -DCMAKE_CXX_COMPILER:STRING=`which g++`"
     CMAKE_OPTIONS+=" -DCMAKE_C_COMPILER:STRING=`which gcc`"
-    if [[ $VTK_SMP_IMPLEMENTATION_TYPE = "sequential" ]]
+    if [[ $VTK_SMP_IMPLEMENTATION_TYPE == "sequential" ]]
     then
         echo "WARNING: sequential approach will be used..."
         CMAKE_OPTIONS+=" -DPARAVIEW_USE_MPI:BOOL=OFF"
         CMAKE_OPTIONS+=" -DCMAKE_CXX_COMPILER:STRING=`which g++`"
         CMAKE_OPTIONS+=" -DCMAKE_C_COMPILER:STRING=`which gcc`"
-    elif [[ $VTK_SMP_IMPLEMENTATION_TYPE = "TBB" ]]
+    elif [[ $VTK_SMP_IMPLEMENTATION_TYPE == "TBB" ]]
     then
         echo "WARNING: VTK_SMP_IMPLEMENTATION_TYPE was set to: TBB..."
         CMAKE_OPTIONS+=" -DVTK_SMP_IMPLEMENTATION_TYPE=TBB -DVTKm_ENABLE_TBB:BOOL=ON"
-    elif [[ $VTK_SMP_IMPLEMENTATION_TYPE = "OpenMP" ]]
+    elif [[ $VTK_SMP_IMPLEMENTATION_TYPE == "OpenMP" ]]
     then
         echo "WARNING: VTK_SMP_IMPLEMENTATION_TYPE was set to: OpenMP..."
         CMAKE_OPTIONS+=" -DVTK_SMP_IMPLEMENTATION_TYPE=OpenMP -DVTKm_ENABLE_OPENMP:BOOL=ON"
