@@ -69,7 +69,12 @@ def set_env(env, prereq_dir, version):
       # we don't need licence keys at compile time
       set_distene_licence(env)
   set_env_build(env, prereq_dir, version)
-
+  #
+  M,m,p=map(str, version.replace('-','.').split('.'))
+  env.set('MESHGEMS_VERSION', version)
+  env.set('MESHGEMS_VERSION_MAJOR',M)
+  env.set('MESHGEMS_VERSION_MINOR',m)
+  env.set('MESHGEMS_VERSION_PATCH',p)
 
 def set_nativ_env(env):
   pass
