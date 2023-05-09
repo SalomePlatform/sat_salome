@@ -138,7 +138,7 @@ APPLICATION :
         TTK : 'f8dafde2d7'
         urllib3 : '1.23'
         zeromq: '4.3.1'
-        URANIE : '4.5.0'
+        URANIE : '4.7.0'
 
         # SALOME MODULES :
         'CONFIGURATION'
