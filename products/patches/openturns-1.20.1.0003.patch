@@ -1,0 +1,12 @@
+diff -Naur openturns_ref/otpod-0.6.9/setup.py openturns_dev/otpod-0.6.9/setup.py
+--- openturns_ref/otpod-0.6.9/setup.py	2023-05-09 09:03:51.430613624 +0200
++++ openturns_dev/otpod-0.6.9/setup.py	2023-05-09 12:50:24.206735094 +0200
+@@ -12,7 +12,7 @@
+ 
+ install_requires=['statsmodels>=0.6.1',
+                   'numpy>=1.10.4',
+-                  'scikit-learn>=0.17',
++                  'scikit-learn==0.24.2',
+                   'matplotlib>=1.5.1',
+                   'scipy>=0.17.0',
+                   'decorator>=4.0.9']

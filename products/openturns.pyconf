@@ -131,7 +131,7 @@ version_1_20_1_FD34 :
 version_1_20_1_FD32 :
 {
     compil_script :  "openturns-1.20.1" + $VARS.scriptExtension
-    patches : ['openturns-1.20.1.0002.patch']
+    patches : ['openturns-1.20.1.0002.patch', 'openturns-1.20.1.0003.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
     opt_depend : ['pandas', 'statsmodels']
 }
