@@ -155,7 +155,6 @@ APPLICATION :
         'NETGENPLUGIN'
         'BLSURFPLUGIN'
         'GHS3DPLUGIN'
-        'GHS3DPRLPLUGIN'
         'HYBRIDPLUGIN'
         'HexoticPLUGIN'
         'GMSHPLUGIN'
