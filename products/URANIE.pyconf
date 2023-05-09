@@ -27,7 +27,7 @@ version_4_7_0 :
     {
         archive_name : "URANIE-4.7.0-Source.tar.gz"
     }
-    #patches: ['URANIE-4.5.0.patch']
+    patches: []
 }
 
 version_4_7_0_win :
@@ -35,7 +35,7 @@ version_4_7_0_win :
     compil_script : "URANIE-4.7.0.bat"
     depend : ['Python', 'root','nlopt', 'boost', 'pthreads']
     build_depend : ["cmake", 'swig', 'cppunit']
-#    patches: ['URANIE-4.5.0.patch', 'URANIE-FindROOT.cmake.patch']
+    patches: []
 }
 
 version_4_5_0 :
