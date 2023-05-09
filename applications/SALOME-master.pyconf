@@ -19,7 +19,7 @@ APPLICATION :
            CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
            RESTRICTED_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "RESTRICTED"
            SALOME_USE_64BIT_IDS : '1'
-           VTK_SMP_IMPLEMENTATION_TYPE : OpenMP # OpenMP # choose among: sequential / OpenMP / TBB switches
+           VTK_SMP_IMPLEMENTATION_TYPE : TBB # OpenMP # choose among: sequential / OpenMP / TBB switches
            SALOME_GMSH_HEADERS_STD : '1'
         }
         launch :
