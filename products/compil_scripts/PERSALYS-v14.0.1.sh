@@ -45,6 +45,8 @@ elif [ "$DIST_NAME$DIST_VERSION" == "FD36" ]; then
     CMAKE_OPTIONS+=" -DUSE_SPHINX=OFF" #
 elif [ "$DIST_NAME$DIST_VERSION" == "FD37" ]; then
     CMAKE_OPTIONS+=" -DUSE_SPHINX=OFF" #
+elif [ "$DIST_NAME$DIST_VERSION" == "FD38" ]; then
+    CMAKE_OPTIONS+=" -DUSE_SPHINX=OFF" #
 else
     CMAKE_OPTIONS+=" -DUSE_SPHINX=ON"
 fi

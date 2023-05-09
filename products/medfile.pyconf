@@ -60,6 +60,14 @@ version_4_1_1_UB22_04 :
     patches: ['SPNS-29880-medfile.patch']
 }
 
+version_4_1_1_FD38 :
+{
+    compil_script : 'med-4.1.1.sh'
+    test_build : "make check"
+    build_depend : ['swig']
+    patches: ['SPNS-29880-medfile.patch']
+}
+
 version_4_1_1_FD37 :
 {
     compil_script : 'med-4.1.1.sh'

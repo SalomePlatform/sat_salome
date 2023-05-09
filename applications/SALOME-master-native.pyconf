@@ -11,7 +11,7 @@ APPLICATION :
     debug : 'no'
     base : 'no'
     python3 : 'yes'
-    platform : ["FD32", "FD34", "FD36", "FD37", "CO8", "DB10", "DB11", "UB20.04", "UB22.04"]
+    platform : ["FD32", "FD34", "FD36", "FD37", "FD38", "CO8", "DB10", "DB11", "UB20.04", "UB22.04"]
     environ :
     {
         build :
@@ -315,6 +315,24 @@ __overwrite__ :
         'APPLICATION.products.PyFMI'            : {tag: '2.6',       base: 'no', section: 'version_2_6_FD37'                    }
         'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD37'                  }
         'APPLICATION.products.ParaView'         : {tag: '5.11.0',    base: 'no',  section: 'version_5_11_0_MPI_FD37', hpc: 'yes'}
+        'APPLICATION.products.CONFIGURATION'    : {tag:'master',     base: 'no', section: 'default'                             }
+        'APPLICATION.products.SHAPER'           : {tag:'master',     base: 'no', section: 'default',                  hpc: 'no' }
+    }
+
+    {
+        __condition__ : "VARS.dist in ['FD38']"
+        'APPLICATION.rm_products' : ['root', 'URANIE', 'mesa']
+        'APPLICATION.products.cmake'            : 'native'
+        'APPLICATION.products.opencv'           : {tag: '3.2.0',     base: 'no', section: 'version_3_2_0_FD38'                  }
+        'APPLICATION.products.omniORB'          : '4.2.5'
+        'APPLICATION.products.omniORBpy'        : '4.2.5'
+        'APPLICATION.products.qwt'              : '6.1.6'
+        'APPLICATION.products.nlopt'            : '2.6.0'
+        'APPLICATION.products.netcdf'           : '4.6.2'
+        'APPLICATION.products.numpy'            : {tag: '1.22.2',    base: 'no', section: 'version_1_22_2'                      }
+        'APPLICATION.products.PyFMI'            : {tag: '2.6',       base: 'no', section: 'version_2_6_FD38'                    }
+        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD38'                  }
+        'APPLICATION.products.ParaView'         : {tag: '5.11.0',    base: 'no',  section: 'version_5_11_0_MPI_FD38', hpc: 'yes'}
         'APPLICATION.products.CONFIGURATION'    : {tag:'master',     base: 'no', section: 'default'                             }
         'APPLICATION.products.SHAPER'           : {tag:'master',     base: 'no', section: 'default',                  hpc: 'no' }
     }

@@ -104,6 +104,14 @@ version_1_20_1_CO7 :
     opt_depend : ['pandas', 'statsmodels']
 }
 
+version_1_20_1_FD38 :
+{
+    compil_script :  "openturns-1.20.1" + $VARS.scriptExtension
+    patches : []
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
+    opt_depend : ['pandas', 'statsmodels']
+}
+
 version_1_20_1_FD37 :
 {
     compil_script :  "openturns-1.20.1" + $VARS.scriptExtension
