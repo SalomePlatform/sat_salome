@@ -4,7 +4,6 @@ echo "##########################################################################
 echo "ParaView" $VERSION
 echo "##########################################################################"
 
-
 PVLIBVERSION=`echo ${VERSION} | awk -F. '{printf("%d.%d",$1,$2)}'`
 
 CMAKE_OPTIONS=""
@@ -168,14 +167,16 @@ elif [ "${VTK_SMP_IMPLEMENTATION_TYPE}" != "" ]; then
         CMAKE_OPTIONS+=" -DCMAKE_C_COMPILER:STRING=`which gcc`"
     elif [ "${VTK_SMP_IMPLEMENTATION_TYPE}" == "TBB" ]; then
         echo "WARNING: VTK_SMP_IMPLEMENTATION_TYPE was set to: TBB..."
-        CMAKE_OPTIONS+=" -DVTK_SMP_IMPLEMENTATION_TYPE=TBB -DVTKm_ENABLE_TBB:BOOL=ON"
+        CMAKE_OPTIONS+=" -DVTK_SMP_IMPLEMENTATION_TYPE=TBB"
     elif [ "${VTK_SMP_IMPLEMENTATION_TYPE}" == "OpenMP" ]; then
         echo "WARNING: VTK_SMP_IMPLEMENTATION_TYPE was set to: OpenMP..."
-        CMAKE_OPTIONS+=" -DVTK_SMP_IMPLEMENTATION_TYPE=OpenMP -DVTKm_ENABLE_OPENMP:BOOL=ON"
+        CMAKE_OPTIONS+=" -DVTK_SMP_IMPLEMENTATION_TYPE=OpenMP"
     else
         echo "ERROR: Unknown ${VTK_SMP_IMPLEMENTATION_TYPE} option.... aborting!"
         exit 1
     fi
+    CMAKE_OPTIONS+=" -DVTK_SMP_ENABLE_OPENMP:BOOL=ON -DVTK_SMP_ENABLE_STDTHREAD:BOOL=ON -DVTK_SMP_ENABLE_SEQUENTIAL:BOOL=ON"
+    CMAKE_OPTIONS+=" -DVTKm_ENABLE_TBB:BOOL=ON -DVTKm_ENABLE_OPENMP:BOOL=ON"
 else
     echo "WARNING: MPI will not be supported!"
     CMAKE_OPTIONS+=" -DPARAVIEW_USE_MPI:BOOL=OFF"
@@ -247,6 +248,9 @@ CMAKE_OPTIONS+=" -DPARAVIEW_PLUGIN_ENABLE_Moments:BOOL=OFF"
 CMAKE_OPTIONS+=" -DPARAVIEW_PLUGIN_ENABLE_SLACTools:BOOL=OFF"
 CMAKE_OPTIONS+=" -DPARAVIEW_PLUGIN_ENABLE_PacMan:BOOL=OFF"
 CMAKE_OPTIONS+=" -DPARAVIEW_PLUGIN_ENABLE_pvblot:BOOL=OFF"
+
+# spns #35162:
+CMAKE_OPTIONS+=" -DPARAVIEW_PLUGIN_ENABLE_SurfaceLIC=OFF"
 
 # allow additional plugins
 CMAKE_OPTIONS+=" -DVTK_ALL_NEW_OBJECT_FACTORY:BOOL=ON"

@@ -4,7 +4,6 @@ echo "##########################################################################
 echo "ParaView" $VERSION
 echo "##########################################################################"
 
-
 PVLIBVERSION=`echo ${VERSION} | awk -F. '{printf("%d.%d",$1,$2)}'`
 
 CMAKE_OPTIONS=""
@@ -249,6 +248,9 @@ CMAKE_OPTIONS+=" -DPARAVIEW_PLUGIN_ENABLE_Moments:BOOL=OFF"
 CMAKE_OPTIONS+=" -DPARAVIEW_PLUGIN_ENABLE_SLACTools:BOOL=OFF"
 CMAKE_OPTIONS+=" -DPARAVIEW_PLUGIN_ENABLE_PacMan:BOOL=OFF"
 CMAKE_OPTIONS+=" -DPARAVIEW_PLUGIN_ENABLE_pvblot:BOOL=OFF"
+
+# spns #35162:
+CMAKE_OPTIONS+=" -DPARAVIEW_PLUGIN_ENABLE_SurfaceLIC=OFF"
 
 # allow additional plugins
 CMAKE_OPTIONS+=" -DVTK_ALL_NEW_OBJECT_FACTORY:BOOL=ON"
