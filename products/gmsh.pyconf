@@ -37,6 +37,13 @@ version_4_10_3:
   depend : ["CAS","lapack","hdf5","medfile", "cgns"]
 }
 
+version_4_10_3_FD38:
+{
+  compil_script : "gmsh-4.10.3.sh"
+  depend : ["CAS","lapack","hdf5","medfile", "cgns"]
+  patches  : ["gmsh-4.10.3-gc13-fc38.patch"]
+}
+
 version_4_10_3_win:
 {
   compil_script : "gmsh-4.10.3.bat"

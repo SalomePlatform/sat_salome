@@ -1,0 +1,23 @@
+diff -Naur gmsh_ref/src/mesh/meshGFacePack.cpp gmsh_dev/src/mesh/meshGFacePack.cpp
+--- gmsh_ref/src/mesh/meshGFacePack.cpp	2023-05-10 12:26:30.747582324 +0200
++++ gmsh_dev/src/mesh/meshGFacePack.cpp	2023-05-10 12:27:38.508438549 +0200
+@@ -5,6 +5,7 @@
+ 
+ #include <stdio.h>
+ #include <stdlib.h>
++#include <cstdint>
+ #include <queue>
+ #include <map>
+ #include <vector>
+diff -Naur gmsh_ref/contrib/QuadMeshingTools/qmtMeshGeometryOptimization.h  gmsh_dev/contrib/QuadMeshingTools/qmtMeshGeometryOptimization.h
+--- gmsh_ref/contrib/QuadMeshingTools/qmtMeshGeometryOptimization.h	2023-05-10 12:26:30.587580303 +0200
++++ gmsh_dev/contrib/QuadMeshingTools/qmtMeshGeometryOptimization.h	2023-05-10 13:19:26.051591778 +0200
+@@ -9,7 +9,7 @@
+ 
+ #include <float.h>
+ #include "qmtMeshUtils.h"
+-
++#include <cstdint>
+ class SurfaceProjector;
+ 
+ /**
