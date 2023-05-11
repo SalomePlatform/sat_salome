@@ -1,0 +1,14 @@
+diff -Naur tbb-2019_U8_ref/include/tbb/internal/_tbb_windef.h tbb-2019_U8_dev/include/tbb/internal/_tbb_windef.h
+--- tbb-2019_U8_ref/include/tbb/internal/_tbb_windef.h	2019-06-06 12:29:15.000000000 +0200
++++ tbb-2019_U8_dev/include/tbb/internal/_tbb_windef.h	2023-05-11 16:36:53.677510682 +0200
+@@ -20,6 +20,10 @@
+ 
+ // Check that the target Windows version has all API calls required for TBB.
+ // Do not increase the version in condition beyond 0x0500 without prior discussion!
++#if defined(_WIN32_WINNT) 
++#undef _WIN32_WINNT  
++#define _WIN32_WINNT 0x0501
++#endif
+ #if defined(_WIN32_WINNT) && _WIN32_WINNT<0x0501
+ #error TBB is unable to run on old Windows versions; _WIN32_WINNT must be 0x0501 or greater.
+ #endif

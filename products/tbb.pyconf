@@ -38,7 +38,7 @@ version_2019_U8 :
 version_2019_U8_win :
 {
     archive_info : {archive_name : "tbb-2019_U8.tar.gz"}
-    patches : ['tbb-2019_U8_windows10.patch']
+    patches : ['tbb-2019_U8_windows10.patch', 'tbb-2019_U8_windows10_GUI.patch']
     depend : ['Python']
     build_depend : ['swig']
     properties :
@@ -51,7 +51,7 @@ version_2019_U8_win :
 version_2019_U8_win_dbg :
 {
     archive_info : {archive_name : "tbb-2019_U8.tar.gz"}
-    patches : ['tbb-2019_U8_windows10.patch', 'tbb-2019_U8_windows10_debug.patch']
+    patches : ['tbb-2019_U8_windows10.patch', 'tbb-2019_U8_windows10_GUI.patch', 'tbb-2019_U8_windows10_debug.patch']
     depend : ['Python']
     opt_depend : ['ispc']
     build_depend : ['swig']
