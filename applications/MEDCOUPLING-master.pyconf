@@ -61,7 +61,7 @@ APPLICATION :
         sphinxcontrib_napoleon : '0.6.1'
         sphinxcontrib_websupport : '1.1.0'
         sphinxintl: '0.9.10'
-        swig : '3.0.12'
+        swig : '4.0.2'
         packaging : '17.1'
         urllib3 : '1.23'
 

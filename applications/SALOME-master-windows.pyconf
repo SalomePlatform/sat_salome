@@ -128,7 +128,7 @@ APPLICATION :
         sphinx_rtd_theme : '0.4.3'
         sphinxintl: '2.0.0'
         StaticMeshPlugin: '5.11.0'
-        swig : '3.0.12'
+        swig : '4.0.2'
         tbb : '2019_U8_win'
         toml : '0.10.2'
         tcltk : '8.6.9'

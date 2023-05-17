@@ -3,9 +3,9 @@
 
 APPLICATION :
 {
-    name : 'MEDCOUPLING-master-int32'
+    name : 'MEDCOUPLING-9.11.0-int32'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag : 'master'
+    tag : 'V9_11_0b1'
     base : 'no'
     debug : 'no'
     python3 : 'yes'
@@ -60,7 +60,7 @@ APPLICATION :
 
         # SALOME MODULES :
         'CONFIGURATION'
-        'MEDCOUPLING': {section: 'default_32BIT_IDS'}
+        'MEDCOUPLING':  {tag:'V9_11_0b1', base: 'no', section: 'default_32BIT_IDS', hpc: 'no'}
     }
     test_base :
     {

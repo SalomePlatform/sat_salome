@@ -3,16 +3,23 @@
 
 APPLICATION :
 {
-    name : 'MEDCOUPLING-master-int32'
+    name : 'MEDCOUPLING-9.11.0'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag : 'master'
+    tag : 'V9_11_0b1'
     base : 'no'
     debug : 'no'
     python3 : 'yes'
     environ :
     {
-        build : {CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"}
-        launch : {PYTHONIOENCODING:"UTF_8"} 
+        build :
+        {
+           CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
+           SALOME_USE_64BIT_IDS : '1'
+        }
+        launch :
+        {
+           PYTHONIOENCODING:"UTF_8"
+        }
     }
     products :
     {
@@ -36,7 +43,7 @@ APPLICATION :
         lapack : '3.8.0'
         libxml2 : '2.9.1'
         markupsafe : '0.23'
-        medfile : '4.1.1'
+        medfile : {section: 'default_Autotools', tag: '4.1.1'}
         metis : '5.1.0'
         numpy : '1.15.1'
         pockets : '0.6.2'
@@ -60,7 +67,7 @@ APPLICATION :
 
         # SALOME MODULES :
         'CONFIGURATION'
-        'MEDCOUPLING': {section: 'default_32BIT_IDS'}
+        'MEDCOUPLING'
     }
     test_base :
     {
