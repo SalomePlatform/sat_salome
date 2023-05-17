@@ -28,6 +28,14 @@ default_win:
     properties :
     {
       incremental : "yes"
-      single_install_dir : "yes"
+      single_install_dir : "no"
     }
+}
+
+version_0_3_23:
+{}
+
+version_0_3_23_win:
+{
+  compil_script : 'openblas-0.3.23.bat'
 }

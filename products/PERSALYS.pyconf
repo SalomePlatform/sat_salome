@@ -66,6 +66,7 @@ version_v14_0_1 :
 
 version_v14_0_1_win :
 {
+   compil_script : 'PERSALYS-v14.0.1.bat'
    depend : ['Python',
               'hdf5',
               'cgns',
@@ -83,9 +84,10 @@ version_v14_0_1_win :
               'ParaView',
               'openturns',
               'YACS',
-              'YDEFX',
+              #'YDEFX',
               'CAS',
-              'CONFIGURATION'
+              'CONFIGURATION',
+              'openblas'
            ]
 }
 
