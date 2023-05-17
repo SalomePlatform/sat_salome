@@ -3,7 +3,7 @@
 
 APPLICATION :
 {
-    name : 'SALOME-9.10.0'
+    name : 'SALOME-9.11.0'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
     tag : 'V9_11_0b1'
     dev : 'no'
