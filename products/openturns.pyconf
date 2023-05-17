@@ -45,15 +45,15 @@ version_1_20_1 :
 
 version_1_20_1_win :
 {
-    compil_script :  'pip_install' + $VARS.scriptExtension
+    compil_script :  "openturns-1.20.1.bat"
+    depend : ['Python', 'openblas', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib']
+    opt_depend : []
+    patches : ["openturns-1.20.1.004.patch"]
     properties :
     {
-      single_install_dir : "yes"
+      single_install_dir : "no"
       incremental : "yes"
-      pip : "yes"
     }
-    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'pthreads']
-    opt_depend : []
 }
 
 version_1_20_1_UB22_04 :

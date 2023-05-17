@@ -1,0 +1,15 @@
+diff -Naur URANIE-4.7.0-Source_ref/macros/rootlogon.py  URANIE-4.7.0-Source_dev/macros/rootlogon.py
+--- URANIE-4.7.0-Source_ref/macros/rootlogon.py	2022-08-08 02:41:20.000000000 +0200
++++ URANIE-4.7.0-Source_dev/macros/rootlogon.py	2023-05-17 13:47:49.745193278 +0200
+@@ -15,7 +15,10 @@
+     from ROOT.URANIE import UncertModeler as UncertModeler
+     from ROOT.URANIE import Reliability as Reliability
+     from ROOT.URANIE import XMLProblem as XMLProblem
+-    from ROOT.URANIE import MpiRelauncher as MpiRelauncher
++    try:
++        from ROOT.URANIE import MpiRelauncher as MpiRelauncher
++    except:
++        print("Could not import MpiRelauncher  - presumably built without MPI support")
+     pass
+ 
+ # General graphical style

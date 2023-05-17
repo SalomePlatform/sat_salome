@@ -27,7 +27,8 @@ version_4_7_0 :
     {
         archive_name : "URANIE-4.7.0-Source.tar.gz"
     }
-    patches: []
+    patches: ["URANIE-4.7.0-rootlogon.patch"]
+    opt_depend: ["openmpi"]
 }
 
 version_4_7_0_win :
@@ -35,7 +36,8 @@ version_4_7_0_win :
     compil_script : "URANIE-4.7.0.bat"
     depend : ['Python', 'root','nlopt', 'boost', 'pthreads']
     build_depend : ["cmake", 'swig', 'cppunit']
-    patches: []
+    patches: ["URANIE-4.7.0-rootlogon.patch", "URANIE-4.7.0-pthreads.patch"]
+    opt_depend: []
 }
 
 version_4_5_0 :

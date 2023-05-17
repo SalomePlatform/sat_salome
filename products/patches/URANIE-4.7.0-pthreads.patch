@@ -1,0 +1,44 @@
+diff -Naur URANIE-4.7.0-Source_ref/CmakePackage/FindPthread-win32.cmake URANIE-4.7.0-Source_dev/CmakePackage/FindPthread-win32.cmake
+--- URANIE-4.7.0-Source_ref/CmakePackage/FindPthread-win32.cmake	2022-08-07 22:55:34.000000000 +0200
++++ URANIE-4.7.0-Source_dev/CmakePackage/FindPthread-win32.cmake	2023-05-15 15:09:08.098981307 +0200
+@@ -8,7 +8,7 @@
+ # if(WIN32) 
+ SET(CMAKE_FIND_LIBRARY_SUFFIXES ".dll")
+ FIND_LIBRARY(PTHREAD_DLL_LIBRARY
+-    NAMES pthreadVCE3
++    NAMES pthreadVCE2
+     HINTS  ENV PATH
+     PATH_SUFFIXES lib64 lib debug release
+ )
+@@ -18,7 +18,7 @@
+     get_filename_component(PTHREAD_PATH ${PTHREAD_DLL_LIBRARY} PATH)
+ 	string(REGEX REPLACE "dll/x86" "" PTHREAD_PATH ${PTHREAD_PATH})
+     FIND_LIBRARY(PTHREAD_LIBRARY
+-    NAMES pthreadVCE3
++    NAMES pthreadVCE2
+     PATH_SUFFIXES lib64 lib lib/x86 debug release
+ 	PATHS ${PTHREAD_PATH}
+     )
+@@ -28,10 +28,11 @@
+     PATH_SUFFIXES include
+     PATHS ${PTHREAD_PATH}
+     )
+-    set(PTHREAD_LIBRARIES ${PTHREAD_LIBRARY}/pthreadVCE3.lib)
++    set(PTHREAD_LIBRARIES ${PTHREAD_LIBRARY}/pthreadVCE2.lib)
+ endif(EXISTS ${PTHREAD_DLL_LIBRARY})
+ 
+ find_package_handle_standard_args(PTHREAD DEFAULT_MSG PTHREAD_DLL_LIBRARY PTHREAD_LIBRARY PTHREAD_INCLUDE_DIR)
+ 
+ 
+-# endif(WIN32)
+\ Pas de fin de ligne à la fin du fichier
++# endif(WIN32)
++
+diff -Naur URANIE-4.7.0-Source_ref/validation/load_pthreads.C URANIE-4.7.0-Source_dev/validation/load_pthreads.C
+--- URANIE-4.7.0-Source_ref/validation/load_pthreads.C	2022-08-07 22:55:40.000000000 +0200
++++ URANIE-4.7.0-Source_dev/validation/load_pthreads.C	2023-05-15 15:07:16.745822558 +0200
+@@ -1,3 +1,3 @@
+ void load_pthreads() {
+-    gSystem->Load("pthreadVCE3");
++    gSystem->Load("pthreadVCE2");
+ }

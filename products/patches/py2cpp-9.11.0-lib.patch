@@ -1,0 +1,25 @@
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index d3fda0a..2f46d15 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -45,7 +45,11 @@ SET(_py2cpp_headers
+   py2cpp.hxx
+ )
+ 
+-ADD_LIBRARY(py2cpp ${_py2cpp_sources})
++add_library(py2cpp_lib STATIC  ${_py2cpp_sources})
++TARGET_LINK_LIBRARIES(py2cpp_lib ${_link_LIBRARIES})
++set_target_properties(py2cpp_lib PROPERTIES OUTPUT_NAME py2cpp)
++
++ADD_LIBRARY(py2cpp  ${_py2cpp_sources})
+ TARGET_LINK_LIBRARIES(py2cpp ${_link_LIBRARIES})
+ TARGET_INCLUDE_DIRECTORIES(py2cpp PUBLIC
+                           $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
+@@ -53,6 +57,7 @@ TARGET_INCLUDE_DIRECTORIES(py2cpp PUBLIC
+ 
+ IF(WIN32)
+   INSTALL(TARGETS py2cpp EXPORT Py2cppCfg LIBRARY DESTINATION lib ${CMAKE_INSTALL_LIBDIR}  RUNTIME DESTINATION bin ${CMAKE_INSTALL_BINDIR})
++  INSTALL(TARGETS py2cpp_lib DESTINATION lib)
+ ELSE(WIN32)
+   INSTALL(TARGETS py2cpp EXPORT Py2cppCfg LIBRARY DESTINATION lib)
+ ENDIF(WIN32)

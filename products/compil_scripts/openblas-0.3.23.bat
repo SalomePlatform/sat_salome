@@ -1,7 +1,7 @@
 @echo off
 
 echo ##########################################################################
-echo cminpack %VERSION%
+echo OpenBLAS %VERSION%
 echo ##########################################################################
 
 IF NOT DEFINED SAT_DEBUG (
@@ -24,8 +24,6 @@ mkdir %BUILD_DIR%
 SET CMAKE_OPTIONS=
 SET CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_INSTALL_PREFIX:STRING=%PRODUCT_INSTALL:\=/%
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_BUILD_TYPE:STRING=%PRODUCT_BUILD_TYPE%
-set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DOpenBLAS_DIR=%OpenBLAS_DIR:\=/%
-REM set CMAKE_OPT
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_GENERATOR="Visual Studio 15 2017 Win64"
 
 

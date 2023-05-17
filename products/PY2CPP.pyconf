@@ -35,4 +35,5 @@ default_win :
       incremental : "yes"
       single_install_dir : "no" # aimed to solve sat #18914
     }
+    patches : ['py2cpp-9.11.0-lib.patch']
 }
