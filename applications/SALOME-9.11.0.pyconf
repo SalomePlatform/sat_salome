@@ -173,14 +173,14 @@ APPLICATION :
         'CALCULATOR'
         'HELLO'
         'PYHELLO'
-        'EFICAS'
-        'EFICAS_TOOLS'
-        'PY2CPP'
-        'ADAO'
-        'ADAO_INTERFACE'
-        'PARAVISADDONS'
+        'EFICAS' : 'master' #FIXME
+        'EFICAS_TOOLS' : 'master' #FIXME
+        'PY2CPP' : 'master' #FIXME
+        'ADAO' : 'master' #FIXME
+        'ADAO_INTERFACE' : 'master' #FIXME
+        'PARAVISADDONS' : 'maste' #FIXME
         'OPENTURNS_SALOME'
-        'YDEFX'
+        'YDEFX' : 'master' #FIXME
         'pmml'
         'SOLVERLAB' : {tag: 'V9_11_BR', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'SOLVERLABGUI'
