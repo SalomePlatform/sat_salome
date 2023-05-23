@@ -178,7 +178,7 @@ APPLICATION :
         'PY2CPP' : 'master' #FIXME
         'ADAO' : 'master' #FIXME
         'ADAO_INTERFACE' : 'master' #FIXME
-        'PARAVISADDONS' : 'maste' #FIXME
+        'PARAVISADDONS' : 'master' #FIXME
         'OPENTURNS_SALOME'
         'YDEFX' : 'master' #FIXME
         'pmml'
