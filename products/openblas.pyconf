@@ -25,6 +25,7 @@ default :
 
 default_win:
 {
+    archive_info : {archive_name : "OpenBLAS-" + $APPLICATION.products.openblas + ".tar.gz"} #FIXME
     properties :
     {
       incremental : "yes"
