@@ -177,9 +177,9 @@ APPLICATION :
         'EFICAS_TOOLS' : 'master' #FIXME  
         'ADAO' : 'master' #FIXME  
         'PARAVISADDONS' : 'master' #FIXME  
-        'PY2CPP' : 'bos/33720'
-        'OPENTURNS_SALOME' : 'bos/33720'
-        'YDEFX' : 'bos/33720'
+        'PY2CPP'
+        'OPENTURNS_SALOME'
+        'YDEFX'
         'pmml'
         #'TESTBASE'
         'CEATESTBASE' : 'SalomeV9'

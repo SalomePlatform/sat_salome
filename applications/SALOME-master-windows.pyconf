@@ -164,7 +164,7 @@ APPLICATION :
         'FIELDS'
         'PARAVIS'
         'JOBMANAGER'
-        'YACS' : 'V9_11_BR' # FIXME
+        'YACS' : 'V9_11_BR' # FIXME - until merged to master
         'YACSGEN'
         'DOCUMENTATION'
         'SAMPLES'
@@ -177,9 +177,9 @@ APPLICATION :
         'EFICAS_TOOLS'
         'ADAO'
         'PARAVISADDONS'
-        'PY2CPP' : 'bos/33720'
-        'OPENTURNS_SALOME' : 'bos/33720'
-        'YDEFX' : 'bos/33720'
+        'PY2CPP' : 'V9_11_BR' #FIXME -  until merged to master
+        'OPENTURNS_SALOME' : 'V9_11_BR' #FIXME -  until merged to master
+        'YDEFX' : 'V9_11_BR' #FIXME - until merged to master
         'pmml'
         'TESTBASE'
         'CEATESTBASE' : 'SalomeV9'
