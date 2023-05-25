@@ -176,7 +176,7 @@ APPLICATION :
         'EFICAS' : 'master' #FIXME
         'EFICAS_TOOLS' : 'master' #FIXME  
         'ADAO' : 'master' #FIXME  
-        'PARAVISADDONS' : 'master' #FIXME  
+        'PARAVISADDONS'
         'PY2CPP'
         'OPENTURNS_SALOME'
         'YDEFX'

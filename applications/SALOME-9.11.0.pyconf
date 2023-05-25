@@ -175,12 +175,12 @@ APPLICATION :
         'PYHELLO'
         'EFICAS' : 'master' #FIXME
         'EFICAS_TOOLS' : 'master' #FIXME
-        'PY2CPP' : 'master' #FIXME
+        'PY2CPP'
         'ADAO' : 'master' #FIXME
         'ADAO_INTERFACE' : 'master' #FIXME
-        'PARAVISADDONS' : 'master' #FIXME
+        'PARAVISADDONS'
         'OPENTURNS_SALOME'
-        'YDEFX' : 'master' #FIXME
+        'YDEFX'
         'pmml'
         'SOLVERLAB' : {tag: 'V9_11_BR', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'SOLVERLABGUI'

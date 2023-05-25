@@ -18,7 +18,7 @@ APPLICATION :
         {
            CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
            RESTRICTED_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "RESTRICTED"
-           VTK_SMP_IMPLEMENTATION_TYPE : OpenMP # OpenMP # choose among: sequential / OpenMP / TBB switches
+           VTK_SMP_IMPLEMENTATION_TYPE : TBB # OpenMP # choose among: sequential / OpenMP / TBB switches
            SALOME_GMSH_HEADERS_STD : '1'
         }
         launch :
@@ -37,7 +37,7 @@ APPLICATION :
         alabaster : '0.7.6'
         Babel : '2.7.0'
         boost : '1.71.0'
-        CAS : {tag : 'V7_5_3p4', section: 'version_CR753_SALOME_PATCH', base: 'no'}
+        CAS : {tag : 'eefcafca', section: 'version_CR753_SALOME_PATCH', base: 'no'}
         catalyst: '2.0'
         C3PO: 'v2.0'
         certifi : '2018.8.24'
@@ -92,7 +92,7 @@ APPLICATION :
         omniORBpy : '4.2.5'
         opencv : '3.2.0'
         openmpi : '4.0.3'
-        openturns: '1.19'
+        openturns: '1.20.1'
         openVKL: '0.11.0'
         ospray : '2.4.0'
         packaging : '17.1'
@@ -100,7 +100,7 @@ APPLICATION :
         pandas : '0.25.2'
         patsy : '0.5.2'
         ParaView : {tag:'5.11.0', base: 'no',  section: 'version_5_11_0_MPI', hpc: 'yes'}
-        PERSALYS: 'v13.0'
+        PERSALYS: 'v14.0.1'
         petsc : {tag : '3.16.0', base: 'no', section: 'version_3_16_0', hpc: 'yes'}
         Pillow : '8.4.0'
         planegcs : '0.18-3cb6890'
@@ -129,7 +129,7 @@ APPLICATION :
         sphinx_rtd_theme : '0.4.3'
         sphinxintl: '0.9.10'
         statsmodels: '0.8.0'
-        swig : '4.1.1'
+        swig : '4.0.2'
         tbb : '2019_U8'
         tcl : '8.6.0'
         tk : '8.6.0'
@@ -174,12 +174,12 @@ APPLICATION :
         'PYHELLO'
         'EFICAS' : 'master' #FIXME
         'EFICAS_TOOLS' : 'master' #FIXME
-        'PY2CPP' : 'master' #FIXME
+        'PY2CPP'
         'ADAO' : 'master' #FIXME
         'ADAO_INTERFACE' : 'master' #FIXME
-        'PARAVISADDONS' : 'master' #FIXME
+        'PARAVISADDONS'
         'OPENTURNS_SALOME'
-        'YDEFX' : 'master' #FIXME
+        'YDEFX'
         'pmml'
         'SOLVERLAB' : {tag: 'V9_11_BR', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'SOLVERLABGUI'
@@ -220,13 +220,19 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['CO7']"
-        'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
+        'APPLICATION.rm_products'         : ['gcc', 'gmp', 'mpc', 'mpfr']
+        'APPLICATION.products.openturns'  : {tag: '1.20.1',  base: 'no', section: 'version_1_20_1_CO7' }
     }
     {
         __condition__ : "VARS.dist in ['CO8']"
         'APPLICATION.rm_products'  : ['gcc', 'gmp', 'mpc', 'mpfr', 'zeromq']
         'APPLICATION.products.gdal'     : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_CO8'                 } # spns #29324
         'APPLICATION.products.ParaView' : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_CO8', hpc: 'yes'}
+        'APPLICATION.products.openturns': {tag: '1.20.1', base: 'no', section: 'version_1_20_1_CO8' }
+    }
+    {
+        __condition__ : "VARS.dist in ['DB09']"
+        'APPLICATION.products.openturns'        : {tag: '1.20.1',  base: 'no', section: 'version_1_20_1_DB09' }
     }
     {
         __condition__ : "VARS.dist in ['DB10']"

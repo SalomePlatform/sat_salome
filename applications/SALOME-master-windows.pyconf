@@ -181,7 +181,7 @@ APPLICATION :
         'OPENTURNS_SALOME' : 'V9_11_BR' #FIXME -  until merged to master
         'YDEFX' : 'V9_11_BR' #FIXME - until merged to master
         'pmml'
-        'TESTBASE'
+        #'TESTBASE'
         'CEATESTBASE' : 'SalomeV9'
     }
     profile :
