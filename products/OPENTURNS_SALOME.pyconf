@@ -21,9 +21,9 @@ default :
     depend : [
               'KERNEL',
               'GUI',
-	      'PERSALYS',
-	      'gdal',
-	      'YACS'
+              'PERSALYS',
+              'gdal',
+              'YACS'
              ]
     build_depend : ["cmake", "swig", "doxygen"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
@@ -35,4 +35,22 @@ default :
         incremental : "yes"
         has_unit_tests : "yes"
     }
+    patches : []
+}
+
+default_win :
+{
+    name : "OPENTURNS"
+    build_source : "script"
+    compil_script : "OPENTURNS_SALOME.bat"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + "OPENTURNS_SALOME"
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    depend : [
+              'KERNEL',
+              'GUI',
+              'PERSALYS',
+              'YACS',
+              'openturns'
+             ]
+    patches : []
 }

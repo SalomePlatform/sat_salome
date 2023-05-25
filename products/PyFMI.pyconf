@@ -37,6 +37,20 @@ version_2_6_no_pip :
     }
 }
 
+version_2_6 :
+{
+}
+
+version_2_6_win :
+{
+    compil_script : "PyFMI-2.6.bat"
+    properties:
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+}
+
 version_2_6_UB22_04:
 {
     patches: ['pyfmi-2.6-python-3.1x.01.patch']

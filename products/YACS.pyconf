@@ -44,7 +44,13 @@ default :
         has_unit_tests
         incremental : "yes"
     }
+    patches : []
 } 
+
+default_win :
+{
+  patches : []
+}
 
 version_9_2_0_to_9_8_0 :
 {

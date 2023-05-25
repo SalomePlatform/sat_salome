@@ -59,6 +59,8 @@ APPLICATION :
         embree : '3.12.2'
         expat : '2.0.1'
         f2c : '1.0.0'
+        fftw: '3.3.9'
+        FMILibrary : '2.0.3'
         freeimage : '3.18.0'
         freetype : '2.9.1'
         gmsh : '4.10.3'
@@ -94,13 +96,16 @@ APPLICATION :
         openturns: '1.20.1'
         ospray : '2.4.0'
         packaging : '19.0'
+        pandas : '0.25.2'
+        patsy : '0.5.2'
         ParaView : {tag:'5.11.0', base: 'no',  section: 'version_5_11_0'}
-        #PERSALYS: 'v14.0.1'
+        PERSALYS: 'v14.0.1'
         perl : '5.28.1.1'
         Pillow : '7.1.1'
         planegcs : '0.18-3cb6890'
         psutil : '5.7.2'
         pthreads : '2.9.1'
+        PyFMI : '2.6'
         Pygments : '2.4.2'
         pyparsing : '2.4.0'
         PyQt : '5.15.3'
@@ -127,7 +132,7 @@ APPLICATION :
         sphinxcontrib_websupport : '1.1.2'
         sphinx_rtd_theme : '0.4.3'
         sphinxintl: '2.0.0'
-        StaticMeshPlugin: '5.11.0'
+        statsmodels: '0.9.0'
         swig : '4.0.2'
         tbb : '2019_U8_win'
         toml : '0.10.2'
@@ -159,7 +164,7 @@ APPLICATION :
         'FIELDS'
         'PARAVIS'
         'JOBMANAGER'
-        'YACS'
+        'YACS' : 'V9_11_BR' # FIXME
         'YACSGEN'
         'DOCUMENTATION'
         'SAMPLES'
@@ -172,9 +177,9 @@ APPLICATION :
         'EFICAS_TOOLS'
         'ADAO'
         'PARAVISADDONS'
-        'PY2CPP'
-        #'OPENTURNS_SALOME'
-        #'YDEFX'
+        'PY2CPP' : 'bos/33720'
+        'OPENTURNS_SALOME' : 'bos/33720'
+        'YDEFX' : 'bos/33720'
         'pmml'
         'TESTBASE'
         'CEATESTBASE' : 'SalomeV9'
@@ -202,7 +207,7 @@ __overwrite__ :
 [
   {
     __condition__ : "APPLICATION.debug == 'yes'"
-    'APPLICATION.rm_products' : ['matplotlib', 'openturns', 'scipy', 'Pillow']
+    'APPLICATION.rm_products' : ['matplotlib', 'openturns', 'scipy', 'Pillow', 'PERSALYS', 'OPENTURNS_SALOME', 'cminpack', 'openblas', 'FMILibrary', 'PyFMI', 'fftw', 'statsmodel']
     # TODO: cmake 3.24 screws things up by adding _d suffix to debug libraries to KERNEL
     'APPLICATION.products.cmake'      : {tag: '3.12.1',  base: 'no', section : 'version_3_12_1'             }
     'APPLICATION.products.numpy'      : {tag: '1.16.4',  base: 'no', section : 'version_1_16_4_win_dbg'     }

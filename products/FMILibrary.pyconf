@@ -24,12 +24,10 @@ default :
 
 default_win :
 {
-    compil_script :  'pip_install' + $VARS.scriptExtension
     properties :
     {
       single_install_dir : "yes"
       incremental : "yes"
-      pip : "yes"
     }
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'pthreads']
     opt_depend : []
@@ -37,5 +35,12 @@ default_win :
 
 version_2_0_3 :
 {
+   patches : ['FMILibrary-2.0.3-installdir.patch']
+}
+
+version_2_0_3_win :
+{
+   build_source : "script"
+   compil_script :  'FMILibrary-2.0.3.bat'
    patches : ['FMILibrary-2.0.3-installdir.patch']
 }

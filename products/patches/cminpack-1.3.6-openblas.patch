@@ -1,0 +1,27 @@
+diff -Naur  cminpack-1.3.6_ref/CMakeLists.txt cminpack-1.3.6_dev/CMakeLists.txt
+--- cminpack-1.3.6_ref/CMakeLists.txt	2017-02-24 16:09:31.000000000 +0100
++++ cminpack-1.3.6_dev/CMakeLists.txt	2023-05-22 09:19:37.416506078 +0200
+@@ -69,6 +69,8 @@
+ 
+ # Link with a BLAS library if requested
+ if (USE_BLAS)
++  SET(BLAS_ROOT_DIR $ENV{BLAS_ROOT_DIR} CACHE PATH "Path to the BLAS.")
++  SET(BLAS_INCLUDE_DIRS "${BLAS_ROOT_DIR}/include/openblas")
+   if (NOT BUILD_SHARED_LIBS)
+     set(BLA_STATIC True)
+   endif()
+@@ -77,6 +79,7 @@
+     target_link_libraries(cminpack PUBLIC ${BLAS_LIBRARIES})
+     set_target_properties(cminpack PROPERTIES LINK_FLAGS "${BLAS_LINKER_FLAGS}")
+     target_compile_definitions(cminpack PUBLIC -DUSE_CBLAS)
++	  include_directories(${BLAS_ROOT_DIR}/include/openblas)
+   endif()
+ endif()
+ 
+@@ -94,4 +97,4 @@
+ set_target_properties(cminpack PROPERTIES VERSION ${CMINPACK_VERSION} SOVERSION ${CMINPACK_SOVERSION})
+ 
+ add_subdirectory (cmake)
+-add_subdirectory (examples)
+\ Pas de fin de ligne à la fin du fichier
++add_subdirectory (examples)

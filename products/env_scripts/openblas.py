@@ -7,6 +7,8 @@ import platform
 def set_env(env, prereq_dir, version):
   env.set('OPENBLASHOME', prereq_dir)
   env.set('OPENBLAS_ROOT_DIR', prereq_dir)
+  env.set('OpenBLAS_DIR', prereq_dir)
+  env.set('BLAS_ROOT_DIR', prereq_dir)
   env.set('OPENBLAS_SRC', os.path.join(prereq_dir,'SRC'))
   env.set('BLAS_SRC', os.path.join(prereq_dir,'BLAS','SRC'))
     

@@ -1,7 +1,7 @@
 @echo off
 
 echo ##########################################################################
-echo YDEFX %VERSION%
+echo FMILibrary %VERSION%
 echo ##########################################################################
 
 IF NOT DEFINED SAT_DEBUG (
@@ -24,9 +24,9 @@ mkdir %BUILD_DIR%
 SET CMAKE_OPTIONS=
 SET CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_INSTALL_PREFIX:STRING=%PRODUCT_INSTALL:\=/%
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_BUILD_TYPE:STRING=%PRODUCT_BUILD_TYPE%
-SET CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=ON
+set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DOpenBLAS_DIR=%OpenBLAS_DIR:\=/%
+set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DFMILIB_GENERATE_DOXYGEN_DOC=OFF
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_GENERATOR="Visual Studio 15 2017 Win64"
-
 
 cd %BUILD_DIR%
 
@@ -37,9 +37,12 @@ echo --------------------------------------------------------------------------
 
 %CMAKE_ROOT%\bin\cmake %CMAKE_OPTIONS% %SOURCE_DIR%
 if NOT %ERRORLEVEL% == 0 (
-    echo ERROR on YDEFX
+    echo ERROR on FMILibrary
     exit 1
 )
+
+REM Strangely fails on node if latest Windows SDK
+sed -i 's/Shlwapi.lib/ /g' fmilib.vcxproj
 
 echo.
 echo --------------------------------------------------------------------------

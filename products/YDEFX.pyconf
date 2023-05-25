@@ -33,6 +33,13 @@ default :
     patches : []
 }
 
+default_win :
+{
+   build_source : "script"
+  cmake_options : " -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=ON "
+  patches : []
+}
+
 version_V9_10_0 :
 {
     # prescription de EDF ne fonctionne pas en dehors de YAMS

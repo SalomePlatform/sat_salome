@@ -1,0 +1,85 @@
+diff -Naur persalys_v14.0.1_ref/CMakeLists.txt persalys_v14.0.1_dev/CMakeLists.txt
+--- persalys_v14.0.1_ref/CMakeLists.txt	2023-03-31 08:59:27.000000000 +0200
++++ persalys_v14.0.1_dev/CMakeLists.txt	2023-05-23 12:46:41.640288727 +0200
+@@ -43,8 +43,16 @@
+   list (APPEND PERSALYS_DEFINITIONS "-DPERSALYS_STATIC -DPYINTERP_STATIC -DPYCONSOLE_STATIC")
+ endif ()
+ 
++SET(BOOST_ROOT_DIR $ENV{BOOST_ROOT_DIR} CACHE PATH "Path to the Boost")
++if(EXISTS "${BOOST_ROOT_DIR}")
++  set(BOOST_ROOT "${BOOST_ROOT_DIR}" CACHE PATH "Boost root directory" FORCE)
++endif()
++set(Boost_USE_DEBUG_LIBS   OFF) # ignore debug libs and
++set(Boost_USE_RELEASE_LIBS ON)  # only find release libs
+ find_package (Boost COMPONENTS filesystem locale REQUIRED)
+-list (APPEND PERSALYS_PRIVATE_LIBRARIES ${Boost_LIBRARIES})
++if (TARGET Boost::filesystem)
++  set (Boost_LIBRARIES Boost::filesystem Boost::locale)
++ENDIF()
+ 
+ find_package (Python 3.5 COMPONENTS Interpreter Development REQUIRED)
+ list (APPEND PERSALYS_PUBLIC_LIBRARIES ${Python_LIBRARIES})
+diff -Naur persalys_v14.0.1_ref/lib/src/base/CMakeLists.txt persalys_v14.0.1_dev/lib/src/base/CMakeLists.txt
+--- persalys_v14.0.1_ref/lib/src/base/CMakeLists.txt	2023-03-31 08:59:27.000000000 +0200
++++ persalys_v14.0.1_dev/lib/src/base/CMakeLists.txt	2023-05-22 09:13:05.971858911 +0200
+@@ -203,6 +203,7 @@
+ else ()
+   target_compile_definitions (persalysbase PUBLIC PERSALYS_BASE_STATIC)
+ endif ()
++target_compile_options(persalysbase PUBLIC  -DBOOST_ALL_DYN_LINK)
+ 
+ target_include_directories (persalysbase PRIVATE ${Boost_INCLUDE_DIRS})
+ target_include_directories (persalysbase PRIVATE ${Python_INCLUDE_DIRS})
+@@ -220,8 +221,8 @@
+ set_target_properties (persalysbase PROPERTIES VERSION ${LIB_VERSION})
+ set_target_properties (persalysbase PROPERTIES SOVERSION ${LIB_SOVERSION})
+ 
+-target_link_libraries (persalysbase PUBLIC ${PERSALYS_PUBLIC_LIBRARIES})
+-target_link_libraries (persalysbase PRIVATE ${PERSALYS_PRIVATE_LIBRARIES})
++target_link_libraries (persalysbase PUBLIC "${PERSALYS_PUBLIC_LIBRARIES};${Boost_LIBRARIES};${Boost_FILESYSTEM_LIBRARY_RELEASE}")
++target_link_libraries (persalysbase PRIVATE "${PERSALYS_PRIVATE_LIBRARIES};${Boost_LIBRARIES};${Boost_FILESYSTEM_LIBRARY_RELEASE}")
+ 
+ install (TARGETS persalysbase
+   RUNTIME DESTINATION bin
+diff -Naur persalys_v14.0.1_ref/lib/src/view/plot/CMakeLists.txt persalys_v14.0.1_dev/lib/src/view/plot/CMakeLists.txt
+--- persalys_v14.0.1_ref/lib/src/view/plot/CMakeLists.txt	2023-03-31 08:59:27.000000000 +0200
++++ persalys_v14.0.1_dev/lib/src/view/plot/CMakeLists.txt	2023-05-20 15:45:57.000000000 +0200
+@@ -47,9 +47,9 @@
+ if (BUILD_SHARED_LIBS)
+   target_compile_definitions (persalysplot PRIVATE PERSALYS_PLOT_DLL_EXPORTS)
+ else ()
+-  target_compile_definitions (persalysplot PUBLIC PERSALYS_PLOT_STATIC)
++  target_compile_definitions (persalysplot PUBLIC PERSALYS_PLOT_STATIC )
+ endif ()
+-
++target_compile_options(persalysplot PUBLIC  -DQWT_DLL)
+ if ( NOT DEFINED LIB_VERSION ) 
+   set ( LIB_VERSION 0.0.0 )
+ endif ()
+diff -Naur persalys_v14.0.1_ref/lib/src/view/utils/persalys/TimeLineEdit.hxx persalys_v14.0.1_dev/lib/src/view/utils/persalys/TimeLineEdit.hxx
+--- persalys_v14.0.1_ref/lib/src/view/utils/persalys/TimeLineEdit.hxx	2023-03-31 08:59:27.000000000 +0200
++++ persalys_v14.0.1_dev/lib/src/view/utils/persalys/TimeLineEdit.hxx	2023-05-20 14:53:23.000000000 +0200
+@@ -32,9 +32,9 @@
+ 
+ public:
+   // constructor with text
+-  TimeLineEdit(const QString text = "", QWidget *parent = 0);
++  TimeLineEdit(const QString &text, QWidget *parent = nullptr);
+   // constructor with seconds
+-  TimeLineEdit(const unsigned int seconds = 0, QWidget *parent = 0);
++  TimeLineEdit(const unsigned int seconds = 0, QWidget *parent = nullptr);
+ 
+   int getSeconds() const;
+   void setSeconds(const int seconds);
+diff -Naur persalys_v14.0.1_ref/lib/src/view/utils/TimeLineEdit.cxx persalys_v14.0.1_dev/lib/src/view/utils/TimeLineEdit.cxx
+--- persalys_v14.0.1_ref/lib/src/view/utils/TimeLineEdit.cxx	2023-03-31 08:59:27.000000000 +0200
++++ persalys_v14.0.1_dev/lib/src/view/utils/TimeLineEdit.cxx	2023-05-20 14:53:33.000000000 +0200
+@@ -26,7 +26,7 @@
+ namespace PERSALYS
+ {
+ 
+-TimeLineEdit::TimeLineEdit(const QString text, QWidget *parent)
++TimeLineEdit::TimeLineEdit(const QString& text, QWidget *parent)
+   : QLineEdit(parent)
+ {
+   setInputMask("999\\d\\ 99\\h\\ 99\\m\\ 99\\s");

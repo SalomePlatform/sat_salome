@@ -30,6 +30,15 @@ default :
     }
 }
 
+default_win :
+{
+    properties :
+    {
+      single_install_dir : "yes"
+      incremental : "yes"
+    }
+}
+
 version_1_3_6 :
 {
     build_source : "script"
@@ -43,5 +52,5 @@ version_1_3_6_win:
     build_depend : ["cmake", "swig"]
     opt_depend : ['openmpi']    
     compil_script: 'cminpack-1.3.6.bat'
-    patches : []
+    patches : ["cminpack-1.3.6-openblas.patch"]
 }

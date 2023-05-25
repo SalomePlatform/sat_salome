@@ -83,12 +83,17 @@ version_v14_0_1_win :
               'qt',
               'ParaView',
               'openturns',
+              'FMILibrary',
+              'PyFMI',
               'YACS',
-              #'YDEFX',
+              'YDEFX',
+              'PY2CPP',
               'CAS',
               'CONFIGURATION',
-              'openblas'
+              'openblas',
+              'pthreads'
            ]
+    patches : ["PERSALYS-v14.0.1-001.patch"]
 }
 
 version_v13_0 :

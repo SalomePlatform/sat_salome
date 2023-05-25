@@ -30,10 +30,11 @@ default :
 
 default_win :
 {
+    cmake_options : " -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=ON "
     properties:
     {
       incremental : "yes"
       single_install_dir : "no" # aimed to solve sat #18914
     }
-    patches : ['py2cpp-9.11.0-lib.patch']
+    patches : []
 }

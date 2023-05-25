@@ -1,0 +1,12 @@
+diff -Naur openturns-1.20.1_ref/openturns-1.20.1/lib/include/pthread_win32/pthread.h openturns-1.20.1_dev/openturns-1.20.1/lib/include/pthread_win32/pthread.h
+--- openturns-1.20.1_ref/openturns-1.20.1/lib/include/pthread_win32/pthread.h	2023-04-07 09:47:43.000000000 +0200
++++ openturns-1.20.1_dev/openturns-1.20.1/lib/include/pthread_win32/pthread.h	2023-05-21 18:06:49.000000000 +0200
+@@ -199,7 +199,7 @@
+ static __inline int __pthread_mutex_alloc_concurrently (pthread_mutex_t *mutex) {
+   HANDLE mutex_init_mutex;
+   /* Get access to one global named mutex to serialize mutex initialization */
+-  winPthreadAssertWindows((mutex_init_mutex = CreateMutex(NULL, FALSE, "StarPU mutex init")));
++  winPthreadAssertWindows((mutex_init_mutex = CreateMutex(NULL, FALSE, NULL)));
+   winPthreadAssertPthread(pthread_mutex_lock(&mutex_init_mutex));
+   /* Now we are the one that can initialize it */
+   if (!*mutex)
