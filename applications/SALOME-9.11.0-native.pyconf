@@ -334,7 +334,8 @@ __overwrite__ :
         'APPLICATION.products.catalyst'         : {tag: '2.0',       base: 'no', section: 'version_2_0_FD38'                    }
         'APPLICATION.products.gmsh'             : {tag: '4.10.3',    base: 'no', section: 'version_4_10_3_FD38'                 }
         'APPLICATION.products.ParaView'         : {tag: '5.11.0',    base: 'no', section: 'version_5_11_0_MPI_FD38', hpc: 'yes' }
-        'APPLICATION.products.CONFIGURATION'    : {tag:'V9_11_BR',     base: 'no', section: 'default'                             }
-        'APPLICATION.products.SHAPER'           : {tag:'V9_11_BR',     base: 'no', section: 'default',                 hpc: 'no'  }
+        'APPLICATION.products.CONFIGURATION'    : {tag:'V9_11_BR',   base: 'no', section: 'default'                             }
+        'APPLICATION.products.SHAPER'           : {tag:'V9_11_BR',   base: 'no', section: 'default',                 hpc: 'no'  }
+        'APPLICATION.products.NETGENPLUGIN'     : {tag:'V9_11_BR',   base: 'no', section: 'version_V9_11_0_FD38'                }
     }
 ]

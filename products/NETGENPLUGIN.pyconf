@@ -69,6 +69,10 @@ default_win :
               ]
 }
 
+version_V9_11_0_FD38 :
+{
+  patches : ['NETGENPlugin_FD38.patch']
+}
 
 version_V9_3_0 :
 {
