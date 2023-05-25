@@ -1,0 +1,44 @@
+diff -Naur ParaView_ref/VTK/IO/Image/vtkSEPReader.h ParaView_dev/VTK/IO/Image/vtkSEPReader.h
+--- ParaView_ref/VTK/IO/Image/vtkSEPReader.h	2022-11-18 15:26:53.000000000 +0100
++++ ParaView_dev/VTK/IO/Image/vtkSEPReader.h	2023-05-25 12:20:42.016536934 +0200
+@@ -25,6 +25,7 @@
+ #include "vtkImageAlgorithm.h"
+ #include "vtkNew.h" // for ivars
+ 
++#include <cstdint>
+ #include <array>  // for std::array
+ #include <string> // for std::string
+ 
+diff -Naur ParaView_ref/VTK/IO/PIO/PIOData.h ParaView_dev/VTK/IO/PIO/PIOData.h
+--- ParaView_ref/VTK/IO/PIO/PIOData.h	2022-11-18 15:26:53.000000000 +0100
++++ ParaView_dev/VTK/IO/PIO/PIOData.h	2023-05-25 13:01:49.598990879 +0200
+@@ -10,6 +10,7 @@
+ #include <string.h>
+ #include <string>
+ #include <valarray>
++#include <cstdint>
+ 
+ struct Cstring_less
+ {
+diff -Naur ParaView_ref/VTK/Rendering/Matplotlib/vtkMatplotlibMathTextUtilities.h ParaView_dev/VTK/Rendering/Matplotlib/vtkMatplotlibMathTextUtilities.h
+--- ParaView_ref/VTK/Rendering/Matplotlib/vtkMatplotlibMathTextUtilities.h	2022-11-18 15:26:54.000000000 +0100
++++ ParaView_dev/VTK/Rendering/Matplotlib/vtkMatplotlibMathTextUtilities.h	2023-05-25 13:38:22.802343684 +0200
+@@ -49,6 +49,7 @@
+ #include "vtkMathTextUtilities.h"
+ #include "vtkRenderingMatplotlibModule.h" // For export macro
+ 
++#include <cstdint>
+ #include <vector> // for std::vector
+ 
+ struct _object;
+diff -Naur ParaView_ref/VTK/ThirdParty/libproj/vtklibproj/src/proj_json_streaming_writer.hpp ParaView_dev/VTK/ThirdParty/libproj/vtklibproj/src/proj_json_streaming_writer.hpp
+--- ParaView_ref/VTK/ThirdParty/libproj/vtklibproj/src/proj_json_streaming_writer.hpp	2022-11-18 15:26:54.000000000 +0100
++++ ParaView_dev/VTK/ThirdParty/libproj/vtklibproj/src/proj_json_streaming_writer.hpp	2023-05-25 11:49:44.525774382 +0200
+@@ -33,6 +33,7 @@
+ 
+ #include <vector>
+ #include <string>
++#include <cstdint>
+ 
+ #define CPL_DLL
+ 
