@@ -152,7 +152,7 @@ fi
 
 echo
 echo "*** check installation"
-if [! -d "${PRODUCT_INSTALL}/lib" ]; then
+if [ ! -d "${PRODUCT_INSTALL}/lib" ]; then
     mkdir -p ${PRODUCT_INSTALL}/lib
 fi
 
@@ -176,7 +176,7 @@ fi
 export PYTHONPATH=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages:${PYTHONPATH}
 export LD_LIBRARY_PATH=${PRODUCT_INSTALL}/lib:${LD_LIBRARY_PATH}
 chmod +x ${SOURCE_DIR}/openturns-1.20.1/python/test/t_features.py
-${SOURCE_DIR}/openturns-1.20.1/python/test/t_features.py
+${PYTHONBIN} ${SOURCE_DIR}/openturns-1.20.1/python/test/t_features.py
 if [ $? -ne 0 ]
 then
     echo "ERROR  testing Openturns features...."
