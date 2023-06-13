@@ -170,11 +170,11 @@ APPLICATION :
         'CALCULATOR'
         'HELLO'
         'PYHELLO'
-        'EFICAS' : 'master' #FIXME
-        'EFICAS_TOOLS' : 'master' #FIXME
+        'EFICAS'
+        'EFICAS_TOOLS'
         'PY2CPP'
-        'ADAO' :  'master' #FIXME
-        'ADAO_INTERFACE' : 'master' #FIXME
+        'ADAO'
+        'ADAO_INTERFACE'
         'PARAVISADDONS'
         'OPENTURNS_SALOME'
         'YDEFX'

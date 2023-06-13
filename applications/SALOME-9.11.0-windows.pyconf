@@ -173,9 +173,9 @@ APPLICATION :
         'CALCULATOR'
         'HELLO'
         'PYHELLO'
-        'EFICAS' : 'master' #FIXME
-        'EFICAS_TOOLS' : 'master' #FIXME  
-        'ADAO' : 'master' #FIXME  
+        'EFICAS'
+        'EFICAS_TOOLS'
+        'ADAO'
         'PARAVISADDONS'
         'PY2CPP'
         'OPENTURNS_SALOME'
