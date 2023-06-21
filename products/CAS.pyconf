@@ -47,8 +47,8 @@ version_CR753_SALOME_PATCH :
     get_source : "archive"
     archive_info :
     {
-        #archive_name : "CAS-V7_5_3p4.tar.gz"
-        archive_name : "CAS-eefcafca.tar.gz"
+        archive_name : "CAS-V7_5_3p5.tar.gz"
+        #archive_name : "CAS-eefcafca.tar.gz"
     }
     git_info:
     {
@@ -88,8 +88,8 @@ version_CR753_SALOME_PATCH_win :
     get_source : "archive"
     archive_info :
     {
-        #archive_name : "CAS-V7_5_3p4.tar.gz"
-        archive_name : "CAS-eefcafca.tar.gz"
+        archive_name : "CAS-V7_5_3p5.tar.gz"
+        #archive_name : "CAS-eefcafca.tar.gz"
     }
     git_info:
     {
