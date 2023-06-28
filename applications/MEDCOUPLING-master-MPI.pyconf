@@ -44,7 +44,7 @@ APPLICATION :
         lapack : '3.8.0'
         libxml2 : '2.9.1'
         markupsafe : '0.23'
-        medfile : {tag : '4.1.1', hpc : 'yes', section : 'default_Autotools' }
+        medfile : {tag : '4.1.1', hpc : 'yes'}
         mpi4py: '3.0.3'
         numpy : '1.16.4'
         openmpi : '3.1.6'
