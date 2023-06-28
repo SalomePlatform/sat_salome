@@ -43,7 +43,7 @@ APPLICATION :
         lapack : 'native'
         libxml2 : 'native'
         markupsafe : 'native'
-        medfile : {tag : '4.1.1', hpc : 'yes', section : 'version_4_1_1' }
+        medfile : '4.1.1'
         metis : 'native'
         mpi4py : 'native'
         numpy : 'native'
@@ -93,18 +93,18 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['UB22.04']"
-        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_UB22_04', hpc: 'yes'}
+        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_UB22_04'}
     }
     {
         __condition__ : "VARS.dist in ['FD38']"
-        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD38', hpc: 'yes'}
+        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD38'}
     }
     {
         __condition__ : "VARS.dist in ['FD37']"
-        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD37', hpc: 'yes'}
+        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD37'}
     }
     {
         __condition__ : "VARS.dist in ['FD36']"
-        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD36', hpc: 'yes'}
+        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD36'}
     }
 ]
