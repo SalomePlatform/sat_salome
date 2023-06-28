@@ -43,7 +43,7 @@ APPLICATION :
         lapack : 'native'
         libxml2 : 'native'
         markupsafe : 'native'
-        medfile : {tag : '4.1.1', hpc : 'yes', section : 'default_Autotools' }
+        medfile : {tag : '4.1.1', hpc : 'yes'}
         metis : 'native'
         mpi4py : 'native'
         numpy : 'native'
@@ -69,7 +69,7 @@ APPLICATION :
 
         # SALOME MODULES :
         'CONFIGURATION'
-        'MEDCOUPLING' : {tag:'master', base:'no', section:'default_MPI_STD', hpc:'yes'}
+        'MEDCOUPLING' : {tag:'master', base:'no', section:'default_MPI', hpc:'yes'}
     }
     test_base : 
     {
@@ -93,14 +93,14 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['UB22.04']"
-        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_UB22_04'}
+        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_UB22_04', hpc: 'yes'}
     }
     {
         __condition__ : "VARS.dist in ['FD37']"
-        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD37'}
+        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD37', hpc: 'yes'}
     }
     {
         __condition__ : "VARS.dist in ['FD36']"
-        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD36'}
+        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD36', hpc: 'yes'}
     }
 ]
