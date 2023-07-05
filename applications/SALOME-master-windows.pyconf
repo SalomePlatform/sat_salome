@@ -99,7 +99,7 @@ APPLICATION :
         pandas : '0.25.2'
         patsy : '0.5.2'
         ParaView : {tag:'5.11.0', base: 'no',  section: 'version_5_11_0'}
-        PERSALYS: 'v14.0.1'
+        #PERSALYS: 'v14.0.1'         #FIXME- SWITCH ON WHEN MERGED
         perl : '5.28.1.1'
         Pillow : '7.1.1'
         planegcs : '0.18-3cb6890'
@@ -164,7 +164,7 @@ APPLICATION :
         'FIELDS'
         'PARAVIS'
         'JOBMANAGER'
-        'YACS' : 'V9_11_BR' # FIXME - until merged to master
+        'YACS'
         'YACSGEN'
         'DOCUMENTATION'
         'SAMPLES'
@@ -177,9 +177,9 @@ APPLICATION :
         'EFICAS_TOOLS'
         'ADAO'
         'PARAVISADDONS'
-        'PY2CPP' : 'V9_11_BR' #FIXME -  until merged to master
-        'OPENTURNS_SALOME' : 'V9_11_BR' #FIXME -  until merged to master
-        'YDEFX' : 'V9_11_BR' #FIXME - until merged to master
+        'PY2CPP'
+        #'OPENTURNS_SALOME'         #FIXME- SWITCH ON WHEN MERGED
+        #'YDEFX'                    #FIXME- SWITCH ON WHEN MERGED
         'pmml'
         #'TESTBASE'
         'CEATESTBASE' : 'SalomeV9'
