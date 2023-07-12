@@ -15,7 +15,8 @@ default :
     {
        env_script : $name + ".py"
     }
-    depend : ['Python', 'qt', 'sip', 'packaging']
+    depend : ['Python', 'qt', 'sip']
+    opt_depend : ['packaging']
     patches : []
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
