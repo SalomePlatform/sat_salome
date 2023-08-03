@@ -219,7 +219,7 @@ if NOT %ERRORLEVEL% == 0 (
     exit 3
 )
 
-%PYTHON_ROOT_DIR%\python.exe -m pip install --cache-dir=%BUILD_DIR%\cache\pip --prefix=%PRODUCT_INSTALL% scikit-learn-0.24.2.tar.gz --no-deps
+%PYTHON_ROOT_DIR%\python.exe -m pip install --cache-dir=%BUILD_DIR%\cache\pip --prefix=%PRODUCT_INSTALL% scikit-learn-0.24.2.tar.gz --no-deps --no-use-pep517
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on python setup.py
     exit 3
