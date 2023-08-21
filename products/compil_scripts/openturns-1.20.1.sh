@@ -300,7 +300,8 @@ if [[ -d "$SOURCE_DIR/otfftw-0.12" ]]; then
                     continue
                 fi
                 echo "INFO: install scikit-learn-0.24.2"
-                ${PYTHONBIN} -m pip install  --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/scikit-learn-0.24.2/scikit-learn-0.24.2.tar.gz --no-deps  --prefix=$PRODUCT_INSTALL --no-build-isolation
+                # use --no-build-isolation and --no-use-pep517 flags
+                ${PYTHONBIN} -m pip install  --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/scikit-learn-0.24.2/scikit-learn-0.24.2.tar.gz --no-deps  --prefix=$PRODUCT_INSTALL --no-build-isolation --no-use-pep517
                 if [ $? -ne 0 ]
                 then
                     echo "FATAL: could not install scikit-0.24.2"
