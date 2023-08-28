@@ -218,6 +218,7 @@ __overwrite__ :
     {
         #
         __condition__ : "VARS.dist in ['UB22.04']"
+        'APPLICATION.rm_products' : ['TTK'] # causes crashes
         'APPLICATION.products.cmake'       : 'native' # TTK requires cmake > 3.21
         'APPLICATION.products.opencv'      : '3.2.0'
         'APPLICATION.products.nlopt'       : '2.5.0'
