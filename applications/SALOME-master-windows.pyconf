@@ -99,7 +99,7 @@ APPLICATION :
         pandas : '0.25.2'
         patsy : '0.5.2'
         ParaView : {tag:'5.11.0', base: 'no',  section: 'version_5_11_0'}
-        #PERSALYS: 'v14.0.1'         #FIXME- SWITCH ON WHEN MERGED
+        PERSALYS: 'v14.0.1'
         perl : '5.28.1.1'
         Pillow : '7.1.1'
         planegcs : '0.18-3cb6890'
@@ -178,8 +178,8 @@ APPLICATION :
         'ADAO'
         'PARAVISADDONS'
         'PY2CPP'
-        #'OPENTURNS_SALOME'         #FIXME- SWITCH ON WHEN MERGED
-        #'YDEFX'                    #FIXME- SWITCH ON WHEN MERGED
+        'OPENTURNS_SALOME'
+        'YDEFX'
         'pmml'
         #'TESTBASE'
         'CEATESTBASE' : 'SalomeV9'
