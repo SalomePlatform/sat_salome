@@ -151,8 +151,8 @@ APPLICATION :
         'MEDCOUPLING'
         'GUI'
         'GEOM'
-        'SMESH'
-        'NETGENPLUGIN'
+        'SMESH' : '93edbb3' #FIXME
+        'NETGENPLUGIN' : '90d8d44' #FIXME
         'BLSURFPLUGIN'
         'GHS3DPLUGIN'
         'HYBRIDPLUGIN'
