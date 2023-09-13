@@ -179,6 +179,7 @@ APPLICATION :
         'OPENTURNS_SALOME'
         'YDEFX'
         'pmml'
+        'SALOMEBOOTSTRAP'
         'SOLVERLAB'
         'SOLVERLABGUI'
         'TopIIVolMesh'

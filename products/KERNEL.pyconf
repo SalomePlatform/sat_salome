@@ -33,6 +33,7 @@ default :
               "psutil"
               ]
     build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+    opt_depend : ["SALOMEBOOTSTRAP"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     properties:
@@ -92,6 +93,7 @@ default_MPI :
               "LIBBATCH",
               "psutil"
               ]
+    opt_depend : ["SALOMEBOOTSTRAP"]
 }
 
 default_32BIT_IDS :
