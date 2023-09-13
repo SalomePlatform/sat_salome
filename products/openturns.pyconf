@@ -36,6 +36,30 @@ default_win :
     opt_depend : []
 }
 
+version_1_21 :
+{
+    compil_script :  "openturns-1.21.sh"
+    patches : []
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
+    opt_depend : ['pandas', 'statsmodels', 'patsy']
+}
+
+version_1_21_win :
+{
+    name : "OT"
+    compil_script :  "openturns-1.21.bat"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + 'openturns'
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    depend : ['Python', 'openblas', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'fftw']
+    opt_depend : ['pandas', 'statsmodels', 'patsy']
+    patches : []
+    properties :
+    {
+      single_install_dir : "no"
+      incremental : "yes"
+    }
+}
+
 version_1_20_1 :
 {
     compil_script :  "openturns-1.20.1" + $VARS.scriptExtension
@@ -148,7 +172,7 @@ version_1_20_1_FD32 :
     opt_depend : ['pandas', 'statsmodels']
 }
 
-  version_1_19 :
+version_1_19 :
 {
     compil_script :  "openturns-1.19" + $VARS.scriptExtension
     patches : ['openturns-1.19.0001.patch']

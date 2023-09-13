@@ -59,6 +59,43 @@ default_win :
     }
 }
 
+version_v14_1 :
+{
+   patches : []
+}
+
+version_v14_1_win :
+{
+   compil_script : 'PERSALYS-v14.1.bat'
+   depend : ['Python',
+              'hdf5',
+              'cgns',
+              'tbb',
+              'nlopt',
+              'libxml2',
+              'eigen',
+              'boost',
+              'ADAO',
+              'KERNEL',
+              'GUI',
+              'Sphinx',
+              'qwt',
+              'qt',
+              'ParaView',
+              'openturns',
+              'FMILibrary',
+              'PyFMI',
+              'YACS',
+              'YDEFX',
+              'PY2CPP',
+              'CAS',
+              'CONFIGURATION',
+              'openblas',
+              'pthreads'
+           ]
+    patches : []
+}
+
 version_v14_0_1 :
 {
    patches : []
