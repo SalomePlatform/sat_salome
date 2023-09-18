@@ -67,7 +67,7 @@ default_win :
               "sphinxcontrib_serializinghtml",
               "graphviz"
              ]
-    opt_depend : ["sphinx_rtd_theme"]
+    opt_depend : ["sphinx_rtd_theme", "SALOMEBOOTSTRAP"]
     build_depend : ["cmake", "swig", "doxygen", "cppunit"]
 
 }

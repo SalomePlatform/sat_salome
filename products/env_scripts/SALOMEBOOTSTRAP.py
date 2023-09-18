@@ -6,10 +6,7 @@ import platform
 
 def set_env(env, prereq_dir, version):
   env.set('SALOMEBOOTSTRAP_ROOT_DIR', prereq_dir)
-  if platform.system() == "Windows" :
-    pass
-  else:
-    env.prepend('PYTHONPATH', os.path.join(prereq_dir, '__SALOME_BOOTSTRAP'))
+  env.prepend('PYTHONPATH', os.path.join(prereq_dir, '__SALOME_BOOTSTRAP__'))
 
 def set_nativ_env(env):
   pass

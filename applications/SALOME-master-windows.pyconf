@@ -167,6 +167,7 @@ APPLICATION :
         'YACS'
         'YACSGEN'
         'DOCUMENTATION'
+        'SALOMEBOOTSTRAP'
         'SAMPLES'
         'COMPONENT'
         'PYCALCULATOR'
