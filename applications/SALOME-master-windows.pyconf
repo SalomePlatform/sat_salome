@@ -141,7 +141,7 @@ APPLICATION :
         zlib : '1.2.5'
 
         # SALOME MODULES :
-        'CONFIGURATION'
+        'CONFIGURATION' : 'bos/37534'
         'SALOME'
         'SHAPER'
         'SHAPERSTUDY'
@@ -149,7 +149,7 @@ APPLICATION :
         'LIBBATCH' : {tag :'V2_4_6'}
         'KERNEL'
         'MEDCOUPLING'
-        'GUI'
+        'GUI' : 'bos/37534'
         'GEOM'
         'SMESH'
         'NETGENPLUGIN'
