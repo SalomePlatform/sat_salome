@@ -145,10 +145,10 @@ REM SET CMAKE_MODULE_OPTIONS=%CMAKE_OPTIONS% -DBUILD_DOC=OFF
 REM CALL:MODULE_BUILDER otagrum "%SOURCE_DIR%\otagrum-0.8" "%BUILD_DIR%\otagrum" "%PRODUCT_INSTALL%" "%CMAKE_MODULE_OPTIONS%"
 
 echo ##########################################################################
-echo otmorris 0.13
+echo otmorris 0.14
 echo ##########################################################################
 SET CMAKE_MODULE_OPTIONS=%CMAKE_OPTIONS%
-CALL:MODULE_BUILDER otmorris "%SOURCE_DIR%\otmorris-0.13" "%BUILD_DIR%\otmorris" "%PRODUCT_INSTALL%" "%CMAKE_MODULE_OPTIONS%"
+CALL:MODULE_BUILDER otmorris "%SOURCE_DIR%\otmorris-0.14" "%BUILD_DIR%\otmorris" "%PRODUCT_INSTALL%" "%CMAKE_MODULE_OPTIONS%"
 
 echo ##########################################################################
 echo otfftw 0.13
@@ -175,10 +175,10 @@ SET CMAKE_MODULE_OPTIONS=%CMAKE_OPTIONS% -DBUILD_DOC=OFF
 CALL:MODULE_BUILDER otsubsetinverse "%SOURCE_DIR%\otsubsetinverse-1.10" "%BUILD_DIR%\otsubsetinverse" "%PRODUCT_INSTALL%" "%CMAKE_MODULE_OPTIONS%"
 
 echo ##########################################################################
-echo otsvm 0.11
+echo otsvm 0.12
 echo ##########################################################################
 SET CMAKE_MODULE_OPTIONS=%CMAKE_OPTIONS% -DBUILD_DOC=OFF
-CALL:MODULE_BUILDER otsvm "%SOURCE_DIR%\otsvm-0.11" "%BUILD_DIR%\otsvm" "%PRODUCT_INSTALL%" "%CMAKE_MODULE_OPTIONS%"
+CALL:MODULE_BUILDER otsvm "%SOURCE_DIR%\otsvm-0.12" "%BUILD_DIR%\otsvm" "%PRODUCT_INSTALL%" "%CMAKE_MODULE_OPTIONS%"
 
 echo ##########################################################################
 echo otfmi 0.15

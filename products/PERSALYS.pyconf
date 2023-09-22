@@ -61,7 +61,7 @@ default_win :
 
 version_v14_1 :
 {
-   patches : []
+   patches : ['PERSALYS-v14.1-001.patch']
 }
 
 version_v14_1_win :

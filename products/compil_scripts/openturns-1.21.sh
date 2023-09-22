@@ -106,6 +106,11 @@ if [ -n "$NLOPT_ROOT_DIR" ] && [ "$SAT_nlopt_IS_NATIVE" != "1" ]; then
     CMAKE_OPTIONS+=" -DNLOPT_DIR:STRING=${NLOPT_ROOT_DIR}"
 fi
 
+# Boost
+if [ -n "$BOOST_ROOT_DIR" ] && [ "$SAT_boost_IS_NATIVE" != "1" ]; then
+    CMAKE_OPTIONS+=" -DBOOST_DIR=${BOOST_ROOT_DIR}"
+fi
+
 echo
 echo "*** cmake" $CMAKE_OPTIONS
 
@@ -189,10 +194,10 @@ if [[ -d "$SOURCE_DIR/otfftw-0.13" ]]; then
     OTC["otagrum"]="0.8"
     OTC["otfftw"]="0.13"
     OTC["otmixmod"]="0.14"
-    OTC["otmorris"]="0.13"
+    OTC["otmorris"]="0.14"
     OTC["otrobopt"]="0.12"
     OTC["otsubsetinverse"]="1.10"
-    OTC["otsvm"]="0.11"
+    OTC["otsvm"]="0.12"
 
     for k in ${!OTC[@]};
     do         
@@ -435,6 +440,13 @@ if [[ -d "$SOURCE_DIR/otfftw-0.13" ]]; then
 fi
 
 cd ${PRODUCT_INSTALL}/lib
+# On some nodes, the link to OT is not done properly.
+if [[ ! -f libOT.so.0 ]]; then
+    echo "INFO: Fixing libOT.so"
+    ln -sf libOT.so.0.22.0 libOT.so.0.22
+    ln -sf libOT.so.0.22 libOT.so.0
+    ln -sf libOT.so.0 libOT.so
+fi
 
 echo
 echo "########## END"

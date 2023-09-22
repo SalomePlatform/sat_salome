@@ -1,0 +1,15 @@
+--- openturns_ref/openturns-1.21/CMakeLists.txt	2023-09-21 11:22:25.194024611 +0200
++++ openturns_dev/openturns-1.21/CMakeLists.txt	2023-09-21 11:23:25.994024043 +0200
+@@ -288,7 +288,11 @@
+ endif ()
+ 
+ if (USE_NLOPT)
+-  find_package (NLopt CONFIG QUIET)
++  SET(NLOPT_ROOT_DIR $ENV{NLOPT_ROOT_DIR} CACHE PATH "Path to the NLOPT.")
++  IF(NLOPT_ROOT_DIR)
++    LIST(APPEND CMAKE_PREFIX_PATH "${NLOPT_ROOT_DIR}")
++  ENDIF(NLOPT_ROOT_DIR)
++  find_package (NLopt)
+   if (NLopt_FOUND)
+     message(STATUS "Found NLopt: ${NLopt_DIR}  (found version \"${NLopt_VERSION}\")")
+   else ()

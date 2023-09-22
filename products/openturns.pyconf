@@ -39,8 +39,8 @@ default_win :
 version_1_21 :
 {
     compil_script :  "openturns-1.21.sh"
-    patches : []
-    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
+    patches : ['openturns-1.21.0001.patch']
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI', 'boost']
     opt_depend : ['pandas', 'statsmodels', 'patsy']
 }
 
@@ -58,6 +58,30 @@ version_1_21_win :
       single_install_dir : "no"
       incremental : "yes"
     }
+}
+
+version_1_21_CO8 :
+{
+    compil_script :  "openturns-1.21.sh"
+    patches : ['openturns-1.21.0002.patch']
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI', 'boost']
+    opt_depend : ['pandas', 'statsmodels', 'patsy']
+}
+
+version_1_21_DB09 :
+{
+    compil_script :  "openturns-1.21.sh"
+    patches : ['openturns-1.21.0002.patch']
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI', 'boost']
+    opt_depend : ['pandas', 'statsmodels', 'patsy']
+}
+
+version_1_21_CO7 :
+{
+    compil_script :  "openturns-1.21.sh"
+    patches : ['openturns-1.21.0002.patch']
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI', 'boost']
+    opt_depend : ['pandas', 'statsmodels', 'patsy']
 }
 
 version_1_20_1 :

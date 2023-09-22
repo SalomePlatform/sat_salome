@@ -258,7 +258,8 @@ version_5_11_0 :
     patches : [
                'paraview-5.11.0.p001-FindCGNS.patch',
                'paraview-5.11.0.p003-ParaViewClient.patch',
-               'paraview-5.11.0.p006-GIL.patch'
+               'paraview-5.11.0.p006-GIL.patch',
+               'paraview-5.11.0.p009-openturns-1.21.patch'
               ]
     depend : [
               'Python',
@@ -321,7 +322,8 @@ version_5_11_0_win :
     patches : ['paraview-5.11.0.p001-FindCGNS.patch',
                'paraview-5.11.0.p002-FindMPI.patch',
                'paraview-5.11.0.p004-vtkUniformHyperTreeGrid.patch',
-               'paraview-5.11.0.p006-GIL.patch'
+               'paraview-5.11.0.p006-GIL.patch',
+               'paraview-5.11.0.p009-openturns-1.21.patch'
               ]
 }
 
@@ -346,7 +348,8 @@ version_5_11_0_win_dbg :
                'paraview-5.11.0.p002-FindMPI.patch',
                'paraview-5.11.0.p004-vtkUniformHyperTreeGrid.patch',
                'paraview-5.11.0.p005-vtkPython-debug.patch',
-               'paraview-5.11.0.p006-GIL.patch'
+               'paraview-5.11.0.p006-GIL.patch',
+               'paraview-5.11.0.p009-openturns-1.21.patch'
               ]
 }
 
@@ -356,7 +359,8 @@ version_5_11_0_MPI :
     archive_info : {archive_name : "ParaView-5.11.0.tar.gz"}
     patches : ['paraview-5.11.0.p001-FindCGNS.patch',
                'paraview-5.11.0.p002-FindMPI.patch',
-               'paraview-5.11.0.p006-GIL.patch'
+               'paraview-5.11.0.p006-GIL.patch',
+               'paraview-5.11.0.p009-openturns-1.21.patch'
               ]
     depend : [
               'Python',
@@ -381,7 +385,8 @@ version_5_11_0_MPI_LATA_64BITS_IDS :
     patches : ['paraview-5.11.0.p001-FindCGNS.patch',
                'paraview-5.11.0.p002-FindMPI.patch',
                'paraview-0012-LATA_64BITS_IDS.patch',
-               'paraview-5.11.0.p006-GIL.patch'
+               'paraview-5.11.0.p006-GIL.patch',
+               'paraview-5.11.0.p009-openturns-1.21.patch'
               ]
     depend : [
               'Python',
@@ -406,8 +411,9 @@ version_5_11_0_MPI_DB10 :
     patches : ['paraview-5.11.0.p001-FindCGNS.patch',
                'paraview-5.11.0.p002-FindMPI.patch',
                'paraview-5.11.0.p003-ParaViewClient.patch',
-               'paraview-5.11.0.p006-GIL.patch'
-                ]
+               'paraview-5.11.0.p006-GIL.patch',
+               'paraview-5.11.0.p009-openturns-1.21.patch'
+               ]
     depend : [
               'Python',
               'hdf5',
@@ -431,7 +437,8 @@ version_5_11_0_MPI_CO8 :
     patches : ['paraview-5.11.0.p001-FindCGNS.patch',
                'paraview-5.11.0.p002-FindMPI.patch',
                'paraview-5.11.0.p003-ParaViewClient.patch',
-               'paraview-5.11.0.p006-GIL.patch'
+               'paraview-5.11.0.p006-GIL.patch',
+               'paraview-5.11.0.p009-openturns-1.21.patch'
               ]
     depend : [
               'Python',
@@ -456,8 +463,9 @@ version_5_11_0_MPI_FD38 :
     patches : ['paraview-5.11.0.p001-FindCGNS.patch',
                'paraview-5.11.0.p002-FindMPI.patch',
                'paraview-5.11.0.p006-GIL.patch',
-	       'paraview-5.11.0.p007-mpi4py-FD37.patch',
-               'paraview-5.11.0.p008-cstdint-FD38.patch'
+               'paraview-5.11.0.p007-mpi4py-FD37.patch',
+               'paraview-5.11.0.p008-cstdint-FD38.patch',
+               'paraview-5.11.0.p009-openturns-1.21.patch'
               ]
     depend : [
               'Python',
@@ -482,7 +490,8 @@ version_5_11_0_MPI_FD37 :
     patches : ['paraview-5.11.0.p001-FindCGNS.patch',
                'paraview-5.11.0.p002-FindMPI.patch',
                'paraview-5.11.0.p006-GIL.patch',
-	             'paraview-5.11.0.p007-mpi4py-FD37.patch'
+               'paraview-5.11.0.p007-mpi4py-FD37.patch',
+               'paraview-5.11.0.p009-openturns-1.21.patch'
               ]
     depend : [
               'Python',
@@ -970,7 +979,7 @@ version_5_8_0_FD32 :
                 'paraview.0007-ParaView_find_freetype.patch',
                 'paraview.0009-ParaView_volume_mapper.patch',
                 'pv_coincident.patch'
-	      ]
+              ]
 }
 
 version_5_8_0_CO7_OpenMP :

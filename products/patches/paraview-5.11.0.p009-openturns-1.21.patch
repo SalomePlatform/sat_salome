@@ -1,0 +1,14 @@
+--- ParaView_ref/VTK/Filters/OpenTURNS/CMakeLists.txt	2023-09-21 14:03:18.271129420 +0200
++++ ParaView_dev/VTK/Filters/OpenTURNS/CMakeLists.txt	2023-09-21 14:03:39.191129397 +0200
+@@ -1,7 +1,8 @@
+-find_package(OpenTURNS 1.8 REQUIRED)
++find_package(OpenTURNS 1.21 REQUIRED)
+ # XXX(fixme)
+-include(${OPENTURNS_USE_FILE})
+-
++if (EXISTS "${OPENTURNS_USE_FILE}")
++  include(${OPENTURNS_USE_FILE})
++endif()
+ set(classes
+   vtkOTDensityMap
+   vtkOTFilter

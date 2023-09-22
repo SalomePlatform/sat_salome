@@ -1,0 +1,11 @@
+--- persalys-14.1_ref/lib/src/view/FMIPhysicalModelWindow.cxx	2023-07-25 11:23:39.000000000 +0200
++++ persalys-14.1_dev/lib/src/view/FMIPhysicalModelWindow.cxx	2023-09-22 12:57:00.961672547 +0200
+@@ -43,7 +43,7 @@
+ #include <QApplication>
+ #include <QTreeView>
+ #include <QGroupBox>
+-
++#include <QScrollArea>
+ using namespace OT;
+ 
+ namespace PERSALYS
