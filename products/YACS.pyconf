@@ -45,6 +45,11 @@ default :
         incremental : "yes"
     }
     patches : []
+}
+
+version_V9_11_0_FD38 :
+{
+  patches : ['YACS_FD38.patch']
 } 
 
 default_win :
