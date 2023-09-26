@@ -1,5 +1,5 @@
---- otrobopt-0.12_ref/lib/src/MeasureEvaluation.cxx	2023-09-13 14:59:42.000000000 +0200
-+++ otrobopt-0.12_dev/lib/src/MeasureEvaluation.cxx	2023-09-26 12:11:25.339902064 +0200
+--- openturns-1.21_ref/otrobopt-0.12/lib/src/MeasureEvaluation.cxx	2023-09-13 14:59:42.000000000 +0200
++++ openturns-1.21_ref/otrobopt-0.12/lib/src/MeasureEvaluation.cxx	2023-09-26 12:11:25.339902064 +0200
 @@ -23,40 +23,20 @@
  #include <openturns/PersistentObjectFactory.hxx>
  #include <openturns/ResourceMap.hxx>
