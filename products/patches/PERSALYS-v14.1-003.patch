@@ -1,0 +1,22 @@
+--- persalys-14.1_ref/lib/src/base/CMakeLists.txt	2023-07-25 11:23:39.000000000 +0200
++++ persalys-14.1_dev/lib/src/base/CMakeLists.txt	2023-09-26 13:00:18.000000000 +0200
+@@ -203,7 +203,7 @@
+ else ()
+   target_compile_definitions (persalysbase PUBLIC PERSALYS_BASE_STATIC)
+ endif ()
+-
++target_compile_options(persalysbase PUBLIC  -DBOOST_ALL_DYN_LINK)
+ target_include_directories (persalysbase PRIVATE ${Boost_INCLUDE_DIRS})
+ target_include_directories (persalysbase PRIVATE ${Python_INCLUDE_DIRS})
+ 
+@@ -220,8 +220,8 @@
+ set_target_properties (persalysbase PROPERTIES VERSION ${LIB_VERSION})
+ set_target_properties (persalysbase PROPERTIES SOVERSION ${LIB_SOVERSION})
+ 
+-target_link_libraries (persalysbase PUBLIC ${PERSALYS_PUBLIC_LIBRARIES})
+-target_link_libraries (persalysbase PRIVATE ${PERSALYS_PRIVATE_LIBRARIES})
++target_link_libraries (persalysbase PUBLIC "${PERSALYS_PUBLIC_LIBRARIES};${Boost_LIBRARIES};${Boost_FILESYSTEM_LIBRARY_RELEASE}")
++target_link_libraries (persalysbase PRIVATE "${PERSALYS_PRIVATE_LIBRARIES};${Boost_LIBRARIES};${Boost_FILESYSTEM_LIBRARY_RELEASE}")
+ 
+ install (TARGETS persalysbase
+   RUNTIME DESTINATION ${PERSALYS_BIN_PATH}

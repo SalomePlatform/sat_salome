@@ -93,7 +93,7 @@ version_v14_1_win :
               'openblas',
               'pthreads'
            ]
-    patches : []
+    patches : ['PERSALYS-v14.1-002.patch', 'PERSALYS-v14.1-003.patch']
 }
 
 version_v14_0_1 :

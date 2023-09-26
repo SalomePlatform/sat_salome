@@ -1,0 +1,21 @@
+--- persalys-14.1_ref/CMakeLists.txt	2023-07-25 11:23:39.000000000 +0200
++++ persalys-14.1_dev/CMakeLists.txt	2023-09-26 12:57:40.000000000 +0200
+@@ -64,9 +64,16 @@
+   set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /bigobj")
+ endif ()
+ 
++SET(BOOST_ROOT_DIR $ENV{BOOST_ROOT_DIR} CACHE PATH "Path to the Boost")
++if(EXISTS "${BOOST_ROOT_DIR}")
++  set(BOOST_ROOT "${BOOST_ROOT_DIR}" CACHE PATH "Boost root directory" FORCE)
++endif()
++set(Boost_USE_DEBUG_LIBS   OFF) # ignore debug libs and
++set(Boost_USE_RELEASE_LIBS ON)  # only find release libsfind_package (Boost COMPONENTS filesystem locale REQUIRED)
+ find_package (Boost COMPONENTS filesystem locale REQUIRED)
+-list (APPEND PERSALYS_PRIVATE_LIBRARIES ${Boost_LIBRARIES})
+-
++if (TARGET Boost::filesystem)
++  set (Boost_LIBRARIES Boost::filesystem Boost::locale)
++ENDIF()
+ find_package (Python 3.5 COMPONENTS Interpreter Development REQUIRED)
+ list (APPEND PERSALYS_PUBLIC_LIBRARIES ${Python_LIBRARIES})
+ 

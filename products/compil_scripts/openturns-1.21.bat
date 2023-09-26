@@ -284,7 +284,7 @@ mkdir otpod
 
 set CMAKE_OPTIONS_EXT=%CMAKE_OPTIONS%
 cd  %BUILD_DIR%\otpod
-xcopy %SOURCE_DIR%\otpod-0.6.9\*   %BUILD_DIR%\otpod /E /I /Q
+xcopy %SOURCE_DIR%\otpod-0.6.10\*   %BUILD_DIR%\otpod /E /I /Q
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on xcopy
     exit 3
