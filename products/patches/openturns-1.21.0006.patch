@@ -1,0 +1,11 @@
+--- openturns-1.21_ref/openturns-1.21/lib/src/CMakeLists.txt	2023-09-13 14:59:41.000000000 +0200
++++ openturns-1.21_dev/openturns-1.21/lib/src/CMakeLists.txt	2023-09-28 09:07:58.286148187 +0200
+@@ -93,7 +93,7 @@
+   add_dependencies (OT generate_csv_parser)
+ endif ()
+ 
+-target_link_libraries (OT PUBLIC ${OPENTURNS_LIBRARIES})
++target_link_libraries (OT PUBLIC ${OPENTURNS_LIBRARIES} ${BLAS_LIBRARIES} ${CBLAS_LIBRARIES})
+ target_link_libraries (OT PRIVATE ${OPENTURNS_PRIVATE_LIBRARIES})
+ 
+ target_include_directories (OT INTERFACE $<INSTALL_INTERFACE:include>)

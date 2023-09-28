@@ -365,18 +365,26 @@ if [[ -d "$SOURCE_DIR/otfftw-0.13" ]]; then
         cd ${BUILD_DIR}/$k
         cp -R $SOURCE_DIR/$k-${OTP[$k]}/* .
         #
-        $PYTHONBIN setup.py build
-        if [ $? -ne 0 ]
-        then
-            echo "ERROR on ${PYTHONBIN} setup.py  build"
-            exit 4
-        fi
-        #
-        $PYTHONBIN setup.py install --prefix=$PRODUCT_INSTALL
-        if [ $? -ne 0 ]
-        then
-            echo "ERROR on ${PYTHONBIN} setup.py  install --prefix=$PRODUCT_INSTALL"
-            exit 5
+        if [ $k == "otpod" ]; then
+            ${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip . --no-deps  --prefix=$PRODUCT_INSTALL
+            if [ $? -ne 0 ]; then
+                echo "ERROR on ${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip . --no-deps  --prefix=$PRODUCT_INSTALL"
+                exit 4
+            fi
+        else
+            $PYTHONBIN setup.py build
+            if [ $? -ne 0 ]
+            then
+                echo "ERROR on ${PYTHONBIN} setup.py  build"
+                exit 4
+            fi
+            #
+            $PYTHONBIN setup.py install --prefix=$PRODUCT_INSTALL
+            if [ $? -ne 0 ]
+            then
+                echo "ERROR on ${PYTHONBIN} setup.py  install --prefix=$PRODUCT_INSTALL"
+                exit 5
+            fi
         fi
     done
 

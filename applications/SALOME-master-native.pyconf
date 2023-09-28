@@ -263,6 +263,7 @@ __overwrite__ :
         'APPLICATION.products.statsmodels'      : {tag: '0.6.1',  base: 'no', section: 'version_0_6_1_no_pip'   }
         'APPLICATION.products.gdal'             : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_CO8'      } # spns #29324
         'APPLICATION.products.swig'             : '4.0.2'
+        'APPLICATION.products.openturns'        : {tag: '1.21',  base: 'no', section: 'version_1_21_RO8'        }
     }
     {
         __condition__ : "VARS.dist in ['FD32']"
