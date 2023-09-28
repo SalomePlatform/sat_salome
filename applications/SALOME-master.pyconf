@@ -146,7 +146,7 @@ APPLICATION :
         'SHAPER'
         'SHAPERSTUDY'
         'RESTRICTED'
-        'LIBBATCH' : 'V2_4_6'
+        'LIBBATCH' : 'V2_5_0'
         'KERNEL'
         'MEDCOUPLING' : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'GUI'

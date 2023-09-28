@@ -93,7 +93,7 @@ APPLICATION :
         omniORBpy : '4.2.5'
         opencv : '3.2.0'
         openmpi : '3.1.6' # current version of hdf5 is not compatible with openmpi 4, if compiled with MPI support
-        openturns:  {tag : '1.20.1', hpc : 'yes'}
+        openturns:  {tag : '1.21', hpc : 'yes'}
         openVKL: '0.11.0'
         ospray : '2.4.0'
         packaging : '17.1'
@@ -101,7 +101,7 @@ APPLICATION :
         pandas : '0.25.2'
         patsy : '0.5.2'
         ParaView : {tag:'5.11.0', base: 'no',  section: 'version_5_11_0_MPI', hpc: 'yes'}
-        PERSALYS: 'v14.0.1'
+        PERSALYS: 'v14.1'
         petsc : {tag : '3.16.0', base: 'no', section: 'version_3_16_0', hpc: 'yes'}
         Pillow : '8.4.0'
         planegcs : '0.18-3cb6890'
@@ -146,7 +146,7 @@ APPLICATION :
         'SHAPER'
         'SHAPERSTUDY'
         'RESTRICTED'
-        'LIBBATCH' : 'V2_4_6'
+        'LIBBATCH' : 'V2_5_0'
         'KERNEL'      : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes', verbose: 'yes'}
         'MEDCOUPLING' : {tag:'master', base: 'no', section: 'default_MPI_STD', hpc: 'yes', verbose: 'yes'}
         'GUI' : {verbose : 'yes'}

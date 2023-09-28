@@ -146,7 +146,7 @@ APPLICATION :
         'SHAPER'
         'SHAPERSTUDY'
         'RESTRICTED'
-        'LIBBATCH' : {tag :'V2_4_6'}
+        'LIBBATCH' : {tag :'V2_5_0'}
         'KERNEL'
         'MEDCOUPLING'
         'GUI'
