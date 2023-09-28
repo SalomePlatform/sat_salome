@@ -63,7 +63,7 @@ version_1_21_win :
 version_1_21_RO8 :
 {
     compil_script :  "openturns-1.21.sh"
-    patches : ['openturns-1.21.0001.patch','openturns-1.21.0005.patch', openturns-1.21.0006.patch']
+    patches : ['openturns-1.21.0001.patch','openturns-1.21.0005.patch', 'openturns-1.21.0006.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI', 'boost']
     opt_depend : ['pandas', 'statsmodels', 'patsy']
 }
