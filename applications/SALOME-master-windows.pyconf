@@ -6,7 +6,7 @@ APPLICATION :
     name : 'SALOME-master'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name
     cmake_generator : 'Visual Studio 15 2017 Win64'
-    tag : 'V9_12_0a2'
+    tag : 'master'
     dev : 'no'
     verbose : 'no'
     debug   : 'no'
@@ -148,7 +148,7 @@ APPLICATION :
         'RESTRICTED'
         'LIBBATCH' : {tag :'V2_5_0'}
         'KERNEL'
-        'MEDCOUPLING'
+        'MEDCOUPLING': 'abn/cpp_ptr'
         'GUI'
         'GEOM'
         'SMESH'
