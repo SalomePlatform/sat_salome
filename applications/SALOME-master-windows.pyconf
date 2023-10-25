@@ -148,7 +148,7 @@ APPLICATION :
         'RESTRICTED'
         'LIBBATCH' : {tag :'V2_5_0'}
         'KERNEL'
-        'MEDCOUPLING': 'abn/cpp_ptr'
+        'MEDCOUPLING': 'akr/paramedfile'
         'GUI'
         'GEOM'
         'SMESH'
