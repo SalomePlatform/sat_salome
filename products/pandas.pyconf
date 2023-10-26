@@ -25,3 +25,13 @@ default :
        pip : "yes"
     }
 }
+
+version_1_1_5_no_pip :
+{
+    compil_script : "pandas-1.1.5.sh"
+    properties:
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+}

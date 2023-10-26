@@ -1,0 +1,11 @@
+--- root.ref/core/foundation/inc/ROOT/libcpp_string_view.h	2020-08-17 14:41:56.000000000 +0200
++++ root.dev/core/foundation/inc/ROOT/libcpp_string_view.h	2023-10-13 14:49:56.207768679 +0200
+@@ -186,7 +186,7 @@
+ #include <ostream>
+ #include <iomanip>
+ #include <stdexcept>
+-
++#include <limits>
+ //#include <__debug>
+ 
+ #if !defined(_LIBCPP_HAS_NO_PRAGMA_SYSTEM_HEADER) && !defined(_MSC_VER)

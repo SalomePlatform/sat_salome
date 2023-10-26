@@ -148,7 +148,7 @@ APPLICATION :
         'RESTRICTED'
         'LIBBATCH' : 'V2_5_0'
         'KERNEL'
-        'MEDCOUPLING' : {tag:'akr/paramedfile', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'MEDCOUPLING' : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'GUI'
         'GEOM'
         'SMESH'

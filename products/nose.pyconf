@@ -29,3 +29,17 @@ default :
       pip : "yes"
     }
 }
+
+version_1_3_7_no_pip :
+{
+    compil_script : "nose-1.3.7.sh"
+    archive_info:
+    {
+        archive_name : "nose-1.3.7.tar.gz"
+    }
+    properties:
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+}

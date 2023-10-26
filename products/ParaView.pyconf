@@ -431,6 +431,32 @@ version_5_11_0_MPI_DB10 :
     opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst']
 }
 
+version_5_11_0_MPI_CO9 :
+{
+    compil_script :  'ParaView-5.11.0.sh'
+    archive_info : {archive_name : "ParaView-5.11.0.tar.gz"}
+    patches : ['paraview-5.11.0.p001-FindCGNS.patch',
+               'paraview-5.11.0.p002-FindMPI.patch',
+               'paraview-5.11.0.p003-ParaViewClient.patch',
+               'paraview-5.11.0.p006-GIL.patch',
+               'paraview-5.11.0.p009-openturns-1.21.patch'
+              ]
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'PyQt',
+              'sip',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst']
+}
+
 version_5_11_0_MPI_CO8 :
 {
     compil_script :  'ParaView-5.11.0.sh'

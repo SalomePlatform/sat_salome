@@ -44,6 +44,13 @@ version_5_12_10 :
   patches : ['qt-mapbox-FD32-gcc-10.0.patch']
 }
 
+version_5_12_10_CO9 :
+{
+  compil_script : "qt-5.12.10" + $VARS.scriptExtension
+  depend : ["freetype", 'llvm']
+  patches : ['qt-mapbox-FD32-gcc-10.0.patch', 'qt_numeric_limits_CO9.patch']
+}
+
 version_5_12_10_win :
 {
   depend : ["freetype"]

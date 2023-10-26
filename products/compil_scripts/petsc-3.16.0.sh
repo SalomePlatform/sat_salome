@@ -4,6 +4,17 @@ echo "##########################################################################
 echo "Petsc" $VERSION
 echo "##########################################################################"
 
+LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
+
+case $LINUX_DISTRIBUTION in
+    CO9)
+        echo "setting PETSC_DIR environment variable"
+        export PETSC_DIR=${BUILD_DIR}
+        ;;
+    *)
+        ;;
+esac
+
 cp -r $SOURCE_DIR/* .
 
 CONFIGURE_FLAGS=
