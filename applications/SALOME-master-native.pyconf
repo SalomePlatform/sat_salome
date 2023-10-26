@@ -277,7 +277,7 @@ __overwrite__ :
          'APPLICATION.products.openmpi'          : '4.1.5'
          'APPLICATION.products.root'             : {tag: '6.22.02', base: 'no', section: 'version_6_22_02_CO9'               }
          'APPLICATION.products.qt'               : {tag: '5.12.10', base: 'no', section: 'version_5_12_10_CO9'               }
-         'APPLICATION.products.sip'              : {tag: '5.5.0',   base: 'no', section: 'version_5_5_0_CO9'                 }
+         'APPLICATION.products.sip'              : '5.5.0'
          'APPLICATION.products.sphinxintl'       : {tag: '0.9.10',  base: 'no', section: 'version_0_9_10_no_pip'             }
          'APPLICATION.products.PyFMI'            : {tag: '2.6',     base: 'no', section: 'version_2_6_no_pip'                }
          'APPLICATION.products.numpydoc'         : {tag: '0.9.0',   base: 'no', section: 'version_0_9_0_no_pip'              }
