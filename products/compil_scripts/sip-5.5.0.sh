@@ -10,6 +10,7 @@ rm -rf $BUILD_DIR
 mkdir $BUILD_DIR
 cd $BUILD_DIR
 cp -r $SOURCE_DIR/sip-5.5.0 $BUILD_DIR/sip-5.5.0
+cd $BUILD_DIR/sip-5.5.0
 
 USE_SETUP=true
 case $LINUX_DISTRIBUTION in
