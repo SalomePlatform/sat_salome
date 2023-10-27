@@ -9,7 +9,7 @@ LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
 rm -rf $BUILD_DIR
 mkdir $BUILD_DIR
 cd $BUILD_DIR
-cp -R $SOURCE_DIR/sip-5.5.0 .
+cp -r $SOURCE_DIR/sip-5.5.0 .
 
 USE_SETUP=true
 case $LINUX_DISTRIBUTION in
@@ -18,7 +18,7 @@ case $LINUX_DISTRIBUTION in
         ;;
     *)
         ;;
-fi
+esac
 
 # we don't install in python directory -> modify environment as described in INSTALL file
 export PATH=$(pwd)/bin:$PATH
