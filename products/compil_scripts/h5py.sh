@@ -1,12 +1,9 @@
 #!/bin/bash                                                                                                                                                                              
 
 echo "##########################################################################"
-echo "openturns" $VERSION
+echo "h5py" $VERSION
 echo "##########################################################################"
 
-# we don't install in python directory -> modify environment as described in INSTALL file
-
-#mkdir -p $PRODUCT_INSTALL/lib/python${PYTHON_VERSION}/site-packages
 rm -rf $BUILD_DIR
 cp -r $SOURCE_DIR $BUILD_DIR
 mkdir -p  $BUILD_DIR/cache/pip
