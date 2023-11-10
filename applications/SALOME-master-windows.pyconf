@@ -148,7 +148,7 @@ APPLICATION :
         'RESTRICTED'
         'LIBBATCH' : {tag :'V2_5_0'}
         'KERNEL'
-        'MEDCOUPLING'
+        'MEDCOUPLING' : 'abn/cmake_mpi'
         'GUI'
         'GEOM'
         'SMESH'
