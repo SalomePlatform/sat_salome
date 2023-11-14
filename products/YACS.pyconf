@@ -52,11 +52,6 @@ version_master_CO9 :
     cmake_options : " -DSALOME_YACS_USE_EMBEDDED_PMML=OFF -DQT_HELP_GENERATOR=${QT5_ROOT_DIR}/bin/qhelpgenerator -DQt5LinguistTools_DIR=${QT5_ROOT_DIR}/lib/cmake/Qt5LinguistTools"
 }
 
-version_V9_11_0_FD38 :
-{
-  patches : ['YACS_FD38.patch']
-} 
-
 default_win :
 {
   patches : []

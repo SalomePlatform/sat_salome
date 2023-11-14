@@ -355,7 +355,5 @@ __overwrite__ :
         'APPLICATION.products.ParaView'         : {tag: '5.11.0',    base: 'no', section: 'version_5_11_0_MPI_FD38', hpc: 'yes' }
         'APPLICATION.products.CONFIGURATION'    : {tag:'master',     base: 'no', section: 'default'                             }
         'APPLICATION.products.SHAPER'           : {tag:'master',     base: 'no', section: 'default',                 hpc: 'no'  }
-        'APPLICATION.products.NETGENPLUGIN'     : {tag:'master',     base: 'no', section: 'version_V9_11_0_FD38'                }
-        'APPLICATION.products.YACS'             : {tag:'master',     base: 'no', section: 'version_V9_11_0_FD38'                }
     }
 ]
