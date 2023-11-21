@@ -1,0 +1,106 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+APPLICATION :
+{
+    name : 'MEDCOUPLING-9.12.0-native'
+    workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
+    tag : 'V9_12_0b1'
+    base : 'no'
+    debug : 'no'
+    python3 : 'yes'
+    environ :
+    {
+        build :
+        {
+           CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
+           SALOME_USE_64BIT_IDS : '1'
+        }
+        launch :
+        {
+           PYTHONIOENCODING:"UTF_8"
+        }
+    }
+    products :
+    {
+        # PREREQUISITES :
+        alabaster : 'native'
+        Babel : 'native'
+        boost : 'native'
+        certifi : 'native'
+        click : 'native'
+        cmake : '3.25.2' 
+        cppunit : 'native'
+        chardet : 'native'
+        Cython : 'native'
+        docutils : 'native'
+        doxygen : 'native'
+        graphviz : 'native'
+        hdf5 : '1.10.3'
+        idna : 'native'
+        imagesize : 'native'
+        Jinja2 : 'native'
+        lapack : 'native'
+        libxml2 : 'native'
+        markupsafe : 'native'
+        medfile : '4.1.1'
+        metis : 'native'
+        mpi4py : 'native'
+        numpy : 'native'
+        openmpi: 'native'
+        pockets : 'native'
+        Pygments : 'native'
+        pyparsing : 'native'
+        Python : 'native'
+        pytz : 'native'
+        requests : 'native'
+        scipy : 'native'
+        scotch : 'native'
+        setuptools : 'native'
+        six : 'native'
+        snowballstemmer : 'native'
+        Sphinx : 'native'
+        sphinxcontrib_napoleon : 'native'
+        sphinxcontrib_websupport : 'native'
+        sphinxintl: 'native'
+        swig : 'native'
+        packaging : 'native'
+        urllib3 : 'native'
+
+        # SALOME MODULES :
+        'CONFIGURATION'
+        'MEDCOUPLING' : {tag:'V9_12_0b1', base:'no', section:'default_MPI', hpc:'yes'}
+    }
+    test_base : 
+    {
+        name : "SALOME"
+        tag : "SalomeV9"
+    }
+    properties :
+    {
+        repo_dev : "yes"
+        pip : 'yes'
+        pip_install_dir : 'python'
+        single_install_dir : "no"
+    }
+}
+__overwrite__ :
+[
+    {
+        __condition__ : "VARS.dist in ['CO8']"
+        'APPLICATION.products.sphinxintl' : '0.9.10'
+        'PRODUCTS.sphinxintl.default.properties.pip' : "no"
+    }
+    {
+        __condition__ : "VARS.dist in ['UB22.04']"
+        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_UB22_04'}
+    }
+    {
+        __condition__ : "VARS.dist in ['FD37']"
+        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD37'}
+    }
+    {
+        __condition__ : "VARS.dist in ['FD36']"
+        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD36'}
+    }
+]
