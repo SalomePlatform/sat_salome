@@ -4,9 +4,10 @@ echo "##########################################################################
 echo "Petsc" $VERSION
 echo "##########################################################################"
 
-
-
-cp -r $SOURCE_DIR/* .
+rm -rf $BUILD_DIR
+mkdir $BUILD_DIR
+cd $BUILD_DIR
+cp -rf $SOURCE_DIR/* .
 
 CONFIGURE_FLAGS=''
 CONFIGURE_FLAGS=$CONFIGURE_FLAGS" --download-f2cblaslapack=ext/f2cblaslapack-3.4.2.q4.tar.gz"

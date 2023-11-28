@@ -4,7 +4,11 @@ echo "##########################################################################
 echo "Petsc" $VERSION
 echo "##########################################################################"
 
-cp -r $SOURCE_DIR/* .
+# ensure that build directory is really deleted
+rm -rf $BUILD_DIR
+mkdir $BUILD_DIR
+cd $BUILD_DIR
+cp -rf $SOURCE_DIR/* .
 
 CONFIGURE_FLAGS=
 CONFIGURE_FLAGS+=" --with-blaslapack-dir=${LAPACK_ROOT_DIR}"
