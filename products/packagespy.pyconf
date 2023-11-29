@@ -22,4 +22,5 @@ default :
 version_74152cd :
 {
     archive_info : {archive_name : "packagespy-74152cd.tar.gz"}
+    patches : ["packagespy-74152cd-verbosity-level.patch"]
 }
