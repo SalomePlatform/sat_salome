@@ -61,7 +61,7 @@ default_win :
 
 version_v14_1 :
 {
-   patches : ['PERSALYS-v14.1-001.patch']
+   patches : ['PERSALYS-v14.1-001.patch', 'PERSALYS-v14.1-004-launch_html.patch']
 }
 
 version_v14_1_win :
@@ -93,7 +93,7 @@ version_v14_1_win :
               'openblas',
               'pthreads'
            ]
-    patches : ['PERSALYS-v14.1-002.patch', 'PERSALYS-v14.1-003.patch']
+    patches : ['PERSALYS-v14.1-002.patch', 'PERSALYS-v14.1-003.patch', 'PERSALYS-v14.1-004-launch_html.patch']
 }
 
 version_v14_0_1 :

@@ -285,6 +285,7 @@ __overwrite__ :
          'APPLICATION.products.statsmodels'      : {tag: '0.6.1',   base: 'no', section: 'version_0_6_1_no_pip'              }
          'APPLICATION.products.nose'             : {tag: '1.3.7',   base: 'no', section: 'version_1_3_7_no_pip'              }
          'APPLICATION.products.ParaView'         : {tag: '5.11.0',  base: 'no', section: 'version_5_11_0_MPI_CO9', hpc: 'yes'}
+         'APPLICATION.products.YDEFX'            : {tag: 'master',  base: 'no', section: 'version_master_CO9'                }
          'APPLICATION.products.YACS'             : {tag: 'master',  base: 'no', section: 'version_master_CO9'                }
     }
     {
