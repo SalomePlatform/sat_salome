@@ -5,7 +5,7 @@ APPLICATION :
 {
     name : 'MEDCOUPLING-9.12.0-MPI'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag : 'V9_12_0rc1'
+    tag : 'V9_12_BR'
     base : 'no'
     debug : 'no'
     python3 : 'yes'
@@ -71,7 +71,7 @@ APPLICATION :
 
         # SALOME MODULES :
         'CONFIGURATION'
-        'MEDCOUPLING' : {tag:'V9_12_0rc1', base: 'no', section: 'default_MPI_STD', hpc: 'yes'} # FIXME
+        'MEDCOUPLING' : {tag:'V9_12_BR', base: 'no', section: 'default_MPI_STD', hpc: 'yes'} # FIXME
     }
     test_base : 
     {
@@ -95,7 +95,7 @@ __overwrite__ :
         'APPLICATION.products.scipy' : '1.5.2'
     }
     {
-        __condition__: "VARS.dist in ['FD34', 'FD36', 'FD37']"
+        __condition__: "VARS.dist in ['FD34', 'FD36', 'FD37', 'FD38']"
         # gcc https://github.com/scipy/scipy/issues/11611
         # either patch numpy to include -fallow-argument-mismatch or move to that version
         'APPLICATION.products.scipy' : '1.5.2'

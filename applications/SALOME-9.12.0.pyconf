@@ -5,7 +5,7 @@ APPLICATION :
 {
     name : 'SALOME-9.12.0'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag : 'V9_12_0rc1'
+    tag : 'V9_12_BR'
     dev : 'no'
     verbose :'no'
     debug : 'no'
@@ -148,7 +148,7 @@ APPLICATION :
         'RESTRICTED'
         'LIBBATCH' : 'V2_5_0'
         'KERNEL'
-        'MEDCOUPLING' : {tag:'V9_12_0rc1', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'MEDCOUPLING' : {tag:'V9_12_BR', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'GUI'
         'GEOM'
         'SMESH'
@@ -162,7 +162,7 @@ APPLICATION :
         'HEXABLOCKPLUGIN'
         'HOMARD'
         'FIELDS'
-        'PARAVIS' : {tag:'V9_12_0rc1', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'PARAVIS' : {tag:'V9_12_BR', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
@@ -183,7 +183,7 @@ APPLICATION :
         'YDEFX'
         'pmml'
         'SALOMEBOOTSTRAP'
-        'SOLVERLAB' : {tag: 'V9_12_0rc1', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'SOLVERLAB' : {tag: 'V9_12_BR', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'SOLVERLABGUI'
         'TopIIVolMesh'
         #'TESTBASE'
@@ -240,7 +240,7 @@ __overwrite__ :
     {
         __condition__ : "VARS.dist in ['DB09']"
         'APPLICATION.products.openturns'        : {tag: '1.21',  base: 'no', section: 'version_1_21_DB09' }
-        'MEDCOUPLING' : {tag:'V9_12_0rc1', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'MEDCOUPLING' : {tag:'V9_12_BR', base: 'no', section: 'default_MPI', hpc: 'yes'}
     }
     {
         __condition__ : "VARS.dist in ['UB18.04']"
