@@ -1,0 +1,32 @@
+--- petsc-3.16.0-ref/makefile	2021-09-30 04:15:07.000000000 +0200
++++ petsc-3.16.0-dev/makefile	2023-12-20 12:02:30.248623882 +0100
+@@ -50,7 +50,7 @@
+ 	@echo "Finishing make run at `date +'%a, %d %b %Y %H:%M:%S %z'`" >> ${PETSC_ARCH}/lib/petsc/conf/make.log
+ 	@if test -s ${PETSC_ARCH}/lib/petsc/conf/error.log; then exit 1; fi
+ 
+-all-local: info libs matlabbin petsc4py-build libmesh-build mfem-build slepc-build hpddm-build amrex-build bamg-build
++all-local: info print_before_fix fix_makeflags print_after_fix libs matlabbin petsc4py-build libmesh-build mfem-build slepc-build hpddm-build amrex-build bamg-build
+ 
+ #
+ # Prints information about the system and version of PETSc being compiled
+@@ -130,6 +130,20 @@
+ 	-@echo "=========================================="
+ 
+ #
++#
++#
++fix_makeflags:
++	-@echo "Remove w option from MAKEFLAGS"
++	$(eval MAKEFLAGS:=$(filter-out w,$(MAKEFLAGS)))
++
++print_before_fix:
++	-@echo "Value of MAKEFLAGS (before):"
++	-@echo $(MAKEFLAGS)
++
++print_after_fix:
++	-@echo "Value of MAKEFLAGS (after):"
++	-@echo $(MAKEFLAGS)
++#
+ # Build MatLab binaries
+ #
+ matlabbin:

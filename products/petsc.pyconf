@@ -35,6 +35,13 @@ version_3_16_0 :
     patches: ['petsc-3.16-mpi4py.patch']
 }
 
+version_3_16_0_FD38 :
+{
+    compil_script :  "petsc-3.16.0.sh"
+    depend : ["hdf5", "Python"]
+    patches: ['petsc-3.16-mpi4py.patch', 'petsc-3.16-fd38-makeflags.patch']
+}
+
 version_3_15_0 :
 {
     compil_script :  "petsc-3.15.0.sh"
