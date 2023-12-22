@@ -5,6 +5,7 @@ echo "PyFMI " $VERSION
 echo "##########################################################################"
 
 rm -rf $BUILD_DIR
+mkdir -p $BUILD_DIR
 cd $BUILD_DIR
 cp -R $SOURCE_DIR/* .
 
