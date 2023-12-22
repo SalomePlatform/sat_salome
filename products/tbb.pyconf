@@ -21,6 +21,20 @@ default :
     }
 }
 
+version_2021_9_0 :
+{
+    compil_script :  "tbb-2021.9.0.sh"
+    archive_info : {archive_name : "tbb-2021.9.0.tar.gz"}
+    depend : ['Python', 'llvm']
+    opt_depend : ['ispc']
+    build_depend : ['swig', "cmake"]
+    properties :
+    {
+      incremental : "yes"
+      single_install_dir : "no"
+    }
+}
+
 version_2019_U8 :
 {
     compil_script :  "tbb-2019_U8.sh"

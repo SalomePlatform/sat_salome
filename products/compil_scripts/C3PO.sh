@@ -38,6 +38,28 @@ then
     exit 4
 fi
 
+echo "INFO: check presence of $PRODUCT_INSTALL/local"
+if [ -d "$PRODUCT_INSTALL/local" ]; then
+    echo "INFO: $PRODUCT_INSTALL/local is present -  reearrange ..."
+    if [ -d ${PRODUCT_INSTALL}/local/lib/python${PYTHON_VERSION}/dist-packages ]; then
+        mv ${PRODUCT_INSTALL}/local/lib/python${PYTHON_VERSION}/dist-packages ${PRODUCT_INSTALL}/local/lib/python${PYTHON_VERSION}/site-packages
+    fi
+    for D in $(ls $PRODUCT_INSTALL/local); do
+        echo "INFO: next subdirectory: $PRODUCT_INSTALL/local/$D"
+        if [ -d $PRODUCT_INSTALL/$D ]; then
+            cp -r $PRODUCT_INSTALL/local/$D/* $PRODUCT_INSTALL/$D/
+        else
+            mv $PRODUCT_INSTALL/local/$D $PRODUCT_INSTALL/$D
+        fi
+    done
+    rm -rf $PRODUCT_INSTALL/local
+fi
+
+if [ -d $PRODUCT_INSTALL/lib/python${PYTHON_VERSION}/site-packages/c3po-2.0-py${PYTHON_VERSION}.egg/c3po ]; then
+    echo "WARNING: rearrange site-packages/c3po"
+    mv $PRODUCT_INSTALL/lib/python${PYTHON_VERSION}/site-packages/c3po-2.0-py${PYTHON_VERSION}.egg/c3po  $PRODUCT_INSTALL/lib/python${PYTHON_VERSION}/site-packages/c3po
+fi
+
 export LD_LIBRARY_PATH="${MEDCOUPLING_ROOT_DIR}/lib:${LD_LIBRARY_PATH}"
 export PYTHONPATH="${MEDCOUPLING_ROOT_DIR}/${PYTHON_LIBDIR}:${PYTHONPATH}"
 export PYTHONPATH="${MEDCOUPLING_ROOT_DIR}/lib:${PYTHONPATH}"

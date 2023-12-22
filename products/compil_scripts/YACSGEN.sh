@@ -17,9 +17,16 @@ export PYTHONPATH=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages:$
 
 echo
 echo "*** build and install with $PYTHONBIN"
-$PYTHONBIN setup.py install --prefix=$PRODUCT_INSTALL
-if [ $? -ne 0 ]
-then
+case $LINUX_DISTRIBUTION in
+    DB12)
+        $PYTHONBIN setup.py install --install-lib=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages --install-scripts=${PRODUCT_INSTALL}/bin
+        ;;
+    *)
+        $PYTHONBIN setup.py install --prefix=$PRODUCT_INSTALL
+        ;;
+esac
+
+if [ $? -ne 0 ]; then
     echo "ERROR on build/install"
     exit 3
 fi

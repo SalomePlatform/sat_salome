@@ -4,9 +4,7 @@ echo "##########################################################################
 echo "openturns" $VERSION
 echo "##########################################################################"
 
-# we don't install in python directory -> modify environment as described in INSTALL file
 
-#mkdir -p $PRODUCT_INSTALL/lib/python${PYTHON_VERSION}/site-packages
 export PATH=$(pwd)/bin:$PATH
 export PYTHONPATH=$(pwd):$PYTHONPATH
 export PYTHONPATH=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages:$PYTHONPATH
@@ -171,11 +169,8 @@ elif [ -d "${PRODUCT_INSTALL}/local/lib64" ]; then
     rm -rf ${PRODUCT_INSTALL}/local/lib64
 fi
 
-if [[ -d "${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/dist-packages" ]]; then
-    echo "WARNING: renaming ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/dist-packages as ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages"
-    cd  ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}
-    ln -sf dist-packages site-packages
-    cd  $BUILD_DIR/openturns
+if [ -d ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/dist-packages ]; then
+    mv ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/dist-packages ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages
 fi
 
 export PYTHONPATH=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages:${PYTHONPATH}
@@ -278,6 +273,22 @@ if [[ -d "$SOURCE_DIR/otfftw-0.13" ]]; then
             echo "ERROR on make install"
             exit 3
         fi
+        echo "INFO: check presence of $PRODUCT_INSTALL/local"
+        if [ -d "$PRODUCT_INSTALL/local" ]; then
+            echo "INFO: $PRODUCT_INSTALL/local is present -  reearrange ..."
+            if [ -d ${PRODUCT_INSTALL}/local/lib/python${PYTHON_VERSION}/dist-packages ]; then
+                mv ${PRODUCT_INSTALL}/local/lib/python${PYTHON_VERSION}/dist-packages ${PRODUCT_INSTALL}/local/lib/python${PYTHON_VERSION}/site-packages
+            fi
+            for D in $(ls $PRODUCT_INSTALL/local); do
+                echo "INFO: next subdirectory: $PRODUCT_INSTALL/local/$D"
+                if [ -d $PRODUCT_INSTALL/$D ]; then
+                    cp -r $PRODUCT_INSTALL/local/$D/* $PRODUCT_INSTALL/$D/
+                else
+                    mv $PRODUCT_INSTALL/local/$D $PRODUCT_INSTALL/$D
+                fi
+            done
+            rm -rf $PRODUCT_INSTALL/local
+        fi
     done
 
     declare -A OTP
@@ -319,6 +330,23 @@ if [[ -d "$SOURCE_DIR/otfftw-0.13" ]]; then
                     exit 6
                 fi
             fi
+            echo "INFO: check presence of $PRODUCT_INSTALL/local"
+            if [ -d "$PRODUCT_INSTALL/local" ]; then
+                echo "INFO: $PRODUCT_INSTALL/local is present -  reearrange ..."
+                if [ -d ${PRODUCT_INSTALL}/local/lib/python${PYTHON_VERSION}/dist-packages ]; then
+                    mv ${PRODUCT_INSTALL}/local/lib/python${PYTHON_VERSION}/dist-packages ${PRODUCT_INSTALL}/local/lib/python${PYTHON_VERSION}/site-packages
+                fi
+                for D in $(ls $PRODUCT_INSTALL/local); do
+                    echo "INFO: next subdirectory: $PRODUCT_INSTALL/local/$D"
+                    if [ -d $PRODUCT_INSTALL/$D ]; then
+                        cp -r $PRODUCT_INSTALL/local/$D/* $PRODUCT_INSTALL/$D/
+                    else
+                        mv $PRODUCT_INSTALL/local/$D $PRODUCT_INSTALL/$D
+                    fi
+                done
+                rm -rf $PRODUCT_INSTALL/local
+            fi
+            #
         else # non native Python
             if [[ $k == "otfmi" ]]; then
                 echo "INFO: install dill-0.3.4"
@@ -385,6 +413,22 @@ if [[ -d "$SOURCE_DIR/otfftw-0.13" ]]; then
                 echo "ERROR on ${PYTHONBIN} setup.py  install --prefix=$PRODUCT_INSTALL"
                 exit 5
             fi
+        fi
+        echo "INFO: check presence of $PRODUCT_INSTALL/local"
+        if [ -d "$PRODUCT_INSTALL/local" ]; then
+            echo "INFO: $PRODUCT_INSTALL/local is present -  reearrange ..."
+            if [ -d ${PRODUCT_INSTALL}/local/lib/python${PYTHON_VERSION}/dist-packages ]; then
+                mv ${PRODUCT_INSTALL}/local/lib/python${PYTHON_VERSION}/dist-packages ${PRODUCT_INSTALL}/local/lib/python${PYTHON_VERSION}/site-packages
+            fi
+            for D in $(ls $PRODUCT_INSTALL/local); do
+                echo "INFO: next subdirectory: $PRODUCT_INSTALL/local/$D"
+                if [ -d $PRODUCT_INSTALL/$D ]; then
+                    cp -r $PRODUCT_INSTALL/local/$D/* $PRODUCT_INSTALL/$D/
+                else
+                    mv $PRODUCT_INSTALL/local/$D $PRODUCT_INSTALL/$D
+                fi
+            done
+            rm -rf $PRODUCT_INSTALL/local
         fi
     done
 

@@ -4,17 +4,13 @@ echo "##########################################################################
 echo "PyFMI " $VERSION
 echo "##########################################################################"
 
-echo  "*** build in SOURCE directory"
-
-
+rm -rf $BUILD_DIR
 cd $BUILD_DIR
 cp -R $SOURCE_DIR/* .
 
 rm -f $BUILD_DIR/src/pyfmi/*.c
-#mkdir -p $PRODUCT_INSTALL/lib/python${PYTHON_VERSION}/site-packages
 export PATH=$(pwd)/bin:$PATH
 export PYTHONPATH=$(pwd):$PYTHONPATH
-#export PYTHONPATH=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages:$PYTHONPATH
 
 echo
 echo "*** build with $PYTHONBIN"
@@ -42,6 +38,14 @@ elif [ -d "$PRODUCT_INSTALL/local/lib64" ]; then
     echo "WARNING: renaming local/lib64 directory to lib"
     mv $PRODUCT_INSTALL/local/lib64 $PRODUCT_INSTALL/lib
     rm -rf $PRODUCT_INSTALL/local
+elif [ -d "$PRODUCT_INSTALL/local/lib" ]; then
+    echo "WARNING: renaming local/lib directory to lib"
+    mv $PRODUCT_INSTALL/local/lib $PRODUCT_INSTALL/lib
+    rm -rf $PRODUCT_INSTALL/local
+fi
+
+if [ -d "$PRODUCT_INSTALL/lib/python${PYTHON_VERSION}/dist-packages" ]; then
+    mv $PRODUCT_INSTALL/lib/python${PYTHON_VERSION}/dist-packages $PRODUCT_INSTALL/lib/python${PYTHON_VERSION}/site-packages
 fi
 
 echo

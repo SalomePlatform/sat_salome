@@ -405,6 +405,33 @@ version_5_11_0_MPI_LATA_64BITS_IDS :
     opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst']
 }
 
+version_5_11_0_MPI_DB12 :
+{
+    compil_script :  'ParaView-5.11.0.sh'
+    archive_info : {archive_name : "ParaView-5.11.0.tar.gz"}
+    patches : ['paraview-5.11.0.p001-FindCGNS.patch',
+               'paraview-5.11.0.p002-FindMPI.patch',
+               'paraview-5.11.0.p006-GIL.patch',
+               'paraview-5.11.0.p007-mpi4py-FD37.patch',
+               'paraview-5.11.0.p009-openturns-1.21.patch',
+               'paraview-5.11.0.p010-python-3.11.patch'
+              ]
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'PyQt',
+              'sip',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst']
+}
+
 version_5_11_0_MPI_DB10 :
 {
     compil_script :  'ParaView-5.11.0.sh'
@@ -492,7 +519,8 @@ version_5_11_0_MPI_FD38 :
                'paraview-5.11.0.p006-GIL.patch',
                'paraview-5.11.0.p007-mpi4py-FD37.patch',
                'paraview-5.11.0.p008-cstdint-FD38.patch',
-               'paraview-5.11.0.p009-openturns-1.21.patch'
+               'paraview-5.11.0.p009-openturns-1.21.patch',
+               'paraview-5.11.0.p010-python-3.11.patch'
               ]
     depend : [
               'Python',
@@ -518,7 +546,8 @@ version_5_11_0_MPI_FD37 :
                'paraview-5.11.0.p002-FindMPI.patch',
                'paraview-5.11.0.p006-GIL.patch',
                'paraview-5.11.0.p007-mpi4py-FD37.patch',
-               'paraview-5.11.0.p009-openturns-1.21.patch'
+               'paraview-5.11.0.p009-openturns-1.21.patch',
+               'paraview-5.11.0.p010-python-3.11.patch'
               ]
     depend : [
               'Python',

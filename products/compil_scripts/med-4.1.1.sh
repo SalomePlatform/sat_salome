@@ -61,20 +61,38 @@ fi
 LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
 case $LINUX_DISTRIBUTION in
     CO7)
-	if [ -n "$X_SCLS" ]
-	then
-	    X_SCLSVALUE=$(echo $X_SCLS)
-	    if [ $X_SCLSVALUE == "devtoolset-8" ]; then
-		echo "WARNING: devtoolset-8 is installed on ${LINUX_DISTRIBUTION} - libgfortran will be embedded..."
-		cp -RP /usr/lib64/libgfortran.so.5* $PRODUCT_INSTALL/lib/
-	    fi
-	else
-	    echo "INFO: X_SCLS does not seem to be set. skipping..."
-	fi
-	;;
+        if [ -n "$X_SCLS" ]
+        then
+            X_SCLSVALUE=$(echo $X_SCLS)
+            if [ $X_SCLSVALUE == "devtoolset-8" ]; then
+                echo "WARNING: devtoolset-8 is installed on ${LINUX_DISTRIBUTION} - libgfortran will be embedded..."
+                cp -RP /usr/lib64/libgfortran.so.5* $PRODUCT_INSTALL/lib/
+            fi
+        else
+            echo "INFO: X_SCLS does not seem to be set. skipping..."
+        fi
+        ;;
     *)
         ;;
 esac
+
+
+#TODO: figure out which environment variable uses this dist-dir
+if [ -d $PRODUCT_INSTALL/local/lib/python${PYTHON_VERSION} ]; then
+    mv $PRODUCT_INSTALL/local/lib/python${PYTHON_VERSION} $PRODUCT_INSTALL/lib
+fi
+if [ -d $PRODUCT_INSTALL/local/bin ]; then
+    mv $PRODUCT_INSTALL/local/bin/* $PRODUCT_INSTALL/bin
+fi
+if [ -d $PRODUCT_INSTALL/local/share ]; then
+    mv $PRODUCT_INSTALL/local/share/* $PRODUCT_INSTALL/share
+fi
+if [ -d $PRODUCT_INSTALL/local ]; then
+    rm -rf $PRODUCT_INSTALL/local
+fi
+if [ -d $PRODUCT_INSTALL/lib/python${PYTHON_VERSION}/dist-packages ]; then
+    mv $PRODUCT_INSTALL/lib/python${PYTHON_VERSION}/dist-packages $PRODUCT_INSTALL/lib/python${PYTHON_VERSION}/site-packages
+fi
 
 echo
 echo "########## END"

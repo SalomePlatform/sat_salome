@@ -11,7 +11,7 @@ APPLICATION :
     debug : 'no'
     base : 'no'
     python3 : 'yes'
-    platform : ["FD32", "FD34", "FD36", "FD37", "FD38", "CO8", "CO9", "DB10", "DB11", "UB20.04", "UB22.04"]
+    platform : ["FD32", "FD34", "FD36", "FD37", "FD38", "CO8", "CO9", "DB10", "DB11", "DB12", "UB20.04", "UB22.04"]
     environ :
     {
         build :
@@ -256,6 +256,18 @@ __overwrite__ :
         'APPLICATION.products.MEDCOUPLING' : {tag:'V9_12_0', base: 'no', section: 'default_MPI', hpc: 'yes'}
     }
     {
+        __condition__ : "VARS.dist in ['DB12']"
+        'APPLICATION.rm_products'               : ['root', 'URANIE']
+        'APPLICATION.products.cmake'            : 'native' # TTK requires cmake > 3.21
+        'APPLICATION.products.opencv'           : {tag: '3.2.0',     base: 'no', section: 'version_3_2_0_DB12'}
+        'APPLICATION.products.cminpack'         : 'native'
+        'APPLICATION.products.tbb'              : '2021.9.0'
+        'APPLICATION.products.PyFMI'            : {tag: '2.6',       base: 'no', section: 'version_2_6_DB12'          }
+        'APPLICATION.products.nlopt'            : '2.5.0'
+        'APPLICATION.products.openturns'        : {tag: '1.21',  base: 'no', section: 'version_1_21_DB12'        }
+        'APPLICATION.products.ParaView'         : {tag: '5.11.0',    base: 'no', section: 'version_5_11_0_MPI_DB12', hpc: 'yes' }
+    }
+    {
         # CentOS 8 repositories don't include sphinxintl package which must be installed through pip.
         # To avoid its missing (system_info pyconf key doesn't handle this use case), we embed it.
         __condition__ : "VARS.dist in ['CO8']"
@@ -285,8 +297,8 @@ __overwrite__ :
          'APPLICATION.products.statsmodels'      : {tag: '0.6.1',   base: 'no', section: 'version_0_6_1_no_pip'              }
          'APPLICATION.products.nose'             : {tag: '1.3.7',   base: 'no', section: 'version_1_3_7_no_pip'              }
          'APPLICATION.products.ParaView'         : {tag: '5.11.0',  base: 'no', section: 'version_5_11_0_MPI_CO9', hpc: 'yes'}
-         'APPLICATION.products.YDEFX'            : {tag: 'V9_12_0',base: 'no', section: 'version_V9_12_0_CO9'               }
-         'APPLICATION.products.YACS'             : {tag: 'V9_12_0',base: 'no',section: 'version_V9_12_0_CO9'               }
+         'APPLICATION.products.YDEFX'            : {tag: 'V9_12_0',base: 'no', section: 'version_V9_12_0_CO9'                }
+         'APPLICATION.products.YACS'             : {tag: 'V9_12_0',base: 'no',section: 'version_V9_12_0_CO9'                 }
     }
     {
         __condition__ : "VARS.dist in ['FD32']"
@@ -334,13 +346,13 @@ __overwrite__ :
         'APPLICATION.products.PyFMI'            : {tag: '2.6',       base: 'no', section: 'version_2_6_FD37'                    }
         'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD37'                  }
         'APPLICATION.products.ParaView'         : {tag: '5.11.0',    base: 'no',  section: 'version_5_11_0_MPI_FD37', hpc: 'yes'}
-        'APPLICATION.products.CONFIGURATION'    : {tag:'V9_12_0',     base: 'no', section: 'default'                          }
-        'APPLICATION.products.SHAPER'           : {tag:'V9_12_0',     base: 'no', section: 'default',               hpc: 'no' }
+        'APPLICATION.products.CONFIGURATION'    : {tag:'V9_12_0',    base: 'no', section: 'default'                             }
+        'APPLICATION.products.SHAPER'           : {tag:'V9_12_0',    base: 'no', section: 'default',                  hpc: 'no' }
     }
 
     {
         __condition__ : "VARS.dist in ['FD38']"
-        'APPLICATION.rm_products' : ['root', 'URANIE', 'mesa']
+        'APPLICATION.rm_products' : ['root', 'URANIE']
         'APPLICATION.products.cmake'            : 'native'
         'APPLICATION.products.opencv'           : {tag: '3.2.0',     base: 'no', section: 'version_3_2_0_FD38'                  }
         'APPLICATION.products.omniORB'          : '4.2.5'
@@ -355,7 +367,7 @@ __overwrite__ :
         'APPLICATION.products.catalyst'         : {tag: '2.0',       base: 'no', section: 'version_2_0_FD38'                    }
         'APPLICATION.products.gmsh'             : {tag: '4.10.3',    base: 'no', section: 'version_4_10_3_FD38'                 }
         'APPLICATION.products.ParaView'         : {tag: '5.11.0',    base: 'no', section: 'version_5_11_0_MPI_FD38', hpc: 'yes' }
-        'APPLICATION.products.CONFIGURATION'    : {tag:'V9_12_0', base: 'no', section: 'default'                          }
-        'APPLICATION.products.SHAPER'           : {tag:'V9_12_0', base: 'no', section: 'default',              hpc: 'no'  }
+        'APPLICATION.products.CONFIGURATION'    : {tag:'V9_12_0',    base: 'no', section: 'default'                             }
+        'APPLICATION.products.SHAPER'           : {tag:'V9_12_0',    base: 'no', section: 'default',                 hpc: 'no'  }
     }
 ]
