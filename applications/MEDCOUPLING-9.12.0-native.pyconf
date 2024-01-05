@@ -55,7 +55,7 @@ APPLICATION :
         pytz : 'native'
         requests : 'native'
         scipy : 'native'
-        scotch : 'native'
+        scotch : {tag: '6.1.2', section: 'version_6_1_2_MPI', hpc: 'yes', base: 'no'}
         setuptools : 'native'
         six : 'native'
         snowballstemmer : 'native'
