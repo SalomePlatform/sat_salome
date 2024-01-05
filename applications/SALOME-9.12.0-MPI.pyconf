@@ -93,7 +93,7 @@ APPLICATION :
         omniORBpy : '4.2.5'
         opencv : '3.2.0'
         openmpi : '3.1.6' # current version of hdf5 is not compatible with openmpi 4, if compiled with MPI support
-        openturns:  {tag : '1.21', hpc : 'yes'}
+        openturns:  {tag : '1.21', section: 'version_1_21_CO7', hpc : 'yes'}
         openVKL: '0.11.0'
         ospray : '2.4.0'
         packaging : '17.1'
