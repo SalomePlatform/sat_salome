@@ -92,6 +92,10 @@ __overwrite__ :
         'PRODUCTS.sphinxintl.default.properties.pip' : "no"
     }
     {
+        __condition__ : "VARS.dist in ['CO9']"
+        'APPLICATION.products.sphinxintl'       : {tag: '0.9.10',  base: 'no', section: 'version_0_9_10_no_pip' }
+    }
+    {
         __condition__ : "VARS.dist in ['UB22.04']"
         'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_UB22_04'}
     }
