@@ -5,8 +5,9 @@ echo "ParaView" $VERSION
 echo "##########################################################################"
 
 PVLIBVERSION=`echo ${VERSION} | awk -F. '{printf("%d.%d",$1,$2)}'`
+LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
 
-CMAKE_OPTIONS=""
+CMAKE_OPTIONS=
 
 ### common compiler and install settings
 CMAKE_OPTIONS+=" -DCMAKE_INSTALL_PREFIX:STRING=${PRODUCT_INSTALL}"
@@ -46,7 +47,6 @@ fi
 ### spns #20550 - Headless mode
 if [ "$PARAVIEW_HEADLESS_MODE" == "1" ]; then
     EGL_FOUND=false
-    LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
     case $LINUX_DISTRIBUTION in
         CO*|FD*)
             if [ -f /usr/include/EGL/egl.h ] && [ -f /usr/lib64/libEGL.so ] && [ -f /usr/lib64/libOpenGL.so ]
@@ -115,6 +115,15 @@ then
     CMAKE_OPTIONS+=" -DPython3_INCLUDE_DIR:STRING=${PYTHON_ROOT_DIR}/include/python${PYTHON_VERSION}"
     CMAKE_OPTIONS+=" -DPython3_LIBRARY:STRING=${PYTHON_ROOT_DIR}/lib/libpython${PYTHON_VERSION}.so"
     CMAKE_OPTIONS+=" -DPython3_EXECUTABLE=${PYTHON_ROOT_DIR}/bin/python${PYTHON_VERSION}"
+else
+    case $LINUX_DISTRIBUTION in
+        CO8*)
+            echo "WARNING: Set Python_EXECUTABLE macro to ${PYTHONBIN}"
+            CMAKE_OPTIONS+=" -DPython3_EXECUTABLE=${PYTHONBIN}"
+            ;;
+        *)
+            ;;
+    esac
 fi
 CMAKE_OPTIONS+=" -DVTK_PYTHON_FULL_THREADSAFE:BOOL=ON"
 CMAKE_OPTIONS+=" -DVTK_NO_PYTHON_THREADS:BOOL=OFF"
