@@ -261,6 +261,7 @@ __overwrite__ :
         'APPLICATION.products.cmake'            : 'native' # TTK requires cmake > 3.21
         'APPLICATION.products.opencv'           : {tag: '3.2.0',     base: 'no', section: 'version_3_2_0_DB12'}
         'APPLICATION.products.cminpack'         : 'native'
+        'APPLICATION.products.swig'             : '4.0.2'
         'APPLICATION.products.tbb'              : '2021.9.0'
         'APPLICATION.products.PyFMI'            : {tag: '2.6',       base: 'no', section: 'version_2_6_DB12'          }
         'APPLICATION.products.nlopt'            : '2.5.0'
