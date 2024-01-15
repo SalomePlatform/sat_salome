@@ -1,0 +1,26 @@
+diff --git a/CDMATH/tests/doc/3DPoissonEF/FiniteElements3DPoisson_CUBE.html b/CDMATH/tests/doc/3DPoissonEF/FiniteElements3DPoisson_CUBE.html
+index a33c3d7..f738ac2 100644
+--- a/CDMATH/tests/doc/3DPoissonEF/FiniteElements3DPoisson_CUBE.html
++++ b/CDMATH/tests/doc/3DPoissonEF/FiniteElements3DPoisson_CUBE.html
+@@ -12105,7 +12105,7 @@ A. Hannukainen, S. Korotov, M. Křı́žek, Maximum angle condition is not neces
+ <span class="c1">#Here are: Sparse matrix using scipy and vector using numpy </span>
+ <span class="c1">#==========================================================</span>
+ <span class="c1">#B = np.zeros(nbInteriorNodes)</span>
+-<span class="c1">#A = coo_matrix((nbInteriorNodes, nbInteriorNodes), dtype=np.float).toarray()</span>
++<span class="c1">#A = coo_matrix((nbInteriorNodes, nbInteriorNodes), dtype=np.float64).toarray()</span>
+ 
+ <span class="c1"># Vecteurs gradient de la fonction de forme associée à chaque noeud d&#39;un triangle (hypothèse 2D)</span>
+ <span class="n">GradShapeFunc0</span><span class="o">=</span><span class="n">cdmath</span><span class="o">.</span><span class="n">Vector</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="c1">#en 3D GradShapeFunc0=cdmath.Vector(3)</span>
+diff --git a/CDMATH/tests/doc/3DPoissonEF/FiniteElements3DPoisson_CUBE.ipynb b/CDMATH/tests/doc/3DPoissonEF/FiniteElements3DPoisson_CUBE.ipynb
+index ad39e47..292bfd5 100644
+--- a/CDMATH/tests/doc/3DPoissonEF/FiniteElements3DPoisson_CUBE.ipynb
++++ b/CDMATH/tests/doc/3DPoissonEF/FiniteElements3DPoisson_CUBE.ipynb
+@@ -291,7 +291,7 @@
+     "#Here are: Sparse matrix using scipy and vector using numpy \n",
+     "#==========================================================\n",
+     "#B = np.zeros(nbInteriorNodes)\n",
+-    "#A = coo_matrix((nbInteriorNodes, nbInteriorNodes), dtype=np.float).toarray()\n",
++    "#A = coo_matrix((nbInteriorNodes, nbInteriorNodes), dtype=np.float32).toarray()\n",
+     "\n",
+     "# Vecteurs gradient de la fonction de forme associée à chaque noeud d'un triangle (hypothèse 2D)\n",
+     "GradShapeFunc0=cdmath.Vector(3)#en 3D GradShapeFunc0=cdmath.Vector(3)\n",

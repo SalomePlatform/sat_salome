@@ -53,7 +53,7 @@ version_2_6_win :
 
 version_2_6_DB12:
 {
-    patches: ['pyfmi-2.6-python-3.1x.01.patch']
+    patches: ['pyfmi-2.6-python-3.1x.01.patch', 'PyFMI-2.6-numpy-1.20-np.float.patch']
     compil_script : "PyFMI-2.6.sh"
     properties:
     {

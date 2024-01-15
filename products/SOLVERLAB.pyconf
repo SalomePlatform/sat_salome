@@ -60,6 +60,11 @@ default_MPI :
     opt_depend : ['mpi4py']
 }
 
+version_V9_12_0_DB12 :
+{
+    patches : ['SOLVERLAB-V9_12_0-numpy-1.20.-np.float.patch']
+}
+
 version_V9_10_0 :
 {
     properties:

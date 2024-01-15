@@ -1,0 +1,13 @@
+diff --git a/src/tests/Test/test_5.py b/src/tests/Test/test_5.py
+index 01baaa9..af1ec47 100755
+--- a/src/tests/Test/test_5.py
++++ b/src/tests/Test/test_5.py
+@@ -179,7 +179,7 @@ Python script for MEDCoupling
+     cg_hexa = cg_hexa_ml.toNumPyArray()
+ # Target
+ # ======
+-    xyz_p = np.zeros(3, dtype=np.float)
++    xyz_p = np.zeros(3, dtype=np.float32)
+     xyz_p[0] = -0.20*float(1-niter) * LG_X
+     xyz_p[1] = -0.15*float(1-niter) * LG_Y
+     xyz_p[2] = -0.10*float(1-niter) * LG_Z

@@ -53,6 +53,11 @@ default_win :
     cmake_options :   " -DNO_SolveSpace=TRUE  -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR:\=/%/bin/swig.exe " 
 }
 
+version_V9_12_0_DB12 :
+{
+    patches : ['SHAPER-V9_12_0-numpy-1.20-np.float.patch']
+}
+
 version_V9_10_0_FD37:
 {
   patches : ['SPNS-32377-SHAPER-V9_10_0-FD37.patch']
