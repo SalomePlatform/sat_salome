@@ -12,7 +12,9 @@ cp -rf $SOURCE_DIR/* .
 CONFIGURE_FLAGS=''
 CONFIGURE_FLAGS=$CONFIGURE_FLAGS" --download-f2cblaslapack=ext/f2cblaslapack-3.4.2.q4.tar.gz"
 CONFIGURE_FLAGS=$CONFIGURE_FLAGS" --download-slepc=ext/slepc-3.15.0.tar.gz"
-CONFIGURE_FLAGS=$CONFIGURE_FLAGS" --with-hdf5-dir=${HDF5_ROOT_DIR}"
+if [ "$SAT_hdf5_IS_NATIVE" != "1" ]; then
+    CONFIGURE_FLAGS+=" --with-hdf5-dir=${HDF5_ROOT_DIR}"
+fi
 CONFIGURE_FLAGS=$CONFIGURE_FLAGS" --download-metis=ext/metis-5.1.0-p10.tar.gz"
 CONFIGURE_FLAGS=$CONFIGURE_FLAGS" --with-debugging=0" # by default Petsc is build in debug mode
 echo

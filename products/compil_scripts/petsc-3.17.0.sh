@@ -14,7 +14,9 @@ CONFIGURE_FLAGS=
 CONFIGURE_FLAGS+=" --with-blaslapack-dir=${LAPACK_ROOT_DIR}"
 CONFIGURE_FLAGS+=" --with-python-dir=${PYTHON_ROOT_DIR}"
 CONFIGURE_FLAGS+=" --download-slepc=ext/slepc-3.17.0.tar.gz"
-CONFIGURE_FLAGS+=" --with-hdf5-dir=${HDF5_ROOT_DIR}"
+if [ "$SAT_hdf5_IS_NATIVE" != "1" ]; then
+    CONFIGURE_FLAGS+=" --with-hdf5-dir=${HDF5_ROOT_DIR}"
+fi
 CONFIGURE_FLAGS+=" --with-debugging=0" # by default Petsc is build in debug mode
 CONFIGURE_FLAGS+=" --with-petsc4py=yes"
 CONFIGURE_FLAGS+=" --download-slepc-configure-arguments=--with-slepc4py=yes "
