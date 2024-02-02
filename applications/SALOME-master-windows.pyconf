@@ -141,7 +141,7 @@ APPLICATION :
         zlib : '1.2.5'
 
         # SALOME MODULES :
-        'CONFIGURATION'
+        'CONFIGURATION' : 'bos/40807'
         'SALOME'
         'SHAPER'
         'SHAPERSTUDY'
