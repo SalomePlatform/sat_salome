@@ -141,7 +141,7 @@ APPLICATION :
         URANIE : '4.7.0'
 
         # SALOME MODULES :
-        'CONFIGURATION': 'bos/40807'
+        'CONFIGURATION'
         'SALOME'
         'SHAPER'
         'SHAPERSTUDY'
@@ -241,7 +241,6 @@ __overwrite__ :
         __condition__ : "VARS.dist in ['DB09']"
         'APPLICATION.products.openturns'        : {tag: '1.21',  base: 'no', section: 'version_1_21_DB09' }
         'APPLICATION.products.MEDCOUPLING'      : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
-        'APPLICATION.products.CONFIGURATION'    : 'master'
     }
     {
         __condition__ : "VARS.dist in ['UB18.04']"
