@@ -58,6 +58,7 @@ APPLICATION :
         dateutil : 'native'
         docutils : 'native'
         doxygen : 'native'
+        DXF : '7.8.0'
         eigen : 'native'
         embree : '3.12.2'
         FMILibrary : '2.0.3'
@@ -165,7 +166,8 @@ APPLICATION :
         # SALOME MODULES :
         'CONFIGURATION'
         'SALOME'
-        'SHAPER'
+        'SHAPER' : 'asozinov/DXF'
+        'dxf_shaper_plugin'
         'SHAPERSTUDY'
         'RESTRICTED'
         'LIBBATCH' : 'V2_5_0'

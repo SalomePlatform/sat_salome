@@ -14,6 +14,7 @@ default :
     }
     environ :
     {
+        _SHAPER_PluginList : ""
         SalomeAppConfig_ : $install_dir + $VARS.sep + "share" + $VARS.sep + "salome" + $VARS.sep + "resources" + $VARS.sep + "shaper"
     }
     depend : [
