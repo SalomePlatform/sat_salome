@@ -35,6 +35,16 @@ default_win :
     }
 }
 
+version_2024_1 :
+{
+    properties :
+    {
+      is_distene : "no"
+      licence : "libSalomeMeshGemsKeyGenerator"
+      incremental : "yes"
+    }
+}
+
 version_2_15_1 :
 {
     properties :
