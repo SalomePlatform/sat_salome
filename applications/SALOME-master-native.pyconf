@@ -138,7 +138,7 @@ APPLICATION :
         URANIE : '4.7.0'
 
         # SALOME MODULES :
-        'CONFIGURATION'
+        'CONFIGURATION' : 'mbs/update_labels'
         'SALOME'
         'SHAPER'
         'SHAPERSTUDY'
@@ -248,6 +248,7 @@ __overwrite__ :
         'APPLICATION.products.swig'     : '4.0.2'
         'APPLICATION.products.openmpi'  : '4.1.5'
         'APPLICATION.products.MEDCOUPLING' : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'APPLICATION.products.CONFIGURATION'    : 'master'
     }
     {
         __condition__ : "VARS.dist in ['DB11']"
@@ -255,6 +256,7 @@ __overwrite__ :
         'APPLICATION.products.cminpack'         : 'native'
         'APPLICATION.products.PyFMI'            : {tag:'2.6',    base: 'no', section: 'version_2_6_no_pip'}
         'APPLICATION.products.MEDCOUPLING'      : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'APPLICATION.products.CONFIGURATION'    : 'master'
     }
     {
         __condition__ : "VARS.dist in ['DB12']"
@@ -268,6 +270,7 @@ __overwrite__ :
         'APPLICATION.products.nlopt'            : '2.5.0'
         'APPLICATION.products.openturns'        : {tag: '1.21',  base: 'no', section: 'version_1_21_DB12'        }
         'APPLICATION.products.ParaView'         : {tag: '5.11.0',    base: 'no', section: 'version_5_11_0_MPI_DB12', hpc: 'yes' }
+        'APPLICATION.products.CONFIGURATION'    : 'master'
     }
     {
         # CentOS 8 repositories don't include sphinxintl package which must be installed through pip.
