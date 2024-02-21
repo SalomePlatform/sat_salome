@@ -4,6 +4,21 @@ echo ##########################################################################
 echo ADAO %VERSION%
 echo ##########################################################################
 
+IF NOT DEFINED SAT_DEBUG (
+  SET SAT_DEBUG=0
+)
+
+IF NOT DEFINED CMAKE_GENERATOR (
+  SET CMAKE_GENERATOR="Visual Studio 15 2017 Win64"
+)
+
+SET PRODUCT_BUILD_TYPE=release
+
+REM TODO: NGH: not Tested yet
+if %SAT_DEBUG% == 1 (
+  set PRODUCT_BUILD_TYPE=debug
+)
+
 if NOT exist "%PRODUCT_INSTALL%" mkdir %PRODUCT_INSTALL%
 
 REM clean BUILD directory
@@ -23,7 +38,7 @@ set CMAKE_OPTIONS=
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_INSTALL_PREFIX:STRING=%PRODUCT_INSTALL:\=/%
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_BUILD_TYPE=Release
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DPYTHON_EXECUTABLE=%PYTHONBIN:\=/%
-set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_GENERATOR:STRING="Visual Studio 15 2017 Win64"
+set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_GENERATOR=%CMAKE_GENERATOR%
 
 set MSBUILDDISABLENODEREUSE=1
 
@@ -76,7 +91,7 @@ set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DPYTHON_EXECUTABLE=%PYTHONBIN:\=/%
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DKERNEL_ROOT_DIR=%KERNEL_ROOT_DIR:\=/%
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DADAO_PYTHON_ROOT_DIR=%ADAO_PYTHON_ROOT_DIR:\=/%
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DEFICAS_ROOT_DIR=%EFICAS_TOOLS_ROOT_DIR:\=/%
-set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_GENERATOR:STRING="Visual Studio 15 2017 Win64"
+set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_GENERATOR=%CMAKE_GENERATOR%
 
 echo.
 echo *********************************************************************
@@ -94,7 +109,7 @@ REM set CL=/D__WIN32__ /DSIZEOF_INT=4 /DSIZEOF_LONG=4 %CL%
 
 echo.
 echo *********************************************************************
-echo *** msbuild %MAKE_OPTIONS% /p:Configuration=Release /p:Platform=x64 ALL_BUILD.vcxproj"
+echo *** msbuild %MAKE_OPTIONS% /p:Configuration=Release /p:Platform=x64 ALL_BUILD.vcxproj
 echo *********************************************************************
 echo.
 

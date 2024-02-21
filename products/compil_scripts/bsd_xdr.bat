@@ -4,15 +4,25 @@ echo ##########################################################################
 echo bsd-xdr $VERSION
 echo ##########################################################################
 
+IF NOT DEFINED SAT_DEBUG (
+  SET SAT_DEBUG=0
+)
+
+IF NOT DEFINED CMAKE_GENERATOR (
+  SET CMAKE_GENERATOR="Visual Studio 15 2017 Win64"
+)
+
+SET PRODUCT_BUILD_TYPE=release
+
+if %SAT_DEBUG% == 1 (
+  set PRODUCT_BUILD_TYPE=debug
+)
+
 if exist "%PRODUCT_INSTALL%" rmdir /Q /S "%PRODUCT_INSTALL%"
 mkdir %PRODUCT_INSTALL%
 
 set CMAKE_OPTIONS=-DCMAKE_INSTALL_PREFIX:STRING=%PRODUCT_INSTALL:\=/%
-if defined CMAKE_GENERATOR (
-    set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_GENERATOR=%CMAKE_GENERATOR%
-) else (
-    set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_GENERATOR="Visual Studio 10 2010 Win64"
-)
+set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_GENERATOR=%CMAKE_GENERATOR%
 
 set MSBUILDDISABLENODEREUSE=1
 

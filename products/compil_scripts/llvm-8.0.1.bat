@@ -4,6 +4,10 @@ echo ##########################################################################
 echo llvm %VERSION%
 echo ##########################################################################
 
+IF NOT DEFINED CMAKE_GENERATOR (
+  SET CMAKE_GENERATOR="Visual Studio 15 2017 Win64"
+)
+
 REM NGH: no need to build this in debug mode
 SET PRODUCT_BUILD_TYPE=Release
 
@@ -21,7 +25,7 @@ set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DPYTHON_EXECUTABLE:STRING=%PYTHON_ROOT_DIR:\=
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DLLVM_INSTALL_UTILS:BOOL=ON
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DLLVM_ENABLE_DUMP:BOOL=ON 
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -Thost=x64
-set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_GENERATOR:STRING="Visual Studio 15 2017 Win64"
+set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_GENERATOR=%CMAKE_GENERATOR%
 set MSBUILDDISABLENODEREUSE=1
 
 echo.

@@ -8,6 +8,10 @@ IF NOT DEFINED SAT_DEBUG (
   SET SAT_DEBUG=0
 )
 
+IF NOT DEFINED CMAKE_GENERATOR (
+  SET CMAKE_GENERATOR="Visual Studio 15 2017 Win64"
+)
+
 SET PRODUCT_BUILD_TYPE=Release
 if %SAT_DEBUG% == 1 (
   set PRODUCT_BUILD_TYPE=Debug
@@ -48,7 +52,7 @@ if NOT %ERRORLEVEL% == 0 (
 
 echo.
 echo *********************************************************************
-echo *** msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=%PLATFORM_TARGET% ALL_BUILD.vcxproj"
+echo *** msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=%PLATFORM_TARGET% ALL_BUILD.vcxproj
 echo *********************************************************************
 echo.
 

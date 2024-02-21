@@ -46,7 +46,7 @@ default :
 
 default_win :
 {
-    cmake_options : " -DZLIB_LIBRARY=%ZLIB_BIN:\=/%  -DZLIB_INCLUDE_DIR=%ZLIB_INCLUDE_DIR:\=/%  -DCMAKE_GENERATOR=\"Visual Studio 15 2017 Win64\" -DSALOME_CXX_STANDARD=17 "
+    cmake_options : " -DZLIB_LIBRARY=%ZLIB_BIN:\=/%  -DZLIB_INCLUDE_DIR=%ZLIB_INCLUDE_DIR:\=/% -DSALOME_CXX_STANDARD=17 "
     depend : [
              "KERNEL",
              "MEDCOUPLING",

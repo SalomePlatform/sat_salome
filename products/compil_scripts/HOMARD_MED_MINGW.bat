@@ -8,6 +8,10 @@ IF NOT DEFINED SAT_DEBUG (
   SET SAT_DEBUG=0
 )
 
+IF NOT DEFINED CMAKE_GENERATOR (
+  SET CMAKE_GENERATOR="Visual Studio 15 2017 Win64"
+)
+
 SET PRODUCT_BUILD_TYPE=Release
 if %SAT_DEBUG% == 1 (
   set PRODUCT_BUILD_TYPE=Debug
@@ -41,7 +45,7 @@ set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_INSTALL_PREFIX=%PRODUCT_INSTALL%
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_BUILD_TYPE=%PRODUCT_BUILD_TYPE%
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR:\=/%/bin/swig.exe
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DBUILD_HOMARD_TOOL_STANDALONE:BOOL=ON
-set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_GENERATOR:STRING="Visual Studio 15 2017 Win64"
+set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_GENERATOR=%CMAKE_GENERATOR%
 
 set MSBUILDDISABLENODEREUSE=1
 
@@ -55,7 +59,7 @@ if NOT %ERRORLEVEL% == 0 (
 
 echo.
 echo *********************************************************************
-echo *** msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64 ALL_BUILD.vcxproj"
+echo *** msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64 ALL_BUILD.vcxproj
 echo *********************************************************************
 echo.
 

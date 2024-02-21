@@ -8,13 +8,13 @@ IF NOT DEFINED SAT_DEBUG (
   SET SAT_DEBUG=0
 )
 
+IF NOT DEFINED CMAKE_GENERATOR (
+  SET CMAKE_GENERATOR="Visual Studio 15 2017 Win64"
+)
+
 SET PRODUCT_BUILD_TYPE=Release
 if %SAT_DEBUG% == 1 (
   set PRODUCT_BUILD_TYPE=Debug
-)
-
-IF NOT DEFINED CMAKE_GENERATOR (
-  SET CMAKE_GENERATOR="Visual Studio 15 2017 Win64"
 )
 
 if NOT exist "%PRODUCT_INSTALL%" mkdir %PRODUCT_INSTALL%
@@ -123,7 +123,7 @@ echo *** %CMAKE_ROOT%\bin\cmake %CMAKE_OPTIONS% %SOURCE_DIR%
 echo *********************************************************************
 echo.
 
-%CMAKE_ROOT%\bin\cmake -G "Visual Studio 15 2017 Win64" %CMAKE_OPTIONS% %SOURCE_DIR%
+%CMAKE_ROOT%\bin\cmake -G %CMAKE_GENERATOR% %CMAKE_OPTIONS% %SOURCE_DIR%
 if NOT %ERRORLEVEL% == 0 (
     echo "ERROR on cmake"
     exit 1

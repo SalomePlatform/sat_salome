@@ -125,7 +125,7 @@ echo *** %CMAKE_ROOT%\bin\cmake %CMAKE_OPTIONS% %SOURCE_DIR%
 echo *********************************************************************
 echo.
 
-%CMAKE_ROOT%\bin\cmake -G "Visual Studio 15 2017 Win64" %CMAKE_OPTIONS% %SOURCE_DIR%
+%CMAKE_ROOT%\bin\cmake -G %CMAKE_GENERATOR% %CMAKE_OPTIONS% %SOURCE_DIR%
 if NOT %ERRORLEVEL% == 0 (
     echo "ERROR on cmake"
     exit 1

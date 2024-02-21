@@ -4,6 +4,11 @@ echo ##########################################################################
 echo cmake %VERSION%
 echo ##########################################################################
 
+
+IF NOT DEFINED CMAKE_GENERATOR (
+  SET CMAKE_GENERATOR="Visual Studio 15 2017 Win64"
+)
+
 if NOT exist "%PRODUCT_INSTALL%" mkdir %PRODUCT_INSTALL%
 
 REM clean BUILD directory

@@ -13,8 +13,6 @@ IF NOT DEFINED CMAKE_GENERATOR (
 )
 
 SET PRODUCT_BUILD_TYPE=release
-
-REM TODO: NGH: not Tested yet
 if %SAT_DEBUG% == 1 (
   set PRODUCT_BUILD_TYPE=debug
 )
