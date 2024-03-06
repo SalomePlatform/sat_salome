@@ -138,7 +138,7 @@ APPLICATION :
         URANIE : '4.7.0'
 
         # SALOME MODULES :
-        'CONFIGURATION'
+        'CONFIGURATION' : 'bos/40807'
         'SALOME'
         'SHAPER'
         'SHAPERSTUDY'
@@ -235,6 +235,7 @@ __overwrite__ :
         #   - Qt minimal version 5.12
         #   - xmlpatterns executable
         __condition__ : "VARS.dist in ['DB10']"
+        'APPLICATION.products.CONFIGURATION'    : 'master'
         'APPLICATION.products.opencv'   : '3.2.0'
         'APPLICATION.products.cminpack' : 'native'
         'APPLICATION.products.hdf5'     : 'native'
@@ -251,6 +252,7 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['DB11']"
+        'APPLICATION.products.CONFIGURATION'    : 'master'
         'APPLICATION.products.opencv'           : '3.2.0'
         'APPLICATION.products.hdf5'             : 'native'
         'APPLICATION.products.cminpack'         : 'native'
@@ -259,6 +261,7 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['DB12']"
+        'APPLICATION.products.CONFIGURATION'    : 'master'
         'APPLICATION.rm_products'               : ['root', 'URANIE']
         'APPLICATION.products.cmake'            : 'native' # TTK requires cmake > 3.21
         'APPLICATION.products.opencv'           : {tag: '3.2.0',     base: 'no', section: 'version_3_2_0_DB12'}
