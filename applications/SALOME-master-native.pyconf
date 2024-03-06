@@ -252,6 +252,7 @@ __overwrite__ :
     {
         __condition__ : "VARS.dist in ['DB11']"
         'APPLICATION.products.opencv'           : '3.2.0'
+        'APPLICATION.products.hdf5'             : 'native'
         'APPLICATION.products.cminpack'         : 'native'
         'APPLICATION.products.PyFMI'            : {tag:'2.6',    base: 'no', section: 'version_2_6_no_pip'}
         'APPLICATION.products.MEDCOUPLING'      : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
