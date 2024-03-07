@@ -141,7 +141,7 @@ APPLICATION :
         URANIE : '4.7.0'
 
         # SALOME MODULES :
-        'CONFIGURATION' : 'bos/40807'
+        'CONFIGURATION'
         'SALOME'
         'SHAPER'
         'SHAPERSTUDY'
