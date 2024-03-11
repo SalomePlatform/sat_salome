@@ -30,12 +30,11 @@ default :
     }
 }
 
-version_5_11_1 :
+version_5_12_0 :
 {
-    compil_script :  'ParaView-5.11.1.sh'
-    archive_info : {archive_name : "ParaView-5.11.1.tar.gz"}
+    compil_script :  'ParaView-5.12.0.sh'
+    archive_info : {archive_name : "ParaView-5.12.0.tar.gz"}
     patches : [
-               'paraview-5.11.1.p001-FindCGNS.patch'
               ]
     depend : [
               'Python',
@@ -53,12 +52,12 @@ version_5_11_1 :
     opt_depend : ['ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst']
 }
 
-version_5_11_1_int32 :
+version_5_12_0_int32 :
 {
-    compil_script :  'ParaView-5.11.1.sh'
-    archive_info : {archive_name : "ParaView-5.11.1.tar.gz"}
+    compil_script :  'ParaView-5.12.0.sh'
+    archive_info : {archive_name : "ParaView-5.12.0.tar.gz"}
+    # two other LATA patches already included in archive
     patches : [
-               'paraview-5.11.1.p001-FindCGNS.patch'
               ]
     depend : [
               'Python',
@@ -76,32 +75,10 @@ version_5_11_1_int32 :
     opt_depend : ['ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst']
 }
 
-version_5_11_1_win :
+version_5_12_0_win :
 {
-    compil_script :  'ParaView-5.11.1.bat'
-    archive_info : {archive_name : "ParaView-5.11.1.tar.gz"}
-    depend : [
-              'Python',
-              'hdf5',
-              'qt',
-              'boost',
-              'libxml2',
-              'freetype',
-              'cgns',
-              'Pygments',
-              'pthreads',
-              'zlib'
-             ]
-    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'rkCommon', 'matplotlib']
-    patches : [
-               'paraview-5.11.1.p001-FindCGNS.patch'
-              ]
-}
-
-version_5_11_1_win_dbg :
-{
-    compil_script :  'ParaView-5.11.1.bat'
-    archive_info : {archive_name : "ParaView-5.11.1.tar.gz"}
+    compil_script :  'ParaView-5.12.0.bat'
+    archive_info : {archive_name : "ParaView-5.12.0.tar.gz"}
     depend : [
               'Python',
               'hdf5',
@@ -118,57 +95,30 @@ version_5_11_1_win_dbg :
     patches : []
 }
 
-version_5_11_1_MPI :
+version_5_12_0_win_dbg :
 {
-    compil_script :  'ParaView-5.11.1.sh'
-    archive_info : {archive_name : "ParaView-5.11.1.tar.gz"}
-    patches : [
-                'paraview-5.11.1.p001-FindCGNS.patch'
-              ]
+    compil_script :  'ParaView-5.12.0.bat'
+    archive_info : {archive_name : "ParaView-5.12.0.tar.gz"}
     depend : [
               'Python',
               'hdf5',
               'qt',
-              'PyQt',
-              'sip',
               'boost',
               'libxml2',
               'freetype',
-              'matplotlib',
               'cgns',
-              'Pygments'
-              ]
-    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst']
+              'Pygments',
+              'pthreads',
+              'zlib'
+             ]
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'rkCommon', 'matplotlib']
+    patches : []
 }
 
-version_5_11_1_MPI_LATA_64BITS_IDS :
+version_5_12_0_MPI :
 {
-    compil_script :  'ParaView-5.11.1.sh'
-    archive_info : {archive_name : "ParaView-5.11.1.tar.gz"}
-    patches : [
-                 'paraview-5.11.1.p001-FindCGNS.patch',
-                 'paraview-0012-LATA_64BITS_IDS.patch'
-              ]
-    depend : [
-              'Python',
-              'hdf5',
-              'qt',
-              'PyQt',
-              'sip',
-              'boost',
-              'libxml2',
-              'freetype',
-              'matplotlib',
-              'cgns',
-              'Pygments'
-              ]
-    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst']
-}
-
-version_5_11_1_MPI_DB10 :
-{
-    compil_script :  'ParaView-5.11.1.sh'
-    archive_info : {archive_name : "ParaView-5.11.1.tar.gz"}
+    compil_script :  'ParaView-5.12.0.sh'
+    archive_info : {archive_name : "ParaView-5.12.0.tar.gz"}
     patches : []
     depend : [
               'Python',
@@ -186,33 +136,10 @@ version_5_11_1_MPI_DB10 :
     opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst']
 }
 
-version_5_11_1_MPI_CO8 :
+version_5_12_0_MPI_LATA_64BITS_IDS :
 {
-    compil_script :  'ParaView-5.11.1.sh'
-    archive_info : {archive_name : "ParaView-5.11.1.tar.gz"}
-    patches : [
-               'paraview-5.11.1.p002-ParaViewClient.patch'
-              ]
-    depend : [
-              'Python',
-              'hdf5',
-              'qt',
-              'PyQt',
-              'sip',
-              'boost',
-              'libxml2',
-              'freetype',
-              'matplotlib',
-              'cgns',
-              'Pygments'
-              ]
-    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst']
-}
-
-version_5_11_1_MPI_FD38 :
-{
-    compil_script :  'ParaView-5.11.1.sh'
-    archive_info : {archive_name : "ParaView-5.11.1.tar.gz"}
+    compil_script :  'ParaView-5.12.0.sh'
+    archive_info : {archive_name : "ParaView-5.12.0.tar.gz"}
     patches : []
     depend : [
               'Python',
@@ -230,10 +157,94 @@ version_5_11_1_MPI_FD38 :
     opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst']
 }
 
-version_5_11_1_MPI_FD37 :
+version_5_12_0_MPI_DB12 :
 {
-    compil_script :  'ParaView-5.11.1.sh'
-    archive_info : {archive_name : "ParaView-5.11.1.tar.gz"}
+    compil_script :  'ParaView-5.12.0.sh'
+    archive_info : {archive_name : "ParaView-5.12.0.tar.gz"}
+    patches : []
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'PyQt',
+              'sip',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst']
+}
+
+version_5_12_0_MPI_DB10 :
+{
+    compil_script :  'ParaView-5.12.0.sh'
+    archive_info : {archive_name : "ParaView-5.12.0.tar.gz"}
+    patches : []
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'PyQt',
+              'sip',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst']
+}
+
+version_5_12_0_MPI_CO9 :
+{
+    compil_script :  'ParaView-5.12.0.sh'
+    archive_info : {archive_name : "ParaView-5.12.0.tar.gz"}
+    patches : []
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'PyQt',
+              'sip',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst']
+}
+
+version_5_12_0_MPI_CO8 :
+{
+    compil_script :  'ParaView-5.12.0.sh'
+    archive_info : {archive_name : "ParaView-5.12.0.tar.gz"}
+    patches : []
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'PyQt',
+              'sip',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst']
+}
+
+version_5_12_0_MPI_FD38 :
+{
+    compil_script :  'ParaView-5.12.0.sh'
+    archive_info : {archive_name : "ParaView-5.12.0.tar.gz"}
     patches : []
     depend : [
               'Python',
