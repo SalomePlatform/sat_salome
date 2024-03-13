@@ -4,7 +4,7 @@
 project_path : $PWD
 
 # Where to search the archives of the products
-ARCHIVEPATH : "\\\\titania\\home_projet\\salome-public\\prerequis\\archives"
+ARCHIVEPATH : "\\\\titania\\home_projet06\\salome-public\\prerequis\\archives"
 ARCHIVEFTP : "ftp.cea.fr/pub/salome/prerequisites"
 # Where to search the pyconf of the applications
 APPLICATIONPATH : $project_path + "\\applications\\"
@@ -13,7 +13,7 @@ PRODUCTPATH : $project_path + "\\products"
 # Where to search the pyconf of the jobs of the project
 JOBPATH : $project_path + r"\\jobs\\" 
 # Where to search for licences
-LICENCEPATH : "\\\\titania\\home_projet\\salome-public\\prerequis\\LICENCE"
+LICENCEPATH : "\\\\titania\\home_projet06\\salome-public\\prerequis\\LICENCE"
 
 git_info : 
 {
