@@ -164,7 +164,7 @@ APPLICATION :
         'FIELDS'
         'PARAVIS'
         'JOBMANAGER'
-        'YACS' : 'bos/41337'
+        'YACS'
         'YACSGEN'
         'DOCUMENTATION'
         'SALOMEBOOTSTRAP'
