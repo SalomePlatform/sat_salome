@@ -201,6 +201,7 @@ APPLICATION :
         pip : 'yes'
         pip_install_dir : 'python'
         single_install_dir : "yes"
+        github: 'no'
     }
 }
 

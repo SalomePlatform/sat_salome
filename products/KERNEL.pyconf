@@ -7,7 +7,7 @@ default :
     get_source : "git"
     git_info:
     {
-        repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/kernel.git"
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "kernel.git"
         repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "kernel.git"
     }
     environ :
@@ -231,7 +231,7 @@ ALAMOS_SALOME_9 :
     get_source : "git"
     git_info:
     {
-        repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/kernel.git"
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "kernel.git"
         repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "kernel.git"
     }
     environ :
@@ -291,7 +291,7 @@ ALAMOS_SALOME_9_win :
     get_source : "git"
     git_info:
     {
-        repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/kernel.git"
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "kernel.git"
         repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "kernel.git"
     }
     environ :
@@ -308,7 +308,7 @@ ALAMOS :
     get_source : "git"
     git_info:
     {
-        repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/kernel.git"
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "kernel.git"
         repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "kernel.git"
     }
     environ :
@@ -346,7 +346,7 @@ version_V6_6_0 :
     get_source : "git"
     git_info:
     {
-        repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/kernel.git"
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "kernel.git"
         repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "kernel.git"
     }
     environ :

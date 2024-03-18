@@ -17,7 +17,7 @@ LICENCEPATH : "/home/salome-public/prerequis/LICENCE:/nfs/home/salome-public/pre
 
 git_info : 
 {
-   default_git_server : "https://git.salome-platform.org/gitpub/"
+   default_git_server : "git@github.com:SalomePlatform/"
    default_git_server_dev : "https://codev-tuleap.cea.fr/plugins/git/salome/"
 }
 

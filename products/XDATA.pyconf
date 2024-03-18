@@ -21,6 +21,7 @@ default :
     {
         is_SALOME_module : "yes"
         incremental: "yes"
+        is_opensource : "no"
     }
 }
 

@@ -5,7 +5,7 @@ default :
     get_source : "git"
     git_info:
     {
-        repo : $PROJECTS.projects.salome.git_info.default_git_server + "plugins/blsurfplugin.git"
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "blsurfplugin.git"
         repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "blsurfplugin.git"
     }
     environ :
@@ -44,7 +44,7 @@ version_V8_4_0 :
     get_source : "git"
     git_info:
     {
-        repo : $PROJECTS.projects.salome.git_info.default_git_server + "plugins/blsurfplugin.git"
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "blsurfplugin.git"
         repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "blsurfplugin.git"
     }
     environ :
@@ -82,7 +82,7 @@ version_V6_6_0 :
     get_source : "git"
     git_info:
     {
-        repo : $PROJECTS.projects.salome.git_info.default_git_server + "plugins/blsurfplugin.git"
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "blsurfplugin.git"
         repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "blsurfplugin.git"
     }
     environ :

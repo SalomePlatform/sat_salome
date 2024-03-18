@@ -5,8 +5,8 @@ default :
     get_source : "git"
     git_info:
     {
-        repo : "https://codev-tuleap.cea.fr/plugins/git/spns/CEATESTBASE.git"
-        repo_dev : $repo
+        repo_dev : "https://codev-tuleap.cea.fr/plugins/git/spns/CEATESTBASE.git"
+        repo : $repo_dev
     }
     environ :
     {
@@ -19,5 +19,6 @@ default :
     properties:
     {
         not_in_package : "yes"
+        is_opensource : "no"
     }
 }
