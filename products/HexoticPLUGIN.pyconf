@@ -5,8 +5,12 @@ default :
     get_source : "git"
     git_info:
     {
-        repo : $PROJECTS.projects.salome.git_info.default_git_server + "plugins/hexoticplugin.git"
-        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "hexoticplugin.git"
+      repositories :
+      {
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/hexoticplugin.git"
+        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "hexoticplugin.git"
+        gitpub : $PROJECTS.projects.salome.git_info.git_server.gitpub.url + "plugins/hexoticplugin.git"
+      }
     }
     environ :
     {

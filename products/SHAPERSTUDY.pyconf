@@ -5,8 +5,12 @@ default :
     get_source : "git"
     git_info :
     {
-        repo : $PROJECTS.projects.salome.git_info.default_git_server_dev + "shaper_study.git"
-        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "shaper_study.git"
+      repositories :
+      {
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/shaper_study.git"
+        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "shaper_study.git"
+        gitpub : $PROJECTS.projects.salome.git_info.git_server.gitpub.url + "modules/shaper_study.git"
+      }
     }
     environ :
     {

@@ -5,8 +5,12 @@ default :
     get_source : "git"
     git_info:
     {
-        repo : $PROJECTS.projects.salome.git_info.default_git_server + "samples/pycalculator.git"
-        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "pycalculator.git"
+      repositories :
+      {
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/pycalculator.git"
+        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "pycalculator.git"
+        gitpub : $PROJECTS.projects.salome.git_info.git_server.gitpub.url + "samples/pycalculator.git"
+      }
     }
     environ :
     {

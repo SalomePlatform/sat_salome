@@ -17,6 +17,14 @@ LICENCEPATH : "\\\\titania\\home_projet08\\salome-public\\prerequis\\LICENCE"
 
 git_info : 
 {
+  git_server :
+  {
+      tuleap : {url : "https://codev-tuleap.cea.fr/plugins/git/", opensource_only: 'no' }
+      github : {url : "git@github.com:SalomePlatform/",           opensource_only: 'yes'}
+      gitpub : {url : "https://git.salome-platform.org/gitpub/",  opensource_only: 'yes'}
+  }
+    # these two keys are deprecated - they are kept for backward compatibility only and
+    # will be removed in a future SAT release.
     default_git_server : "https://git.salome-platform.org/gitpub/"
     default_git_server_dev : "https://codev-tuleap.cea.fr/plugins/git/salome/"
 }

@@ -5,8 +5,12 @@ default :
     get_source : "git"
     git_info:
     {
-        repo : $PROJECTS.projects.salome.git_info.default_git_server + "samples/hello.git"
-        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "hello.git"
+      repositories :
+      {
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/hello.git"
+        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "hello.git"
+        gitpub : $PROJECTS.projects.salome.git_info.git_server.gitpub.url + "samples/hello.git"
+      }
     }
     environ :
     {

@@ -4,8 +4,12 @@ default :
     get_source : "git"
     git_info:
     {
-        repo : $PROJECTS.projects.salome.git_info.default_git_server + "tools/configuration.git"
-        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "configuration.git"
+      repositories :
+      {
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/configuration.git"
+        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "configuration.git"
+        gitpub : $PROJECTS.projects.salome.git_info.git_server.gitpub.url + "tools/configuration.git"
+      }
     }
     depend : [ ]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name

@@ -4,8 +4,12 @@ default :
     get_source : "git"
     git_info:
     {
-        repo : $PROJECTS.projects.salome.git_info.default_git_server + "samples/datafiles.git"
-        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "datafiles.git"
+      repositories :
+      {
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/datafiles.git"
+        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "datafiles.git"
+        gitpub : $PROJECTS.projects.salome.git_info.git_server.gitpub.url + "samples/datafiles.git"
+      }
     }
     depend : []
     patches : []

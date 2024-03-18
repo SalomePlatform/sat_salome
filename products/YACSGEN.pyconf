@@ -6,8 +6,12 @@ default :
     get_source : "git"
     git_info:
     {
-        repo : $PROJECTS.projects.salome.git_info.default_git_server + "tools/yacsgen.git "
-        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "yacsgen.git "
+      repositories :
+      {
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/yacsgen.git"
+        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "yacsgen.git"
+        gitpub : $PROJECTS.projects.salome.git_info.git_server.gitpub.url + "tools/yacsgen.git"
+      }
     }
     environ :
     {

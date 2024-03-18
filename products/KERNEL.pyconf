@@ -7,8 +7,12 @@ default :
     get_source : "git"
     git_info:
     {
-        repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/kernel.git"
-        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "kernel.git"
+      repositories :
+      {
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/kernel.git"
+        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "kernel.git"
+        gitpub : $PROJECTS.projects.salome.git_info.git_server.gitpub.url + "modules/kernel.git"
+      }
     }
     environ :
     {          
@@ -233,8 +237,12 @@ ALAMOS_SALOME_9 :
     get_source : "git"
     git_info:
     {
-        repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/kernel.git"
-        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "kernel.git"
+      repositories :
+      {
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/kernel.git"
+        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "kernel.git"
+        gitpub : $PROJECTS.projects.salome.git_info.git_server.gitpub.url + "modules/kernel.git"
+      }
     }
     environ :
     {          
@@ -293,8 +301,12 @@ ALAMOS_SALOME_9_win :
     get_source : "git"
     git_info:
     {
-        repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/kernel.git"
-        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "kernel.git"
+      repositories :
+      {
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/kernel.git"
+        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "kernel.git"
+        gitpub : $PROJECTS.projects.salome.git_info.git_server.gitpub.url + "modules/kernel.git"
+      }
     }
     environ :
     {
@@ -310,8 +322,12 @@ ALAMOS :
     get_source : "git"
     git_info:
     {
-        repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/kernel.git"
-        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "kernel.git"
+      repositories :
+      {
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/kernel.git"
+        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "kernel.git"
+        gitpub : $PROJECTS.projects.salome.git_info.git_server.gitpub.url + "modules/kernel.git"
+      }
     }
     environ :
     {          
@@ -348,8 +364,12 @@ version_V6_6_0 :
     get_source : "git"
     git_info:
     {
-        repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/kernel.git"
-        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "kernel.git"
+      repositories :
+      {
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/kernel.git"
+        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "kernel.git"
+        gitpub : $PROJECTS.projects.salome.git_info.git_server.gitpub.url + "modules/kernel.git"
+      }
     }
     environ :
     {          

@@ -6,8 +6,12 @@ default :
     get_source : "git"
     git_info:
     {
-        repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/paravis.git"
-        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "paravis.git"
+      repositories :
+      {
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/paravis.git"
+        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "paravis.git"
+        gitpub : $PROJECTS.projects.salome.git_info.git_server.gitpub.url + "modules/paravis.git"
+      }
     }
     environ :
     {

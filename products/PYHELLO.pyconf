@@ -5,8 +5,12 @@ default :
     get_source : "git"
     git_info:
     {
-        repo : $PROJECTS.projects.salome.git_info.default_git_server + "samples/pyhello.git"
-        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "pyhello.git"
+      repositories :
+      {
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/pyhello.git"
+        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "pyhello.git"
+        gitpub : $PROJECTS.projects.salome.git_info.git_server.gitpub.url + "samples/pyhello.git"
+      }
     }
     environ :
     {

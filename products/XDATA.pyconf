@@ -5,9 +5,7 @@ default :
     get_source : "git"
     git_info:
     {
-        repo : "https://codev-tuleap.cea.fr/plugins/git/oscar/xdata.git"
-        repo_dev : "https://codev-tuleap.cea.fr/plugins/git/oscar/xdata.git"
-
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "oscar/xdata.git"
     }
     environ :
     {

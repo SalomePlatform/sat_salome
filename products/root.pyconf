@@ -6,8 +6,10 @@ default :
     get_source : "git"
     git_info:
     {
-        repo : "https://github.com/root-project/root.git"
-        repo_dev : $repo
+      repositories :
+      {
+        github : "https://github.com/root-project/root.git"
+      }
     }
     environ :
     {

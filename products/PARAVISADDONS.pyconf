@@ -9,8 +9,12 @@ default :
     get_source : "git"
     git_info :
     {
-        repo : $PROJECTS.projects.salome.git_info.default_git_server + 'modules/paravisaddons_common.git'
-        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + 'paravisaddons_common.git'
+      repositories :
+      {
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/paravisaddons_common.git"
+        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "paravisaddons_common.git"
+        gitpub : $PROJECTS.projects.salome.git_info.git_server.gitpub.url + "modules/paravisaddons_common.git"
+      }
     }
     environ :
     {
