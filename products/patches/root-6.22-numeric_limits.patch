@@ -1,0 +1,13 @@
+
+diff -Naur root/core/foundation/inc/ROOT/libcpp_string_view.h root_dev/core/foundation/inc/ROOT/libcpp_string_view.h
+--- root/core/foundation/inc/ROOT/libcpp_string_view.h	2020-08-17 14:41:56.000000000 +0200
++++ root_dev/core/foundation/inc/ROOT/libcpp_string_view.h	2024-03-22 11:00:07.359412709 +0100
+@@ -8,6 +8,8 @@
+ //
+ //===----------------------------------------------------------------------===//
+ 
++#include <limits>
++
+ #ifndef _LIBCPP_LFTS_STRING_VIEW
+ #define _LIBCPP_LFTS_STRING_VIEW
+

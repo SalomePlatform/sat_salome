@@ -261,10 +261,10 @@ __overwrite__ :
     {
         __condition__ : "VARS.dist in ['DB12']"
         'APPLICATION.products.CONFIGURATION'    : 'master'
-        'APPLICATION.rm_products'               : ['root', 'URANIE']
         'APPLICATION.products.cmake'            : 'native' # TTK requires cmake > 3.21
         'APPLICATION.products.opencv'           : {tag: '3.2.0',     base: 'no', section: 'version_3_2_0_DB12'}
         'APPLICATION.products.cminpack'         : 'native'
+        'APPLICATION.products.root'             : {tag: '6.22.02', base: 'no', section: 'version_6_22_02_DB12'}
         'APPLICATION.products.swig'             : '4.0.2'
         'APPLICATION.products.tbb'              : '2021.9.0'
         'APPLICATION.products.PyFMI'            : {tag: '2.6',       base: 'no', section: 'version_2_6_DB12'          }
