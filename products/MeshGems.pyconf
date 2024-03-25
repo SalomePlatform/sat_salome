@@ -45,6 +45,19 @@ version_2024_1 :
     }
 }
 
+version_2024_1_win :
+{
+    archive_info : {archive_name : "MeshGems-2024.1.0.0_windows.tar.gz"}
+    compil_script :  "MeshGems-2024-1.bat"
+    properties :
+    {
+      is_distene : "no"
+      licence : "libSalomeMeshGemsKeyGenerator"
+      incremental : "yes"
+      single_install_dir : "yes" # aimed to solve sat #18914
+    }
+}
+
 version_2_15_1 :
 {
     properties :
