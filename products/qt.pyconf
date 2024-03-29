@@ -35,6 +35,7 @@ version_5_15_2_win :
 {
   depend : ["freetype"]
   build_depend : ["llvm"]
+  opt_depend : ['openssl']
 }
 
 version_5_12_10 :
@@ -55,6 +56,7 @@ version_5_12_10_win :
 {
   depend : ["freetype"]
   build_depend : ["llvm"]
+  opt_depend : ['openssl']
   patches : []
 }
 

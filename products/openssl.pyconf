@@ -2,6 +2,7 @@ default :
 {
     name : "openssl"
     get_source : "native"
+    compil_script :  $name + $VARS.scriptExtension
     system_info : 
     {
         rpm : []
@@ -9,9 +10,29 @@ default :
         apt : []
         apt_dev : ["libssl-dev"]
     }
+    environ :
+    {
+       env_script : $name + ".py"
+    }
     depend : []
     properties :
     {
       incremental : "yes"
     }
+}
+
+default_win :
+{
+    get_source : "archive"
+    build_source : "script"
+}
+
+version_1_1_1n :
+{
+}
+
+version_1_1_1n_win :
+{
+  archive_info : {archive_name : "openssl-1.1.1n_windows.tar.gz"}
+  compil_script : "openssl-1.1.bat"
 }

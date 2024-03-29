@@ -28,7 +28,14 @@ echo --------------------------------------------------------------------------
 set QT_OPTIONS=-platform win32-msvc2017
 set QT_OPTIONS=%QT_OPTIONS% -opensource -confirm-license %PRODUCT_BUILD_TYPE%
 set QT_OPTIONS=%QT_OPTIONS% -no-angle -opengl desktop -nomake examples -nomake tests 
-set QT_OPTIONS=%QT_OPTIONS% -skip qtwebengine  -skip wayland -skip qtgamepad -no-openssl
+set QT_OPTIONS=%QT_OPTIONS% -skip qtwebengine  -skip wayland -skip qtgamepad
+
+IF DEFINED OPENSSL_ROOT_DIR (
+  set QT_OPTIONS=%QT_OPTIONS% -ssl  -openssl -openssl-linked OPENSSL_PREFIX=%OPENSSL_ROOT_DIR%
+) else (
+  set QT_OPTIONS=%QT_OPTIONS% -no-openssl
+)
+
 set QT_OPTIONS=%QT_OPTIONS% -mp
 set QT_OPTIONS=%QT_OPTIONS% -prefix %PRODUCT_INSTALL%
 
