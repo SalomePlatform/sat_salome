@@ -3,13 +3,20 @@ default :
     name : "dill"
     build_source : "script"
     compil_script :  $name + $VARS.scriptExtension
+    system_info :
+    {
+        rpm : ["python3-dill"]
+        rpm_dev : []
+        apt : ["python3-dill"]
+        apt_dev : []
+    }
     get_source : "archive"
     environ :
     {
        env_script : $name + ".py"
     }
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen']
-	opt_depend: []
+    opt_depend: []
     patches : []
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name

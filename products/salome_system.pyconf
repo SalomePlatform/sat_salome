@@ -36,33 +36,34 @@ default :
         # specific to some platform(s)
         "CO7" :
         {
-            rpm : ["lz4", "gsl", "libgeotiff", "giflib", "geos", "fftw", "postgresql-libs", "pcllib"]
-            rpm_dev : ["perl", "gsl-devel", "libpng-devel", "libtiff-devel", "libgeotiff-devel", "giflib-devel", "geos-devel", "fftw-devel", "devtoolset-8-gcc", "texlive-dvipng"]
+            rpm : ["lz4", "gsl", "libgeotiff", "giflib", "geos", "fftw", "postgresql-libs", "pcllib", "libxml++"]
+            rpm_dev : ["perl", "gsl-devel", "libpng-devel", "libtiff-devel", "libgeotiff-devel", "giflib-devel", "geos-devel", "fftw-devel", "devtoolset-8-gcc", "texlive-dvipng", "libxml++-devel"]
         }
         "CO8" :
         {
-            rpm : ["lz4", "openmpi", "gsl", "libgeotiff", "giflib", "geos", "sqlite", "netcdf"]
-            rpm_dev : ["perl-interpreter", "qt5-devel", "openmpi-devel", "gsl-devel", "libpng-devel", "libtiff-devel", "libgeotiff-devel", "giflib-devel", "geos-devel", "netcdf-devel", "texlive-dvipng"]
+            rpm : ["lz4", "openmpi", "gsl", "libgeotiff", "giflib", "geos", "sqlite", "netcdf", "libxml++"]
+            rpm_dev : ["perl-interpreter", "qt5-devel", "openmpi-devel", "gsl-devel", "libpng-devel", "libtiff-devel", "libgeotiff-devel", "giflib-devel", "geos-devel", "netcdf-devel", "texlive-dvipng",
+                       "libxml++-devel"]
         }
         "FD30" :
         {
-           rpm : ["lz4", "gsl"]
-           rpm_dev : ["perl-interpreter", "qt5-devel", "gsl-devel", "texlive-dvipng"]
+           rpm : ["lz4", "gsl", "libxml++"]
+           rpm_dev : ["perl-interpreter", "qt5-devel", "gsl-devel", "texlive-dvipng", "libxml++-devel"]
         }
         "FD32" :
         {
-           rpm : ["lz4", "gsl", "openmpi", "netcdf", "gdal"]
-           rpm_dev : ["perl-interpreter", "qt5-devel", "gsl-devel", "openmpi-devel", "netcdf-devel", "protobuf-devel", "python3-protobuf", "texlive-dvipng"]
+           rpm : ["lz4", "gsl", "openmpi", "netcdf", "gdal", "libxml++"]
+           rpm_dev : ["perl-interpreter", "qt5-devel", "gsl-devel", "openmpi-devel", "netcdf-devel", "protobuf-devel", "python3-protobuf", "texlive-dvipng", "libxml++-devel"]
         }
         "FD34" :
         {
-           rpm : ["lz4-libs", "gsl", "openmpi", "netcdf", "gdal"]
-           rpm_dev : ["lz4-devel", "qt5-qtbase-devel", "gsl-devel", "openmpi-devel", "netcdf-devel", "gdal-devel", "texlive-dvipng"]
+           rpm : ["lz4-libs", "gsl", "openmpi", "netcdf", "gdal", "libxml++"]
+           rpm_dev : ["lz4-devel", "qt5-qtbase-devel", "gsl-devel", "openmpi-devel", "netcdf-devel", "gdal-devel", "texlive-dvipng", "libxml++-devel"]
         }
         "FD36" :
         {
-           rpm : ["lz4-libs", "gsl", "openmpi", "netcdf", "gdal"]
-           rpm_dev : ["lz4-devel", "qt5-qtbase-devel", "gsl-devel", "openmpi-devel", "netcdf-devel", "gdal-devel"]
+           rpm : ["lz4-libs", "gsl", "openmpi", "netcdf", "gdal", "libxml++"]
+           rpm_dev : ["lz4-devel", "qt5-qtbase-devel", "gsl-devel", "openmpi-devel", "netcdf-devel", "gdal-devel", "libxml++-devel"]
         }
         "DB08" :
         {
@@ -79,19 +80,31 @@ default :
         {
             apt : ["libdc1394-22", "libopenexr23", "libwebp6", "libgfortran5", "libilmbase23", "libevent-2.1-6", "libpng16-16", "libgcc-8-dev",
                    "libffi6", "libtinfo6", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0", "libjsoncpp1", "libopenblas-base", "libscotch-6.0", "openmpi-bin",
-                   "libnetcdf13", "libgdal20", "libtbb2"]
+                   "libnetcdf13", "libgdal20", "libtbb2", "libxml++2.6-2v5"]
             apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev",
                        "qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools", "libopenmpi-dev",
-		       "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev", "libnetcdf-dev", "libgdal-dev", "texlive-latex-base", "texlive-latex-extra", "dvipng"]
+                       "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev", "libnetcdf-dev", "libgdal-dev",
+                       "texlive-latex-base", "texlive-latex-extra", "dvipng", "libxml++2.6-dev"]
         }
         "DB11" :
         {
             apt : ["libdc1394-25", "libopenexr25", "libwebp6", "libgfortran5", "libilmbase25", "libevent-2.1-7", "libpng16-16", "libgcc-10-dev",
                    "libffi7", "libtinfo6", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0", "libjsoncpp24",
-		   "openmpi-bin", "libnetcdf18", "libgdal28", "libtbb2", "pypy-setuptools"]
+                   "openmpi-bin", "libnetcdf18", "libgdal28", "libtbb2", "pypy-setuptools", "libxml++2.6-2v5"]
             apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev",
                        "qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools", "libopenmpi-dev",
-		       "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev", "libnetcdf-dev", "libgdal-dev", "texlive-latex-base", "texlive-latex-extra", "dvipng"]
+                       "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev", "libnetcdf-dev", "libgdal-dev",
+                       "texlive-latex-base", "texlive-latex-extra", "dvipng", "libxml++2.6-dev"]
+        }
+        "DB12" :
+        {
+            apt : ["libdc1394-25", "libopenexr-3-1-30", "libwebp6", "libgfortran5", "libevent-2.1-7", "libpng16-16", "libgcc",
+                   "libffi7", "libtinfo6", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0", "libjsoncpp25",
+                   "openmpi-bin", "libnetcdf19", "libgdal32", "libtbb12", "python3-setuptools", "libxml++2.6-2v5"]
+            apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev",
+                       "qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools", "libopenmpi-dev",
+                       "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev", "libnetcdf-dev", "libgdal-dev",
+                       "texlive-latex-base", "texlive-latex-extra", "dvipng", "libxml++2.6-dev"]
         }
         "UB16.04" :
         {
@@ -102,25 +115,27 @@ default :
         "UB18.04" :
         {
             apt : ["libdc1394-22", "libopenexr22", "libwebp6", "libgfortran4", "libilmbase12", "libevent-2.1-6", "libpng16-16", "libgcc-7-dev",
-                   "libffi6", "libtinfo5", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0", "libopenblas-base", "libgeos-c1v5", "libtbb2"]
+                   "libffi6", "libtinfo5", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0", "libopenblas-base", "libgeos-c1v5", "libtbb2", "libxml++2.6"]
             apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev",
-		       "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev", "dvipng"]
+                       "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev", "dvipng", "libxml++2.6-dev"]
         }
         "UB20.04" :
         {
             apt : ["libdc1394-22", "libopenexr24", "libwebp6", "libgfortran5", "libilmbase24", "libevent-2.1-7", "libpng16-16", "libgcc-9-dev",
-                   "libffi7", "libtinfo6", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0", "openmpi-bin", "libgdal26", "libopenblas0-serial", "libtbb2"]
+                   "libffi7", "libtinfo6", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0", "openmpi-bin", "libgdal26", "libopenblas0-serial", "libtbb2",
+                   "libxml++2.6-2v5"]
             apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev",
                        "qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools", "libopenmpi-dev",
-		       "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev", "libgdal-dev", "dvipng"]
+                       "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev", "libgdal-dev", "dvipng", "libxml++2.6-dev"]
         }
         "UB22.04" :
         {
             apt : ["libdc1394-25", "libopenexr25", "libwebp7", "gfortran-11", "libilmbase25", "libevent-2.1-7", "libpng16-16", "libgcc-11-dev",
-                   "libffi7", "libtinfo6", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0", "openmpi-bin", "libgdal30", "libopenblas0-serial", "libtbb12"]
+                   "libffi7", "libtinfo6", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0", "openmpi-bin", "libgdal30", "libopenblas0-serial", "libtbb12",
+                   "libxml++2.6-2v5"]
             apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev",
                        "qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools", "libopenmpi-dev",
-		       "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev", "libgdal-dev", "dvipng"]
+                       "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev", "libgdal-dev", "dvipng", "libxml++2.6-dev"]
         }
         
     }

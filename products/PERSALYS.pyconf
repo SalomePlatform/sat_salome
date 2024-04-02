@@ -58,6 +58,45 @@ default_win :
       incremental : "yes"
     }
 }
+version_f386013d :
+{
+}
+
+version_f386013d_win :
+{
+   compil_script : 'PERSALYS-f386013d.bat'
+   depend : ['Python',
+              'hdf5',
+              'cgns',
+              'tbb',
+              'nlopt',
+              'libxml2',
+              'eigen',
+              'boost',
+              'ADAO',
+              'KERNEL',
+              'GUI',
+              'Sphinx',
+              'qwt',
+              'qt',
+              'ParaView',
+              'openturns',
+              'FMILibrary',
+              'PyFMI',
+              'YACS',
+              'YDEFX',
+              'PY2CPP',
+              'CAS',
+              'CONFIGURATION',
+              'openblas',
+              'pthreads'
+           ]
+    patches : ['PERSALYS-f386013d-001.patch',
+               'PERSALYS-f386013d-002.patch',
+               'PERSALYS-f386013d-003.patch',
+               'PERSALYS-f386013d-004.patch'
+              ]
+}
 
 version_v14_1 :
 {

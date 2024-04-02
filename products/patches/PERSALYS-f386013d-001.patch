@@ -1,0 +1,11 @@
+--- PERSALYS-f386013d_ref/CMakeLists.txt	2024-04-03 13:36:52.000000000 +0200
++++ PERSALYS-f386013d_new/CMakeLists.txt	2024-04-10 13:10:40.000000000 +0200
+@@ -64,7 +64,7 @@
+   set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /bigobj")
+ endif ()
+ 
+-find_package (Boost COMPONENTS locale program_options REQUIRED)
++find_package (Boost COMPONENTS locale filesystem  program_options REQUIRED)
+ list (APPEND PERSALYS_PRIVATE_LIBRARIES ${Boost_LIBRARIES})
+ 
+ find_package (Python 3.5 COMPONENTS Interpreter Development REQUIRED)

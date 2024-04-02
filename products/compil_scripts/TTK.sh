@@ -48,6 +48,11 @@ then
     exit 1
 fi
 
+if [ $LINUX_DISTRIBUTION == DB09 ]; then
+    echo "WARNING: reset MAKE_OPTIONS"
+    MAKE_OPTIONS=
+fi
+
 echo
 echo "*** make" $MAKE_OPTIONS
 make $MAKE_OPTIONS

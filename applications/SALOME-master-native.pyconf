@@ -83,7 +83,7 @@ APPLICATION :
         # comment out line above and uncomment the line below to use Netgen 6.
         #netgen : '6.2.2101'
         netcdf : 'native'
-        nlopt : '2.4.2'
+        nlopt : 'native'
         nose: 'native'
         numpy : 'native'
         numpydoc : 'native'
@@ -92,13 +92,13 @@ APPLICATION :
         opencv : 'native'
         openmpi: 'native'
         openVKL : '0.11.0'
-        openturns: '1.21'
+        openturns: '1.22'
         ospray : '2.4.0'
         packaging : 'native'
         packagespy : '74152cd'
         pandas : 'native'
         ParaView : {tag:'5.11.0', base: 'no',  section: 'version_5_11_0_MPI', hpc: 'yes'}
-        PERSALYS: 'v14.1'
+        PERSALYS : 'f386013d'
         petsc : {tag : '3.16.0', section: 'version_3_16_0'}
         Pillow : 'native'
         planegcs : '0.18-3cb6890'
@@ -221,7 +221,6 @@ __overwrite__ :
         'APPLICATION.rm_products' : ['TTK'] # causes crashes
         'APPLICATION.products.cmake'       : 'native' # TTK requires cmake > 3.21
         'APPLICATION.products.opencv'      : '3.2.0'
-        'APPLICATION.products.nlopt'       : '2.5.0'
         'APPLICATION.products.cminpack'    : 'native'
         'APPLICATION.products.netcdf'      : '4.6.2'
         'APPLICATION.products.omniORB'     : '4.2.5'
@@ -267,8 +266,6 @@ __overwrite__ :
         'APPLICATION.products.swig'             : '4.0.2'
         'APPLICATION.products.tbb'              : '2021.9.0'
         'APPLICATION.products.PyFMI'            : {tag: '2.6',       base: 'no', section: 'version_2_6_DB12'          }
-        'APPLICATION.products.nlopt'            : '2.5.0'
-        'APPLICATION.products.openturns'        : {tag: '1.21',  base: 'no', section: 'version_1_21_DB12'        }
         'APPLICATION.products.ParaView'         : {tag: '5.11.0',    base: 'no', section: 'version_5_11_0_MPI_DB12', hpc: 'yes' }
     }
     {
@@ -277,14 +274,16 @@ __overwrite__ :
         __condition__ : "VARS.dist in ['CO8']"
         'APPLICATION.products.sphinxintl'       : {tag: '0.9.10', base: 'no', section: 'version_0_9_10_no_pip'  }
         'APPLICATION.products.cminpack'         : '1.3.6'
+        'APPLICATION.products.nlopt'            : '2.4.2'
+        'APPLICATION.products.openturns'        : {tag: '1.22',   base: 'no', section: 'version_1_22_CO8'       }
         'APPLICATION.products.PyFMI'            : {tag: '2.6',    base: 'no', section: 'version_2_6_no_pip'     }
         'APPLICATION.products.statsmodels'      : {tag: '0.6.1',  base: 'no', section: 'version_0_6_1_no_pip'   }
-        'APPLICATION.products.gdal'             : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_CO8'      } # spns #29324
+        'APPLICATION.products.gdal'             : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_CO8_native'} # spns #29324
         'APPLICATION.products.swig'             : '4.0.2'
-        'APPLICATION.products.openturns'        : {tag: '1.21',  base: 'no', section: 'version_1_21_RO8'        }
     }
     {
          __condition__ : "VARS.dist in ['CO9']"
+        'APPLICATION.products.nlopt'             : '2.4.2'
          'APPLICATION.products.cminpack'         : '1.3.6'
          'APPLICATION.products.qwt'              : '6.1.2'
          'APPLICATION.products.PyQt'             : '5.15.3'
@@ -328,7 +327,6 @@ __overwrite__ :
         'APPLICATION.products.omniORB'          : '4.2.5'
         'APPLICATION.products.omniORBpy'        : '4.2.5'
         'APPLICATION.products.qwt'              : '6.1.6'
-        'APPLICATION.products.nlopt'            : '2.6.0'
         'APPLICATION.products.netcdf'           : '4.6.2'
         'APPLICATION.products.numpy'            : {tag: '1.22.2',    base: 'no', section: 'version_1_22_2'                      }
         'APPLICATION.products.PyFMI'            : {tag: '2.6',       base: 'no', section: 'version_2_6_no_pip'                  }
@@ -344,7 +342,6 @@ __overwrite__ :
         'APPLICATION.products.omniORB'          : '4.2.5'
         'APPLICATION.products.omniORBpy'        : '4.2.5'
         'APPLICATION.products.qwt'              : '6.1.6'
-        'APPLICATION.products.nlopt'            : '2.6.0'
         'APPLICATION.products.netcdf'           : '4.6.2'
         'APPLICATION.products.numpy'            : {tag: '1.22.2',    base: 'no', section: 'version_1_22_2'                      }
         'APPLICATION.products.PyFMI'            : {tag: '2.6',       base: 'no', section: 'version_2_6_FD37'                    }
@@ -360,7 +357,6 @@ __overwrite__ :
         'APPLICATION.products.omniORB'          : '4.2.5'
         'APPLICATION.products.omniORBpy'        : '4.2.5'
         'APPLICATION.products.qwt'              : '6.1.6'
-        'APPLICATION.products.nlopt'            : '2.6.0'
         'APPLICATION.products.netcdf'           : '4.6.2'
         'APPLICATION.products.swig'             : '4.0.2'
         'APPLICATION.products.petsc'            : {tag: '3.16.0',    base: 'no', section: 'version_3_16_0_FD38'                 }

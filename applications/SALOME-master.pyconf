@@ -99,7 +99,7 @@ APPLICATION :
         omniORBpy : '4.2.5'
         opencv : '3.2.0'
         openmpi : '4.0.3'
-        openturns: '1.21'
+        openturns: '1.22'
         openVKL: '0.11.0'
         ospray : '2.4.0'
         packaging : '23.2'
@@ -107,7 +107,7 @@ APPLICATION :
         pandas : '1.1.5'
         patsy : '0.5.4'
         ParaView : {tag:'5.11.0', base: 'no',  section: 'version_5_11_0_MPI', hpc: 'yes'}
-        PERSALYS: 'v14.1'
+        PERSALYS: 'f386013d'
         petsc : {tag : '3.16.0', base: 'no', section: 'version_3_16_0', hpc: 'yes'}
         Pillow : '8.4.0'
         planegcs : '0.18-3cb6890'
@@ -274,7 +274,7 @@ __overwrite__ :
         'APPLICATION.products.statsmodels' : '0.8.0'
         'APPLICATION.products.sphinxcontrib_websupport' : '1.1.0'
         'APPLICATION.products.Sphinx' : '1.7.6'
-        'APPLICATION.products.openturns' : {tag: '1.21',  base: 'no', section: 'version_1_21_CO7' }
+        'APPLICATION.products.openturns' : {tag: '1.22',  base: 'no', section: 'version_1_22_CO7' }
     }
 
     {
@@ -292,7 +292,10 @@ __overwrite__ :
             'sphinxcontrib_jquery',
             'sphinxcontrib_qthelp',
             'sphinxcontrib_htmlhelp',
-            'sphinxcontrib_serializinghtml'
+            'sphinxcontrib_serializinghtml',
+            'tabulate',
+            'tomli',
+            'zipp'
         ]
         'APPLICATION.products.Babel' : '2.7.0'
         'APPLICATION.products.Cython': '0.29.12'
@@ -325,7 +328,7 @@ __overwrite__ :
         'APPLICATION.products.statsmodels' : '0.8.0'
         'APPLICATION.products.gdal'     : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_CO8'                 } # spns #29324
         'APPLICATION.products.ParaView' : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_CO8', hpc: 'yes'}
-        'APPLICATION.products.openturns'  : {tag: '1.21',  base: 'no', section: 'version_1_21_CO8' }
+        'APPLICATION.products.openturns'  : {tag: '1.22',  base: 'no', section: 'version_1_22_CO8' }
     }
 
     {
@@ -342,7 +345,10 @@ __overwrite__ :
             'sphinxcontrib_jquery',
             'sphinxcontrib_qthelp',
             'sphinxcontrib_htmlhelp',
-            'sphinxcontrib_serializinghtml'
+            'sphinxcontrib_serializinghtml',
+            'tabulate',
+            'tomli',
+            'zipp'
         ]
         'APPLICATION.products.Babel' : '2.7.0'
         'APPLICATION.products.Cython': '0.29.12'
@@ -373,8 +379,7 @@ __overwrite__ :
         'APPLICATION.products.sphinx_rtd_theme' : '0.4.3'
         'APPLICATION.products.sphinxintl' : '0.9.10'
         'APPLICATION.products.statsmodels' : '0.8.0'
-        'APPLICATION.products.openturns'        : {tag: '1.21',  base: 'no', section: 'version_1_21_DB09' }
-        'APPLICATION.products.MEDCOUPLING'      : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'APPLICATION.products.openturns'        : {tag: '1.22',  base: 'no', section: 'version_1_22_DB09' }
     }
     {
         __condition__ : "VARS.dist in ['FD30']"
@@ -388,16 +393,16 @@ __overwrite__ :
         'APPLICATION.products.gdal': {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_FD32'} # spns #29324
     }
     {
-        __condition__ : "VARS.dist in ['CO7'] and APPLICATION.pyver != '3.6'"
+        __condition__ : "VARS.dist in ['CO7'] and APPLICATION.pyver == '3.9'"
         'APPLICATION.rm_products'         : ['gcc', 'gmp', 'mpc', 'mpfr']
-        'APPLICATION.products.openturns'  : {tag: '1.21',  base: 'no', section: 'version_1_21_CO7' }
+        'APPLICATION.products.openturns'           : {tag:'1.22', base:'no', section:'version_1_22_CO7'}
     }
     {
-        __condition__ : "VARS.dist in ['CO8'] and APPLICATION.pyver != '3.6'"
+        __condition__ : "VARS.dist in ['CO8'] and APPLICATION.pyver == '3.9'"
         'APPLICATION.rm_products'  : ['gcc', 'gmp', 'mpc', 'mpfr', 'zeromq']
         'APPLICATION.products.gdal'     : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_CO8'                 } # spns #29324
+        'APPLICATION.products.openturns'           : {tag:'1.22', base:'no', section:'version_1_22_CO8'}
         'APPLICATION.products.ParaView' : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_CO8', hpc: 'yes'}
-        'APPLICATION.products.openturns'  : {tag: '1.21',  base: 'no', section: 'version_1_21_CO8' }
     }
     {
         __condition__ : "VARS.dist in ['DB10']"
@@ -405,9 +410,8 @@ __overwrite__ :
         'APPLICATION.products.gdal': {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_DB10'} # spns #29324
     }
     {
-        __condition__ : "VARS.dist in ['DB09'] and APPLICATION.pyver != '3.6'"
-        'APPLICATION.products.openturns'        : {tag: '1.21',  base: 'no', section: 'version_1_21_DB09' }
-        'APPLICATION.products.MEDCOUPLING'      : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        __condition__ : "VARS.dist in ['DB09']"
+        'APPLICATION.products.openturns'        : {tag:'1.22', base:'no', section:'version_1_22_DB09'}
     }
     {
         __condition__ : "VARS.dist in ['UB18.04']"

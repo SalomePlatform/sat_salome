@@ -59,6 +59,15 @@ version_2_4_0_CO8:
 {
     compil_script :  'gdal-2.4.0.sh'
     patches : ["gdal.0001-r2000.patch",
+               "gdal.0002-GNUmakefile-tooLongLine.patch",
+               "gdal.0003-ignore_use2to3.patch"
+              ]
+}
+
+version_2_4_0_CO8_native:
+{
+    compil_script :  'gdal-2.4.0.sh'
+    patches : ["gdal.0001-r2000.patch",
                "gdal.0002-GNUmakefile-tooLongLine.patch"
               ]
 }

@@ -36,6 +36,54 @@ default_win :
     opt_depend : []
 }
 
+version_1_22 :
+{
+    compil_script :  "openturns-1.22.sh"
+    patches : []
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI', 'boost']
+    opt_depend : ['pandas', 'statsmodels', 'patsy']
+}
+
+version_1_22_CO7 :
+{
+    compil_script :  "openturns-1.22.sh"
+    patches : ['openturns-1.22.0001.patch']
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI', 'boost']
+    opt_depend : ['pandas', 'statsmodels', 'patsy']
+}
+
+version_1_22_CO8 :
+{
+    compil_script :  "openturns-1.22.sh"
+    patches : ['openturns-1.22.0001.patch']
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI', 'boost']
+    opt_depend : ['pandas', 'statsmodels', 'patsy']
+}
+
+version_1_22_DB09 :
+{
+    compil_script :  "openturns-1.22.sh"
+    patches : ['openturns-1.22.0001.patch']
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI', 'boost']
+    opt_depend : ['pandas', 'statsmodels', 'patsy']
+}
+
+version_1_22_win :
+{
+    name : "OT"
+    compil_script :  "openturns-1.22.bat"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + 'openturns'
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    depend : ['Python', 'openblas', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'fftw']
+    opt_depend : ['pandas', 'statsmodels', 'patsy']
+    patches : []
+    properties :
+    {
+      single_install_dir : "no"
+      incremental : "yes"
+    }
+}
+
 version_1_21 :
 {
     compil_script :  "openturns-1.21.sh"

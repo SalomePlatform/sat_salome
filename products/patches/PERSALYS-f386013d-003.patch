@@ -1,0 +1,14 @@
+--- PERSALYS-f386013d_ref/main/CMakeLists.txt	2024-04-03 13:36:53.000000000 +0200
++++ PERSALYS-f386013d_new/main/CMakeLists.txt	2024-04-10 14:54:37.739055374 +0200
+@@ -39,7 +39,10 @@
+ 
+ if (WIN32)
+   add_executable (persalys_launcher launcher.cxx)
+-  target_link_libraries (persalys_launcher PRIVATE Boost::program_options ws2_32)
++  target_compile_options(persalys_launcher PUBLIC  -DBOOST_ALL_DYN_LINK)
++  target_link_libraries (persalys_launcher PUBLIC Boost::program_options ws2_32 "${PERSALYS_PRIVATE_LIBRARIES};${Boost_LIBRARIES};${Boost_FILESYSTEM_LIBRARY_RELEASE}")
++  target_link_libraries (persalys_launcher PRIVATE Boost::program_options ws2_32 "${PERSALYS_PRIVATE_LIBRARIES};${Boost_LIBRARIES};${Boost_FILESYSTEM_LIBRARY_RELEASE}")
++
+   set_target_properties (persalys_launcher PROPERTIES UNITY_BUILD OFF)
+   install (TARGETS persalys_launcher DESTINATION bin)
+ endif ()
