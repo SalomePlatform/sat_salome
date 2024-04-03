@@ -205,7 +205,6 @@ APPLICATION :
         pip : 'yes'
         pip_install_dir : 'python'
         single_install_dir : "no"
-        github: 'no'
     }
 }
 __overwrite__ :

@@ -5,8 +5,8 @@ default :
     get_source : "git"
     git_info:
     {
-        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "TESTBASE.git"
-        repo : $repo_dev
+        repo : "https://codev-tuleap.cea.fr/plugins/git/salome/testbase.git"
+        repo_dev : $repo
     }
     environ :
     {
@@ -20,6 +20,5 @@ default :
     {
         compilation : "no"
         not_in_package : "yes"
-        is_opensource : "no"
     }
 }
