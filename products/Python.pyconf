@@ -144,7 +144,11 @@ version_3_9_14 :
 version_3_9_14_win :
 {
     compil_script : "Python-3.9.bat"
-    patches : []
+    patches : ['python-3.9.14.01-ctype-init.patch',
+               'python-3.9.14.02-os.py.patch',
+               'python-3.9.14.03-getpath.patch',
+               'python-3.9.14.04-dynload_win.patch'
+              ]
     build_depend : ['perl']
 }
  

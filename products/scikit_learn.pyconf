@@ -1,0 +1,38 @@
+default :
+{
+    name : "scikit_learn"
+    build_source : "script"
+    compil_script :  "pip_install" + $VARS.scriptExtension
+    get_source : "archive"
+    system_info :
+    {
+       rpm : ["python3-scikit-learn"]
+       rpm_dev : []
+       apt : ["python3-scikit-learn"]
+       apt_dev : []
+    }
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : ['Python', 'scipy']
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties:
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+}
+
+default_win :
+{
+   compil_script :  'pip_install_whl' + $VARS.scriptExtension
+   depend : ["Python","setuptools", "scipy", "joblib"]
+   properties:
+   {
+     incremental : "yes"
+     pip : "yes"
+   }
+}

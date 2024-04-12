@@ -378,13 +378,25 @@ if [[ -d "$SOURCE_DIR/otfftw-0.13" ]]; then
                     echo "FATAL: could not install decorator-5.1.0"
                     exit 6
                 fi
-                echo "INFO: install scikit-learn-0.24.2"
-                ${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/scikit-learn-0.24.2/scikit-learn-0.24.2.tar.gz --no-deps
-                if [ $? -ne 0 ]
+                if [ "${PYTHON_VERSION}" == "3.6" ]
                 then
-                    echo "FATAL: could not install scikit-0.24.2"
-                    exit 6
+                    echo "INFO: install scikit-learn-0.24.2"
+                    ${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/scikit-learn-0.24.2/scikit-learn-0.24.2.tar.gz --no-deps
+                    if [ $? -ne 0 ]
+                    then
+                        echo "FATAL: could not install scikit-0.24.2"
+                        exit 6
+                    fi
+                else
+                    echo "INFO: install scikit-learn-1.2.2"
+                    ${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/scikit-learn-1.2.2/scikit-learn-1.2.2.tar.gz --no-deps
+                    if [ $? -ne 0 ]
+                    then
+                        echo "FATAL: could not install scikit-1.2.2"
+                        exit 6
+                    fi
                 fi
+
             fi
         fi
 
@@ -485,8 +497,10 @@ if [[ -d "$SOURCE_DIR/otfftw-0.13" ]]; then
         fi
     elif [ -f ${PYTHON_ROOT_DIR}/lib/python${PYTHON_VERSION}/site-packages/setuptools/site-patch.py ]; then
         cp ${PYTHON_ROOT_DIR}/lib/python${PYTHON_VERSION}/site-packages/setuptools/site-patch.py ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages/site.py
+    elif [ -f ${PYTHON_ROOT_DIR}/lib/python${PYTHON_VERSION}/site.py ]; then
+        cp ${PYTHON_ROOT_DIR}/lib/python${PYTHON_VERSION}/site.py ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages/site.py
     else
-        echo "ERROR: could not find site-patch.py"
+        echo "ERROR: could not find site-patch.py nor site.py"
         exit 7
     fi
 fi

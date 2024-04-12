@@ -12,7 +12,11 @@ cd $BUILD_DIR
 cp -r $SOURCE_DIR/sip-5.5.0 $BUILD_DIR/sip-5.5.0
 cd $BUILD_DIR/sip-5.5.0
 
-USE_SETUP=true
+USE_SETUP=false
+if [[ "$PYTHON_VERSION" == "3.6" ]]; then
+    USE_SETUP=true
+fi
+
 case $LINUX_DISTRIBUTION in
     CO9)
         USE_SETUP=false

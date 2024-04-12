@@ -26,6 +26,20 @@ default :
     }
 }
 
+version_1_5_3 :
+{}
+
+version_1_5_3_win:
+{
+   compil_script: "pandas-1.5.3.bat"
+   archive_info : {archive_name : "pandas-1.5.3.tar.gz"}
+   properties:
+   {
+     incremental : "yes"
+     pip : "no"
+   }
+}
+
 version_1_1_5_no_pip :
 {
     compil_script : "pandas-1.1.5.sh"

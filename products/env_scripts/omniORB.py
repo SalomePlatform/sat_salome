@@ -12,6 +12,8 @@ def set_env(env, prereq_dir, version):
         env.prepend('PATH',os.path.join(prereq_dir, 'lib', 'x86_win32'))
         env.prepend( 'PYTHONPATH', os.path.join(prereq_dir, 'lib', 'python'))
         env.prepend( 'PYTHONPATH', os.path.join(prereq_dir, 'lib', 'x86_win32'))
+        env.set('OMNIORB_LIB_DIR',os.path.join(prereq_dir, 'lib', 'x86_win32'))
+        env.set('OMNIORB_BIN_DIR',os.path.join(prereq_dir, 'bin', 'x86_win32'))
         env.set("OMNIORB_USER_PATH", "%APPDATA%")
     else:
         env.prepend('PATH', os.path.join(prereq_dir, 'bin'))

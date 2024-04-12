@@ -1,0 +1,36 @@
+--- ParaView-5.11.0_ref/VTK/Utilities/PythonInterpreter/vtkPythonInterpreter.cxx	2022-11-18 15:26:55.000000000 +0100
++++ ParaView-5.11.0_new/VTK/Utilities/PythonInterpreter/vtkPythonInterpreter.cxx	2024-04-18 14:25:32.000000000 +0200
+@@ -830,25 +830,6 @@
+   // the issue.
+   if (!vtkdir.empty())
+   {
+-#if PY_VERSION_HEX >= 0x03080000
+-    vtkPythonScopeGilEnsurer gilEnsurer(false, true);
+-    CloseDLLDirectoryCookie();
+-    PyObject* os = PyImport_ImportModule("os");
+-    if (os)
+-    {
+-      PyObject* add_dll_directory = PyObject_GetAttrString(os, "add_dll_directory");
+-      if (add_dll_directory && PyCallable_Check(add_dll_directory))
+-      {
+-        PyObject* newpath = PyUnicode_FromString(vtkdir.c_str());
+-        DLLDirectoryCookie = PyObject_CallFunctionObjArgs(add_dll_directory, newpath, nullptr);
+-        Py_XDECREF(newpath);
+-      }
+-
+-      Py_XDECREF(add_dll_directory);
+-    }
+-
+-    Py_XDECREF(os);
+-#else
+     std::string env_path;
+     if (systools::GetEnv("PATH", env_path))
+     {
+@@ -859,7 +840,6 @@
+       env_path = vtkdir;
+     }
+     systools::PutEnv(std::string("PATH=") + env_path);
+-#endif
+   }
+ #endif
+ 

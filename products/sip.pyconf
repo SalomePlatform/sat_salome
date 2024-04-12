@@ -32,7 +32,7 @@ version_6_6_2 :
     archive_info : {archive_name : "sip-6.6.2-PyQt5_sip-12.11.0.tar.gz"}
     patches : []
     depend : ['Python', 'qt']
-    opt_depend: ['toml']
+    opt_depend: ['toml', 'packaging']
 }
 
 version_5_5_0 :
@@ -41,7 +41,7 @@ version_5_5_0 :
     archive_info : {archive_name : "sip-5.5.0-PyQt5_sip-12.8.1.tar.gz"}
     patches : ['sip-5.5.0-sipSetBool.patch']
     depend : ['Python', 'qt']
-    opt_depend: ['toml']
+    opt_depend: ['toml', 'packaging']
 }
 
 version_4_19_24 :

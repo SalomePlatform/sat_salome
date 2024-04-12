@@ -335,7 +335,8 @@ version_5_11_0_win :
                'paraview-5.11.0.p002-FindMPI.patch',
                'paraview-5.11.0.p004-vtkUniformHyperTreeGrid.patch',
                'paraview-5.11.0.p006-GIL.patch',
-               'paraview-5.11.0.p009-openturns-1.21.patch'
+               'paraview-5.11.0.p009-openturns-1.21.patch',
+               'paraview-5.11.0.p0011-add_dll_directory.patch'
               ]
 }
 

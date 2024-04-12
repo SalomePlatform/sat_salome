@@ -26,15 +26,21 @@ set PYTHONPATH=%PYTHONPATH%;%PRODUCT_INSTALL%\Lib\site-packages
 
 echo.
 echo *** 
-%PYTHONBIN% setup.py build  %BUILD_OPT% install --prefix=%PRODUCT_INSTALL%
+
+SET SETUP_EXTRA_OPTIONS=--old-and-unmanageable
+if %PYTHON_VERSION% == 3.6 (
+  SET SETUP_EXTRA_OPTIONS=
+)
+
+%PYTHONBIN% setup.py build  %BUILD_OPT% install --prefix=%PRODUCT_INSTALL% %SETUP_EXTRA_OPTIONS%
 if NOT %ERRORLEVEL% == 0 (
-  echo ERROR on SIP running  %PYTHONBIN% setup.py  build  %BUILD_OPT% install   --prefix=%PRODUCT_INSTALL%
+  echo ERROR on SIP running  %PYTHONBIN% setup.py  build  %BUILD_OPT% install   --prefix=%PRODUCT_INSTALL% %SETUP_EXTRA_OPTIONS%
   exit 1
 )
 cd %BUILD_DIR%\PyQt5_sip-12.8.1
-%PYTHONBIN% setup.py build  %BUILD_OPT% install --prefix=%PRODUCT_INSTALL%
+%PYTHONBIN% setup.py build  %BUILD_OPT% install --prefix=%PRODUCT_INSTALL% %SETUP_EXTRA_OPTIONS%
 if NOT %ERRORLEVEL% == 0 (
-  echo ERROR on PYQT_SIP running  %PYTHONBIN% setup.py  build  %BUILD_OPT% install  --prefix=%PRODUCT_INSTALL%
+  echo ERROR on PYQT_SIP running  %PYTHONBIN% setup.py  build  %BUILD_OPT% install  --prefix=%PRODUCT_INSTALL% %SETUP_EXTRA_OPTIONS%
   exit 2
 )
 

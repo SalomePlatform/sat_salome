@@ -100,7 +100,7 @@ taskkill /F /IM "mspdbsrv.exe"
 
 if %SAT_DEBUG% == 1 (
     xcopy %PRODUCT_INSTALL%\win64\vc14\bind %PRODUCT_INSTALL%\win64\vc14\bin  /E /I /Q
-    xcopy %PRODUCT_INSTALL%\win64\vc14\lib %PRODUCT_INSTALL%\win64\vc14\lib  /E /I /Q
+    xcopy %PRODUCT_INSTALL%\win64\vc14\libd %PRODUCT_INSTALL%\win64\vc14\lib  /E /I /Q
 )
 
 echo.

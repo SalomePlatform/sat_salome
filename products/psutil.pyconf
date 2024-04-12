@@ -26,6 +26,15 @@ default :
     }
 }
 
+version_5_9_8_win_dbg:
+{
+  compil_script: "psutil-5.9.8.bat"
+  properties:
+  {
+    incremental : "yes"
+    pip : "no"
+  }
+}
 
 version_5_7_2_win_dbg:
 {

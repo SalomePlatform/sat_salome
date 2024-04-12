@@ -31,3 +31,8 @@ default_win :
    compil_script :  'pip_install_whl' + $VARS.scriptExtension
    archive_info : {archive_name : "pytz-" + $APPLICATION.products.pytz + "_windows.tar.gz"}
 }
+
+version_2020_1 :
+{
+   archive_info : {archive_name : "pytz-2020.1.tar.gz"}
+}

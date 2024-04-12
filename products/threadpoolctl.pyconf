@@ -1,0 +1,38 @@
+default :
+{
+    name : "threadpoolctl"
+    build_source : "script"
+    compil_script :  "pip_install" + $VARS.scriptExtension
+    get_source : "archive"
+    system_info :
+    {
+       rpm : ["python3-threadpoolctl"]
+       rpm_dev : []
+       apt : ["python3-threadpoolctl"]
+       apt_dev : []
+    }
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : ['Python']
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties:
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+}
+
+default_win :
+{
+   compil_script :  'pip_install_whl' + $VARS.scriptExtension
+   depend : ["Python","setuptools", "scipy", "decorator"]
+   properties:
+   {
+     incremental : "yes"
+     pip : "yes"
+   }
+}

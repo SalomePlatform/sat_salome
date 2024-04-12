@@ -15,7 +15,7 @@ default :
     {
 
     }
-    depend : ["Python", "setuptools","PyFMI", "numpy", "scipy", "matplotlib"]
+    depend : ["Python", "setuptools","PyFMI", "numpy", "scipy", "matplotlib", "packaging"]
     opt_depend : ['pandas', 'patsy', 'Pillow']
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name

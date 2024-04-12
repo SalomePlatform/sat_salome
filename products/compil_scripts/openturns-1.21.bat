@@ -19,9 +19,6 @@ if %SAT_DEBUG% == 1 (
 )
 
 if NOT exist "%PRODUCT_INSTALL%" mkdir %PRODUCT_INSTALL%
-REM clean BUILD directory
-if exist "%BUILD_DIR%" rmdir /Q /S %BUILD_DIR%
-mkdir %BUILD_DIR%
 
 REM clean BUILD directory
 if exist "%BUILD_DIR%" rmdir /Q /S %BUILD_DIR%
@@ -180,40 +177,20 @@ echo ##########################################################################
 SET CMAKE_MODULE_OPTIONS=%CMAKE_OPTIONS% -DBUILD_DOC=OFF
 CALL:MODULE_BUILDER otsvm "%SOURCE_DIR%\otsvm-0.12" "%BUILD_DIR%\otsvm" "%PRODUCT_INSTALL%" "%CMAKE_MODULE_OPTIONS%"
 
-echo ##########################################################################
-echo otfmi 0.15
-echo ##########################################################################
-cd %BUILD_DIR%
-mkdir otfmi
-
-set CMAKE_OPTIONS_EXT=%CMAKE_OPTIONS%
-cd  %BUILD_DIR%\otfmi
-xcopy %SOURCE_DIR%\otfmi-0.15\*   %BUILD_DIR%\otfmi /E /I /Q
-if NOT %ERRORLEVEL% == 0 (
-    echo ERROR on xcopy
-    exit 3
-)
-
-%PYTHON_ROOT_DIR%\python.exe setup.py install --prefix=%PRODUCT_INSTALL%
-if NOT %ERRORLEVEL% == 0 (
-    echo ERROR on python setup.py
-    exit 3
-)
-
 echo
 echo ##########################################################################
-echo scikit-learn 0.24.2
+echo dill 5.1.0
 echo ##########################################################################
 cd %BUILD_DIR%
-mkdir scikit-learn
-cd  %BUILD_DIR%\scikit-learn
-xcopy %SOURCE_DIR%\scikit-learn-0.24.2\*   %BUILD_DIR%\scikit-learn /E /I /Q
+mkdir dill
+cd  %BUILD_DIR%\dill
+xcopy %SOURCE_DIR%\dill-0.3.4\*   %BUILD_DIR%\dill /E /I /Q
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on xcopy
     exit 3
 )
 
-%PYTHON_ROOT_DIR%\python.exe -m pip install --cache-dir=%BUILD_DIR%\cache\pip --prefix=%PRODUCT_INSTALL% scikit-learn-0.24.2.tar.gz --no-deps --no-use-pep517
+%PYTHON_ROOT_DIR%\python.exe -m pip install --cache-dir=%BUILD_DIR%\cache\pip --prefix=%PRODUCT_INSTALL% dill-0.3.4-py2.py3-none-any.whl --no-deps
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on python setup.py
     exit 3
@@ -271,6 +248,52 @@ if NOT %ERRORLEVEL% == 0 (
 )
 
 %PYTHON_ROOT_DIR%\python.exe -m pip install --cache-dir=%BUILD_DIR%\cache\pip --prefix=%PRODUCT_INSTALL% joblib-1.1.0-py2.py3-none-any.whl --no-deps
+if NOT %ERRORLEVEL% == 0 (
+    echo ERROR on python setup.py
+    exit 3
+)
+
+echo
+echo ##########################################################################
+echo scikit-learn 0.24.2
+echo ##########################################################################
+cd %BUILD_DIR%
+mkdir scikit-learn
+cd  %BUILD_DIR%\scikit-learn
+xcopy %SOURCE_DIR%\scikit-learn-0.24.2\*   %BUILD_DIR%\scikit-learn /E /I /Q
+if NOT %ERRORLEVEL% == 0 (
+    echo ERROR on xcopy
+    exit 3
+)
+
+if %PYTHON_VERSION% == 3.6 (
+  %PYTHON_ROOT_DIR%\python.exe -m pip install --cache-dir=%BUILD_DIR%\cache\pip --prefix=%PRODUCT_INSTALL% scikit-learn-0.24.2.tar.gz --no-deps  --no-use-pep517
+) else (
+  tar zxf scikit-learn-0.24.2.tar.gz
+  cd  scikit-learn-0.24.2
+  %PYTHON_ROOT_DIR%\python.exe setup.py install --prefix=%PRODUCT_INSTALL%
+)
+
+if NOT %ERRORLEVEL% == 0 (
+    echo ERROR on python setup.py
+    exit 3
+)
+
+echo ##########################################################################
+echo otfmi 0.15
+echo ##########################################################################
+cd %BUILD_DIR%
+mkdir otfmi
+
+set CMAKE_OPTIONS_EXT=%CMAKE_OPTIONS%
+cd  %BUILD_DIR%\otfmi
+xcopy %SOURCE_DIR%\otfmi-0.15\*   %BUILD_DIR%\otfmi /E /I /Q
+if NOT %ERRORLEVEL% == 0 (
+    echo ERROR on xcopy
+    exit 3
+)
+
+%PYTHON_ROOT_DIR%\python.exe setup.py install --prefix=%PRODUCT_INSTALL%
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on python setup.py
     exit 3

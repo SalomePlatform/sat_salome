@@ -16,6 +16,7 @@ default :
        env_script : $name + ".py"
     }
     depend : ['Python', 'setuptools', 'certifi', 'urllib3', 'idna', 'chardet']
+    opt_depend : ['charset_normalizer']
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     install_dir : 'base'

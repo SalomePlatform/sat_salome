@@ -1,0 +1,21 @@
+default :
+{
+    name : "sphinxcontrib-jquery"
+    build_source : "script"
+    compil_script :  'pip_install' + $VARS.scriptExtension
+    get_source : "archive"
+    archive_info : {archive_prefix : "sphinxcontrib_jquery"}
+    environ :
+    {
+       env_script : "sphinxcontrib_jquery.py"
+    }
+    depend : ['Python','setuptools','Sphinx']
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + "sphinxcontrib_jquery"
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + "sphinxcontrib_jquery"
+    install_dir : 'base'
+    properties:
+    {
+      incremental : "yes"
+      pip : "yes"
+    }
+}

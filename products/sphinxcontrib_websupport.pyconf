@@ -15,7 +15,8 @@ default :
     {
        env_script : $name + ".py"
     }
-    depend : ['Python','setuptools']
+    depend : ['Python','setuptools','Jinja2','Sphinx']
+    opt_dep : ['sphinxcontrib_serializinghtml']
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     install_dir : 'base'
@@ -29,6 +30,15 @@ default :
 
 default_win :
 {
+   depend : ['Python','setuptools']
+   opt_dep : []
    compil_script :  'pip_install_whl' + $VARS.scriptExtension
    archive_info : {archive_name : "sphinxcontrib_websupport-" + $APPLICATION.products.sphinxcontrib_websupport + "_windows.tar.gz"}
 }
+
+version_1_1_0:
+{
+    depend : ['Python','setuptools']
+    opt_dep : []
+}
+

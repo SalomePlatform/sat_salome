@@ -1,0 +1,20 @@
+default :
+{
+    name : "tomli"
+    build_source : "script"
+    compil_script :  'pip_install' + $VARS.scriptExtension
+    get_source : "archive"
+    environ :
+    {
+       env_script : "tomli.py"
+    }
+    depend : ['Python','setuptools']
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + "tomli"
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + "tomli"
+    install_dir : 'base'
+    properties:
+    {
+      incremental : "yes"
+      pip : "yes"
+    }
+}

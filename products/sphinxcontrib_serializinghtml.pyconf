@@ -4,6 +4,7 @@ default :
     build_source : "script"
     compil_script :  'pip_install' + $VARS.scriptExtension
     get_source : "archive"
+    archive_info : {archive_prefix : "sphinxcontrib_serializinghtml"}
     environ :
     {
        env_script : "sphinxcontrib_serializinghtml.py"

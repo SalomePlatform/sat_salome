@@ -38,7 +38,10 @@ default_win:
 
 version_3_2_0 :
 {
-    patches : ["opencv-3.2.0-ccache.patch", "SPNS-29988-opencv-3.2.0-persistence.patch", "opencv-3.2.0-python2-cmake.patch"]
+    patches : ["opencv-3.2.0-ccache.patch", 
+               "SPNS-29988-opencv-3.2.0-persistence.patch", 
+               "opencv-3.2.0-python2-cmake.patch",
+               "SPNS-29988-opencv-3.2.0-cv2.patch"]
 }
 
 version_3_2_0_FD38 :
@@ -66,7 +69,10 @@ version_3_2_0_DB12 :
 
 version_3_2_0_win :
 {
-    patches : ["opencv-3.2.0-ccache.patch","opencv-3.2.0_windows.patch"]
+    patches : ["opencv-3.2.0-ccache.patch",
+               "opencv-3.2.0_windows.patch",
+               "SPNS-29988-opencv-3.2.0-cv2.patch"
+              ]
 }
 
 version_3_2_0_with_ffmpeg :

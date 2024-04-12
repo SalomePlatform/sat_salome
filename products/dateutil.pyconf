@@ -31,3 +31,8 @@ default_win :
    compil_script :  'pip_install_whl' + $VARS.scriptExtension
    archive_info : {archive_name : "dateutil-" + $APPLICATION.products.dateutil + "_windows.tar.gz"}
 }
+
+version_2_8_2:
+{
+   archive_info : {archive_name : "dateutil-2.8.2.tar.gz"}
+}

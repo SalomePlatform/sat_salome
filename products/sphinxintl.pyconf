@@ -38,7 +38,7 @@ version_2_0_0_win_dbg :
 {
     name : "sphinx_intl"
     build_source : "script"
-    compil_script :  'sphinxintl.bat'
+    compil_script :  'sphinxintl-2.0.0.bat'
     archive_info : {archive_name : "sphinxintl-2.0.0.tar.gz"}
     get_source : "archive"
     environ :

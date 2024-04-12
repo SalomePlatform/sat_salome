@@ -1,0 +1,19 @@
+diff -Naur gdal/gdal/swig/python/setup.py gdal_dev/gdal/swig/python/setup.py
+--- gdal/gdal/swig/python/setup.py	2022-01-10 20:49:08.000000000 +0000
++++ gdal_dev/gdal/swig/python/setup.py	2024-03-13 08:29:24.760605976 +0000
+@@ -128,11 +128,10 @@
+ 
+         all_fixers = set(get_fixers_from_package('lib2to3.fixes'))
+         exclude_fixers = sorted(all_fixers.difference(fixer_names))
+-
+-        extra['use_2to3'] = True
+-        extra['use_2to3_fixers'] = []
+-        extra['use_2to3_exclude_fixers'] = exclude_fixers
+-
++        if sys.version_info < (3, 9):
++            extra['use_2to3'] = True
++            extra['use_2to3_fixers'] = []
++            extra['use_2to3_exclude_fixers'] = exclude_fixers
+ 
+ class gdal_config_error(Exception):
+     pass

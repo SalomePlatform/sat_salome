@@ -37,3 +37,16 @@ default_win :
      pip : "yes"
    }
 }
+
+version_3_4_1 :
+{
+}
+
+version_3_4_1_win :
+{
+  name : "pyreadline3"
+  environ :
+  {
+       env_script : "pyreadline.py"
+  }
+}

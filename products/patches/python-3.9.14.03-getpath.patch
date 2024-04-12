@@ -1,0 +1,29 @@
+--- Python-3.9.14-ref/PC/getpathp.c	2022-09-06 19:26:16.000000000 +0200
++++ Python-3.9.14-new/PC/getpathp.c	2024-04-03 17:13:22.000000000 +0200
+@@ -1116,7 +1116,7 @@
+     if (!get_dllpath(py3path)) {
+         reduce(py3path);
+         join(py3path, PY3_DLLNAME);
+-        hPython3 = LoadLibraryExW(py3path, NULL, LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
++        hPython3 = LoadLibraryExW(py3path, NULL, LOAD_WITH_ALTERED_SEARCH_PATH);
+         if (hPython3 != NULL) {
+             return 1;
+         }
+@@ -1124,7 +1124,7 @@
+ 
+     /* If we can locate python3.dll in our application dir,
+        use that DLL */
+-    hPython3 = LoadLibraryExW(PY3_DLLNAME, NULL, LOAD_LIBRARY_SEARCH_APPLICATION_DIR);
++    hPython3 = LoadLibraryExW(PY3_DLLNAME, NULL, LOAD_WITH_ALTERED_SEARCH_PATH);
+     if (hPython3 != NULL) {
+         return 1;
+     }
+@@ -1134,7 +1134,7 @@
+     wcscpy(py3path, Py_GetPrefix());
+     if (py3path[0]) {
+         join(py3path, L"DLLs\\" PY3_DLLNAME);
+-        hPython3 = LoadLibraryExW(py3path, NULL, LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
++        hPython3 = LoadLibraryExW(py3path, NULL, LOAD_WITH_ALTERED_SEARCH_PATH);
+     }
+     return hPython3 != NULL;
+ }

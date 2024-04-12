@@ -10,7 +10,7 @@ default :
     }
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib']
     build_depend : ["cmake", "swig"]
-    opt_depend : ['openmpi']
+    opt_depend : ['openmpi','psutil','numpy','scipy','statsmodels']
     patches : []
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name

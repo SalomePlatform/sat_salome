@@ -43,6 +43,7 @@ version_2_6 :
 
 version_2_6_win :
 {
+    patches: ["PyFMI-2.6-importlogger.patch"]
     compil_script : "PyFMI-2.6.bat"
     properties:
     {

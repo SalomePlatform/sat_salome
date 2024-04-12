@@ -33,6 +33,23 @@ default_win :
    archive_info : {archive_name : "scipy-" + $APPLICATION.products.scipy + "_windows.tar.gz"}
 }
 
+version_1_6_2:
+{
+}
+
+version_1_6_2_win:
+{
+  compil_script : "scipy-1.6.2.bat"
+  properties :
+  {
+    incremental : "yes"
+    pip : "yes"
+  }
+	archive_info : {archive_name : "scipy-1.6.2.tar.gz"}
+	depend : ['numpy','lapack', 'openblas']
+  opt_depend : ['pybind11']
+}
+
 version_1_5_2_no_pip :
 {
     compil_script : "scipy-1.5.2.sh"

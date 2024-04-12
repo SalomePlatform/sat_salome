@@ -1,0 +1,13 @@
+--- Python-3.9.14-ref/Python/dynload_win.c	2022-09-06 19:26:16.000000000 +0200
++++ Python-3.9.14-new/Python/dynload_win.c	2024-04-03 17:08:02.000000000 +0200
+@@ -191,9 +191,7 @@
+            AddDllDirectory function. We add SEARCH_DLL_LOAD_DIR to
+            ensure DLLs adjacent to the PYD are preferred. */
+         Py_BEGIN_ALLOW_THREADS
+-        hDLL = LoadLibraryExW(wpathname, NULL,
+-                              LOAD_LIBRARY_SEARCH_DEFAULT_DIRS |
+-                              LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR);
++        hDLL = LoadLibraryExW(wpathname, NULL,LOAD_WITH_ALTERED_SEARCH_PATH);
+         Py_END_ALLOW_THREADS
+ 
+         /* restore old error mode settings */

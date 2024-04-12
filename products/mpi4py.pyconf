@@ -25,3 +25,24 @@ default :
       pip : "yes"
     }
 }
+
+version_3_1_0_no_pip :
+{
+    compil_script : "mpi4py-3.1.0.sh"
+    patches: ["mpi4py_3_1_0_setup_py.patch"]
+    properties:
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+}
+
+version_3_0_3_no_pip :
+{
+    compil_script : "mpi4py-3.0.3.sh"
+    properties:
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+}

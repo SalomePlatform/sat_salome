@@ -4,6 +4,7 @@ default :
     build_source : "script"
     compil_script :   'pip_install' + $VARS.scriptExtension
     get_source : "archive"
+    archive_info : {archive_prefix : "sphinx"}
     system_info : 
     {
         rpm : ["python3-sphinx"]
@@ -15,7 +16,11 @@ default :
     {
        env_script : $name + ".py"
     }
-    depend : ["Python", "setuptools", "six", "Pygments", "Jinja2", "docutils", "sphinxcontrib_websupport", "packaging", "requests", "imagesize", "alabaster", "Babel", "snowballstemmer"]
+    depend : ["Python", "setuptools", "six", "Pygments", "Jinja2", "docutils", "packaging", "requests", "imagesize", "alabaster", "Babel", "snowballstemmer"]
+    opt_depend : ["importlib_metadata", "sphinxcontrib_applehelp", "sphinxcontrib_devhelp", 
+                  "sphinxcontrib_htmlhelp", "sphinxcontrib_jsmath", "sphinxcontrib_qthelp",
+                  "sphinxcontrib_serializinghtml"
+             ]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     install_dir : 'base'
@@ -44,6 +49,11 @@ version_2_1_2:
    depend : ["Python", "setuptools", "Pygments", "Jinja2", "docutils", "sphinxcontrib_applehelp", "sphinxcontrib_serializinghtml","sphinxcontrib_websupport", "sphinxcontrib_htmlhelp", "sphinxcontrib_qthelp", "sphinxcontrib_devhelp", "sphinxcontrib_jsmath", "packaging", "requests", "imagesize", "alabaster", "Babel", "snowballstemmer", "markupsafe", "colorama"]
 }
 
+version_1_7_6:
+{
+    depend : ["Python", "setuptools", "six", "Pygments", "Jinja2", "docutils", "sphinxcontrib_websupport", "packaging", "requests", "imagesize", "alabaster", "Babel", "snowballstemmer"]
+    opt_depend : []
+}
 
 version_1_7_6_no_pip:
 {

@@ -1,0 +1,21 @@
+default :
+{
+    name : "importlib-resources"
+    build_source : "script"
+    compil_script :  'pip_install' + $VARS.scriptExtension
+    get_source : "archive"
+    archive_info : {archive_prefix : "importlib_resources"}
+    environ :
+    {
+       env_script : "importlib_resources.py"
+    }
+    depend : ['Python','setuptools','zipp']
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + "importlib_resources"
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + "importlib_resources"
+    install_dir : 'base'
+    properties:
+    {
+      incremental : "yes"
+      pip : "yes"
+    }
+}
