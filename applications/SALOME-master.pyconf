@@ -41,7 +41,7 @@ APPLICATION :
         boost : '1.71.0'
         CAS : {tag : 'V7_5_3p5', section: 'version_CR753_SALOME_PATCH', base: 'no'}
         catalyst: '2.0'
-        C3PO: 'v2.0'
+        C3PO: 'v2.3'
         certifi : '2018.8.24'
         cgns : '4.2.0'
         chardet : '3.0.4'

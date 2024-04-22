@@ -1,0 +1,24 @@
+diff -Naur C3PO/tests/runMPITest.py C3PO_dev/tests/runMPITest.py
+--- C3PO/tests/runMPITest.py	2024-01-17 08:51:14.000000000 +0100
++++ C3PO_dev/tests/runMPITest.py	2024-04-22 17:30:17.162231326 +0200
+@@ -1,14 +1,18 @@
+ # -*- coding: utf-8 -*-
+ from __future__ import print_function
+ 
++import os
+ import subprocess
+ 
+ 
+ def runMPITest(nbProcesses, fileAbspath):
+     subprocessError = None
+     try:
+-        result = subprocess.run(args=['mpirun', '-n', str(nbProcesses), 'python', fileAbspath], stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True, universal_newlines=True)
+-        print(result.stdout)
++        if nbProcesses <= os.cpu_count():
++            result = subprocess.run(args=['mpirun', '-n', str(nbProcesses), 'python', fileAbspath], stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True, universal_newlines=True)
++            print(result.stdout)
++        else:
++            pass
+     except subprocess.CalledProcessError as error:
+         print(error.stdout)
+         subprocessError = AssertionError(error.stderr)

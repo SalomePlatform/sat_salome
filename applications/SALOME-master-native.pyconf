@@ -40,7 +40,7 @@ APPLICATION :
         boost : 'native'
         CAS : {tag : 'V7_5_3p5', section: 'version_CR753_SALOME_PATCH', base: 'no'}
         catalyst: '2.0'
-        C3PO: 'v2.0'
+        C3PO: 'v2.3'
         certifi : 'native'
         cgns : '4.2.0'
         chardet : 'native'

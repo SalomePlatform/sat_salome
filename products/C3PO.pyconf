@@ -30,6 +30,11 @@ default :
     patches: []
  }
 
+version_v2_3 :
+{
+    compil_script  : "C3PO-v2.3.sh"
+    patches: ['C3PO-v2.3-0001.patch', 'C3PO-v2.3-0002.patch']
+}
 version_v2_0 :
 {
     patches: ['C3PO-v2.0.patch']

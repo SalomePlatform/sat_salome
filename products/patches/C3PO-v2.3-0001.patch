@@ -1,0 +1,403 @@
+diff -Naur C3PO/sources/c3po/mpi/MPICollaborativeDataManager.py C3PO_dev/sources/c3po/mpi/MPICollaborativeDataManager.py
+--- C3PO/sources/c3po/mpi/MPICollaborativeDataManager.py	2024-01-17 08:51:14.000000000 +0100
++++ C3PO_dev/sources/c3po/mpi/MPICollaborativeDataManager.py	2024-04-22 15:21:40.288851916 +0200
+@@ -11,7 +11,10 @@
+ """ Contain the class MPICollaborativeDataManager. """
+ from __future__ import print_function, division
+ import math
+-from mpi4py import MPI
++try:
++    from mpi4py import MPI
++except:
++    from openmpi.mpi4py import MPI
+ 
+ from c3po.CollaborativeDataManager import CollaborativeDataManager
+ from c3po.CollaborativeObject import CollaborativeObject
+diff -Naur C3PO/sources/c3po/mpi/MPICoupler.py C3PO_dev/sources/c3po/mpi/MPICoupler.py
+--- C3PO/sources/c3po/mpi/MPICoupler.py	2024-01-17 08:51:14.000000000 +0100
++++ C3PO_dev/sources/c3po/mpi/MPICoupler.py	2024-04-22 15:22:50.834694268 +0200
+@@ -10,7 +10,10 @@
+ 
+ """ Contain the class MPICoupler. """
+ from __future__ import print_function, division
+-from mpi4py import MPI
++try:
++    from mpi4py import MPI
++except:
++    from openmpi.mpi4py import MPI
+ 
+ from c3po.Coupler import Coupler
+ from c3po.mpi.MPIRemote import MPIRemote
+diff -Naur C3PO/sources/c3po/mpi/MPIDomainDecompositionDataManager.py C3PO_dev/sources/c3po/mpi/MPIDomainDecompositionDataManager.py
+--- C3PO/sources/c3po/mpi/MPIDomainDecompositionDataManager.py	2024-01-17 08:51:14.000000000 +0100
++++ C3PO_dev/sources/c3po/mpi/MPIDomainDecompositionDataManager.py	2024-04-22 15:20:26.465016893 +0200
+@@ -11,7 +11,10 @@
+ """ Contain the class MPIDomainDecompositionDataManager. """
+ from __future__ import print_function, division
+ import math
+-from mpi4py import MPI
++try:
++    from mpi4py import MPI
++except:
++    from openmpi.mpi4py import MPI
+ 
+ from c3po.LocalDataManager import LocalDataManager
+ 
+diff -Naur C3PO/sources/c3po/mpi/mpiExchangeMethods/MPISharedRemapping.py C3PO_dev/sources/c3po/mpi/mpiExchangeMethods/MPISharedRemapping.py
+--- C3PO/sources/c3po/mpi/mpiExchangeMethods/MPISharedRemapping.py	2024-01-17 08:51:14.000000000 +0100
++++ C3PO_dev/sources/c3po/mpi/mpiExchangeMethods/MPISharedRemapping.py	2024-04-22 15:18:57.056216701 +0200
+@@ -10,7 +10,10 @@
+ 
+ """ Contain the class SharedRemapping. """
+ from __future__ import print_function, division
+-from mpi4py import MPI as mpi
++try:
++    from mpi4py import MPI as mpi
++except:
++    from openmpi.mpi4py import MPI as mpi
+ 
+ import c3po.medcouplingCompat as mc
+ from c3po.mpi.mpiExchangeMethods.MPIExchangeMethod import MPIExchangeMethod
+diff -Naur C3PO/sources/c3po/mpi/mpiExchangeMethods/MPIValueBcast.py C3PO_dev/sources/c3po/mpi/mpiExchangeMethods/MPIValueBcast.py
+--- C3PO/sources/c3po/mpi/mpiExchangeMethods/MPIValueBcast.py	2024-01-17 08:51:14.000000000 +0100
++++ C3PO_dev/sources/c3po/mpi/mpiExchangeMethods/MPIValueBcast.py	2024-04-22 15:19:43.425113077 +0200
+@@ -10,7 +10,10 @@
+ 
+ """ Contain the class SharedRemapping. """
+ from __future__ import print_function, division
+-from mpi4py import MPI as mpi
++try:
++    from mpi4py import MPI as mpi
++except:
++    from openmpi.mpi4py import MPI as mpi
+ 
+ from c3po.mpi.mpiExchangeMethods.MPIExchangeMethod import MPIExchangeMethod
+ 
+diff -Naur C3PO/sources/c3po/mpi/MPIExchanger.py C3PO_dev/sources/c3po/mpi/MPIExchanger.py
+--- C3PO/sources/c3po/mpi/MPIExchanger.py	2024-01-17 08:51:14.000000000 +0100
++++ C3PO_dev/sources/c3po/mpi/MPIExchanger.py	2024-04-22 15:22:23.057756341 +0200
+@@ -10,7 +10,10 @@
+ 
+ """ Contain the classes MPIExchanger and MPIShortcutToData. MPIShortcutToData is for internal use only. """
+ from __future__ import print_function, division
+-from mpi4py import MPI as mpi
++try:
++    from mpi4py import MPI as mpi
++except:
++    from openmpi.mpi4py import MPI as mpi
+ 
+ from c3po.LocalExchanger import LocalExchanger, ShortcutToField, ShortcutToValue
+ from c3po.CollaborativeExchanger import CollaborativeExchanger
+diff -Naur C3PO/sources/c3po/mpi/MPIMasterDataManager.py C3PO_dev/sources/c3po/mpi/MPIMasterDataManager.py
+--- C3PO/sources/c3po/mpi/MPIMasterDataManager.py	2024-01-17 08:51:14.000000000 +0100
++++ C3PO_dev/sources/c3po/mpi/MPIMasterDataManager.py	2024-04-22 15:23:50.434561079 +0200
+@@ -11,7 +11,10 @@
+ """ Contain the class MPIMasterDataManager. """
+ from __future__ import print_function, division
+ import math
+-from mpi4py import MPI
++try:
++    from mpi4py import MPI
++except:
++    from openmpi.mpi4py import MPI
+ 
+ from c3po.mpi.MPITag import MPITag
+ 
+diff -Naur C3PO/sources/c3po/mpi/MPIMasterPhysicsDriver.py C3PO_dev/sources/c3po/mpi/MPIMasterPhysicsDriver.py
+--- C3PO/sources/c3po/mpi/MPIMasterPhysicsDriver.py	2024-01-17 08:51:14.000000000 +0100
++++ C3PO_dev/sources/c3po/mpi/MPIMasterPhysicsDriver.py	2024-04-22 15:18:14.976311404 +0200
+@@ -12,7 +12,10 @@
+ from __future__ import print_function, division
+ 
+ import sys
+-from mpi4py import MPI
++try:
++    from mpi4py import MPI
++except:
++    from openmpi.mpi4py import MPI
+ 
+ from c3po.PhysicsDriver import PhysicsDriver
+ from c3po.mpi.MPIRemoteProcess import MPIRemoteProcess
+diff -Naur C3PO/sources/c3po/mpi/MPIRecipient.py C3PO_dev/sources/c3po/mpi/MPIRecipient.py
+--- C3PO/sources/c3po/mpi/MPIRecipient.py	2024-01-17 08:51:14.000000000 +0100
++++ C3PO_dev/sources/c3po/mpi/MPIRecipient.py	2024-04-22 15:24:26.066481454 +0200
+@@ -12,7 +12,10 @@
+ These classes recieve data from a remote process.
+ """
+ from __future__ import print_function, division
+-from mpi4py import MPI
++try:
++    from mpi4py import MPI
++except:
++    from openmpi.mpi4py import MPI
+ import numpy
+ 
+ import c3po.medcouplingCompat as mc
+diff -Naur C3PO/sources/c3po/mpi/MPISender.py C3PO_dev/sources/c3po/mpi/MPISender.py
+--- C3PO/sources/c3po/mpi/MPISender.py	2024-01-17 08:51:14.000000000 +0100
++++ C3PO_dev/sources/c3po/mpi/MPISender.py	2024-04-22 15:21:10.785917851 +0200
+@@ -14,7 +14,10 @@
+ from __future__ import print_function, division
+ import os
+ 
+-from mpi4py import MPI
++try:
++    from mpi4py import MPI
++except:
++    from openmpi.mpi4py import MPI
+ 
+ import c3po.medcouplingCompat as mc
+ from c3po.mpi.MPITag import MPITag
+diff -Naur C3PO/sources/c3po/mpi/MPIWorker.py C3PO_dev/sources/c3po/mpi/MPIWorker.py
+--- C3PO/sources/c3po/mpi/MPIWorker.py	2024-01-17 08:51:14.000000000 +0100
++++ C3PO_dev/sources/c3po/mpi/MPIWorker.py	2024-04-22 15:23:19.730629693 +0200
+@@ -10,7 +10,10 @@
+ 
+ """ Contain the class MPIWorker. """
+ from __future__ import print_function, division
+-from mpi4py import MPI
++try:
++    from mpi4py import MPI
++except:
++    from openmpi.mpi4py import MPI
+ 
+ from c3po.mpi.MPITag import MPITag
+ from c3po.mpi.MPIRemoteProcess import MPIRemoteProcess
+diff -Naur C3PO/sources/c3po/physicsDrivers/ALCYONE2Driver.py C3PO_dev/sources/c3po/physicsDrivers/ALCYONE2Driver.py
+--- C3PO/sources/c3po/physicsDrivers/ALCYONE2Driver.py	2024-01-17 08:51:14.000000000 +0100
++++ C3PO_dev/sources/c3po/physicsDrivers/ALCYONE2Driver.py	2024-04-22 15:25:35.683325884 +0200
+@@ -10,7 +10,10 @@
+ 
+ """ Contain the class ALCYONE2Driver. """
+ from __future__ import print_function, division
+-import mpi4py.MPI as mpi
++try:
++    import mpi4py.MPI as mpi
++except:
++    import openmpi.mpi4py.MPI as mpi
+ 
+ import pleiades
+ import pleiadesMPI
+diff -Naur C3PO/tests/listings/main_mpi_collaborative.py C3PO_dev/tests/listings/main_mpi_collaborative.py
+--- C3PO/tests/listings/main_mpi_collaborative.py	2024-01-17 08:51:14.000000000 +0100
++++ C3PO_dev/tests/listings/main_mpi_collaborative.py	2024-04-22 15:12:56.254056622 +0200
+@@ -7,7 +7,10 @@
+ def main_mpi_collaborative():
+     import sys
+     import os
+-    from mpi4py import MPI
++    try:
++        from mpi4py import MPI
++    except:
++        from openmpi.mpi4py import MPI
+ 
+     import c3po
+     import c3po.mpi
+diff -Naur C3PO/tests/med_1D3D/main_medmpi_collaborative.py C3PO_dev/tests/med_1D3D/main_medmpi_collaborative.py
+--- C3PO/tests/med_1D3D/main_medmpi_collaborative.py	2024-01-17 08:51:14.000000000 +0100
++++ C3PO_dev/tests/med_1D3D/main_medmpi_collaborative.py	2024-04-22 15:10:42.764368751 +0200
+@@ -5,7 +5,10 @@
+ 
+ 
+ def main_medmpi_collaborative():
+-    import mpi4py.MPI as mpi
++    try:
++        import mpi4py.MPI as mpi
++    except:
++        import openmpi.mpi4py.MPI as mpi
+     import os
+     import math
+     import glob
+diff -Naur C3PO/tests/med_1D3D/main_medmpi_reloading.py C3PO_dev/tests/med_1D3D/main_medmpi_reloading.py
+--- C3PO/tests/med_1D3D/main_medmpi_reloading.py	2024-01-17 08:51:14.000000000 +0100
++++ C3PO_dev/tests/med_1D3D/main_medmpi_reloading.py	2024-04-22 15:11:20.317280946 +0200
+@@ -2,7 +2,10 @@
+ from __future__ import print_function, division
+ import math
+ import pytest
+-from mpi4py import MPI as mpi
++try:
++    from mpi4py import MPI as mpi
++except:
++    from openmpi.mpi4py import MPI as mpi
+ 
+ import c3po.medcouplingCompat as mc
+ 
+diff -Naur C3PO/tests/med_1D3D/main_mpi_hybrid.py C3PO_dev/tests/med_1D3D/main_mpi_hybrid.py
+--- C3PO/tests/med_1D3D/main_mpi_hybrid.py	2024-01-17 08:51:14.000000000 +0100
++++ C3PO_dev/tests/med_1D3D/main_mpi_hybrid.py	2024-04-22 15:11:53.357203690 +0200
+@@ -5,7 +5,10 @@
+ 
+ 
+ def main_mpi_hybrid():
+-    import mpi4py.MPI as mpi
++    try:
++        import mpi4py.MPI as mpi
++    except:
++        import openmpi.mpi4py.MPI as mpi
+     import os
+     import math
+     import glob
+diff -Naur C3PO/tests/med_1D3D/main_workerThermo.py C3PO_dev/tests/med_1D3D/main_workerThermo.py
+--- C3PO/tests/med_1D3D/main_workerThermo.py	2024-01-17 08:51:14.000000000 +0100
++++ C3PO_dev/tests/med_1D3D/main_workerThermo.py	2024-04-22 15:12:20.878139339 +0200
+@@ -1,6 +1,9 @@
+ # -*- coding: utf-8 -*-
+ from __future__ import print_function, division
+-import mpi4py.MPI as mpi
++try:
++    import mpi4py.MPI as mpi
++except:
++    import openmpi.mpi4py.MPI as mpi
+ import os
+ import math
+ 
+diff -Naur C3PO/tests/med_Dussaix/main_master.py C3PO_dev/tests/med_Dussaix/main_master.py
+--- C3PO/tests/med_Dussaix/main_master.py	2024-01-17 08:51:14.000000000 +0100
++++ C3PO_dev/tests/med_Dussaix/main_master.py	2024-04-22 15:09:19.611564683 +0200
+@@ -5,7 +5,10 @@
+ 
+ 
+ def main_master():
+-    import mpi4py.MPI as mpi
++    try:
++        import mpi4py.MPI as mpi
++    except:
++        import openmpi.mpi4py.MPI as mpi
+ 
+     import c3po
+     import c3po.mpi
+diff -Naur C3PO/tests/med_Dussaix/main_medmpi_collaborative.py C3PO_dev/tests/med_Dussaix/main_medmpi_collaborative.py
+--- C3PO/tests/med_Dussaix/main_medmpi_collaborative.py	2024-01-17 08:51:14.000000000 +0100
++++ C3PO_dev/tests/med_Dussaix/main_medmpi_collaborative.py	2024-04-22 15:14:36.941821194 +0200
+@@ -5,7 +5,10 @@
+ 
+ 
+ def main_medmpi_collaborative():
+-    from mpi4py import MPI
++    try:
++        from mpi4py import MPI
++    except:
++        from openmpi.mpi4py import MPI
+ 
+     import c3po
+     import c3po.mpi
+diff -Naur C3PO/tests/med_Dussaix/main_mpi_collaborative.py C3PO_dev/tests/med_Dussaix/main_mpi_collaborative.py
+--- C3PO/tests/med_Dussaix/main_mpi_collaborative.py	2024-01-17 08:51:14.000000000 +0100
++++ C3PO_dev/tests/med_Dussaix/main_mpi_collaborative.py	2024-04-22 15:06:37.271951247 +0200
+@@ -5,7 +5,10 @@
+ 
+ 
+ def main_mpi_collaborative(exchangeWithFiles):
+-    from mpi4py import MPI
++    try:
++        from mpi4py import MPI
++    except:
++        from openmpi.mpi4py import MPI
+ 
+     import c3po
+     import c3po.mpi
+diff -Naur C3PO/tests/med_Dussaix/main_mpi_masterWorkers.py C3PO_dev/tests/med_Dussaix/main_mpi_masterWorkers.py
+--- C3PO/tests/med_Dussaix/main_mpi_masterWorkers.py	2024-01-17 08:51:14.000000000 +0100
++++ C3PO_dev/tests/med_Dussaix/main_mpi_masterWorkers.py	2024-04-22 15:08:02.538749420 +0200
+@@ -3,7 +3,10 @@
+ 
+ 
+ def main_mpi_masterWorkers():
+-    import mpi4py.MPI as mpi
++    try:
++        import mpi4py.MPI as mpi
++    except:
++        import openmpi.mpi4py.MPI as mpi
+ 
+     comm = mpi.COMM_WORLD
+     rank = comm.Get_rank()
+diff -Naur C3PO/tests/med_Dussaix/main_workerNeutro.py C3PO_dev/tests/med_Dussaix/main_workerNeutro.py
+--- C3PO/tests/med_Dussaix/main_workerNeutro.py	2024-01-17 08:51:14.000000000 +0100
++++ C3PO_dev/tests/med_Dussaix/main_workerNeutro.py	2024-04-22 15:07:18.426855152 +0200
+@@ -3,7 +3,10 @@
+ 
+ 
+ def main_workerNeutro():
+-    import mpi4py.MPI as mpi
++    try:
++        import mpi4py.MPI as mpi
++    except:
++        import openmpi.mpi4py.MPI as mpi
+ 
+     import c3po
+     import c3po.mpi
+diff -Naur C3PO/tests/med_Dussaix/main_workerThermo.py C3PO_dev/tests/med_Dussaix/main_workerThermo.py
+--- C3PO/tests/med_Dussaix/main_workerThermo.py	2024-01-17 08:51:14.000000000 +0100
++++ C3PO_dev/tests/med_Dussaix/main_workerThermo.py	2024-04-22 15:08:40.043659524 +0200
+@@ -3,7 +3,10 @@
+ 
+ 
+ def main_workerThermo():
+-    import mpi4py.MPI as mpi
++    try:
++        import mpi4py.MPI as mpi
++    except:
++        import openmpi.mpi4py.MPI as mpi
+ 
+     import c3po
+     import c3po.mpi
+diff -Naur C3PO/tests/med_Dussaix/MPINeutroDriver.py C3PO_dev/tests/med_Dussaix/MPINeutroDriver.py
+--- C3PO/tests/med_Dussaix/MPINeutroDriver.py	2024-01-17 08:51:14.000000000 +0100
++++ C3PO_dev/tests/med_Dussaix/MPINeutroDriver.py	2024-04-22 15:10:08.236449480 +0200
+@@ -2,7 +2,10 @@
+ # This class is the "neutronic" part of the two meshes model.
+ from __future__ import print_function, division
+ from math import *
+-from mpi4py import MPI as mpi
++try:
++    from mpi4py import MPI as mpi
++except:
++    from openmpi.mpi4py import MPI as mpi
+ 
+ import c3po.medcouplingCompat as mc
+ 
+diff -Naur C3PO/tests/unitests/exchanger/main_mpi_valueBcast.py C3PO_dev/tests/unitests/exchanger/main_mpi_valueBcast.py
+--- C3PO/tests/unitests/exchanger/main_mpi_valueBcast.py	2024-01-17 08:51:14.000000000 +0100
++++ C3PO_dev/tests/unitests/exchanger/main_mpi_valueBcast.py	2024-04-22 15:13:29.694978430 +0200
+@@ -1,6 +1,9 @@
+ # -*- coding: utf-8 -*-
+ from __future__ import print_function
+-import mpi4py.MPI as mpi
++try:
++    import mpi4py.MPI as mpi
++except:
++    import openmpi.mpi4py.MPI as mpi
+ 
+ import c3po
+ import c3po.mpi
+diff -Naur C3PO/tests/unitests/masterWorkers/main_masterWorkers.py C3PO_dev/tests/unitests/masterWorkers/main_masterWorkers.py
+--- C3PO/tests/unitests/masterWorkers/main_masterWorkers.py	2024-01-17 08:51:14.000000000 +0100
++++ C3PO_dev/tests/unitests/masterWorkers/main_masterWorkers.py	2024-04-22 15:13:52.957924036 +0200
+@@ -85,7 +85,10 @@
+     masterDriver.terminate()
+ 
+ def main_masterWorkers():
+-    import mpi4py.MPI as mpi
++    try:
++        import mpi4py.MPI as mpi
++    except:
++        import openmpi.mpi4py.MPI as mpi
+     import c3po
+     import c3po.mpi
+     from tests.unitests.masterWorkers.WorkerDriver import WorkerDriver
+diff -Naur C3PO/tests/unitests/remapper_2D/main_medmpi.py C3PO_dev/tests/unitests/remapper_2D/main_medmpi.py
+--- C3PO/tests/unitests/remapper_2D/main_medmpi.py	2024-01-17 08:51:14.000000000 +0100
++++ C3PO_dev/tests/unitests/remapper_2D/main_medmpi.py	2024-04-22 15:01:51.191576461 +0200
+@@ -3,7 +3,10 @@
+ from __future__ import print_function, division
+ import math
+ import pytest
+-import mpi4py.MPI as mpi
++try:
++    import mpi4py.MPI as mpi
++except:
++    import openmpi.mpi4py.MPI as mpi
+ 
+ import c3po
+ import c3po.mpi
