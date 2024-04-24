@@ -35,9 +35,17 @@ SET BUILD_OPTIONS=%BUILD_OPTIONS% --qml-plugindir=%PRODUCT_INSTALL:\=/%/plugins/
 SET BUILD_OPTIONS=%BUILD_OPTIONS% --no-qsci-api
 SET BUILD_OPTIONS=%BUILD_OPTIONS% --spec=win32-msvc
 SET BUILD_OPTIONS=%BUILD_OPTIONS% --confirm-license
-SET BUILD_OPTIONS=%BUILD_OPTIONS% --disable=QtNfc --disable=QtNetwork --disable=QtWebSockets 
-SET BUILD_OPTIONS=%BUILD_OPTIONS% --target-py-version=%PYTHON_VERSION%
+SET BUILD_OPTIONS=%BUILD_OPTIONS% --disable=QtNfc
+IF NOT DEFINED OPENSSL_ROOT_DIR (
+  SET BUILD_OPTIONS=%BUILD_OPTIONS% --disable=QtNetwork --disable=QtWebSockets
+)
 
+SET BUILD_OPTIONS=%BUILD_OPTIONS% --target-py-version=%PYTHON_VERSION%
+echo.
+echo --------------------------------------------------------------------------
+echo *** build options: %BUILD_OPTIONS
+echo --------------------------------------------------------------------------
+  
 %PYTHONBIN% configure.py %BUILD_OPTIONS:\=/% 
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on python configure.py %BUILD_OPTIONS:\=/% 

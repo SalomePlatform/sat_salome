@@ -38,6 +38,8 @@ if NOT %ERRORLEVEL% == 0 (
 cd %PRODUCT_INSTALL%\lib
 copy /Y /B libcrypto-1.1.dll libcrypto.dll 
 copy /Y /B libssl-1.1.dll libssl.dll 
+copy /Y /B libcrypto-1.1.lib libcrypto.lib
+copy /Y /B libssl-1.1.lib libssl.lib
 
 echo.
 echo ########## END

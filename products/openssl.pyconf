@@ -23,8 +23,11 @@ default :
 
 default_win :
 {
+    name : "openssl"
     get_source : "archive"
     build_source : "script"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
 }
 
 version_1_1_1n :

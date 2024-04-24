@@ -76,7 +76,7 @@ version_1_22_win :
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     depend : ['Python', 'openblas', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'fftw']
     opt_depend : ['pandas', 'statsmodels', 'patsy']
-    patches : []
+    patches : ['openturns-1.22.0002.patch']
     properties :
     {
       single_install_dir : "no"

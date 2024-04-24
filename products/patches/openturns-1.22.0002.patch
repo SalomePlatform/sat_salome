@@ -1,0 +1,15 @@
+diff -Naur openturns-1.22_ref/openturns-1.22/lib/src/Base/Common/openturns/Log.hxx openturns-1.22_dev/openturns-1.22/lib/src/Base/Common/openturns/Log.hxx
+--- openturns-1.22_ref/openturns-1.22/lib/src/Base/Common/openturns/Log.hxx	2024-04-24 12:41:11.929743118 +0200
++++ openturns-1.22_dev/openturns-1.22/lib/src/Base/Common/openturns/Log.hxx	2024-04-24 12:44:51.657001032 +0200
+@@ -21,6 +21,11 @@
+ #ifndef OPENTURNS_LOG_HXX
+ #define OPENTURNS_LOG_HXX
+ 
++#ifdef WIN32
++  #ifdef ERROR
++   #undef ERROR
++  #endif
++#endif
+ #include <fstream>
+ #include <map>
+ #include "openturns/OTprivate.hxx"

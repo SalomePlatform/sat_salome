@@ -58,13 +58,13 @@ default_win :
       incremental : "yes"
     }
 }
-version_v16_0 :
+version_v16_0_1 :
 {
 }
 
-version_v16_0_win :
+version_v16_0_1_win :
 {
-   compil_script : 'PERSALYS-v16.0.bat'
+   compil_script : 'PERSALYS-v16.0.1.bat'
    depend : ['Python',
               'hdf5',
               'cgns',
@@ -91,10 +91,9 @@ version_v16_0_win :
               'openblas',
               'pthreads'
            ]
-    patches : ['PERSALYS-v16.0-001.patch',
-               'PERSALYS-v16.0-002.patch',
-               'PERSALYS-v16.0-003.patch',
-               'PERSALYS-v16.0-004.patch'
+    patches : ['PERSALYS-v16.0.1-001.patch',
+               'PERSALYS-v16.0.1-002.patch',
+               'PERSALYS-v16.0.1-003.patch'
               ]
 }
 

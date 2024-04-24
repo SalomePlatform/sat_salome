@@ -67,6 +67,11 @@ echo "*** Adding qt.conf file in order to be able to compile using the moved Qt 
 echo [Paths] >  %PRODUCT_INSTALL%\bin\qt.conf
 echo Prefix=../ >> %PRODUCT_INSTALL%\bin\qt.conf
 
+IF DEFINED OPENSSL_ROOT_DIR (
+  copy /Y /B %OPENSSL_ROOT_DIR%\lib\*.dll %PRODUCT_INSTALL%\bin\
+  copy /Y /B %OPENSSL_ROOT_DIR%\lib\*.lib %PRODUCT_INSTALL%\lib\
+)
+
 echo.
 echo ########## END
 
