@@ -100,7 +100,7 @@ APPLICATION :
         pandas : '0.25.2'
         patsy : '0.5.2'
         ParaView : {tag:'5.11.0', base: 'no',  section: 'version_5_11_0_MPI', hpc: 'yes'}
-        PERSALYS: 'f386013d'
+        PERSALYS: 'v16.0'
         petsc : {tag : '3.16.0', base: 'no', section: 'version_3_16_0', hpc: 'yes'}
         Pillow : '8.4.0'
         planegcs : '0.18-3cb6890'
