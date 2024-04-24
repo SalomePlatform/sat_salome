@@ -145,19 +145,19 @@ APPLICATION :
         zlib : '1.2.5'
 
         # SALOME MODULES :
-        'CONFIGURATION' : 'bos/41189'
+        'CONFIGURATION'
         'SALOME'
         'SHAPER'
         'SHAPERSTUDY'
         'RESTRICTED'
-        'LIBBATCH' : {tag :'V2_5_0'}
+        'LIBBATCH' : 'V2_5_0'
         'KERNEL'
-        'MEDCOUPLING' : 'master'
-        'GUI' : 'bos/41189'
-        'GEOM' : 'bos/41189'
+        'MEDCOUPLING'
+        'GUI'
+        'GEOM' : 'bos/41189_py39'
         'SMESH'
         'NETGENPLUGIN'
-        'BLSURFPLUGIN' : 'bos/41189'
+        'BLSURFPLUGIN'
         'GHS3DPLUGIN'
         'HYBRIDPLUGIN'
         'HexoticPLUGIN'
@@ -229,9 +229,6 @@ __overwrite__ :
     'APPLICATION.products.snowballstemmer' : '1.9.0'
     'APPLICATION.products.Sphinx' : '2.1.2'
     'APPLICATION.products.statsmodels' : '0.9.0'
-    'APPLICATION.products.GUI' : 'master'
-    'APPLICATION.products.GEOM' : 'master'
-    'APPLICATION.products.BLSURFPLUGIN' : 'master'
   }
   {
     __condition__ : "APPLICATION.debug == 'yes' and APPLICATION.pyver == '3.9'"
@@ -260,9 +257,6 @@ __overwrite__ :
     'APPLICATION.products.setuptools' : '41.0.1'
     'APPLICATION.products.snowballstemmer' : '1.9.0'
     'APPLICATION.products.Sphinx' : '2.1.2'
-    'APPLICATION.products.GUI' : 'master'
-    'APPLICATION.products.GEOM' : 'master'
-    'APPLICATION.products.BLSURFPLUGIN' : 'master'
     'APPLICATION.products.numpy'      : {tag: '1.16.4',  base: 'no', section : 'version_1_16_4_win_dbg'     }
     'APPLICATION.products.Cython'     : {tag: '0.29.12', base: 'no', section : 'version_0_29_12_win_dbg'    }
     'APPLICATION.products.sphinxintl' : {tag: '2.0.0',   base: 'no', section : 'version_2_0_0_win_dbg'      }
