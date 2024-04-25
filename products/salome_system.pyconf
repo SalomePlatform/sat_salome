@@ -98,8 +98,8 @@ default :
         }
         "DB12" :
         {
-            apt : ["libdc1394-25", "libopenexr-3-1-30", "libwebp6", "libgfortran5", "libevent-2.1-7", "libpng16-16", "libgcc",
-                   "libffi7", "libtinfo6", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0", "libjsoncpp25",
+            apt : ["libdc1394-25", "libopenexr-3-1-30", "libwebp7", "libgfortran5", "libevent-2.1-7", "libpng16-16", "libgcc",
+                   "libffi8", "libtinfo6", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0", "libjsoncpp25",
                    "openmpi-bin", "libnetcdf19", "libgdal32", "libtbb12", "python3-setuptools", "libxml++2.6-2v5"]
             apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev",
                        "qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools", "libopenmpi-dev",
