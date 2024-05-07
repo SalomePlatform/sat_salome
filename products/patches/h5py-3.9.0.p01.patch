@@ -1,0 +1,11 @@
+--- h5py-3.9.0_ref/h5py/_errors.pyx	2023-04-26 17:08:31.000000000 +0200
++++ h5py-3.9.0_dev/h5py/_errors.pyx	2024-05-05 14:40:30.886340118 +0200
+@@ -94,7 +94,7 @@
+     H5E_error_t err
+     int n
+ 
+-cdef herr_t walk_cb(unsigned int n, const H5E_error_t *desc, void *e) nogil noexcept:
++cdef herr_t walk_cb(unsigned int n, const H5E_error_t *desc, void *e) nogil:
+ 
+     cdef err_data_t *ee = <err_data_t*>e
+ 

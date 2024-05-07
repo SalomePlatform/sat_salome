@@ -52,7 +52,7 @@ default :
         }
         "FD32" :
         {
-           rpm : ["lz4", "gsl", "openmpi", "netcdf", "gdal", "libxml++"]
+           rpm : ["lz4", "gsl", "openmpi", "netcdf", "python3-netcdf4", "gdal", "libxml++"]
            rpm_dev : ["perl-interpreter", "qt5-devel", "gsl-devel", "openmpi-devel", "netcdf-devel", "protobuf-devel", "python3-protobuf", "texlive-dvipng", "libxml++-devel"]
         }
         "FD34" :
@@ -105,7 +105,7 @@ default :
         {
             apt : ["libdc1394-25", "libopenexr-3-1-30", "libwebp7", "libgfortran5", "libevent-2.1-7", "libpng16-16", "libgcc",
                    "libffi8", "libtinfo6", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0", "libjsoncpp25",
-                   "openmpi-bin", "libnetcdf19", "libgdal32", "libtbb12", "python3-setuptools", "libxml++2.6-2v5"]
+                   "openmpi-bin", "libnetcdf19", "libgdal32", "libtbb12", "python3-setuptools", "libxml++2.6-2v5", "liblzf1"]
             apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev",
                        "qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools", "libopenmpi-dev",
                        "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev", "libnetcdf-dev", "libgdal-dev",
@@ -128,7 +128,7 @@ default :
         {
             apt : ["libdc1394-22", "libopenexr24", "libwebp6", "libgfortran5", "libilmbase24", "libevent-2.1-7", "libpng16-16", "libgcc-9-dev",
                    "libffi7", "libtinfo6", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0", "openmpi-bin", "libgdal26", "libopenblas0-serial", "libtbb2",
-                   "libxml++2.6-2v5"]
+                   "libxml++2.6-2v5", "python3-netcdf4"]
             apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev",
                        "qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools", "libopenmpi-dev",
                        "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev", "libgdal-dev", "dvipng", "libxml++2.6-dev"]

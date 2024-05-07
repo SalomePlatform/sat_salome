@@ -1,0 +1,68 @@
+default :
+{
+    name : "cftime"
+    build_source : "script"
+    compil_script :  'pip_install' + $VARS.scriptExtension
+    get_source : "archive"  
+    patches : []
+    system_info : 
+    {
+        rpm : []
+        rpm_dev : []
+        apt : ['python3-cftime']
+        apt_dev : []
+    }
+    environ :
+    {
+       env_script : "cftime.py"
+    }
+    depend : ['Python','setuptools']
+    opt_depend: []
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+      incremental : "yes"
+      pip : "yes"
+    }
+}
+
+default_win :
+{
+    depend : ['Python', 'setuptools']
+    opt_depend : []
+    properties :
+    {
+      incremental : "yes"
+      pip : "yes"
+    }
+}
+
+version_1_6_3 :
+{
+}
+
+version_1_6_3_no_pip :
+{
+    compil_script: "cftime.sh"
+    properties :
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+}
+
+version_1_6_3_win :
+{
+    compil_script: "cftime-1.6.3.bat"
+    archive_info :
+    {
+      archive_name  : "cftime-1.6.3.tar.gz"
+    }
+    properties :
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+}

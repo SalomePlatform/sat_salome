@@ -1,0 +1,70 @@
+default :
+{
+    name : "rich"
+    build_source : "script"
+    compil_script :  'pip_install' + $VARS.scriptExtension
+    get_source : "archive"
+    patches : []
+    system_info : 
+    {
+        rpm : ['python3-rich']
+        rpm_dev : []
+        apt : ['python3-rich']
+        apt_dev : []
+    }
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : ['Python', 'setuptools', 'Pygments']
+    opt_depend: ['markdown_it_py']
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+      incremental : "yes"
+      pip : "yes"
+    }
+}
+
+version_13_7_1_no_pip:
+{
+    compil_script: "rich-13.7.1"  + $VARS.scriptExtension
+    archive_info :
+    {
+      archive_name  : "rich-13.7.1-x86_64.tar.gz"
+    }
+    properties :
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+}
+
+version_13_7_1 :
+{}
+
+version_13_7_1_win :
+{
+    depend : ['Python', 'numpy', 'hdf5', 'h5py', 'markdown_it_py', 'Pygments']
+    properties :
+    {
+      incremental : "yes"
+      pip : "yes"
+    }
+}
+
+version_12_6_0_no_pip:
+{
+    compil_script: "rich-12.6.0"  + $VARS.scriptExtension
+    archive_info :
+    {
+      archive_name  : "rich-12.6.0-x86_64.tar.gz"
+    }
+    properties :
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+}

@@ -30,7 +30,8 @@ default_win :
 {
     properties :
     {
-      single_install_dir : "yes"
+      single_install_dir : "no"
+      incremental : "yes"
     }
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'pthreads']
     opt_depend : []
@@ -42,6 +43,15 @@ version_4_6_2:
     {
       archive_name  : "netcdf-c-4.6.2.tar.gz"
     }
-    compil_script :  "netcdf-4.6.2.sh"
+    compil_script :  "netcdf-4.6.2" + $VARS.scriptExtension
     patches : ['netcdf-4.6.2-001.patch']
+}
+
+version_4_6_2_win :
+{
+    properties :
+    {
+      single_install_dir : "yes"
+      incremental : "yes"
+    }
 }

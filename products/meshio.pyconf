@@ -1,0 +1,83 @@
+default :
+{
+    name : "meshio"
+    build_source : "script"
+    compil_script: "meshio"  + $VARS.scriptExtension
+    get_source : "archive"
+    patches : []
+    system_info : 
+    {
+        rpm : []
+        rpm_dev : []
+        apt : ['python3-meshio', 'meshio-tools']
+        apt_dev : []
+    }
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : ['Python', 'setuptools', 'numpy', 'h5py', 'rich', 'netCDF4']
+    opt_depend : ['importlib_metadata']
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+      incremental : "yes"
+      pip : "yes"
+      single_install_dir : "no"
+    }
+}
+
+version_5_3_5_no_pip :
+{
+   compil_script: "meshio-5.3.5"  + $VARS.scriptExtension
+   archive_info : {archive_name : "meshio-5.3.5-x86_64.tar.gz"}
+   properties :
+   {
+     incremental : "yes"
+     pip : "no"
+     single_install_dir : "no"
+   }
+}
+
+version_5_3_5 :
+{
+}
+
+version_5_3_5_win :
+{
+   compil_script: "meshio-5.3.5.bat"
+   archive_info : {archive_name : "meshio-5.3.5.tar.gz"}
+   properties :
+   {
+     incremental : "yes"
+     pip : "no"
+     single_install_dir : "no"
+   }
+    depend : ['Python', 'numpy', 'hdf5', 'h5py','rich', 'netCDF4']
+}
+
+version_5_3_4_no_pip :
+{
+   compil_script: "meshio-5.3.4"  + $VARS.scriptExtension
+   archive_info : {archive_name : "meshio-5.3.4-x86_64.tar.gz"}
+   properties :
+   {
+     incremental : "yes"
+     pip : "no"
+     single_install_dir : "no"
+   }
+}
+
+version_4_3_13_no_pip :
+{
+   compil_script: "meshio-4.3.13"  + $VARS.scriptExtension
+   archive_info : {archive_name : "meshio-4.3.13-x86_64.tar.gz"}
+   properties :
+   {
+     incremental : "yes"
+     pip : "no"
+     single_install_dir : "no"
+   }
+}
