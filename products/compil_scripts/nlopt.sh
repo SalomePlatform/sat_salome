@@ -4,6 +4,7 @@ echo "##########################################################################
 echo "nlopt" $VERSION
 echo "##########################################################################"
 
+LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
 
 #
 function version_ge() { test "$(echo "$@" | tr " " "\n" | sort -rV | head -n 1)" == "$1"; }
@@ -37,6 +38,16 @@ then
     echo "ERROR on make install"
     exit 3
 fi
+
+case $LINUX_DISTRIBUTION in
+	CO8*|CO9*)
+		echo "WARNING: move files from lib64 to lib"
+		mv $PRODUCT_INSTALL/lib64/python$PYTHON_VERSION/site-packages/* $PRODUCT_INSTALL/lib/python$PYTHON_VERSION/site-packages/
+		rm -rf  $PRODUCT_INSTALL/lib64/
+		;;
+	*)
+		;;
+esac
 
 echo
 echo "########## END"
