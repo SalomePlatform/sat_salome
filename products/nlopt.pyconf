@@ -6,9 +6,9 @@ default :
     get_source : "archive"
     system_info :
     {
-       rpm     : ["NLopt"]
+       rpm     : ["NLopt","python3-NLopt"]
        rpm_dev : ["NLopt-devel"]
-       apt     : ["libnlopt0","libnlopt-cxx0"]
+       apt     : ["libnlopt0","libnlopt-cxx0","python3-nlopt"]
        apt_dev : ["libnlopt-dev","libnlopt-cxx-dev" ]
     }
     environ :
