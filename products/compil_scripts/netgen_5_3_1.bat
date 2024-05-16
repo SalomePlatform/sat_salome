@@ -70,86 +70,93 @@ echo --------------------------------------------------------------------------
 echo *** Installation into %PRODUCT_INSTALL%
 echo --------------------------------------------------------------------------
 
-robocopy nglib\%PRODUCT_BUILD_TYPE% %PRODUCT_INSTALL%\bin "*.exe" /E /NP /NFL /NDL /NS /NC
-if NOT %ERRORLEVEL% == 1 (
+copy /B /Y nglib\%PRODUCT_BUILD_TYPE%\*.exe %PRODUCT_INSTALL%\bin\
+if NOT %ERRORLEVEL% == 0 (
     echo ERROR on install executables
     exit 3
 )
 
-robocopy nglib\%PRODUCT_BUILD_TYPE% %PRODUCT_INSTALL%\lib "*.lib" "*.dll" /E /NP /NFL /NDL /NS /NC
-if NOT %ERRORLEVEL% == 1 (
-    echo ERROR on install libraries
+copy /B /Y nglib\%PRODUCT_BUILD_TYPE%\*.lib %PRODUCT_INSTALL%\lib\
+if NOT %ERRORLEVEL% == 0 (
+    echo ERROR on install static libraries 
     exit 4
 )
 
-xcopy /q /r /Y %SOURCE_DIR%\libsrc\meshing\*.h* %PRODUCT_INSTALL%\include
+copy /B /Y nglib\%PRODUCT_BUILD_TYPE%\*.dll %PRODUCT_INSTALL%\lib\
+if NOT %ERRORLEVEL% == 0 (
+    echo ERROR on install dynamic libraries
+    exit 4
+)
+
+xcopy /Q /R /Y %SOURCE_DIR%\libsrc\meshing\*.h* %PRODUCT_INSTALL%\include
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on install meshing includes
     exit 5
 )
 
-xcopy /q /r /Y %SOURCE_DIR%\libsrc\gprim\*.h* %PRODUCT_INSTALL%\include
+xcopy /Q /R /Y %SOURCE_DIR%\libsrc\gprim\*.h* %PRODUCT_INSTALL%\include
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on install gprim includes
     exit 6
 )
 
-xcopy /q /r /Y %SOURCE_DIR%\libsrc\general\*.h* %PRODUCT_INSTALL%\include
+xcopy /Q /R /Y %SOURCE_DIR%\libsrc\general\*.h* %PRODUCT_INSTALL%\include
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on install general includes
     exit 7
 )
 
-xcopy /q /r /Y %SOURCE_DIR%\libsrc\linalg\*.h* %PRODUCT_INSTALL%\include
+xcopy /Q /R /Y %SOURCE_DIR%\libsrc\linalg\*.h* %PRODUCT_INSTALL%\include
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on install linalg includes
     exit 8
 )
 
-xcopy /q /r /Y %SOURCE_DIR%\libsrc\occ\*.h* %PRODUCT_INSTALL%\include
+xcopy /Q /R /Y %SOURCE_DIR%\libsrc\occ\*.h* %PRODUCT_INSTALL%\include
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on install occ includes
     exit 9
 )
 
-xcopy /q /r /Y %SOURCE_DIR%\libsrc\include\mydefs.hpp %PRODUCT_INSTALL%\include
+xcopy /Q /R /Y %SOURCE_DIR%\libsrc\include\mydefs.hpp %PRODUCT_INSTALL%\include
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on install mydefs.hpp
     exit 10
 )
-xcopy /q /r /Y %SOURCE_DIR%\libsrc\include\mystdlib.h %PRODUCT_INSTALL%\include
+xcopy /Q /R /Y %SOURCE_DIR%\libsrc\include\mystdlib.h %PRODUCT_INSTALL%\include
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on install mystdlib.h
     exit 11
 )
-xcopy /q /r /Y %SOURCE_DIR%\libsrc\include\nginterface.h %PRODUCT_INSTALL%\include
+xcopy /Q /R /Y %SOURCE_DIR%\libsrc\include\nginterface.h %PRODUCT_INSTALL%\include
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on install nginterface.h
     exit 12
 )
-xcopy /q /r /Y %SOURCE_DIR%\libsrc\include\nginterface_V2.hpp %PRODUCT_INSTALL%\include
+xcopy /Q /R /Y %SOURCE_DIR%\libsrc\include\nginterface_V2.hpp %PRODUCT_INSTALL%\include
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on install nginterface_V2.hpp
     exit 13
 )
 
-xcopy /q /r /Y %SOURCE_DIR%\nglib\nglib.h %PRODUCT_INSTALL%\include
+xcopy /Q /R /Y %SOURCE_DIR%\nglib\nglib.h %PRODUCT_INSTALL%\include
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on install nglib.h
     exit 14
 )
 
-xcopy /q /r /Y %SOURCE_DIR%\libsrc\include\stlgeom.hpp %PRODUCT_INSTALL%\include
+xcopy /Q /R /Y %SOURCE_DIR%\libsrc\stlgeom\*.h* %PRODUCT_INSTALL%\include
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on install stlgeom
     exit 15
 )
 
-robocopy %SOURCE_DIR%\cmake %PRODUCT_INSTALL%\cmake "*.cmake" /E /NP /NFL /NDL /NS /NC
-if NOT %ERRORLEVEL% == 1 (
+xcopy /Q /R /Y %SOURCE_DIR%\cmake\*.cmake %PRODUCT_INSTALL%\cmake
+if NOT %ERRORLEVEL% == 0 (
     echo ERROR on install cmake files
     exit 16
 )
+
 taskkill /F /IM "mspdbsrv.exe"
 
 

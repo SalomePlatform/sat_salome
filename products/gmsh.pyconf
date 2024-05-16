@@ -31,6 +31,30 @@ default_win:
     }
 }
 
+version_4_10_3_with_CAS_7_8:
+{
+  archive_info : {archive_name : "gmsh-4.10.3.tar.gz"}
+  compil_script : "gmsh-4.10.3.sh"
+  depend : ["CAS","lapack","hdf5","medfile", "cgns"]
+  patches : ['gmsh-4.10.3-occt780.patch']
+}
+
+version_4_10_3_with_CAS_7_8_FD38:
+{
+  archive_info : {archive_name : "gmsh-4.10.3.tar.gz"}
+  compil_script : "gmsh-4.10.3.sh"
+  depend : ["CAS","lapack","hdf5","medfile", "cgns"]
+  patches : ["gmsh-4.10.3-gc13-fc38.patch", "gmsh-4.10.3-occt780.patch"]
+}
+
+version_4_10_3_with_CAS_7_8_win:
+{
+  archive_info : {archive_name : "gmsh-4.10.3.tar.gz"}
+  compil_script : "gmsh-4.10.3.bat"
+  depend : ["CAS","lapack","hdf5","medfile", "cgns"]
+  patches : ['gmsh-4.10.3-occt780-win.patch']
+}
+
 version_4_10_3:
 {
   compil_script : "gmsh-4.10.3.sh"

@@ -39,7 +39,7 @@ APPLICATION :
         alabaster : '0.7.6'
         Babel : '2.14.0'
         boost : '1.71.0'
-        CAS : {tag : 'V7_5_3p5', section: 'version_CR753_SALOME_PATCH', base: 'no'}
+        CAS : {tag : 'CR780-SALOME-PATCH', section: 'version_CR780_SALOME_PATCH', base: 'no'}
         catalyst: '2.0'
         C3PO: 'v2.3'
         certifi : '2018.8.24'
@@ -68,7 +68,7 @@ APPLICATION :
         gmp : 'native'
         mpfr : 'native'
         gdal : '2.4.0'
-        gmsh : '4.10.3'
+        gmsh : '4.10.3_with_CAS_7.8'
         graphviz : '2.38.0'
         h5py : '3.11.0'
         hdf5 : '1.10.3'
@@ -92,7 +92,7 @@ APPLICATION :
         meshio : '5.3.5'
         mpi4py: {tag: '3.1.0', base: 'no', section : 'version_3_1_0_no_pip'}
         metis : '5.1.0'
-        netgen : '5.3.1_with_CAS_7.2'
+        netgen : '5.3.1_with_CAS_7.8'
         # comment out line above and uncomment the line below to use Netgen 6.
         #netgen : '6.2.2101'
         netcdf : '4.6.2'

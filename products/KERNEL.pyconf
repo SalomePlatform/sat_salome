@@ -30,7 +30,8 @@ default :
               "Pygments",
               "pytz",
               "LIBBATCH",
-              "psutil"
+              "psutil",
+              "CAS"
               ]
     build_depend : ["cmake", "swig", "doxygen", "cppunit"]
     opt_depend : ["SALOMEBOOTSTRAP"]
@@ -65,7 +66,8 @@ default_win :
               "pytz",
               "LIBBATCH",
               "graphviz",
-              "psutil"
+              "psutil",
+              "CAS"
               ]
     build_depend : ["cmake", "swig", "doxygen", "cppunit"]
     opt_depend : ["SALOMEBOOTSTRAP"]

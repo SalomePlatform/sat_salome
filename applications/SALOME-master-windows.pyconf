@@ -42,7 +42,7 @@ APPLICATION :
         alabaster : '0.7.16'
         Babel : '2.7.0'
         boost : '1.67.0'
-        CAS : {tag : 'V7_5_3p5', section: 'version_CR753_SALOME_PATCH_win', base: 'no'}
+        CAS : {tag:'CR780-SALOME-PATCH', section:'version_CR780_SALOME_PATCH_win', base: 'no'}
         certifi : '2019.6.16'
         cftime : '1.6.3'
         cgns : '4.2.0'
@@ -66,7 +66,7 @@ APPLICATION :
         FMILibrary : '2.0.3'
         freeimage : '3.18.0'
         freetype : '2.9.1'
-        gmsh : '4.10.3'
+        gmsh : '4.10.3_with_CAS_7.8'
         graphviz : '2.44.1'
         hdf5 : '1.10.3'
         h5py : '3.11.0'
@@ -92,7 +92,7 @@ APPLICATION :
         msvc : '2017'
         netcdf : '4.6.2'
         netCDF4: '1.6.5'
-        netgen : '5.3.1_with_CAS_7.2'
+        netgen : {tag:'5.3.1', base: 'no',  section: 'version_5_3_1_with_CAS_7_8_win'}
         # comment out line above and uncomment the line below to use Netgen 6.
         #netgen : '6.2.2101'
         nlopt : '2.5.0'
@@ -162,7 +162,7 @@ APPLICATION :
         'KERNEL'
         'MEDCOUPLING'
         'GUI'
-        'GEOM' : 'bos/41189_py39'
+        'GEOM'
         'SMESH'
         'NETGENPLUGIN'
         'BLSURFPLUGIN'

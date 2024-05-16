@@ -1,0 +1,70 @@
+diff --git a/configure.ac b/configure.ac
+index 6db9de0..1c597c9 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -43,7 +43,7 @@ AC_ARG_WITH([occ],
+ if test a$occon = atrue ; then
+ 
+ 	AC_SUBST([OCCFLAGS], ["-DOCCGEOMETRY -I$occdir/include/opencascade"])
+-	AC_SUBST([OCCLIBS], ["-L$occdir/lib -lTKernel -lTKGeomBase -lTKMath -lTKG2d -lTKG3d -lTKXSBase -lTKOffset -lTKFillet -lTKShHealing -lTKMesh -lTKMeshVS -lTKTopAlgo -lTKGeomAlgo -lTKBool -lTKPrim -lTKBO -lTKIGES -lTKBRep -lTKSTEPBase -lTKSTEP -lTKSTL -lTKSTEPAttr -lTKSTEP209 -lTKXDESTEP -lTKXDEIGES -lTKXCAF -lTKLCAF"])
++	AC_SUBST([OCCLIBS], ["-L$occdir/lib -lTKernel -lTKGeomBase -lTKMath -lTKG2d -lTKG3d -lTKXSBase -lTKOffset -lTKFillet -lTKShHealing -lTKMesh -lTKMeshVS -lTKTopAlgo -lTKGeomAlgo -lTKBool -lTKPrim -lTKBO -lTKBRep -lTKXCAF -lTKLCAF -lTKDEIGES -lTKDESTEP -lTKDESTL"])
+ 
+ #  -lTKDCAF
+ 
+diff --git a/libsrc/occ/occgenmesh.cpp b/libsrc/occ/occgenmesh.cpp
+index 5026536..8074ca6 100644
+--- a/libsrc/occ/occgenmesh.cpp
++++ b/libsrc/occ/occgenmesh.cpp
+@@ -1242,9 +1242,9 @@ namespace netgen
+ 
+                for (int k = 1; k <=3; k++)
+                {
+-                  int n = triangulation->Triangles()(j)(k);
+-                  p[k-1] = triangulation->Nodes()(n).Transformed(loc);
+-                  par[k-1] = triangulation->UVNodes()(n);
++                  int n = triangulation->Triangle(j)(k);
++                  p[k - 1] = triangulation->Node(n).Transformed(loc);
++                  par[k - 1] = triangulation->UVNode(n);
+                }
+ 
+                //double maxside = 0;
+diff --git a/libsrc/occ/vsocc.cpp b/libsrc/occ/vsocc.cpp
+index 4d80600..74a85ae 100644
+--- a/libsrc/occ/vsocc.cpp
++++ b/libsrc/occ/vsocc.cpp
+@@ -463,7 +463,7 @@ namespace netgen
+          glBegin (GL_LINE_STRIP);
+          for (int j = 1; j <= nbnodes; j++)
+          {
+-            gp_Pnt p = (T -> Nodes())(aEdgePoly->Nodes()(j)).Transformed(aEdgeLoc);
++            gp_Pnt p = T -> Node(aEdgePoly->Nodes()(j)).Transformed(aEdgeLoc);
+             glVertex3f (p.X(), p.Y(), p.Z());
+          }
+          glEnd ();
+@@ -510,7 +510,7 @@ namespace netgen
+          glBegin (GL_LINE_STRIP);
+          for (int j = 1; j <= nbnodes; j++)
+          {
+-            gp_Pnt p = (T -> Nodes())(aEdgePoly->Nodes()(j)).Transformed(aEdgeLoc);
++            gp_Pnt p = T -> Node(aEdgePoly->Nodes()(j)).Transformed(aEdgeLoc);
+             glVertex3f (p.X(), p.Y(), p.Z());
+          }
+          glEnd ();
+@@ -586,14 +586,14 @@ namespace netgen
+          int ntriangles = triangulation -> NbTriangles();
+          for (int j = 1; j <= ntriangles; j++)
+          {
+-            Poly_Triangle triangle = (triangulation -> Triangles())(j);
++            Poly_Triangle triangle = triangulation -> Triangle(j);
+             gp_Pnt p[3];
+             for (int k = 1; k <= 3; k++)
+-            p[k-1] = (triangulation -> Nodes())(triangle(k)).Transformed(loc);
++            p[k-1] = triangulation -> Node(triangle(k)).Transformed(loc);
+ 
+             for (int k = 1; k <= 3; k++)
+             {
+-               uv = (triangulation -> UVNodes())(triangle(k));
++               uv = triangulation -> UVNode(triangle(k));
+                prop.SetParameters (uv.X(), uv.Y());
+ 
+                //	      surf->D0 (uv.X(), uv.Y(), pnt);

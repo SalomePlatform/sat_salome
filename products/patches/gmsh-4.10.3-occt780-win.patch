@@ -1,0 +1,22 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 8f99dfe..8955a1f 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -1264,7 +1264,7 @@ if(ENABLE_OCC)
+   elseif(OCC_INC)
+     set(OCC_LIBS_REQUIRED
+ 	# subset of DataExchange
+-      	TKSTEP TKSTEP209 TKSTEPAttr TKSTEPBase TKIGES TKXSBase
++      	TKDESTEP TKDEIGES TKXSBase
+       	# ModelingAlgorithms
+       	TKOffset TKFeat TKFillet TKBool TKMesh TKHLR TKBO TKPrim TKShHealing
+       	TKTopAlgo TKGeomAlgo
+@@ -1304,7 +1304,7 @@ if(ENABLE_OCC)
+     find_package(Freetype)
+     if(FREETYPE_FOUND)
+       set(OCC_CAF_LIBS_REQUIRED
+-          TKXDESTEP TKXDEIGES TKXCAF TKLCAF TKVCAF TKCAF TKV3d TKService TKCDF)
++          TKXCAF TKLCAF TKVCAF TKCAF TKV3d TKService TKCDF)
+       list(LENGTH OCC_CAF_LIBS_REQUIRED NUM_OCC_CAF_LIBS_REQUIRED)
+       set(OCC_CAF_LIBS)
+       foreach(OCC ${OCC_CAF_LIBS_REQUIRED})
