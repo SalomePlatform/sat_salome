@@ -16,7 +16,7 @@ default :
     {
        env_script : "cftime.py"
     }
-    depend : ['Python','setuptools']
+    depend : ['Python','setuptools','numpy']
     opt_depend: []
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
@@ -30,8 +30,6 @@ default :
 
 default_win :
 {
-    depend : ['Python', 'setuptools']
-    opt_depend : []
     properties :
     {
       incremental : "yes"
