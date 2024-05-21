@@ -50,7 +50,7 @@ default :
 
 default_win :
 {
-    cmake_options :   " -DNO_SolveSpace=TRUE  -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR:\=/%/bin/swig.exe " 
+    cmake_options : " -DNO_SolveSpace=TRUE -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR:\=/%/bin/swig.exe -DADD_COMPATIBILITY_TESTS=ON -DADD_MODELS_TESTS=ON -DADD_HDF_TESTS=ON"
 }
 
 version_V9_12_0_DB12 :
