@@ -1,0 +1,30 @@
+diff --git a/myMmgPlugDialog.py b/myMmgPlugDialog.py
+index e03a576..4418d15 100644
+--- a/myMmgPlugDialog.py
++++ b/myMmgPlugDialog.py
+@@ -25,6 +25,7 @@ import os, subprocess
+ import tempfile
+ import re
+ import sys
++import platform
+ from mmgplugin.MyPlugDialog_ui import Ui_MyPlugDialog
+ from mmgplugin.myViewText import MyViewText
+ from qtsalome import *
+@@ -608,13 +609,13 @@ Default Values' button.
+     self.commande=""
+     selected_index = self.COB_Remesher.currentIndex()
+     if selected_index == REMESHER_DICT['MMGS']:
+-      self.commande = "mmgs_O3"
++        self.commande = "mmgs_O3" if platform.system() != "Windows" else  "mmgs.exe"
+     elif selected_index == REMESHER_DICT['MMG2D']:
+-      self.commande = "mmg2d_O3"
++      self.commande = "mmg2d_O3" if platform.system() != "Windows" else  "mmg2d.exe"
+     elif selected_index == REMESHER_DICT['MMG3D']:
+-      self.commande = "mmg3d_O3"
++      self.commande = "mmg3d_O3" if platform.system() != "Windows" else  "mmg3d.exe"
+     else:
+-      self.commande = "mmgs_O3"
++      self.commande = "mmgs_O3" if platform.system() != "Windows" else  "mmgs.exe"
+ 
+     deb=os.path.splitext(self.fichierIn)
+     self.fichierOut=deb[0] + "_output.mesh"

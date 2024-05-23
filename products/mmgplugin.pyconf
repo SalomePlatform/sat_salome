@@ -1,0 +1,49 @@
+default :
+{
+    name : "mmgplugin"
+    build_source : "cmake"
+    cmake_options : ""
+    get_source : "git"
+    git_info:
+    {
+      repositories :
+      {
+        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "mmgplugin.git"
+      }
+    }
+    patches : []
+    system_info : 
+    {
+        rpm : []
+        rpm_dev : []
+        apt : []
+        apt_dev : []
+    }
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : ["SMESH",
+              "mmg",
+              "PyQt",
+              "Python",
+              "numpy"
+             ]
+    build_depend : ["cmake", "cppunit"]
+    opt_depend : []
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+      incremental : "yes"
+      single_install_dir : "no"
+    }
+}
+
+version_4ea7299:
+{
+  get_source : "archive"
+  archive_info: {archive_name: 'mmgplugin-4ea7299.tar.gz'}
+  patches : ['mmgplugin-4ea7299-p01_windows.patch']
+}

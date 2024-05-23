@@ -66,6 +66,8 @@ APPLICATION :
         gcc  :  '8.5.0'
         mpc : 'native'
         gmp : 'native'
+        mmg : '5.6.0'
+        mmgplugin: '4ea7299'
         mpfr : 'native'
         gdal : '2.4.0'
         gmsh : '4.10.3_with_CAS_7.8'
