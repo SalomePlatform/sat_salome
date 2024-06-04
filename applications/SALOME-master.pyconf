@@ -67,7 +67,7 @@ APPLICATION :
         mpc : 'native'
         gmp : 'native'
         mmg : '5.6.0'
-        mmgplugin: '4ea7299'
+        mmgplugin: 'main'
         mpfr : 'native'
         gdal : '2.4.0'
         gmsh : '4.10.3_with_CAS_7.8'
