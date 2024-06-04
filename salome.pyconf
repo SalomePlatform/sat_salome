@@ -20,7 +20,8 @@ git_info :
   git_server :
   {
       tuleap : {url : "https://codev-tuleap.cea.fr/plugins/git/", opensource_only: 'no' }
-      github : {url : "git@github.com:SalomePlatform/",           opensource_only: 'yes'}
+      #github : {url : "git@github.com:SalomePlatform/",           opensource_only: 'yes'}
+      github : {url : "https://github.com/SalomePlatform/",       opensource_only: 'yes'}
       gitpub : {url : "https://git.salome-platform.org/gitpub/",  opensource_only: 'yes'}
   }
   # these two keys are deprecated - they are kept for backward compatibility only and
