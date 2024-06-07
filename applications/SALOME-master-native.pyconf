@@ -258,8 +258,8 @@ __overwrite__ :
         'APPLICATION.products.cminpack' : 'native'
         'APPLICATION.products.hdf5'     : 'native'
         'APPLICATION.products.PyFMI'    : {tag:'2.6',     base: 'no',  section: 'version_2_6_no_pip'                 }
-        'APPLICATION.products.qt'       : '5.12.10'
-        'APPLICATION.products.qwt'      : '6.1.2'
+        'APPLICATION.products.qt'       : '5.15.2'
+        'APPLICATION.products.qwt'      : '6.1.6'
         'APPLICATION.products.PyQt'     : '5.15.3'
         'APPLICATION.products.sip'      : '5.5.0'
         'APPLICATION.products.ParaView' : {tag: '5.11.0', base: 'no',  section: 'version_5_11_0_MPI_DB10', hpc: 'yes'}
@@ -324,14 +324,14 @@ __overwrite__ :
          __condition__ : "VARS.dist in ['CO9']"
          'APPLICATION.products.nlopt'            : '2.4.2'
          'APPLICATION.products.cminpack'         : '1.3.6'
-         'APPLICATION.products.qwt'              : '6.1.2'
+         'APPLICATION.products.qwt'              : '6.1.6'
          'APPLICATION.products.PyQt'             : '5.15.3'
          'APPLICATION.products.swig'             : '4.0.2'
          'APPLICATION.products.opencv'           : '3.2.0'
          'APPLICATION.products.openmpi'          : '4.1.5'
          'APPLICATION.products.sip'              : '5.5.0'
          'APPLICATION.products.root'             : {tag: '6.22.02', base: 'no', section: 'version_6_22_02_CO9'               }
-         'APPLICATION.products.qt'               : {tag: '5.12.10', base: 'no', section: 'version_5_12_10_CO9'               }
+         'APPLICATION.products.qt'               : '5.15.2'
          'APPLICATION.products.mdurl'            : {tag: '0.1.2',   base: 'no', section: 'version_0_1_2_no_pip'              }
          'APPLICATION.products.markdown_it_py'   : {tag: '3.0.0',   base: 'no', section: 'version_3_0_0_no_pip'              }
          'APPLICATION.products.rich'             : {tag: '13.7.1',  base: 'no', section: 'version_13_7_1_no_pip'             }
@@ -349,7 +349,8 @@ __overwrite__ :
     {
         __condition__ : "VARS.dist in ['FD32']"
         'APPLICATION.products.opencv'           : '3.2.0'
-        'APPLICATION.products.qwt'              : '6.1.4'
+        'APPLICATION.products.qt'               : '5.15.2'
+        'APPLICATION.products.qwt'              : '6.1.6'
         'APPLICATION.products.PyFMI'            : {tag: '2.6',    base: 'no', section: 'version_2_6_no_pip'   }
         'APPLICATION.products.Sphinx'           : {tag: '1.7.6',  base: 'no', section: 'version_1_7_6_no_pip' }
         'APPLICATION.products.gdal'             : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_FD32'   } # spns #29324
