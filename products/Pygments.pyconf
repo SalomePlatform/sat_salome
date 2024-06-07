@@ -32,3 +32,8 @@ default_win :
    compil_script :  'pip_install_whl' + $VARS.scriptExtension
    archive_info : {archive_name : "Pygments-" + $APPLICATION.products.Pygments + "_windows.tar.gz"}
 }
+
+version_1_0_0_to_2_16_1 :
+{
+    archive_info : {archive_prefix : "Pygments"}
+}
