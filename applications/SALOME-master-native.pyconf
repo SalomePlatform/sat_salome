@@ -351,6 +351,8 @@ __overwrite__ :
         'APPLICATION.products.opencv'           : '3.2.0'
         'APPLICATION.products.qt'               : '5.15.2'
         'APPLICATION.products.qwt'              : '6.1.6'
+        'APPLICATION.products.PyQt'             : '5.15.3'
+        'APPLICATION.products.sip'              : '5.5.0'
         'APPLICATION.products.PyFMI'            : {tag: '2.6',    base: 'no', section: 'version_2_6_no_pip'   }
         'APPLICATION.products.Sphinx'           : {tag: '1.7.6',  base: 'no', section: 'version_1_7_6_no_pip' }
         'APPLICATION.products.gdal'             : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_FD32'   } # spns #29324
