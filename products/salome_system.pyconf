@@ -44,7 +44,7 @@ default :
             rpm : ["lz4", "openmpi", "gsl", "libgeotiff", "giflib", "geos", "sqlite", "netcdf", "libxml++"]
             rpm_dev : ["perl-interpreter", "qt5-devel", "openmpi-devel", "gsl-devel", "libpng-devel", "libtiff-devel", "libgeotiff-devel", "giflib-devel", "geos-devel", "netcdf-devel", "texlive-dvipng",
                        "libxml++-devel", "xcb-util-cursor-devel", "xcb-util-image-devel", "xcb-util-keysyms-devel", "xcb-util-renderutil-devel", "xcb-util-wm-devel",
-                       "libXrender-devel", "libxkbcommon-devel", "libxkbcommon-x11-devel", "libXi-devel", "libXcursor-devel"] # libdrm-devel libXcomposite-devel xcb-util-xrm-devel
+                       "libXrender-devel", "libxkbcommon-devel", "libxkbcommon-x11-devel", "libXi-devel", "libXcursor-devel", "libXcomposite-devel"] # libdrm-devel xcb-util-xrm-devel
         }
         "FD30" :
         {
