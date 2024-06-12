@@ -6,7 +6,7 @@ APPLICATION :
     name : 'SALOME-master'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name
     cmake_generator : 'Visual Studio 15 2017'
-    cmake_build_mode: 'Release' # Debug, RelWithDebInfo, Release, MinSizeRel
+    cmake_build_type: 'Release' # Debug, RelWithDebInfo, Release, MinSizeRel
     tag : 'master'
     dev : 'no'
     verbose : 'no'
