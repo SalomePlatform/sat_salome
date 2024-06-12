@@ -1,0 +1,14 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 282f4219e..dc84fb297 100755
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -92,6 +92,9 @@ FIND_PACKAGE(SalomeBoost REQUIRED)
+ 
+ # Optional prerequisites
+ # ======================
++IF(WIN32 AND MSVC_VERSION AND MSVC_VERSION VERSION_GREATER_EQUAL 1920)
++  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DHAVE_STRUCT_TIMESPEC")
++ENDIF()
+ 
+ IF(NOT SALOME_LIGHT_ONLY)
+   FIND_PACKAGE(SalomeOmniORB REQUIRED)

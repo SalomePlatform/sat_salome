@@ -9,10 +9,12 @@ IF NOT DEFINED SAT_DEBUG (
 )
 
 SET PRODUCT_BUILD_TYPE=Release
-REM TODO: NGH: not Tested yet
-REM if %SAT_DEBUG% == 1 (
-REM   set PRODUCT_BUILD_TYPE=Debug
-REM )
+IF DEFINED SAT_CMAKE_BUILD_TYPE (
+  SET PRODUCT_BUILD_TYPE=%SAT_CMAKE_BUILD_TYPE%
+)
+if %SAT_DEBUG% == 1 (
+  set PRODUCT_BUILD_TYPE=Debug
+)
 
 if NOT exist "%PRODUCT_INSTALL%" mkdir %PRODUCT_INSTALL%
 REM clean BUILD directory
@@ -40,9 +42,9 @@ set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_Fortran_COMPILER=%MINGW_ROOT_DIR:\=/%/
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_EXE_LINKER_FLAGS="-Wl,--allow-multiple-definition"
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_SH="CMAKE_SH-NOTFOUND"
 if defined CMAKE_GENERATOR (
-    set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_GENERATOR=%CMAKE_GENERATOR%
+  set CMAKE_OPTIONS=%CMAKE_OPTIONS% -G %CMAKE_GENERATOR% -A x64
 ) else (
-    set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_GENERATOR="MinGW Makefiles"
+  set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_GENERATOR="MinGW Makefiles"
 )
 set MSBUILDDISABLENODEREUSE=1
 
@@ -55,13 +57,13 @@ if NOT %ERRORLEVEL% == 0 (
 )
 echo.
 echo *********************************************************************
-echo *** mingw32-make"
+echo *** mingw32-make
 echo *********************************************************************
 echo.
 
 mingw32-make
 if NOT %ERRORLEVEL% == 0 (
-    echo ERROR on msbuild ALL_BUILD.vcxproj
+    echo ERROR on mingw
     exit 2
 )
 
@@ -72,7 +74,7 @@ echo *********************************************************************
 echo.
 mingw32-make install
 if NOT %ERRORLEVEL% == 0 (
-    echo ERROR on msbuild INSTALL.vcxproj
+    echo ERROR on mingw
     exit 3
 )
 

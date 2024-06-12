@@ -5,7 +5,7 @@ APPLICATION :
 {
     name : 'MEDCOUPLING-9.8.0'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name
-    cmake_generator : 'Visual Studio 15 2017 Win64'
+    cmake_generator : 'Visual Studio 15 2017'
     tag : 'V9_8_0'
     debug : 'no'
     base : 'no'
@@ -17,7 +17,7 @@ APPLICATION :
             CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
             SALOME_HAS_GLOBAL_ENV: "1"
             SALOME_USE_64BIT_IDS : '1'
-            CMAKE_GENERATOR : '"Visual Studio 15 2017 Win64"' # strangely not exposed in scripts...
+            CMAKE_GENERATOR : '"Visual Studio 15 2017"' # strangely not exposed in scripts...
         }
         launch :
         {

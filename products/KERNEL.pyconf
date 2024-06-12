@@ -313,6 +313,42 @@ ALAMOS_SALOME_9_win :
     }
 }
 
+version_ALAMOS_SALOME_9_10_0_win :
+{
+    name : "KERNEL"
+    build_source : "cmake"
+    cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR:\=/%/bin/swig.exe"
+    depend : ["Python",
+              "boost",
+              "numpy",
+              "lapack",
+              "hdf5",
+              "omniORB",
+              "omniORBpy",
+              "docutils",
+              "graphviz",
+              "libxml2",
+              "Sphinx",
+              "sphinxintl",
+              "Jinja2",
+              "setuptools",
+              "Pygments",
+              "pytz",
+              "pthreads"
+            ]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+    get_source : "git"
+    git_info:
+    {
+        repo : $PROJECTS.projects.salome.git_info.default_git_server + "modules/kernel.git"
+        repo_dev : $PROJECTS.projects.salome.git_info.default_git_server_dev + "kernel.git"
+    }
+    environ :
+    {
+    }
+    patches: ['KERNEL-9.10.0-visual-2019.patch']
+}
+
 # this section is equivalent with version_7_8_0_to_8_4_0, without LIBBATCH
 ALAMOS :
 {

@@ -1,0 +1,69 @@
+diff --git a/src/Config/Config_PropManager.cpp b/src/Config/Config_PropManager.cpp
+index ba5d65b34..c57654d3e 100644
+--- a/src/Config/Config_PropManager.cpp
++++ b/src/Config/Config_PropManager.cpp
+@@ -18,7 +18,9 @@
+ //
+ 
+ #include "Config_PropManager.h"
+-
++#if defined(WIN32)
++  #include <locale.h>
++#endif
+ bool Config_PropManager::autoColorStatus = false;
+ 
+ std::vector<int> stringToRGB(const std::string& theColor);
+diff --git a/src/GeomAPI/GeomAPI_Shape.h b/src/GeomAPI/GeomAPI_Shape.h
+index 2997fd602..a76d4c61f 100644
+--- a/src/GeomAPI/GeomAPI_Shape.h
++++ b/src/GeomAPI/GeomAPI_Shape.h
+@@ -25,6 +25,7 @@
+ #include <GeomAPI_Interface.h>
+ #include <memory>
+ #include <list>
++#include<string>
+ 
+ class GeomAPI_Pnt;
+ class GeomAPI_Vertex;
+diff --git a/src/InitializationPlugin/InitializationPlugin_EvalListener.h b/src/InitializationPlugin/InitializationPlugin_EvalListener.h
+index f9c160656..d01406b99 100644
+--- a/src/InitializationPlugin/InitializationPlugin_EvalListener.h
++++ b/src/InitializationPlugin/InitializationPlugin_EvalListener.h
+@@ -22,7 +22,7 @@
+ 
+ #include <InitializationPlugin.h>
+ #include <Events_Loop.h>
+-
++#include <string>
+ class ModelAPI_Attribute;
+ class ModelAPI_Document;
+ class ModelAPI_Feature;
+diff --git a/src/ModelAPI/ModelAPI_IReentrant.h b/src/ModelAPI/ModelAPI_IReentrant.h
+index a71da9bbe..ae936c948 100644
+--- a/src/ModelAPI/ModelAPI_IReentrant.h
++++ b/src/ModelAPI/ModelAPI_IReentrant.h
+@@ -22,9 +22,11 @@
+ 
+ #include "ModelAPI.h"
+ 
++#include <string>
+ #include <vector>
+ #include <memory>
+ 
++
+ class Events_Message;
+ 
+ /** \class ModelAPI_IReentrant
+diff --git a/src/ParametersPlugin/ParametersPlugin_EvalListener.h b/src/ParametersPlugin/ParametersPlugin_EvalListener.h
+index ba1c4faca..e904e7cc4 100644
+--- a/src/ParametersPlugin/ParametersPlugin_EvalListener.h
++++ b/src/ParametersPlugin/ParametersPlugin_EvalListener.h
+@@ -19,7 +19,7 @@
+ 
+ #ifndef SRC_PARAMETERSPLUGIN_EVALLISTENER_H_
+ #define SRC_PARAMETERSPLUGIN_EVALLISTENER_H_
+-
++#include <string>
+ #include <ParametersPlugin.h>
+ #include <Events_Loop.h>
+ 

@@ -9,10 +9,14 @@ IF NOT DEFINED SAT_DEBUG (
 )
 
 IF NOT DEFINED CMAKE_GENERATOR (
-  SET CMAKE_GENERATOR="Visual Studio 15 2017 Win64"
+  SET CMAKE_GENERATOR="Visual Studio 15 2017"
 )
 
 SET PRODUCT_BUILD_TYPE=Release
+IF DEFINED SAT_CMAKE_BUILD_TYPE (
+  SET PRODUCT_BUILD_TYPE=%SAT_CMAKE_BUILD_TYPE%
+)
+
 if %SAT_DEBUG% == 1 (
   set PRODUCT_BUILD_TYPE=Debug
 )
@@ -28,7 +32,7 @@ SET CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_INSTALL_PREFIX:STRING=%PRODUCT_INSTALL
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_BUILD_TYPE:STRING=%PRODUCT_BUILD_TYPE%
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DOpenBLAS_DIR=%OpenBLAS_DIR:\=/%
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DFMILIB_GENERATE_DOXYGEN_DOC=OFF
-set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_GENERATOR=%CMAKE_GENERATOR%
+set CMAKE_OPTIONS=%CMAKE_OPTIONS% -G %CMAKE_GENERATOR% -A x64
 
 cd %BUILD_DIR%
 
@@ -48,7 +52,7 @@ sed -i 's/Shlwapi.lib/ /g' fmilib.vcxproj
 
 echo.
 echo --------------------------------------------------------------------------
-echo *** msbuild %MAKE_OPTIONS% /p:Configuration=Release ALL_BUILD.vcxproj
+echo *** msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% ALL_BUILD.vcxproj
 echo --------------------------------------------------------------------------
 
 msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64 ALL_BUILD.vcxproj

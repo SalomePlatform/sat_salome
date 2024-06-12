@@ -79,6 +79,37 @@ default_win :
              ]
 }
 
+version_V9_10_0:
+{
+}
+
+version_V9_10_0_win :
+{
+    cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR:\=/%/bin/swig.exe -DSALOME_GEOM_USE_OPENCV=ON -DOPENCV_ROOT_DIR=%OPENCV_ROOT_DIR:\=/% -DOpenCV_INCLUDE_DIRS=%OpenCV_INCLUDE_DIRS:\=/% "
+    depend : ["KERNEL",
+              "GUI",
+              "boost",
+              "CAS",
+              "Python",
+              "hdf5",
+              "omniORB",
+              "qt",
+              "ParaView",
+              "docutils",
+              "Sphinx",
+              "Jinja2",
+              "setuptools",
+              "Pygments",
+              "opencv",
+              "six",
+              "pytz",
+              "psutil",
+              "sphinxintl"
+             ]
+    patches : ['GEOM-9.10.0-visual-2019.patch']
+    nb_proc : 1
+}
+
 version_V9_4_0_to_V9_6_0 :
 {
     depend : ["KERNEL",

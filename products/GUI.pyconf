@@ -76,6 +76,16 @@ default_win :
 
 }
 
+version_V9_10_0:
+{
+  patches: []
+}
+
+version_V9_10_0_win:
+{
+  patches: ["GUI-9.10.0-cmath-visual-2019.patch"]
+}
+
 version_V9_5_0:
 {
     cmake_options : "-DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig"

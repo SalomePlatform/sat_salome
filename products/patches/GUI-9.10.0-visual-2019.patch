@@ -1,0 +1,130 @@
+diff --git a/src/LightApp/LightApp_Application.cxx b/src/LightApp/LightApp_Application.cxx
+index 718efbd13..8ed49c997 100644
+--- a/src/LightApp/LightApp_Application.cxx
++++ b/src/LightApp/LightApp_Application.cxx
+@@ -30,6 +30,7 @@
+ // E.A. : some same symbols : acosh, asinh, ...
+   #include <Standard_math.hxx>
+   #ifndef DISABLE_PYCONSOLE
++    #include <Python.h>
+     #include <pymath.h>
+   #endif
+ #endif
+diff --git a/src/Qtx/QtxRubberBand.cxx b/src/Qtx/QtxRubberBand.cxx
+index 68908bd00..f078aa0c6 100644
+--- a/src/Qtx/QtxRubberBand.cxx
++++ b/src/Qtx/QtxRubberBand.cxx
+@@ -29,9 +29,11 @@
+ #include <QPalette>
+ #include <QShowEvent>
+ #include <QVectorIterator>
+-
+-#include <math.h>
+-
++#if defined(_MSC_VER) && _MSC_VER >= 1920
++ #include <cmath>
++#else
++ #include <math.h>
++#endif
+ /*!
+   \class QtxAbstractRubberBand
+   \brief Analog of class QRubberBand with possibility of creation non-rectangular contour for selection.
+diff --git a/src/SALOME_PY/SalomePy.cxx b/src/SALOME_PY/SalomePy.cxx
+index bcdd520f1..bb648866d 100644
+--- a/src/SALOME_PY/SalomePy.cxx
++++ b/src/SALOME_PY/SalomePy.cxx
+@@ -25,11 +25,9 @@
+ //  Author : Paul RASCLE, EDF
+ //
+ #ifdef WIN32
+-// E.A. : On windows with python 2.6, there is a conflict
+-// E.A. : between pymath.h and Standard_math.h which define
+-// E.A. : some same symbols : acosh, asinh, ...
+-#include <Standard_math.hxx>
+-#include <pymath.h>
++  #include <Standard_math.hxx>
++  #include <Python.h>
++  #include <pymath.h>
+ #endif
+ 
+ #include <Python.h>
+diff --git a/src/SALOME_PYQT/SalomePyQt/SalomePyQt.cxx b/src/SALOME_PYQT/SalomePyQt/SalomePyQt.cxx
+index eea242463..f71ba517f 100644
+--- a/src/SALOME_PYQT/SalomePyQt/SalomePyQt.cxx
++++ b/src/SALOME_PYQT/SalomePyQt/SalomePyQt.cxx
+@@ -24,11 +24,9 @@
+ // Author : Vadim SANDLER, Open CASCADE S.A.S. (vadim.sandler@opencascade.com)
+ 
+ #ifdef WIN32
+-// E.A. : On windows with python 2.6, there is a conflict
+-// E.A. : between pymath.h and Standard_math.h which define
+-// E.A. : some same symbols : acosh, asinh, ...
+-#include <Standard_math.hxx>
+-#include <pymath.h>
++  #include <Standard_math.hxx>
++  #include <Python.h>
++  #include <pymath.h>
+ #endif
+ 
+ #include "SALOME_PYQT_ModuleLight.h" // this include must be first!!!
+diff --git a/src/SUIT/SUIT_DataObjectKey.cxx b/src/SUIT/SUIT_DataObjectKey.cxx
+index a68031b2b..5c53249cf 100644
+--- a/src/SUIT/SUIT_DataObjectKey.cxx
++++ b/src/SUIT/SUIT_DataObjectKey.cxx
+@@ -25,10 +25,14 @@
+ #include <string.h>
+ 
+ #ifndef WIN32
+-#include <typeinfo>
+-#define _typeinfo std::type_info
++  #include <typeinfo>
++  #define _typeinfo std::type_info
+ #else
+-#include <typeinfo.h>
++  #if defined(_MSC_VER) && _MSC_VER >= 1920
++    #include <typeinfo>
++  #else
++    #include <typeinfo.h>
++  #endif
+ #define _typeinfo type_info
+ #endif
+ 
+diff --git a/src/SUIT/SUIT_DataOwner.cxx b/src/SUIT/SUIT_DataOwner.cxx
+index 31fa5f047..a0c643d99 100644
+--- a/src/SUIT/SUIT_DataOwner.cxx
++++ b/src/SUIT/SUIT_DataOwner.cxx
+@@ -23,10 +23,14 @@
+ #include "SUIT_DataOwner.h"
+ 
+ #ifndef WIN32
+-#include <typeinfo>
+-#define _typeinfo std::type_info
++  #include <typeinfo>
++  #define _typeinfo std::type_info
+ #else
+-#include <typeinfo.h>
++  #if defined(_MSC_VER) && _MSC_VER >= 1920
++    #include <typeinfo>
++  #else
++    #include <typeinfo.h>
++  #endif
+ #define _typeinfo type_info
+ #endif
+ 
+diff --git a/src/SalomeApp/SalomeApp_Application.cxx b/src/SalomeApp/SalomeApp_Application.cxx
+index 1e9492add..06ec03c08 100644
+--- a/src/SalomeApp/SalomeApp_Application.cxx
++++ b/src/SalomeApp/SalomeApp_Application.cxx
+@@ -25,11 +25,9 @@
+ // Author:    Sergey LITONIN
+ 
+ #ifdef WIN32
+-  // E.A. : On windows with python 2.6, there is a conflict
+-  // E.A. : between pymath.h and Standard_math.h which define
+-  // E.A. : some same symbols : acosh, asinh, ...
+   #include <Standard_math.hxx>
+   #ifndef DISABLE_PYCONSOLE
++    #include <Python.h>
+     #include <pymath.h>
+   #endif
+ #endif

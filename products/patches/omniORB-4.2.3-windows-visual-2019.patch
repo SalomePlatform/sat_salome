@@ -1,0 +1,19 @@
+--- omniORB-4.2.3_ref/include/omnithread/pthread_nt.h	2017-02-20 23:45:59.000000000 +0100
++++ omniORB-4.2.3_dev/include/omnithread/pthread_nt.h	2024-04-30 15:42:19.247133200 +0200
+@@ -42,6 +42,7 @@
+ extern "C" {
+ #endif
+ 
++#ifndef HAVE_STRUCT_TIMESPEC
+ #ifndef _TIMERS_T_
+ #define _TIMERS_T_
+ 	typedef struct timespec {
+@@ -49,7 +50,7 @@
+ 		long tv_nsec;
+ 	} timespec_t;
+ #endif
+-
++#endif // HAVE_STRUCT_TIMESPEC
+ typedef char* __pthreadLongString_t;
+ typedef void* __pthreadLongAddr_t;
+ typedef __pthreadLongAddr_t* __pthreadLongAddr_p;

@@ -4,7 +4,7 @@ default :
     build_source : "cmake"
     # Add the '-DENABLE_GLUT=OFF' option with CMakeLists.txt patch
     # to disable link with GLUT library and suppress '-DGLUT_FOUND=OFF' option
-    cmake_options : "-DCMAKE_BUILD_TYPE=Release -DENABLE_PNG=ON -DENABLE_ZLIB=ON -DENABLE_GLUT=OFF"
+    cmake_options : "-DENABLE_PNG=ON -DENABLE_ZLIB=ON -DENABLE_GLUT=OFF"
     get_source : "archive"
     environ :
     {
@@ -36,7 +36,7 @@ version_1_3_5 :
 {
     # Add the '-DENABLE_GLUT=OFF' option with CMakeLists.txt patch
     # to disable link with GLUT library
-    cmake_options : "-DCMAKE_BUILD_TYPE=Release -DENABLE_ZLIB=OFF -DENABLE_PNG=OFF -DENABLE_GLUT=OFF"
+    cmake_options : "-DENABLE_ZLIB=OFF -DENABLE_PNG=OFF -DENABLE_GLUT=OFF"
     archive_info:
     {
        archive_name : "gl2ps-1.3.5.tar.gz"
@@ -48,7 +48,7 @@ version_1_3_8 :
 {
     # Add the '-DENABLE_GLUT=OFF' option with CMakeLists.txt patch
     # to disable link with GLUT library
-    cmake_options : "-DCMAKE_BUILD_TYPE=Release -DENABLE_ZLIB=OFF -DENABLE_PNG=OFF -DENABLE_GLUT=OFF"
+    cmake_options : "-DENABLE_ZLIB=OFF -DENABLE_PNG=OFF -DENABLE_GLUT=OFF"
     archive_info:
     {
        archive_name : "gl2ps-1.3.8.tar.gz"
@@ -60,7 +60,7 @@ version_1_3_9p1 :
 {
     # Add the '-DENABLE_GLUT=OFF' option with CMakeLists.txt patch
     # to disable link with GLUT library and suppress '-DGLUT_FOUND=OFF' option
-    cmake_options : "-DCMAKE_BUILD_TYPE=Release -DENABLE_PNG=ON -DENABLE_ZLIB=ON -DENABLE_GLUT=OFF"
+    cmake_options : "-DENABLE_PNG=ON -DENABLE_ZLIB=ON -DENABLE_GLUT=OFF"
     archive_info:
     {
        archive_name : "gl2ps-1.3.9p1.tar.gz"
@@ -72,7 +72,7 @@ version_1_4_0_4037312 :
 {
     # Add the '-DENABLE_GLUT=OFF' option with CMakeLists.txt patch
     # to disable link with GLUT library and suppress '-DGLUT_FOUND=OFF' option
-    cmake_options : "-DCMAKE_BUILD_TYPE=Release -DENABLE_PNG=ON -DENABLE_ZLIB=ON -DENABLE_GLUT=OFF"
+    cmake_options : "-DENABLE_PNG=ON -DENABLE_ZLIB=ON -DENABLE_GLUT=OFF"
     archive_info:
     {
        archive_name : "gl2ps-1.4.0_4037312.tar.gz"

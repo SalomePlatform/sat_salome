@@ -2,8 +2,7 @@ default :
 {
     name : "CDMATH"
     build_source : "cmake"
-    #cmake_options : "-DCDMATH_WITH_PYTHON=ON"# -DCMAKE_BUILD_TYPE=Release
-    cmake_options : "-DCMAKE_BUILD_TYPE=Release -DCDMATH_WITH_PYTHON=ON"
+    cmake_options : "-DCDMATH_WITH_PYTHON=ON"
     get_source : "git"
     git_info:
     {

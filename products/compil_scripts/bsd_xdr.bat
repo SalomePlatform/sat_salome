@@ -9,10 +9,13 @@ IF NOT DEFINED SAT_DEBUG (
 )
 
 IF NOT DEFINED CMAKE_GENERATOR (
-  SET CMAKE_GENERATOR="Visual Studio 15 2017 Win64"
+  SET CMAKE_GENERATOR="Visual Studio 15 2017"
 )
 
-SET PRODUCT_BUILD_TYPE=release
+SET PRODUCT_BUILD_TYPE=Release
+IF DEFINED SAT_CMAKE_BUILD_TYPE (
+  SET PRODUCT_BUILD_TYPE=%SAT_CMAKE_BUILD_TYPE%
+)
 
 if %SAT_DEBUG% == 1 (
   set PRODUCT_BUILD_TYPE=debug
@@ -22,7 +25,7 @@ if exist "%PRODUCT_INSTALL%" rmdir /Q /S "%PRODUCT_INSTALL%"
 mkdir %PRODUCT_INSTALL%
 
 set CMAKE_OPTIONS=-DCMAKE_INSTALL_PREFIX:STRING=%PRODUCT_INSTALL:\=/%
-set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_GENERATOR=%CMAKE_GENERATOR%
+set CMAKE_OPTIONS=%CMAKE_OPTIONS% -G %CMAKE_GENERATOR% -A x64
 
 set MSBUILDDISABLENODEREUSE=1
 
@@ -48,11 +51,11 @@ if NOT %ERRORLEVEL% == 0 (
 
 echo.
 echo --------------------------------------------------------------------------
-echo *** %CMAKE_ROOT%\bin\cmake --build . --config Release --target INSTALL
+echo *** %CMAKE_ROOT%\bin\cmake --build . --config %PRODUCT_BUILD_TYPE% --target INSTALL
 echo --------------------------------------------------------------------------
 echo.
 
-%CMAKE_ROOT%\bin\cmake --build . --config Release --target INSTALL
+%CMAKE_ROOT%\bin\cmake --build . --config %PRODUCT_BUILD_TYPE% --target INSTALL
 if NOT %ERRORLEVEL% == 0 (
     echo "ERROR on cmake build"
     exit 2

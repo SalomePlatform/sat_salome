@@ -9,12 +9,14 @@ IF NOT DEFINED SAT_DEBUG (
 )
 
 IF NOT DEFINED CMAKE_GENERATOR (
-  SET CMAKE_GENERATOR="Visual Studio 15 2017 Win64"
+  SET CMAKE_GENERATOR="Visual Studio 15 2017"
 )
 
 SET PRODUCT_BUILD_TYPE=Release
+IF DEFINED SAT_CMAKE_BUILD_TYPE (
+  SET PRODUCT_BUILD_TYPE=%SAT_CMAKE_BUILD_TYPE%
+)
 
-REM TODO: NGH: not Tested yet
 if %SAT_DEBUG% == 1 (
   set PRODUCT_BUILD_TYPE=Debug
 )
@@ -43,7 +45,7 @@ set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DLIBXML2_XMLLINT_EXECUTABLE=%LIBXML2_ROOT_DIR
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DHDF5_DIR:PATH=%HDF5_ROOT_DIR:\=/%/cmake/hdf5
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DHDF5_INCLUDE_DIRS:PATH=%HDF5_ROOT_DIR:\=/%/include
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DHDF5_USE_STATIC_LIBRARIES:BOOL=OFF
-set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_GENERATOR=%CMAKE_GENERATOR%
+set CMAKE_OPTIONS=%CMAKE_OPTIONS% -G %CMAKE_GENERATOR% -A x64
 set MSBUILDDISABLENODEREUSE=1
 
 echo.
@@ -60,11 +62,11 @@ if NOT %ERRORLEVEL% == 0 (
 
 echo.
 echo *********************************************************************
-echo *** msbuild %MAKE_OPTIONS% /p:Configuration=Release /p:Platform=x64 ALL_BUILD.vcxproj
+echo *** msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64 ALL_BUILD.vcxproj
 echo *********************************************************************
 echo.
 
-msbuild %MAKE_OPTIONS% /p:Configuration=Release /p:Platform=x64 ALL_BUILD.vcxproj
+msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64 ALL_BUILD.vcxproj
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on msbuild ALL_BUILD.vcxproj
     exit 2
@@ -76,7 +78,7 @@ echo *** installation...
 echo *********************************************************************
 echo.
 
-msbuild %MAKE_OPTIONS% /p:Configuration=Release /p:Platform=x64 INSTALL.vcxproj
+msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64 INSTALL.vcxproj
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on msbuild INSTALL.vcxproj
     exit 3

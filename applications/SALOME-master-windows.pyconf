@@ -5,7 +5,8 @@ APPLICATION :
 {
     name : 'SALOME-master'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name
-    cmake_generator : 'Visual Studio 15 2017 Win64'
+    cmake_generator : 'Visual Studio 15 2017'
+    cmake_build_mode: 'Release' # Debug, RelWithDebInfo, Release, MinSizeRel
     tag : 'master'
     dev : 'no'
     verbose : 'no'
@@ -22,7 +23,7 @@ APPLICATION :
             SALOME_HAS_GLOBAL_ENV : "1"
             SALOME_USE_64BIT_IDS : '1'
             SET_usr_docs_VARS : "1" # required for PyEditor build
-            CMAKE_GENERATOR : '"Visual Studio 15 2017 Win64"'
+            CMAKE_GENERATOR : '"Visual Studio 15 2017"'
         }
         launch :
         {

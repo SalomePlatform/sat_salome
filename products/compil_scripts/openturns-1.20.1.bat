@@ -9,11 +9,12 @@ IF NOT DEFINED SAT_DEBUG (
 )
 
 IF NOT DEFINED CMAKE_GENERATOR (
-  SET CMAKE_GENERATOR="Visual Studio 15 2017 Win64"
+  SET CMAKE_GENERATOR="Visual Studio 15 2017"
 )
 SET PRODUCT_BUILD_TYPE=Release
-
-REM TODO: NGH: not Tested yet
+IF DEFINED SAT_CMAKE_BUILD_TYPE (
+  SET PRODUCT_BUILD_TYPE=%SAT_CMAKE_BUILD_TYPE%
+)
 if %SAT_DEBUG% == 1 (
   set PRODUCT_BUILD_TYPE=Debug
 )
@@ -53,9 +54,9 @@ GOTO:MAIN
 
     echo.
     echo --------------------------------------------------------------------------
-    echo *** %CMAKE_ROOT%\bin\cmake -G %CMAKE_GENERATOR%  %MODULE_CMAKE_OPTIONS% %MODULE_SOURCE_DIR%
+    echo *** %CMAKE_ROOT%\bin\cmake -G %CMAKE_GENERATOR%  -A x64 %MODULE_CMAKE_OPTIONS% %MODULE_SOURCE_DIR%
     echo --------------------------------------------------------------------------
-    %CMAKE_ROOT%\bin\cmake -G %CMAKE_GENERATOR% %MODULE_CMAKE_OPTIONS% %MODULE_SOURCE_DIR%
+    %CMAKE_ROOT%\bin\cmake -G %CMAKE_GENERATOR% -A x64 %MODULE_CMAKE_OPTIONS% %MODULE_SOURCE_DIR%
     if NOT %ERRORLEVEL% == 0 (
       echo ERROR on cmake
       exit 1

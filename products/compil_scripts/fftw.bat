@@ -8,9 +8,15 @@ IF NOT DEFINED SAT_DEBUG (
   SET SAT_DEBUG=0
 )
 
-SET PRODUCT_BUILD_TYPE=Release
+IF NOT DEFINED CMAKE_GENERATOR (
+  SET CMAKE_GENERATOR="Visual Studio 15 2017"
+)
 
-REM TODO: NGH: not Tested yet
+SET PRODUCT_BUILD_TYPE=Release
+IF DEFINED SAT_CMAKE_BUILD_TYPE (
+  SET PRODUCT_BUILD_TYPE=%SAT_CMAKE_BUILD_TYPE%
+)
+
 if %SAT_DEBUG% == 1 (
   set PRODUCT_BUILD_TYPE=Debug
 )
@@ -23,8 +29,7 @@ mkdir %BUILD_DIR%
 SET CMAKE_OPTIONS=
 SET CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_INSTALL_PREFIX:STRING=%PRODUCT_INSTALL:\=/%
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_BUILD_TYPE:STRING=%PRODUCT_BUILD_TYPE%
-set CMAKE_OPTIONS=%CMAKE_OPTIONS% -A Win32 -Thost=x64
-set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_SYSTEM_VERSION=10.0.19041.0
+set CMAKE_OPTIONS=%CMAKE_OPTIONS% -A Win32 -Thost=x64 -DCMAKE_SYSTEM_VERSION=10.0.19041.0
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_GENERATOR=%CMAKE_GENERATOR%
 
 cd %BUILD_DIR%
@@ -43,7 +48,7 @@ if NOT %ERRORLEVEL% == 0 (
 
 echo.
 echo --------------------------------------------------------------------------
-echo *** msbuild %MAKE_OPTIONS% /p:Configuration=Release /p:Platform=x86 ALL_BUILD.vcxproj
+echo *** msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64 ALL_BUILD.vcxproj
 echo --------------------------------------------------------------------------
 
 msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x86 ALL_BUILD.vcxproj
@@ -54,7 +59,7 @@ if NOT %ERRORLEVEL% == 0 (
 
 echo. 
 echo --------------------------------------------------------------------------
-echo *** msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x86 INSTALL.vcxproj
+echo *** msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64 INSTALL.vcxproj
 echo --------------------------------------------------------------------------
 
 msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x86 INSTALL.vcxproj

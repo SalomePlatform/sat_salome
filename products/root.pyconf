@@ -34,6 +34,21 @@ default_win:
     patches : []
 }
 
+version_6_30_06:
+{
+    get_source : "archive"
+    archive_info : {archive_name : "root_v6.30.06.source.tar.gz"}
+    patches : []
+}
+
+version_6_30_06_win:
+{
+    build_source : "script"
+    compil_script :  "root-6.30.bat"
+    depend : ['Python', 'Cython', 'numpy', 'gl2ps', 'freetype', 'freeimage']
+    patches : []
+}
+
 version_6_24_00:
 {
     get_source : "archive"

@@ -1,0 +1,13 @@
+diff --git a/src/MEDCoupling_Swig/CMakeLists.txt b/src/MEDCoupling_Swig/CMakeLists.txt
+index 125dda07..cecb3ff9 100644
+--- a/src/MEDCoupling_Swig/CMakeLists.txt
++++ b/src/MEDCoupling_Swig/CMakeLists.txt
+@@ -165,6 +165,8 @@ ENDIF(WIN32)
+ IF(WIN32)
+   SET_TARGET_PROPERTIES(_MEDCouplingRemapper PROPERTIES DEBUG_OUTPUT_NAME _MEDCouplingRemapper_d)
+   SET_TARGET_PROPERTIES(_${MEDCouling_target_name} PROPERTIES DEBUG_OUTPUT_NAME _${MEDCouling_target_name}_d)
++  TARGET_COMPILE_OPTIONS(_MEDCouplingRemapper PRIVATE /bigobj)
++  TARGET_COMPILE_OPTIONS(_${MEDCouling_target_name} PRIVATE /bigobj)
+ ENDIF(WIN32)
+ INSTALL(TARGETS ${SWIG_MODULE_${MEDCouling_target_name}_REAL_NAME} ${SWIG_MODULE_MEDCouplingRemapper_REAL_NAME} DESTINATION ${MEDCOUPLING_INSTALL_PYTHON})
+ 

@@ -9,7 +9,7 @@ IF NOT DEFINED SAT_DEBUG (
 )
 
 IF NOT DEFINED CMAKE_GENERATOR (
-  SET CMAKE_GENERATOR="Visual Studio 15 2017 Win64"
+  SET CMAKE_GENERATOR="Visual Studio 15 2017"
 )
 
 SET PRODUCT_BUILD_TYPE=Release
@@ -43,8 +43,8 @@ set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DENABLE_CGNS=OFF
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DENABLE_HXT=OFF 
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DENABLE_SOLVER=ON
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DENABLE_GMM=ON
-set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_GENERATOR=%CMAKE_GENERATOR%
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DENABLE_BLAS_LAPACK=OFF
+set CMAKE_OPTIONS=%CMAKE_OPTIONS% -G %CMAKE_GENERATOR% -A x64
 set MSBUILDDISABLENODEREUSE=1
 
 echo.
@@ -61,11 +61,11 @@ if NOT %ERRORLEVEL% == 0 (
 
 echo.
 echo *********************************************************************
-echo *** msbuild %MAKE_OPTIONS% /p:Configuration=Release /p:Platform=x64 ALL_BUILD.vcxproj"
+echo *** msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64 ALL_BUILD.vcxproj
 echo *********************************************************************
 echo.
 
-msbuild %MAKE_OPTIONS% /p:Configuration=Release /p:Platform=x64 ALL_BUILD.vcxproj
+msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64 ALL_BUILD.vcxproj
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on msbuild gmsh.vcxproj
     exit 2
@@ -77,7 +77,7 @@ echo *** installation...
 echo *********************************************************************
 echo.
 
-msbuild %MAKE_OPTIONS% /p:Configuration=Release /p:Platform=x64 INSTALL.vcxproj
+msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64 INSTALL.vcxproj
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on msbuild INSTALL.vcxproj
     exit 3
@@ -88,14 +88,14 @@ echo *********************************************************************
 echo *** installation Headers...
 echo *********************************************************************
 echo.
-msbuild  /p:Configuration=Release /p:Platform=x64  /p:BuildProjectReferences=false get_headers.vcxproj
+msbuild  /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64  /p:BuildProjectReferences=false get_headers.vcxproj
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on msbuild get_headers.vcxproj
     exit 4
 )
 
-copy /Y /B %BUILD_DIR%\Release\gmsh.lib %PRODUCT_INSTALL%\bin\gmsh.lib
-copy /Y /B %BUILD_DIR%\Release\gmsh.exp %PRODUCT_INSTALL%\bin\gmsh.exp
+copy /Y /B %BUILD_DIR%\%PRODUCT_BUILD_TYPE%\gmsh.lib %PRODUCT_INSTALL%\bin\gmsh.lib
+copy /Y /B %BUILD_DIR%\%PRODUCT_BUILD_TYPE%\gmsh.exp %PRODUCT_INSTALL%\bin\gmsh.exp
 
 SETLOCAL ENABLEDELAYEDEXPANSION
 FOR %%f IN (gmsh.h gmsh.h_cwrap gmshc.h) do (

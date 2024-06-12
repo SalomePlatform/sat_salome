@@ -5,7 +5,7 @@ echo Installing LATA %VERSION%
 echo ##########################################################################
 
 IF NOT DEFINED CMAKE_GENERATOR (
-  SET CMAKE_GENERATOR="Visual Studio 15 2017 Win64"
+  SET CMAKE_GENERATOR="Visual Studio 15 2017"
 )
 
 if NOT exist "%PRODUCT_INSTALL%" mkdir %PRODUCT_INSTALL%
@@ -56,8 +56,8 @@ echo INFO: running cmake -DVisItBridgePlugin_SOURCE_DIR=%BUILD_DIR%\VisItLib
 cd %BUILD_DIR%\build_paraview
 
 SET CMAKE_OPTIONS=-DCMAKE_BUILD_TYPE:STRING=Release
-SET CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_GENERATOR=%CMAKE_GENERATOR%
 SET CMAKE_OPTIONS=%CMAKE_OPTIONS% -DVisItBridgePlugin_SOURCE_DIR=%BUILD_DIR:\=/%/VisItLib 
+SET CMAKE_OPTIONS=%CMAKE_OPTIONS% -G %CMAKE_GENERATOR% -A x64
 cmake %CMAKE_OPTIONS%
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR: failed to run command: cmake %CMAKE_OPTIONS%

@@ -1,0 +1,12 @@
+diff --git a/src/MEDCouplingCorba_Swig/CMakeLists.txt b/src/MEDCouplingCorba_Swig/CMakeLists.txt
+index c189405f5..cf976dc06 100644
+--- a/src/MEDCouplingCorba_Swig/CMakeLists.txt
++++ b/src/MEDCouplingCorba_Swig/CMakeLists.txt
+@@ -63,6 +63,7 @@ ENDIF()
+ SWIG_LINK_LIBRARIES(MEDCouplingCorba ${PYTHON_LIBRARIES} medcouplingcorba ${PLATFORM_LIBS})
+ IF(WIN32)
+   SET_TARGET_PROPERTIES(_MEDCouplingCorba PROPERTIES DEBUG_OUTPUT_NAME _MEDCouplingCorba_d)
++  TARGET_COMPILE_OPTIONS(_MEDCouplingCorba PRIVATE /bigobj)
+ ENDIF(WIN32)
+ 
+ INSTALL(TARGETS _MEDCouplingCorba DESTINATION ${SALOME_INSTALL_PYTHON})
