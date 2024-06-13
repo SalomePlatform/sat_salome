@@ -144,7 +144,14 @@ default :
                    "libxml++2.6-2v5", "python3-netcdf4"]
             apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev",
                        "qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools", "libopenmpi-dev",
-                       "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev", "libgdal-dev", "dvipng", "libxml++2.6-dev"]
+                       "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev", "libgdal-dev", "dvipng", "libxml++2.6-dev",
+                       "libxcb1-dev", "libxcb-composite0-dev", "libxcb-cursor-dev", "libxcb-damage0-dev", "libxcb-dpms0-dev",
+                       "libxcb-dri2-0-dev", "libxcb-dri3-dev", "libxcb-glx0-dev", "libxcb-screensaver0-dev", "libxcb-util0-dev",
+                       "libxcb-present-dev", "libxcb-randr0-dev", "libxcb-record0-dev", "libxcb-render0-dev", "libxcb-res0-dev",
+                       "libxcb-shape0-dev", "libxcb-shm0-dev", "libxcb-sync-dev", "libxcb-xf86dri0-dev", "libxcb-xfixes0-dev",
+                       "libxcb-xinerama0-dev", "libxcb-xinput-dev", "libxcb-xkb-dev", "libxcb-xtest0-dev", "libxcb-xv0-dev", "libxcb-xvmc0-dev",
+                       "libxcb-imdkit-dev", "libxcb-image0-dev", "libxcb-keysyms1-dev", "libxcb-render-util0-dev", "libxcb-ewmh-dev",
+                        "libxcb-icccm4-dev", "libxcb-xrm-dev"]
         }
         "UB22.04" :
         {
