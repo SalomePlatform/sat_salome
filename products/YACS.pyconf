@@ -56,6 +56,11 @@ default_win :
   patches : []
 }
 
+version_master_FD32:
+{
+    cmake_options : " -DSALOME_YACS_USE_EMBEDDED_PMML=OFF -DQT_HELP_GENERATOR=${QT5_ROOT_DIR}/bin/qhelpgenerator -DQt5LinguistTools_DIR=${QT5_ROOT_DIR}/lib/cmake/Qt5LinguistTools"
+}
+
 version_master_CO9 :
 {
     cmake_options : " -DSALOME_YACS_USE_EMBEDDED_PMML=OFF -DQT_HELP_GENERATOR=${QT5_ROOT_DIR}/bin/qhelpgenerator -DQt5LinguistTools_DIR=${QT5_ROOT_DIR}/lib/cmake/Qt5LinguistTools"

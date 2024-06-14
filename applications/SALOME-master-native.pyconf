@@ -366,6 +366,7 @@ __overwrite__ :
         'APPLICATION.products.rich'             : {tag: '13.7.1', base: 'no', section: 'version_13_7_1_no_pip'}
         'APPLICATION.products.meshio'           : {tag: '5.3.5' , base: 'no', section: 'version_5_3_5_no_pip' }
         'APPLICATION.products.h5py'             : {tag: '3.11.0', base: 'no', section: 'version_3_11_0_no_pip'}
+        'APPLICATION.products.YACS'             : {tag: 'master', base: 'no', section: 'version_master_FD32'  }
     }
     {
         __condition__ : "VARS.dist in ['FD34']"
