@@ -91,9 +91,9 @@ APPLICATION :
         medfile : '4.1.1'
         mesa : '19.0.8'
         MeshGems : '2.15-1'
-        meshio : '5.3.5'
-        mpi4py: {tag: '3.1.0', base: 'no', section : 'version_3_1_0_no_pip'}
-        metis : '5.1.0'
+        meshio : {tag: '5.3.5' , base: 'no', section : 'version_5_3_5_no_pip'}
+        mpi4py : {tag: '3.1.0',  base: 'no', section : 'version_3_1_0_no_pip'}
+        metis  : '5.1.0'
         netgen : '5.3.1_with_CAS_7.8'
         # comment out line above and uncomment the line below to use Netgen 6.
         #netgen : '6.2.2101'

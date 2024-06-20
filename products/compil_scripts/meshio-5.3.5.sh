@@ -26,5 +26,18 @@ for WHEEL in "${WHEELS[@]}"; do
     fi
 done
 
+pyVersionMajor=python$($PYTHONBIN -c 'import sys; print(".".join(map(str, sys.version_info[0:1])))')
+if [ $? -ne 0 ]; then
+	  echo ERROR: Failed to extract major Python version -  assuming Python version equal to 3...
+	  pyVersionMajor=python3
+fi
+echo INFO: Python version major: ${pyVersionMajor}
+if [ -f $PRODUCT_INSTALL/lib/python${PYTHON_VERSION}/site-packages/bin/meshio ]; then
+    sed -i "s%#\!.*python[0-9]*%#\!/usr/bin/env ${pyVersionMajor}%#g" $PRODUCT_INSTALL/lib/python${PYTHON_VERSION}/site-packages/bin/meshio
+else
+    echo "FATAL: could not find meshio runner!"
+    exit  1
+fi
+
 echo
 echo "########## END"
