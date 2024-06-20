@@ -5,7 +5,7 @@ APPLICATION :
 {
     name    : 'MEDCOUPLING-master-int32'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag     : 'V9_13_0a2'
+    tag     : 'master'
     base    : 'no'
     debug   : 'no'
     python3 : 'yes'
