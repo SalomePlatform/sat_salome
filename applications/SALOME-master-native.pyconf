@@ -335,7 +335,7 @@ __overwrite__ :
          'APPLICATION.products.openmpi'          : '4.1.5'
          'APPLICATION.products.sip'              : '5.5.0'
          'APPLICATION.products.root'             : {tag: '6.22.02', base: 'no', section: 'version_6_22_02_CO9'               }
-         'APPLICATION.products.qt'               : '5.15.2'
+         'APPLICATION.products.qt'               : {tag: '5.15.2',  base: 'no', section: 'version_5_15_2_CO9'                }
          'APPLICATION.products.mdurl'            : {tag: '0.1.2',   base: 'no', section: 'version_0_1_2_no_pip'              }
          'APPLICATION.products.markdown_it_py'   : {tag: '3.0.0',   base: 'no', section: 'version_3_0_0_no_pip'              }
          'APPLICATION.products.rich'             : {tag: '13.7.1',  base: 'no', section: 'version_13_7_1_no_pip'             }

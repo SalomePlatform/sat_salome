@@ -31,6 +31,13 @@ version_5_15_2 :
   depend : ["freetype", 'llvm']
 }
 
+version_5_15_2_CO9 :
+{
+  compil_script : "qt-5.15.2" + $VARS.scriptExtension
+  depend : ["freetype", 'llvm']
+  patches: ["qt_5_15_2_numeric_limits.patch"]
+}
+
 version_5_15_2_win :
 {
   depend : ["freetype"]
