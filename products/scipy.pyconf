@@ -72,7 +72,14 @@ version_1_3_0_win :
 version_0_18_1 :
 {
     compil_script : "scipy.sh"
-    depend : ['numpy','lapack']
+    depend : ['numpy','lapack', 'setuptools']
+}
+
+version_0_18_1_x86_64 :
+{
+    archive_info : {archive_name : "scipy-0.18.1-x86_64.tar.gz"}
+    compil_script : "scipy-0.18.1.sh"
+    depend : ['numpy','lapack', 'setuptools']
 }
 
 version_0_15_1 :

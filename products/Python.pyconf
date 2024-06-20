@@ -40,6 +40,11 @@ version_2_7_10 :
     patches : ['Python-2.7.10-ssl.patch']
 }
 
+version_2_7_16_CO9 :
+{
+   compil_script: 'Python-2.7.16.sh'
+}
+
 version_3_6_5 :
 {
  patches : []
