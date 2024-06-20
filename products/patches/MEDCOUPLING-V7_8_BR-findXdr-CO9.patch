@@ -1,0 +1,74 @@
+diff --git a/cmake_files/FindXDR.cmake b/cmake_files/FindXDR.cmake
+index e8e86253..6e24b6fe 100644
+--- a/cmake_files/FindXDR.cmake
++++ b/cmake_files/FindXDR.cmake
+@@ -1,4 +1,4 @@
+-# Copyright (C) 2007-2016  CEA/DEN, EDF R&D, OPEN CASCADE
++# Copyright (C) 2007-2024  CEA, EDF, OPEN CASCADE
+ #
+ # This library is free software; you can redistribute it and/or
+ # modify it under the terms of the GNU Lesser General Public
+@@ -18,11 +18,11 @@
+ #
+ 
+ MESSAGE(STATUS "Check for XDR ...")
+-
+-FIND_PATH(XDR_INCLUDE_DIRS rpc/xdr.h)
++INCLUDE(FindPackageHandleStandardArgs)
++FIND_PATH(XDR_INCLUDE_DIRS rpc/xdr.h PATH_SUFFIXES tirpc)
+ IF(XDR_INCLUDE_DIRS)
+-   SET(XDR_DEFINITIONS "-DHAS_XDR")
+-ENDIF()
++  SET(XDR_DEFINITIONS "-DHAS_XDR")
++ENDIF(XDR_INCLUDE_DIRS)
+ 
+ IF(WIN32)
+   FIND_LIBRARY(XDR_LIBRARIES xdr)                 # To get the .lib file from XDR
+@@ -34,7 +34,14 @@ IF(WIN32)
+       SET(XDR_INCLUDE_DIRS "${XDR_INCLUDE_DIRS2}")  # Make the detection fail
+     ENDIF()
+   ENDIF()
++  FIND_PACKAGE_HANDLE_STANDARD_ARGS(XDR REQUIRED_VARS XDR_INCLUDE_DIRS XDR_LIBRARIES)
++ELSE(WIN32)
++  FIND_LIBRARY(XDR_LIBRARY NAMES tirpc xdr)
++  IF(NOT XDR_LIBRARY)
++    MESSAGE(STATUS "Could not find XDR libraries ...")
++  ELSE()
++    MESSAGE(STATUS "Found XDR libraries ${XDR_LIBRARY} ...")
++    SET(XDR_LIBRARIES ${XDR_LIBRARY})
++  ENDIF()
++  FIND_PACKAGE_HANDLE_STANDARD_ARGS(XDR REQUIRED_VARS XDR_INCLUDE_DIRS)
+ ENDIF(WIN32)
+-
+-INCLUDE(FindPackageHandleStandardArgs)
+-FIND_PACKAGE_HANDLE_STANDARD_ARGS(XDR REQUIRED_VARS XDR_INCLUDE_DIRS)
+diff --git a/src/MEDCoupling_Swig/MEDCouplingMemArray.i b/src/MEDCoupling_Swig/MEDCouplingMemArray.i
+index f2303876..1fa0d980 100644
+--- a/src/MEDCoupling_Swig/MEDCouplingMemArray.i
++++ b/src/MEDCoupling_Swig/MEDCouplingMemArray.i
+@@ -2933,7 +2933,7 @@ namespace ParaMEDMEM
+                 if(PyInt_Check(nbOfTuples))
+                   {
+                     int nbOfTuples1=PyInt_AS_LONG(nbOfTuples);
+-                    if(nbOfTuples<0)
++                    if( (int) PyInt_AsLong(nbOfTuples) < 0)
+                       throw INTERP_KERNEL::Exception("DataArrayInt::setValue : should be a positive set of allocated memory !");
+                     if(nbOfComp)
+                       {
+diff --git a/src/MEDLoader/CMakeLists.txt b/src/MEDLoader/CMakeLists.txt
+index 6d0ed57c..b6dae338 100644
+--- a/src/MEDLoader/CMakeLists.txt
++++ b/src/MEDLoader/CMakeLists.txt
+@@ -38,10 +38,12 @@ IF(WIN32)
+     SET(MEDLOADER_XDR_LIBRARIES ${XDR_LIBRARIES})
+   ENDIF(MEDCOUPLING_MEDLOADER_USE_XDR)
+ ELSE(WIN32)
++  SET(MEDLOADER_XDR_LIBRARIES ${XDR_LIBRARIES})
+   SET(MEDLOADER_XDR_INCLUDE_DIRS ${XDR_INCLUDE_DIRS})
+ ENDIF(WIN32)
+ 
+ INCLUDE_DIRECTORIES(
++  ${XDR_INCLUDE_DIR}
+   ${MEDFILE_INCLUDE_DIRS}
+   ${HDF5_INCLUDE_DIRS}
+   ${MEDLOADER_XDR_INCLUDE_DIRS}

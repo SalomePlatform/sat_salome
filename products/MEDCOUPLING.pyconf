@@ -603,3 +603,23 @@ version_V7_8_0 :
               "lapack"
               ]
 }
+
+version_V7_8_0_CO9 :
+{
+    cmake_options : "-DMEDCOUPLING_ENABLE_PARTITIONER=OFF -DMEDCOUPLING_PARTITIONER_METIS=OFF -DMEDCOUPLING_PARTITIONER_SCOTCH=OFF -DCMAKE_CXX_STANDARD=14 "
+    depend : [
+              "boost",
+              "Python",
+              "hdf5",
+              "medfile",
+              "libxml2",
+              "Sphinx",
+              "setuptools",
+              "numpy",
+              "scipy",
+              "lapack",
+	      "CONFIGURATION"
+              ]
+
+  patches: ['MEDCOUPLING-V7_8_BR-findXdr-CO9.patch']
+}
