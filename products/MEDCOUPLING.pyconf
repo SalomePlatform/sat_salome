@@ -617,9 +617,8 @@ version_V7_8_0_CO9 :
               "setuptools",
               "numpy",
               "scipy",
-              "lapack",
-	      "CONFIGURATION"
+              "lapack"
               ]
-
-  patches: ['MEDCOUPLING-V7_8_BR-findXdr-CO9.patch']
+    nb_proc: 1
+    patches: ['MEDCOUPLING-V7_8_BR-findXdr-CO9.patch']
 }
