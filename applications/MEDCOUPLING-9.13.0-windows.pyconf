@@ -3,10 +3,10 @@
 
 APPLICATION :
 {
-    name : 'MEDCOUPLING-master'
+    name : 'MEDCOUPLING-9.13.0'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name
     cmake_generator : 'Visual Studio 15 2017'
-    tag : 'master'
+    tag : 'V9_13_0b1'
     debug : 'no'
     base : 'no'
     python3 : 'yes'
