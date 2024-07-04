@@ -5,7 +5,7 @@ APPLICATION :
 {
     name     : 'SALOME-9.13.0'
     workdir  : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag      : 'V9_13_0b1'
+    tag      : 'V9_13_BR'
     dev      : 'no'
     verbose  : 'no'
     debug    : 'no'
@@ -173,7 +173,7 @@ APPLICATION :
         'RESTRICTED'
         'LIBBATCH' : 'V2_5_0'
         'KERNEL'
-        'MEDCOUPLING' : {tag:'V9_13_0b1', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'MEDCOUPLING' : {tag:'V9_13_BR', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'GUI'
         'GEOM'
         'SMESH'
@@ -187,7 +187,7 @@ APPLICATION :
         'HEXABLOCKPLUGIN'
         'HOMARD'
         'FIELDS'
-        'PARAVIS' : {tag:'V9_13_0b1', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'PARAVIS' : {tag:'V9_13_BR', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
@@ -208,7 +208,7 @@ APPLICATION :
         'YDEFX'
         'pmml'
         'SALOMEBOOTSTRAP'
-        'SOLVERLAB' : {tag: 'V9_13_0b1', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'SOLVERLAB' : {tag: 'V9_13_BR', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'SOLVERLABGUI'
         'TopIIVolMesh'
         #'TESTBASE'
