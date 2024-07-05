@@ -5,7 +5,10 @@ default :
     get_source : "git"
     git_info:
     {
+      repositories :
+      {
         tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "oscar/xdata.git"
+      }
     }
     environ :
     {
@@ -20,6 +23,11 @@ default :
         is_SALOME_module : "yes"
         incremental: "yes"
     }
+}
+
+version_V9_2_1_UB22_04 :
+{
+  patches: ['xdata-9.2.1-python-3.10.patch']
 }
 
 version_0_9_11 :

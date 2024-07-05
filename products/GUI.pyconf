@@ -270,11 +270,57 @@ version_python_async :
     }
 }
 
+version_OSCAR_GUI_V9_12_0 :
+{
+    name : "GUI"
+    build_source : "cmake"
+    cmake_options : "-DSALOME_ON_DEMAND=OFF -DSALOME_USE_VTKVIEWER=OFF -DSALOME_USE_PVVIEWER=OFF -DSALOME_USE_PV3DVIEWER=OFF"
+    get_source : "git"
+    git_info:
+    {
+      repositories :
+      {
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/gui.git"
+        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "gui.git"
+        gitpub : $PROJECTS.projects.salome.git_info.git_server.gitpub.url + "modules/gui.git"
+      }
+    }
+    patches : ['OSCAR-GUI-V9_12_0.patch']
+    environ :
+    {
+        SalomeAppConfig_ : $install_dir + $VARS.sep + "share" + $VARS.sep + "salome" + $VARS.sep + "resources" + $VARS.sep + "gui"
+    }
+    depend : ["KERNEL",
+              "Python",
+              "qt",
+              "sip",
+              "PyQt",
+              "boost",
+              "CAS",
+              "qwt",
+              "hdf5",
+              "freetype",
+              "freeimage",
+              "gl2ps",
+              "omniORB",
+              "docutils",
+              "libxml2"
+              ]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        is_SALOME_module : "yes"
+        has_unit_tests
+    }
+}
+
 version_oscar :
 {
     name : "GUI"
     build_source : "cmake"
-    cmake_options : "-DSALOME_USE_VTKVIEWER=OFF -DSALOME_USE_PVVIEWER=OFF"
+    cmake_options : "-DSALOME_ON_DEMAND=OFF -DSALOME_USE_VTKVIEWER=OFF -DSALOME_USE_PVVIEWER=OFF -DSALOME_USE_PV3DVIEWER=OFF"
     get_source : "git"
     git_info:
     {
@@ -287,6 +333,7 @@ version_oscar :
     }
     environ :
     {
+        SalomeAppConfig_ : $install_dir + $VARS.sep + "share" + $VARS.sep + "salome" + $VARS.sep + "resources" + $VARS.sep + "gui"
     }
     depend : ["KERNEL",
               "Python",

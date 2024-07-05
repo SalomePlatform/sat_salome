@@ -1,0 +1,17 @@
+diff --git a/src/XDATA2SALOME/xdata2salome.py b/src/XDATA2SALOME/xdata2salome.py
+index 581fe85..6a2f039 100644
+--- a/src/XDATA2SALOME/xdata2salome.py
++++ b/src/XDATA2SALOME/xdata2salome.py
+@@ -7,7 +7,11 @@ warning_sep  = '-------------------------------------------------------\n'
+ warning_line = 'WARNING WARNING WARNING WARNING WARNING WARNING WARNING\n'
+ 
+ from xdata import *
+-from time import clock
++try:
++    from time import clock
++except:
++    from time import time as clock
++
+ from xutilities import verbose
+ 
+ def write(code, filename, component_name):

@@ -1,0 +1,58 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index d487b162d..be4a9687e 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -53,7 +53,10 @@ ELSE(EXISTS ${KERNEL_ROOT_DIR})
+ ENDIF(EXISTS ${KERNEL_ROOT_DIR})
+ 
+ # Find SalomeBootstrap
+-FIND_PACKAGE(SalomeBootstrap REQUIRED)
++
++IF(SALOME_ON_DEMAND)
++  FIND_PACKAGE(SalomeBootstrap REQUIRED)
++ENDIF(SALOME_ON_DEMAND)
+ 
+ # Platform setup
+ # ==============
+diff --git a/src/LightApp/LightApp_Application.cxx b/src/LightApp/LightApp_Application.cxx
+index 89fb8ec12..6c0eb05be 100644
+--- a/src/LightApp/LightApp_Application.cxx
++++ b/src/LightApp/LightApp_Application.cxx
+@@ -2098,15 +2098,10 @@ SUIT_ViewManager* LightApp_Application::createViewManager( const QString& vmType
+ 
+       new LightApp_PV3DSelector( vm, mySelMgr );
+     }
++  }
+ #else
+-    viewMgr = new PV3DViewer_ViewManager( activeStudy(), desktop() );
+-    PV3DViewer_ViewModel* vm = dynamic_cast<PV3DViewer_ViewModel*>( viewMgr->getViewModel() );
+-    if ( vm )
+-    {
+-      // vm->setBackground(...); //NYI
+-    }
++    viewMgr = nullptr;
+ #endif
+-  }
+ 
+   if ( !viewMgr )
+     return 0;
+diff --git a/src/Qtx/QtxDockWidget.cxx b/src/Qtx/QtxDockWidget.cxx
+index 9247dca99..a96fe2bfe 100644
+--- a/src/Qtx/QtxDockWidget.cxx
++++ b/src/Qtx/QtxDockWidget.cxx
+@@ -368,9 +368,12 @@ myWatcher( 0 )
+ */
+ QtxDockWidget::~QtxDockWidget()
+ {
+-  myWatcher->setParent(nullptr);
+-  delete myWatcher;
+-  myWatcher = 0;
++  if (myWatcher)
++    {
++      myWatcher->setParent(nullptr);
++      delete myWatcher;
++      myWatcher = 0;
++    }
+ }
+ 
+ /*!
