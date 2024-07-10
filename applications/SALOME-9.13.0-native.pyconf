@@ -38,7 +38,7 @@ APPLICATION :
         alabaster : 'native'
         Babel : 'native'
         boost : 'native'
-        CAS : {tag : 'CR780-SALOME-PATCH', section: 'version_CR780_SALOME_PATCH', base:  'no'}
+        CAS : {tag : 'SALOME_9_13_V7_8_0', section: 'version_CR780_SALOME_PATCH', base:  'no'}
         catalyst: '2.0'
         C3PO: 'v2.3'
         certifi : 'native'

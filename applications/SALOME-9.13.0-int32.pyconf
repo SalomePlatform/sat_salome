@@ -5,7 +5,7 @@ APPLICATION :
 {
     name     : 'SALOME-9.13.0-int32'
     workdir  : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag      : 'V9_13_0b1'
+    tag      : 'V9_13_BR'
     dev      : 'no'
     verbose  : 'no'
     debug    : 'no'
@@ -38,7 +38,7 @@ APPLICATION :
         alabaster : '0.7.6'
         Babel : '2.14.0'
         boost : '1.71.0'
-        CAS : {tag : 'CR780-SALOME-PATCH', section: 'version_CR780_SALOME_PATCH', base: 'no'}
+        CAS : {tag : 'SALOME_9_13_V7_8_0', section: 'version_CR780_SALOME_PATCH', base: 'no'}
         catalyst: '2.0'
         C3PO: 'v2.3'
         certifi : '2018.8.24'
@@ -169,8 +169,8 @@ APPLICATION :
         'SHAPERSTUDY'
         'RESTRICTED'
         'LIBBATCH' : 'V2_5_0'
-        'KERNEL'      : {tag:'V9_13_0b1', base: 'no', section: 'default_32BIT_IDS', hpc: 'no' }
-        'MEDCOUPLING' : {tag:'V9_13_0b1', base: 'no', section: 'default_32BIT_IDS_MPI_STD', hpc: 'yes'}
+        'KERNEL'      : {tag:'V9_13_BR', base: 'no', section: 'default_32BIT_IDS', hpc: 'no' }
+        'MEDCOUPLING' : {tag:'V9_13_BR', base: 'no', section: 'default_32BIT_IDS_MPI_STD', hpc: 'yes'}
         'GUI'
         'GEOM'
         'SMESH'
@@ -184,7 +184,7 @@ APPLICATION :
         'HEXABLOCKPLUGIN'
         'HOMARD'
         'FIELDS'
-        'PARAVIS' : {tag:'V9_13_0b1', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'PARAVIS' : {tag:'V9_13_BR', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
@@ -195,17 +195,17 @@ APPLICATION :
         'CALCULATOR'
         'HELLO'
         'PYHELLO'
-        'EFICAS' : 'V9_13_BR'
-        'EFICAS_TOOLS' : 'V9_13_BR'
+        'EFICAS'
+        'EFICAS_TOOLS'
         'PY2CPP'
-        'ADAO' : 'V9_13_BR'
-        'ADAO_INTERFACE' : 'V9_13_BR'
+        'ADAO'
+        'ADAO_INTERFACE'
         'PARAVISADDONS'
         'OPENTURNS_SALOME'
         'YDEFX'
         'pmml'
         'SALOMEBOOTSTRAP'
-        'SOLVERLAB' : {tag: 'V9_13_0b1', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'SOLVERLAB' : {tag: 'V9_13_BR', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'SOLVERLABGUI'
         'TopIIVolMesh'
         #'TESTBASE'

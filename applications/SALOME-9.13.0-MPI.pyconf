@@ -5,7 +5,7 @@ APPLICATION :
 {
     name     : 'SALOME-9.13.0-MPI'
     workdir  : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag      : 'V9_13_0b1'
+    tag      : 'V9_13_BR'
     dev      : 'no'
     verbose  : 'no'
     debug    : 'no'
@@ -39,7 +39,7 @@ APPLICATION :
         alabaster : '0.7.6'
         Babel : '2.14.0'
         boost : '1.71.0'
-        CAS : {tag : 'V7_5_3p5', section: 'version_CR753_SALOME_PATCH', base: 'no'}
+        CAS : {tag : 'SALOME_9_13_V7_8_0', section: 'version_CR780_SALOME_PATCH', base: 'no'}
         catalyst: '2.0'
         C3PO: 'v2.3'
         certifi : '2018.8.24'
@@ -67,7 +67,7 @@ APPLICATION :
         gmp : 'native'
         mpfr : 'native'
         gdal :  {tag : '2.4.0',  hpc : 'yes'}
-        gmsh :  {tag : '4.10.3', section :  'version_4_10_3_MPI', hpc : 'yes', base : 'no'}
+        gmsh :  {tag : '4.10.3', section :  'version_4_10_3_with_CAS_7_8_MPI', hpc : 'yes', base : 'no'}
         graphviz : '2.38.0'
         hdf5 : {tag : '1.10.3', hpc : 'yes'}
         idna : '2.7'
@@ -87,7 +87,7 @@ APPLICATION :
         MeshGems : {tag : '2.15-1', hpc : 'yes'}
         mpi4py: {tag: '3.1.0', base: 'no', section : 'version_3_1_0_no_pip'} 
         ParMetis : '4.0.3-p6'
-        netgen : '5.3.1_with_CAS_7.2'
+        netgen : '5.3.1_with_CAS_7.8'
         # comment out line above and uncomment the line below to use Netgen 6.
         #netgen : '6.2.2101'
         netcdf : {tag : '4.6.2', hpc : 'yes'}
@@ -163,8 +163,8 @@ APPLICATION :
         'SHAPERSTUDY'
         'RESTRICTED'
         'LIBBATCH' : 'V2_5_0'
-        'KERNEL'      : {tag:'V9_13_0b1', base: 'no', section: 'default_MPI', hpc: 'yes', verbose: 'yes'}
-        'MEDCOUPLING' : {tag:'V9_13_0b1', base: 'no', section: 'default_MPI_STD', hpc: 'yes', verbose: 'yes'}
+        'KERNEL'      : {tag:'V9_13_BR', base: 'no', section: 'default_MPI', hpc: 'yes', verbose: 'yes'}
+        'MEDCOUPLING' : {tag:'V9_13_BR', base: 'no', section: 'default_MPI_STD', hpc: 'yes', verbose: 'yes'}
         'GUI' : {verbose : 'yes'}
         'GEOM'
         'SMESH'
@@ -174,12 +174,12 @@ APPLICATION :
         'HYBRIDPLUGIN'
         'HexoticPLUGIN'
         'GMSHPLUGIN'
-        'HEXABLOCK' : {tag:'V9_13_0b1', base: 'no', section: 'default_MPI', hpc: 'yes', verbose: 'yes'}
+        'HEXABLOCK' : {tag:'V9_13_BR', base: 'no', section: 'default_MPI', hpc: 'yes', verbose: 'yes'}
         'HEXABLOCKPLUGIN'
-        'HOMARD'    : {tag:'V9_13_0b1', base: 'no', section: 'default_MPI', hpc: 'yes'}
-        'FIELDS'    : {tag:'V9_13_0b1', base: 'no', section: 'default_MPI', hpc: 'yes'}
-        'PARAVIS'   : {tag:'V9_13_0b1', base: 'no', section: 'default_MPI', hpc: 'yes'}
-        'JOBMANAGER': {tag:'V9_13_0b1', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'HOMARD'    : {tag:'V9_13_BR', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'FIELDS'    : {tag:'V9_13_BR', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'PARAVIS'   : {tag:'V9_13_BR', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'JOBMANAGER': {tag:'V9_13_BR', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'YACS'
         'YACSGEN'
         'DOCUMENTATION'
@@ -199,7 +199,7 @@ APPLICATION :
         'YDEFX'
         'pmml'
         'SALOMEBOOTSTRAP'
-        'SOLVERLAB' : {tag: 'V9_13_0b1', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'SOLVERLAB' : {tag: 'V9_13_BR', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'SOLVERLABGUI'
         'TopIIVolMesh'
         #'TESTBASE'
