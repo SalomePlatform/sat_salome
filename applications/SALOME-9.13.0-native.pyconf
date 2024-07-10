@@ -87,8 +87,6 @@ APPLICATION :
         mmg : '5.6.0'
         mmgplugin: 'main'
         netgen : '5.3.1_with_CAS_7.8'
-        # comment out line above and uncomment the line below to use Netgen 6.
-        #netgen : '6.2.2101'
         netcdf : 'native'
         netCDF4: 'native'
         nlopt : 'native'
@@ -190,7 +188,6 @@ APPLICATION :
         'pmml'
         'SALOMEBOOTSTRAP'
         'SOLVERLAB'
-        'SOLVERLABGUI'
         'TopIIVolMesh'
         #'TESTBASE'
         'CEATESTBASE' : 'SalomeV9'

@@ -95,8 +95,6 @@ APPLICATION :
         mpi4py : {tag: '3.1.0',  base: 'no', section : 'version_3_1_0_no_pip'}
         metis  : '5.1.0'
         netgen : '5.3.1_with_CAS_7.8'
-        # comment out line above and uncomment the line below to use Netgen 6.
-        #netgen : '6.2.2101'
         netcdf : '4.6.2'
         netCDF4 : '1.6.5'
         nlopt : '2.5.0'
@@ -209,7 +207,6 @@ APPLICATION :
         'pmml'
         'SALOMEBOOTSTRAP'
         'SOLVERLAB' : {tag: 'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
-        'SOLVERLABGUI'
         'TopIIVolMesh'
         #'TESTBASE'
         'CEATESTBASE' : 'SalomeV9'
