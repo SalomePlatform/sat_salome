@@ -51,6 +51,7 @@ version_2_1_2:
 
 version_1_7_6:
 {
+    archive_info : {archive_prefix : "Sphinx"}
     depend : ["Python", "setuptools", "six", "Pygments", "Jinja2", "docutils", "sphinxcontrib_websupport", "packaging", "requests", "imagesize", "alabaster", "Babel", "snowballstemmer"]
     opt_depend : []
 }
