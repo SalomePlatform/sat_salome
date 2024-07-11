@@ -6,6 +6,7 @@ APPLICATION :
     name : 'SALOME-9.12.0'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name
     cmake_generator : 'Visual Studio 15 2017'
+    cmake_build_type: 'Release' # Debug, RelWithDebInfo, Release, MinSizeRel
     tag : 'V9_12_0'
     dev : 'no'
     verbose : 'no'
@@ -197,7 +198,7 @@ APPLICATION :
     properties :
     {
         mesa_launcher_in_package : "no"
-        repo_dev : "yes"
+        git_server : 'tuleap'
         pip : 'yes'
         pip_install_dir : 'python'
         single_install_dir : "yes"
