@@ -13,7 +13,6 @@ APPLICATION :
     debug   : 'no'
     base    : 'no'
     python3 : 'yes'
-    pyver   : '3.9'
     environ :
     {
         build : 
@@ -221,27 +220,7 @@ APPLICATION :
 __overwrite__ :
 [
   {
-    __condition__ : "APPLICATION.pyver == '3.6' and APPLICATION.debug == 'no'"
-    'APPLICATION.products.alabaster' : '0.7.6'
-    'APPLICATION.products.Cython'    : '0.29.12'
-    'APPLICATION.products.dateutil'  : '2.8.0'
-    'APPLICATION.products.kiwisolver' : '1.1.0'
-    'APPLICATION.products.matplotlib' : '3.1.0'
-    'APPLICATION.products.numpy' : '1.16.4'
-    'APPLICATION.products.pandas' : '0.25.2'
-    'APPLICATION.products.Pillow' : '7.1.1'
-    'APPLICATION.products.psutil' : '5.7.2'
-    'APPLICATION.products.pyreadline' : '2.1'
-    'APPLICATION.products.Python' : '3.6.5'
-    'APPLICATION.products.pytz' : '2019.1'
-    'APPLICATION.products.scipy' : '1.4.1'
-    'APPLICATION.products.setuptools' : '41.0.1'
-    'APPLICATION.products.snowballstemmer' : '1.9.0'
-    'APPLICATION.products.Sphinx' : '2.1.2'
-    'APPLICATION.products.statsmodels' : '0.9.0'
-  }
-  {
-    __condition__ : "APPLICATION.debug == 'yes' and APPLICATION.pyver == '3.9'"
+    __condition__ : "APPLICATION.debug == 'yes'"
     'APPLICATION.rm_products' : ['matplotlib', 'openturns', 'scipy', 'Pillow', 'PERSALYS', 'OPENTURNS_SALOME', 'cminpack', 'openblas', 'FMILibrary', 'PyFMI', 'fftw', 'statsmodels', 'YDEFX', 'pandas']
     'APPLICATION.products.numpy'      : {tag: '1.21.6',  base: 'no', section : 'version_1_21_6_win_dbg'     }
     'APPLICATION.products.Cython'     : {tag: '0.29.37', base: 'no', section : 'version_0_29_37_win_dbg'    }
@@ -252,32 +231,7 @@ __overwrite__ :
     'APPLICATION.products.psutil'     : {tag: '5.9.8',   base: 'no', section : 'version_5_9_8_win_dbg'      }
     'APPLICATION.products.ParaView'   : {tag: '5.11.0',  base: 'no', section : 'version_5_11_0_win_dbg'     }
     'APPLICATION.products.zlib'       : {tag: '1.2.5',   base: 'no', section : 'version_1_2_5_win_dbg'      }
-    'APPLICATION.products.gmsh'       : {tag: '4.10.3',  base: 'no', section : 'version_4_10_3_win_dbg'     }
-    'APPLICATION.products.cmake'      : '3.12.1' # until CMP0078 and - cmake 3.24 fixed shows a serious issue about import which needs to be addressed
-  }
-  {
-    __condition__ : "APPLICATION.debug == 'yes' and APPLICATION.pyver == '3.6'"
-    'APPLICATION.rm_products' : ['matplotlib', 'openturns', 'scipy', 'Pillow', 'PERSALYS', 'OPENTURNS_SALOME', 'cminpack', 'openblas', 'FMILibrary', 'PyFMI', 'fftw', 'statsmodels', 'YDEFX', 'pandas']
-    'APPLICATION.products.alabaster' : '0.7.6'
-    'APPLICATION.products.dateutil'  : '2.8.0'
-    'APPLICATION.products.kiwisolver' : '1.1.0'
-    'APPLICATION.products.pyreadline' : '2.1'
-    'APPLICATION.products.Python' : '3.6.5'
-    'APPLICATION.products.pytz' : '2019.1'
-    'APPLICATION.products.setuptools' : '41.0.1'
-    'APPLICATION.products.snowballstemmer' : '1.9.0'
-    'APPLICATION.products.Sphinx' : '2.1.2'
-    'APPLICATION.products.numpy'      : {tag: '1.16.4',  base: 'no', section : 'version_1_16_4_win_dbg'     }
-    'APPLICATION.products.Cython'     : {tag: '0.29.12', base: 'no', section : 'version_0_29_12_win_dbg'    }
-    'APPLICATION.products.sphinxintl' : {tag: '2.0.0',   base: 'no', section : 'version_2_0_0_win_dbg'      }
-    'APPLICATION.products.llvm'       : {tag: '8.0.1',   base: 'no', section : 'version_8_0_1_clang_win_dbg'}
-    'APPLICATION.products.tbb'        : {tag: '2019_U8', base: 'no', section : 'version_2019_U8_win_dbg'    }
-    'APPLICATION.products.omniORB'    : {tag: '4.2.3',   base: 'no', section : 'version_4_2_3_win_dbg'      }
-    'APPLICATION.products.psutil'     : {tag: '5.7.2',   base: 'no', section : 'version_5_7_2_win_dbg'      }
-    'APPLICATION.products.ParaView'   : {tag: '5.11.0',  base: 'no', section : 'version_5_11_0_win_dbg'     }
-    'APPLICATION.products.zlib'       : {tag: '1.2.5',   base: 'no', section : 'version_1_2_5_win_dbg'      }
-    'APPLICATION.products.gmsh'       : {tag: '4.10.3',  base: 'no', section : 'version_4_10_3_win_dbg'     }
-    'APPLICATION.products.swig'       : '3.0.12'
+    'APPLICATION.products.gmsh'       : {tag: '4.10.3',  base: 'no', section : '4.10.3_with_CAS_7.8_win_dbg'}
     'APPLICATION.products.cmake'      : '3.12.1' # until CMP0078 and - cmake 3.24 fixed shows a serious issue about import which needs to be addressed
   }
 ]

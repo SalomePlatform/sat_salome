@@ -11,7 +11,6 @@ APPLICATION :
     debug    : 'no'
     base     : 'no'
     python3  : 'yes'
-    pyver    : '3.9'
     platform : ['CO7', 'CO8', 'DB09']
     environ  :
     {
@@ -229,162 +228,6 @@ APPLICATION :
 __overwrite__ :
 [
     {
-        __condition__ : "VARS.dist in ['CO7'] and APPLICATION.pyver == '3.6'"
-        'APPLICATION.rm_products' : [
-            'gcc', 'gmp', 'mpc', 'mpfr',
-            'charset_normalizer',
-            'contourpy',
-            'fonttools',
-            'tabulate',
-            'tomli',
-            'zipp',
-            'importlib_metadata',
-            'importlib_resources',
-            'sphinxcontrib_applehelp',
-            'sphinxcontrib_devhelp',
-            'sphinxcontrib_jsmath',
-            'sphinxcontrib_jquery',
-            'sphinxcontrib_qthelp',
-            'sphinxcontrib_htmlhelp',
-            'sphinxcontrib_serializinghtml'
-        ]
-        'APPLICATION.products.Babel' : '2.7.0'
-        'APPLICATION.products.Cython': '0.29.12'
-        'APPLICATION.products.dateutil' : '2.6.1'
-        'APPLICATION.products.docutils' : '0.12'
-        'APPLICATION.products.imagesize' : '1.0.0'
-        'APPLICATION.products.Jinja2' : '2.7.3'
-        'APPLICATION.products.kiwisolver' : '1.0.1'
-        'APPLICATION.products.libxml2' : '2.9.1'
-        'APPLICATION.products.markupsafe' : '0.23'
-        'APPLICATION.products.matplotlib' : '3.3.4'
-        'APPLICATION.products.mpi4py' : '3.0.3'
-        'APPLICATION.products.numpy' : '1.16.4'
-        'APPLICATION.products.numpydoc' : '0.9.0'
-        'APPLICATION.products.packaging' : '17.1'
-        'APPLICATION.products.pandas' : '0.25.2'
-        'APPLICATION.products.patsy' : '0.5.2'
-        'APPLICATION.products.psutil' : '5.7.2'
-        'APPLICATION.products.Pygments' : '2.0.2'
-        'APPLICATION.products.pyparsing' : '2.0.3'
-        'APPLICATION.products.Python' : '3.6.5'
-        'APPLICATION.products.requests' : '2.19.1'
-        'APPLICATION.products.scipy' : '1.4.1'
-        'APPLICATION.products.setuptools' : '38.4.0'
-        'APPLICATION.products.snowballstemmer' : '1.2.1'
-        'APPLICATION.products.sphinx_rtd_theme' : '0.4.3'
-        'APPLICATION.products.sphinxintl' : '0.9.10'
-        'APPLICATION.products.statsmodels' : '0.8.0'
-        'APPLICATION.products.sphinxcontrib_websupport' : '1.1.0'
-        'APPLICATION.products.Sphinx' : '1.7.6'
-        'APPLICATION.products.openturns' : {tag: '1.22',  base: 'no', section: 'version_1_22_CO7' }
-    }
-
-    {
-        __condition__ : "VARS.dist in ['CO8'] and APPLICATION.pyver == '3.6'"
-        'APPLICATION.rm_products' : [
-            'gcc', 'gmp', 'mpc', 'mpfr','zeromq',
-            'charset_normalizer',
-            'contourpy',
-            'fonttools',
-            'importlib_metadata',
-            'importlib_resources',
-            'sphinxcontrib_applehelp',
-            'sphinxcontrib_devhelp',
-            'sphinxcontrib_jsmath',
-            'sphinxcontrib_jquery',
-            'sphinxcontrib_qthelp',
-            'sphinxcontrib_htmlhelp',
-            'sphinxcontrib_serializinghtml',
-            'tabulate',
-            'tomli',
-            'zipp'
-        ]
-        'APPLICATION.products.Babel' : '2.7.0'
-        'APPLICATION.products.Cython': '0.29.12'
-        'APPLICATION.products.dateutil' : '2.6.1'
-        'APPLICATION.products.docutils' : '0.12'
-        'APPLICATION.products.imagesize' : '1.0.0'
-        'APPLICATION.products.Jinja2' : '2.7.3'
-        'APPLICATION.products.kiwisolver' : '1.0.1'
-        'APPLICATION.products.libxml2' : '2.9.1'
-        'APPLICATION.products.markupsafe' : '0.23'
-        'APPLICATION.products.matplotlib' : '3.3.4'
-        'APPLICATION.products.mpi4py' : '3.0.3'
-        'APPLICATION.products.numpy' : '1.16.4'
-        'APPLICATION.products.numpydoc' : '0.9.0'
-        'APPLICATION.products.packaging' : '17.1'
-        'APPLICATION.products.pandas' : '0.25.2'
-        'APPLICATION.products.patsy' : '0.5.2'
-        'APPLICATION.products.psutil' : '5.7.2'
-        'APPLICATION.products.Pygments' : '2.0.2'
-        'APPLICATION.products.pyparsing' : '2.0.3'
-        'APPLICATION.products.Python' : '3.6.5'
-        'APPLICATION.products.requests' : '2.19.1'
-        'APPLICATION.products.scipy' : '1.4.1'
-        'APPLICATION.products.setuptools' : '38.4.0'
-        'APPLICATION.products.snowballstemmer' : '1.2.1'
-        'APPLICATION.products.Sphinx' : '1.7.6'
-        'APPLICATION.products.sphinxcontrib_websupport' : '1.1.0'
-        'APPLICATION.products.sphinx_rtd_theme' : '0.4.3'
-        'APPLICATION.products.sphinxintl' : '0.9.10'
-        'APPLICATION.products.statsmodels' : '0.8.0'
-        'APPLICATION.products.gdal'     : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_CO8'                 } # spns #29324
-        'APPLICATION.products.ParaView' : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_CO8', hpc: 'yes'}
-        'APPLICATION.products.openturns'  : {tag: '1.22',  base: 'no', section: 'version_1_22_CO8' }
-    }
-
-    {
-        __condition__ : "VARS.dist in ['DB09'] and APPLICATION.pyver == '3.6'"
-        'APPLICATION.rm_products' : [
-            'charset_normalizer',
-            'contourpy',
-            'fonttools',
-            'importlib_metadata',
-            'importlib_resources',
-            'sphinxcontrib_applehelp',
-            'sphinxcontrib_devhelp',
-            'sphinxcontrib_jsmath',
-            'sphinxcontrib_jquery',
-            'sphinxcontrib_qthelp',
-            'sphinxcontrib_htmlhelp',
-            'sphinxcontrib_serializinghtml',
-            'tabulate',
-            'tomli',
-            'zipp'
-        ]
-        'APPLICATION.products.Babel' : '2.7.0'
-        'APPLICATION.products.Cython': '0.29.12'
-        'APPLICATION.products.dateutil' : '2.6.1'
-        'APPLICATION.products.docutils' : '0.12'
-        'APPLICATION.products.imagesize' : '1.0.0'
-        'APPLICATION.products.Jinja2' : '2.7.3'
-        'APPLICATION.products.kiwisolver' : '1.0.1'
-        'APPLICATION.products.libxml2' : '2.9.1'
-        'APPLICATION.products.markupsafe' : '0.23'
-        'APPLICATION.products.matplotlib' : '3.3.4'
-        'APPLICATION.products.mpi4py' : '3.0.3'
-        'APPLICATION.products.numpy' : '1.16.4'
-        'APPLICATION.products.numpydoc' : '0.9.0'
-        'APPLICATION.products.packaging' : '17.1'
-        'APPLICATION.products.pandas' : '0.25.2'
-        'APPLICATION.products.patsy' : '0.5.2'
-        'APPLICATION.products.psutil' : '5.7.2'
-        'APPLICATION.products.Pygments' : '2.0.2'
-        'APPLICATION.products.pyparsing' : '2.0.3'
-        'APPLICATION.products.Python' : '3.6.5'
-        'APPLICATION.products.requests' : '2.19.1'
-        'APPLICATION.products.scipy' : '1.4.1'
-        'APPLICATION.products.setuptools' : '38.4.0'
-        'APPLICATION.products.snowballstemmer' : '1.2.1'
-        'APPLICATION.products.Sphinx' : '1.7.6'
-        'APPLICATION.products.sphinxcontrib_websupport' : '1.1.0'
-        'APPLICATION.products.sphinx_rtd_theme' : '0.4.3'
-        'APPLICATION.products.sphinxintl' : '0.9.10'
-        'APPLICATION.products.statsmodels' : '0.8.0'
-        'APPLICATION.products.openturns'        : {tag: '1.22',  base: 'no', section: 'version_1_22_DB09' }
-    }
-    {
         __condition__ : "VARS.dist in ['FD30']"
         'APPLICATION.products.gcc' : '9.3.0'
     }
@@ -396,12 +239,12 @@ __overwrite__ :
         'APPLICATION.products.gdal': {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_FD32'} # spns #29324
     }
     {
-        __condition__ : "VARS.dist in ['CO7'] and APPLICATION.pyver == '3.9'"
+        __condition__ : "VARS.dist in ['CO7']"
         'APPLICATION.rm_products'         : ['gcc', 'gmp', 'mpc', 'mpfr']
         'APPLICATION.products.openturns'           : {tag:'1.22', base:'no', section:'version_1_22_CO7'}
     }
     {
-        __condition__ : "VARS.dist in ['CO8'] and APPLICATION.pyver == '3.9'"
+        __condition__ : "VARS.dist in ['CO8']"
         'APPLICATION.rm_products'  : ['gcc', 'gmp', 'mpc', 'mpfr', 'zeromq']
         'APPLICATION.products.gdal'     : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_CO8'                 } # spns #29324
         'APPLICATION.products.openturns'           : {tag:'1.22', base:'no', section:'version_1_22_CO8'}

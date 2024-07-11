@@ -55,6 +55,19 @@ version_4_10_3_with_CAS_7_8_win:
   patches : ['gmsh-4.10.3-occt780-win.patch']
 }
 
+version_4_10_3_with_CAS_7_8_win_dbg:
+{
+  depend : ["CAS","lapack","hdf5","medfile", "cgns"]
+  compil_script : "gmsh-4.10.3.bat"
+  patches: ['gmsh-4.10.3-occt780-win.patch',
+            'gmsh-4.10.3-windows.patch']
+  properties :
+  {
+    incremental : "yes"
+    single_install_dir : "no"
+  }
+}
+
 version_4_10_3_with_CAS_7_8_MPI:
 {
   archive_info : {archive_name : "gmsh-4.10.3.tar.gz"}
