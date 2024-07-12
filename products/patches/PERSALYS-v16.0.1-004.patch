@@ -1,0 +1,11 @@
+--- persalys_v16.0.1_ref/lib/src/view/WelcomeWindow.cxx	2024-04-24 12:27:19.000000000 +0200
++++ persalys_v16.0.1_dev/lib/src/view/WelcomeWindow.cxx	2024-07-12 16:25:19.491458008 +0200
+@@ -37,7 +37,7 @@
+   margins.setBottom(0);
+   widgetLayout->setContentsMargins(margins);
+ 
+-  widgetLayout->addWidget(new TitleLabel(tr("Study creation"), "user_manual/graphical_interface/getting_started/user_manual_getting_started.html#create-a-study"));
++  widgetLayout->addWidget(new TitleLabel(tr("Study creation"), "user_manual/graphical_interface/getting_started/user_manual_getting_started.html"));
+ 
+   QScrollArea * scrollArea = new QScrollArea;
+   scrollArea->setWidgetResizable(true);

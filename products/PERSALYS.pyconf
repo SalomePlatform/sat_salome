@@ -60,6 +60,8 @@ default_win :
 }
 version_v16_0_1 :
 {
+   compil_script : 'PERSALYS-v16.0.1.sh'
+   patches : ['PERSALYS-v16.0.1-004.patch']
 }
 
 version_v16_0_1_win :
@@ -93,7 +95,8 @@ version_v16_0_1_win :
            ]
     patches : ['PERSALYS-v16.0.1-001.patch',
                'PERSALYS-v16.0.1-002.patch',
-               'PERSALYS-v16.0.1-003.patch'
+               'PERSALYS-v16.0.1-003.patch',
+               'PERSALYS-v16.0.1-004.patch'
               ]
 }
 
