@@ -1,6 +1,6 @@
-diff -Naur qt_ref/qtbase/src/corelib/global/qendian.h qt/qtbase/src/corelib/global/qendian.h
---- qt_ref/qtbase/src/corelib/global/qendian.h	2024-06-20 08:48:35.275042443 +0200
-+++ qt/qtbase/src/corelib/global/qendian.h	2024-06-19 09:26:15.988364209 +0200
+diff -Naur qt_ref/qtbase/src/corelib/global/qendian.h qt_dev/qtbase/src/corelib/global/qendian.h
+--- qt_ref/qtbase/src/corelib/global/qendian.h	2020-10-27 09:02:11.000000000 +0100
++++ qt_dev/qtbase/src/corelib/global/qendian.h	2024-07-12 19:46:54.379404387 +0200
 @@ -47,6 +47,7 @@
  // include stdlib.h and hope that it defines __GLIBC__ for glibc-based systems
  #include <stdlib.h>
@@ -9,9 +9,9 @@ diff -Naur qt_ref/qtbase/src/corelib/global/qendian.h qt/qtbase/src/corelib/glob
  
  #ifdef min // MSVC
  #undef min
-diff -Naur qt_ref/qtbase/src/corelib/global/qfloat16.h qt/qtbase/src/corelib/global/qfloat16.h
---- qt_ref/qtbase/src/corelib/global/qfloat16.h	2024-06-20 08:48:35.275042443 +0200
-+++ qt/qtbase/src/corelib/global/qfloat16.h	2024-06-19 09:26:58.829940099 +0200
+diff -Naur qt_ref/qtbase/src/corelib/global/qfloat16.h qt_dev/qtbase/src/corelib/global/qfloat16.h
+--- qt_ref/qtbase/src/corelib/global/qfloat16.h	2020-10-27 09:02:11.000000000 +0100
++++ qt_dev/qtbase/src/corelib/global/qfloat16.h	2024-07-12 19:46:54.380404387 +0200
 @@ -44,6 +44,7 @@
  #include <QtCore/qglobal.h>
  #include <QtCore/qmetatype.h>
@@ -20,9 +20,9 @@ diff -Naur qt_ref/qtbase/src/corelib/global/qfloat16.h qt/qtbase/src/corelib/glo
  
  #if defined(QT_COMPILER_SUPPORTS_F16C) && defined(__AVX2__) && !defined(__F16C__)
  // All processors that support AVX2 do support F16C too. That doesn't mean
-diff -Naur qt_ref/qtbase/src/corelib/text/qbytearraymatcher.h qt/qtbase/src/corelib/text/qbytearraymatcher.h
---- qt_ref/qtbase/src/corelib/text/qbytearraymatcher.h	2024-06-20 08:48:35.298042763 +0200
-+++ qt/qtbase/src/corelib/text/qbytearraymatcher.h	2024-06-19 09:29:34.864037490 +0200
+diff -Naur qt_ref/qtbase/src/corelib/text/qbytearraymatcher.h qt_dev/qtbase/src/corelib/text/qbytearraymatcher.h
+--- qt_ref/qtbase/src/corelib/text/qbytearraymatcher.h	2020-10-27 09:02:11.000000000 +0100
++++ qt_dev/qtbase/src/corelib/text/qbytearraymatcher.h	2024-07-12 19:46:54.381404386 +0200
 @@ -41,6 +41,7 @@
  #define QBYTEARRAYMATCHER_H
  
@@ -31,3 +31,14 @@ diff -Naur qt_ref/qtbase/src/corelib/text/qbytearraymatcher.h qt/qtbase/src/core
  
  QT_BEGIN_NAMESPACE
  
+diff -Naur qt_ref/qtdeclarative/src/qmldebug/qqmlprofilerevent_p.h qt_dev/qtdeclarative/src/qmldebug/qqmlprofilerevent_p.h
+--- qt_ref/qtdeclarative/src/qmldebug/qqmlprofilerevent_p.h	2020-10-27 09:02:12.000000000 +0100
++++ qt_dev/qtdeclarative/src/qmldebug/qqmlprofilerevent_p.h	2024-07-15 09:33:38.736527017 +0200
+@@ -49,6 +49,7 @@
+ 
+ #include <initializer_list>
+ #include <type_traits>
++#include <limits>
+ 
+ //
+ //  W A R N I N G
