@@ -7,7 +7,7 @@ APPLICATION :
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name
     cmake_generator : 'Visual Studio 15 2017'
     cmake_build_type: 'Release' # Debug, RelWithDebInfo, Release, MinSizeRel
-    tag : 'V9_13_0rc1'
+    tag : 'V9_13_BR'
     dev : 'no'
     verbose : 'no'
     debug   : 'no'

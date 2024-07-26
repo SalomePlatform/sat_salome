@@ -6,7 +6,7 @@ APPLICATION :
     name : 'MEDCOUPLING-9.13.0'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name
     cmake_generator : 'Visual Studio 15 2017'
-    tag : 'V9_13_0rc1'
+    tag : 'V9_13_BR'
     debug : 'no'
     base : 'no'
     python3 : 'yes'
