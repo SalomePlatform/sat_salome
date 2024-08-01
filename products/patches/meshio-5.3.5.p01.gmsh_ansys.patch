@@ -1,0 +1,25 @@
+--- meshio-5.3.5_ref/src/meshio/gmsh/main.py	2023-06-26 21:18:18.000000000 +0200
++++ meshio-5.3.5_dev/src/meshio/gmsh/main.py	2024-08-02 10:20:16.667483402 +0200
+@@ -108,6 +108,6 @@
+     read,
+     {
+         "gmsh22": lambda f, m, **kwargs: write(f, m, "2.2", **kwargs),
+-        "gmsh": lambda f, m, **kwargs: write(f, m, "4.1", **kwargs),
++        "gmsh40": lambda f, m, **kwargs: write(f, m, "4.0", **kwargs),
+     },
+ )
+--- meshio-5.3.5_ref/src/meshio/ansys/_ansys.py	2024-01-31 16:09:01.000000000 +0100
++++ meshio-5.3.5_dev/src/meshio/ansys/_ansys.py	2024-08-02 10:20:57.619917526 +0200
+@@ -446,9 +446,10 @@
+                 ansys_cell_type = meshio_to_ansys_type[cell_type]
+             except KeyError:
+                 legal_keys = ", ".join(meshio_to_ansys_type.keys())
+-                raise KeyError(
+-                    f"Illegal ANSYS cell type '{cell_type}'. (legal: {legal_keys})"
++                warn(
++                    f"Illegal ANSYS cell type '{cell_type}'. (legal: {legal_keys}). Skipping cell!"
+                 )
++                continue
+             fh.write(
+                 f"({key} (1 {first_index:x} {last_index:x} 1 {ansys_cell_type})(\n".encode()
+             )
