@@ -5,7 +5,7 @@ APPLICATION :
 {
     name     : 'SALOME-9.13.0-MPI'
     workdir  : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag      : 'V9_13_BR'
+    tag      : 'V9_13_0rc2'
     dev      : 'no'
     verbose  : 'no'
     debug    : 'no'
@@ -160,8 +160,8 @@ APPLICATION :
         'SHAPERSTUDY'
         'RESTRICTED'
         'LIBBATCH' : 'V2_5_0'
-        'KERNEL'      : {tag:'V9_13_BR', base: 'no', section: 'default_MPI', hpc: 'yes', verbose: 'yes'}
-        'MEDCOUPLING' : {tag:'V9_13_BR', base: 'no', section: 'default_MPI_STD', hpc: 'yes', verbose: 'yes'}
+        'KERNEL'      : {tag:'V9_13_0rc2', base: 'no', section: 'default_MPI', hpc: 'yes', verbose: 'yes'}
+        'MEDCOUPLING' : {tag:'V9_13_0rc2', base: 'no', section: 'default_MPI_STD', hpc: 'yes', verbose: 'yes'}
         'GUI' : {verbose : 'yes'}
         'GEOM'
         'SMESH'
@@ -171,12 +171,12 @@ APPLICATION :
         'HYBRIDPLUGIN'
         'HexoticPLUGIN'
         'GMSHPLUGIN'
-        'HEXABLOCK' : {tag:'V9_13_BR', base: 'no', section: 'default_MPI', hpc: 'yes', verbose: 'yes'}
+        'HEXABLOCK' : {tag:'V9_13_0rc2', base: 'no', section: 'default_MPI', hpc: 'yes', verbose: 'yes'}
         'HEXABLOCKPLUGIN'
-        'HOMARD'    : {tag:'V9_13_BR', base: 'no', section: 'default_MPI', hpc: 'yes'}
-        'FIELDS'    : {tag:'V9_13_BR', base: 'no', section: 'default_MPI', hpc: 'yes'}
-        'PARAVIS'   : {tag:'V9_13_BR', base: 'no', section: 'default_MPI', hpc: 'yes'}
-        'JOBMANAGER': {tag:'V9_13_BR', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'HOMARD'    : {tag:'V9_13_0rc2', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'FIELDS'    : {tag:'V9_13_0rc2', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'PARAVIS'   : {tag:'V9_13_0rc2', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'JOBMANAGER': {tag:'V9_13_0rc2', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'YACS'
         'YACSGEN'
         'DOCUMENTATION'
@@ -186,17 +186,17 @@ APPLICATION :
         'CALCULATOR'
         'HELLO'
         'PYHELLO'
-        'EFICAS' : 'V9_13_BR'
-        'EFICAS_TOOLS' : 'V9_13_BR'
+        'EFICAS' : 'V9_13_0rc2'
+        'EFICAS_TOOLS' : 'V9_13_0rc2'
         'PY2CPP'
-        'ADAO' : 'V9_13_BR'
-        'ADAO_INTERFACE' : 'V9_13_BR'
+        'ADAO' : 'V9_13_0rc1'
+        'ADAO_INTERFACE' : 'V9_13_0rc1'
         'PARAVISADDONS'
         'OPENTURNS_SALOME'
         'YDEFX'
         'pmml'
         'SALOMEBOOTSTRAP'
-        'SOLVERLAB' : {tag: 'V9_13_BR', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'SOLVERLAB' : {tag: 'V9_13_0rc2', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'TopIIVolMesh'
         #'TESTBASE'
         'CEATESTBASE' : 'SalomeV9'
