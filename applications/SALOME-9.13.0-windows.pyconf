@@ -189,7 +189,7 @@ APPLICATION :
         'PYHELLO'
         'EFICAS'
         'EFICAS_TOOLS'
-        'ADAO' : 'V9_13_0rc1'
+        'ADAO' : 'V9_13_0rc2'
         'PARAVISADDONS'
         'PY2CPP'
         'OPENTURNS_SALOME'
