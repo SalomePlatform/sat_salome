@@ -143,6 +143,7 @@ APPLICATION :
         qt : '5.15.15'
         qtpy : {tag : '2.4.1', base : 'no', section : 'version_2_4_1_no_pip'}
         qwt : '6.1.6'
+        rapidjson : '1.1.0'
         requests : '2.22.0'
         rich : '13.7.1'
         rkCommon : '1.5.1'

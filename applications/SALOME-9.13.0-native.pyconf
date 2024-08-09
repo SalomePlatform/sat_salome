@@ -39,7 +39,7 @@ APPLICATION :
         assimulo  : '3.5.2'
         Babel : 'native'
         boost : 'native'
-        CAS : {tag : 'SALOME_9_13_V7_8_0', section: 'version_CR780_SALOME_PATCH', base:  'no'}
+        CAS : {tag : 'SALOME_9_13_V7_8_0', section: 'version_SALOME_9_13_V7_8_0', base:  'no'}
         catalyst: '2.0'
         C3PO: 'v2.3'
         certifi : 'native'

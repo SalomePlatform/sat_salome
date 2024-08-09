@@ -125,6 +125,7 @@ APPLICATION :
         pytz : '2017.2'
         qt : '5.15.15'
         qwt : '6.1.6'
+        rapidjson : '1.1.0'
         requests : '2.31.0'
         rich : '13.7.1'
         rkCommon : '1.5.1'

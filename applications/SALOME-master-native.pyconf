@@ -135,6 +135,7 @@ APPLICATION :
         qt : 'native'
         qtpy : {tag : '2.4.1', base : 'no', section : 'version_2_4_1_no_pip', hpc: 'no'}
         qwt : 'native'
+        rapidjson : '1.1.0'
         requests : 'native'
         rkCommon : '1.5.1'
         rich : '13.7.1'

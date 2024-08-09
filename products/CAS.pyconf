@@ -41,6 +41,94 @@ version_CR780_SALOME_PATCH :
 {
     name : "CAS"
     build_source : "cmake"
+    cmake_options : "-DUSE_TCL=OFF -DBUILD_MODULE_Draw=OFF -DUSE_FREETYPE=ON -D3RDPARTY_FREETYPE_DIR=$FREETYPEDIR -DUSE_FREEIMAGE=ON -D3RDPARTY_FREEIMAGE_DIR=$FREEIMAGEDIR -DUSE_RAPIDJSON=ON -D3RDPARTY_RAPIDJSON_DIR=$RAPIDJSONDIR -DCMAKE_EXPORT_NO_PACKAGE_REGISTRY=ON"
+    get_source : "git"
+    git_info:
+    {
+        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo_dev : $repo
+    }
+    environ :
+    {
+        CSF_ShadersDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Shaders"
+        CSF_UnitsLexicon : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
+        CSF_UnitsDefinition : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
+        CSF_SHMessage : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "SHMessage"
+        CSF_XSMessage : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "XSMessage"
+        CSF_MDTVTexturesDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Textures"
+        MMGT_REENTRANT : "1"
+        CSF_StandardDefaults : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        CSF_PluginDefaults : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        env_script : $name + ".py"
+    }
+    depend : ['freetype', 'freeimage', 'rapidjson']
+    build_depend : ["cmake", "doxygen"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties:
+    {
+      incremental : "no"
+    }
+}
+
+version_CR780_SALOME_PATCH_win :
+{
+    name : "CAS"
+    build_source : "script"
+    compil_script :  "CAS_7.8.bat"
+    get_source : "git"
+    git_info:
+    {
+        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo_dev : $repo
+    }
+    environ :
+    {
+        CSF_OCCTBinPath          : $install_dir + $VARS.sep + "win64" + $VARS.sep + "vc14" + $VARS.sep + "bin"
+        CSF_OCCTLibPath          : $install_dir + $VARS.sep + "win64" + $VARS.sep + "vc14" + $VARS.sep + "lib"
+        CSF_OCCTIncludePath      : $install_dir + $VARS.sep + "inc"
+        CSF_OCCTResourcePath     : $install_dir + $VARS.sep + "src"
+        CSF_OCCTDataPath         : $install_dir + $VARS.sep + "data"
+        CSF_OCCTSamplesPath      : $install_dir + $VARS.sep + "samples"
+        CSF_OCCTTestsPath        : $install_dir + $VARS.sep + "tests"
+        CSF_OCCTDocPath          : $install_dir + $VARS.sep + "doc"
+        CSF_SHMessage            : $install_dir + $VARS.sep + "src" + $VARS.sep + "SHMessage"
+        CSF_MDTVTexturesDirectory: $install_dir + $VARS.sep + "src" + $VARS.sep + "Textures"
+        CSF_ShadersDirectory     : $install_dir + $VARS.sep + "src" + $VARS.sep + "Shaders"
+        CSF_XSMessage            : $install_dir + $VARS.sep + "src" + $VARS.sep + "XSMessage"
+        CSF_TObjMessage          : $install_dir + $VARS.sep + "src" + $VARS.sep + "TObj"
+        CSF_StandardDefaults     : $install_dir + $VARS.sep + "src" + $VARS.sep + "StdResource"
+        CSF_PluginDefaults       : $install_dir + $VARS.sep + "src" + $VARS.sep + "StdResource"
+        CSF_XCAFDefaults         : $install_dir + $VARS.sep + "src" + $VARS.sep + "StdResource"
+        CSF_TObjDefaults         : $install_dir + $VARS.sep + "src" + $VARS.sep + "StdResource"
+        CSF_StandardLiteDefaults : $install_dir + $VARS.sep + "src" + $VARS.sep + "StdResource"
+        CSF_IGESDefaults         : $install_dir + $VARS.sep + "src" + $VARS.sep + "XSTEPResource"
+        CSF_STEPDefaults         : $install_dir + $VARS.sep + "src" + $VARS.sep + "XSTEPResource"
+        CSF_XmlOcafResource      : $install_dir + $VARS.sep + "src" + $VARS.sep + "XmlOcafResource"
+        CSF_MIGRATION_TYPES      : $install_dir + $VARS.sep + "src" + $VARS.sep + "StdResource" + $VARS.sep + "MigrationSheet.txt"
+        CSF_UnitsDefinition      : $install_dir + $VARS.sep + "src" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
+
+        MMGT_CLEAR     : "1"
+        MMGT_REENTRANT : "1"
+        CSF_LANGUAGE   : "us"
+
+        env_script : $name + ".py"
+    }
+    depend : ['freetype', 'freeimage', 'rapidjson']
+    build_depend : ["cmake", "doxygen"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+      incremental : "no"
+    }
+}
+
+version_SALOME_9_14_a2_V7_8_0 :
+{
+    name : "CAS"
+    build_source : "cmake"
     cmake_options : "-DUSE_TCL=OFF -DBUILD_MODULE_Draw=OFF -DUSE_FREETYPE=ON -D3RDPARTY_FREETYPE_DIR=$FREETYPEDIR -DUSE_FREEIMAGE=ON -D3RDPARTY_FREEIMAGE_DIR=$FREEIMAGEDIR -DCMAKE_EXPORT_NO_PACKAGE_REGISTRY=ON"
     get_source : "git"
     git_info:
@@ -72,7 +160,97 @@ version_CR780_SALOME_PATCH :
     }
 }
 
-version_CR780_SALOME_PATCH_win :
+version_SALOME_9_14_a2_V7_8_0_win :
+{
+    name : "CAS"
+    build_source : "script"
+    compil_script :  "CAS_7.8.bat"
+    get_source : "git"
+    git_info:
+    {
+        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo_dev : $repo
+    }
+    environ :
+    {
+        CSF_OCCTBinPath          : $install_dir + $VARS.sep + "win64" + $VARS.sep + "vc14" + $VARS.sep + "bin"
+        CSF_OCCTLibPath          : $install_dir + $VARS.sep + "win64" + $VARS.sep + "vc14" + $VARS.sep + "lib"
+        CSF_OCCTIncludePath      : $install_dir + $VARS.sep + "inc"
+        CSF_OCCTResourcePath     : $install_dir + $VARS.sep + "src"
+        CSF_OCCTDataPath         : $install_dir + $VARS.sep + "data"
+        CSF_OCCTSamplesPath      : $install_dir + $VARS.sep + "samples"
+        CSF_OCCTTestsPath        : $install_dir + $VARS.sep + "tests"
+        CSF_OCCTDocPath          : $install_dir + $VARS.sep + "doc"
+        CSF_SHMessage            : $install_dir + $VARS.sep + "src" + $VARS.sep + "SHMessage"
+        CSF_MDTVTexturesDirectory: $install_dir + $VARS.sep + "src" + $VARS.sep + "Textures"
+        CSF_ShadersDirectory     : $install_dir + $VARS.sep + "src" + $VARS.sep + "Shaders"
+        CSF_XSMessage            : $install_dir + $VARS.sep + "src" + $VARS.sep + "XSMessage"
+        CSF_TObjMessage          : $install_dir + $VARS.sep + "src" + $VARS.sep + "TObj"
+        CSF_StandardDefaults     : $install_dir + $VARS.sep + "src" + $VARS.sep + "StdResource"
+        CSF_PluginDefaults       : $install_dir + $VARS.sep + "src" + $VARS.sep + "StdResource"
+        CSF_XCAFDefaults         : $install_dir + $VARS.sep + "src" + $VARS.sep + "StdResource"
+        CSF_TObjDefaults         : $install_dir + $VARS.sep + "src" + $VARS.sep + "StdResource"
+        CSF_StandardLiteDefaults : $install_dir + $VARS.sep + "src" + $VARS.sep + "StdResource"
+        CSF_IGESDefaults         : $install_dir + $VARS.sep + "src" + $VARS.sep + "XSTEPResource"
+        CSF_STEPDefaults         : $install_dir + $VARS.sep + "src" + $VARS.sep + "XSTEPResource"
+        CSF_XmlOcafResource      : $install_dir + $VARS.sep + "src" + $VARS.sep + "XmlOcafResource"
+        CSF_MIGRATION_TYPES      : $install_dir + $VARS.sep + "src" + $VARS.sep + "StdResource" + $VARS.sep + "MigrationSheet.txt"
+        CSF_UnitsDefinition      : $install_dir + $VARS.sep + "src" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
+
+        MMGT_CLEAR     : "1"
+        MMGT_REENTRANT : "1"
+        CSF_LANGUAGE   : "us"
+
+        env_script : $name + ".py"
+    }
+    depend : ['freetype', 'freeimage']
+    opt_depend: ['rapidjson']
+    build_depend : ["cmake", "doxygen"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+      incremental : "no"
+    }
+}
+
+
+version_SALOME_9_13_V7_8_0 :
+{
+    name : "CAS"
+    build_source : "cmake"
+    cmake_options : "-DUSE_TCL=OFF -DBUILD_MODULE_Draw=OFF -DUSE_FREETYPE=ON -D3RDPARTY_FREETYPE_DIR=$FREETYPEDIR -DUSE_FREEIMAGE=ON -D3RDPARTY_FREEIMAGE_DIR=$FREEIMAGEDIR -DCMAKE_EXPORT_NO_PACKAGE_REGISTRY=ON"
+    get_source : "git"
+    git_info:
+    {
+        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo_dev : $repo
+    }
+    environ :
+    {
+        CSF_ShadersDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Shaders"
+        CSF_UnitsLexicon : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
+        CSF_UnitsDefinition : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
+        CSF_SHMessage : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "SHMessage"
+        CSF_XSMessage : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "XSMessage"
+        CSF_MDTVTexturesDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Textures"
+        MMGT_REENTRANT : "1"
+        CSF_StandardDefaults : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        CSF_PluginDefaults : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        env_script : $name + ".py"
+    }
+    depend : ['freetype', 'freeimage']
+    build_depend : ["cmake", "doxygen"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties:
+    {
+      incremental : "no"
+    }
+}
+
+version_SALOME_9_13_V7_8_0_win :
 {
     name : "CAS"
     build_source : "script"

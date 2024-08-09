@@ -38,7 +38,7 @@ APPLICATION :
         Babel : '2.14.0'
         BasicIterativeStatistics :  'v0.1.0'
         boost : '1.71.0'
-        CAS : {tag : 'SALOME_9_14_a2_V7_8_0', section: 'version_CR780_SALOME_PATCH', base: 'no'}
+        CAS : {tag : 'SALOME_9_14_a2_V7_8_0', section: 'version_SALOME_9_14_a2_V7_8_0', base: 'no'}
         catalyst: '2.0'
         C3PO: 'v2.3'
         certifi : '2018.8.24'
