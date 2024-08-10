@@ -196,7 +196,7 @@ APPLICATION :
     properties :
     {
         mesa_launcher_in_package : "no"
-        repo_dev : "yes"
+        git_server : 'tuleap'
         pip : 'yes'
         pip_install_dir : 'python'
         single_install_dir : "yes"
