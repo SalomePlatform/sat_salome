@@ -7,7 +7,7 @@ APPLICATION :
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name
     cmake_generator : 'Visual Studio 15 2017'
     cmake_build_type: 'Release' # Debug, RelWithDebInfo, Release, MinSizeRel
-    tag : 'V9_13_0rc2'
+    tag : 'V9_13_0rc3'
     dev : 'no'
     verbose : 'no'
     debug   : 'no'
@@ -189,7 +189,7 @@ APPLICATION :
         'PYHELLO'
         'EFICAS'
         'EFICAS_TOOLS'
-        'ADAO' : 'V9_13_0rc2'
+        'ADAO'
         'PARAVISADDONS'
         'PY2CPP'
         'OPENTURNS_SALOME'
