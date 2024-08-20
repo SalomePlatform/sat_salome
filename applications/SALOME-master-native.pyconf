@@ -237,7 +237,7 @@ __overwrite__ :
         'APPLICATION.products.cmake'            : 'native' # TTK requires cmake > 3.21
         'APPLICATION.products.cftime'           : 'native'
         'APPLICATION.products.h5py'             : 'native'
-        'APPLICATION.products.meshio'           : 'native'
+        'APPLICATION.products.meshio'           : {tag: '5.3.5' , base: 'no', section: 'version_5_3_5_no_pip'    }
         'APPLICATION.products.netCDF4'          : 'native'
         'APPLICATION.products.rich'             : 'native'
         'APPLICATION.products.cminpack'         : 'native'
@@ -292,7 +292,7 @@ __overwrite__ :
         'APPLICATION.products.h5py'             : 'native'
         'APPLICATION.products.markdown_it_py'   : 'native'
         'APPLICATION.products.mdurl'            : 'native'
-        'APPLICATION.products.meshio'           : {tag: '5.3.4', base:  'no', section: 'version_5_3_4_no_pip'}
+        'APPLICATION.products.meshio'           : {tag: '5.3.5', base:  'no', section: 'version_5_3_5_no_pip'}
         'APPLICATION.products.netCDF4'          : 'native'
         'APPLICATION.products.rich'             : 'native'
         'APPLICATION.products.opencv'           : {tag: '3.2.0',     base: 'no', section: 'version_3_2_0_DB12'}
