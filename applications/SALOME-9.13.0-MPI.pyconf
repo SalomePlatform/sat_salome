@@ -5,7 +5,7 @@ APPLICATION :
 {
     name     : 'SALOME-9.13.0-MPI'
     workdir  : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag      : 'V9_13_0rc3'
+    tag      : 'V9_13_0'
     dev      : 'no'
     verbose  : 'no'
     debug    : 'no'
@@ -66,7 +66,7 @@ APPLICATION :
         mpc : 'native'
         gmp : 'native'
         mmg : '5.6.0'
-        mmgplugin: 'main'
+        mmgplugin: 'v1.0.0'
         mpfr : 'native'
         gdal :  {tag : '2.4.0',  hpc : 'yes'}
         gmsh :  {tag : '4.10.3', section :  'version_4_10_3_with_CAS_7_8_MPI', hpc : 'yes', base : 'no'}
@@ -169,8 +169,8 @@ APPLICATION :
         'SHAPERSTUDY'
         'RESTRICTED'
         'LIBBATCH' : 'V2_5_0'
-        'KERNEL'      : {tag:'V9_13_0rc3', base: 'no', section: 'default_MPI', hpc: 'yes', verbose: 'yes'}
-        'MEDCOUPLING' : {tag:'V9_13_0rc3', base: 'no', section: 'default_MPI_STD', hpc: 'yes', verbose: 'yes'}
+        'KERNEL'      : {tag:'V9_13_0', base: 'no', section: 'default_MPI', hpc: 'yes', verbose: 'yes'}
+        'MEDCOUPLING' : {tag:'V9_13_0', base: 'no', section: 'default_MPI_STD', hpc: 'yes', verbose: 'yes'}
         'GUI' : {verbose : 'yes'}
         'GEOM'
         'SMESH'
@@ -180,12 +180,12 @@ APPLICATION :
         'HYBRIDPLUGIN'
         'HexoticPLUGIN'
         'GMSHPLUGIN'
-        'HEXABLOCK' : {tag:'V9_13_0rc3', base: 'no', section: 'default_MPI', hpc: 'yes', verbose: 'yes'}
+        'HEXABLOCK' : {tag:'V9_13_0', base: 'no', section: 'default_MPI', hpc: 'yes', verbose: 'yes'}
         'HEXABLOCKPLUGIN'
-        'HOMARD'    : {tag:'V9_13_0rc3', base: 'no', section: 'default_MPI', hpc: 'yes'}
-        'FIELDS'    : {tag:'V9_13_0rc3', base: 'no', section: 'default_MPI', hpc: 'yes'}
-        'PARAVIS'   : {tag:'V9_13_0rc3', base: 'no', section: 'default_MPI', hpc: 'yes'}
-        'JOBMANAGER': {tag:'V9_13_0rc3', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'HOMARD'    : {tag:'V9_13_0', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'FIELDS'    : {tag:'V9_13_0', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'PARAVIS'   : {tag:'V9_13_0', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'JOBMANAGER': {tag:'V9_13_0', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'YACS'
         'YACSGEN'
         'DOCUMENTATION'
@@ -205,7 +205,7 @@ APPLICATION :
         'YDEFX'
         'pmml'
         'SALOMEBOOTSTRAP'
-        'SOLVERLAB' : {tag: 'V9_13_0rc3', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'SOLVERLAB' : {tag: 'V9_13_0', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'TopIIVolMesh'
         #'TESTBASE'
         'CEATESTBASE' : 'SalomeV9'

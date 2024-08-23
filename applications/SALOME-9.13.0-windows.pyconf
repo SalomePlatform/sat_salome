@@ -7,7 +7,7 @@ APPLICATION :
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name
     cmake_generator : 'Visual Studio 15 2017'
     cmake_build_type: 'Release' # Debug, RelWithDebInfo, Release, MinSizeRel
-    tag : 'V9_13_0rc3'
+    tag : 'V9_13_0'
     dev : 'no'
     verbose : 'no'
     debug   : 'no'
@@ -91,7 +91,7 @@ APPLICATION :
         meshio: '5.3.5'
         metis : '5.1.0'
         mmg : '5.6.0'
-        mmgplugin: 'main'
+        mmgplugin: 'v1.0.0'
         msvc : '2017'
         netcdf : '4.6.2'
         netCDF4: '1.6.5'

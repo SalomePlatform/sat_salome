@@ -9,7 +9,6 @@ APPLICATION :
     base    : 'no'
     debug   : 'no'
     python3 : 'yes'
-    pyver   : '3.9'
     environ :
     {
         build :
@@ -94,44 +93,6 @@ APPLICATION :
 }
 __overwrite__ :
 [
-  {
-    __condition__ : "APPLICATION.pyver == '3.6'"
-    'APPLICATION.rm_products' : [
-        "charset_normalizer",
-        "importlib_metadata",
-        "sphinxcontrib_applehelp",
-        "sphinxcontrib_devhelp",
-        "sphinxcontrib_jsmath",
-        "sphinxcontrib_qthelp",
-        "sphinxcontrib_htmlhelp",
-        "sphinxcontrib_serializinghtml",
-        "sphinxcontrib_napoleon",
-        "zipp"
-    ]
-    'APPLICATION.products.Babel'                    : '2.7.0'
-    'APPLICATION.products.cmake'                    : '3.25.2'
-    'APPLICATION.products.Cython'                   : '0.29.12'
-    'APPLICATION.products.docutils'                 : '0.12'
-    'APPLICATION.products.imagesize'                : '1.0.0'
-    'APPLICATION.products.Jinja2'                   : '2.7.3'
-    'APPLICATION.products.libxml2'                  : '2.9.1'
-    'APPLICATION.products.markupsafe'               : '0.23'
-    'APPLICATION.products.mpi4py'                   : '3.0.3'
-    'APPLICATION.products.numpy'                    : '1.16.4'
-    'APPLICATION.products.packaging'                : '17.1'
-    'APPLICATION.products.Pygments'                 : '2.0.2'
-    'APPLICATION.products.pyparsing'                : '2.0.3'
-    'APPLICATION.products.Python'                   : '3.6.5'
-    'APPLICATION.products.requests'                 : '2.19.1'
-    'APPLICATION.products.scipy'                    : '1.4.1'
-    'APPLICATION.products.scotch'                   : '6.0.4'
-    'APPLICATION.products.setuptools'               : '38.4.0'
-    'APPLICATION.products.snowballstemmer'          : '1.2.1'
-    'APPLICATION.products.Sphinx'                   : '1.7.6'
-    'APPLICATION.products.sphinx_rtd_theme'         : '0.4.3'
-    'APPLICATION.products.sphinxcontrib_websupport' : '1.1.0'
-    'APPLICATION.products.sphinxintl'               : '0.9.10'
-  }
   {
     __condition__ : "VARS.dist in ['FD32']"
     'APPLICATION.products.scipy' : '1.5.2' # gcc https://github.com/scipy/scipy/issues/11611 - either patch numpy to include -fallow-argument-mismatch or move to that version
