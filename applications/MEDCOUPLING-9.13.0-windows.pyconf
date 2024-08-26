@@ -56,6 +56,7 @@ APPLICATION :
         metis : '5.1.0'
         msvc : '2017'
         numpy : '1.21.6'
+        openblas : '0.3.23'
         packaging : '19.0'
         pockets : '0.7.2'
         Pygments : '2.13.0'

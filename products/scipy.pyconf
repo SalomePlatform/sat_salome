@@ -45,9 +45,9 @@ version_1_6_2_win:
     incremental : "yes"
     pip : "yes"
   }
-	archive_info : {archive_name : "scipy-1.6.2.tar.gz"}
-	depend : ['numpy','lapack', 'openblas']
-  opt_depend : ['pybind11']
+  archive_info : {archive_name : "scipy-1.6.2.tar.gz"}
+  depend : ['numpy','lapack']
+  opt_depend : ['pybind11', 'openblas']
 }
 
 version_1_5_2_no_pip :
