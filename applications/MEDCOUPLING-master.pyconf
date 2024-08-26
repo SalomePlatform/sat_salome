@@ -53,7 +53,7 @@ APPLICATION :
         Pygments : '2.17.2'
         pyparsing : '3.1.1'
         Python : '3.9.14'
-        pytz : '2015.7'
+        pytz : '2017.2'
         requests : '2.31.0'
         scipy : '1.6.2'
         scotch : '6.1.2'

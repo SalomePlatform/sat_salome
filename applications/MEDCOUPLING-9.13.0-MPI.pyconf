@@ -75,7 +75,6 @@ APPLICATION :
         sphinxcontrib_serializinghtml : '1.1.10'
         sphinxcontrib_napoleon : '0.6.1'
         sphinxcontrib_websupport : '1.2.7'
-        sphinx_rtd_theme         : '2.0.0'
         sphinxintl: '2.1.0'
         swig : '4.0.2'
         urllib3 : '1.23'
