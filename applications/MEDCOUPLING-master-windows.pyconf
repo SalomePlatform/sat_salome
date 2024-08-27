@@ -58,6 +58,7 @@ APPLICATION :
         numpy : '1.21.6'
         openblas : '0.3.23'
         packaging : '19.0'
+        perl : '5.28.1.1'
         pockets : '0.7.2'
         Pygments : '2.13.0'
         pyparsing : '2.4.0'

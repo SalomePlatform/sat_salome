@@ -9,7 +9,6 @@ APPLICATION :
     base     : 'no'
     debug    : 'no'
     python3  : 'yes'
-    pyver    : '3.9'
     platform : ['CO7', 'CO8', 'DB09']
     environ  :
     {
@@ -106,7 +105,7 @@ __overwrite__ :
         'APPLICATION.products.scipy' : '1.5.2'
     }
     {
-        __condition__: "VARS.dist in ['FD34', 'FD36', 'FD37']"
+        __condition__: "VARS.dist in ['FD34', 'FD36', 'FD37', 'FD38']"
         # gcc https://github.com/scipy/scipy/issues/11611
         # either patch numpy to include -fallow-argument-mismatch or move to that version
         'APPLICATION.products.scipy' : '1.5.2'

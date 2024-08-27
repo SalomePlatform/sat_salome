@@ -94,6 +94,7 @@ __overwrite__ :
     {
         __condition__ : "VARS.dist in ['CO9']"
         'APPLICATION.products.sphinxintl'       : {tag: '0.9.10',  base: 'no', section: 'version_0_9_10_no_pip' }
+        'APPLICATION.products.openmpi'          : '4.1.5'
     }
     {
         __condition__ : "VARS.dist in ['UB22.04']"

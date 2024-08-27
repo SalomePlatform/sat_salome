@@ -55,6 +55,7 @@ APPLICATION :
         msvc : '2017'
         numpy : '1.16.4'
         packaging : '19.0'
+        perl : '5.28.1.1'
         pockets : '0.7.2'
         Pygments : '2.4.2'
         pyparsing : '2.4.0'
@@ -91,7 +92,7 @@ APPLICATION :
     }
     properties :
     {
-        repo_dev : "yes"
+        git_server : 'tuleap'
         pip : 'yes'
         pip_install_dir : 'python'
         single_install_dir : "yes"
