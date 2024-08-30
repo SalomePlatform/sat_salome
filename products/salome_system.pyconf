@@ -46,6 +46,14 @@ default :
                        "libxml++-devel", "xcb-util-cursor-devel", "xcb-util-image-devel", "xcb-util-keysyms-devel", "xcb-util-renderutil-devel", "xcb-util-wm-devel",
                        "libXrender-devel", "libxkbcommon-devel", "libxkbcommon-x11-devel", "libXi-devel", "libXcursor-devel", "libXcomposite-devel"] # libdrm-devel xcb-util-xrm-devel
         }
+        "CO9" :
+        {
+            rpm : ["lz4-libs", "openmpi", "gsl", "libgeotiff", "giflib", "geos", "sqlite", "netcdf", "libxml++", "gdal-libs", "double-conversion"]
+            rpm_dev : ["lz4-devel", "perl-interpreter", "qt5-devel", "openmpi-devel", "gsl-devel", "libpng-devel", "libtiff-devel", "libgeotiff-devel", "giflib-devel", "geos-devel", "netcdf-devel", "texlive-dvipng",
+                       "libxml++-devel", "xcb-util-cursor-devel", "xcb-util-image-devel", "xcb-util-keysyms-devel", "xcb-util-renderutil-devel", "xcb-util-wm-devel",
+                       "libXrender-devel", "libxkbcommon-devel", "libxkbcommon-x11-devel", "libXi-devel", "libXcursor-devel", "libXcomposite-devel",
+                       "gdal-devel"]
+        }
         "FD30" :
         {
            rpm : ["lz4", "gsl", "libxml++"]
