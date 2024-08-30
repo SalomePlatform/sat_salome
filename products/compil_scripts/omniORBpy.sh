@@ -34,7 +34,16 @@ fi
 mkdir -p $PRODUCT_INSTALL
 echo "omniORBpy is installed into omni dir ${OMNIORB_ROOT_DIR}" > $PRODUCT_INSTALL/README
 
-# fix 
+# fix
+if [ -d $OMNIORB_ROOT_DIR/local ]; then
+    mv $OMNIORB_ROOT_DIR/local/lib/* $OMNIORB_ROOT_DIR/lib
+    rm -rf $OMNIORB_ROOT_DIR/local
+fi
+
+if [ -d $OMNIORB_ROOT_DIR/lib/python${PYTHON_VERSION}/dist-packages ]; then
+   mv $OMNIORB_ROOT_DIR/lib/python${PYTHON_VERSION}/dist-packages $OMNIORB_ROOT_DIR/lib/python${PYTHON_VERSION}/site-packages
+fi
+
 cd $OMNIORB_ROOT_DIR/lib
 find . -name "*.so*" |xargs chmod u+rwx 
 

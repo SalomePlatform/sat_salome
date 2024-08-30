@@ -1,0 +1,19 @@
+diff --git a/src/PVGUI/PVGUI_Module.cxx b/src/PVGUI/PVGUI_Module.cxx
+index 79bfdccd..e739b812 100644
+--- a/src/PVGUI/PVGUI_Module.cxx
++++ b/src/PVGUI/PVGUI_Module.cxx
+@@ -839,12 +839,12 @@ QString PVGUI_Module::getTraceString()
+         vtkSmartPyObject save_cam(PyObject_GetAttrString(trace_mod, const_cast<char*>("SaveCameras")));
+         vtkSmartPyObject camera_trace(PyObject_CallMethod(save_cam, const_cast<char*>("get_trace"), NULL));
+         // Convert to a single string
+-        vtkSmartPyObject ret(PyUnicode_FromUnicode(Py_DecodeLocale(end_line.toStdString().c_str(), NULL), end_line.size()));
++        vtkSmartPyObject ret(PyUnicode_FromWideChar(Py_DecodeLocale(end_line.toStdString().c_str(), NULL), end_line.size()));
+         vtkSmartPyObject final_string(PyObject_CallMethod(ret, const_cast<char*>("join"),
+             const_cast<char*>("O"), (PyObject*)camera_trace));
+         if (PyUnicode_CheckExact(final_string))
+           {
+-            QString camera_qs(Py_EncodeLocale(PyUnicode_AS_UNICODE(final_string.GetPointer()), NULL));  // deep copy
++            QString camera_qs(Py_EncodeLocale(PyUnicode_AsWideCharString(final_string.GetPointer(),NULL), NULL));  // deep copy
+             traceString = traceString + end_line  + end_line + QString("#### saving camera placements for all active views")
+                 + end_line + end_line + camera_qs + end_line;
+           }

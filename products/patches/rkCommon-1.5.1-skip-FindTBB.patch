@@ -1,0 +1,13 @@
+--- rkCommon/cmake/rkcommon_macros.cmake	2021-02-09 12:57:36.000000000 +0100
++++ rkCommon/cmake/rkcommon_macros.cmake	2024-07-03 11:13:34.044426549 +0200
+@@ -177,7 +177,9 @@
+     endif()
+ 
+     # Try getting TBB via config first
+-    find_package(TBB 2021.1 QUIET COMPONENTS tbb tbbmalloc CONFIG)
++    if (NOT TARGET TBB::tbb)
++      find_package(TBB 2021.1 QUIET COMPONENTS tbb tbbmalloc CONFIG)
++    endif()
+     if (TBB_FOUND)
+       list(APPEND RKCOMMON_TASKING_LIBS TBB::tbb TBB::tbbmalloc)
+       set(RKCOMMON_TASKING_DEFINITIONS RKCOMMON_TASKING_TBB)

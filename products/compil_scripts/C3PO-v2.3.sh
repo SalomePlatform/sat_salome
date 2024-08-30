@@ -30,6 +30,15 @@ if [ "${SAT_Python_IS_NATIVE}" != "1" ] || [ -z "${PYTEST}" ]; then
     export PATH="${PRODUCT_INSTALL}/bin":$PATH
 fi
 
+if [ -d ${PRODUCT_INSTALL}/local ];then
+    mv ${PRODUCT_INSTALL}/local/* ${PRODUCT_INSTALL}
+    rm -rf ${PRODUCT_INSTALL}/local
+fi
+
+if [ -d ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/dist-packages ]; then
+    mv ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/dist-packages ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages
+fi
+
 echo
 echo "*** running C3PO non-regression tests"
 export LD_LIBRARY_PATH="${MEDCOUPLING_ROOT_DIR}/lib:${LD_LIBRARY_PATH}"

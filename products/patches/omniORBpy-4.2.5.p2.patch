@@ -1,0 +1,23 @@
+diff -Naur omniORBpy/modules/pyMarshal.cc omniORBpy_dev/modules/pyMarshal.cc
+--- omniORBpy/modules/pyMarshal.cc	    2021-03-23 18:24:39.000000000 +0100
++++ omniORBpy_dev/modules/pyMarshal.cc	2024-07-02 13:10:36.387696661 +0200
+@@ -2987,8 +2987,8 @@
+   OMNIORB_CHECK_TCS_W_FOR_UNMARSHAL(stream.TCS_W(), stream);
+ 
+   Py_UNICODE  c   = stream.TCS_W()->unmarshalWChar(stream);
+-  PyObject*   r_o = PyUnicode_FromUnicode(0, 1);
+-  Py_UNICODE* str = PyUnicode_AS_UNICODE(r_o);
++  PyObject*   r_o = PyUnicode_FromWideChar(0, 1);
++  Py_UNICODE* str = PyUnicode_AsWideCharString(r_o, NULL);
+   str[0]          = c;
+   str[1]          = 0;
+   return r_o;
+@@ -4641,7 +4641,7 @@
+ 		       omniPy::formatString("Expecting unicode, got %r",
+ 					    "O", a_o->ob_type));
+   }
+-  if (PyUnicode_GET_SIZE(a_o) != 1) {
++  if (PyUnicode_GetLength(a_o) != 1) {
+     THROW_PY_BAD_PARAM(BAD_PARAM_WrongPythonType, compstatus,
+ 		       omniPy::formatString("Expecting unicode of length 1, "
+ 					    "got %r",

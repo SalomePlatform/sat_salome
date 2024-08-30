@@ -4,13 +4,6 @@ default :
     build_source : "script"
     compil_script :  $name + $VARS.scriptExtension
     get_source : "archive"
-    system_info : 
-    {
-        rpm : ["freetype"]
-        rpm_dev : ["freetype-devel"]
-        apt : ["libfreetype6"]
-        apt_dev : ["libfreetype6-dev"]
-    }
     environ :
     {
        env_script : $name + ".py"

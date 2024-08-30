@@ -21,6 +21,19 @@ default :
     post_script: "fix_permissions.sh"
 }
 
+version_3_20_5 :
+{
+    compil_script :  "petsc-3.20.5.sh"
+    depend : ["hdf5", "Python", "lapack","fftw", "llvm", "metis", "medfile", "mpi4py", "scotch" ]
+}
+
+version_3_19_4 :
+{
+    compil_script :  "petsc-3.19.4.sh"
+    depend : ["hdf5", "Python", "lapack","fftw", "llvm", "metis", "medfile" ]
+    patches: ['petsc-3.19.4-mpi4py.patch','petsc-3.19.4-libpath.patch']
+}
+
 version_3_17_0 :
 {
     compil_script :  "petsc-3.17.0.sh"

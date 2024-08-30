@@ -105,6 +105,33 @@ default_MPI :
     patches : []
 }
 
+version_V9_13_0_UB24_04 :
+{
+   cmake_options : "-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON  -DSALOME_USE_MPI=ON -DCMAKE_CXX_COMPILER:STRING=${MPI_CXX_COMPILER} -DCMAKE_C_COMPILER:STRING=${MPI_C_COMPILER} "
+   depend : [
+      "KERNEL",
+      "GUI",
+      "MEDCOUPLING",
+      "FIELDS",
+      "GEOM",
+      "SMESH",
+      "Python",
+      "qt",
+      "boost",
+      "hdf5",
+      "medfile",
+      "ParaView",
+      "CAS",
+      "omniORB",
+      "docutils",
+      "libxml2",
+      "six",
+      "pytz",
+      "openmpi"
+   ]
+   patches: ['PARAVIS-UB24.04-V9_13_0-PyUnicode_AsWideCharString.patch']
+}
+
 version_V9_11_0_MPI :
 {
     cmake_options : "-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON  -DSALOME_USE_MPI=ON -DCMAKE_CXX_COMPILER:STRING=${MPI_CXX_COMPILER} -DCMAKE_C_COMPILER:STRING=${MPI_C_COMPILER} "

@@ -27,3 +27,8 @@ default_win :
       single_install_dir : "yes"
     }
 }
+
+version_1_5_1_UB24_04 :
+{
+  patches: ['rkCommon-1.5.1-skip-FindTBB.patch']
+}

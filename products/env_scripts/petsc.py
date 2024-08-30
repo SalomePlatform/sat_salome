@@ -8,8 +8,8 @@ def set_env(env, prereq_dir, version):
   env.set('PETSCDIR', prereq_dir)
   env.set('PETSC_ROOT_DIR', prereq_dir)
   env.set('PETSC_DIR', prereq_dir)
-  env.set('PETSC4PY', os.path.join(prereq_dir, 'lib','petsc4py'))
-  env.set('SLEPC4PY', os.path.join(prereq_dir, 'lib','slepc4py'))
+  env.set('PETSC4PY', os.path.join(prereq_dir, 'lib'))
+  env.set('SLEPC4PY', os.path.join(prereq_dir, 'lib'))
 
   if platform.system() == "Windows" :
     pass

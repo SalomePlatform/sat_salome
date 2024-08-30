@@ -11,7 +11,7 @@ APPLICATION :
     debug : 'no'
     base : 'no'
     python3 : 'yes'
-    platform : ["FD32", "FD34", "FD36", "FD37", "FD38", "CO8", "CO9", "DB10", "DB11", "DB12", "UB20.04", "UB22.04"]
+    platform : ["FD32", "FD34", "FD36", "FD37", "FD38", "CO8", "CO9", "DB10", "DB11", "DB12", "UB20.04", "UB22.04", "UB24.04"]
     environ :
     {
         build :
@@ -36,6 +36,7 @@ APPLICATION :
     {
         # PREREQUISITES :
         alabaster : 'native'
+        assimulo  : '3.5.2'
         Babel : 'native'
         boost : 'native'
         CAS : {tag : 'CR780-SALOME-PATCH', section: 'version_CR780_SALOME_PATCH', base:  'no'}
@@ -91,6 +92,7 @@ APPLICATION :
         netCDF4: 'native'
         nlopt : 'native'
         nose: 'native'
+        nose_py3: '1.6.9'
         numpy : 'native'
         numpydoc : 'native'
         omniORB : '4.2.5'
@@ -215,6 +217,7 @@ __overwrite__ :
     {
         #
         __condition__ : "VARS.dist in ['UB20.04']"
+        'APPLICATION.rm_products'               : ['nose_py3','assimulo'] #
         'APPLICATION.products.opencv'           : '3.2.0'
         'APPLICATION.products.cminpack'         : 'native'
         'APPLICATION.products.netcdf'           : '4.6.2'
@@ -233,7 +236,7 @@ __overwrite__ :
     {
         #
         __condition__ : "VARS.dist in ['UB22.04']"
-        'APPLICATION.rm_products'               : ['TTK', 'markdown_it_py', 'mdurl'] # causes crashes
+        'APPLICATION.rm_products'               : ['TTK', 'markdown_it_py', 'mdurl','nose_py3','assimulo'] # TTK causes crashes
         'APPLICATION.products.cmake'            : 'native' # TTK requires cmake > 3.21
         'APPLICATION.products.cftime'           : 'native'
         'APPLICATION.products.h5py'             : 'native'
@@ -250,10 +253,40 @@ __overwrite__ :
         'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_UB22_04'                  }
     }
     {
+        #
+        __condition__ : "VARS.dist in ['UB24.04']"
+        'APPLICATION.rm_products'               : ['root','URANIE'] #
+        'APPLICATION.products.assimulo'         : '3.5.2'
+        'APPLICATION.products.netcdf'           : '4.6.2'
+        'APPLICATION.products.opencv'           : '3.2.0'
+        'APPLICATION.products.PyFMI'            : '2.13.1'
+        'APPLICATION.products.petsc'            : '3.20.5'
+        'APPLICATION.products.swig'             : '4.0.2'
+        'APPLICATION.products.cmake'            : 'native'
+        'APPLICATION.products.cftime'           : 'native'
+        'APPLICATION.products.h5py'             : 'native'
+        'APPLICATION.products.markdown_it_py'   : 'native'
+        'APPLICATION.products.meshio'           : {tag: '5.3.5' , base: 'no', section: 'version_5_3_5_no_pip'    }
+        'APPLICATION.products.netCDF4'          : 'native'
+        'APPLICATION.products.rich'             : 'native'
+        'APPLICATION.products.cminpack'         : 'native'
+        'APPLICATION.products.omniORBpy'        : {tag: '4.2.5',     base: 'no', section: 'version_4_2_5_UB24_04'                  }
+        'APPLICATION.products.nose_py3'         : {tag: '1.6.9',     base: 'no', section: 'version_1_6_9_no_pip'                   }
+        'APPLICATION.products.rkCommon'         : {tag: '1.5.1',     base: 'no', section: 'version_1_5_1_UB24_04'                  }
+        'APPLICATION.products.catalyst'         : {tag: '2.0',       base: 'no', section: 'version_2_0_FD38'                       }
+        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_UB22_04'                  }
+        'APPLICATION.products.gmsh'             : {tag: '4.10.3',    base: 'no', section: 'version_4_10_3_with_CAS_7_8_UB24_04'    }
+        'APPLICATION.products.ParaView'         : {tag: '5.11.0',    base: 'no', section: 'version_5_11_0_MPI_UB24_04', hpc: 'yes' }
+        'APPLICATION.products.KERNEL'           : {tag: 'master',    base: 'no', section: 'version_V9_13_0_UB24_04'                }
+        'APPLICATION.products.FIELDS'           : {tag: 'master',    base: 'no', section: 'version_V9_13_0_UB24_04'                }
+        'APPLICATION.products.PARAVIS'          : {tag: 'master',    base: 'no', section: 'version_V9_13_0_UB24_04'                }
+    }
+    {
         # DB10:
         #   - Qt minimal version 5.12
         #   - xmlpatterns executable
         __condition__ : "VARS.dist in ['DB10']"
+        'APPLICATION.rm_products'       : ['nose_py3','assimulo'] #
         'APPLICATION.products.nlopt'    : '2.4.2'
         'APPLICATION.products.opencv'   : '3.2.0'
         'APPLICATION.products.cminpack' : 'native'
@@ -275,6 +308,7 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['DB11']"
+        'APPLICATION.rm_products'               : ['nose_py3','assimulo'] #
         'APPLICATION.products.opencv'           : '3.2.0'
         'APPLICATION.products.hdf5'             : 'native'
         'APPLICATION.products.cminpack'         : 'native'
@@ -287,6 +321,7 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['DB12']"
+        'APPLICATION.rm_products'               : ['nose_py3','assimulo'] #
         'APPLICATION.products.cmake'            : 'native' # TTK requires cmake > 3.21
         'APPLICATION.products.cftime'           : 'native'
         'APPLICATION.products.h5py'             : 'native'
@@ -307,6 +342,7 @@ __overwrite__ :
         # CentOS 8 repositories don't include sphinxintl package which must be installed through pip.
         # To avoid its missing (system_info pyconf key doesn't handle this use case), we embed it.
         __condition__ : "VARS.dist in ['CO8']"
+        'APPLICATION.rm_products'               : ['nose_py3','assimulo'] #
         'APPLICATION.products.sphinxintl'       : {tag: '0.9.10', base: 'no', section: 'version_0_9_10_no_pip'  }
         'APPLICATION.products.cminpack'         : '1.3.6'
         'APPLICATION.products.nlopt'            : '2.4.2'
@@ -323,6 +359,7 @@ __overwrite__ :
     }
     {
          __condition__ : "VARS.dist in ['CO9']"
+         'APPLICATION.rm_products'               : ['nose_py3','assimulo'] #
          'APPLICATION.products.nlopt'            : '2.4.2'
          'APPLICATION.products.cminpack'         : '1.3.6'
          'APPLICATION.products.qwt'              : '6.1.6'
@@ -349,6 +386,7 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['FD32']"
+        'APPLICATION.rm_products'               : ['nose_py3','assimulo'] #
         'APPLICATION.products.opencv'           : '3.2.0'
         'APPLICATION.products.qt'               : '5.15.2'
         'APPLICATION.products.qwt'              : '6.1.6'
@@ -367,6 +405,7 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['FD34']"
+        'APPLICATION.rm_products'               : ['nose_py3','assimulo'] #
         'APPLICATION.products.opencv'           : '3.2.0'
         'APPLICATION.products.qwt'              : '6.1.6'
         'APPLICATION.products.omniORB'          : '4.2.5'
@@ -382,6 +421,7 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['FD36']"
+        'APPLICATION.rm_products'               : ['nose_py3','assimulo'] #
         'APPLICATION.products.opencv'           : {tag: '3.2.0',     base: 'no', section: 'version_3_2_0_FD36'                  }
         'APPLICATION.products.omniORB'          : '4.2.5'
         'APPLICATION.products.omniORBpy'        : '4.2.5'
@@ -400,7 +440,7 @@ __overwrite__ :
 
     {
         __condition__ : "VARS.dist in ['FD37']"
-        'APPLICATION.rm_products' : ['root', 'URANIE']
+        'APPLICATION.rm_products' : ['root', 'URANIE','nose_py3','assimulo']
         'APPLICATION.products.cmake'            : 'native'
         'APPLICATION.products.opencv'           : {tag: '3.2.0',     base: 'no', section: 'version_3_2_0_FD37'                  }
         'APPLICATION.products.omniORB'          : '4.2.5'
@@ -414,7 +454,7 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['FD38']"
-        'APPLICATION.rm_products' : ['root', 'URANIE', 'mesa']
+        'APPLICATION.rm_products' : ['root', 'URANIE', 'mesa','nose_py3','assimulo']
         'APPLICATION.products.markdown_it_py'   : 'native'
         'APPLICATION.products.rich'             : 'native'
         'APPLICATION.products.cmake'            : 'native'

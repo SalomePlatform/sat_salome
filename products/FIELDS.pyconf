@@ -44,6 +44,11 @@ default_MPI :
     ]
 }
 
+version_V9_13_0_UB24_04 :
+{
+  patches: ['FIELDS-UB24.04-V9_13_0-PyUnicode_AsWideCharString.patch']
+}
+
 version_V9_10_0:
 {
   patches: []

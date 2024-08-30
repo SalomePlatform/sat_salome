@@ -1,0 +1,56 @@
+diff --git a/bin/parseConfigFile.py b/bin/parseConfigFile.py
+index 20d782c8c..9be59649f 100644
+--- a/bin/parseConfigFile.py
++++ b/bin/parseConfigFile.py
+@@ -17,8 +17,13 @@
+ # See http://www.salome-platform.org/ or email : webmaster.salome@opencascade.com
+ #
+ 
+-import configparser
+ import os
++import sys
++import configparser
++if sys.version_info[:2] >= (3,12):
++  from configparser import ConfigParser as SafeConfigParser
++else:
++  from configparser import SafeConfigParser
+ import logging
+ import re
+ from io import StringIO
+@@ -46,9 +51,9 @@ def _expandSystemVariables(key, val):
+ #
+ 
+ # :TRICKY: So ugly solution...
+-class MultiOptSafeConfigParser(configparser.SafeConfigParser):
++class MultiOptSafeConfigParser(SafeConfigParser):
+   def __init__(self):
+-    configparser.SafeConfigParser.__init__(self)
++    SafeConfigParser.__init__(self)
+ 
+   # copied from python 2.6.8 Lib.ConfigParser.py
+   # modified (see code comments) to handle duplicate keys
+diff --git a/bin/salomeContext.py b/bin/salomeContext.py
+index 04f960e31..273e4ef66 100755
+--- a/bin/salomeContext.py
++++ b/bin/salomeContext.py
+@@ -22,7 +22,10 @@ import os
+ import sys
+ import logging
+ import configparser
+-
++if sys.version_info[:2] >= (3,12):
++  from configparser import ConfigParser as SafeConfigParser
++else:
++  from configparser import SafeConfigParser
+ from parseConfigFile import parseConfigFile
+ 
+ import tempfile
+@@ -542,7 +545,7 @@ class SalomeContext:
+   #
+ 
+   def _showSoftwareVersions(self, softwares=None):
+-    config = configparser.SafeConfigParser()
++    config = SafeConfigParser()
+     absoluteAppliPath = os.getenv('ABSOLUTE_APPLI_PATH')
+     filename = os.path.join(absoluteAppliPath, "sha1_collections.txt")
+     versions = {}

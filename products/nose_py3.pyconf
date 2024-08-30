@@ -1,0 +1,37 @@
+default :
+{
+    name : "nose-py3"
+    build_source : "script"
+    compil_script :  'pip_install' + $VARS.scriptExtension
+    archive_info : {archive_prefix : "nose_py3"}
+    get_source : "archive"  
+    patches : []
+    environ :
+    {
+       env_script : "nose_py3.py"
+    }
+    depend : ['Python', 'setuptools', 'numpy', 'scipy', 'six', 'Sphinx', 'Jinja2', 
+              'Pygments', 'docutils', 'snowballstemmer', 'Babel', 'alabaster', 
+              'imagesize', 'requests', 'packaging']
+    opt_depend: []
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+      incremental : "yes"
+      pip : "yes"
+    }
+}
+
+version_1_6_9_no_pip:
+{
+   compil_script: "nose-py3-1.6.9"  + $VARS.scriptExtension
+   archive_info : {archive_name : "nose_py3-1.6.9.tar.gz"}
+   properties :
+   {
+     incremental : "yes"
+     pip : "no"
+   }
+}
+

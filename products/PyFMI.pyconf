@@ -27,6 +27,17 @@ default :
     patches: []
 }
 
+version_2_13_1 :                                                                                   
+{                                                                                                  
+  compil_script : "PyFMI-2.13.1.sh"                                                              
+  depend : ["Python", "setuptools", "Cython", "FMILibrary", "matplotlib", "nose_py3", "assimulo"]                           
+  properties:                                                                                    
+  {                                                                          
+    incremental : "yes"
+    pip : "no"
+  }
+}
+
 version_2_6_no_pip :
 {
     compil_script : "PyFMI-2.6.sh"

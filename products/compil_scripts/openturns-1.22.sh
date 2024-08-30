@@ -373,13 +373,23 @@ if [[ -d "$SOURCE_DIR/otfftw-0.14" ]]; then
                     echo "*** skipping: since system Cython too old"
                     continue
                 fi
-                echo "INFO: install scikit-learn-0.24.2"
-                # use --no-build-isolation and --no-use-pep517 flags
-                ${PYTHONBIN} -m pip install  --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/scikit-learn-0.24.2/scikit-learn-0.24.2.tar.gz --no-deps  --prefix=$PRODUCT_INSTALL --no-build-isolation --no-use-pep517
-                if [ $? -ne 0 ]
-                then
-                    echo "FATAL: could not install scikit-0.24.2"
-                    exit 6
+                if [ "${PYTHON_VERSION}" == "3.12" ]; then
+                    echo "INFO: install scikit-learn-1.2.2"
+                    ${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/scikit-learn-1.2.2/scikit-learn-1.2.2.tar.gz --no-deps --prefix=$PRODUCT_INSTALL --no-build-isolation --no-use-pep517
+                    if [ $? -ne 0 ]
+                    then
+                        echo "FATAL: could not install scikit-1.2.2"
+                        exit 6
+                    fi
+                else
+                    echo "INFO: install scikit-learn-0.24.2"
+                    # use --no-build-isolation and --no-use-pep517 flags
+                    ${PYTHONBIN} -m pip install  --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/scikit-learn-0.24.2/scikit-learn-0.24.2.tar.gz --no-deps  --prefix=$PRODUCT_INSTALL --no-build-isolation --no-use-pep517
+                    if [ $? -ne 0 ]
+                    then
+                        echo "FATAL: could not install scikit-0.24.2"
+                        exit 6
+                    fi
                 fi
                 echo "INFO: install threadpoolctl-3.0.0"
                 ${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip  $SOURCE_DIR/threadpoolctl-3.0.0/threadpoolctl-3.0.0-py3-none-any.whl --no-deps --prefix=$PRODUCT_INSTALL
