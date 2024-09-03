@@ -273,8 +273,8 @@ __overwrite__ :
         'APPLICATION.products.omniORBpy'        : {tag: '4.2.5',     base: 'no', section: 'version_4_2_5_UB24_04'                  }
         'APPLICATION.products.nose_py3'         : {tag: '1.6.9',     base: 'no', section: 'version_1_6_9_no_pip'                   }
         'APPLICATION.products.rkCommon'         : {tag: '1.5.1',     base: 'no', section: 'version_1_5_1_UB24_04'                  }
-        'APPLICATION.products.catalyst'         : {tag: '2.0',       base: 'no', section: 'version_2_0_FD38'                       }
-        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_UB22_04'                  }
+        'APPLICATION.products.catalyst'         : {tag: '2.0',       base: 'no', section: 'version_2_0_UB24_04'                    }
+        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_UB24_04'                  }
         'APPLICATION.products.gmsh'             : {tag: '4.10.3',    base: 'no', section: 'version_4_10_3_with_CAS_7_8_UB24_04'    }
         'APPLICATION.products.ParaView'         : {tag: '5.11.0',    base: 'no', section: 'version_5_11_0_MPI_UB24_04', hpc: 'yes' }
         'APPLICATION.products.KERNEL'           : {tag: 'V9_13_0',   base: 'no', section: 'version_V9_13_0_UB24_04'                }
