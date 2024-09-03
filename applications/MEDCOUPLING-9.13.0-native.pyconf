@@ -104,7 +104,7 @@ __overwrite__ :
         __condition__ : "VARS.dist in ['UB24.04']"
         'APPLICATION.products.cmake'            : 'native'
         'APPLICATION.products.swig'             : '4.0.2'
-        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_UB22_04'}
+        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_UB24_04'}
     }
     {
         __condition__ : "VARS.dist in ['FD36']"
