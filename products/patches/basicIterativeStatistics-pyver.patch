@@ -1,0 +1,13 @@
+diff --git a/pyproject.toml b/pyproject.toml
+index 7e857b7..f4f0362 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -12,7 +12,7 @@ classifiers = [
+ ]
+ 
+ [tool.poetry.dependencies]
+-python = ">=3.8,<3.11"
++python = ">=3.7,<3.13"
+ pyyaml = "6.0"
+ numpy = "^1.19.0"
+ 

@@ -16,7 +16,7 @@ if ! ${PYTHONBIN} -m pip install . --prefix="${PRODUCT_INSTALL}" --cache-dir="${
     exit 2
 fi
 
-if [ "${SAT_Python_IS_NATIVE}" == "1" ]; then
+if [ "${SAT_Python_IS_NATIVE}" == "1" ] && [ "$PYTEST_ROOT_DIR" != "" ]; then
     PYTEST=$(which pytest)
 fi
 

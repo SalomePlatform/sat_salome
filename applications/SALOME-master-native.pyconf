@@ -38,6 +38,7 @@ APPLICATION :
         alabaster : 'native'
         assimulo  : '3.5.2'
         Babel : 'native'
+        BasicIterativeStatistics :  'v0.1.0'
         boost : 'native'
         CAS : {tag : 'CR780-SALOME-PATCH', section: 'version_CR780_SALOME_PATCH', base:  'no'}
         catalyst: '2.0'
@@ -111,11 +112,15 @@ APPLICATION :
         Pillow : 'native'
         planegcs : '0.18-3cb6890'
         psutil : 'native'
+        poetry : '1.8.3'
+        poetry_core : '1.9.0'
+        pyyaml: 'native'
         PyFMI : '2.6'
         Pygments : 'native'
         pyparsing : 'native'
         PyQt : 'native'
         pyreadline : 'native'
+        pytest :  'native'
         Python : 'native'
         pytz : 'native'
         qt : 'native'
@@ -223,6 +228,7 @@ __overwrite__ :
         'APPLICATION.products.netcdf'           : '4.6.2'
         'APPLICATION.products.qt'               : '5.15.2'
         'APPLICATION.products.qwt'              : '6.1.6'
+        'APPLICATION.products.poetry'           : {tag: '1.5.1', base: 'no', section: 'version_1_5_1_x86_64' }
         'APPLICATION.products.PyQt'             : '5.15.3'
         'APPLICATION.products.sip'              : '5.5.0'
         'APPLICATION.products.PyFMI'            : {tag: '2.6',    base: 'no', section: 'version_2_6_no_pip'      }
@@ -291,6 +297,9 @@ __overwrite__ :
         'APPLICATION.products.opencv'   : '3.2.0'
         'APPLICATION.products.cminpack' : 'native'
         'APPLICATION.products.hdf5'     : 'native'
+        'APPLICATION.products.pytest'   : '8.1.1'
+        'APPLICATION.products.poetry_core' : '1.6.1'
+        'APPLICATION.products.poetry'   : {tag: '1.5.1', base: 'no', section: 'version_1_5_1_x86_64' }
         'APPLICATION.products.PyFMI'    : {tag:'2.6',     base: 'no',  section: 'version_2_6_no_pip'                 }
         'APPLICATION.products.qt'       : '5.15.2'
         'APPLICATION.products.qwt'      : '6.1.6'
@@ -312,6 +321,8 @@ __overwrite__ :
         'APPLICATION.products.opencv'           : '3.2.0'
         'APPLICATION.products.hdf5'             : 'native'
         'APPLICATION.products.cminpack'         : 'native'
+        'APPLICATION.products.pytest'           : '8.1.1'
+        'APPLICATION.products.pyyaml'           : {tag: '6.0',   base: 'no', section: 'version_6_0_x86_64'    }
         'APPLICATION.products.mdurl'            : {tag: '0.1.2', base: 'no', section: 'version_0_1_2_no_pip'    }
         'APPLICATION.products.markdown_it_py'   : {tag: '3.0.0', base : 'no', section: 'version_3_0_0_no_pip'}
         'APPLICATION.products.PyFMI'            : {tag:'2.6',    base: 'no', section: 'version_2_6_no_pip'}
@@ -336,6 +347,7 @@ __overwrite__ :
         'APPLICATION.products.swig'             : '4.0.2'
         'APPLICATION.products.tbb'              : '2021.9.0'
         'APPLICATION.products.PyFMI'            : {tag: '2.6',       base: 'no', section: 'version_2_6_DB12'          }
+        'APPLICATION.products.poetry'   : {tag: '1.5.1', base: 'no', section: 'version_1_5_1_x86_64' }
         'APPLICATION.products.ParaView'         : {tag: '5.11.0',    base: 'no', section: 'version_5_11_0_MPI_DB12', hpc: 'yes' }
     }
     {
@@ -402,6 +414,8 @@ __overwrite__ :
         'APPLICATION.products.meshio'           : {tag: '5.3.5' , base: 'no', section: 'version_5_3_5_no_pip' }
         'APPLICATION.products.h5py'             : {tag: '3.11.0', base: 'no', section: 'version_3_11_0_no_pip'}
         'APPLICATION.products.YACS'             : {tag: 'master', base: 'no', section: 'version_master_FD32'  }
+        'APPLICATION.products.poetry_core'      : {tag: '1.9.0',  base: 'no', section: 'version_1_9_0_x86_64' }
+        'APPLICATION.products.poetry'           : {tag: '1.5.1', base: 'no', section: 'version_1_5_1_x86_64' }
     }
     {
         __condition__ : "VARS.dist in ['FD34']"

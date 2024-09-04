@@ -34,7 +34,7 @@ default :
               "CONFIGURATION"
               ]
     build_depend : ["cmake", "swig", "doxygen", "graphviz", "cppunit"]
-    opt_depend : []
+    opt_depend : ["BasicIterativeStatistics"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     properties:
@@ -92,7 +92,7 @@ default_MPI :
               "CONFIGURATION",
               "openmpi"
               ]
-    opt_depend : ["ParMetis", "metis"]
+    opt_depend : ["ParMetis", "metis", "BasicIterativeStatistics"]
 }
 
 default_MPI_STD:
@@ -119,7 +119,7 @@ default_MPI_STD:
               "openmpi",
               "sphinx_rtd_theme"
               ]
-    opt_depend : ["ParMetis"]
+    opt_depend : ["ParMetis", "BasicIterativeStatistics"]
 }
 
 version_micro:

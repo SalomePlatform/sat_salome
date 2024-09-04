@@ -37,6 +37,7 @@ APPLICATION :
         # PREREQUISITES :
         alabaster : '0.7.6'
         Babel : '2.14.0'
+        BasicIterativeStatistics :  'v0.1.0'
         boost : '1.71.0'
         CAS : {tag : 'CR780-SALOME-PATCH', section: 'version_CR780_SALOME_PATCH', base: 'no'}
         catalyst: '2.0'
@@ -116,12 +117,16 @@ APPLICATION :
         petsc : {tag : '3.16.0', base: 'no', section: 'version_3_16_0', hpc: 'yes'}
         Pillow : '8.4.0'
         planegcs : '0.18-3cb6890'
+        poetry : '1.8.3'
+        poetry_core : '1.9.0'
+        pyyaml: '6.0'
         psutil : '5.9.8'
         PyFMI : {tag: '2.6',   base: 'no', section: 'version_2_6_no_pip'}
         Pygments : '2.17.2'
         pyparsing : '3.1.1'
         PyQt : '5.15.3'
         pyreadline : '2.0'
+        pytest :  '8.1.1'
         Python : '3.9.14'
         pytz : '2017.2'
         qt : '5.15.2'
@@ -245,6 +250,8 @@ __overwrite__ :
         __condition__ : "VARS.dist in ['CO7']"
         'APPLICATION.rm_products'         : ['gcc', 'gmp', 'mpc', 'mpfr']
         'APPLICATION.products.openturns'           : {tag:'1.22', base:'no', section:'version_1_22_CO7'}
+        'APPLICATION.products.pyyaml' : {tag: '6.0',   base: 'no', section: 'version_6_0_x86_64'    }
+        'APPLICATION.products.poetry' : {tag: '1.8.3', base: 'no', section: 'version_1_8_3_x86_64'    }
     }
     {
         __condition__ : "VARS.dist in ['CO8']"

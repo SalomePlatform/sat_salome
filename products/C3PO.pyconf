@@ -19,7 +19,7 @@ default :
         "MEDCOUPLING",
         "medfile"
     ]
-    opt_depend: ["openmpi", "mpi4py"]
+    opt_depend: ["openmpi", "mpi4py", "pytest"]
     build_depend : ["cmake", "swig", "cppunit"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
@@ -35,6 +35,7 @@ version_v2_3 :
     compil_script  : "C3PO-v2.3.sh"
     patches: ['C3PO-v2.3-0001.patch', 'C3PO-v2.3-0002.patch']
 }
+
 version_v2_0 :
 {
     patches: ['C3PO-v2.0.patch']
