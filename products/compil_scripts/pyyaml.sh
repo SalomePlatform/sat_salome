@@ -4,6 +4,7 @@ echo "##########################################################################
 echo "pyyaml " $VERSION
 echo "##########################################################################"
 
+mkdir -p ${PRODUCT_INSTALL}
 rm -rf $BUILD_DIR
 mkdir -p $BUILD_DIR
 cd $BUILD_DIR

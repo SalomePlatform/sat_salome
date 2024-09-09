@@ -112,7 +112,7 @@ APPLICATION :
         Pillow : 'native'
         planegcs : '0.18-3cb6890'
         psutil : 'native'
-        poetry : '1.8.3'
+        poetry : {tag: '1.8.3', base: 'no', section: 'version_1_8_3_x86_64' }
         poetry_core : '1.9.0'
         pyyaml: 'native'
         PyFMI : '2.6'
@@ -354,7 +354,7 @@ __overwrite__ :
         # CentOS 8 repositories don't include sphinxintl package which must be installed through pip.
         # To avoid its missing (system_info pyconf key doesn't handle this use case), we embed it.
         __condition__ : "VARS.dist in ['CO8']"
-        'APPLICATION.rm_products'               : ['nose_py3','assimulo'] #
+        'APPLICATION.rm_products'               : ['nose_py3','assimulo', 'poetry', 'poetry_core', 'BasicIterativeStatistics'] #
         'APPLICATION.products.sphinxintl'       : {tag: '0.9.10', base: 'no', section: 'version_0_9_10_no_pip'  }
         'APPLICATION.products.cminpack'         : '1.3.6'
         'APPLICATION.products.nlopt'            : '2.4.2'
@@ -368,6 +368,7 @@ __overwrite__ :
         'APPLICATION.products.rich'             : {tag: '12.6.0', base: 'no', section: 'version_12_6_0_no_pip'}
         'APPLICATION.products.meshio'           : {tag: '4.3.13', base: 'no', section: 'version_4_3_13_no_pip' }
         'APPLICATION.products.h5py'             : {tag: '3.0.0',  base: 'no', section: 'version_3_0_0_no_pip' }
+        'APPLICATION.products.poetry_core'      : {tag: '1.9.0',  base: 'no', section: 'version_1_9_0_x86_64' }
     }
     {
          __condition__ : "VARS.dist in ['CO9']"
@@ -395,6 +396,7 @@ __overwrite__ :
          'APPLICATION.products.ParaView'         : {tag: '5.11.0',  base: 'no', section: 'version_5_11_0_MPI_CO9', hpc: 'yes'}
          'APPLICATION.products.YDEFX'            : {tag: 'master',  base: 'no', section: 'version_master_CO9'                }
          'APPLICATION.products.YACS'             : {tag: 'master',  base: 'no', section: 'version_master_CO9'                }
+         'APPLICATION.products.poetry_core'      : {tag: '1.9.0',  base: 'no', section: 'version_1_9_0_x86_64' }
     }
     {
         __condition__ : "VARS.dist in ['FD32']"
@@ -432,6 +434,7 @@ __overwrite__ :
         'APPLICATION.products.PyFMI'            : {tag: '2.6',    base: 'no', section: 'version_2_6_no_pip'   }
         'APPLICATION.products.root'             : {tag:'6.22.02', base: 'no', section: 'version_6_22_02_FD34' }
         'APPLICATION.products.gdal'             : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_FD34'   } # spns #29324
+        'APPLICATION.products.poetry'           : {tag: '1.5.1', base: 'no', section: 'version_1_5_1_x86_64' }
     }
     {
         __condition__ : "VARS.dist in ['FD36']"
