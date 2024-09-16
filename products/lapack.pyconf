@@ -8,8 +8,8 @@ default :
     {
         rpm : ["lapack"]
         rpm_dev : ["lapack-devel"]
-        apt : ["liblapack3"]
-        apt_dev : ["liblapack-dev"]
+        apt : ["liblapack3", "liblapacke"]
+        apt_dev : ["liblapack-dev", "liblapacke-dev"]
     }
     environ :
     {
