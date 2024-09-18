@@ -5,7 +5,7 @@
  
      install_requires = build_requires
 -    setup_requires = build_requires + ['pybind11>=2.4.0']
-+    setup_requires = build_requires + ['pybind11>=2.4.0, !=2.13.*']
++    setup_requires = build_requires + ['pybind11>=2.4.0, <2.13.0']
  
      metadata = dict(
          name='scipy',
