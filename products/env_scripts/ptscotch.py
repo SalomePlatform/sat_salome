@@ -29,7 +29,7 @@ def set_nativ_env(env):
         prereq_dir='/usr'
         prereq_inc= '/usr/include/openmpi-x86_64'
         prereq_lib='/usr/lib64/openmpi/lib'
-      elif any(distribution in distro.name().lower() for distribution in ["debian", "ubuntu"]) :
+      elif any(distribution in distro.name().lower() for distribution in ["debian", "ubuntu", "tuxedo os"]) :
         prereq_dir='/usr'
         prereq_inc='/usr/include/scotch-long'
         prereq_lib='/usr/lib/x86_64-linux-gnu/scotch-long'

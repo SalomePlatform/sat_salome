@@ -27,7 +27,7 @@ def set_nativ_env(env):
     qt_lib_dir='/usr/lib64'
     try:
         import distro
-        if any(distribution in distro.name().lower() for distribution in ["debian", "ubuntu"]) :
+        if any(distribution in distro.name().lower() for distribution in ["debian", "ubuntu", "tuxedo os"]) :
             qt_lib_dir='/usr/lib/x86_64-linux-gnu'
     except:
         pass

@@ -31,7 +31,7 @@ def set_nativ_env(env):
             prereq_dir='/usr/lib64/openmpi'
             prereq_bin='/usr/lib64/openmpi/bin'
             prereq_inc='/usr/include/openmpi-x86_64'
-        elif any(distribution in distro.name().lower() for distribution in ["debian", "ubuntu"]) :
+        elif any(distribution in distro.name().lower() for distribution in ["debian", "ubuntu", "tuxedo os"]) :
             prereq_dir='/usr/lib/x86_64-linux-gnu/openmpi'
             prereq_inc= '/usr/lib/x86_64-linux-gnu/openmpi/include'
     except:

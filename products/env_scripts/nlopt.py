@@ -22,7 +22,7 @@ def set_nativ_env(env):
             prereq_dir='/usr/'
             prereq_bin='/usr/bin'
             prereq_inc='/usr/include'
-        elif any(distribution in distro.name().lower() for distribution in ["debian", "ubuntu"]) :
+        elif any(distribution in distro.name().lower() for distribution in ["debian", "ubuntu", "tuxedo os"]) :
             prereq_dir='/usr'
             prereq_inc='/usr/include'
     except:
