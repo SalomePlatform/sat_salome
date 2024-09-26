@@ -183,7 +183,7 @@ APPLICATION :
         'HEXABLOCKPLUGIN'
         'HOMARD'
         'FIELDS'
-        'PARAVIS' : {tag:'V9_13_0', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'PARAVIS' : {tag:'V9_13_0', base: 'no', section: 'version_V9_13_0_MPI', hpc: 'yes'}
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
