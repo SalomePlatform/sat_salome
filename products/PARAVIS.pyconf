@@ -12,6 +12,7 @@ default :
         github : $PROJECTS.projects.salome.git_info.git_server.github.url + "paravis.git"
         gitpub : $PROJECTS.projects.salome.git_info.git_server.gitpub.url + "modules/paravis.git"
       }
+      git_options : ' --recurse-submodules '
       git_commands: [
                      'git submodule set-url -- src/Plugins/MEDReader ../medreader',
                      'git submodule update --init'
