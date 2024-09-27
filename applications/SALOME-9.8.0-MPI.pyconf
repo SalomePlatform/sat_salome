@@ -142,10 +142,10 @@ APPLICATION :
         'GMSHPLUGIN'
         'HEXABLOCK' : {section : "default_MPI", verbose: 'yes'}
         'HEXABLOCKPLUGIN'
-        'HOMARD'     : {tag:'V9_8_0', base: 'no', section: 'version_V9_8_0_MPI', hpc: 'yes'}
-        'FIELDS' : {section : "default_MPI", verbose: 'yes'}
-        'PARAVIS' : {section : "default_MPI", verbose: 'yes'}
-        'JOBMANAGER' : {section : "default_MPI", verbose: 'yes'}
+        'HOMARD'     : {tag: 'V9_8_0', section: 'version_V9_8_0_MPI', base: 'no', hpc: 'yes'}
+        'FIELDS'     : {tag: 'V9_8_0', section : "default_MPI", verbose: 'yes'}
+        'PARAVIS'    : {tag: 'V9_8_0', section : "version_V9_8_0_MPI", verbose: 'yes'}
+        'JOBMANAGER' : {tag: 'V9_8_0', section : "default_MPI", verbose: 'yes'}
         'YACS'
         'YACSGEN'
         'SOLVERLAB' : {section : "default_MPI", hpc: 'yes'}

@@ -134,7 +134,7 @@ APPLICATION :
         'HEXABLOCKPLUGIN'
         'HOMARD'
         'FIELDS' : {section : "default_MPI", verbose: 'yes'}
-        'PARAVIS' : {section : "default_MPI", verbose: 'yes'}
+        'PARAVIS' : {section : "version_V9_7_0_MPI", verbose: 'yes'}
         'JOBMANAGER' : {section : "default_MPI", verbose: 'yes'}
         'YACS'
         'YACSGEN'
