@@ -49,7 +49,7 @@ version_5_3_5_win :
 {
    compil_script: "meshio-5.3.5.bat"
    archive_info : {archive_name : "meshio-5.3.5.tar.gz"}
-   patches : ['meshio-5.3.5.p01.gmsh_ansys.patch']
+   patches : ['meshio-5.3.5.p01.gmsh_ansys.patch', 'meshio-5.3.5.p02.nastran_fID_1512.patch']
    properties :
    {
      incremental : "yes"
