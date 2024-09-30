@@ -13,6 +13,13 @@ case $LINUX_DISTRIBUTION in
 	;;
 esac
 
+if [ -n "$SINGULARITY_NAME" ]; then
+    echo "WARNING: singularity env detected. applying ABI-tag patch"
+    PATCH_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/../patches
+    cd $SOURCE_DIR
+    patch -Nbp1 -i $PATCH_DIR/qt_5_15_2_remove_ABI_tag.patch
+fi
+
 if [ -n "$SAT_DEBUG" ]
 then
     BUILD_TYPE="-debug"

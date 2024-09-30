@@ -1,0 +1,12 @@
+--- qt/qtbase/qmake/generators/unix/unixmake2.cpp	2020-10-27 09:02:11.000000000 +0100
++++ qt_dev/qtbase/qmake/generators/unix/unixmake2.cpp	2024-09-25 12:25:10.704520631 +0200
+@@ -603,7 +603,8 @@
+                 t << "\n\t"
+                   << varGlue("QMAKE_LN_SHLIB","-"," "," $(TARGET) $(TARGET0)") << "\n\t"
+                   << varGlue("QMAKE_LN_SHLIB","-"," "," $(TARGET) $(TARGET1)") << "\n\t"
+-                  << varGlue("QMAKE_LN_SHLIB","-"," "," $(TARGET) $(TARGET2)");
++                  << varGlue("QMAKE_LN_SHLIB","-"," "," $(TARGET) $(TARGET2)") << "\n\t"
++                  << "-$(STRIP) --remove-section=.note.ABI-tag $(TARGET1)";
+             }
+             if (!destdir.isEmpty()) {
+                 t << "\n\t"
