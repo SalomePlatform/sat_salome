@@ -1,0 +1,44 @@
+default :
+{
+    name : "pyqwt"
+    build_source : "script"
+    compil_script :  'pip_install' + $VARS.scriptExtension
+    get_source : "archive"
+    archive_info :
+    {
+      archive_prefix  : "PythonQwt"
+    }
+
+    patches : []
+    system_info : 
+    {
+        rpm : []
+        rpm_dev : []
+        apt : ['python3-qwt']
+        apt_dev : []
+    }
+    environ :
+    {
+       env_script : "pyqwt.py"
+    }
+    depend : ['Python','setuptools','numpy', 'qwt', 'PyQt']
+    opt_depend: []
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+      incremental : "yes"
+      pip : "yes"
+    }
+}
+
+version_0_12_1_no_pip :
+{
+    compil_script: "pyqwt-0.12.1" + $VARS.scriptExtension
+    properties :
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+}

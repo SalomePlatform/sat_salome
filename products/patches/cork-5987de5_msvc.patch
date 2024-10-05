@@ -1,0 +1,197 @@
+diff --git a/win/wincork/wincork.sln b/win/wincork/wincork.sln
+index 46a4177..db1e8eb 100644
+--- a/win/wincork/wincork.sln
++++ b/win/wincork/wincork.sln
+@@ -1,20 +1,31 @@
+-﻿
++
+ Microsoft Visual Studio Solution File, Format Version 12.00
+-# Visual Studio Express 2012 for Windows Desktop
++# Visual Studio 15
++VisualStudioVersion = 15.0.35319.79
++MinimumVisualStudioVersion = 10.0.40219.1
+ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wincork", "wincork.vcxproj", "{AD6B1A8B-6983-40ED-9EF2-A7FFC457517E}"
+ EndProject
+ Global
+ 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+ 		Debug|Win32 = Debug|Win32
++		Debug|x64 = Debug|x64
+ 		Release|Win32 = Release|Win32
++		Release|x64 = Release|x64
+ 	EndGlobalSection
+ 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+ 		{AD6B1A8B-6983-40ED-9EF2-A7FFC457517E}.Debug|Win32.ActiveCfg = Debug|Win32
+ 		{AD6B1A8B-6983-40ED-9EF2-A7FFC457517E}.Debug|Win32.Build.0 = Debug|Win32
+-		{AD6B1A8B-6983-40ED-9EF2-A7FFC457517E}.Release|Win32.ActiveCfg = Release|Win32
+-		{AD6B1A8B-6983-40ED-9EF2-A7FFC457517E}.Release|Win32.Build.0 = Release|Win32
++		{AD6B1A8B-6983-40ED-9EF2-A7FFC457517E}.Debug|x64.ActiveCfg = Debug|Win32
++		{AD6B1A8B-6983-40ED-9EF2-A7FFC457517E}.Debug|x64.Build.0 = Debug|Win32
++		{AD6B1A8B-6983-40ED-9EF2-A7FFC457517E}.Release|Win32.ActiveCfg = Release|x64
++		{AD6B1A8B-6983-40ED-9EF2-A7FFC457517E}.Release|Win32.Build.0 = Release|x64
++		{AD6B1A8B-6983-40ED-9EF2-A7FFC457517E}.Release|x64.ActiveCfg = Release|Win32
++		{AD6B1A8B-6983-40ED-9EF2-A7FFC457517E}.Release|x64.Build.0 = Release|Win32
+ 	EndGlobalSection
+ 	GlobalSection(SolutionProperties) = preSolution
+ 		HideSolutionNode = FALSE
+ 	EndGlobalSection
++	GlobalSection(ExtensibilityGlobals) = postSolution
++		SolutionGuid = {03B5EC15-EDF5-46E1-AEB0-F97AE8B731A9}
++	EndGlobalSection
+ EndGlobal
+diff --git a/win/wincork/wincork.vcxproj b/win/wincork/wincork.vcxproj
+index 92a3fae..638e9d0 100644
+--- a/win/wincork/wincork.vcxproj
++++ b/win/wincork/wincork.vcxproj
+@@ -1,30 +1,52 @@
+-﻿<?xml version="1.0" encoding="utf-8"?>
+-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
++<?xml version="1.0" encoding="utf-8"?>
++<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+   <ItemGroup Label="ProjectConfigurations">
+     <ProjectConfiguration Include="Debug|Win32">
+       <Configuration>Debug</Configuration>
+       <Platform>Win32</Platform>
+     </ProjectConfiguration>
++    <ProjectConfiguration Include="Debug|x64">
++      <Configuration>Debug</Configuration>
++      <Platform>x64</Platform>
++    </ProjectConfiguration>
+     <ProjectConfiguration Include="Release|Win32">
+       <Configuration>Release</Configuration>
+       <Platform>Win32</Platform>
+     </ProjectConfiguration>
++    <ProjectConfiguration Include="Release|x64">
++      <Configuration>Release</Configuration>
++      <Platform>x64</Platform>
++    </ProjectConfiguration>
+   </ItemGroup>
+   <PropertyGroup Label="Globals">
+     <ProjectGuid>{AD6B1A8B-6983-40ED-9EF2-A7FFC457517E}</ProjectGuid>
+     <RootNamespace>wincork</RootNamespace>
++    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
+   </PropertyGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+     <ConfigurationType>Application</ConfigurationType>
+     <UseDebugLibraries>true</UseDebugLibraries>
+-    <PlatformToolset>v110</PlatformToolset>
++    <PlatformToolset>v141</PlatformToolset>
++    <CharacterSet>MultiByte</CharacterSet>
++  </PropertyGroup>
++  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
++    <ConfigurationType>Application</ConfigurationType>
++    <UseDebugLibraries>true</UseDebugLibraries>
++    <PlatformToolset>v141</PlatformToolset>
+     <CharacterSet>MultiByte</CharacterSet>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+     <ConfigurationType>Application</ConfigurationType>
+     <UseDebugLibraries>false</UseDebugLibraries>
+-    <PlatformToolset>v110</PlatformToolset>
++    <PlatformToolset>v141</PlatformToolset>
++    <WholeProgramOptimization>true</WholeProgramOptimization>
++    <CharacterSet>MultiByte</CharacterSet>
++  </PropertyGroup>
++  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
++    <ConfigurationType>Application</ConfigurationType>
++    <UseDebugLibraries>false</UseDebugLibraries>
++    <PlatformToolset>v141</PlatformToolset>
+     <WholeProgramOptimization>true</WholeProgramOptimization>
+     <CharacterSet>MultiByte</CharacterSet>
+   </PropertyGroup>
+@@ -34,22 +56,41 @@
+   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+   </ImportGroup>
++  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
++    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
++  </ImportGroup>
+   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+   </ImportGroup>
++  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
++    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
++  </ImportGroup>
+   <PropertyGroup Label="UserMacros" />
+   <PropertyGroup />
+   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+     <ClCompile>
+       <WarningLevel>Level3</WarningLevel>
+       <Optimization>Disabled</Optimization>
+-      <AdditionalIncludeDirectories>C:\Users\Gilbert\Documents\GitHub\cork\src;C:\Users\Gilbert\Documents\GitHub\cork\src\accel;C:\Users\Gilbert\Documents\GitHub\cork\src\file_formats;C:\Users\Gilbert\Documents\GitHub\cork\src\isct;C:\Users\Gilbert\Documents\GitHub\cork\src\math;C:\Users\Gilbert\Documents\GitHub\cork\src\mesh;C:\Users\Gilbert\Documents\GitHub\cork\src\rawmesh;C:\Users\Gilbert\Documents\GitHub\cork\src\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
++      <AdditionalIncludeDirectories>..\..\src;..\..\src\accel;..\..\src\file_formats;..\..\src\isct;..\..\src\math;..\..\src\mesh;..\..\src\rawmesh;..\..\src\util;$(MPIR_ROOT_DIR)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
++      <PreprocessorDefinitions>_USE_MATH_DEFINES;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
++      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
++    </ClCompile>
++    <Link>
++      <GenerateDebugInformation>true</GenerateDebugInformation>
++      <AdditionalOptions>$(MPIR_ROOT_DIR)\lib\mpir.lib %(AdditionalOptions)</AdditionalOptions>
++    </Link>
++  </ItemDefinitionGroup>
++  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
++    <ClCompile>
++      <WarningLevel>Level3</WarningLevel>
++      <Optimization>Disabled</Optimization>
++      <AdditionalIncludeDirectories>..\..\src;..\..\src\accel;..\..\src\file_formats;..\..\src\isct;..\..\src\math;..\..\src\mesh;..\..\src\rawmesh;..\..\src\util;$(MPIR_ROOT_DIR)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+       <PreprocessorDefinitions>_USE_MATH_DEFINES;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+     </ClCompile>
+     <Link>
+       <GenerateDebugInformation>true</GenerateDebugInformation>
+-      <AdditionalOptions>mpir.lib %(AdditionalOptions)</AdditionalOptions>
++      <AdditionalOptions>$(MPIR_ROOT_DIR)\lib\mpir.lib %(AdditionalOptions)</AdditionalOptions>
+     </Link>
+   </ItemDefinitionGroup>
+   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+@@ -58,13 +99,30 @@
+       <Optimization>MaxSpeed</Optimization>
+       <FunctionLevelLinking>true</FunctionLevelLinking>
+       <IntrinsicFunctions>true</IntrinsicFunctions>
+-      <AdditionalIncludeDirectories>C:\Users\Gilbert\Documents\GitHub\cork\src;C:\Users\Gilbert\Documents\GitHub\cork\src\accel;C:\Users\Gilbert\Documents\GitHub\cork\src\file_formats;C:\Users\Gilbert\Documents\GitHub\cork\src\isct;C:\Users\Gilbert\Documents\GitHub\cork\src\math;C:\Users\Gilbert\Documents\GitHub\cork\src\mesh;C:\Users\Gilbert\Documents\GitHub\cork\src\rawmesh;C:\Users\Gilbert\Documents\GitHub\cork\src\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
++      <AdditionalIncludeDirectories>..\..\src;..\..\src\accel;..\..\src\file_formats;..\..\src\isct;..\..\src\math;..\..\src\mesh;..\..\src\rawmesh;..\..\src\util;$(MPIR_ROOT_DIR)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
++      <PreprocessorDefinitions>_USE_MATH_DEFINES;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
++    </ClCompile>
++    <Link>
++      <GenerateDebugInformation>true</GenerateDebugInformation>
++      <EnableCOMDATFolding>true</EnableCOMDATFolding>
++      <OptimizeReferences>true</OptimizeReferences>
++      <AdditionalDependencies>$(MPIR_ROOT_DIR)\lib\mpir.lib;%(AdditionalDependencies)</AdditionalDependencies>
++    </Link>
++  </ItemDefinitionGroup>
++  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
++    <ClCompile>
++      <WarningLevel>Level3</WarningLevel>
++      <Optimization>MaxSpeed</Optimization>
++      <FunctionLevelLinking>true</FunctionLevelLinking>
++      <IntrinsicFunctions>true</IntrinsicFunctions>
++      <AdditionalIncludeDirectories>..\..\src;..\..\src\accel;..\..\src\file_formats;..\..\src\isct;..\..\src\math;..\..\src\mesh;..\..\src\rawmesh;..\..\src\util;$(MPIR_ROOT_DIR)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+       <PreprocessorDefinitions>_USE_MATH_DEFINES;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+     </ClCompile>
+     <Link>
+       <GenerateDebugInformation>true</GenerateDebugInformation>
+       <EnableCOMDATFolding>true</EnableCOMDATFolding>
+       <OptimizeReferences>true</OptimizeReferences>
++      <AdditionalDependencies>$(MPIR_ROOT_DIR)\lib\mpir.lib;%(AdditionalDependencies)</AdditionalDependencies>
+     </Link>
+   </ItemDefinitionGroup>
+   <ItemGroup>
+@@ -109,7 +167,9 @@
+     <ClCompile Include="..\..\src\isct\quantization.cpp" />
+     <ClCompile Include="..\..\src\isct\triangle.c">
+       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NO_TIMER;REDUCED;CDT_ONLY;TRILIBRARY;ANSI_DECLARATORS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
++      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NO_TIMER;REDUCED;CDT_ONLY;TRILIBRARY;ANSI_DECLARATORS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NO_TIMER;REDUCED;CDT_ONLY;TRILIBRARY;ANSI_DECLARATORS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
++      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NO_TIMER;REDUCED;CDT_ONLY;TRILIBRARY;ANSI_DECLARATORS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+     </ClCompile>
+     <ClCompile Include="..\..\src\main.cpp" />
+     <ClCompile Include="..\..\src\util\log.cpp" />
+diff --git a/win/wincork/wincork.vcxproj.filters b/win/wincork/wincork.vcxproj.filters
+index 792818b..d689e83 100644
+--- a/win/wincork/wincork.vcxproj.filters
++++ b/win/wincork/wincork.vcxproj.filters
+@@ -1,4 +1,4 @@
+-﻿<?xml version="1.0" encoding="utf-8"?>
++<?xml version="1.0" encoding="utf-8"?>
+ <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+   <ItemGroup>
+     <Filter Include="Source Files">

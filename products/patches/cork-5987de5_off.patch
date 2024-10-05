@@ -1,0 +1,12 @@
+diff --git a/src/file_formats/off.cpp b/src/file_formats/off.cpp
+index 3b12571..2a52bf4 100644
+--- a/src/file_formats/off.cpp
++++ b/src/file_formats/off.cpp
+@@ -50,6 +50,7 @@ int readOFF(string filename, FileMesh *data)
+     in >> filetype;
+     if(filetype != "OFF") return 1;
+     
++    in >> filetype >> filetype >> filetype >> filetype; // Skip meshio stamp
+     // counts of things
+     int numvertices, numfaces, numedges;
+     in >> numvertices >> numfaces >> numedges;

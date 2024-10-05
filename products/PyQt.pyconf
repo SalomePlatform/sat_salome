@@ -6,9 +6,9 @@ default :
     get_source : "archive"
     system_info : 
     {
-        rpm : ["python3-qt5"]
+        rpm : ["python3-qt5", "python3-pyqt5.qtsvg"]
         rpm_dev : ["python3-qt5-devel"]
-        apt : ["python3-pyqt5"]
+        apt : ["python3-pyqt5", "python3-pyqt5.qtsvg"]
         apt_dev : ["pyqt5-dev", "pyqt5-dev-tools"]
     }
     environ :

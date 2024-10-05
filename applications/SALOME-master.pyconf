@@ -44,6 +44,7 @@ APPLICATION :
         C3PO: 'v2.3'
         certifi : '2018.8.24'
         cftime: '1.6.3'
+        cgal : 'v5.6.1'
         cgns : '4.2.0'
         chardet : '3.0.4'
         charset_normalizer : '3.3.2'
@@ -51,6 +52,7 @@ APPLICATION :
         cmake : '3.25.2'
         cminpack: '1.3.6'
         contourpy : '1.2.0'
+        cork : '5987de5'
         cppunit : '1.13.2'
         cycler : '0.10.0'
         Cython : '0.29.37'
@@ -64,6 +66,7 @@ APPLICATION :
         freeimage : '3.16.0'
         freetype : '2.9.1'
         gcc  :  '8.5.0'
+        libigl : 'v2.5.0'
         mpc : 'native'
         gmp : 'native'
         mmg : '5.6.0'
@@ -90,6 +93,7 @@ APPLICATION :
         mdurl: '0.1.2'
         medfile : '4.1.1'
         mesa : '19.0.8'
+        meshbooleanplugin : {tag:'main', base:'no', section:'version_no_irmb_mcut'}
         MeshGems : '2.15-1'
         meshio : {tag: '5.3.5' , base: 'no', section : 'version_5_3_5_no_pip'}
         mpi4py : {tag: '3.1.0',  base: 'no', section : 'version_3_1_0_no_pip'}
@@ -125,11 +129,13 @@ APPLICATION :
         Pygments : '2.17.2'
         pyparsing : '3.1.1'
         PyQt : '5.15.3'
+        pyqwt: {tag : '0.12.1', base : 'no', section : 'version_0_12_1_no_pip', hpc: 'no'}
         pyreadline : '2.0'
         pytest :  '8.1.1'
         Python : '3.9.14'
         pytz : '2017.2'
         qt : '5.15.2'
+        qtpy : {tag : '2.4.1', base : 'no', section : 'version_2_4_1_no_pip', hpc: 'no'}
         qwt : '6.1.6'
         requests : '2.31.0'
         rich : '13.7.1'

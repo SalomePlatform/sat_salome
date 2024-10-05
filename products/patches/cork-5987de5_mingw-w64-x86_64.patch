@@ -1,0 +1,101 @@
+diff --git a/src/file_formats/off.cpp b/src/file_formats/off.cpp
+index 3b12571..2a52bf4 100644
+--- a/src/file_formats/off.cpp
++++ b/src/file_formats/off.cpp
+@@ -50,6 +50,7 @@ int readOFF(string filename, FileMesh *data)
+     in >> filetype;
+     if(filetype != "OFF") return 1;
+     
++    in >> filetype >> filetype >> filetype >> filetype; // Skip meshio stamp
+     // counts of things
+     int numvertices, numfaces, numedges;
+     in >> numvertices >> numfaces >> numedges;
+diff --git a/src/isct/fixint.h b/src/isct/fixint.h
+index 37465a1..ccc2074 100644
+--- a/src/isct/fixint.h
++++ b/src/isct/fixint.h
+@@ -45,7 +45,7 @@
+ 
+ 
+ 
+-#ifdef _WIN32
++#ifdef _MSC_VER
+ #include <mpir.h>
+ #else
+ #include <gmp.h>
+diff --git a/src/isct/gmpext4.h b/src/isct/gmpext4.h
+index 1a5541c..fb76fab 100644
+--- a/src/isct/gmpext4.h
++++ b/src/isct/gmpext4.h
+@@ -25,7 +25,7 @@
+ // +-------------------------------------------------------------------------
+ #pragma once
+ 
+-#ifdef _WIN32
++#ifdef _MSC_VER
+ #pragma warning(disable: 4800)
+ #pragma warning(disable: 4244)
+ #include <mpirxx.h>
+diff --git a/src/mesh/mesh.isct.tpp b/src/mesh/mesh.isct.tpp
+index 6c48930..9c2b16d 100644
+--- a/src/mesh/mesh.isct.tpp
++++ b/src/mesh/mesh.isct.tpp
+@@ -632,7 +632,7 @@ public:
+         quantized_coords.resize(N);
+         uint write = 0;
+         TopoCache::verts.for_each([&](Vptr v) {
+-#ifdef _WIN32
++#ifdef _MSC_VER
+             Vec3d raw = mesh->verts[v->ref].pos;
+ #else
+             Vec3d raw = TopoCache::mesh->verts[v->ref].pos;
+diff --git a/src/mesh/mesh.tpp b/src/mesh/mesh.tpp
+index 9da1614..bc63204 100644
+--- a/src/mesh/mesh.tpp
++++ b/src/mesh/mesh.tpp
+@@ -250,7 +250,7 @@ typename Mesh<VertData,TriData>::NeighborCache
+ }
+ 
+ // This function signature is an amazing disaster...
+-#ifdef _WIN32
++#ifdef _MSC_VER
+ template<class VertData, class TriData>
+ template<class Edata>
+ typename Mesh<VertData,TriData>::EGraphCache<Edata>
+diff --git a/src/util/prelude.h b/src/util/prelude.h
+index 00329aa..2eaadaf 100644
+--- a/src/util/prelude.h
++++ b/src/util/prelude.h
+@@ -30,7 +30,9 @@
+ #include <ctime>
+ #include <algorithm>
+ #include <iostream>
+-
++#ifndef M_PI
++ #define M_PI 3.14159265358979323846
++#endif
+ #ifndef uint
+ typedef unsigned int uint;
+ #endif
+@@ -113,7 +115,7 @@ inline double rad2deg(double rad) {
+ // **********
+ // * Timing
+ 
+-#ifdef _WIN32
++#ifdef _MSC_VER
+ #include <winsock.h>
+ #endif
+ 
+diff --git a/src/util/timer.cpp b/src/util/timer.cpp
+index 3bc710a..bd06dcf 100644
+--- a/src/util/timer.cpp
++++ b/src/util/timer.cpp
+@@ -25,7 +25,7 @@
+ // +-------------------------------------------------------------------------
+ #include "prelude.h"
+ 
+-#ifdef _WIN32
++#ifdef _MSC_VER
+ #include <sys/timeb.h>
+ #include <sys/types.h>
+ void gettimeofday(struct timeval* t,void* timezone)

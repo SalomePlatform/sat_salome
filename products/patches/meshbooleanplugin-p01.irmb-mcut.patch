@@ -1,0 +1,26 @@
+diff --git a/MyPlugDialog.ui b/MyPlugDialog.ui
+index cd8875a..115e0a5 100644
+--- a/MyPlugDialog.ui
++++ b/MyPlugDialog.ui
+@@ -158,21 +158,11 @@
+              <string>vtk</string>
+             </property>
+            </item>
+-           <item>
+-            <property name="text">
+-             <string>irmb</string>
+-            </property>
+-           </item>
+            <item>
+             <property name="text">
+              <string>Cork</string>
+             </property>
+            </item>
+-           <item>
+-            <property name="text">
+-             <string>mcut</string>
+-            </property>
+-           </item>
+           </widget>
+          </item>
+          <item row="1" column="0">

@@ -1,0 +1,48 @@
+--- a/CMakeLists.txt	2024-10-08 22:04:07.763300956 +0200
++++ b/CMakeLists.txt	2024-10-07 15:25:44.107901112 +0200
+@@ -42,7 +42,8 @@
+ set(MCUT_MAJOR 1)
+ set(MCUT_MINOR 2)
+ set(MCUT_PATCH 0)
+-
++find_package( Eigen3 REQUIRED )
++include_directories( ${EIGEN3_INCLUDE_DIR} )
+ set( MCUT_VERSION "${MCUT_MAJOR}.${MCUT_MINOR}.${MCUT_PATCH}" )
+ 
+ message(STATUS "[MCUT] version: ${MCUT_VERSION}")
+@@ -98,6 +99,8 @@
+ endif()
+ option(MCUT_BUILD_WITH_API_EVENT_LOGGING "Configure to build MCUT with event logging to console" OFF)
+ 
++option(LIBIGL_INCLUDE_DIR "libigl include directory")
++
+ #
+ # machine-precision-numbers library targets
+ #
+@@ -111,6 +114,7 @@
+ message(STATUS "[MCUT] MCUT_INCLUDE_DIR=${MCUT_INCLUDE_DIR}")
+ 
+ list(APPEND include_dirs  ${MCUT_INCLUDE_DIR})
++list(APPEND include_dirs  ${LIBIGL_INCLUDE_DIR})
+ list(APPEND compilation_flags "")
+ if(MCUT_BUILD_AS_SHARED_LIB)
+ 	list(APPEND preprocessor_defs -DMCUT_SHARED_LIB=1)
+@@ -217,7 +221,6 @@
+ 	)
+ 
+ 	set(mio_include_dir ${mio_SOURCE_DIR}/include)
+-
+ 	add_subdirectory(${mio_SOURCE_DIR} build)
+ 
+ 	#
+--- a/tutorials/CMakeLists.txt	2024-10-08 22:04:07.775300917 +0200
++++ b/tutorials/CMakeLists.txt	2024-10-07 12:57:28.643032926 +0200
+@@ -3,7 +3,7 @@
+ function(create_tutorial_target tutorial_name)
+     add_executable(${tutorial_name} "${CMAKE_CURRENT_SOURCE_DIR}/${tutorial_name}/${tutorial_name}.cpp")
+     target_link_libraries(${tutorial_name} mcut mio)
+-    target_include_directories(${tutorial_name} PRIVATE ${MCUT_INCLUDE_DIR}  ${mio_include_dir})
++    target_include_directories(${tutorial_name} PRIVATE ${MCUT_INCLUDE_DIR}  ${mio_include_dir} ${LIBIGL_INCLUDE_DIR})
+     target_compile_definitions(${tutorial_name} PRIVATE -DDATA_DIR="${CMAKE_CURRENT_SOURCE_DIR}/${tutorial_name}/data" -DOUTPUT_DIR="${CMAKE_CURRENT_BINARY_DIR}")
+     target_compile_options(${tutorial_name} PRIVATE ${compilation_flags})
+     target_compile_definitions(${tutorial_name} PRIVATE ${preprocessor_defs})

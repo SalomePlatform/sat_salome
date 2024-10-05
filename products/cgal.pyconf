@@ -1,0 +1,49 @@
+default :
+{
+    name : "cgal"
+    build_source : "cmake"
+    cmake_options : "-DCMAKE_INSTALL_LIBDIR:STRING=lib -DWITH_examples=ON -DWITH_tests=ON -DWITH_demos=ON -DCGAL_ENABLE_TESTING=ON"
+    get_source : "git"
+    git_info:
+    {
+      repositories :
+      {
+        github : "https://github.com/CGAL/cgal.git"
+      }
+    }
+    patches : []
+    system_info : 
+    {
+        rpm : []
+        rpm_dev : ['CGAL-devel']
+        apt : []
+        apt_dev : ['cgal-dev']
+    }
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : ["SMESH",
+              "mmg",
+              "PyQt",
+              "Python",
+              "numpy"
+             ]
+    build_depend : ["cmake", "cppunit"]
+    opt_depend : []
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+      incremental : "yes"
+      single_install_dir : "no"
+    }
+}
+
+version_v5_6_1:
+{
+    build_source :  "script"
+    compil_script : "cgal-v5.6.1" + $VARS.scriptExtension
+    patches : ["cgal-p01.patch"]
+}

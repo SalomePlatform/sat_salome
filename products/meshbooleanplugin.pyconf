@@ -1,0 +1,55 @@
+default :
+{
+    name : "meshbooleanplugin"
+    build_source :  "script"
+    compil_script : $name + $VARS.scriptExtension
+    get_source : "git"
+    git_info:
+    {
+      repositories :
+      {
+#        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "meshbooleanplugin.git"
+        github : "https://github.com/nitawa/meshbooleanplugin.git"
+      }
+    }
+    patches: []
+    system_info : 
+    {
+        rpm : []
+        rpm_dev : []
+        apt : []
+        apt_dev : []
+    }
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : ["CONFIGURATION",
+              "SMESH",
+              "PyQt",
+              "Python",
+              "numpy",
+              "pyqwt",
+              "qtpy"
+             ]
+    build_depend : ["cmake", "cppunit"]
+    opt_depend : ["cgal", "libigl", "mcut", "irmb", "cork"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+      incremental : "yes"
+      single_install_dir : "no"
+    }
+}
+
+default_win :
+{
+    opt_depend : ["cgal", "libigl", "cork"]
+}
+
+version_no_irmb_mcut :
+{
+ patches: ['meshbooleanplugin-p01.irmb-mcut.patch'] # remove irmb and mcut since requires c++20
+}

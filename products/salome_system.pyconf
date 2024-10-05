@@ -15,11 +15,11 @@ default :
                "libXi", "libXinerama", "libXmu", "libXpm", "libXrandr", "libXrender", "libXt", "libXtst", "lua",
                "mesa-libGLU", "ncurses-libs", "nspr", "nss", "nss-softokn-freebl", "nss-util", "openldap", "pango", "pcre",
                "pixman", "pulseaudio-libs", "pulseaudio-libs-glib2", "readline", "sqlite", "systemd-libs", "tbb", "xz-libs",
-               "zlib", "tbb"]
+               "zlib", "tbb", "libXinerama"]
         rpm_dev : ["openssl-devel", "tbb-devel", "gcc", "make", "sed", "gcc-c++", "expat-devel", "fontconfig-devel", "flex",
                    "bison", "mesa-libGLU-devel", "libxcb-devel", "xcb-util-devel", "libxkbcommon-devel", "libxkbcommon-x11-devel",
                    "bzip2-devel", "libXi-devel", "libXmu-devel", "automake", "libtool", "libjpeg-turbo-devel", "cmake",
-                   "libXpm-devel", "libXft-devel", "sqlite-devel", "libcurl-devel", "libXt-devel", "libXcursor-devel", "tbb-devel"]
+                   "libXpm-devel", "libXft-devel", "sqlite-devel", "libcurl-devel", "libXt-devel", "libXcursor-devel", "tbb-devel", "libXinerama-devel"]
         apt : ["libbsd0", "libbz2-1.0", "libc6", "libdrm2", "libegl1", "libexif12", "libexpat1",
                "libfftw3-double3", "libfontconfig1", "libgl1", "libglu1-mesa", "libgomp1", "libgphoto2-6", "libice6",
                "libjbig0", "libltdl7", "liblzma5", "libnuma1", "libpcre3", "libquadmath0",
@@ -110,7 +110,7 @@ default :
                        "libxcb-shape0-dev", "libxcb-shm0-dev", "libxcb-sync-dev", "libxcb-xf86dri0-dev", "libxcb-xfixes0-dev",
                        "libxcb-xinerama0-dev", "libxcb-xinput-dev", "libxcb-xkb-dev", "libxcb-xtest0-dev", "libxcb-xv0-dev", "libxcb-xvmc0-dev",
                        "libxcb-imdkit-dev", "libxcb-image0-dev", "libxcb-keysyms1-dev", "libxcb-render-util0-dev", "libxcb-ewmh-dev",
-                        "libxcb-icccm4-dev", "libxcb-xrm-dev", "libfreetype6-dev"]
+                        "libxcb-icccm4-dev", "libxcb-xrm-dev", "libfreetype6-dev", "libxinerama-dev"]
         }
         "DB11" :
         {
@@ -120,17 +120,17 @@ default :
             apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev",
                        "qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools", "libopenmpi-dev",
                        "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev", "libnetcdf-dev", "libgdal-dev",
-                       "texlive-latex-base", "texlive-latex-extra", "dvipng", "libxml++2.6-dev", "libfreetype6-dev"]
+                       "texlive-latex-base", "texlive-latex-extra", "dvipng", "libxml++2.6-dev", "libfreetype6-dev", "libxinerama-dev"]
         }
         "DB12" :
         {
             apt : ["libdc1394-25", "libopenexr-3-1-30", "libwebp7", "libgfortran5", "libevent-2.1-7", "libpng16-16", "libgcc",
                    "libffi8", "libtinfo6", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0", "libjsoncpp25",
-                   "openmpi-bin", "libnetcdf19", "libgdal32", "libtbb12", "python3-setuptools", "libxml++2.6-2v5", "liblzf1", "libfreetype6", "libncurses5"]
+                   "openmpi-bin", "libnetcdf19", "libgdal32", "libtbb12", "python3-setuptools", "libxml++2.6-2v5", "liblzf1", "libfreetype6", "libncurses5", "libgmp10", "libmpfr6"]
             apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev",
                        "qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools", "libopenmpi-dev",
                        "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev", "libnetcdf-dev", "libgdal-dev",
-                       "texlive-latex-base", "texlive-latex-extra", "dvipng", "libxml++2.6-dev", "libfreetype6-dev"]
+                       "texlive-latex-base", "texlive-latex-extra", "dvipng", "libxml++2.6-dev", "libfreetype6-dev", "libgmp-dev","libmpfr-dev", "libxinerama-dev"]
         }
         "UB16.04" :
         {
@@ -165,10 +165,11 @@ default :
         {
             apt : ["libdc1394-25", "libopenexr25", "libwebp7", "gfortran-11", "libilmbase25", "libevent-2.1-7", "libpng16-16", "libgcc-11-dev",
                    "libffi7", "libtinfo6", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0", "openmpi-bin", "libgdal30", "libopenblas0-serial", "libtbb12",
-                   "libxml++2.6-2v5", "libfreetype6", "libncurses5"]
+                   "libxml++2.6-2v5", "libfreetype6", "libncurses5", "libgmp10", "libmpfr6"]
             apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev",
                        "qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools", "libopenmpi-dev",
-                       "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev", "libgdal-dev", "dvipng", "libxml++2.6-dev", "libfreetype6-dev"]
+                       "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev", "libgdal-dev", "dvipng", "libxml++2.6-dev", "libfreetype6-dev",
+                       "libgmp-dev", "libmpfr-dev"]
         }
         "UB24.04" :                                                                                 
         {                                                                                           
