@@ -108,7 +108,7 @@ APPLICATION :
         netcdf : '4.6.2'
         netCDF4: '1.6.5'
         netgen : {tag:'5.3.1', base: 'no',  section: 'version_5_3_1_with_CAS_7_8_win'}
-        nlopt : '2.5.0'
+        nlopt : '2.7.1'
         numpy : '1.21.6'
         omniORB : '4.2.3'
         omniORBpy : '4.2.3'
@@ -116,7 +116,7 @@ APPLICATION :
         opencv : '3.2.0'
         openssl: '1.1.1n'
         openVKL: '0.11.0'
-        openturns: '1.22'
+        openturns: '1.23'
         ospray : '2.4.0'
         packaging : '19.0'
         pandas : '1.5.3'

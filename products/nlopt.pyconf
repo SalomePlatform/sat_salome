@@ -46,3 +46,13 @@ version_2_6_0:
 {
     compil_script :  "nlopt-2.6.0" + $VARS.scriptExtension
 }
+
+version_2_7_0:
+{
+    compil_script :  "nlopt-2.7.0" + $VARS.scriptExtension
+}
+
+version_2_7_1:
+{
+    compil_script :  "nlopt-2.7.1" + $VARS.scriptExtension
+}

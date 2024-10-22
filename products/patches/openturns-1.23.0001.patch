@@ -1,0 +1,14 @@
+diff -Naur -Naur openturns/openturns-1.23/CMakeLists.txt openturns_dev/openturns-1.23/CMakeLists.txt
+--- openturns/openturns-1.23/CMakeLists.txt	2024-04-03 11:52:49.000000000 +0000
++++ openturns_dev/openturns-1.23/CMakeLists.txt	2024-04-05 08:17:28.143471039 +0000
+@@ -129,6 +129,10 @@
+   find_package (LAPACK REQUIRED)
+ endif ()
+ list (APPEND OPENTURNS_PRIVATE_LIBRARIES ${LAPACK_LIBRARIES})
++IF (DEFINED CBLAS_LIBRARIES)
++  MESSAGE(STATUS "CBLAS_LIBRARIES is defined... adding to the list of libraries ${CBLAS_LIBRARIES}")
++  LIST (APPEND OPENTURNS_PRIVATE_LIBRARIES ${CBLAS_LIBRARIES})
++ENDIF()
+ 
+ if (USE_SPECTRA)
+   find_package (Spectra 1.0 CONFIG)
