@@ -94,7 +94,7 @@ APPLICATION :
         markdown_it_py : '3.0.0'
         markupsafe : '1.1.1'
         matplotlib : '3.3.4'
-        mcut : 'b5b0ec6'
+        #mcut : 'b5b0ec6'
         medfile : '4.1.1'
         mesa : '19.2.3'
         meshbooleanplugin : 'main'

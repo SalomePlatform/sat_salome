@@ -17,10 +17,7 @@ echo
 echo "*** build and install with $PYTHONBIN"
 echo "*** $LINUX_DISTRIBUTION *"
 case $LINUX_DISTRIBUTION in
-    DB12)
-        $PYTHONBIN setup.py install --install-lib=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages --install-scripts=${PRODUCT_INSTALL}/bin
-        ;;
-    UB24*)
+    DB12|UB24*)
         $PYTHONBIN -m pip install . --prefix=$PRODUCT_INSTALL
         ;;
     *)
