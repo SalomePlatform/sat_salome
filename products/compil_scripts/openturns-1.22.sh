@@ -355,18 +355,22 @@ if [[ -d "$SOURCE_DIR/otfftw-0.14" ]]; then
         if [ "$SAT_Python_IS_NATIVE" == "1" ]; then
             if [ $k == "otfmi" ]; then
                 echo "INFO: install dill-0.3.4"
-                ${PYTHONBIN} -m pip install  --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/dill-0.3.4/dill-0.3.4-py2.py3-none-any.whl --no-deps  --prefix=$PRODUCT_INSTALL
-                if [ $? -ne 0 ]
-                then
-                    echo "FATAL: could not install dill-0.3.4"
-                    exit 6
+                if ! ${PYTHONBIN} -c "import dill"; then
+                    ${PYTHONBIN} -m pip install  --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/dill-0.3.4/dill-0.3.4-py2.py3-none-any.whl --no-deps  --prefix=$PRODUCT_INSTALL
+                    if [ $? -ne 0 ]
+                    then
+                        echo "FATAL: could not install dill-0.3.4"
+                        exit 6
+                    fi
                 fi
                 echo "INFO: install pythonfmu-0.6.3"
-                ${PYTHONBIN} -m pip install  --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/pythonfmu-0.6.3/pythonfmu-0.6.3-py3-none-any.whl --no-deps  --prefix=$PRODUCT_INSTALL
-                if [ $? -ne 0 ]
-                then
-                    echo "FATAL: could not install pythonfmu-0.6.3"
-                    exit 6
+                if ! ${PYTHONBIN} -c "import pythonfmu"; then
+                    ${PYTHONBIN} -m pip install  --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/pythonfmu-0.6.3/pythonfmu-0.6.3-py3-none-any.whl --no-deps  --prefix=$PRODUCT_INSTALL
+                    if [ $? -ne 0 ]
+                    then
+                        echo "FATAL: could not install pythonfmu-0.6.3"
+                        exit 6
+                    fi
                 fi
             elif [ $k == "otpod" ]; then
                 if [[ $DIST_NAME == "CO" && $DIST_VERSION == "8" ]]; then
