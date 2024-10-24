@@ -461,11 +461,7 @@ if [[ -d "$SOURCE_DIR/otfftw-0.14" ]]; then
                     fi
                 elif [ "${PYTHON_VERSION}" == "3.9" ]; then
                     echo "INFO: install scikit-learn-1.2.2"
-                    if [ -n "$SAT_HPC" ] && [ -n "$MPI_ROOT_DIR" ]; then
-                        ${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip  $SOURCE_DIR/scikit-learn-1.2.2/scikit_learn-1.2.2-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl --no-deps
-                    else
-                        ${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/scikit-learn-1.2.2/scikit-learn-1.2.2.tar.gz --no-deps
-                    fi
+                    ${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip  $SOURCE_DIR/scikit-learn-1.2.2/scikit_learn-1.2.2-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl --no-deps
                     if [ $? -ne 0 ]
                     then
                         echo "FATAL: could not install scikit-1.2.2"
