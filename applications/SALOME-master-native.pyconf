@@ -112,6 +112,7 @@ APPLICATION :
         packaging : 'native'
         packagespy : '74152cd'
         pandas : 'native'
+        patsy : 'native'
         ParaView : {tag:'5.11.0', base: 'no',  section: 'version_5_11_0_MPI', hpc: 'yes'}
         PERSALYS : 'v16.0.1'
         petsc : {tag : '3.16.0', section: 'version_3_16_0'}
@@ -389,6 +390,7 @@ __overwrite__ :
          'APPLICATION.products.opencv'           : '3.2.0'
          'APPLICATION.products.openmpi'          : '4.1.5'
          'APPLICATION.products.sip'              : '5.5.0'
+         'APPLICATION.products.patsy'            : {tag: '0.5.4',   base: 'no', section: 'version_0_5_4_no_pip'              }
          'APPLICATION.products.root'             : {tag: '6.22.02', base: 'no', section: 'version_6_22_02_CO9'               }
          'APPLICATION.products.qt'               : {tag: '5.15.2',  base: 'no', section: 'version_5_15_2_CO9'                }
          'APPLICATION.products.mdurl'            : {tag: '0.1.2',   base: 'no', section: 'version_0_1_2_no_pip'              }
@@ -399,7 +401,7 @@ __overwrite__ :
          'APPLICATION.products.PyFMI'            : {tag: '2.6',     base: 'no', section: 'version_2_6_no_pip'                }
          'APPLICATION.products.numpydoc'         : {tag: '0.9.0',   base: 'no', section: 'version_0_9_0_no_pip'              }
          'APPLICATION.products.pandas'           : {tag: '1.1.5',   base: 'no', section: 'version_1_1_5_no_pip'              }
-         'APPLICATION.products.statsmodels'      : {tag: '0.6.1',   base: 'no', section: 'version_0_6_1_no_pip'              }
+         'APPLICATION.products.statsmodels'      : {tag: '0.14.1',   base: 'no', section: 'version_0_14_1_no_pip'              }
          'APPLICATION.products.nose'             : {tag: '1.3.7',   base: 'no', section: 'version_1_3_7_no_pip'              }
          'APPLICATION.products.ParaView'         : {tag: '5.11.0',  base: 'no', section: 'version_5_11_0_MPI_CO9', hpc: 'yes'}
          'APPLICATION.products.YDEFX'            : {tag: 'master',  base: 'no', section: 'version_master_CO9'                }
@@ -409,6 +411,7 @@ __overwrite__ :
     {
         __condition__ : "VARS.dist in ['FD32']"
         'APPLICATION.rm_products'               : ['nose_py3','assimulo'] #
+        'APPLICATION.products.nlopt'            : '2.7.0'
         'APPLICATION.products.opencv'           : '3.2.0'
         'APPLICATION.products.qt'               : '5.15.2'
         'APPLICATION.products.qwt'              : '6.1.6'

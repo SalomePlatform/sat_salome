@@ -6,14 +6,14 @@ default :
     get_source : "archive"
     system_info : 
     {
-        rpm : []
-        rpm_dev : []
-        apt : []
-        apt_dev : []
+        rpm : ['python3-patsy']
+        rpm_dev : ['python3-patsy']
+        apt : ['python3-patsy']
+        apt_dev : ['python3-patsy']
     }
     environ :
     {
-
+        env_script : $name + ".py"
     }
     depend : ["Python", "setuptools"]
     opt_depend : ['pandas']
@@ -24,5 +24,15 @@ default :
     {
       incremental : "yes"
       pip : "yes"
+    }
+}
+
+version_0_5_4_no_pip :
+{
+   compil_script : "patsy-0.5.4" + $VARS.scriptExtension 
+    properties:
+    {
+      incremental : "yes"
+      pip : "no"
     }
 }

@@ -347,7 +347,7 @@ if [[ -d "$SOURCE_DIR/otfftw-0.15" ]]; then
                         echo "WARNING: dill is already installed"
                 fi
                 echo "INFO: install pythonfmu-0.6.3"
-                if ! ${PYTOHNBIN} -c "import pythonfmu"; then
+                if ! ${PYTHONBIN} -c "import pythonfmu"; then
                     ${PYTHONBIN} -m pip install  --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/pythonfmu-0.6.3/pythonfmu-0.6.3-py3-none-any.whl --no-deps  --prefix=$PRODUCT_INSTALL
                     if [ $? -ne 0 ]
                     then
@@ -364,7 +364,7 @@ if [[ -d "$SOURCE_DIR/otfftw-0.15" ]]; then
                 fi
                 echo "INFO: install joblib-1.1.0"
                 if ! ${PYTHONBIN} -c "import joblib"; then
-					          ${PYTHONBIN} -m pip install  --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/joblib-1.1.0/joblib-1.1.0-py2.py3-none-any.whl --no-deps
+		     ${PYTHONBIN} -m pip install  --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/joblib-1.1.0/joblib-1.1.0-py2.py3-none-any.whl --no-deps
                     if [ $? -ne 0 ]; then
                         echo "FATAL: could not install joblib-1.1.0"
                         exit 6
@@ -401,7 +401,7 @@ if [[ -d "$SOURCE_DIR/otfftw-0.15" ]]; then
                     echo "WARNING: sklearn is already installed"
                 fi
                 echo "INFO: install threadpoolctl-3.0.0"
-                if ! ${PPYTHONBIN} -c "import threadpoolctl"; then
+                if ! ${PYTHONBIN} -c "import threadpoolctl"; then
                     ${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip  $SOURCE_DIR/threadpoolctl-3.0.0/threadpoolctl-3.0.0-py3-none-any.whl --no-deps --prefix=$PRODUCT_INSTALL
                     if [ $? -ne 0 ]
                     then

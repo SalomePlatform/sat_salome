@@ -13,7 +13,7 @@ default :
     }
     environ :
     {
-
+        env_script : $name + ".py"
     }
     depend : ["Python", "setuptools","PyFMI", "numpy", "scipy", "matplotlib", "packaging"]
     opt_depend : ['pandas', 'patsy', 'Pillow']
@@ -24,6 +24,16 @@ default :
     {
       incremental : "yes"
       pip : "yes"
+    }
+}
+
+version_0_14_1_no_pip:
+{
+   compil_script : "statsmodels-0.14.1" + $VARS.scriptExtension
+   properties:
+    {
+      incremental : "yes"
+      pip : "no"
     }
 }
 
