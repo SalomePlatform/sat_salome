@@ -32,8 +32,18 @@ else
    CONFIGURE_FLAGS+=" --download-f2cblaslapack=ext/f2cblaslapack-3.8.0.q2.tar.gz"
 fi
 
-CONFIGURE_FLAGS+=" --with-python-dir=${PYTHON_ROOT_DIR}"
-CONFIGURE_FLAGS+=" --with-hdf5-dir=${HDF5_ROOT_DIR}"
+if [ "${SAT_python_IS_NATIVE}" == "1" ]; then
+    CONFIGURE_FLAGS+=" --with-python=1"
+elif [ -n "${PYTHON_ROOT_DIR}" ]; then
+    CONFIGURE_FLAGS+=" --with-python-dir=${PYTHON_ROOT_DIR}"
+fi
+
+if [ "$SAT_hdf5_IS_NATIVE" == "1" ]; then
+    CONFIGURE_FLAGS+=" --with-hdf5=1"
+    CONFIGURE_FLAGS+=" --with-hdf5-dir=$NATIVE_PATH/hdf5/serial/"
+elif [ -n "${HDF5_ROOT_DIR}" ]; then
+    CONFIGURE_FLAGS+=" --with-hdf5-dir=${HDF5_ROOT_DIR}"
+fi
 
 if [ -f "${NATIVE_PATH}/libfftw3.a" ] && [ "${SAT_fftw_IS_NATIVE}" == "1" ]; then
    CONFIGURE_FLAGS+=" --with-fftw=1"
@@ -81,7 +91,11 @@ if [ -n "${SAT_HPC}" ]; then
   fi
 
   CONFIGURE_FLAGS+=" --with-mpi-dir=${MPI_ROOT_DIR}"
-
+  if [ "$SAT_openmpi_IS_NATIVE" == "1" ] && [[ "DB UB" =~ "$DIST_NAME" ]]; then
+    CONFIGURE_FLAGS+=" --with-cc=${MPI_C_COMPILER}"
+    CONFIGURE_FLAGS+=" --with-cxx=${MPI_CXX_COMPILER}"
+    CONFIGURE_FLAGS+=" --with-fc=${MPI_FC_COMPILER}" 
+  fi
 else
    CONFIGURE_FLAGS+=" --with-mpi=0"
 fi

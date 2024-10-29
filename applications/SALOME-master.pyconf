@@ -14,7 +14,7 @@ APPLICATION :
     platform : ['CO7', 'CO8', 'DB09']
     environ  :
     {
-        build : 
+        build :
         {
            CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
            RESTRICTED_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "RESTRICTED"
@@ -62,6 +62,7 @@ APPLICATION :
         eigen : '3.3.4'
         embree : '3.12.2'
         FMILibrary : '2.0.3'
+        fftw : '3.3.10'
         fonttools : '4.48.1'
         freeimage : '3.16.0'
         freetype : '2.9.1'
@@ -118,7 +119,7 @@ APPLICATION :
         patsy : '0.5.4'
         ParaView : {tag:'5.11.0', base: 'no',  section: 'version_5_11_0_MPI', hpc: 'yes'}
         PERSALYS: 'v17.0.1'
-        petsc : {tag : '3.16.0', base: 'no', section: 'version_3_16_0', hpc: 'yes'}
+        petsc : '3.20.5'
         Pillow : '8.4.0'
         planegcs : '0.18-3cb6890'
         poetry : {tag: '1.8.3', base: 'no', section: 'version_1_8_3_x86_64'    }
@@ -217,7 +218,7 @@ APPLICATION :
         'YDEFX'
         'pmml'
         'SALOMEBOOTSTRAP'
-        'SOLVERLAB' : {tag: 'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'SOLVERLAB'
         'TopIIVolMesh'
         #'TESTBASE'
         'CEATESTBASE' : 'SalomeV9'
@@ -226,7 +227,7 @@ APPLICATION :
     {
         launcher_name : "salome"
     }
-    test_base : 
+    test_base :
     {
         name : "SALOME"
         tag : "SalomeV9"

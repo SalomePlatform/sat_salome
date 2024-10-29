@@ -9,7 +9,7 @@ default :
        env_script : $name + ".py"
     }
     depend : ["hdf5"]
-    opt_depend : ["openmpi", "mpi4py"]
+    opt_depend : ["openmpi", "mpi4py", "fftw"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     install_dir : 'base'
@@ -25,6 +25,7 @@ version_3_20_5 :
 {
     compil_script :  "petsc-3.20.5.sh"
     depend : ["hdf5", "Python", "lapack","fftw", "llvm", "metis", "medfile", "mpi4py", "scotch" ]
+    patches: ['petsc-3.20.5-mpi4py.patch']
 }
 
 version_3_19_4 :

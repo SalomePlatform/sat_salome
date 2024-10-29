@@ -69,6 +69,12 @@ else
     fi
 fi
 
+if [ -n "${SAT_DEBUG}" ]; then
+    CMAKE_OPTIONS+=" -DCMAKE_BUILD_TYPE=Debug"
+else
+    CMAKE_OPTIONS+=" -DCMAKE_BUILD_TYPE=Release"
+fi
+
 echo
 echo "*** cmake "$CMAKE_OPTIONS
 cmake $CMAKE_OPTIONS $SOURCE_DIR
@@ -85,6 +91,13 @@ if [ $? -ne 0 ]; then
     echo "ERROR on make"
     exit 2
 fi
+
+echo
+echo "*** env_SOLVERLAB.sh deps path"
+if [ "$SAT_openmpi_IS_NATIVE" != "1" ]; then
+    sed -i '/export MPI_ROOT_DIR=.*/a export OPAL_PREFIX=${MPI_ROOT_DIR}' $PRODUCT_INSTALL/env_SOLVERLAB.sh
+fi
+sed -i "s|${PRODUCT_INSTALL%/*}|\$\{ROOT\_DIR\}|g" $PRODUCT_INSTALL/env_SOLVERLAB.sh
 
 echo
 echo "*** make doc install"

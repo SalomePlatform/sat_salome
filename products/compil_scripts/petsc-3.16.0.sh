@@ -44,6 +44,11 @@ then
   else
       CONFIGURE_FLAGS+=" --download-mpi4py=ext/mpi4py-3.0.3.tar.gz"
   fi
+  if [ "$SAT_openmpi_IS_NATIVE" == "1" ] && [[ "DB UB" =~ "$DIST_NAME" ]]; then
+    CONFIGURE_FLAGS+=" --with-cc=${MPI_C_COMPILER}"
+    CONFIGURE_FLAGS+=" --with-cxx=${MPI_CXX_COMPILER}"
+    CONFIGURE_FLAGS+=" --with-fc=${MPI_FC_COMPILER}" 
+  fi
   echo "*** configure --prefix=${PRODUCT_INSTALL} --with-mpi-dir=${MPI_ROOT_DIR} ${CONFIGURE_FLAGS}"
   ./configure --prefix=${PRODUCT_INSTALL} --with-mpi-dir=${MPI_ROOT_DIR} ${CONFIGURE_FLAGS}
 else

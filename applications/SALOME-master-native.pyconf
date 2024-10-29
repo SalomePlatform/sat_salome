@@ -115,7 +115,7 @@ APPLICATION :
         patsy : 'native'
         ParaView : {tag:'5.11.0', base: 'no',  section: 'version_5_11_0_MPI', hpc: 'yes'}
         PERSALYS : 'v17.0.1'
-        petsc : {tag : '3.16.0', section: 'version_3_16_0'}
+        petsc : '3.20.5'
         Pillow : 'native'
         planegcs : '0.18-3cb6890'
         psutil : 'native'
@@ -278,7 +278,6 @@ __overwrite__ :
         'APPLICATION.products.opencv'           : '3.2.0'
         'APPLICATION.products.FMILibrary'       : '2.4.1'
         'APPLICATION.products.PyFMI'            : '2.13.1'
-        'APPLICATION.products.petsc'            : '3.20.5'
         'APPLICATION.products.swig'             : '4.0.2'
         'APPLICATION.products.cmake'            : 'native'
         'APPLICATION.products.cftime'           : 'native'
@@ -481,7 +480,6 @@ __overwrite__ :
         'APPLICATION.products.swig'             : '4.0.2'
         'APPLICATION.products.meshio'           : {tag: '5.3.5' ,    base: 'no', section: 'version_5_3_5_no_pip'                }
         'APPLICATION.products.opencv'           : {tag: '3.2.0',     base: 'no', section: 'version_3_2_0_FD38'                  }
-        'APPLICATION.products.petsc'            : {tag: '3.16.0',    base: 'no', section: 'version_3_16_0_FD38'                 }
         'APPLICATION.products.PyFMI'            : {tag: '2.6',       base: 'no', section: 'version_2_6_FD38'                    }
         'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD38'                  }
         'APPLICATION.products.catalyst'         : {tag: '2.0',       base: 'no', section: 'version_2_0_FD38'                    }

@@ -7,9 +7,9 @@ default :
     system_info : 
     {
         rpm : ["fftw"]
-        rpm_dev : ["fftw-devel"]
+        rpm_dev : ["fftw-devel"] #, "fftw-openmpi-devel"
         apt : ["fftw"]
-        apt_dev : ["fftw-dev"]
+        apt_dev : ["fftw-dev"] #, "libfftw3-mpi-dev"
     }
     archive_info:
     {
