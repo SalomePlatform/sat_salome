@@ -110,8 +110,8 @@ APPLICATION :
         netgen : {tag:'5.3.1', base: 'no',  section: 'version_5_3_1_with_CAS_7_8_win'}
         nlopt : '2.7.1'
         numpy : '1.21.6'
-        omniORB : '4.2.3'
-        omniORBpy : '4.2.3'
+        omniORB : '4.2.6'
+        omniORBpy : '4.2.6'
         openblas : '0.3.23'
         opencv : '3.2.0'
         openssl: '1.1.1n'

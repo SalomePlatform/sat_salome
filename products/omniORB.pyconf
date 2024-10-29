@@ -18,6 +18,12 @@ default :
     }
     patches : []
     post_script: "fix_permissions.sh"
+    opt_depend : []
+}
+
+default_win:
+{
+    opt_depend : ['openssl']
 }
 
 version_4_2_3_win_dbg:
@@ -38,4 +44,14 @@ version_4_2_3_win:
 version_4_2_5:
 {
   patches: ['omniORB-4.2.5.p1.patch']
+}
+
+version_4_2_6 :
+{
+}
+
+version_4_2_6_win:
+{
+  compil_script :  'omniORB-4.2.6.bat'
+  opt_depend : ['openssl']
 }
