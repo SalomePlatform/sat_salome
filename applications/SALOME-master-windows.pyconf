@@ -140,7 +140,7 @@ APPLICATION :
         pyreadline : '3.4.1'
         Python : '3.9.14'
         pytz : '2020.1'
-        qt : '5.15.2'
+        qt : '5.15.15'
         qtpy : {tag : '2.4.1', base : 'no', section : 'version_2_4_1_no_pip'}
         qwt : '6.1.6'
         requests : '2.22.0'

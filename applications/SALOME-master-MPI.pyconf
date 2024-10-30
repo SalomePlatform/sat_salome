@@ -124,7 +124,7 @@ APPLICATION :
         pyreadline : '2.0'
         Python : '3.9.14'
         pytz : '2017.2'
-        qt : '5.15.2'
+        qt : '5.15.15'
         qwt : '6.1.6'
         requests : '2.31.0'
         rich : '13.7.1'

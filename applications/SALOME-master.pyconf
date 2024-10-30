@@ -134,7 +134,7 @@ APPLICATION :
         pytest :  '8.1.1'
         Python : '3.9.14'
         pytz : '2017.2'
-        qt : '5.15.2'
+        qt : '5.15.15'
         qtpy : {tag : '2.4.1', base : 'no', section : 'version_2_4_1_no_pip', hpc: 'no'}
         qwt : '6.1.6'
         requests : '2.31.0'
