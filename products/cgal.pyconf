@@ -47,3 +47,8 @@ version_v5_6_1:
     compil_script : "cgal-v5.6.1" + $VARS.scriptExtension
     patches : ["cgal-p01.patch"]
 }
+
+version_v5_6_1_win:
+{
+    patches : ["cgal-p01.patch", "cgal-p02.patch"]
+}

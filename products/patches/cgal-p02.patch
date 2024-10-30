@@ -1,0 +1,15 @@
+diff --git a/Installation/cmake/modules/CGAL_SetupCGALDependencies.cmake b/Installation/cmake/modules/CGAL_SetupCGALDependencies.cmake
+index 7329be33116..02a4a57f508 100644
+--- a/Installation/cmake/modules/CGAL_SetupCGALDependencies.cmake
++++ b/Installation/cmake/modules/CGAL_SetupCGALDependencies.cmake
+@@ -29,6 +29,10 @@ if(CGAL_SetupCGALDependencies_included)
+ endif()
+ set(CGAL_SetupCGALDependencies_included TRUE)
+ 
++if (WIN32)
++ set(CGAL_DISABLE_GMP ON)
++endif(WIN32)
++
+ #.rst:
+ # Used Modules
+ # ^^^^^^^^^^^^
