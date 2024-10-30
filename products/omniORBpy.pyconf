@@ -16,8 +16,18 @@ default :
     {
       incremental : "yes"
     }
+    patches : []
 }
 
+version_4_2_6:
+{
+  patches : []
+}
+
+version_4_2_6_win:
+{
+  patches : ['omniORBpy-4.2.6.p1.patch']
+}
 
 version_4_2_5:
 {

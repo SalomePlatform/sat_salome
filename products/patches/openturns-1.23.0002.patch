@@ -1,0 +1,15 @@
+--- openturns-1.23_ref/openturns-1.23/lib/src/Base/Common/openturns/Log.hxx	2024-10-30 13:29:08.526681253 +0100
++++ openturns-1.23_dev/openturns-1.23/lib/src/Base/Common/openturns/Log.hxx	2024-10-30 13:30:05.420229339 +0100
+@@ -21,6 +21,12 @@
+ #ifndef OPENTURNS_LOG_HXX
+ #define OPENTURNS_LOG_HXX
+ 
++#ifdef WIN32
++  #ifdef ERROR
++   #undef ERROR
++  #endif
++#endif
++
+ #include <fstream>
+ #include <map>
+ #include "openturns/OTprivate.hxx"
