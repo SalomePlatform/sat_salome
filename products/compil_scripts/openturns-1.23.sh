@@ -364,7 +364,7 @@ if [[ -d "$SOURCE_DIR/otfftw-0.15" ]]; then
                 fi
                 echo "INFO: install joblib-1.1.0"
                 if ! ${PYTHONBIN} -c "import joblib"; then
-		     ${PYTHONBIN} -m pip install  --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/joblib-1.1.0/joblib-1.1.0-py2.py3-none-any.whl --no-deps
+		     ${PYTHONBIN} -m pip install  --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/joblib-1.1.0/joblib-1.1.0-py2.py3-none-any.whl --no-deps --prefix=$PRODUCT_INSTALL
                     if [ $? -ne 0 ]; then
                         echo "FATAL: could not install joblib-1.1.0"
                         exit 6
