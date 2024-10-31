@@ -30,7 +30,7 @@ default :
 
 default_win :
 {
-    cmake_options : "-DCPPUNIT_ROOT_DIR=%CPPUNIT_ROOT_DIR:\=/%"
+    cmake_options : "-DCPPUNIT_ROOT_DIR=%CPPUNIT_ROOT_DIR%"
     properties :
     {
       incremental : "yes"

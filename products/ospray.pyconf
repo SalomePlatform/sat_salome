@@ -20,7 +20,7 @@ default :
 
 default_win :
 {
-    cmake_options : '  -Dembree_DIR=%embree_DIR:\=/% -DTBB_ROOT=%TBB_DIR:\=/% -DOSPRAY_TASKING_SYSTEM=TBB  -DOSPRAY_ENABLE_APPS=OFF -DOSPRAY_ENABLE_TUTORIALS=OFF '
+    cmake_options : '  -Dembree_DIR=%embree_DIR% -DTBB_ROOT=%TBB_DIR% -DOSPRAY_TASKING_SYSTEM=TBB  -DOSPRAY_ENABLE_APPS=OFF -DOSPRAY_ENABLE_TUTORIALS=OFF '
     depend : ['embree']
     properties :
     {
@@ -37,7 +37,7 @@ version_2_4_0 :
 
 version_2_4_0_win :
 {
-    cmake_options : '  -Dembree_DIR=%embree_DIR:\=/% -DTBB_ROOT=%TBB_DIR:\=/% -DOSPRAY_TASKING_SYSTEM=TBB  -DOSPRAY_ENABLE_APPS=OFF -DOSPRAY_ENABLE_TUTORIALS=OFF '
+    cmake_options : '  -Dembree_DIR=%embree_DIR% -DTBB_ROOT=%TBB_DIR% -DOSPRAY_TASKING_SYSTEM=TBB  -DOSPRAY_ENABLE_APPS=OFF -DOSPRAY_ENABLE_TUTORIALS=OFF '
   depend : ['embree','openVKL', 'rkCommon', 'tbb']
 }
 

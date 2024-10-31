@@ -62,7 +62,7 @@ default :
 
 default_win :
 {
-    cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR:\=/%/bin/swig.exe -DSALOME_SMESH_USE_CGNS:BOOL=ON -DSALOME_SMESH_DYNLOAD_LOCAL:BOOL=ON -DSALOME_SMESH_BUILD_FRENCH_DOC=OFF -DSALOME_SMESH_USE_TBB=ON"
+    cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig.exe -DSALOME_SMESH_USE_CGNS:BOOL=ON -DSALOME_SMESH_DYNLOAD_LOCAL:BOOL=ON -DSALOME_SMESH_BUILD_FRENCH_DOC=OFF -DSALOME_SMESH_USE_TBB=ON"
     depend : ["KERNEL",
               "GUI",
               "GEOM",
@@ -163,7 +163,7 @@ version_V9_3_0 :
 
 version_V9_3_0_win :
 {
-    cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR:\=/%/bin/swig.exe -DSALOME_SMESH_USE_CGNS:BOOL=ON -DSALOME_SMESH_DYNLOAD_LOCAL:BOOL=ON -DSALOME_SMESH_BUILD_FRENCH_DOC=OFF"
+    cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig.exe -DSALOME_SMESH_USE_CGNS:BOOL=ON -DSALOME_SMESH_DYNLOAD_LOCAL:BOOL=ON -DSALOME_SMESH_BUILD_FRENCH_DOC=OFF"
 }
 
 # Starting from SALOME 9.4.0, we use tbb as product and build SMESH using it to accelerate its performances

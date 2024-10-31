@@ -49,7 +49,7 @@ default :
 
 default_win :
 {
-    cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR:\=/%/bin/swig.exe -DSALOME_BUILD_WITH_QT5:BOOL=ON "
+    cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig.exe -DSALOME_BUILD_WITH_QT5:BOOL=ON "
     depend : ["KERNEL",
               "Python",
               "qt",

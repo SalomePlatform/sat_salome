@@ -56,7 +56,7 @@ default :
 
 default_win :
 {
-    cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR:\=/%/bin/swig.exe -DSALOME_GEOM_USE_OPENCV=ON -DOPENCV_ROOT_DIR=%OPENCV_ROOT_DIR:\=/% -DOpenCV_INCLUDE_DIRS=%OpenCV_INCLUDE_DIRS:\=/% "
+    cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig.exe -DSALOME_GEOM_USE_OPENCV=ON -DOPENCV_ROOT_DIR=%OPENCV_ROOT_DIR% -DOpenCV_INCLUDE_DIRS=%OpenCV_INCLUDE_DIRS% "
     depend : ["KERNEL",
               "GUI",
               "boost",
@@ -86,7 +86,7 @@ version_V9_10_0:
 
 version_V9_10_0_win :
 {
-    cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR:\=/%/bin/swig.exe -DSALOME_GEOM_USE_OPENCV=ON -DOPENCV_ROOT_DIR=%OPENCV_ROOT_DIR:\=/% -DOpenCV_INCLUDE_DIRS=%OpenCV_INCLUDE_DIRS:\=/% "
+    cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig.exe -DSALOME_GEOM_USE_OPENCV=ON -DOPENCV_ROOT_DIR=%OPENCV_ROOT_DIR% -DOpenCV_INCLUDE_DIRS=%OpenCV_INCLUDE_DIRS% "
     depend : ["KERNEL",
               "GUI",
               "boost",

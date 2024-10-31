@@ -52,7 +52,7 @@ default :
 
 default_win :
 {
-    cmake_options : "-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR:\=/%/bin/swig.exe -DCMAKE_CXX_COMPILER_ARCHITECTURE_ID=x64 -DBOOST_ROOT=%BOOST_ROOT_DIR:\=/% -DBOOST_DEBUG=ON -DBoost_ADDITIONAL_VERSIONS=\"%BOOST_VERSION% %BOOST_VERSION_MajorMinor%\" -DBOOST_INCLUDEDIR=%Boost_INCLUDE_DIR:\=/% -DBOOST_LIBRARYDIR=%BOOST_LIBRARY_DIR:\=/%b -DSALOME_USE_64BIT_IDS=ON "
+    cmake_options : "-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig.exe -DCMAKE_CXX_COMPILER_ARCHITECTURE_ID=x64 -DBOOST_ROOT=%BOOST_ROOT_DIR% -DBOOST_DEBUG=ON -DBoost_ADDITIONAL_VERSIONS=\"%BOOST_VERSION% %BOOST_VERSION_MajorMinor%\" -DBOOST_INCLUDEDIR=%Boost_INCLUDE_DIR% -DBOOST_LIBRARYDIR=%BOOST_LIBRARY_DIR%b -DSALOME_USE_64BIT_IDS=ON "
     depend : ["Python",
               "boost",
               "numpy",
@@ -283,7 +283,7 @@ ALAMOS_SALOME_9_win :
 {
     name : "KERNEL"
     build_source : "cmake"
-    cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR:\=/%/bin/swig.exe"
+    cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig.exe"
     depend : ["Python",
               "boost",
               "numpy",
@@ -322,7 +322,7 @@ version_ALAMOS_SALOME_9_10_0_win :
 {
     name : "KERNEL"
     build_source : "cmake"
-    cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR:\=/%/bin/swig.exe"
+    cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig.exe"
     depend : ["Python",
               "boost",
               "numpy",

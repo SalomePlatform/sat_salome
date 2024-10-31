@@ -50,7 +50,7 @@ default :
 
 default_win :
 {
-    cmake_options : " -DZLIB_LIBRARY=%ZLIB_BIN:\=/%  -DZLIB_INCLUDE_DIR=%ZLIB_INCLUDE_DIR:\=/% -DSALOME_CXX_STANDARD=17 "
+    cmake_options : " -DZLIB_LIBRARY=%ZLIB_BIN%  -DZLIB_INCLUDE_DIR=%ZLIB_INCLUDE_DIR% -DSALOME_CXX_STANDARD=17 "
     depend : [
              "KERNEL",
              "MEDCOUPLING",
