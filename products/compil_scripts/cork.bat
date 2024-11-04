@@ -49,3 +49,22 @@ if NOT %ERRORLEVEL% == 0 (
     echo ERROR on msbuild  wincork.vcxproj
     exit 2
 )
+
+REM Install the executable into the common directory
+if NOT exist "%SINGLE_INSTALL_DIR%" mkdir %SINGLE_INSTALL_DIR%
+if NOT exist "%SINGLE_INSTALL_DIR%\bin" mkdir %SINGLE_INSTALL_DIR%\bin
+
+copy /Y /B %BUILD_DIR%\win\wincork\x64\%PRODUCT_BUILD_TYPE%\wincork.pdb %SINGLE_INSTALL_DIR%\bin\
+if NOT %ERRORLEVEL% == 0 (
+    echo ERROR on wincork.pdb
+    exit 3
+)
+copy /Y /B %BUILD_DIR%\win\wincork\x64\%PRODUCT_BUILD_TYPE%\wincork.exe %SINGLE_INSTALL_DIR%\bin\
+if NOT %ERRORLEVEL% == 0 (
+    echo ERROR on msbuild wincork.exe
+    exit 3
+)
+
+echo.
+echo libigl 609_Boolean version: %VERSION%> %PRODUCT_INSTALL%\README.txt
+echo Installation folder: %SINGLE_INSTALL_DIR%\bin >> %PRODUCT_INSTALL%\README.txt

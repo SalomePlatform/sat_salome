@@ -84,13 +84,19 @@ echo *** installation...
 echo *********************************************************************
 echo.
 
-mkdir %PRODUCT_INSTALL%\bin
+REM Install the executable into the common directory
+if NOT exist "%SINGLE_INSTALL_DIR%" mkdir %SINGLE_INSTALL_DIR%
+if NOT exist "%SINGLE_INSTALL_DIR%\bin" mkdir %SINGLE_INSTALL_DIR%\bin
 
-copy /Y /B %BUILD_DIR%\bin\%PRODUCT_BUILD_TYPE%\* %PRODUCT_INSTALL%\bin\
+copy /Y /B %BUILD_DIR%\bin\%PRODUCT_BUILD_TYPE%\* %SINGLE_INSTALL_DIR%\bin\
 if NOT %ERRORLEVEL% == 0 (
-    echo ERROR on msbuild INSTALL.vcxproj
+    echo ERROR on msbuild 609_Boolean.vcxproj
     exit 3
 )
+
+echo.
+echo libigl 609_Boolean version: %VERSION%> %PRODUCT_INSTALL%\README.txt
+echo Installation folder: %SINGLE_INSTALL_DIR%\bin >> %PRODUCT_INSTALL%\README.txt
 
 set MSBUILDDISABLENODEREUSE=1
 

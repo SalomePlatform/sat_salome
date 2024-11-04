@@ -88,12 +88,12 @@ mkdir %BUILD_DIR%\cgal_test
 cd %BUILD_DIR%\cgal_test
 
 set CMAKE_OPTIONS=
-set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_INSTALL_PREFIX:STRING=%PRODUCT_INSTALL:\=/%
+set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_INSTALL_PREFIX:STRING=%BUILD_DIR:\=/%
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_BUILD_TYPE=%PRODUCT_BUILD_TYPE%
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -G %CMAKE_GENERATOR%
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -A x64
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCGAL_DIR=%PRODUCT_INSTALL:\=/%/lib/cmake
-set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DEXECUTABLE_OUTPUT_PATH=%PRODUCT_INSTALL:\=/%/bin
+set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DEXECUTABLE_OUTPUT_PATH=%BUILD_DIR:\=/%/bin
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCGAL_DISABLE_GMP=OFF
 
 echo.
@@ -120,17 +120,18 @@ if NOT %ERRORLEVEL% == 0 (
     exit 2
 )
 
-echo.
-echo *********************************************************************
-echo *** installation...
-echo *********************************************************************
-echo.
-
-msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64 INSTALL.vcxproj
+REM Install the executable into the common directory
+if NOT exist "%SINGLE_INSTALL_DIR%" mkdir %SINGLE_INSTALL_DIR%
+if NOT exist "%SINGLE_INSTALL_DIR%\bin" mkdir %SINGLE_INSTALL_DIR%\bin
+copy /B /Y %BUILD_DIR%\bin\%PRODUCT_BUILD_TYPE%\exec_cgal.exe %SINGLE_INSTALL_DIR%\bin\exec_cgal.exe
 if NOT %ERRORLEVEL% == 0 (
-    echo ERROR on msbuild INSTALL.vcxproj
-    exit 3
+    echo ERROR could not copy exec_cgal.exe to %SINGLE_INSTALL_DIR%\bin
+    exit 2
 )
+
+echo.
+echo exec_cgal version: %VERSION%> %PRODUCT_INSTALL%\README.txt
+echo Installation folder: %SINGLE_INSTALL_DIR%\bin >> %PRODUCT_INSTALL%\README.txt
 
 echo
 echo ########## END
