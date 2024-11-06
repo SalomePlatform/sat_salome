@@ -8,8 +8,7 @@ default :
     {
       repositories :
       {
-#        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "meshbooleanplugin.git"
-        github : "https://github.com/nitawa/meshbooleanplugin.git"
+        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "meshbooleanplugin.git"
       }
     }
     patches: []

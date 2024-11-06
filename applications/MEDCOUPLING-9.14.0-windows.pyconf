@@ -1,0 +1,103 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+APPLICATION :
+{
+    name : 'MEDCOUPLING-9.14.0'
+    workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name
+    cmake_generator : 'Visual Studio 15 2017'
+    cmake_build_type: 'Release' # Debug, RelWithDebInfo, Release, MinSizeRel
+    tag : 'V9_14_0a1'
+    debug : 'no'
+    base : 'no'
+    python3 : 'yes'
+    environ :
+    {
+        build : 
+        {
+            CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
+            SALOME_HAS_GLOBAL_ENV: "1"
+            SALOME_USE_64BIT_IDS : '1'
+            CMAKE_GENERATOR : '"Visual Studio 15 2017"'
+        }
+        launch :
+        {
+            PYTHONIOENCODING:"UTF_8"
+        }
+    }
+    products :
+    {
+        # PREREQUISITES :
+        alabaster : '0.7.16'
+        Babel : '2.7.0'
+        boost : '1.67.0'
+        certifi : '2019.6.16'
+        click : '7.0'
+        cmake : '3.25.2'
+        colorama: '0.4.1'
+        cppunit : '1.13.2'
+        chardet : '3.0.4'
+        Cython : '0.29.37'
+        distro: '1.9.0'
+        docutils : '0.14'
+        doxygen : '1.8.3.1'
+        expat : '2.0.1'
+        graphviz : '2.44.1'
+        hdf5 : '1.10.3'
+        idna : '2.8'
+        imagesize : '1.1.0'
+        Jinja2 : '2.10.1'
+        lapack : '3.8.0'
+        libjpeg: '9c'
+        libpng: '1.5.10'
+        libxml2 : '2.9.1'
+        markupsafe : '1.1.1'
+        medfile : '4.1.1'
+        metis : '5.1.0'
+        msvc : '2017'
+        numpy : '1.21.6'
+        openblas : '0.3.23'
+        packaging : '19.0'
+        perl : '5.28.1.1'
+        pockets : '0.7.2'
+        Pygments : '2.13.0'
+        pyparsing : '2.4.0'
+        pyreadline : '3.4.1'
+        Python : '3.9.14'
+        pytz : '2020.1'
+        requests : '2.22.0'
+        scipy : '1.6.2'
+        setuptools : '69.0.3'
+        six : '1.12.0'
+        snowballstemmer : '2.2.0'
+        Sphinx : '3.5.4'
+        sphinxcontrib_applehelp : '1.0.1'
+        sphinxcontrib_devhelp : '1.0.1'
+        sphinxcontrib_jsmath : '1.0.1'
+        sphinxcontrib_htmlhelp : '1.0.2'
+        sphinxcontrib_napoleon : '0.7'
+        sphinxcontrib_qthelp : '1.0.2'
+        sphinxcontrib_serializinghtml :'1.1.3'
+        sphinxcontrib_websupport : '1.1.2'
+        sphinxintl: '2.0.0'
+        swig : '4.0.2'
+        urllib3 : '1.25.3'
+        zlib : '1.2.5'
+
+        # SALOME MODULES :
+        'CONFIGURATION'
+        'MEDCOUPLING'
+    }
+    test_base :
+    {
+        name : "SALOME"
+        tag : "SalomeV9"
+    }
+    properties :
+    {
+        git_server : 'tuleap'
+        pip : 'yes'
+        pip_install_dir : 'python'
+        single_install_dir : "yes"
+    }
+}
