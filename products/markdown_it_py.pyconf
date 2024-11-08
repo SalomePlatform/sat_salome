@@ -1,6 +1,6 @@
 default :
 {
-    name : "markdown-it-py"
+    name : "markdown_it_py"
     build_source : "script"
     compil_script :  'pip_install' + $VARS.scriptExtension
     archive_info : {archive_prefix : "markdown_it_py"}
