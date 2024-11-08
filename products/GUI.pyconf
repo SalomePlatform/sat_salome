@@ -76,11 +76,6 @@ default_win :
 
 }
 
-version_ALAMOS_V9_12_0:
-{
-  patches : ['SPNS-37541-LightApp-APP_NAME.GUI-V9_12_0.patch']
-}
-
 version_V9_10_0:
 {
   patches: []
