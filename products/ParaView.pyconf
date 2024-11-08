@@ -270,8 +270,7 @@ version_5_11_0 :
                'paraview-5.11.0.p001-FindCGNS.patch',
                'paraview-5.11.0.p003-ParaViewClient.patch',
                'paraview-5.11.0.p006-GIL.patch',
-               'paraview-5.11.0.p009-openturns-1.21.patch',
-               'paraview-5.11.0.p013-bos-43522-EnSightGoldBinaryReader-fix-int-overflow-when-openin.patch'
+               'paraview-5.11.0.p009-openturns-1.21.patch'
               ]
     depend : [
               'Python',
@@ -297,8 +296,7 @@ version_5_11_0_int32 :
     patches : [
                'paraview-5.11.0.p001-FindCGNS.patch',
                'paraview-5.11.0.p006-GIL.patch',
-               'paraview-5.11.0.p009-openturns-1.21.patch',
-               'paraview-5.11.0.p013-bos-43522-EnSightGoldBinaryReader-fix-int-overflow-when-openin.patch'
+               'paraview-5.11.0.p009-openturns-1.21.patch'
               ]
     depend : [
               'Python',
@@ -338,8 +336,7 @@ version_5_11_0_win :
                'paraview-5.11.0.p004-vtkUniformHyperTreeGrid.patch',
                'paraview-5.11.0.p006-GIL.patch',
                'paraview-5.11.0.p009-openturns-1.21.patch',
-               'paraview-5.11.0.p0011-add_dll_directory.patch',
-               'paraview-5.11.0.p013-bos-43522-EnSightGoldBinaryReader-fix-int-overflow-when-openin.patch'
+               'paraview-5.11.0.p0011-add_dll_directory.patch'
               ]
 }
 
@@ -365,8 +362,7 @@ version_5_11_0_win_dbg :
                'paraview-5.11.0.p004-vtkUniformHyperTreeGrid.patch',
                'paraview-5.11.0.p005-vtkPython-debug.patch',
                'paraview-5.11.0.p006-GIL.patch',
-               'paraview-5.11.0.p009-openturns-1.21.patch',
-               'paraview-5.11.0.p013-bos-43522-EnSightGoldBinaryReader-fix-int-overflow-when-openin.patch'
+               'paraview-5.11.0.p009-openturns-1.21.patch'
               ]
 }
 
@@ -377,9 +373,8 @@ version_5_11_0_MPI :
     patches : ['paraview-5.11.0.p001-FindCGNS.patch',
                'paraview-5.11.0.p002-FindMPI.patch',
                'paraview-5.11.0.p006-GIL.patch',
-               'paraview-5.11.0.p009-openturns-1.21.patch',
-               'paraview-5.11.0.p013-bos-43522-EnSightGoldBinaryReader-fix-int-overflow-when-openin.patch'
-                ]
+               'paraview-5.11.0.p009-openturns-1.21.patch'
+              ]
     depend : [
               'Python',
               'hdf5',
@@ -404,8 +399,7 @@ version_5_11_0_MPI_LATA_64BITS_IDS :
                'paraview-5.11.0.p002-FindMPI.patch',
                'paraview-0012-LATA_64BITS_IDS.patch',
                'paraview-5.11.0.p006-GIL.patch',
-               'paraview-5.11.0.p009-openturns-1.21.patch',
-               'paraview-5.11.0.p013-bos-43522-EnSightGoldBinaryReader-fix-int-overflow-when-openin.patch'
+               'paraview-5.11.0.p009-openturns-1.21.patch'
               ]
     depend : [
               'Python',
@@ -434,8 +428,7 @@ version_5_11_0_MPI_UB24_04 :
                'paraview-5.11.0.p008-cstdint-FD38.patch',
                'paraview-5.11.0.p009-openturns-1.21.patch',
                'paraview-5.11.0.p010-python-3.11.patch',
-               'paraview-5.11.0.p012-skip-FindTBB.patch',
-               'paraview-5.11.0.p013-bos-43522-EnSightGoldBinaryReader-fix-int-overflow-when-openin.patch'
+               'paraview-5.11.0.p012-skip-FindTBB.patch'
               ]
     depend : [
               'Python',
@@ -462,8 +455,7 @@ version_5_11_0_MPI_DB12 :
                'paraview-5.11.0.p006-GIL.patch',
                'paraview-5.11.0.p007-mpi4py-FD37.patch',
                'paraview-5.11.0.p009-openturns-1.21.patch',
-               'paraview-5.11.0.p010-python-3.11.patch',
-               'paraview-5.11.0.p013-bos-43522-EnSightGoldBinaryReader-fix-int-overflow-when-openin.patch'
+               'paraview-5.11.0.p010-python-3.11.patch'
               ]
     depend : [
               'Python',
@@ -489,8 +481,7 @@ version_5_11_0_MPI_DB10 :
                'paraview-5.11.0.p002-FindMPI.patch',
                'paraview-5.11.0.p003-ParaViewClient.patch',
                'paraview-5.11.0.p006-GIL.patch',
-               'paraview-5.11.0.p009-openturns-1.21.patch',
-               'paraview-5.11.0.p013-bos-43522-EnSightGoldBinaryReader-fix-int-overflow-when-openin.patch'
+               'paraview-5.11.0.p009-openturns-1.21.patch'
                ]
     depend : [
               'Python',
@@ -516,8 +507,7 @@ version_5_11_0_MPI_CO9 :
                'paraview-5.11.0.p002-FindMPI.patch',
                'paraview-5.11.0.p003-ParaViewClient.patch',
                'paraview-5.11.0.p006-GIL.patch',
-               'paraview-5.11.0.p009-openturns-1.21.patch',
-               'paraview-5.11.0.p013-bos-43522-EnSightGoldBinaryReader-fix-int-overflow-when-openin.patch'
+               'paraview-5.11.0.p009-openturns-1.21.patch'
               ]
     depend : [
               'Python',
@@ -543,8 +533,7 @@ version_5_11_0_MPI_CO8 :
                'paraview-5.11.0.p002-FindMPI.patch',
                'paraview-5.11.0.p003-ParaViewClient.patch',
                'paraview-5.11.0.p006-GIL.patch',
-               'paraview-5.11.0.p009-openturns-1.21.patch',
-               'paraview-5.11.0.p013-bos-43522-EnSightGoldBinaryReader-fix-int-overflow-when-openin.patch'
+               'paraview-5.11.0.p009-openturns-1.21.patch'
               ]
     depend : [
               'Python',
@@ -572,8 +561,7 @@ version_5_11_0_MPI_FD38 :
                'paraview-5.11.0.p007-mpi4py-FD37.patch',
                'paraview-5.11.0.p008-cstdint-FD38.patch',
                'paraview-5.11.0.p009-openturns-1.21.patch',
-               'paraview-5.11.0.p010-python-3.11.patch',
-               'paraview-5.11.0.p013-bos-43522-EnSightGoldBinaryReader-fix-int-overflow-when-openin.patch'
+               'paraview-5.11.0.p010-python-3.11.patch'
               ]
     depend : [
               'Python',
@@ -600,8 +588,7 @@ version_5_11_0_MPI_FD37 :
                'paraview-5.11.0.p006-GIL.patch',
                'paraview-5.11.0.p007-mpi4py-FD37.patch',
                'paraview-5.11.0.p009-openturns-1.21.patch',
-               'paraview-5.11.0.p010-python-3.11.patch',
-               'paraview-5.11.0.p013-bos-43522-EnSightGoldBinaryReader-fix-int-overflow-when-openin.patch'
+               'paraview-5.11.0.p010-python-3.11.patch'
               ]
     depend : [
               'Python',
