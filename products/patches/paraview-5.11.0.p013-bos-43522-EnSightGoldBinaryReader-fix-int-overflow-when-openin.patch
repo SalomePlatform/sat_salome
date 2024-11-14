@@ -1,19 +1,6 @@
-From 7135f862820948c522eaabcc6b9ff5c91fb0ae46 Mon Sep 17 00:00:00 2001
-From: Louis Gombert <louis.gombert@kitware.com>
-Date: Wed, 25 Sep 2024 16:38:20 +0200
-Subject: [PATCH] EnSightGoldBinaryReader: fix int overflow when opening large
- datasets
-
-Convert int to vtkIdType when necessary
-
-(cherry picked from commit 3d830296ece3038d3ab03d195db3200604c4c27c)
----
- IO/EnSight/vtkEnSightGoldBinaryReader.cxx | 29 +++++++++++------------
- IO/EnSight/vtkEnSightGoldBinaryReader.h   |  2 +-
- 2 files changed, 15 insertions(+), 16 deletions(-)
-
+Submodule VTK contains modified content
 diff --git a/VTK/IO/EnSight/vtkEnSightGoldBinaryReader.cxx b/VTK/IO/EnSight/vtkEnSightGoldBinaryReader.cxx
-index 9ec5d94457..ede20bbf3f 100644
+index 9ec5d94457..c95fe96495 100644
 --- a/VTK/IO/EnSight/vtkEnSightGoldBinaryReader.cxx
 +++ b/VTK/IO/EnSight/vtkEnSightGoldBinaryReader.cxx
 @@ -825,7 +825,7 @@ int vtkEnSightGoldBinaryReader::SkipUnstructuredGrid(char line[256])
@@ -64,7 +51,7 @@ index 9ec5d94457..ede20bbf3f 100644
  
        cellType = vtkEnSightReader::NFACED;
        this->ReadInt(&numElements);
-@@ -2463,10 +2463,9 @@ int vtkEnSightGoldBinaryReader::CreateUnstructuredGridOutput(
+@@ -2463,10 +2463,10 @@ int vtkEnSightGoldBinaryReader::CreateUnstructuredGridOutput(
        this->ReadIntArray(nodeIdList, numNodes);
  
        // yyy begin
@@ -72,13 +59,14 @@ index 9ec5d94457..ede20bbf3f 100644
 -      int faceIdx = 0;              // indexing faces throughout all polyhedra
 -      int nodeIdx = 0;              // indexing nodes throughout all polyhedra
 -      int arayIdx = 0;              // indexing the array of Ids (info of faces)
-+      int k;                      // indexing each node Id of a face
-+      vtkIdType faceIdx = 0;      // indexing faces throughout all polyhedra
-+      vtkIdType nodeIdx = 0;      // indexing nodes throughout all polyhedra
++      vtkIdType k;                        // indexing each node Id of a face
++      vtkIdType faceIdx = 0;        // indexing faces throughout all polyhedra
++      vtkIdType nodeIdx = 0;        // indexing nodes throughout all polyhedra
++      vtkIdType arayIdx = 0;              // indexing the array of Ids (info of faces)
        vtkIdType* faceAry = nullptr; // array of Ids describing a vtkPolyhedron
        // yyy end
  
-@@ -3402,7 +3401,7 @@ int vtkEnSightGoldBinaryReader::ReadFloat(float* result)
+@@ -3402,7 +3402,7 @@ int vtkEnSightGoldBinaryReader::ReadFloat(float* result)
  
  // Internal function to read an integer array.
  // Returns zero if there was an error.
@@ -100,6 +88,3 @@ index dd88876ad9..31bd8faebd 100644
  
    /**
     * Internal function to read in a single long.
--- 
-2.47.0
-
