@@ -35,6 +35,16 @@ if [ -n "$TBB_ROOT_DIR" ] && [ "$SAT_tbb_IS_NATIVE" != "1" ]; then
     CMAKE_OPTIONS+=" -Dtbb_DIR=${TBB_ROOT_DIR}/lib/cmake"
 fi
 
+# https://github.com/openturns/openturns/issues/2820
+case $LINUX_DISTRIBUTION in
+    CO7)
+        echo "WARNING: switching OFF USE_CXX17"
+        CMAKE_OPTIONS+=" -DUSE_CXX17=OFF"
+        ;;
+    *)
+        ;;
+esac
+
 # https://github.com/persalys/persalys/issues/745
 case $LINUX_DISTRIBUTION in
     UB22*|CO8*|CO9*|FD36|FD37|FD38)
