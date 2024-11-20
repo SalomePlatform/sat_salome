@@ -58,6 +58,12 @@ default_win :
       incremental : "yes"
     }
 }
+
+version_v17_0_1 :
+{
+   compil_script : 'PERSALYS-v17.0.1.sh'
+}
+
 version_v16_0_1 :
 {
    compil_script : 'PERSALYS-v16.0.1.sh'

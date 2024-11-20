@@ -17,7 +17,7 @@ def set_env(env, prereq_dir, version):
         pyver = 'python' + env.get('PYTHON_VERSION')
         env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'lib', pyver, 'site-packages'))
     env.set('OTGUI_HTML_DOCUMENTATION_PATH',os.path.join(prereq_dir,'share','otgui','doc','html/'))
-    env.set('PERSALYS_HTML_DOCUMENTATION_PATH', os.path.join(prereq_dir,'share','persalys','doc','html/'))
+    env.set('PERSALYS_HTML_DOCUMENTATION_PATH', os.path.join(prereq_dir,'share','doc','persalys','html/'))
 
 def set_nativ_env(env):
     pass

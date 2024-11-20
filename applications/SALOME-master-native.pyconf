@@ -114,7 +114,7 @@ APPLICATION :
         pandas : 'native'
         patsy : 'native'
         ParaView : {tag:'5.11.0', base: 'no',  section: 'version_5_11_0_MPI', hpc: 'yes'}
-        PERSALYS : 'v16.0.1'
+        PERSALYS : 'v17.0.1'
         petsc : {tag : '3.16.0', section: 'version_3_16_0'}
         Pillow : 'native'
         planegcs : '0.18-3cb6890'
