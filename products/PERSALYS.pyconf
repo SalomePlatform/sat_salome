@@ -62,6 +62,42 @@ default_win :
 version_v17_0_1 :
 {
    compil_script : 'PERSALYS-v17.0.1.sh'
+   patches : []
+}
+
+version_v17_0_1_win :
+{
+   compil_script : 'PERSALYS-v17.0.1.bat'
+   depend : ['Python',
+              'hdf5',
+              'cgns',
+              'tbb',
+              'nlopt',
+              'libxml2',
+              'eigen',
+              'boost',
+              'ADAO',
+              'KERNEL',
+              'GUI',
+              'Sphinx',
+              'qwt',
+              'qt',
+              'ParaView',
+              'openturns',
+              'FMILibrary',
+              'PyFMI',
+              'YACS',
+              'YDEFX',
+              'PY2CPP',
+              'CAS',
+              'CONFIGURATION',
+              'openblas',
+              'pthreads'
+           ]
+    patches : ['PERSALYS-v17.0.1-001.patch',
+               'PERSALYS-v17.0.1-002.patch',
+               'PERSALYS-v17.0.1-003.patch'
+              ]
 }
 
 version_v16_0_1 :

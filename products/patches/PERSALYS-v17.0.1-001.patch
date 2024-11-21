@@ -1,0 +1,11 @@
+--- persalys-17.0.1_ref/CMakeLists.txt	2024-10-16 16:22:25.000000000 +0200
++++ persalys-17.0.1_dev/CMakeLists.txt	2024-11-21 09:57:22.000000000 +0100
+@@ -64,7 +64,7 @@
+   set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /bigobj")
+ endif ()
+ 
+-find_package (Boost CONFIG COMPONENTS locale program_options)
++find_package (Boost COMPONENTS locale filesystem  program_options REQUIRED)
+ if (Boost_FOUND)
+   message(STATUS "Found Boost: ${Boost_DIR} (found suitable version \"${Boost_VERSION}\")")
+ else ()
