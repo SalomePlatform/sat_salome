@@ -183,6 +183,7 @@ APPLICATION :
         'KERNEL'
         'MEDCOUPLING'
         'GUI'
+        'CommonGeomLib'
         'GEOM'
         'SMESH'
         'NETGENPLUGIN'

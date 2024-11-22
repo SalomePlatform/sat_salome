@@ -170,6 +170,7 @@ APPLICATION :
         'KERNEL'
         'MEDCOUPLING' : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'GUI'
+        'CommonGeomLib'
         'GEOM'
         'SMESH'
         'NETGENPLUGIN'

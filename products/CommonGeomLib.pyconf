@@ -1,0 +1,23 @@
+default :
+{
+    name : "CommonGeomLib"
+    build_source : "cmake"
+    get_source : "git"
+    git_info:
+    {
+      repositories :
+      {
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/common_geometry_lib.git"
+        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "common_geometry_lib.git"
+      }
+    }
+    depend : ["CAS" "CONFIGURATION"]
+    build_depend : ["cmake"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        is_SALOME_module : "yes"
+        incremental : "yes"
+    }
+}

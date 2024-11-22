@@ -25,6 +25,7 @@ default :
               "GUI",
               "boost",
               "CAS",
+              "CommonGeomLib",
               "Python",
               "hdf5",
               "omniORB",
@@ -61,6 +62,7 @@ default_win :
               "GUI",
               "boost",
               "CAS",
+              "CommonGeomLib",
               "Python",
               "hdf5",
               "omniORB",
@@ -78,6 +80,29 @@ default_win :
               "sphinxintl"
              ]
     nb_proc : 2
+}
+
+version_V9_11_0_to_V9_13_0:
+{
+    depend : ["KERNEL",
+              "GUI",
+              "boost",
+              "CAS",
+              "Python",
+              "hdf5",
+              "omniORB",
+              "qt",
+              "ParaView",
+              "docutils",
+              "Sphinx",
+              "Jinja2",
+              "setuptools",
+              "Pygments",
+              "opencv",
+              "six",
+              "pytz",
+              "psutil"
+             ]
 }
 
 version_V9_10_0:
