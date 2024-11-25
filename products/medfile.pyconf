@@ -41,8 +41,11 @@ version_4_1_1 :
 
 version_4_1_1_win :
 {
-    compil_script :  "medCMake.bat"
-    patches : ['med-4.1.0_win_3x_files_support.patch', 'med-4.1.1-symlink-or-copy.patch']
+    compil_script :  "med-4.1.1.bat"
+    patches : ['med-4.1.0_win_3x_files_support.patch',
+               'med-4.1.1-symlink-or-copy.patch',
+               'med-4.1.1-fix_symbol_export_Win.patch'
+              ]
     properties :
     {
        incremental : "yes"
