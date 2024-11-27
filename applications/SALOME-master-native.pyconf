@@ -11,7 +11,7 @@ APPLICATION :
     debug : 'no'
     base : 'no'
     python3 : 'yes'
-    platform : ["FD32", "FD34", "FD36", "FD37", "FD38", "CO8", "CO9", "DB10", "DB11", "DB12", "UB20.04", "UB22.04", "UB24.04"]
+    platform : ["FD32", "FD34", "FD36", "FD38", "CO8", "CO9", "DB10", "DB11", "DB12", "UB20.04", "UB22.04", "UB24.04"]
     environ :
     {
         build :
@@ -466,21 +466,6 @@ __overwrite__ :
         'APPLICATION.products.rich'             : {tag: '13.7.1', base: 'no', section: 'version_13_7_1_no_pip'}
         'APPLICATION.products.meshio'           : {tag: '5.3.5' , base: 'no', section: 'version_5_3_5_no_pip' }
         'APPLICATION.products.h5py'             : {tag: '3.11.0', base: 'no', section: 'version_3_11_0_no_pip'}
-    }
-
-    {
-        __condition__ : "VARS.dist in ['FD37']"
-        'APPLICATION.rm_products' : ['root', 'URANIE','nose_py3','assimulo']
-        'APPLICATION.products.cmake'            : 'native'
-        'APPLICATION.products.opencv'           : {tag: '3.2.0',     base: 'no', section: 'version_3_2_0_FD37'                  }
-        'APPLICATION.products.omniORB'          : '4.2.5'
-        'APPLICATION.products.omniORBpy'        : '4.2.5'
-        'APPLICATION.products.qwt'              : '6.1.6'
-        'APPLICATION.products.netcdf'           : '4.6.2'
-        'APPLICATION.products.numpy'            : {tag: '1.22.2',    base: 'no', section: 'version_1_22_2'                      }
-        'APPLICATION.products.PyFMI'            : {tag: '2.6',       base: 'no', section: 'version_2_6_FD37'                    }
-        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD37'                  }
-        'APPLICATION.products.ParaView'         : {tag: '5.11.0',    base: 'no',  section: 'version_5_11_0_MPI_FD37', hpc: 'yes'}
     }
     {
         __condition__ : "VARS.dist in ['FD38']"

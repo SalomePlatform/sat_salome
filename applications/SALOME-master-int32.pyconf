@@ -243,7 +243,8 @@ __overwrite__ :
     {
         __condition__ : "VARS.dist in ['CO7']"
         'APPLICATION.rm_products'         : ['gcc', 'gmp', 'mpc', 'mpfr']
-        'APPLICATION.products.openturns'           : {tag:'1.22', base:'no', section:'version_1_22_CO7'}
+        'APPLICATION.products.openturns'  : {tag:'1.22', base:'no', section:'version_1_22_CO7'}
+        'APPLICATION.products.ParaView'   : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_CO7', hpc: 'yes'}
     }
     {
         __condition__ : "VARS.dist in ['CO8']"
@@ -259,11 +260,8 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['DB09']"
-        'APPLICATION.products.openturns'        : {tag:'1.22', base:'no', section:'version_1_22_DB09'}
-    }
-    {
-        __condition__ : "VARS.dist in ['UB18.04']"
-        'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
+        'APPLICATION.products.openturns'  : {tag:'1.22', base:'no', section:'version_1_22_DB09'}
+        'APPLICATION.products.ParaView'   : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_DB09', hpc: 'yes'}
     }
     {
         __condition__ : "VARS.dist in ['UB20.04']"
