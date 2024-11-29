@@ -5,7 +5,7 @@
  from xml.dom.minidom import parseString
  from xml.parsers.expat import ExpatError
 -from inspect import getargspec
-+from inspect import signature
++from inspect import getfullargspec
  
  import sys
  
@@ -14,7 +14,7 @@
  
          if attrs.get("number_of_elements", None) is None:
 -            attrs["number_of_elements"] = len(getargspec(func).args) - 1
-+            attrs["number_of_elements"] = len(signature(func).args) - 1
++            attrs["number_of_elements"] = len(getfullargspec(func).args) - 1
  
          if attrs.get("default_values", None) is None:
              attrs["default_values"] = "None"
@@ -23,7 +23,7 @@
          if attrs.get("repeat_command", None) is not None and \
                  attrs.get("number_of_elements_per_command", None) is None:
 -                    attrs["number_of_elements_per_command"] = len(getargspec(func).args) - 1
-+                    attrs["number_of_elements_per_command"] = len(signature(func).args) - 1
++                    attrs["number_of_elements_per_command"] = len(getfullargspec(func).args) - 1
          return attrs
  
      @staticmethod
