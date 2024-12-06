@@ -111,6 +111,46 @@ default_MPI :
     patches : []
 }
 
+version_V9_14_0 :
+{
+    git_info:
+    {
+      repositories :
+      {
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/paravis.git"
+        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "paravis.git"
+      }
+      git_commands: [
+                     'git config -f .gitmodules submodule.src/Plugins/MEDReader.url ../medreader',
+                     'git config -f .git/config submodule.src/Plugins/MEDReader.url ../medreader',
+                     'git submodule sync',
+                     'git submodule update --init --remote'
+                     'cd src/Plugins/MEDReader'
+                     'git checkout V9_14_0a2'
+                    ]
+    }
+}
+
+version_V9_14_0_MPI :
+{
+    git_info:
+    {
+      repositories :
+      {
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/paravis.git"
+        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "paravis.git"
+      }
+      git_commands: [
+                     'git config -f .gitmodules submodule.src/Plugins/MEDReader.url ../medreader',
+                     'git config -f .git/config submodule.src/Plugins/MEDReader.url ../medreader',
+                     'git submodule sync',
+                     'git submodule update --init --remote'
+                     'cd src/Plugins/MEDReader'
+                     'git checkout V9_14_0a2'
+                    ]
+    }
+}
+
 version_V9_13_0 :
 {
     git_info:
