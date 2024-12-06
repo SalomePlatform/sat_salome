@@ -254,7 +254,7 @@ __overwrite__ :
         'APPLICATION.products.gdal': {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_FD32'} # spns #29324
     }
     {
-        __condition__ : "VARS.dist in ['CO7', 'FD32']"
+        __condition__ : "VARS.dist in ['CO7']"
         'APPLICATION.rm_products'         : ['gcc', 'gmp', 'mpc', 'mpfr']
         'APPLICATION.products.openturns'           : {tag:'1.23', base:'no', section:'version_1_23_CO7'}
         'APPLICATION.products.ParaView' : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_CO7', hpc: 'yes'}

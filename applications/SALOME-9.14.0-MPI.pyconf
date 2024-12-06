@@ -5,7 +5,7 @@ APPLICATION :
 {
     name     : 'SALOME-9.14.0-MPI'
     workdir  : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag      : 'V9_14_0a1'
+    tag      : 'V9_14_0a2'
     dev      : 'no'
     verbose  : 'no'
     debug    : 'no'
@@ -169,9 +169,10 @@ APPLICATION :
         'SHAPERSTUDY'
         'RESTRICTED'
         'LIBBATCH' : 'V2_5_0'
-        'KERNEL'      : {tag:'V9_14_0a1', base: 'no', section: 'default_MPI', hpc: 'yes', verbose: 'yes'}
-        'MEDCOUPLING' : {tag:'V9_14_0a1', base: 'no', section: 'default_MPI_STD', hpc: 'yes', verbose: 'yes'}
+        'KERNEL'      : {tag:'V9_14_0a2', base: 'no', section: 'default_MPI', hpc: 'yes', verbose: 'yes'}
+        'MEDCOUPLING' : {tag:'V9_14_0a2', base: 'no', section: 'default_MPI_STD', hpc: 'yes', verbose: 'yes'}
         'GUI' : {verbose : 'yes'}
+        'CommonGeomLib'
         'GEOM'
         'SMESH'
         'NETGENPLUGIN'
@@ -180,12 +181,12 @@ APPLICATION :
         'HYBRIDPLUGIN'
         'HexoticPLUGIN'
         'GMSHPLUGIN'
-        'HEXABLOCK' : {tag:'V9_14_0a1', base: 'no', section: 'default_MPI', hpc: 'yes', verbose: 'yes'}
+        'HEXABLOCK' : {tag:'V9_14_0a2', base: 'no', section: 'default_MPI', hpc: 'yes', verbose: 'yes'}
         'HEXABLOCKPLUGIN'
-        'HOMARD'    : {tag:'V9_14_0a1', base: 'no', section: 'default_MPI', hpc: 'yes'}
-        'FIELDS'    : {tag:'V9_14_0a1', base: 'no', section: 'default_MPI', hpc: 'yes'}
-        'PARAVIS'   : {tag:'V9_14_0a1', base: 'no', section: 'default_MPI', hpc: 'yes'}
-        'JOBMANAGER': {tag:'V9_14_0a1', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'HOMARD'    : {tag:'V9_14_0a2', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'FIELDS'    : {tag:'V9_14_0a2', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'PARAVIS'   : {tag:'V9_14_0a2', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'JOBMANAGER': {tag:'V9_14_0a2', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'YACS'
         'YACSGEN'
         'DOCUMENTATION'
@@ -205,7 +206,7 @@ APPLICATION :
         'YDEFX'
         'pmml'
         'SALOMEBOOTSTRAP'
-        'SOLVERLAB' : {tag: 'V9_14_0a1', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'SOLVERLAB' : {tag: 'V9_14_0a2', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'TopIIVolMesh'
         #'TESTBASE'
         'CEATESTBASE' : 'SalomeV9'
@@ -245,6 +246,7 @@ __overwrite__ :
         __condition__ : "VARS.dist in ['CO7']"
         'APPLICATION.rm_products'         : ['gcc', 'gmp', 'mpc', 'mpfr']
         'APPLICATION.products.openturns'  : {tag: '1.22',  base: 'no', section: 'version_1_22_CO7', hpc: 'yes' }
+        'APPLICATION.products.ParaView'   : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_CO7', hpc: 'yes'}
     }
     {
         __condition__ : "VARS.dist in ['CO8']"
@@ -260,11 +262,8 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['DB09']"
-        'APPLICATION.products.openturns'        : {tag: '1.22',  base: 'no', section: 'version_1_22_DB09', hpc: 'yes' }
-    }
-    {
-        __condition__ : "VARS.dist in ['UB18.04']"
-        'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
+        'APPLICATION.products.openturns'  : {tag: '1.22',  base: 'no', section: 'version_1_22_DB09', hpc: 'yes' }
+        'APPLICATION.products.ParaView'   : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_DB09', hpc: 'yes'}
     }
     {
         __condition__ : "VARS.dist in ['UB20.04']"
