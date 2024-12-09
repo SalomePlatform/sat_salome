@@ -113,6 +113,7 @@ default_MPI :
 
 version_V9_14_0 :
 {
+    cmake_options : "-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON -DBUILD_TESTING=ON"
     git_info:
     {
       repositories :
@@ -129,10 +130,73 @@ version_V9_14_0 :
                      'git checkout V9_14_0a2'
                     ]
     }
+    depend : [
+       "KERNEL",
+       "GUI",
+       "MEDCOUPLING",
+       "FIELDS",
+       "GEOM",
+       "SMESH",
+       "Python",
+       "qt",
+       "boost",
+       "hdf5",
+       "medfile",
+       "ParaView",
+       "CAS",
+       "omniORB",
+       "docutils",
+       "libxml2",
+       "six",
+       "pytz"
+    ]
+}
+
+version_V9_14_0_win:
+{
+    cmake_options : "-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON -DBUILD_TESTING=ON"
+    git_info:
+    {
+      repositories :
+      {
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/paravis.git"
+        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "paravis.git"
+      }
+      git_commands: [
+                     'git config -f .gitmodules submodule.src/Plugins/MEDReader.url ../medreader',
+                     'git config -f .git/config submodule.src/Plugins/MEDReader.url ../medreader',
+                     'git submodule sync',
+                     'git submodule update --init --remote'
+                     'cd src/Plugins/MEDReader'
+                     'git checkout V9_14_0a2'
+                    ]
+    }
+    depend : [
+       "KERNEL",
+       "GUI",
+       "MEDCOUPLING",
+       "FIELDS",
+       "GEOM",
+       "SMESH",
+       "Python",
+       "qt",
+       "boost",
+       "hdf5",
+       "medfile",
+       "ParaView",
+       "CAS",
+       "omniORB",
+       "docutils",
+       "libxml2",
+       "six",
+       "pytz",
+       "sphinxintl"
+    ]
 }
 
 version_V9_14_0_MPI :
 {
+    cmake_options : "-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON  -DSALOME_USE_MPI=ON -DCMAKE_CXX_COMPILER:STRING=${MPI_CXX_COMPILER} -DCMAKE_C_COMPILER:STRING=${MPI_C_COMPILER} "
     git_info:
     {
       repositories :
@@ -149,6 +213,27 @@ version_V9_14_0_MPI :
                      'git checkout V9_14_0a2'
                     ]
     }
+    depend : [
+       "KERNEL",
+       "GUI",
+       "MEDCOUPLING",
+       "FIELDS",
+       "GEOM",
+       "SMESH",
+       "Python",
+       "qt",
+       "boost",
+       "hdf5",
+       "medfile",
+       "ParaView",
+       "CAS",
+       "omniORB",
+       "docutils",
+       "libxml2",
+       "six",
+       "pytz",
+       "openmpi"
+    ]
 }
 
 version_V9_13_0 :
