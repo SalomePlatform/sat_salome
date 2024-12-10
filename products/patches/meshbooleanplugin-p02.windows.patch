@@ -1,0 +1,290 @@
+diff --git a/MyPlugDialog.ui b/MyPlugDialog.ui
+index cd8875a..3c9d4bf 100644
+--- a/MyPlugDialog.ui
++++ b/MyPlugDialog.ui
+@@ -143,11 +143,6 @@
+              <height>35</height>
+             </size>
+            </property>
+-           <item>
+-            <property name="text">
+-             <string>CGAL</string>
+-            </property>
+-           </item>
+            <item>
+             <property name="text">
+              <string>igl</string>
+@@ -158,21 +153,11 @@
+              <string>vtk</string>
+             </property>
+            </item>
+-           <item>
+-            <property name="text">
+-             <string>irmb</string>
+-            </property>
+-           </item>
+            <item>
+             <property name="text">
+              <string>Cork</string>
+             </property>
+            </item>
+-           <item>
+-            <property name="text">
+-             <string>mcut</string>
+-            </property>
+-           </item>
+           </widget>
+          </item>
+          <item row="1" column="0">
+diff --git a/cgal/exec_cgal.py b/cgal/exec_cgal.py
+index 76332a2..be57790 100644
+--- a/cgal/exec_cgal.py
++++ b/cgal/exec_cgal.py
+@@ -30,7 +30,7 @@ def perform_boolean_operation(mesh1_path, mesh2_path, operation, output_path):
+     raise
+ 
+   # The following is a method to use meshio without SALOME crashing
+-  command = ['python3', '-c', f'import meshio; m = meshio.read("{new_output_path}"); m.write("{output_path}")']
++  command = ['python3', '-c', 'import meshio; m = meshio.read(r"{}"); m.write(r"{}")'.format(new_output_path, output_path)]
+   with open(os.devnull, 'w') as null_file:
+     try:
+       subprocess.check_call(command, stdout=null_file, stderr=null_file)
+diff --git a/cork/exec_cork.py b/cork/exec_cork.py
+index e29f7fe..ec6474f 100644
+--- a/cork/exec_cork.py
++++ b/cork/exec_cork.py
+@@ -41,16 +41,16 @@ def perform_boolean_operation(mesh1_path, mesh2_path, operation, output_path):
+ 
+     start_time = time.time()
+     with open(os.devnull, 'w') as null_file:
+-      subprocess.check_call(command, stdout=null_file, stderr=null_file)
++      subprocess.check_call(command, stdout=null_file, stderr=null_file, shell=True)
+     end_time = time.time()
+   except Exception as e:
+     raise
+ 
+   # The following is  a method to use meshio without SALOME crashing
+-  command = ['python3', '-c', f'import meshio; m = meshio.read("{new_output_path}"); m.write("{output_path}")']
++  command = ['python3', '-c', 'import meshio; m = meshio.read(r"{}"); m.write(r"{}")'.format(new_output_path, output_path)]
+   with open(os.devnull, 'w') as null_file:
+     try:
+-      subprocess.check_call(command, stdout=null_file, stderr=null_file)
++      subprocess.check_call(command, stdout=null_file, stderr=null_file, shell=True)
+     except Exception as e:
+       raise
+   return end_time - start_time
+diff --git a/irmb/exec_irmb.py b/irmb/exec_irmb.py
+index ba83691..2030bbf 100644
+--- a/irmb/exec_irmb.py
++++ b/irmb/exec_irmb.py
+@@ -26,7 +26,7 @@ def perform_boolean_operation(mesh1_path, mesh2_path, operation, output_path):
+       raise
+ 
+   # The following is a method to use meshio without SALOME crashing
+-  command = ['python3', '-c', f'import meshio; m = meshio.read("{obj_output_path}"); m.write("{output_path}")']
++  command = ['python3', '-c', 'import meshio; m = meshio.read(r"{}"); m.write(r"{}")'.format(obj_output_path, output_path)]
+   with open(os.devnull, 'w') as null_file:
+     try:
+       subprocess.check_call(command, stdout=null_file, stderr=null_file)
+diff --git a/libigl/exec_libigl.py b/libigl/exec_libigl.py
+index a95b227..40d3da2 100644
+--- a/libigl/exec_libigl.py
++++ b/libigl/exec_libigl.py
+@@ -28,10 +28,10 @@ def perform_boolean_operation(mesh1_path, mesh2_path, operation, output_path):
+     raise
+ 
+   # The following is a method to use meshio without SALOME crashing
+-  command = ['python3', '-c', f'import meshio; m = meshio.read("{new_out_name}"); m.write("{output_path}")']
++  command = ['python3', '-c', 'import meshio; m = meshio.read(r"{}"); m.write(r"{}")'.format(new_out_name, output_path)]
+   with open(os.devnull, 'w') as null_file:
+     try:
+-      subprocess.check_call(command, stdout=null_file, stderr=null_file)
++      subprocess.check_call(command, stdout=null_file, stderr=null_file, shell=True)
+     except Exception as e:
+       raise
+   return end_time - start_time
+diff --git a/mcut/exec_mcut.py b/mcut/exec_mcut.py
+index b7e598f..2f71d25 100644
+--- a/mcut/exec_mcut.py
++++ b/mcut/exec_mcut.py
+@@ -32,7 +32,8 @@ def perform_boolean_operation(mesh1_path, mesh2_path, operation, output_path):
+         raise
+ 
+     # The following is  a method to use meshio without SALOME crashing
+-    command = ['python3', '-c', f'import meshio; m = meshio.read("{new_output_path}"); m.write("{output_path}")']
++    command = ['python3', '-c', 'import meshio; m = meshio.read(r"{}"); m.write(r"{}")'.format(new_output_path, output_path)]
++#    command = ['python3', '-c', f'import meshio; m = meshio.read("{new_output_path}"); m.write("{output_path}")']
+     with open(os.devnull, 'w') as null_file:
+       try:
+         subprocess.check_call(command, stdout=null_file, stderr=null_file)
+diff --git a/mesh_boolean_dialog.py b/mesh_boolean_dialog.py
+index a794d32..2b71542 100644
+--- a/mesh_boolean_dialog.py
++++ b/mesh_boolean_dialog.py
+@@ -121,7 +121,7 @@ class MeshBooleanDialog(Ui_MyPlugDialog,QWidget):
+     self.operator=""
+     _translate = QtCore.QCoreApplication.translate
+     self.label_summup.setText(_translate("MyPlugDialog", ""))
+-
++    self.CurrentIndexMappedValue =  0
+     # complex with QResources: not used
+     # The icon are supposed to be located in the $SMESH_ROOT_DIR/share/salome/resources/smesh folder,
+     # other solution could be in the same folder than this python module file:
+@@ -191,7 +191,7 @@ class MeshBooleanDialog(Ui_MyPlugDialog,QWidget):
+ 
+     engine = ""
+     for key, val in ENGINE_DICT.items():
+-      if val == self.COB_Engine.currentIndex():
++      if val == self.CurrentIndexMappedValue:
+         engine = key
+ 
+     if engine == "irmb":
+@@ -219,10 +219,10 @@ class MeshBooleanDialog(Ui_MyPlugDialog,QWidget):
+           self.__selectedMesh_L.ExportSTL(self.meshIn_L, self.meshIn_L)
+ 
+           # The following is a method to use meshio without SALOME crashing
+-          command = ['python3', '-c', f'import meshio; import os; m = meshio.read("{self.meshIn_L}"); m.write("{os.path.splitext(self.meshIn_L)[0] + ".obj"}")']
++          command = ['python3', '-c', "import meshio; import os; m = meshio.read(r'{}'); m.write(r'{}.obj');".format(os.path.abspath(self.meshIn_L), os.path.abspath(os.path.splitext(self.meshIn_L)[0]))]
+           with open(os.devnull, 'w') as null_file:
+             try:
+-              subprocess.check_call(command, stdout=null_file, stderr=null_file)
++              subprocess.check_call(command, stdout=null_file, stderr=null_file, shell=True)
+             except Exception as e:
+               raise
+           # m = meshio.read(self.meshIn_L)
+@@ -236,10 +236,10 @@ class MeshBooleanDialog(Ui_MyPlugDialog,QWidget):
+           if os.path.exists(tempname):
+             os.remove(tempname)
+           # The following is a method to use meshio without SALOME crashing
+-          command = ['python3', '-c', f'import meshio; import os; m = meshio.read("{self.meshIn_L}"); m.write("{tempname}"); m = meshio.read("{tempname}"); m.write("{os.path.splitext(tempname)[0] + ".obj"}")']
++          command = ['python3', '-c', "import meshio; import os; m = meshio.read(r'{}'); m.write(r'{}'); m = meshio.read(r'{}'); m.write(r'{}.obj')".format(self.meshIn_L, tempname, tempname, os.path.splitext(tempname)[0])]
+           with open(os.devnull, 'w') as null_file:
+             try:
+-              subprocess.check_call(command, stdout=null_file, stderr=null_file)
++              subprocess.check_call(command, stdout=null_file, stderr=null_file, shell=True)
+             except Exception as e:
+               raise
+           #m = meshio.read(self.meshIn_L)
+@@ -264,10 +264,10 @@ class MeshBooleanDialog(Ui_MyPlugDialog,QWidget):
+         try:
+           self.__selectedMesh_R.ExportSTL(self.meshIn_R, self.meshIn_R)
+           # The following is a method to use meshio without SALOME crashing
+-          command = ['python3', '-c', f'import meshio; import os; m = meshio.read("{self.meshIn_R}"); m.write("{os.path.splitext(self.meshIn_R)[0] + ".obj"}")']
++          command = ['python3', '-c', "import meshio; import os; m = meshio.read(r'{}');  m.write(r'{}.obj')".format(os.path.abspath(self.meshIn_R), os.path.abspath(os.path.splitext(self.meshIn_R)[0]))]
+           with open(os.devnull, 'w') as null_file:
+             try:
+-              subprocess.check_call(command, stdout=null_file, stderr=null_file)
++              subprocess.check_call(command, stdout=null_file, stderr=null_file, shell=True)
+             except Exception as e:
+               raise
+           #m = meshio.read(self.meshIn_R)
+@@ -281,10 +281,10 @@ class MeshBooleanDialog(Ui_MyPlugDialog,QWidget):
+           if os.path.exists(tempname):
+             os.remove(tempname)
+           # The following is a method to use meshio without SALOME crashing
+-          command = ['python3', '-c', f'import meshio; import os; m = meshio.read("{self.meshIn_R}"); m.write("{tempname}"); m = meshio.read("{tempname}"); m.write("{os.path.splitext(tempname)[0] + ".obj"}")']
++          command = ['python3', '-c', "import meshio; import os; m = meshio.read(r'{}'); m.write('{}'); m = meshio.read(r'{}'); m.write(r'{}.obj')".format(self.meshIn_R, tempname, tempname, os.path.splitext(tempname)[0])]
+           with open(os.devnull, 'w') as null_file:
+             try:
+-              subprocess.check_call(command, stdout=null_file, stderr=null_file)
++              subprocess.check_call(command, stdout=null_file, stderr=null_file, shell=True)
+             except Exception as e:
+               raise
+           #m = meshio.read(self.meshIn_R)
+@@ -314,8 +314,8 @@ class MeshBooleanDialog(Ui_MyPlugDialog,QWidget):
+         data = INTERSECTION_AVG_QUALITY_DATA
+ 
+     curve = qwt.QwtPlotCurve("Benchmark curve")
+-    curve.setData(NB_TRIANGLES, data[self.COB_Engine.currentIndex()],\
+-            len(data[self.COB_Engine.currentIndex()]))
++    curve.setData(NB_TRIANGLES, data[self.CurrentIndexMappedValue],\
++            len(data[self.CurrentIndexMappedValue]))
+     self.QP_Benchmark.detachItems()
+     curve.attach(self.QP_Benchmark)
+     self.QP_Benchmark.setAxisAutoScale(True)
+@@ -331,7 +331,7 @@ class MeshBooleanDialog(Ui_MyPlugDialog,QWidget):
+         self.operator = key
+     engine = ''
+     for key, val in ENGINE_DICT.items():
+-      if val == self.COB_Engine.currentIndex():
++      if val == self.CurrentIndexMappedValue:
+         engine = key
+     self.label_Graph_Title.setText(_translate("MyPlugDialog", f"<-\nPerformences of {engine} on the {self.operator.lower()} operator, measuring the {metric.lower()}."))
+ 
+@@ -349,14 +349,23 @@ class MeshBooleanDialog(Ui_MyPlugDialog,QWidget):
+   def DisplayEngineLabel(self):
+     from PyQt5 import QtCore, QtGui, QtWidgets
+     _translate = QtCore.QCoreApplication.translate
+-    self.label_Engine.setText(_translate("MyPlugDialog", f"This engine is used under the {LICENSE_DICT[self.COB_Engine.currentIndex()]} license."))
++    self.CurrentIndexMappedValue  = self.COB_Engine.currentIndex()
++    import platform
++    if platform.system()=="Windows" :
++        if self.COB_Engine.currentIndex() == 0:
++          self.CurrentIndexMappedValue = 1
++        elif  self.COB_Engine.currentIndex() == 1:
++          self.CurrentIndexMappedValue = 2
++        elif  self.COB_Engine.currentIndex() == 2:
++          self.CurrentIndexMappedValue = 4
++    self.label_Engine.setText(_translate("MyPlugDialog", f"This engine is used under the {LICENSE_DICT[self.CurrentIndexMappedValue]} license."))
+     for key, val in ENGINE_BENCHMARK_DICT.items():
+-      if self.COB_Engine.currentIndex() == val:
++      if self.CurrentIndexMappedValue == val:
+         self.label_Benchmark.setText(_translate("MyPlugDialog", key))
+     self.update_graph()
+ 
+   def PBHelpPressed(self):
+-    QMessageBox.about(None, "About this boolean mesh operation tool",
++    QMessageBox.about(self, "About this boolean mesh operation tool",
+             """
+ This tool allows you to apply boolean
+ operators to your meshes. You can fill
+@@ -409,17 +418,17 @@ that you selected.
+         return self.error_popup("Creation of the temporary result file", e)
+ 
+     try:
+-      if (self.COB_Engine.currentIndex() == ENGINE_DICT['vtk']):
++      if (self.CurrentIndexMappedValue == ENGINE_DICT['vtk']):
+         VTK_main(self.operator.lower(), self.meshIn_L, self.meshIn_R, result_file)
+-      elif (self.COB_Engine.currentIndex() == ENGINE_DICT['irmb']):
++      elif (self.CurrentIndexMappedValue == ENGINE_DICT['irmb']):
+         IRMB_main(self.operator.lower(), self.meshIn_L, self.meshIn_R, result_file)
+-      elif (self.COB_Engine.currentIndex() == ENGINE_DICT['cork']):
++      elif (self.CurrentIndexMappedValue == ENGINE_DICT['cork']):
+         cork_main(self.operator.lower(), self.meshIn_L, self.meshIn_R, result_file)
+-      elif (self.COB_Engine.currentIndex() == ENGINE_DICT['mcut']):
++      elif (self.CurrentIndexMappedValue == ENGINE_DICT['mcut']):
+         mcut_main(self.operator.lower(), self.meshIn_L, self.meshIn_R, result_file)
+-      elif (self.COB_Engine.currentIndex() == ENGINE_DICT['igl']):
++      elif (self.CurrentIndexMappedValue == ENGINE_DICT['igl']):
+         libigl_main(self.operator.lower(), self.meshIn_L, self.meshIn_R, result_file)
+-      elif (self.COB_Engine.currentIndex() == ENGINE_DICT['CGAL']):
++      elif (self.CurrentIndexMappedValue == ENGINE_DICT['CGAL']):
+         cgal_main(self.operator.lower(), self.meshIn_L, self.meshIn_R, result_file)
+     except Exception as e:
+         self.restore_cursor()
+@@ -452,7 +461,7 @@ that you selected.
+ 
+     if salome.sg.hasDesktop():
+       salome.sg.updateObjBrowser()
+-      computing_box = QMessageBox.about(None, "Compute","Computation successfully finished")
++      computing_box = QMessageBox.about(self, "Compute","Computation successfully finished")
+     else:
+       print("Computation successfully finished")
+     self.restore_cursor()
+diff --git a/vtk/exec_vtk.py b/vtk/exec_vtk.py
+index 9fefe3a..70475cb 100644
+--- a/vtk/exec_vtk.py
++++ b/vtk/exec_vtk.py
+@@ -109,10 +109,10 @@ def boolean_operation(operation, fn1, fn2, out_name):
+     file.seek(0, 2)
+ 
+   # The following is a method to use meshio without SALOME crashing
+-  command = ['python3', '-c', f'import meshio; m = meshio.read("{new_out_name}"); m.write("{out_name}")']
++    command = ['python3', '-c', 'import meshio; m = meshio.read(r"{}"); m.write(r"{}")'.format(new_out_name, output_path)]
+   with open(os.devnull, 'w') as null_file:
+     try:
+-      subprocess.check_call(command, stdout=null_file, stderr=null_file)
++      subprocess.check_call(command, stdout=null_file, stderr=null_file, shell=True)
+     except Exception as e:
+       raise
+   return end_time - start_time

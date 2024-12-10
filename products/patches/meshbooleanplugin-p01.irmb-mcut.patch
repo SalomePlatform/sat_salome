@@ -24,3 +24,84 @@ index cd8875a..115e0a5 100644
            </widget>
           </item>
           <item row="1" column="0">
+diff --git a/mesh_boolean_dialog.py b/mesh_boolean_dialog.py
+index a794d32..2b654da 100644
+--- a/mesh_boolean_dialog.py
++++ b/mesh_boolean_dialog.py
+@@ -121,7 +121,7 @@ class MeshBooleanDialog(Ui_MyPlugDialog,QWidget):
+     self.operator=""
+     _translate = QtCore.QCoreApplication.translate
+     self.label_summup.setText(_translate("MyPlugDialog", ""))
+-
++    self.CurrentIndexMappedValue =  0
+     # complex with QResources: not used
+     # The icon are supposed to be located in the $SMESH_ROOT_DIR/share/salome/resources/smesh folder,
+     # other solution could be in the same folder than this python module file:
+@@ -191,7 +191,7 @@ class MeshBooleanDialog(Ui_MyPlugDialog,QWidget):
+ 
+     engine = ""
+     for key, val in ENGINE_DICT.items():
+-      if val == self.COB_Engine.currentIndex():
++      if val == self.CurrentIndexMappedValue:
+         engine = key
+ 
+     if engine == "irmb":
+@@ -314,8 +314,8 @@ class MeshBooleanDialog(Ui_MyPlugDialog,QWidget):
+         data = INTERSECTION_AVG_QUALITY_DATA
+ 
+     curve = qwt.QwtPlotCurve("Benchmark curve")
+-    curve.setData(NB_TRIANGLES, data[self.COB_Engine.currentIndex()],\
+-            len(data[self.COB_Engine.currentIndex()]))
++    curve.setData(NB_TRIANGLES, data[self.CurrentIndexMappedValue],\
++            len(data[self.CurrentIndexMappedValue]))
+     self.QP_Benchmark.detachItems()
+     curve.attach(self.QP_Benchmark)
+     self.QP_Benchmark.setAxisAutoScale(True)
+@@ -331,7 +331,7 @@ class MeshBooleanDialog(Ui_MyPlugDialog,QWidget):
+         self.operator = key
+     engine = ''
+     for key, val in ENGINE_DICT.items():
+-      if val == self.COB_Engine.currentIndex():
++      if val == self.CurrentIndexMappedValue:
+         engine = key
+     self.label_Graph_Title.setText(_translate("MyPlugDialog", f"<-\nPerformences of {engine} on the {self.operator.lower()} operator, measuring the {metric.lower()}."))
+ 
+@@ -349,9 +349,12 @@ class MeshBooleanDialog(Ui_MyPlugDialog,QWidget):
+   def DisplayEngineLabel(self):
+     from PyQt5 import QtCore, QtGui, QtWidgets
+     _translate = QtCore.QCoreApplication.translate
+-    self.label_Engine.setText(_translate("MyPlugDialog", f"This engine is used under the {LICENSE_DICT[self.COB_Engine.currentIndex()]} license."))
++    self.CurrentIndexMappedValue  = self.COB_Engine.currentIndex()
++    if self.COB_Engine.currentIndex() == 3:
++      self.CurrentIndexMappedValue = 4
++    self.label_Engine.setText(_translate("MyPlugDialog", f"This engine is used under the {LICENSE_DICT[self.CurrentIndexMappedValue]} license."))
+     for key, val in ENGINE_BENCHMARK_DICT.items():
+-      if self.COB_Engine.currentIndex() == val:
++      if self.CurrentIndexMappedValue == val:
+         self.label_Benchmark.setText(_translate("MyPlugDialog", key))
+     self.update_graph()
+ 
+@@ -409,17 +412,17 @@ that you selected.
+         return self.error_popup("Creation of the temporary result file", e)
+ 
+     try:
+-      if (self.COB_Engine.currentIndex() == ENGINE_DICT['vtk']):
++      if (self.CurrentIndexMappedValue == ENGINE_DICT['vtk']):
+         VTK_main(self.operator.lower(), self.meshIn_L, self.meshIn_R, result_file)
+-      elif (self.COB_Engine.currentIndex() == ENGINE_DICT['irmb']):
++      elif (self.CurrentIndexMappedValue == ENGINE_DICT['irmb']):
+         IRMB_main(self.operator.lower(), self.meshIn_L, self.meshIn_R, result_file)
+-      elif (self.COB_Engine.currentIndex() == ENGINE_DICT['cork']):
++      elif (self.CurrentIndexMappedValue == ENGINE_DICT['cork']):
+         cork_main(self.operator.lower(), self.meshIn_L, self.meshIn_R, result_file)
+-      elif (self.COB_Engine.currentIndex() == ENGINE_DICT['mcut']):
++      elif (self.CurrentIndexMappedValue == ENGINE_DICT['mcut']):
+         mcut_main(self.operator.lower(), self.meshIn_L, self.meshIn_R, result_file)
+-      elif (self.COB_Engine.currentIndex() == ENGINE_DICT['igl']):
++      elif (self.CurrentIndexMappedValue == ENGINE_DICT['igl']):
+         libigl_main(self.operator.lower(), self.meshIn_L, self.meshIn_R, result_file)
+-      elif (self.COB_Engine.currentIndex() == ENGINE_DICT['CGAL']):
++      elif (self.CurrentIndexMappedValue == ENGINE_DICT['CGAL']):
+         cgal_main(self.operator.lower(), self.meshIn_L, self.meshIn_R, result_file)
+     except Exception as e:
+         self.restore_cursor()
