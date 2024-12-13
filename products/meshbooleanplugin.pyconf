@@ -46,7 +46,7 @@ default :
 default_win :
 {
     opt_depend : ["cgal", "libigl", "cork"]
-    patches : ['meshbooleanplugin-p02.windows.patch']
+    patches : []
 }
 
 version_no_irmb_mcut :

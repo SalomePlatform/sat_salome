@@ -93,7 +93,7 @@ APPLICATION :
         mdurl: '0.1.2'
         medfile : '4.1.1'
         mesa : '19.0.8'
-        meshbooleanplugin : {tag:'main', base:'no', section:'version_no_irmb_mcut'}
+        meshbooleanplugin : 'main'
         MeshGems : '2.15-1'
         meshio : {tag: '5.3.5' , base: 'no', section : 'version_5_3_5_no_pip'}
         mpi4py : {tag: '3.1.0',  base: 'no', section : 'version_3_1_0_no_pip'}
