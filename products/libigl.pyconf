@@ -12,7 +12,7 @@ default :
       }
     }
     patches : []
-    system_info : 
+    system_info :
     {
         rpm : []
         rpm_dev : []
@@ -43,6 +43,7 @@ default :
 
 version_v2_5_0:
 {
+  get_source : "archive"
   build_source :  "script"
   compil_script : "libigl-v2.5.0" + $VARS.scriptExtension
   patches: ['libigl-v2.5.0-p01_609_Boolean.patch']
