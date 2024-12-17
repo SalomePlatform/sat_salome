@@ -1,0 +1,43 @@
+diff -Naur libigl/cmake/igl/modules/embree.cmake libigl_dev/cmake/igl/modules/embree.cmake
+--- libigl/cmake/igl/modules/embree.cmake	2024-12-17 15:55:12.000000000 +0100
++++ libigl_dev/cmake/igl/modules/embree.cmake	2025-01-07 10:42:52.074391560 +0100
+@@ -15,10 +15,19 @@
+ 
+ # 4. Dependencies
+ include(embree)
+-target_link_libraries(igl_embree ${IGL_SCOPE}
+-    igl::core
+-    embree::embree
+-)
++if(TARGET embree::embree)
++    target_link_libraries(igl_embree ${IGL_SCOPE}
++        igl::core
++        embree::embree
++    )
++endif()
++
++if(TARGET embree)
++    target_link_libraries(igl_embree ${IGL_SCOPE}
++        igl::core
++        embree
++    )
++endif()
+ 
+ # 5. Unit tests
+ file(GLOB SRC_FILES "${libigl_SOURCE_DIR}/tests/include/igl/embree/*.cpp")
+diff -Naur libigl/cmake/recipes/external/embree.cmake libigl_dev/cmake/recipes/external/embree.cmake
+--- libigl/cmake/recipes/external/embree.cmake	2024-12-17 15:55:12.000000000 +0100
++++ libigl_dev/cmake/recipes/external/embree.cmake	2025-01-07 10:43:49.274859161 +0100
+@@ -1,4 +1,11 @@
+-if(TARGET embree::embree)
++
++if (EXISTS $ENV{embree_DIR})
++    list(APPEND CMAKE_PREFIX_PATH $ENV{embree_DIR})
++endif()
++
++find_package(embree $ENV{EMBREE_VERSION} QUIET)
++
++if(TARGET embree::embree OR TARGET embree)
+     return()
+ endif()
+ 

@@ -1,0 +1,17 @@
+diff -Naur libigl/CMakeLists.txt libigl_dev/CMakeLists.txt
+--- libigl/CMakeLists.txt	2024-12-17 15:55:31.000000000 +0100
++++ libigl_dev/CMakeLists.txt	2025-01-06 16:09:23.470849564 +0100
+@@ -80,7 +80,12 @@
+ endif()
+ set(LIBIGL_DEFAULT_COMISO ${LIBIGL_TOPLEVEL_PROJECT})
+ if(LIBIGL_TOPLEVEL_PROJECT AND (NOT APPLE) AND UNIX)
+-  find_package(BLAS QUIET)
++    if (EXISTS $ENV{LAPACK_ROOT_DIR})
++       list(APPEND CMAKE_PREFIX_PATH $ENV{LAPACK_ROOT_DIR})
++       find_package(LAPACK REQUIRED)
++    else()
++       find_package(BLAS QUIET)
++    endif()
+     if(NOT BLAS_FOUND)
+         set(LIBIGL_DEFAULT_COMISO OFF)
+         message(WARNING "BLAS not found, disabling igl_copyleft::comiso module.")
