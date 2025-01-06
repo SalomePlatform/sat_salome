@@ -7,7 +7,7 @@ APPLICATION :
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name
     cmake_generator : 'Visual Studio 15 2017'
     cmake_build_type: 'Release' # Debug, RelWithDebInfo, Release, MinSizeRel
-    tag : 'V9_14_0b1'
+    tag : 'V9_14_BR'
     dev : 'no'
     verbose : 'no'
     debug   : 'no'
@@ -195,7 +195,7 @@ APPLICATION :
         'HEXABLOCKPLUGIN'
         #'HOMARD'
         'FIELDS'
-        'PARAVIS' : {tag : 'V9_14_0b1', base : 'no', section : 'version_V9_14_0'} # TODO: to be removed at the end
+        'PARAVIS' : {tag : 'V9_14_BR', base : 'no', section : 'version_V9_14_0'} # TODO: to be removed at the end
         'JOBMANAGER'
         'YACS'
         'YACSGEN'

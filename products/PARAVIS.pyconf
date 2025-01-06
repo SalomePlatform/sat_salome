@@ -127,7 +127,7 @@ version_V9_14_0 :
                      'git submodule sync',
                      'git submodule update --init --remote'
                      'cd src/Plugins/MEDReader'
-                     'git checkout V9_14_0b1'
+                     'git checkout V9_14_BR'
                     ]
     }
     depend : [
@@ -168,7 +168,7 @@ version_V9_14_0_win:
                      'git submodule sync',
                      'git submodule update --init --remote'
                      'cd src/Plugins/MEDReader'
-                     'git checkout V9_14_0b1'
+                     'git checkout V9_14_BR'
                     ]
     }
     depend : [
@@ -210,7 +210,7 @@ version_V9_14_0_MPI :
                      'git submodule sync',
                      'git submodule update --init --remote'
                      'cd src/Plugins/MEDReader'
-                     'git checkout V9_14_0b1'
+                     'git checkout V9_14_BR'
                     ]
     }
     depend : [
