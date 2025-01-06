@@ -63,7 +63,7 @@ default_win :
 version_v17_0_1 :
 {
    compil_script : 'PERSALYS-v17.0.1.sh'
-   patches : []
+   patches : ['PERSALYS-v17.0.1-004.patch']
 }
 
 version_v17_0_1_win :

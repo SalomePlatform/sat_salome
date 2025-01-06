@@ -1,0 +1,10 @@
+--- persalys-17.0.1_ref/CMakeLists.txt	2024-10-16 16:22:25.000000000 +0200
++++ persalys-17.0.1_dev/CMakeLists.txt	2025-01-06 21:26:40.562801963 +0100
+@@ -109,6 +109,7 @@
+ endif ()
+ 
+ if (USE_SALOME)
++  find_package (SalomeBootstrap CONFIG)
+   find_package (SalomeKERNEL CONFIG)
+   find_package (Qt5WebEngine CONFIG)
+   find_package (Qt5WebEngineWidgets CONFIG)
