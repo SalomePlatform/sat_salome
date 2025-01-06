@@ -10,9 +10,9 @@ def set_env(env, prereq_dir, version):
   env.prepend('PYTHONPATH', os.path.join(prereq_dir, '__SALOME_BOOTSTRAP__'))
   env.prepend('PYTHONPATH', os.path.join(prereq_dir, '__RUN_SALOME__', 'lib', 'salome'))
   if platform.system() == "Windows" :
-    env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir, '__RUN_SALOME__', 'lib', 'salome'))
-  else:
     env.prepend('PATH', os.path.join(prereq_dir, '__RUN_SALOME__', 'lib', 'salome'))
+  else:
+    env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir, '__RUN_SALOME__', 'lib', 'salome'))
 
 def set_nativ_env(env):
   pass
