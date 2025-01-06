@@ -24,6 +24,7 @@ default :
               'gdal',
               'boost',
               'ADAO',
+              'ADAO_INTERFACE',
               'KERNEL',
               'GUI',
               'Sphinx',
