@@ -1,5 +1,5 @@
---- persalys-17.0.1_ref/CMakeLists.txt	2024-10-16 16:22:25.000000000 +0200
-+++ persalys-17.0.1_dev/CMakeLists.txt	2024-11-21 09:57:22.000000000 +0100
+--- PERSALYS_ref/CMakeLists.txt	2024-10-16 16:22:25.000000000 +0200
++++ PERSALYS/CMakeLists.txt	2025-01-19 20:58:03.364266584 +0100
 @@ -64,7 +64,7 @@
    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /bigobj")
  endif ()
@@ -9,3 +9,23 @@
  if (Boost_FOUND)
    message(STATUS "Found Boost: ${Boost_DIR} (found suitable version \"${Boost_VERSION}\")")
  else ()
+@@ -109,6 +109,7 @@
+ endif ()
+ 
+ if (USE_SALOME)
++  find_package (SalomeBootstrap CONFIG)
+   find_package (SalomeKERNEL CONFIG)
+   find_package (Qt5WebEngine CONFIG)
+   find_package (Qt5WebEngineWidgets CONFIG)
+@@ -123,6 +124,11 @@
+     list (APPEND PERSALYS_PUBLIC_LIBRARIES ydefx)
+   endif ()
+ 
++  if (Py2cpp_FOUND)
++    MESSAGE(STATUS "Adding : ${PY2CPP_ROOT_DIR}")
++    include_directories (${PY2CPP_ROOT_DIR}/include)
++    #list (APPEND PERSALYS_PUBLIC_LIBRARIES py2cpp)
++  endif()
+   find_package (AdaoCppLayer)
+   if (AdaoCppLayer_FOUND)
+     list (APPEND PERSALYS_DEFINITIONS -DPERSALYS_HAVE_ADAO_CPP_LAYER)

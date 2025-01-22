@@ -62,3 +62,12 @@ version_5987de5_msys :
     archive_info : {archive_name : "cork-5987de5-mingw-w64-x86_64.tar.gz"}
     compil_script : "cork-5987de5.bat"
 }
+
+version_5987de5_x86_64:
+{
+    build_source : "script"
+    compil_script: 'cork-5987de5-x86_64' + $VARS.scriptExtension
+    get_source : "archive"
+    archive_info : {archive_name : "cork-" + $APPLICATION.products.cork.tag + ".tar.gz"}
+    patches : []
+}

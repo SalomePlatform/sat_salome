@@ -1,5 +1,5 @@
---- persalys-17.0.1_ref/CMakeLists.txt	2024-10-16 16:22:25.000000000 +0200
-+++ persalys-17.0.1_dev/CMakeLists.txt	2025-01-06 21:26:40.562801963 +0100
+--- PERSALYS_ref/CMakeLists.txt	2024-10-16 16:22:25.000000000 +0200
++++ PERSALYS_dev/CMakeLists.txt	2025-01-19 20:21:30.352639365 +0100
 @@ -109,6 +109,7 @@
  endif ()
  
@@ -8,3 +8,15 @@
    find_package (SalomeKERNEL CONFIG)
    find_package (Qt5WebEngine CONFIG)
    find_package (Qt5WebEngineWidgets CONFIG)
+@@ -123,6 +124,11 @@
+     list (APPEND PERSALYS_PUBLIC_LIBRARIES ydefx)
+   endif ()
+ 
++  if (Py2cpp_FOUND)
++    MESSAGE(STATUS "Adding : ${PY2CPP_ROOT_DIR}")
++    include_directories (${PY2CPP_ROOT_DIR}/include)
++    list (APPEND PERSALYS_PUBLIC_LIBRARIES py2cpp)
++  endif()
+   find_package (AdaoCppLayer)
+   if (AdaoCppLayer_FOUND)
+     list (APPEND PERSALYS_DEFINITIONS -DPERSALYS_HAVE_ADAO_CPP_LAYER)

@@ -337,6 +337,7 @@ version_5_11_0_MPI_CO8 :
     patches : ['paraview-5.11.0.p001-FindCGNS.patch',
                'paraview-5.11.0.p002-FindMPI.patch',
                'paraview-5.11.0.p003-ParaViewClient.patch',
+               'paraview-5.11.0.p006-GIL.patch',
                'paraview-5.11.0.p009-openturns-1.21.patch',
                'paraview-5.11.0.p013-bos-43522-EnSightGoldBinaryReader-fix-int-overflow-when-openin.patch'
                'paraview-5.11.0.p014-gil-matplotlib-3.6.patch'

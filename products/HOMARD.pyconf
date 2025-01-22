@@ -29,6 +29,7 @@ default :
         incremental : "yes"
         has_unit_tests
     }
+    nb_proc : 1
 } 
 
 default_win:

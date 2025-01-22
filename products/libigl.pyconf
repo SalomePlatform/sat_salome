@@ -77,3 +77,12 @@ version_v2_5_0_win:
               "eigen"
              ]
 }
+
+version_v2_5_0_x86_64:
+{
+    build_source : "script"
+    compil_script: "libigl-v2.5.0-x86_64" + $VARS.scriptExtension
+    get_source : "archive"
+    archive_info : {archive_name : "libigl-" + $APPLICATION.products.libigl.tag + ".tar.gz"}
+    patches : []
+}
