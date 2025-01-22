@@ -177,6 +177,13 @@ version_V9_3_0_win :
     patches : ['GUI-V9_3_0-LightApplication_windows.patch']
 }
 
+
+version_PPGP_1_8:
+{
+    cmake_options : "-DSALOME_ON_DEMAND=OFF"
+    patches: ['SALOMEAPP-GUI-V9_13_0.patch']
+}
+
 version_9_2_0_PPGP:
 {
   patches: ['GUI-V9_2_0-visualCode.patch']
