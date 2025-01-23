@@ -34,6 +34,13 @@ default_win:
     patches : []
 }
 
+version_6_32_02:
+{
+    get_source : "archive"
+    cmake_options : " -Dgminimal:BOOL=ON -Dmathmore:BOOL=ON -Ddataframe:BOOL=ON -Dmlp:BOOL=ON -Dfftw3:BOOL=ON -Dxml:BOOL=ON -Dasimage:BOOL=ON -Dpyroot:BOOL=ON -Dsoversion:BOOL=ON -Ddataframe:BOOL=ON -DPYTHON_EXECUTABLE:STRING=${PYTHONBIN} -DPYTHON_INCLUDE_DIR:STRING=${PYTHON_INCLUDE} "
+    patches : []
+}
+
 version_6_30_06:
 {
     get_source : "archive"

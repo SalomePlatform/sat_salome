@@ -5,7 +5,7 @@ import os.path, platform
 
 def set_env(env,prereq_dir,version,forBuild=None):
     env.set('PYTHONHOME', prereq_dir)
-        
+
     # [CMake KERNEL] Nouveau nom pour PYTHONHOME = PYTHON_ROOT_DIR 22/03/2013
     env.set('PYTHON_ROOT_DIR', prereq_dir)
     # EDF uses this environment variable
@@ -14,7 +14,7 @@ def set_env(env,prereq_dir,version,forBuild=None):
     # keep only the first two version numbers
     version = '.'.join(version.replace('-', '.').split('.')[:2])
     env.set('PYTHON_VERSION', version)
-    
+
     env.prepend('PATH', prereq_dir)
 
     if platform.system() == "Windows" :
@@ -35,12 +35,13 @@ def set_env(env,prereq_dir,version,forBuild=None):
             env.set('PYTHONBIN', os.path.join(prereq_dir, 'bin','python3'))  # needed for runSalome.py
         else:
             env.set('PYTHONBIN', os.path.join(prereq_dir, 'bin','python'))  # needed for runSalome.py
-    
+
 
 def set_nativ_env(env):
     import sys, sysconfig
     env.set('PYTHON_ROOT_DIR', "/usr")
     env.set('PYTHON_INCLUDE',  "%s" % sysconfig.get_paths()['include'])
+    env.set('PYTHON_LIBRARY',  "%s" % sysconfig.get_config_var("LIBDIR"))
     env.set('PYTHON_VERSION', sysconfig.get_python_version())
     if sys.version_info[0] == 3 :
         env.set('PYTHONBIN','/usr/bin/python3')
