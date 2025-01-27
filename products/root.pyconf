@@ -56,6 +56,12 @@ version_6_30_06_win:
     patches : []
 }
 
+version_6_28_10:
+{
+    get_source : "archive"
+    patches : []
+}
+
 version_6_24_00:
 {
     get_source : "archive"

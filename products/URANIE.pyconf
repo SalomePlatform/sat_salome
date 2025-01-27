@@ -31,6 +31,17 @@ version_4_9_0 :
     opt_depend: ["openmpi"]
 }
 
+version_4_8_0 :
+{
+    compil_script : "URANIE-4.8.0.sh"
+    archive_info :
+    {
+        archive_name : "URANIE-4.8.0-Source.tar.gz"
+    }
+    patches: []
+    opt_depend: ["openmpi"]
+}
+
 version_4_7_0 :
 {
     compil_script : "URANIE-4.7.0.sh"

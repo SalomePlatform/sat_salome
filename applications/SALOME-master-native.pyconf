@@ -137,7 +137,7 @@ APPLICATION :
         requests : 'native'
         rkCommon : '1.5.1'
         rich : '13.7.1'
-        root: '6.32.02'
+        root: '6.28.10'
         scipy : 'native'
         scotch : {tag: '6.1.2', section: 'version_6_1_2_MPI', hpc: 'yes', base: 'no'}
         setuptools : 'native'
@@ -158,7 +158,7 @@ APPLICATION :
         TTK : 'f8dafde2d7'
         urllib3 : 'native'
         zeromq: '4.3.1'
-        URANIE : '4.9.0'
+        URANIE : '4.8.0'
 
         # SALOME MODULES :
         'CONFIGURATION'
