@@ -5,7 +5,7 @@ APPLICATION :
 {
     name : 'SALOME-9.14.0-native'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag : 'V9_14_BR'
+    tag : 'V9_14_0'
     dev : 'no'
     verbose :'no'
     debug : 'no'
@@ -168,7 +168,7 @@ APPLICATION :
         'RESTRICTED'
         'LIBBATCH' : 'V2_5_0'
         'KERNEL'
-        'MEDCOUPLING' : {tag:'V9_14_BR', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'MEDCOUPLING' : {tag:'V9_14_0', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'GUI'
         'CommonGeomLib'
         'GEOM'
@@ -183,7 +183,7 @@ APPLICATION :
         'HEXABLOCKPLUGIN'
         'HOMARD'
         'FIELDS'
-        'PARAVIS': {tag:'V9_14_BR', base: 'no', section: 'version_V9_14_0_MPI', hpc: 'yes'}
+        'PARAVIS': {tag:'V9_14_0', base: 'no', section: 'version_V9_14_0_MPI', hpc: 'yes'}
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
@@ -291,8 +291,8 @@ __overwrite__ :
         'APPLICATION.products.omniORBpy'        : {tag: '4.2.5',     base: 'no', section: 'version_4_2_5_UB24_04'                  }
         'APPLICATION.products.nose_py3'         : {tag: '1.6.9',     base: 'no', section: 'version_1_6_9_no_pip'                   }
         'APPLICATION.products.rkCommon'         : {tag: '1.5.1',     base: 'no', section: 'version_1_5_1_UB24_04'                  }
-        'APPLICATION.products.catalyst'         : {tag: '2.0',       base: 'no', section: 'version_2_0_FD38'                       }
-        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_UB22_04'                  }
+        'APPLICATION.products.catalyst'         : {tag: '2.0',       base: 'no', section: 'version_2_0_UB24_04'                    }
+        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_UB24_04'                  }
         'APPLICATION.products.gmsh'             : {tag: '4.10.3',    base: 'no', section: 'version_4_10_3_with_CAS_7_8_UB24_04'    }
         'APPLICATION.products.ParaView'         : {tag: '5.11.0',    base: 'no', section: 'version_5_11_0_MPI_UB24_04', hpc: 'yes' }
     }
@@ -405,8 +405,8 @@ __overwrite__ :
          'APPLICATION.products.statsmodels'      : {tag: '0.14.1',  base: 'no', section: 'version_0_14_1_no_pip'             }
          'APPLICATION.products.nose'             : {tag: '1.3.7',   base: 'no', section: 'version_1_3_7_no_pip'              }
          'APPLICATION.products.ParaView'         : {tag: '5.11.0',  base: 'no', section: 'version_5_11_0_MPI_CO9', hpc: 'yes'}
-         'APPLICATION.products.YDEFX'            : {tag: 'V9_14_BR',  base: 'no', section: 'version_V9_14_0_CO9'            }
-         'APPLICATION.products.YACS'             : {tag: 'V9_14_BR',  base: 'no', section: 'version_V9_14_0_CO9'            }
+         'APPLICATION.products.YDEFX'            : {tag: 'V9_14_0',  base: 'no', section: 'version_V9_14_0_CO9'            }
+         'APPLICATION.products.YACS'             : {tag: 'V9_14_0',  base: 'no', section: 'version_V9_14_0_CO9'            }
          'APPLICATION.products.poetry_core'      : {tag: '1.9.0',   base: 'no', section: 'version_1_9_0_x86_64'              }
     }
     {
@@ -428,7 +428,7 @@ __overwrite__ :
         'APPLICATION.products.rich'             : {tag: '13.7.1', base: 'no', section: 'version_13_7_1_no_pip'}
         'APPLICATION.products.meshio'           : {tag: '5.3.5' , base: 'no', section: 'version_5_3_5_no_pip' }
         'APPLICATION.products.h5py'             : {tag: '3.11.0', base: 'no', section: 'version_3_11_0_no_pip'}
-        'APPLICATION.products.YACS'             : {tag: 'V9_14_BR', base: 'no', section: 'version_V9_14_0_FD32'  }
+        'APPLICATION.products.YACS'             : {tag: 'V9_14_0', base: 'no', section: 'version_V9_14_0_FD32'  }
         'APPLICATION.products.poetry_core'      : {tag: '1.9.0',  base: 'no', section: 'version_1_9_0_x86_64' }
         'APPLICATION.products.poetry'           : {tag: '1.5.1', base: 'no', section: 'version_1_5_1_x86_64' }
     }
