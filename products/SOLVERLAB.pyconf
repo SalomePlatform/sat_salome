@@ -64,6 +64,16 @@ default_MPI :
     opt_depend : ['mpi4py']
 }
 
+default_FD40:
+{
+    patches : ['SOLVERLAB_FD40.patch']
+}
+
+version_V9_14_0_FD40 :
+{
+    patches : ['SOLVERLAB_FD40.patch']
+}
+
 version_V9_12_0_DB12 :
 {
     patches : ['SOLVERLAB-V9_12_0-numpy-1.20.-np.float.patch']

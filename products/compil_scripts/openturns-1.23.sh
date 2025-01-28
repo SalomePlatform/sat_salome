@@ -47,7 +47,7 @@ esac
 
 # https://github.com/persalys/persalys/issues/745
 case $LINUX_DISTRIBUTION in
-    UB22*|CO8*|CO9*|FD36|FD37|FD38)
+    UB22*|CO8*|CO9*|FD36|FD37|FD38|FD40)
         echo "WARNING: switching OFF TBB support"
         CMAKE_OPTIONS+=" -DUSE_TBB=OFF"
         ;;
@@ -591,6 +591,9 @@ if [[ -d "$SOURCE_DIR/otfftw-0.15" ]]; then
                 SITE_PATCH=$SOURCE_DIR/addons/site-patch.py
                 ;;
             FD38)
+                SITE_PATCH=$SOURCE_DIR/addons/site-patch.py
+                ;;
+            FD40)
                 SITE_PATCH=$SOURCE_DIR/addons/site-patch.py
                 ;;
             CO8*)

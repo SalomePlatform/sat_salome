@@ -1,0 +1,36 @@
+diff -pruN med-4.1.1_ref/configure med-4.1.1_dev/configure
+--- med-4.1.1_ref/configure	2021-10-08 11:05:43.000000000 +0200
++++ med-4.1.1_dev/configure	2024-11-25 11:29:39.992034066 +0100
+@@ -8181,9 +8181,9 @@ printf "%s\n" "#define ABSOLUTE_H5PUBLIC
+       HDF5_VERSION="0"
+       if test -n "$HDF5_ABS_PATH" ; then
+          HDF5_USED_VER=` grep H5_VERS_INFO $HDF5_ABS_PATH | sed  's/\([^"]*\)\(".*"\)\([^"]*\)/\2/g' `
+-         H5_VER_MAJOR=`  grep '#define *H5_VERS_MAJOR' $HDF5_ABS_PATH | sed  's/^.*H5_VERS_MAJOR[[ \t]]*\([0-9]*\)[[ \t]]*.*$/\1/g' `
+-         H5_VER_MINOR=`  grep '#define *H5_VERS_MINOR' $HDF5_ABS_PATH | sed  's/^.*H5_VERS_MINOR[[ \t]]*\([0-9]*\)[[ \t]]*.*$/\1/g' `
+-         H5_VER_RELEASE=`grep '#define *H5_VERS_RELEASE' $HDF5_ABS_PATH | sed  's/^.*H5_VERS_RELEASE[[ \t]]*\([0-9]*\)[[ \t]]*.*$/\1/g' `
++         H5_VER_MAJOR=`  grep '#define *H5_VERS_MAJOR' $HDF5_ABS_PATH | sed  's/^.*H5_VERS_MAJOR\s*\([0-9]*\)$/\1/g' `
++         H5_VER_MINOR=`  grep '#define *H5_VERS_MINOR' $HDF5_ABS_PATH | sed  's/^.*H5_VERS_MINOR\s*\([0-9]*\)$/\1/g' `
++         H5_VER_RELEASE=`grep '#define *H5_VERS_RELEASE' $HDF5_ABS_PATH | sed  's/^.*H5_VERS_RELEASE\s*\([0-9]*\)$/\1/g' `
+          HDF5_VERSION=`  expr 10000 \* ${H5_VER_MAJOR} + 100 \* ${H5_VER_MINOR} + ${H5_VER_RELEASE} `
+          test "0${HDF5_VERSION}" -gt "11100" || test "0${HDF5_VERSION}" -lt "11002" && as_fn_error $? "
+ This HDF5 version ${H5_VER_MAJOR}.${H5_VER_MINOR}.${H5_VER_RELEASE} must not be used with med-fichier${MED_NUM_MAJEUR}.${MED_NUM_MINEUR}.${MED_NUM_RELEASE}.
+@@ -33062,7 +33062,8 @@ sys.stdout.write(sitedir)"`
+      case $am_cv_python_pythondir in
+      $am_py_prefix*)
+        am__strip_prefix=`echo "$am_py_prefix" | sed 's|.|.|g'`
+-       am_cv_python_pythondir=`echo "$am_cv_python_pythondir" | sed "s,^$am__strip_prefix,\\${PYTHON_PREFIX},"`
++#       am_cv_python_pythondir=`echo "$am_cv_python_pythondir" | sed "s,^$am__strip_prefix,\\${PYTHON_PREFIX},"`
++       am_cv_python_pythondir="\${PYTHON_PREFIX}/lib/python$PYTHON_VERSION/site-packages"
+        ;;
+      *)
+        case $am_py_prefix in
+@@ -33107,7 +33108,8 @@ sys.stdout.write(sitedir)"`
+      case $am_cv_python_pyexecdir in
+      $am_py_exec_prefix*)
+        am__strip_prefix=`echo "$am_py_exec_prefix" | sed 's|.|.|g'`
+-       am_cv_python_pyexecdir=`echo "$am_cv_python_pyexecdir" | sed "s,^$am__strip_prefix,\\${PYTHON_EXEC_PREFIX},"`
++       #am_cv_python_pyexecdir=`echo "$am_cv_python_pyexecdir" | sed "s,^$am__strip_prefix,\\${PYTHON_EXEC_PREFIX},"`
++       am_cv_python_pyexecdir="\${PYTHON_EXEC_PREFIX}/lib/python$PYTHON_VERSION/site-packages"
+        ;;
+      *)
+        case $am_py_exec_prefix in

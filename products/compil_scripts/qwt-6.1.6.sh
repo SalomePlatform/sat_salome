@@ -19,7 +19,7 @@ QMAKE_BIN=qmake
 if [ "$SAT_qt_IS_NATIVE" == "1" ]; then
     LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
     case $LINUX_DISTRIBUTION in
-        FD3*)
+        FD3*|FD4*)
             QMAKE_BIN=$(which qmake-qt5)
             ;;
         *)

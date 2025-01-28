@@ -23,5 +23,9 @@ if [ -d ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/dist-packages ]; then
     mv ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/dist-packages ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages
 fi
 
+if [ -d ${PRODUCT_INSTALL}/lib64 ]; then
+    mv ${PRODUCT_INSTALL}/lib64 ${PRODUCT_INSTALL}/lib
+fi
+
 echo
 echo "########## END"

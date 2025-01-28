@@ -11,6 +11,9 @@ case $LINUX_DISTRIBUTION in
     UB*|DB*)
         NATIVE_PATH="/usr/lib/x86_64-linux-gnu"
         ;;
+    FD40)
+        NATIVE_PATH="/usr/lib64"
+        ;;
     *)
         ;;
 esac

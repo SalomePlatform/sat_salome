@@ -1,0 +1,18 @@
+diff -pruN gmsh-4.10.3-source/contrib/blossom/concorde97/INCLUDE/machdefs.h gmsh-4.10.3-dev/contrib/blossom/concorde97/INCLUDE/machdefs.h
+--- gmsh-4.10.3-source/contrib/blossom/concorde97/INCLUDE/machdefs.h	2022-05-26 10:51:23.000000000 +0200
++++ gmsh-4.10.3-dev/contrib/blossom/concorde97/INCLUDE/machdefs.h	2024-11-25 22:56:51.224848896 +0100
+@@ -9,12 +9,12 @@
+ #include <stdlib.h>
+ #include <stdio.h>
+ #include <math.h>
+-//#include <string>
++#include <string.h>
+ #include <sys/types.h>
+ #include <sys/stat.h>
+ #include <fcntl.h>
+ #include <errno.h>
+-//#include <unistd.h>
++#include <unistd.h>
+ #include <assert.h>
+ #include <time.h>
+ #undef CC_ZEIT_TIMES

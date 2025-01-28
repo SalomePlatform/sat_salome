@@ -1,0 +1,11 @@
+diff -Naur fmi-library-2.4.1/ThirdParty/Minizip/minizip/miniunz.c fmi-library-2.4.1_patch/ThirdParty/Minizip/minizip/miniunz.c
+--- fmi-library-2.4.1/ThirdParty/Minizip/minizip/miniunz.c	2022-09-15 10:03:29.000000000 +0200
++++ fmi-library-2.4.1_patch/ThirdParty/Minizip/minizip/miniunz.c	2024-11-18 14:59:37.384077175 +0100
+@@ -46,6 +46,7 @@
+ #include <errno.h>
+ #include <fcntl.h>
+ #include <stdarg.h>
++#include <sys/stat.h>
+ 
+ #ifdef _WIN32
+ # include <direct.h>

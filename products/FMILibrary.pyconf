@@ -39,6 +39,14 @@ version_2_4_1 :
     compil_script :  'FMILibrary-2.4.1.sh'
 }
 
+version_2_4_1_FD40 :
+{
+    build_source : "script"
+    compil_script :  'FMILibrary-2.4.1.sh'
+    patches : ['fmi_sys-stat.patch']
+}
+
+
 version_2_0_3 :
 {
    patches : ['FMILibrary-2.0.3-installdir.patch']

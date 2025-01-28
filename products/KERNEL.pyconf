@@ -108,6 +108,16 @@ default_32BIT_IDS :
     cmake_options : "-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_CMAKE_DEBUG=ON -DSALOME_USE_64BIT_IDS=OFF"
 }
 
+default_FD40 :
+{
+    cmake_options : "-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_CMAKE_DEBUG=ON -DSALOME_USE_64BIT_IDS=ON -DCMAKE_C_FLAGS=\"-Wno-error=implicit-function-declaration\""
+}
+
+version_V9_14_0_FD40:
+{
+    cmake_options : "-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_CMAKE_DEBUG=ON -DSALOME_USE_64BIT_IDS=ON -DCMAKE_C_FLAGS=\"-Wno-error=implicit-function-declaration\""
+}
+
 version_V9_13_0_UB24_04 :
 {
     patches: ['KERNEL-UB24.04-V9_13_0_configparser.patch']

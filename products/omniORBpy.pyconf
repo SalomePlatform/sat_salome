@@ -38,3 +38,8 @@ version_4_2_5_UB24_04:
 {
   patches: ['omniORBpy-4.2.5.p1.patch','omniORBpy-4.2.5.p2.patch']
 }
+
+version_4_2_5_FD40:
+{
+  patches: ['omniORBpy-4.2.5.p1.patch','omniORBpy-4.2.5.p2.patch']
+}

@@ -41,6 +41,12 @@ version_2_0_UB24_04:
     patches : ['catalyst-2.0.p001.patch']
 }
 
+version_2_0_FD40:
+{
+    archive_info : {archive_name : "catalyst-2.0-431a8a1.tar.gz"}
+    patches : ['catalyst-2.0.p001.patch']
+}
+
 version_2_0_FD38:
 {
     archive_info : {archive_name : "catalyst-2.0-431a8a1.tar.gz"}
