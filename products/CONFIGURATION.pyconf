@@ -25,6 +25,11 @@ default :
     patches : []
 }
 
+version_V9_14_0_FD40 :
+{
+  patches: ['BOS-43712-CONFIGURATION-V9_14_0.patch']
+}
+
 version_V9_10_0_FD37 :
 {
   patches: ['SPNS-32377-CONFIGURATION-V9_10_0.patch']

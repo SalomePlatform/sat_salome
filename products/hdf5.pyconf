@@ -42,6 +42,12 @@ default_win :
    archive_info : {archive_name : "hdf5-" + $APPLICATION.products.hdf5 + "_windows.tar.gz"}
 }
 
+version_1_10_11 :
+{
+    compil_script : "hdf5-1.10.11.sh"
+    patches : [ "hdf5-1.10.11.patch" ]
+}
+
 version_1_10_3 :
 {
     compil_script : "hdf5-1.10.3.sh"

@@ -124,4 +124,12 @@ __overwrite__ :
         __condition__ : "VARS.dist in ['FD38']"
         'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD38'}
     }
+    {
+        __condition__ : "VARS.dist in ['FD40']"
+        'APPLICATION.products.Cython'           : {tag: 'native',     base: 'no', section: 'default_FD40'}
+        'APPLICATION.products.cmake'            : 'native'
+        'APPLICATION.products.hdf5'             : '1.10.11'
+        'APPLICATION.products.swig'             : '4.0.2'
+        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD40'                  }
+    }
 ]

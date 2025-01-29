@@ -490,13 +490,8 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['FD40']"
-        'APPLICATION.rm_products' : ['root', 'URANIE']
-        'PRODUCTS.Cython.default.system_info.rpm'   : ['python3-cython']
-
-        'APPLICATION.products.mesa'             : 'native'
-        'APPLICATION.products.assimulo'         : '3.5.2'
+        'APPLICATION.rm_products' : ['root', 'URANIE', 'mesa']
         'APPLICATION.products.hdf5'             : '1.10.11'
-        'APPLICATION.products.PyFMI'            : '2.13.1'
         'APPLICATION.products.petsc'            : '3.20.5'
         'APPLICATION.products.markdown_it_py'   : 'native'
         'APPLICATION.products.rich'             : 'native'
@@ -505,6 +500,9 @@ __overwrite__ :
         'APPLICATION.products.qwt'              : '6.1.6'
         'APPLICATION.products.netcdf'           : '4.6.2'
         'APPLICATION.products.swig'             : '4.0.2'
+        'APPLICATION.products.assimulo'         : {tag: '3.5.2',     base: 'no', section: 'version_3_5_2_x86_64'                }
+        'APPLICATION.products.PyFMI'            : {tag: '2.13.1',    base: 'no', section: 'version_2_13_1_x86_64'               } 
+        'APPLICATION.products.Cython'           : {tag: 'native',    base: 'no', section: 'default_FD40'                        }
         'APPLICATION.products.meshio'           : {tag: '5.3.5' ,    base: 'no', section: 'version_5_3_5_no_pip'                }
         'APPLICATION.products.opencv'           : {tag: '3.2.0',     base: 'no', section: 'version_3_2_0_FD40'                  }
         'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD40'                  }

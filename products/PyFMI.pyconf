@@ -27,6 +27,19 @@ default :
     patches: []
 }
 
+
+version_2_13_1_x86_64 :
+{                                                                                                  
+  compil_script : "PyFMI-2.13.1.sh"                                                              
+  archive_info : {archive_name : "PyFMI-2.13.1-x86_64.tar.gz"}
+  depend : ["Python", "setuptools", "Cython", "FMILibrary", "matplotlib", "nose_py3", "assimulo"]                           
+  properties:                                                                                    
+  {                                                                          
+    incremental : "yes"
+    pip : "no"
+  }
+}
+
 version_2_13_1 :                                                                                   
 {                                                                                                  
   compil_script : "PyFMI-2.13.1.sh"                                                              

@@ -19,3 +19,8 @@ default :
       pip : "no"
     }
 }
+
+version_3_5_2_x86_64:
+{
+    archive_info : {archive_name : "assimulo-3.5.2-x86_64.tar.gz"}
+}
