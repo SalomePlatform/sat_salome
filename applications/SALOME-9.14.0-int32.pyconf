@@ -36,12 +36,14 @@ APPLICATION :
         # PREREQUISITES :
         alabaster : '0.7.6'
         Babel : '2.14.0'
+        BasicIterativeStatistics :  'v0.1.0'
         boost : '1.71.0'
         CAS : {tag : 'SALOME_9_14_a2_V7_8_0', section: 'version_CR780_SALOME_PATCH', base: 'no'}
         catalyst: '2.0'
         C3PO: 'v2.3'
         certifi : '2018.8.24'
         cftime: '1.6.3'
+        cgal : 'v5.6.1'
         cgns : '4.2.0'
         chardet : '3.0.4'
         charset_normalizer : '3.3.2'
@@ -49,6 +51,7 @@ APPLICATION :
         cmake : '3.25.2'
         cminpack: '1.3.6'
         contourpy : '1.2.0'
+        cork : '5987de5'
         cppunit : '1.13.2'
         cycler : '0.10.0'
         Cython : '0.29.37'
@@ -62,6 +65,7 @@ APPLICATION :
         freeimage : '3.16.0'
         freetype : '2.9.1'
         gcc  :  '8.5.0'
+        libigl : 'v2.5.0'
         mpc : 'native'
         gmp : 'native'
         mmg : '5.6.0'
@@ -88,6 +92,7 @@ APPLICATION :
         mdurl: '0.1.2'
         medfile : '4.1.1'
         mesa : '19.0.8'
+        meshbooleanplugin : 'main'
         MeshGems : '2.15-1'
         meshio : {tag: '5.3.5' , base: 'no', section : 'version_5_3_5_no_pip'}
         mpi4py : {tag: '3.1.0',  base: 'no', section : 'version_3_1_0_no_pip'}
@@ -95,7 +100,7 @@ APPLICATION :
         netgen : '5.3.1_with_CAS_7.8'
         netcdf : '4.6.2'
         netCDF4 : '1.6.5'
-        nlopt : '2.5.0'
+        nlopt : '2.7.0'
         nose: '1.3.7'
         numpy : '1.21.1'
         numpydoc : '1.6.0'
@@ -103,7 +108,7 @@ APPLICATION :
         omniORBpy : '4.2.5'
         opencv : '3.2.0'
         openmpi : '4.0.3'
-        openturns: '1.22'
+        openturns: '1.23'
         openVKL: '0.11.0'
         ospray : '2.4.0'
         packaging : '23.2'
@@ -115,15 +120,21 @@ APPLICATION :
         petsc : {tag : '3.16.0', base: 'no', section: 'version_3_16_0', hpc: 'yes'}
         Pillow : '8.4.0'
         planegcs : '0.18-3cb6890'
+        poetry : {tag: '1.8.3', base: 'no', section: 'version_1_8_3_x86_64'    }
+        poetry_core : '1.9.0'
+        pyyaml : {tag: '6.0',   base: 'no', section: 'version_6_0_x86_64'    }
         psutil : '5.9.8'
         PyFMI : {tag: '2.6',   base: 'no', section: 'version_2_6_no_pip'}
         Pygments : '2.17.2'
         pyparsing : '3.1.1'
         PyQt : '5.15.3'
+        pyqwt: {tag : '0.12.1', base : 'no', section : 'version_0_12_1_no_pip', hpc: 'no'}
         pyreadline : '2.0'
+        pytest :  '8.1.1'
         Python : '3.9.14'
         pytz : '2017.2'
         qt : '5.15.15'
+        qtpy : {tag : '2.4.1', base : 'no', section : 'version_2_4_1_no_pip', hpc: 'no'}
         qwt : '6.1.6'
         requests : '2.31.0'
         rich : '13.7.1'
@@ -244,14 +255,14 @@ __overwrite__ :
     {
         __condition__ : "VARS.dist in ['CO7']"
         'APPLICATION.rm_products'         : ['gcc', 'gmp', 'mpc', 'mpfr']
-        'APPLICATION.products.openturns'  : {tag:'1.22', base:'no', section:'version_1_22_CO7'}
-        'APPLICATION.products.ParaView'   : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_CO7', hpc: 'yes'}
+        'APPLICATION.products.openturns'           : {tag:'1.23', base:'no', section:'version_1_23_CO7'}
+        'APPLICATION.products.ParaView' : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_CO7', hpc: 'yes'}
     }
     {
         __condition__ : "VARS.dist in ['CO8']"
         'APPLICATION.rm_products'  : ['gcc', 'gmp', 'mpc', 'mpfr', 'zeromq']
         'APPLICATION.products.gdal'     : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_CO8'                 } # spns #29324
-        'APPLICATION.products.openturns'           : {tag:'1.22', base:'no', section:'version_1_22_CO8'}
+        'APPLICATION.products.openturns'           : {tag:'1.23', base:'no', section:'version_1_23_CO8'}
         'APPLICATION.products.ParaView' : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_CO8', hpc: 'yes'}
     }
     {
@@ -261,8 +272,12 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['DB09']"
-        'APPLICATION.products.openturns'  : {tag:'1.22', base:'no', section:'version_1_22_DB09'}
-        'APPLICATION.products.ParaView'   : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_DB09', hpc: 'yes'}
+        'APPLICATION.products.openturns'        : {tag:'1.23', base:'no', section:'version_1_23_DB09'}
+        'APPLICATION.products.ParaView' : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_DB09', hpc: 'yes'}
+    }
+    {
+        __condition__ : "VARS.dist in ['UB18.04']"
+        'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
     }
     {
         __condition__ : "VARS.dist in ['UB20.04']"
