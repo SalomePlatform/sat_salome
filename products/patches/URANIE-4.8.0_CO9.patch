@@ -1,0 +1,117 @@
+diff -Naur URANIE/meTIER/modeler/souRCE/gpu/souRCE/kernels_gpu.cu URANIE_dev/meTIER/modeler/souRCE/gpu/souRCE/kernels_gpu.cu
+--- URANIE/meTIER/modeler/souRCE/gpu/souRCE/kernels_gpu.cu	2023-08-29 21:53:14.000000000 +0200
++++ URANIE_dev/meTIER/modeler/souRCE/gpu/souRCE/kernels_gpu.cu	2025-01-30 15:59:48.376292486 +0100
+@@ -159,7 +159,7 @@
+ 
+ 
+ // Texture containing the reference points (if it is possible)
+-texture<float, 2, cudaReadModeElementType> texA;
++//texture<float, 2, cudaReadModeElementType> texA;
+ 
+ 
+ 
+@@ -181,13 +181,13 @@
+   * @param dim   dimension of points = height of matrices A and B
+   * @param AB    pointer on the matrix containing the wA*wB distances computed
+   */
+-__global__ void cuComputeDistanceTexture(int wA, float * B, int wB, int pB, int dim, float* AB){
++__global__ void cuComputeDistanceTexture(cudaTextureObject_t texA, int wA, float * B, int wB, int pB, int dim, float* AB){
+     unsigned int xIndex = blockIdx.x * blockDim.x + threadIdx.x;
+     unsigned int yIndex = blockIdx.y * blockDim.y + threadIdx.y;
+     if ( xIndex<wB && yIndex<wA ){
+         float ssd = 0;
+         for (int i=0; i<dim; i++){
+-            float tmp  = tex2D(texA, (float)yIndex, (float)i) - B[ i * pB + xIndex ];
++            float tmp  = tex2D<float>(texA, (float)yIndex, (float)i) - B[ i * pB + xIndex ];
+             ssd += tmp * tmp;
+         }
+         AB[yIndex * pB + xIndex] = ssd;
+@@ -955,6 +955,7 @@
+ //       ind_pitch = ind_pitch_in_bytes/size_of_int;
+ 
+         // Allocation of memory (global or texture) for reference points
++	cudaTextureObject_t texA = 0;
+         if (use_texture){
+ 
+             // Allocation of texture memory
+@@ -967,14 +968,21 @@
+                 return;
+             }
+             cudaMemcpyToArray( ref_array, 0, 0, ref_host, ref_width * height * size_of_float, cudaMemcpyHostToDevice );
+-
+             // Set texture parameters and bind texture to array
+-            texA.addressMode[0] = cudaAddressModeClamp;
+-            texA.addressMode[1] = cudaAddressModeClamp;
+-            texA.filterMode     = cudaFilterModePoint;
+-            texA.normalized     = 0;
+-            cudaBindTextureToArray(texA, ref_array);
+-
++            cudaResourceDesc resDesc;
++            memset(&resDesc, 0, sizeof(resDesc));
++            resDesc.resType = cudaResourceTypeArray ;
++            resDesc.res.array.array = ref_array;
++            
++            cudaTextureDesc texDesc;
++            memset(&texDesc, 0, sizeof(texDesc));
++            texDesc.addressMode[0] = cudaAddressModeClamp;
++            texDesc.addressMode[1] = cudaAddressModeClamp;
++            texDesc.filterMode = cudaFilterModePoint;
++            texDesc.normalizedCoords = 0;
++            
++            //cudaTextureObject_t texA = 0;
++            cudaCreateTextureObject(&texA, &resDesc, &texDesc, NULL);
+         }
+         else{
+ 
+@@ -1018,7 +1026,7 @@
+ 
+             // Kernel 1: Compute all the distances
+             if (use_texture)
+-                cuComputeDistanceTexture<<<g_16x16,t_16x16>>>(ref_width, query_dev, actual_nb_query_width, query_pitch, height, dist_dev);
++                cuComputeDistanceTexture<<<g_16x16,t_16x16>>>(texA, ref_width, query_dev, actual_nb_query_width, query_pitch, height, dist_dev);
+             else
+                 cuComputeDistanceGlobal<<<g_16x16,t_16x16>>>(ref_dev, ref_width, ref_pitch, query_dev, actual_nb_query_width, query_pitch, height, dist_dev);
+ 
+@@ -1128,6 +1136,7 @@
+    ind_pitch = ind_pitch_in_bytes/size_of_int;
+     
+ 	// Allocation of memory (global or texture) for reference points
++       cudaTextureObject_t texA = 0;
+     if (use_texture){
+ 	
+         // Allocation of texture memory
+@@ -1142,12 +1151,19 @@
+         cudaMemcpyToArray( ref_array, 0, 0, ref_host, ref_width * height * size_of_float, cudaMemcpyHostToDevice );
+         
+         // Set texture parameters and bind texture to array
+-        texA.addressMode[0] = cudaAddressModeClamp;
+-        texA.addressMode[1] = cudaAddressModeClamp;
+-        texA.filterMode     = cudaFilterModePoint;
+-        texA.normalized     = 0;
+-        cudaBindTextureToArray(texA, ref_array);
+-		
++	cudaResourceDesc resDesc;
++        memset(&resDesc, 0, sizeof(resDesc));
++        resDesc.resType = cudaResourceTypeArray ;
++        resDesc.res.array.array = ref_array;
++            
++        cudaTextureDesc texDesc;
++        memset(&texDesc, 0, sizeof(texDesc));
++        texDesc.addressMode[0] = cudaAddressModeClamp;
++        texDesc.addressMode[1] = cudaAddressModeClamp;
++        texDesc.filterMode = cudaFilterModePoint;
++        texDesc.normalizedCoords = 0;
++            
++        cudaCreateTextureObject(&texA, &resDesc, &texDesc, NULL);
+     }
+     else{
+ 	
+@@ -1191,7 +1207,7 @@
+         
+         // Kernel 1: Compute all the distances
+         if (use_texture)
+-            cuComputeDistanceTexture<<<g_16x16,t_16x16>>>(ref_width, query_dev, actual_nb_query_width, query_pitch, height, dist_dev);
++            cuComputeDistanceTexture<<<g_16x16,t_16x16>>>(texA, ref_width, query_dev, actual_nb_query_width, query_pitch, height, dist_dev);
+         else
+             cuComputeDistanceGlobal<<<g_16x16,t_16x16>>>(ref_dev, ref_width, ref_pitch, query_dev, actual_nb_query_width, query_pitch, height, dist_dev);
+             

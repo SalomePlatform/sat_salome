@@ -266,13 +266,11 @@ __overwrite__ :
         'APPLICATION.products.omniORB'          : '4.2.5'
         'APPLICATION.products.omniORBpy'        : '4.2.5'
         'APPLICATION.products.PyFMI'            : {tag: '2.6',       base: 'no', section: 'version_2_6_UB22_04'                    }
-        'APPLICATION.products.root'             : {tag: '6.22.02',   base: 'no', section: 'version_6_22_02_UB22_04'                }
         'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_UB22_04'                  }
     }
     {
         #
         __condition__ : "VARS.dist in ['UB24.04']"
-        'APPLICATION.rm_products'               : ['root','URANIE'] #
         'APPLICATION.products.assimulo'         : '3.5.2'
         'APPLICATION.products.netcdf'           : '4.6.2'
         'APPLICATION.products.opencv'           : '3.2.0'
@@ -391,7 +389,6 @@ __overwrite__ :
          'APPLICATION.products.openmpi'          : '4.1.5'
          'APPLICATION.products.sip'              : '5.5.0'
          'APPLICATION.products.patsy'            : {tag: '0.5.4',   base: 'no', section: 'version_0_5_4_no_pip'              }
-         'APPLICATION.products.root'             : {tag: '6.22.02', base: 'no', section: 'version_6_22_02_CO9'               }
          'APPLICATION.products.qt'               : {tag: '5.15.15', base: 'no', section: 'version_5_15_15_CO9'               }
          'APPLICATION.products.mdurl'            : {tag: '0.1.2',   base: 'no', section: 'version_0_1_2_no_pip'              }
          'APPLICATION.products.markdown_it_py'   : {tag: '3.0.0',   base: 'no', section: 'version_3_0_0_no_pip'              }
@@ -406,6 +403,7 @@ __overwrite__ :
          'APPLICATION.products.ParaView'         : {tag: '5.11.0',  base: 'no', section: 'version_5_11_0_MPI_CO9', hpc: 'yes'}
          'APPLICATION.products.YDEFX'            : {tag: 'master',  base: 'no', section: 'version_master_CO9'                }
          'APPLICATION.products.YACS'             : {tag: 'master',  base: 'no', section: 'version_master_CO9'                }
+         'APPLICATION.products.URANIE'           : {tag: '4.8.0',   base: 'no', section: 'version_4_8_0_CO9'                 }
          'APPLICATION.products.poetry_core'      : {tag: '1.9.0',   base: 'no', section: 'version_1_9_0_x86_64'              }
     }
     {
@@ -445,7 +443,6 @@ __overwrite__ :
         'APPLICATION.products.meshio'           : {tag: '5.3.5' , base: 'no', section: 'version_5_3_5_no_pip' }
         'APPLICATION.products.h5py'             : {tag: '3.11.0', base: 'no', section: 'version_3_11_0_no_pip'}
         'APPLICATION.products.PyFMI'            : {tag: '2.6',    base: 'no', section: 'version_2_6_no_pip'   }
-        'APPLICATION.products.root'             : {tag:'6.22.02', base: 'no', section: 'version_6_22_02_FD34' }
         'APPLICATION.products.gdal'             : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_FD34'   } # spns #29324
         'APPLICATION.products.poetry'           : {tag: '1.5.1', base: 'no', section: 'version_1_5_1_x86_64' }
     }
