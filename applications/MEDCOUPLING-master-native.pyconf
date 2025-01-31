@@ -88,11 +88,13 @@ __overwrite__ :
 [
     {
         __condition__ : "VARS.dist in ['CO8']"
+        'APPLICATION.products.lapack'           : '3.8.0'
         'APPLICATION.products.sphinxintl' : '0.9.10'
         'PRODUCTS.sphinxintl.default.properties.pip' : "no"
     }
     {
         __condition__ : "VARS.dist in ['CO9']"
+        'APPLICATION.products.lapack'           : '3.8.0'
         'APPLICATION.products.sphinxintl'       : {tag: '0.9.10',  base: 'no', section: 'version_0_9_10_no_pip' }
         'APPLICATION.products.openmpi'          : '4.1.5'
     }
@@ -104,7 +106,15 @@ __overwrite__ :
         __condition__ : "VARS.dist in ['UB24.04']"
         'APPLICATION.products.cmake'            : 'native'
         'APPLICATION.products.swig'             : '4.0.2'
-        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_UB22_04'}
+        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_UB24_04'}
+    }
+    {
+        __condition__ : "VARS.dist in ['FD32']"
+        'APPLICATION.products.lapack'           : '3.8.0'
+    }
+    {
+        __condition__ : "VARS.dist in ['FD34']"
+        'APPLICATION.products.lapack'           : '3.8.0'
     }
     {
         __condition__ : "VARS.dist in ['FD36']"
