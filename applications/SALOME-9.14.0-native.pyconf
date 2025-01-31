@@ -490,7 +490,7 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['FD40']"
-        'APPLICATION.rm_products' : ['root', 'URANIE', 'mesa']
+        'APPLICATION.rm_products' : ['root', 'URANIE']
         'APPLICATION.products.hdf5'             : '1.10.11'
         'APPLICATION.products.petsc'            : '3.20.5'
         'APPLICATION.products.markdown_it_py'   : 'native'
