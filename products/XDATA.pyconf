@@ -25,6 +25,11 @@ default :
     }
 }
 
+version_ppgp_UB24_04 :
+{
+  patches: ['XDATA_python3.12.patch']
+}
+
 version_V9_2_1_UB22_04 :
 {
   patches: ['xdata-9.2.1-python-3.10.patch']
@@ -55,7 +60,7 @@ version_0_9_11 :
     build_depend : ["cppunit"]
     patches : [
         #"xdata-0.9.9.python2.7.patch", #patch obsolete car integre aux sources en 7.8.0
-        "xdata-0.9.11.patch", 
+        "xdata-0.9.11.patch",
         "xdata_qt.patch"
     ]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
