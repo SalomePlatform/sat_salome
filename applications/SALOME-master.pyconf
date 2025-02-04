@@ -84,6 +84,7 @@ APPLICATION :
         importlib_resources: '6.1.1'
         ispc : '1.15.0'
         Jinja2 : '3.1.3'
+        jsoncpp : '1.9.6'
         kiwisolver : '1.3.1'
         lapack : '3.8.0'
         libxml2 : '2.9.12'
@@ -141,7 +142,7 @@ APPLICATION :
         requests : '2.31.0'
         rich : '13.7.1'
         rkCommon : '1.5.1'
-        root: '6.32.02'
+        root: '6.28.10'
         salome_system : 'native'
         scipy : '1.6.2'
         scotch : {tag: '6.1.2', section: 'version_6_1_2_MPI', hpc: 'yes', base: 'no'}
@@ -172,7 +173,7 @@ APPLICATION :
         urllib3 : '1.23'
         zeromq: '4.3.1'
         zipp : '3.17.0'
-        URANIE : '4.9.0'
+        URANIE : '4.8.0'
 
         # SALOME MODULES :
         'CONFIGURATION'
@@ -259,6 +260,7 @@ __overwrite__ :
         'APPLICATION.rm_products'         : ['gcc', 'gmp', 'mpc', 'mpfr']
         'APPLICATION.products.openturns'           : {tag:'1.23', base:'no', section:'version_1_23_CO7'}
         'APPLICATION.products.ParaView' : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_CO7', hpc: 'yes'}
+        'APPLICATION.products.URANIE'   : {tag: '4.8.0',  base: 'no', section: 'version_4_8_0_CO7'}
     }
     {
         __condition__ : "VARS.dist in ['CO8']"

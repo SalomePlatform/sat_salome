@@ -59,6 +59,7 @@ version_6_30_06_win:
 version_6_28_10:
 {
     get_source : "archive"
+    depend : ['Python', 'boost', 'freetype', 'freeimage', 'fftw']
     patches : []
 }
 
