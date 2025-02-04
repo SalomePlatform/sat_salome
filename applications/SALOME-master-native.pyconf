@@ -75,6 +75,7 @@ APPLICATION :
         irmb : '67d77b4'
         ispc : '1.15.0'
         Jinja2 : 'native'
+        jsoncpp : 'native'
         kiwisolver : 'native'
         lapack : 'native'
         libigl : 'v2.5.0'

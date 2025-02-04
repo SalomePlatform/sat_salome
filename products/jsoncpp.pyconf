@@ -1,0 +1,27 @@
+
+default :
+{
+    name : "jsoncpp"
+    build_source : "cmake"
+    get_source : "archive"
+    system_info :
+    {
+       rpm     : ["jsoncpp"]
+       rpm_dev : ["jsoncpp-devel"]
+       apt     : ["libjsoncpp"]
+       apt_dev : ["libjsoncpp-dev"]
+    }
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : []
+    build_depend : ['cmake']
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+      incremental : "yes"
+    }
+}

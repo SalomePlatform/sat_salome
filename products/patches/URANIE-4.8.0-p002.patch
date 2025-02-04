@@ -1,0 +1,63 @@
+diff -Naur URANIE/CmakePackage/FindJsonCpp.cmake URANIE_dev/CmakePackage/FindJsonCpp.cmake
+--- URANIE/CmakePackage/FindJsonCpp.cmake	2023-08-29 21:53:10.000000000 +0200
++++ URANIE_dev/CmakePackage/FindJsonCpp.cmake	2025-02-03 13:41:49.146122856 +0100
+@@ -1,11 +1,22 @@
++if(DEFINED ENV{JsonCpp_INCLUDE_DIR} AND DEFINED ENV{JsonCpp_LIBRARY})
++find_path(JsonCpp_INCLUDE_DIR "json/json.h"
++  HINTS $ENV{JsonCpp_INCLUDE_DIR}
++  DOC "jsoncpp include directory")
++
++find_library(JsonCpp_LIBRARY
++  NAMES jsoncpp
++  HINTS $ENV{JsonCpp_LIBRARY}
++  DOC "jsoncpp library")
++else()
+ find_path(JsonCpp_INCLUDE_DIR "json/json.h"
+   PATH_SUFFIXES "jsoncpp"
+   DOC "jsoncpp include directory")
+-mark_as_advanced(JsonCpp_INCLUDE_DIR)
+ 
+ find_library(JsonCpp_LIBRARY
+   NAMES jsoncpp
+   DOC "jsoncpp library")
++endif()
++mark_as_advanced(JsonCpp_INCLUDE_DIR)
+ mark_as_advanced(JsonCpp_LIBRARY)
+ 
+ if (JsonCpp_INCLUDE_DIR AND EXISTS "${JsonCpp_INCLUDE_DIR}/json/version.h")
+diff -Naur URANIE/CmakePackage/UranieFindAllPackages.cmake URANIE_dev/CmakePackage/UranieFindAllPackages.cmake
+--- URANIE/CmakePackage/UranieFindAllPackages.cmake	2023-08-29 21:53:10.000000000 +0200
++++ URANIE_dev/CmakePackage/UranieFindAllPackages.cmake	2025-02-04 09:06:05.013650989 +0100
+@@ -87,10 +87,13 @@
+     message(STATUS "Libxml2 is disabled")
+ else(--disable-libxml2 STREQUAL "ON")
+     message(STATUS "Looking for LibXml2...")
++    if(DEFINED ENV{LIBXML2_ROOT_DIR})
++    SET(LibXml2_ROOT $ENV{LIBXML2_ROOT_DIR})
++    else()
+     find_path(LIBXML2_INCLUDE_DIR NAMES libxml/xpath.h
+                                 PATHS ENV PATH
+                                 PATH_SUFFIXES ../include)
+-
++    endif()
+     find_package(LibXml2 COMPONENTS)
+     if(LIBXML2_FOUND)
+         message(STATUS "Looking for LibXml2... -  Found")
+diff -Naur URANIE/relaunCHER/souRCE/CMakeLists.txt URANIE_dev/relaunCHER/souRCE/CMakeLists.txt
+--- URANIE/relaunCHER/souRCE/CMakeLists.txt	2023-08-29 21:53:10.000000000 +0200
++++ URANIE_dev/relaunCHER/souRCE/CMakeLists.txt	2025-02-04 09:06:59.039126014 +0100
+@@ -65,7 +65,13 @@
+ endif(MPI_C_FOUND)
+ 
+ #---------------------------------------------------------------------
+-
++if(Boost_COROUTINE_FOUND)
++  foreach(Boost_INCLUDE_ITEM ${Boost_INCLUDE_DIR})
++    if(NOT ${Boost_INCLUDE_ITEM} STREQUAL "/usr/include")
++      URANIE_INCLUDE_DIRECTORIES(${Boost_INCLUDE_ITEM})
++    endif()
++  endforeach()
++endif()
+ 
+ #-------------------------------------------------------------------------
+ # Set LinkDef files, dictionaries and sources variables
