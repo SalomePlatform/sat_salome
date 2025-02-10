@@ -1,0 +1,39 @@
+--- freeimage-3.16.0_ref/Makefile.fip	2014-03-15 19:35:28.000000000 +0100
++++ freeimage-3.16.0_dev/Makefile.fip	2025-02-10 08:32:11.367216762 +0100
+@@ -4,9 +4,9 @@
+ include fipMakefile.srcs
+ 
+ # General configuration variables:
+-DESTDIR ?= /
+-INCDIR ?= $(DESTDIR)/usr/include
+-INSTALLDIR ?= $(DESTDIR)/usr/lib
++DESTDIR ?= /usr
++INCDIR ?= $(DESTDIR)/include
++INSTALLDIR ?= $(DESTDIR)/lib
+ 
+ # Converts cr/lf to just lf
+ DOS2UNIX = dos2unix
+@@ -25,7 +25,7 @@
+ CFLAGS += $(INCLUDE)
+ CXXFLAGS ?= -O3 -fPIC -fexceptions -fvisibility=hidden -Wno-ctor-dtor-privacy
+ # LibJXR
+-CXXFLAGS += -D__ANSI__
++CXXFLAGS += -D__ANSI__ -std=c++14
+ CXXFLAGS += $(INCLUDE)
+ 
+ ifeq ($(shell sh -c 'uname -m 2>/dev/null || echo not'),x86_64)
+@@ -71,10 +71,10 @@
+ 
+ install:
+ 	install -d $(INCDIR) $(INSTALLDIR)
+-	install -m 644 -o root -g root $(HEADER) $(INCDIR)
+-	install -m 644 -o root -g root $(HEADERFIP) $(INCDIR)
+-	install -m 644 -o root -g root $(STATICLIB) $(INSTALLDIR)
+-	install -m 755 -o root -g root $(SHAREDLIB) $(INSTALLDIR)
++	install -m 644 $(HEADER) $(INCDIR)
++	install -m 644 $(HEADERFIP) $(INCDIR)
++	install -m 644 $(STATICLIB) $(INSTALLDIR)
++	install -m 755 $(SHAREDLIB) $(INSTALLDIR)
+ 
+ clean:
+ 	rm -f core Dist/*.* u2dtmp* $(MODULES) $(STATICLIB) $(SHAREDLIB) $(LIBNAME)

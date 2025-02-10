@@ -11,7 +11,7 @@ APPLICATION :
     debug    : 'no'
     base     : 'no'
     python3  : 'yes'
-    platform : ['CO7', 'CO8']
+    platform : ['CO7', 'CO8', 'CO9']
     environ  :
     {
         build : 
@@ -254,6 +254,18 @@ __overwrite__ :
         'APPLICATION.products.gdal'      : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_CO8',      hpc: 'yes' } # spns #29324
         'APPLICATION.products.openturns' : {tag: '1.22',   base: 'no', section: 'version_1_22_CO8',       hpc: 'yes' }
         'APPLICATION.products.ParaView'  : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_CO8', hpc: 'yes'}
+    }
+    {
+        __condition__ : "VARS.dist in ['CO9']"
+        'APPLICATION.products.gcc' : '11.4.0'
+        'APPLICATION.rm_products'  : ['zeromq']
+        'APPLICATION.products.openmpi'   : '4.1.6'
+        'APPLICATION.products.hdf5'      : '1.10.5'
+        'APPLICATION.products.boost'     : {tag:'1.71.0',  base: 'no', section: 'version_1_71_0_CO9',     hpc: 'no'  } # spns #29324
+        'APPLICATION.products.gdal'      : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_CO9',      hpc: 'yes' } # spns #29324
+        'APPLICATION.products.openturns' : {tag: '1.23',   base: 'no', section: 'version_1_23_CO9',       hpc: 'yes' }
+        'APPLICATION.products.ParaView'  : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_CO9', hpc: 'yes' }
+        'APPLICATION.products.root'      : {tag: '6.22.02', base: 'no', section: 'version_6_22_02_CO9'                }
     }
     {
         __condition__ : "VARS.dist in ['DB10']"

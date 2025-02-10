@@ -1,0 +1,10 @@
+--- /tmp/bla/freeimage-3.16.0_ref/Source/OpenEXR/IlmImf/ImfAutoArray.h	2025-02-10 09:00:23.108518366 +0100
++++ /tmp/bla/freeimage-3.16.0_dev/Source/OpenEXR/IlmImf/ImfAutoArray.h	2025-02-10 09:00:19.964503060 +0100
+@@ -45,6 +45,7 @@
+ //-----------------------------------------------------------------------------
+ 
+ #include "OpenEXRConfig.h"
++#include <string.h>
+ #if !defined(_WIN32) || defined(__MINGW32__)
+ // needed for memset
+ #include <string.h>

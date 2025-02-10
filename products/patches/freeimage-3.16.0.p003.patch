@@ -1,0 +1,14 @@
+--- freeimage-3.16.0_ref/Source/OpenEXR/Half/half.h	2013-11-30 03:29:14.000000000 +0100
++++ freeimage-3.16.0_dev/Source/OpenEXR/Half/half.h	2025-02-10 08:32:11.306216997 +0100
+@@ -86,6 +86,11 @@
+ #define _HALF_H_
+ 
+ #include <iostream>
++// C++17 removed the register keyword, so we define it to nothing so that
++// it doesn't cause errors.
++#if __cplusplus >= 201703L
++#define register
++#endif
+ 
+ #if defined(OPENEXR_DLL)
+     #if defined(HALF_EXPORTS)

@@ -48,6 +48,12 @@ version_1_10_11 :
     patches : [ "hdf5-1.10.11.patch" ]
 }
 
+version_1_10_5 :
+{
+    compil_script : "hdf5-1.10.5.sh"
+    patches : [ "hdf5-1.10.5.patch" ]
+}
+
 version_1_10_3 :
 {
     compil_script : "hdf5-1.10.3.sh"
