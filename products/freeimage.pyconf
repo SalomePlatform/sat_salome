@@ -35,12 +35,13 @@ default_win :
 version_3_16_0 :
 {
     compil_script :  "freeimage-3.16.0.sh"
-    patches : ["freeimage-3.16.001.patch",
-               "freeimage-3.16.002.patch",
-               "freeimage-3.16.003.patch",
-               "freeimage-3.16.004.patch",
-               "freeimage-3.16.005.patch"
-         ]
+    patches : [               
+                'freeimage-3.16.0.p001.patch',
+                'freeimage-3.16.0.p002.patch',
+                'freeimage-3.16.0.p003.patch',
+                'freeimage-3.16.0.p004.patch',
+                'freeimage-3.16.0.p005.patch'
+              ]
 }
 
 version_3_18_0:
