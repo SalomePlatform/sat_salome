@@ -4,7 +4,7 @@ default :
     build_source : "script"
     compil_script : $name + $VARS.scriptExtension
     get_source : "archive"
-    system_info : 
+    system_info :
     {
         rpm : ["python3-numpy"]
         rpm_dev : []
@@ -46,6 +46,10 @@ version_1_22_2:
     }
     compil_script : "numpy-1.22.2.sh"
     patches: ['SPNS-29988-numpy-1.22.patch']
+}
+
+version_1_22_2_CO8:
+{
 }
 
 version_1_21_6_win_dbg:

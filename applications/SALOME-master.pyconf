@@ -257,22 +257,30 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['CO7']"
-        'APPLICATION.rm_products'         : ['gcc', 'gmp', 'mpc', 'mpfr']
-        'APPLICATION.products.openturns'           : {tag:'1.23', base:'no', section:'version_1_23_CO7'}
+        'APPLICATION.rm_products'       : ['gcc', 'gmp', 'mpc', 'mpfr']
+        'APPLICATION.products.openturns': {tag:'1.23', base:'no', section:'version_1_23_CO7'                       }
         'APPLICATION.products.ParaView' : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_CO7', hpc: 'yes'}
-        'APPLICATION.products.URANIE'   : {tag: '4.8.0',  base: 'no', section: 'version_4_8_0_CO7'}
+        'APPLICATION.products.URANIE'   : {tag: '4.8.0',  base: 'no', section: 'version_4_8_0_CO7'                 }
     }
     {
         __condition__ : "VARS.dist in ['CO8']"
-        'APPLICATION.rm_products'  : ['gcc', 'gmp', 'mpc', 'mpfr', 'zeromq']
+        'APPLICATION.rm_products'       : ['gcc', 'gmp', 'mpc', 'mpfr', 'zeromq']
+        'APPLICATION.products.boost'    : '1.75.0'
+        'APPLICATION.products.dateutil' : '2.8.1'
+        'APPLICATION.products.pandas'   : '1.4.0'
+        'APPLICATION.products.pyyaml'   : '6.0'
+        'APPLICATION.products.Python'   : '3.10.16'
+        'APPLICATION.products.pytz'     : '2021.1'
+        'APPLICATION.products.scipy'    : '1.8.0'
+        'APPLICATION.products.numpy'    : {tag: '1.22.2', base: 'no', section: 'version_1_22_2_CO8'                }
         'APPLICATION.products.gdal'     : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_CO8'                 } # spns #29324
-        'APPLICATION.products.openturns'           : {tag:'1.23', base:'no', section:'version_1_23_CO8'}
+        'APPLICATION.products.openturns': {tag:'1.23', base:'no', section:'version_1_23_CO8'                       }
         'APPLICATION.products.ParaView' : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_CO8', hpc: 'yes'}
     }
     {
         __condition__ : "VARS.dist in ['CO9']"
-        'APPLICATION.products.gcc' : '11.4.0'
-        'APPLICATION.rm_products'  : ['zeromq']
+        'APPLICATION.products.gcc'       : '11.4.0'
+        'APPLICATION.rm_products'        : ['zeromq']
         'APPLICATION.products.openmpi'   : '4.1.6'
         'APPLICATION.products.hdf5'      : '1.10.5'
         'APPLICATION.products.boost'     : {tag:'1.71.0',  base: 'no', section: 'version_1_71_0_CO9'                 } # spns #29324

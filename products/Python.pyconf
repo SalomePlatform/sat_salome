@@ -157,3 +157,8 @@ version_3_9_14_win :
     build_depend : ['perl']
 }
  
+version_3_10_16 :
+{
+ compil_script : "Python-3.10.sh"
+ patches : []
+}

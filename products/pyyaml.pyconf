@@ -24,7 +24,7 @@ default :
     properties:
     {
       incremental : "yes"
-      pip : "no"
+      pip : "yes"
     }
 }
 
@@ -41,4 +41,9 @@ version_6_0_x86_64:
 {
     compil_script: "pyyaml-6.0.sh"
     archive_info : {archive_name : "pyyaml-6.0-x86_64.tar.gz"}
+    properties:
+    {
+      incremental : "yes"
+      pip : "no"
+    }
 }
