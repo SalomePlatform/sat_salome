@@ -184,7 +184,7 @@ default :
             apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev",                  
                        "qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools", "libopenmpi-dev",
                        "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev", "libgdal-dev", "dvipng", "libxml++2.6-dev", "libfreetype-dev",
-                       "libgmp-dev","libmpfr-dev", "libxinerama-dev"]
+                       "libgmp-dev","libmpfr-dev", "libxinerama-dev","pypy3-lib"]
         }
     }
     depend : []

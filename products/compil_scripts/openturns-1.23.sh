@@ -575,6 +575,9 @@ if [[ -d "$SOURCE_DIR/otfftw-0.15" ]]; then
             UB22*)
                 SITE_PATCH=/usr/lib/pypy/dist-packages/setuptools/site-patch.py
                 ;;
+            UB24*)
+                SITE_PATCH=/usr/lib/pypy3.9/site.py
+                ;;
             UB20*)
                 SITE_PATCH=/usr/lib/python3/dist-packages/setuptools/site-patch.py
                 ;;
@@ -606,8 +609,11 @@ if [[ -d "$SOURCE_DIR/otfftw-0.15" ]]; then
         # check whether this file exists
         if [ "${SITE_PATCH}" == "" ]; then
             cp $SOURCE_DIR/addons/site-patch.py ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages/site.py
-        else
+        elif [ -f $SITE_PATCH ]; then
             cp $SITE_PATCH ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages/site.py
+	else
+	    echo "ERROR: could not find: $SITE_PATCH"
+	    exit 7
         fi
     elif [ -f ${PYTHON_ROOT_DIR}/lib/python${PYTHON_VERSION}/site-packages/setuptools/site-patch.py ]; then
         cp ${PYTHON_ROOT_DIR}/lib/python${PYTHON_VERSION}/site-packages/setuptools/site-patch.py ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages/site.py
