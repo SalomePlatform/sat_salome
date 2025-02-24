@@ -51,7 +51,7 @@ APPLICATION :
         click : 'native'
         cmake : '3.25.2'
         cppunit : 'native'
-        cminpack: '1.3.6'
+        cminpack: 'native'
         cork : '5987de5'
         cycler : 'native'
         Cython : 'native'
@@ -235,7 +235,6 @@ __overwrite__ :
         __condition__ : "VARS.dist in ['UB20.04']"
         'APPLICATION.rm_products'               : ['nose_py3','assimulo'] #
         'APPLICATION.products.opencv'           : '3.2.0'
-        'APPLICATION.products.cminpack'         : 'native'
         'APPLICATION.products.netcdf'           : '4.6.2'
         'APPLICATION.products.nlopt'            : '2.7.0'
         'APPLICATION.products.qt'               : '5.15.15'
@@ -261,7 +260,6 @@ __overwrite__ :
         'APPLICATION.products.meshio'           : {tag: '5.3.5' , base: 'no', section: 'version_5_3_5_no_pip'    }
         'APPLICATION.products.netCDF4'          : 'native'
         'APPLICATION.products.rich'             : 'native'
-        'APPLICATION.products.cminpack'         : 'native'
         'APPLICATION.products.opencv'           : '3.2.0'
         'APPLICATION.products.netcdf'           : '4.6.2'
         'APPLICATION.products.omniORB'          : '4.2.5'
@@ -285,7 +283,6 @@ __overwrite__ :
         'APPLICATION.products.meshio'           : {tag: '5.3.5' , base: 'no', section: 'version_5_3_5_no_pip'    }
         'APPLICATION.products.netCDF4'          : 'native'
         'APPLICATION.products.rich'             : 'native'
-        'APPLICATION.products.cminpack'         : 'native'
         'APPLICATION.products.omniORBpy'        : {tag: '4.2.5',     base: 'no', section: 'version_4_2_5_UB24_04'                  }
         'APPLICATION.products.nose_py3'         : {tag: '1.6.9',     base: 'no', section: 'version_1_6_9_no_pip'                   }
         'APPLICATION.products.rkCommon'         : {tag: '1.5.1',     base: 'no', section: 'version_1_5_1_UB24_04'                  }
@@ -302,7 +299,6 @@ __overwrite__ :
         'APPLICATION.rm_products'       : ['nose_py3','assimulo', 'irmb', 'mcut', 'URANIE']
         'APPLICATION.products.nlopt'    : '2.7.0'
         'APPLICATION.products.opencv'   : '3.2.0'
-        'APPLICATION.products.cminpack' : 'native'
         'APPLICATION.products.hdf5'     : 'native'
         'APPLICATION.products.pytest'   : '8.1.1'
         'APPLICATION.products.poetry_core' : '1.6.1'
@@ -327,7 +323,6 @@ __overwrite__ :
         'APPLICATION.rm_products'               : ['nose_py3','assimulo', 'URANIE'] #
         'APPLICATION.products.opencv'           : '3.2.0'
         'APPLICATION.products.hdf5'             : 'native'
-        'APPLICATION.products.cminpack'         : 'native'
         'APPLICATION.products.pytest'           : '8.1.1'
         'APPLICATION.products.pyyaml'           : {tag: '6.0',   base: 'no', section: 'version_6_0_x86_64'    }
         'APPLICATION.products.mdurl'            : {tag: '0.1.2', base: 'no', section: 'version_0_1_2_no_pip'    }
@@ -349,7 +344,6 @@ __overwrite__ :
         'APPLICATION.products.netCDF4'          : 'native'
         'APPLICATION.products.rich'             : 'native'
         'APPLICATION.products.opencv'           : {tag: '3.2.0',     base: 'no', section: 'version_3_2_0_DB12'}
-        'APPLICATION.products.cminpack'         : 'native'
         #'APPLICATION.products.root'             : {tag: '6.22.02', base: 'no', section: 'version_6_22_02_DB12'}
         'APPLICATION.products.swig'             : '4.0.2'
         'APPLICATION.products.tbb'              : '2021.9.0'
@@ -410,6 +404,7 @@ __overwrite__ :
     {
         __condition__ : "VARS.dist in ['FD32']"
         'APPLICATION.rm_products'               : ['nose_py3','assimulo'] #
+        'APPLICATION.products.cminpack'         : '1.3.6'
         'APPLICATION.products.nlopt'            : '2.7.0'
         'APPLICATION.products.opencv'           : '3.2.0'
         'APPLICATION.products.qt'               : '5.15.15'
@@ -433,6 +428,7 @@ __overwrite__ :
     {
         __condition__ : "VARS.dist in ['FD34']"
         'APPLICATION.rm_products'               : ['nose_py3','assimulo'] #
+        'APPLICATION.products.cminpack'         : '1.3.6'
         'APPLICATION.products.lapack'           : '3.8.0'
         'APPLICATION.products.opencv'           : '3.2.0'
         'APPLICATION.products.qwt'              : '6.1.6'
@@ -450,6 +446,7 @@ __overwrite__ :
     {
         __condition__ : "VARS.dist in ['FD36']"
         'APPLICATION.rm_products'               : ['nose_py3','assimulo'] #
+        'APPLICATION.products.cminpack'         : '1.3.6'
         'APPLICATION.products.opencv'           : {tag: '3.2.0',     base: 'no', section: 'version_3_2_0_FD36'                  }
         'APPLICATION.products.omniORB'          : '4.2.5'
         'APPLICATION.products.omniORBpy'        : '4.2.5'
@@ -468,6 +465,7 @@ __overwrite__ :
     {
         __condition__ : "VARS.dist in ['FD38']"
         'APPLICATION.rm_products' : ['mesa','nose_py3','assimulo']
+        'APPLICATION.products.cminpack'         : '1.3.6'
         'APPLICATION.products.markdown_it_py'   : 'native'
         'APPLICATION.products.rich'             : 'native'
         'APPLICATION.products.cmake'            : 'native'
