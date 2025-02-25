@@ -296,7 +296,7 @@ __overwrite__ :
         #   - Qt minimal version 5.15
         #   - xmlpatterns executable
         __condition__ : "VARS.dist in ['DB10']"
-        'APPLICATION.rm_products'       : ['nose_py3','assimulo', 'irmb', 'mcut', 'URANIE']
+        'APPLICATION.rm_products'       : ['nose_py3','assimulo', 'irmb', 'mcut']
         'APPLICATION.products.nlopt'    : '2.7.0'
         'APPLICATION.products.opencv'   : '3.2.0'
         'APPLICATION.products.hdf5'     : 'native'
@@ -320,7 +320,7 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['DB11']"
-        'APPLICATION.rm_products'               : ['nose_py3','assimulo', 'URANIE'] #
+        'APPLICATION.rm_products'               : ['nose_py3','assimulo'] #
         'APPLICATION.products.opencv'           : '3.2.0'
         'APPLICATION.products.hdf5'             : 'native'
         'APPLICATION.products.pytest'           : '8.1.1'
@@ -334,7 +334,7 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['DB12']"
-        'APPLICATION.rm_products'               : ['nose_py3','assimulo', 'URANIE'] #
+        'APPLICATION.rm_products'               : ['nose_py3','assimulo'] #
         'APPLICATION.products.cmake'            : 'native' # TTK requires cmake > 3.21
         'APPLICATION.products.cftime'           : 'native'
         'APPLICATION.products.h5py'             : 'native'
