@@ -101,7 +101,8 @@ version_V9_11_0_to_V9_13_0:
               "opencv",
               "six",
               "pytz",
-              "psutil"
+              "psutil",
+              "eigen"
              ]
 }
 
@@ -190,7 +191,7 @@ version_V9_3_0_win :
 version_V8_5_0_to_V9_2_1 :  # these versions requires the path geom_8.5.0_xao_data_dir.patch (for salome test)
 {
     patches : [
-              "geom_8.5.0_xao_data_dir.patch" 
+              "geom_8.5.0_xao_data_dir.patch"
               ]
     depend : ["KERNEL",
               "GUI",
