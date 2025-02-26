@@ -40,7 +40,7 @@ version_2_4_4:
 version_2_4_0:
 {
     compil_script :  'gdal-2.4.0' + $VARS.scriptExtension
-    patches : ["gdal.0003-ignore_use2to3.patch"]
+    patches : ["gdal.0003-ignore_use2to3.patch", "gdal.0001-r2000.patch"]
 }
 
 version_2_4_0_FD34:
