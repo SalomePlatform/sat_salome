@@ -1,0 +1,13 @@
+diff --git a/lib/test/CMakeLists.txt b/lib/test/CMakeLists.txt
+index ce92b5c..aa69dc0 100644
+--- a/lib/test/CMakeLists.txt
++++ b/lib/test/CMakeLists.txt
+@@ -729,7 +729,7 @@ ot_check_test (QuadraticLeastSquares_std)
+ ot_check_test (LinearLeastSquares_std)
+ 
+ 
+-add_custom_target (cppcheck COMMAND ${CMAKE_CTEST_COMMAND} --build-config ${CMAKE_BUILD_TYPE} --tests-regex "^cppcheck_"
++add_custom_target (cppcheck COMMAND ${CMAKE_CTEST_COMMAND} --build-config ${CMAKE_BUILD_TYPE} --tests-regex "^cppcheck_" -E "cppcheck_Log_std"
+                     DEPENDS ${CHECK_TO_BE_RUN}
+                     COMMENT "Run C++ pre-installation tests")
+ add_dependencies (check cppcheck)

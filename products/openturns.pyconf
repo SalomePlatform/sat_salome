@@ -36,6 +36,62 @@ default_win :
     opt_depend : []
 }
 
+version_1_24 :
+{
+    compil_script :  "openturns-1.24.sh"
+    patches : []
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI', 'boost']
+    opt_depend : ['pandas', 'statsmodels', 'patsy']
+}
+
+version_1_24_DB09:
+{
+    compil_script :  "openturns-1.24.sh"
+    patches : ['openturns-1.24.0001.patch']
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI', 'boost']
+    opt_depend : ['pandas', 'statsmodels', 'patsy']
+}
+
+version_1_24_CO7:
+{
+    compil_script :  "openturns-1.24.sh"
+    patches : ['openturns-1.24.0001.patch','openturns-1.24.0003.patch']
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI', 'boost']
+    opt_depend : ['pandas', 'statsmodels', 'patsy']
+}
+
+version_1_24_CO8 :
+{
+    compil_script :  "openturns-1.24.sh"
+    patches : ['openturns-1.24.0001.patch', 'openturns-1.24.0002.patch']
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI', 'boost']
+    opt_depend : ['pandas', 'statsmodels', 'patsy']
+}
+
+version_1_24_CO9 :
+{
+    compil_script :  "openturns-1.24.sh"
+    patches : ['openturns-1.24.0001.patch', 'openturns-1.24.0002.patch']
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI', 'boost']
+    opt_depend : ['pandas', 'statsmodels', 'patsy']
+}
+
+version_1_24_win :
+{
+    name : "OT"
+    compil_script :  "openturns-1.24.bat"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + 'openturns'
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    depend : ['Python', 'openblas', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'fftw']
+    opt_depend : ['pandas', 'statsmodels', 'patsy']
+    patches : []
+    properties :
+    {
+      single_install_dir : "no"
+      incremental : "yes"
+    }
+}
+
 version_1_23 :
 {
     compil_script :  "openturns-1.23.sh"

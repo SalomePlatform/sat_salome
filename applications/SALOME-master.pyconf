@@ -50,7 +50,7 @@ APPLICATION :
         charset_normalizer : '3.3.2'
         click : '6.7'
         cmake : '3.25.2'
-        cminpack: '1.3.6'
+        cminpack: '1.3.10'
         contourpy : '1.2.0'
         cork : '5987de5'
         cppunit : '1.13.2'
@@ -111,7 +111,7 @@ APPLICATION :
         omniORBpy : '4.2.5'
         opencv : '3.2.0'
         openmpi : '4.0.3'
-        openturns: '1.23'
+        openturns: '1.24'
         openVKL: '0.11.0'
         ospray : '2.4.0'
         packaging : '23.2'
@@ -259,7 +259,7 @@ __overwrite__ :
     {
         __condition__ : "VARS.dist in ['CO7']"
         'APPLICATION.rm_products'       : ['gcc', 'gmp', 'mpc', 'mpfr']
-        'APPLICATION.products.openturns': {tag:'1.23', base:'no', section:'version_1_23_CO7'                       }
+        'APPLICATION.products.openturns': {tag:'1.24', base:'no', section:'version_1_24_CO7'                       }
         'APPLICATION.products.ParaView' : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_CO7', hpc: 'yes'}
         'APPLICATION.products.URANIE'   : {tag: '4.8.0',  base: 'no', section: 'version_4_8_0_CO7'                 }
     }
@@ -275,7 +275,7 @@ __overwrite__ :
         'APPLICATION.products.scipy'    : '1.8.0'
         'APPLICATION.products.numpy'    : {tag: '1.22.2', base: 'no', section: 'version_1_22_2_CO8'                }
         'APPLICATION.products.gdal'     : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_CO8'                 } # spns #29324
-        'APPLICATION.products.openturns': {tag:'1.23', base:'no', section:'version_1_23_CO8'                       }
+        'APPLICATION.products.openturns': {tag:'1.24', base:'no', section:'version_1_24_CO8'                       }
         'APPLICATION.products.ParaView' : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_CO8', hpc: 'yes'}
     }
     {
@@ -286,7 +286,7 @@ __overwrite__ :
         'APPLICATION.products.hdf5'      : '1.10.5'
         'APPLICATION.products.boost'     : {tag:'1.71.0',  base: 'no', section: 'version_1_71_0_CO9'                 } # spns #29324
         'APPLICATION.products.gdal'      : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_CO9'                  } # spns #29324
-        'APPLICATION.products.openturns' : {tag: '1.23',   base: 'no', section: 'version_1_23_CO9'                   }
+        'APPLICATION.products.openturns' : {tag: '1.24',   base: 'no', section: 'version_1_24_CO9'                   }
         'APPLICATION.products.ParaView'  : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_CO9', hpc: 'yes' }
         'APPLICATION.products.root'      : {tag: '6.22.02', base: 'no', section: 'version_6_22_02_CO9'               }
     }
@@ -297,7 +297,7 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['DB09']"
-        'APPLICATION.products.openturns'        : {tag:'1.23', base:'no', section:'version_1_23_DB09'}
+        'APPLICATION.products.openturns'        : {tag:'1.24', base:'no', section:'version_1_24_DB09'}
         'APPLICATION.products.ParaView' : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_DB09', hpc: 'yes'}
     }
     {

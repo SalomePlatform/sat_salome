@@ -1,0 +1,16 @@
+diff -Naur '--exclude=*.swp' openturns/openturns-1.24/lib/src/Base/Geom/Mesh.cxx openturns.dev/openturns-1.24/lib/src/Base/Geom/Mesh.cxx
+--- openturns/openturns-1.24/lib/src/Base/Geom/Mesh.cxx	2025-02-28 10:42:34.000000000 +0100
++++ openturns.dev/openturns-1.24/lib/src/Base/Geom/Mesh.cxx	2025-03-04 15:48:58.132624259 +0100
+@@ -39,11 +39,7 @@
+ #if BOOST_VERSION < 107500
+ #define BOOST_ALLOW_DEPRECATED_HEADERS
+ #endif
+-#include <boost/geometry/algorithms/append.hpp>
+-#include <boost/geometry/algorithms/correct.hpp>
+-#include <boost/geometry/algorithms/intersection.hpp>
+-#include <boost/geometry/geometries/point_xy.hpp>
+-#include <boost/geometry/geometries/polygon.hpp>
++#include <boost/geometry.hpp>
+ #endif
+
+ BEGIN_NAMESPACE_OPENTURNS
