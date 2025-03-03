@@ -12,6 +12,11 @@ cd $BUILD_DIR
 
 cp -r $SOURCE_DIR/* . 
 
+# If Docker rootless, ensure that user can read them
+if [ -f /.dockerenv ]; then
+    find $BUILD_DIR -type f -exec chmod u+rwx {} \;
+fi
+
 CONFIGURE_OPTIONS=
 CONFIGURE_OPTIONS+=" --prefix=${PRODUCT_INSTALL}"
 CONFIGURE_OPTIONS+=" --disable-yasm"

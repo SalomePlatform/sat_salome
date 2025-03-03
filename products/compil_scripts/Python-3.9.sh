@@ -11,6 +11,11 @@ then
 fi
 PYTHON_VERSION="${VERSION:0:3}"
 
+# If Docker rootless, ensure that user can read them
+if [ -f /.dockerenv ]; then
+    find $SOURCE_DIR -type f -exec chmod u+rwx {} \;
+fi
+
 # --enable-shared   : enable building shared python library
 # --with-threads    : enable thread support
 # --without-pymalloc: disable specialized mallocs

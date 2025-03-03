@@ -4,16 +4,10 @@ echo "##########################################################################
 echo "swig" $VERSION
 echo "##########################################################################"
 
-
-
-#echo
-#echo "*** autogen"
-#./autogen.sh
-#if [ $? -ne 0 ]
-#then
-#    echo "ERROR on autogen"
-#    exit 1
-#fi
+# since we are using docker rootless, one has to ensure that some scripts are executable
+if [ -f /.dockerenv ]; then
+    find $SOURCE_DIR -type f -exec chmod u+rwx {} \;
+fi
 
 echo
 echo "*** configure --without-pcre --without-octave"
@@ -43,14 +37,6 @@ then
 fi
 
 echo 
-#echo "*** link swig2.0 -> swig"
-#cd $PRODUCT_INSTALL/bin
-#ln -s swig swig2.0
-#if [ $? -ne 0 ]
-#then
-#    echo "ERROR on link swig2.0 -> swig"
-#    exit 4
-#fi
 
 echo
 echo "########## END"

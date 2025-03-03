@@ -4,10 +4,15 @@ echo "##########################################################################
 echo "C3PO $VERSION"
 echo "##########################################################################"
 
-rm -rf "${BUILD_DIR}"
-mkdir "${BUILD_DIR}"
-cd "${BUILD_DIR}" || { echo "cd ${BUILD_DIR} fails"; exit 1; }
-cp -r "${SOURCE_DIR}"/* .
+rm -rf ${BUILD_DIR}
+mkdir ${BUILD_DIR}
+cd $BUILD_DIR
+cp -r $SOURCE_DIR/* .
+
+# If Docker rootless, ensure that user can read them
+if [ -f /.dockerenv ]; then
+    find $BUILD_DIR -type f -exec chmod u+rwx {} \;
+fi
 
 echo
 echo "*** install with ${PYTHONBIN} -m pip install . --prefix=${PRODUCT_INSTALL} --cache-dir=${BUILD_DIR}/cache/pip"

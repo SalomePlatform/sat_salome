@@ -8,6 +8,11 @@ echo "##########################################################################
 
 cd $SOURCE_DIR
 
+# If Docker rootless, ensure that user can read them
+if [ -f /.dockerenv ]; then
+    find $SOURCE_DIR -type f -exec chmod u+rwx {} \;
+fi
+
 echo
 echo "*** configure"
 ./configure --enable-shared --prefix=$PRODUCT_INSTALL

@@ -18,6 +18,11 @@ cd $BUILD_DIR
 
 cp -r $SOURCE_DIR/* .
 
+# If Docker rootless, ensure that user can read them
+if [ -f /.dockerenv ]; then
+    find $BUILD_DIR -type f -exec chmod u+rwx {} \;
+fi
+
 echo
 echo "*** autoreconf -i"
 autoreconf -i

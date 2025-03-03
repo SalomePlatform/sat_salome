@@ -12,6 +12,11 @@ cd $BUILD_DIR
 cp -r $SOURCE_DIR/sip-5.5.0 $BUILD_DIR/sip-5.5.0
 cd $BUILD_DIR/sip-5.5.0
 
+# If Docker rootless, ensure that user can read them
+if [ -f /.dockerenv ]; then
+    find $BUILD_DIR -type f -exec chmod u+rwx {} \;
+fi
+
 USE_SETUP=false
 if [[ "$PYTHON_VERSION" == "3.6" ]]; then
     USE_SETUP=true

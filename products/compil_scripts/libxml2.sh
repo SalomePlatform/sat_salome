@@ -4,13 +4,16 @@ echo "##########################################################################
 echo "libxml2" $VERSION
 echo "##########################################################################"
 
-
-
 cd $SOURCE_DIR
+
+# If Docker rootless, ensure that user can read them
+if [ -f /.dockerenv ]; then
+    find $SOURCE_DIR -type f -exec chmod u+rwx {} \;
+fi
+
 echo
 echo "*** configure"
-#$SOURCE_DIR/configure --with-python=${PYTHON_ROOT_DIR} --prefix=$PRODUCT_INSTALL
-./configure --with-python=${PYTHON_ROOT_DIR} --prefix=$PRODUCT_INSTALL LDFLAGS=-L${PYTHON_ROOT_DIR}/lib
+$SOURCE_DIR/configure --with-python=${PYTHON_ROOT_DIR} --prefix=$PRODUCT_INSTALL LDFLAGS=-L${PYTHON_ROOT_DIR}/lib
 if [ $? -ne 0 ]
 then
     echo "ERROR on configure"

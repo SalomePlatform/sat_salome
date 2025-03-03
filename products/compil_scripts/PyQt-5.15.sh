@@ -8,6 +8,11 @@ python_name=python$PYTHON_VERSION
 
 cd $SOURCE_DIR
 
+# If Docker rootless, ensure that user can read them
+if [ -f /.dockerenv ]; then
+    find $SOURCE_DIR -type f -exec chmod u+rwx {} \;
+fi
+
 if [ "${SAT_Python_IS_NATIVE}" == "1" ]
 then
     # if not set, will try to install in system path...

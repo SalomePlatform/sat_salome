@@ -5,6 +5,10 @@ echo "tcl" $VERSION
 echo "##########################################################################"
 
 
+# If Docker rootless, ensure that user can read them
+if [ -f /.dockerenv ]; then
+    find $SOURCE_DIR -type f -exec chmod u+rwx {} \;
+fi
 
 echo
 echo "*** configure --enable-shared --enable-threads"

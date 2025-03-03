@@ -4,15 +4,15 @@ echo "##########################################################################
 echo "doxygen" $VERSION
 echo "##########################################################################"
 
-
-
 cd $SOURCE_DIR
-
-echo "doxygen compilation"
+# since we are using docker rootless, one has to ensure that some scripts are executable
+if [ -f /.dockerenv ]; then
+    find $SOURCE_DIR -type f -exec chmod u+rwx {} \;
+fi
 
 echo
 echo "*** configure"
-./configure --prefix $PRODUCT_INSTALL
+$SOURCE_DIR/configure --prefix $PRODUCT_INSTALL
 if [ $? -ne 0 ]
 then
     echo "ERROR on configure"

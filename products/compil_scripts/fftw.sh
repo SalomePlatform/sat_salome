@@ -4,6 +4,11 @@ echo "##########################################################################
 echo "FFTW" $VERSION
 echo "##########################################################################"
 
+# If Docker rootless, ensure that user can read them
+if [ -f /.dockerenv ]; then
+    find $SOURCE_DIR -type f -exec chmod u+rwx {} \;
+fi
+
 CONFIGURE_OPTIONS=
 if [ -n "${SAT_HPC}" ]; then
     CONFIGURE_OPTIONS+=" --enable-mpi"
@@ -15,7 +20,6 @@ fi
 
 CFLAGS_OPTIONS=
 #CFLAGS_OPTIONS+=" -fPIC"
-
 
 echo
 echo "*** configure --prefix=${PRODUCT_INSTALL} --enable-shared ${CONFIGURE_OPTIONS} CFLAGS=${CFLAGS_OPTIONS}"

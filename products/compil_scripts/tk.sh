@@ -4,9 +4,10 @@ echo "##########################################################################
 echo "tk" $VERSION
 echo "##########################################################################"
 
-
-
-#cp $TCLHOME/include/*.h generic/
+# If Docker rootless, ensure that user can read them
+if [ -f /.dockerenv ]; then
+    find $SOURCE_DIR -type f -exec chmod u+rwx {} \;
+fi
 
 echo
 echo "*** configure --enable-shared --enable-threads --with-tcl=$TCLHOME/lib --with-tclinclude=$TCLHOME/include"
@@ -38,8 +39,9 @@ fi
 
 mkdir -p $PRODUCT_INSTALL
 echo "Tk is installed into tcl dir $TCLHOME" > $PRODUCT_INSTALL/README
-cp tkConfig.sh $TCLHOME/lib #Needed fot netgen
+
+# Used by NETGEN (TBC -  to be reviewed)
+cp tkConfig.sh $TCLHOME/lib
 
 echo
 echo "########## END"
-

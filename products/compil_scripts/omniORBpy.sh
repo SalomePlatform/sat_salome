@@ -4,6 +4,11 @@ echo "##########################################################################
 echo "omniORBpy" $VERSION
 echo "##########################################################################"
 
+# If Docker rootless, ensure that user can read them
+if [ -f /.dockerenv ]; then
+    find $SOURCE_DIR -type f -exec chmod u+rwx {} \;
+fi
+
 echo
 echo "*** configure  --prefix=${OMNIORB_ROOT_DIR}"
 PYTHON=$PYTHONBIN $SOURCE_DIR/configure --prefix=${OMNIORB_ROOT_DIR}

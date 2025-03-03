@@ -13,6 +13,11 @@ case $LINUX_DISTRIBUTION in
 	;;
 esac
 
+# If Docker rootless, ensure that user can read them
+if [ -f /.dockerenv ]; then
+    find $SOURCE_DIR -type f -exec chmod u+rwx {} \;
+fi
+
 if [ -n "$SINGULARITY_NAME" ]; then
     echo "WARNING: singularity env detected. applying ABI-tag patch"
     PATCH_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/../patches

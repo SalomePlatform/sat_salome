@@ -11,6 +11,11 @@ cd $BUILD_DIR
 # -p option ensures that the date remain the same.
 cp -p -r $SOURCE_DIR/* .
 
+# If Docker rootless, ensure that user can read them
+if [ -f /.dockerenv ]; then
+    find $BUILD_DIR -type f -exec chmod u+rwx {} \;
+fi
+
 if [ -f autogen.pl ] && [ ! -f configure ]; then
     echo
     echo "*** autogen.pl"

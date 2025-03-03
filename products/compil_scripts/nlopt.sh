@@ -9,6 +9,11 @@ LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
 #
 function version_ge() { test "$(echo "$@" | tr " " "\n" | sort -rV | head -n 1)" == "$1"; }
 
+# If Docker rootless, ensure that user can read them
+if [ -f /.dockerenv ]; then
+    find $SOURCE_DIR -type f -exec chmod u+rwx {} \;
+fi
+
 if version_ge $VERSION "2.4.2"; then
     $SOURCE_DIR/configure --prefix=$PRODUCT_INSTALL --enable-shared --with-python PYTHON=$(which python3) PYTHON_CONFIG=$(which python3-config) CFLAGS='-m64 -fPIC' CPPFLAGS='-m64 -fPIC'
 else

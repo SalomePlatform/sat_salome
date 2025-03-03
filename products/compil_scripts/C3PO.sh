@@ -10,6 +10,11 @@ cd $BUILD_DIR
 cp -r $SOURCE_DIR/* .
 LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
 
+# If Docker rootless, ensure that user can read them
+if [ -f /.dockerenv ]; then
+    find $BUILD_DIR -type f -exec chmod u+rwx {} \;
+fi
+
 # spns #29973
 for X in env.sh runAllTests.sh; do
     echo "INFO: remove $X if present..."

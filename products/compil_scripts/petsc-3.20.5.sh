@@ -18,10 +18,19 @@ case $LINUX_DISTRIBUTION in
         ;;
 esac
 
+mkdir -p $PRODUCT_INSTALL
+
+rm -rf $BUILD_DIR
+mkdir $BUILD_DIR
+cd $BUILD_DIR
 cp -r $SOURCE_DIR/* .
 
-CONFIGURE_FLAGS=
+# If Docker rootless, ensure that user can read them
+if [ -f /.dockerenv ]; then
+    find $BUILD_DIR -type f -exec chmod u+rwx {} \;
+fi
 
+CONFIGURE_FLAGS=
 CONFIGURE_FLAGS+="--download-slepc=ext/slepc-3.20.1.tar.gz"
 
 if [ -f "${NATIVE_PATH}/liblapack.a" ] && [ "${SAT_lapack_IS_NATIVE}" == "1" ]; then

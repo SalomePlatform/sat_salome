@@ -4,9 +4,12 @@ echo "##########################################################################
 echo "omniORB" $VERSION
 echo "##########################################################################"
 
-
-
 PYTHON_HOME=$PYTHONHOME
+
+# If Docker rootless, ensure that user can read them
+if [ -f /.dockerenv ]; then
+    find $SOURCE_DIR -type f -exec chmod u+rwx {} \;
+fi
 
 echo
 echo "*** configure --prefix=$PRODUCT_INSTALL --disable-ipv6"

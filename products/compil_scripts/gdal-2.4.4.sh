@@ -10,6 +10,16 @@ if [ -n "$SAT_HPC" ]  && [ -n "$MPI_ROOT_DIR" ]; then
    export CC=${MPI_C_COMPILER}
 fi
 
+rm -rf $BUILD_DIR
+mkdir -p $BUILD_DIR
+cp -r $SOURCE_DIR/* $BUILD_DIR/
+cd $BUILD_DIR
+
+# If Docker rootless, ensure that user can read them
+if [ -f /.dockerenv ]; then
+    find $BUILD_DIR -type f -exec chmod u+rwx {} \;
+fi
+
 CONFIGURE_FLAGS=
 CONFIGURE_FLAGS+=" --with-pcraster=internal"
 CONFIGURE_FLAGS+=" --with-png=internal"
@@ -32,13 +42,9 @@ fi
 if [ ! -z "$LIBXML_ROOT_DIR" ]; then
     CONFIGURE_FLAGS+=" --with-xml2=${LIBXML_ROOT_DIR}"
 fi
+
 echo
 echo "*** configure $CONFIGURE_FLAGS LDFLAGS=\"-L${HDF5HOME}/lib/ -lhdf5 -lhdf5_hl -L${NETCDF_ROOT_DIR}/lib -lnetcdf\" HDF5_CFLAGS=\"-I${HDF5HOME}/include -L${HDF5HOME}/lib/ -lhdf5 -lhdf5_hl\" LIBS=\"-L${HDF5HOME}/lib/ -lhdf5 -lhdf5_hl -L${NETCDF_INSTALL_DIR}/lib -lnetcdf\" HDF5_LIBS=\"-L${HDF5HOME}/lib/ -lhdf5 -lhdf5_hl \" HDF5_INCLUDE=\"-I${HDF5HOME}/include\""
-
-rm -rf $BUILD_DIR
-mkdir -p $BUILD_DIR
-cp -r $SOURCE_DIR/* $BUILD_DIR/
-cd $BUILD_DIR
 
 ./configure --prefix=$PRODUCT_INSTALL $CONFIGURE_FLAGS LDFLAGS="-L${HDF5HOME}/lib/ -lhdf5 -lhdf5_hl -L${NETCDF_INSTALL_DIR}/lib -lnetcdf" HDF5_CFLAGS="-I${HDF5HOME}/include -L${HDF5HOME}/lib/ -lhdf5 -lhdf5_hl" LIBS="-L${HDF5HOME}/lib/ -lhdf5 -lhdf5_hl -L${NETCDF_INSTALL_DIR}/lib -lnetcdf" HDF5_LIBS="-L${HDF5HOME}/lib/ -lhdf5  -lhdf5_hl " HDF5_INCLUDE="-I${HDF5HOME}/include"
 if [ $? -ne 0 ]
