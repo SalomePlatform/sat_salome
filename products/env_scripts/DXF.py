@@ -18,5 +18,4 @@ def set_env(env, prereq_dir, version):
         env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib'))
 
 def set_nativ_env(env):
-    env.set('DXF_ROOT_DIR', '/usr')    # update for cmake
-    env.set('DXF_DIR', '/usr')
+    pass

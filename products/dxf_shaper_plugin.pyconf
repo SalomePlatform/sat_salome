@@ -8,7 +8,6 @@ default :
       repositories :
       {
         tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/dxf_shaper_plugin.git"
-        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "dxf_shaper_plugin.git"
       }
     }
     environ :
@@ -24,6 +23,7 @@ default :
     {
         is_SALOME_module : "yes"
         incremental : "yes"
+        is_opensource  : "no"
     }
     cmake_options : " -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig"
 }
