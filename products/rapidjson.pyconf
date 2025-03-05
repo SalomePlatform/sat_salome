@@ -4,7 +4,7 @@ default :
     build_source : "script"
     compil_script :  $name  + $VARS.scriptExtension
     get_source : "archive"
-    system_info : 
+    system_info :
     {
         rpm : ["rapidjson"]
         rpm_dev : ["rapidjson-devel"]
@@ -36,4 +36,9 @@ default_win :
       incremental : "yes"
       single_install_dir : "yes"
     }
+}
+
+version_1_1_0_FD40 :
+{
+    patches : ["rapidjson-1.1.0-gcc14.patch"]
 }
