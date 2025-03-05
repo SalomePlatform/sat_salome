@@ -117,7 +117,7 @@ APPLICATION :
         opencv : '3.2.0'
         openssl: '1.1.1n'
         openVKL: '0.11.0'
-        openturns: '1.24'
+        openturns: '1.23'
         ospray : '2.4.0'
         packaging : '19.0'
         pandas : '1.5.3'
