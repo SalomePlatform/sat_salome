@@ -29,6 +29,12 @@ then
     mpicc meshgems_mpi.c -DMESHGEMS_LINUX_BUILD -I ../include -shared -fPIC -o ../lib/Linux_64/libmeshgems_mpi.so
 fi
 
+
+# If Docker rootless, ensure that user can read them
+if [ -f /.dockerenv ]; then
+    find $PRODUCT_INSTALL -type f -exec chmod 755 {} \;
+fi
+
 echo
 echo "########## END"
 
