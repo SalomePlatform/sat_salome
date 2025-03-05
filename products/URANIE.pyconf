@@ -9,7 +9,7 @@ default :
        env_script : $name + ".py"
     }
     depend : ['Python', 'root','nlopt','lapack', 'boost']
-    build_depend : ["cmake", 'swig', 'cppunit', 'fftw']
+    build_depend : ["cmake", 'swig', 'cppunit']
     patches : []
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
@@ -28,6 +28,8 @@ version_4_9_0 :
         archive_name : "URANIE-4.9.0-Source.tar.gz"
     }
     patches: []
+    depend : ['Python', 'root','nlopt','lapack', 'boost', 'fftw']
+    build_depend : ["cmake", 'swig', 'cppunit']
     opt_depend: ["openmpi"]
 }
 
