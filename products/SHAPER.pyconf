@@ -22,6 +22,7 @@ default :
               'GUI',
               'boost',
               'CAS',
+              "CommonGeomLib",
               'Python',
               'hdf5',
               'omniORB',
