@@ -11,7 +11,7 @@ case $LINUX_DISTRIBUTION in
     UB*|DB*)
         NATIVE_PATH="/usr/lib/x86_64-linux-gnu"
         ;;
-    FD40)
+    CO*|FD*)
         NATIVE_PATH="/usr/lib64"
         ;;
     *)
@@ -62,7 +62,7 @@ else
    CONFIGURE_FLAGS+=" --download-fftw=ext/fftw-3.3.10.tar.gz"
 fi
 
-CONFIGURE_FLAGS+=" --with-cuda=0" # 
+CONFIGURE_FLAGS+=" --with-cuda=0" #
 CONFIGURE_FLAGS+=" --with-debugging=0" # by default Petsc is build in debug mode
 CONFIGURE_FLAGS+=" --with-petsc4py=yes"
 CONFIGURE_FLAGS+=" --download-slepc-configure-arguments=--with-slepc4py=yes"
@@ -78,16 +78,16 @@ fi
 echo
 if [ -n "${SAT_HPC}" ]; then
   CONFIUGRE_FLAGS+=" --with-med-dir=${MEDFILE_ROOT_DIR}"
-  
+
   if [ -f "${NATIVE_PATH}/libHYPRE_core.so" ]; then
       CONFIGURE_FLAGS+=" --with-hypre=1"
   else
       CONFIGURE_FLAGS+=" --download-hypre=ext/hypre-2.29.0.tar.gz"
   fi
-  
+
   if [ -f "${NATIVE_PATH}/libptscotch.so" ] && [ "${SAT_ptscotch_IS_NATIVE}" == "1" ]; then
       CONFIGURE_FLAGS+=" --with-ptscotch=1"
-  elif [ -n "${PTSCOTCH_ROOT_DIR}" ] && [ "${SAT_ptscotch_IS_NATIVE}" != "1" ]; then 
+  elif [ -n "${PTSCOTCH_ROOT_DIR}" ] && [ "${SAT_ptscotch_IS_NATIVE}" != "1" ]; then
       CONFIGURE_FLAGS+=" --with-ptscoth=${PTSCOTCH_ROOT_DIR}"
   else
       CONFIGURE_FLAGS+=" --download-ptscotch=ext/scotch_7.0.3.tar.gz"
@@ -103,7 +103,7 @@ if [ -n "${SAT_HPC}" ]; then
   if [ "$SAT_openmpi_IS_NATIVE" == "1" ] && [[ "DB UB" =~ "$DIST_NAME" ]]; then
     CONFIGURE_FLAGS+=" --with-cc=${MPI_C_COMPILER}"
     CONFIGURE_FLAGS+=" --with-cxx=${MPI_CXX_COMPILER}"
-    CONFIGURE_FLAGS+=" --with-fc=${MPI_FC_COMPILER}" 
+    CONFIGURE_FLAGS+=" --with-fc=${MPI_FC_COMPILER}"
   fi
 else
    CONFIGURE_FLAGS+=" --with-mpi=0"
