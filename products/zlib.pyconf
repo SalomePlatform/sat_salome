@@ -29,6 +29,16 @@ default_win :
    }
 }
 
+version_1_3_1:
+{
+}
+
+version_1_3_1_win:
+{
+   archive_info : {archive_name : "zlib-" + $APPLICATION.products.zlib + ".tar.gz"}
+   compil_script : 'zlib-1.3.1.bat'
+}
+
 version_1_2_11:
 {
 }

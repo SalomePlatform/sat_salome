@@ -1,0 +1,13 @@
+--- ParaView-2918b94391-ref/VTK/CMake/FindFreetype.cmake	2025-03-10 13:29:08.000000000 +0100
++++ ParaView-2918b94391-dev/VTK/CMake/FindFreetype.cmake	2025-03-26 12:15:33.149720075 +0100
+@@ -95,6 +95,10 @@
+     OPTIONAL_COMPONENTS "${_Freetype_component_opt}")
+ endif ()
+ unset(_Freetype_component_opt)
++SET(FREETYPE_ROOT_DIR $ENV{FREETYPE_ROOT_DIR} CACHE PATH "Path to the FreeType.")
++IF(FREETYPE_ROOT_DIR)
++  LIST(APPEND CMAKE_PREFIX_PATH "${FREETYPE_ROOT_DIR}")
++ENDIF(FREETYPE_ROOT_DIR)
+ find_package(freetype CONFIG ${_Freetype_args})
+ unset(_Freetype_args)
+ if (freetype_FOUND)

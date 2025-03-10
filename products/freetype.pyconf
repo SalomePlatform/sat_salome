@@ -35,6 +35,18 @@ default_win :
     }
 }
 
+# needed in order to screen with windows version - see below
+version_2_13_3 :
+{
+  patches : []
+}
+
+version_2_13_3_win :
+{
+  archive_info : {archive_name : "freetype-2.13.3.tar.gz"}
+  patches : ["freetype-2.13.3_windows.patch"]
+}
+
 
 # needed in order to screen with windows version - see below
 version_2_9_1 :

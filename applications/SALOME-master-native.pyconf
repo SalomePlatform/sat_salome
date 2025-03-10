@@ -41,7 +41,7 @@ APPLICATION :
         BasicIterativeStatistics :  'v0.1.0'
         boost : 'native'
         CAS : {tag : 'CR780-SALOME-PATCH', section: 'version_CR780_SALOME_PATCH', base:  'no'}
-        catalyst: '2.0'
+        catalyst: {tag: '2.0', section: 'version_v2_0_0', base: 'no'}
         C3PO: 'v2.3'
         certifi : 'native'
         cftime: 'native'
@@ -115,7 +115,7 @@ APPLICATION :
         packagespy : '74152cd'
         pandas : 'native'
         patsy : 'native'
-        ParaView : {tag:'5.11.0', base: 'no',  section: 'version_5_11_0_MPI', hpc: 'yes'}
+        ParaView : {tag:'5.13.2918b94391', base: 'no',  section: 'version_5_13_2_MPI', hpc: 'yes'}
         PERSALYS : 'v18.0'
         petsc : '3.20.5'
         Pillow : 'native'
@@ -290,7 +290,6 @@ __overwrite__ :
         'APPLICATION.products.catalyst'         : {tag: '2.0',       base: 'no', section: 'version_2_0_UB24_04'                    }
         'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_UB24_04'                  }
         'APPLICATION.products.gmsh'             : {tag: '4.10.3',    base: 'no', section: 'version_4_10_3_with_CAS_7_8_UB24_04'    }
-        'APPLICATION.products.ParaView'         : {tag: '5.11.0',    base: 'no', section: 'version_5_11_0_MPI_UB24_04', hpc: 'yes' }
     }
     {
         # DB10:
@@ -309,7 +308,6 @@ __overwrite__ :
         'APPLICATION.products.qwt'      : '6.1.6'
         'APPLICATION.products.PyQt'     : '5.15.3'
         'APPLICATION.products.sip'      : '5.5.0'
-        'APPLICATION.products.ParaView' : {tag: '5.11.0', base: 'no',  section: 'version_5_11_0_MPI_DB10', hpc: 'yes'}
         'APPLICATION.products.scipy'    : {tag: '1.5.2',  base: 'no', section: 'version_1_5_2_no_pip'                }  # scipy >= 1.4 - system one too old
         'APPLICATION.products.swig'     : '4.0.2'
         'APPLICATION.products.openmpi'  : '4.1.5'
@@ -349,7 +347,6 @@ __overwrite__ :
         'APPLICATION.products.tbb'              : '2021.9.0'
         'APPLICATION.products.PyFMI'            : {tag: '2.6',       base: 'no', section: 'version_2_6_DB12'          }
         'APPLICATION.products.poetry'   : {tag: '1.5.1', base: 'no', section: 'version_1_5_1_x86_64' }
-        'APPLICATION.products.ParaView'         : {tag: '5.11.0',    base: 'no', section: 'version_5_11_0_MPI_DB12', hpc: 'yes' }
     }
     {
         # CentOS 8 repositories don't include sphinxintl package which must be installed through pip.
@@ -394,7 +391,6 @@ __overwrite__ :
          'APPLICATION.products.pandas'           : {tag: '1.1.5',   base: 'no', section: 'version_1_1_5_no_pip'              }
          'APPLICATION.products.statsmodels'      : {tag: '0.14.1',  base: 'no', section: 'version_0_14_1_no_pip'             }
          'APPLICATION.products.nose'             : {tag: '1.3.7',   base: 'no', section: 'version_1_3_7_no_pip'              }
-         'APPLICATION.products.ParaView'         : {tag: '5.11.0',  base: 'no', section: 'version_5_11_0_MPI_CO9', hpc: 'yes'}
          'APPLICATION.products.YDEFX'            : {tag: 'master',  base: 'no', section: 'version_master_CO9'                }
          'APPLICATION.products.YACS'             : {tag: 'master',  base: 'no', section: 'version_master_CO9'                }
          'APPLICATION.products.URANIE'           : {tag: '4.8.0',   base: 'no', section: 'version_4_8_0_CO9'                 }
@@ -474,7 +470,6 @@ __overwrite__ :
         'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD38'                  }
         'APPLICATION.products.catalyst'         : {tag: '2.0',       base: 'no', section: 'version_2_0_FD38'                    }
         'APPLICATION.products.gmsh'             : {tag: '4.10.3',    base: 'no', section: 'version_4_10_3_with_CAS_7_8_FD38'    }
-        'APPLICATION.products.ParaView'         : {tag: '5.11.0',    base: 'no', section: 'version_5_11_0_MPI_FD38', hpc: 'yes' }
     }
     {
         __condition__ : "VARS.dist in ['FD40']"
@@ -494,7 +489,6 @@ __overwrite__ :
         'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD40'                  }
         'APPLICATION.products.catalyst'         : {tag: '2.0',       base: 'no', section: 'version_2_0_FD40'                    }
         'APPLICATION.products.gmsh'             : {tag: '4.10.3',    base: 'no', section: 'version_4_10_3_with_CAS_7_8_FD40'    }
-        'APPLICATION.products.ParaView'         : {tag: '5.11.0',    base: 'no', section: 'version_5_11_0_MPI_FD40', hpc: 'yes' }
         'APPLICATION.products.omniORBpy'        : {tag: '4.2.5',     base: 'no', section: 'version_4_2_5_FD40'                  }
         'APPLICATION.products.FMILibrary'       : {tag: '2.4.1',     base: 'no', section: 'version_2_4_1_FD40'                  }
         'APPLICATION.products.nose_py3'         : {tag: '1.6.9',     base: 'no', section: 'version_1_6_9_no_pip'                }

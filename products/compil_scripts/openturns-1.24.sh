@@ -164,8 +164,8 @@ if [ -f /.dockerenv ]; then
     echo "WARNING: skipping...."
 else
     if ! make check; then
-	echo "ERROR  testing Openturns features...."
-	exit 4
+	      echo "ERROR  testing Openturns features...."
+	      exit 4
     fi
 fi
 

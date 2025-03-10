@@ -30,8 +30,15 @@ default :
     }
 }
 
+version_v2_0_0:
+{
+    cmake_options: " -DPARAVIEW_ENABLE_CATALYST=ON -DCMAKE_INSTALL_LIBDIR:STRING=lib"
+    archive_info : {archive_name : "catalyst-2.0.tar.gz"}
+}
+
 version_2_0:
 {
+    cmake_options: " -DPARAVIEW_ENABLE_CATALYST=ON -DCMAKE_INSTALL_LIBDIR:STRING=lib"
     archive_info : {archive_name : "catalyst-2.0-431a8a1.tar.gz"}
 }
 

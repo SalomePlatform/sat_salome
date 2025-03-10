@@ -1,0 +1,24 @@
+--- freetype-2.13.3-ref/CMakeLists.txt	2024-08-12 12:50:14.000000000 +0200
++++ freetype-2.13.3-dev/CMakeLists.txt	2025-03-26 13:06:26.472742415 +0100
+@@ -568,11 +568,18 @@
+       PATTERN "internal" EXCLUDE
+       PATTERN "ftconfig.h" EXCLUDE
+       PATTERN "ftoption.h" EXCLUDE)
+-  install(
+-    FILES ${PROJECT_BINARY_DIR}/include/freetype/config/ftconfig.h
+-          ${PROJECT_BINARY_DIR}/include/freetype/config/ftoption.h
++  if (UNIX)
++    install(
++      FILES ${PROJECT_BINARY_DIR}/include/freetype/config/ftconfig.h
++            ${PROJECT_BINARY_DIR}/include/freetype/config/ftoption.h
+       DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/freetype2/freetype/config
+       COMPONENT headers)
++   elseif(WIN32)
++    install(
++      FILES ${PROJECT_BINARY_DIR}/include/freetype/config/ftoption.h
++      DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/freetype2/freetype/config
++      COMPONENT headers)
++   endif()
+ endif ()
+ 
+ if (NOT SKIP_INSTALL_LIBRARIES AND NOT SKIP_INSTALL_ALL)

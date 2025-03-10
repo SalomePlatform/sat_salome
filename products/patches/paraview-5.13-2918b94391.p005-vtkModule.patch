@@ -1,0 +1,41 @@
+--- ParaView-2918b94391-ref/VTK/CMake/vtkModule.cmake	2025-03-10 13:29:08.000000000 +0100
++++ ParaView-2918b94391-dev/VTK/CMake/vtkModule.cmake	2025-03-23 17:23:00.000000000 +0100
+@@ -5716,6 +5716,29 @@
+         set(_vtk_export_exact_arg EXACT)
+       endif ()
+ 
++      if ("TBB" STREQUAL ${_vtk_export_package})
++        set(_vtk_export_module_content
++          " if (NOT TARGET TBB::tbb)  
++  find_package(${_vtk_export_package}
++      ${_vtk_export_version}
++      ${_vtk_export_exact_arg}
++      ${_vtk_export_config_arg}
++      \${_vtk_module_find_package_quiet}
++      \${_vtk_module_find_package_required}
++      COMPONENTS          ${_vtk_export_components}
++      OPTIONAL_COMPONENTS ${_vtk_export_optional_components})
++  endif()
++    if (NOT ${_vtk_export_package}_FOUND AND _vtk_module_find_package_fail_if_not_found)
++      if (NOT \${CMAKE_FIND_PACKAGE_NAME}_FIND_QUIETLY)
++        message(STATUS
++          \"Could not find the \${CMAKE_FIND_PACKAGE_NAME} package due to a \"
++          \"missing dependency: ${_vtk_export_package}\")
++      endif ()
++      set(\"\${CMAKE_FIND_PACKAGE_NAME}_${_vtk_export_target_name}_FOUND\" 0)
++      list(APPEND \"\${CMAKE_FIND_PACKAGE_NAME}_${_vtk_export_target_name}_NOT_FOUND_MESSAGE\"
++        \"Failed to find the ${_vtk_export_package} package.\")
++    endif ()\n")
++      else()
+       set(_vtk_export_module_content
+ "  find_package(${_vtk_export_package}
+     ${_vtk_export_version}
+@@ -5735,7 +5758,7 @@
+     list(APPEND \"\${CMAKE_FIND_PACKAGE_NAME}_${_vtk_export_target_name}_NOT_FOUND_MESSAGE\"
+       \"Failed to find the ${_vtk_export_package} package.\")
+   endif ()\n")
+-
++endif()
+       string(APPEND _vtk_export_module_build_content "${_vtk_export_module_content}")
+       # Private usages should be guarded by `$<BUILD_INTERFACE>` and can be
+       # skipped for the install tree regardless of the build mode.

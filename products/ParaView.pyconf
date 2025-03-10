@@ -30,6 +30,83 @@ default :
     }
 }
 
+version_5_13_2 :
+{
+    compil_script :  'ParaView-5.13.2.sh'
+    archive_info : {archive_name : "ParaView-93d37309e1.tar.gz"}
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'PyQt',
+              'sip',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
+    opt_depend : ['ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst']
+    patches : ['paraview-5.13-2918b94391.p002-FindMPI.patch',
+               'paraview-5.13-2918b94391.p003-FindCGNS.patch',
+               'paraview-5.13-2918b94391.p004-FindFreetype.patch',
+               'paraview-5.13-2918b94391.p005-vtkModule.patch'
+              ]
+}
+
+version_5_13_2_win :
+{
+    compil_script :  'ParaView-5.13.2.bat'
+    archive_info : {archive_name : "ParaView-2918b94391.tar.gz"}
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'boost',
+              'libxml2',
+              'freetype',
+              'cgns',
+              'Pygments',
+              'pthreads',
+              'zlib'
+             ]
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'rkCommon', 'matplotlib']
+    patches : ['paraview-5.13-2918b94391.p001-add_dll_directory.patch',
+               'paraview-5.13-2918b94391.p002-FindMPI.patch',
+               'paraview-5.13-2918b94391.p003-FindCGNS.patch',
+               'paraview-5.13-2918b94391.p004-FindFreetype.patch',
+               'paraview-5.13-2918b94391.p005-vtkModule.patch'
+              ]
+}
+
+
+version_5_13_2_MPI :
+{
+    compil_script :  'ParaView-5.13.2.sh'
+    archive_info : {archive_name : "ParaView-2918b94391.tar.gz"}
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'PyQt',
+              'sip',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst']
+    patches : ['paraview-5.13-2918b94391.p002-FindMPI.patch',
+               'paraview-5.13-2918b94391.p003-FindCGNS.patch',
+               'paraview-5.13-2918b94391.p004-FindFreetype.patch',
+               'paraview-5.13-2918b94391.p005-vtkModule.patch'
+              ]
+}
+
+
 version_5_11_0 :
 {
     compil_script :  'ParaView-5.11.0.sh'

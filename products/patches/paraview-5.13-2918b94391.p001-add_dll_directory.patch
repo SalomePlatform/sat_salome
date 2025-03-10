@@ -1,0 +1,39 @@
+--- ParaView-2918b94391-ref/VTK/Utilities/PythonInterpreter/vtkPythonInterpreter.cxx	2025-03-10 13:29:09.000000000 +0100
++++ ParaView-2918b94391-dev/VTK/Utilities/PythonInterpreter/vtkPythonInterpreter.cxx	2025-03-23 15:41:56.000000000 +0100
+@@ -363,25 +363,6 @@
+   // the issue.
+   if (!vtkdir.empty())
+   {
+-#if PY_VERSION_HEX >= 0x03080000
+-    vtkPythonScopeGilEnsurer gilEnsurer;
+-    CloseDLLDirectoryCookie();
+-    PyObject* os = PyImport_ImportModule("os");
+-    if (os)
+-    {
+-      PyObject* add_dll_directory = PyObject_GetAttrString(os, "add_dll_directory");
+-      if (add_dll_directory && PyCallable_Check(add_dll_directory))
+-      {
+-        PyObject* newpath = PyUnicode_FromString(vtkdir.c_str());
+-        DLLDirectoryCookie = PyObject_CallFunctionObjArgs(add_dll_directory, newpath, nullptr);
+-        Py_XDECREF(newpath);
+-      }
+-
+-      Py_XDECREF(add_dll_directory);
+-    }
+-
+-    Py_XDECREF(os);
+-#else
+     std::string env_path;
+     if (systools::GetEnv("PATH", env_path))
+     {
+@@ -392,10 +373,8 @@
+       env_path = vtkdir;
+     }
+     systools::PutEnv(std::string("PATH=") + env_path);
+-#endif
+   }
+ #endif
+-
+ #if defined(VTK_BUILD_SHARED_LIBS)
+   vtkPythonInterpreter::PrependPythonPath(vtkdir.c_str(), landmark);
+ #else

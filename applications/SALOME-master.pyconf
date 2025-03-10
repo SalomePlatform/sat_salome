@@ -40,7 +40,7 @@ APPLICATION :
         BasicIterativeStatistics :  'v0.1.0'
         boost : '1.71.0'
         CAS : {tag : 'CR780-SALOME-PATCH', section: 'version_CR780_SALOME_PATCH', base: 'no'}
-        catalyst: '2.0'
+        catalyst: {tag: '2.0', section: 'version_v2_0_0', base: 'no'}
         C3PO: 'v2.3'
         certifi : '2018.8.24'
         cftime: '1.6.3'
@@ -118,7 +118,7 @@ APPLICATION :
         packagespy : '74152cd'
         pandas : '1.1.5'
         patsy : '0.5.4'
-        ParaView : {tag:'5.11.0', base: 'no',  section: 'version_5_11_0_MPI', hpc: 'yes'}
+        ParaView : {tag:'5.13.2918b94391', base: 'no',  section: 'version_5_13_2_MPI', hpc: 'yes'}
         PERSALYS: 'v18.0'
         petsc : '3.20.5'
         Pillow : '8.4.0'
@@ -260,7 +260,6 @@ __overwrite__ :
         __condition__ : "VARS.dist in ['CO7']"
         'APPLICATION.rm_products'       : ['gcc', 'gmp', 'mpc', 'mpfr']
         'APPLICATION.products.openturns': {tag:'1.24', base:'no', section:'version_1_24_CO7'                       }
-        'APPLICATION.products.ParaView' : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_CO7', hpc: 'yes'}
         'APPLICATION.products.URANIE'   : {tag: '4.8.0',  base: 'no', section: 'version_4_8_0_CO7'                 }
     }
     {
@@ -276,7 +275,6 @@ __overwrite__ :
         'APPLICATION.products.numpy'    : {tag: '1.22.2', base: 'no', section: 'version_1_22_2_CO8'                }
         'APPLICATION.products.gdal'     : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_CO8'                 } # spns #29324
         'APPLICATION.products.openturns': {tag:'1.24',    base:'no',  section:'version_1_24_CO8'                   }
-        'APPLICATION.products.ParaView' : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_CO8', hpc: 'yes'}
     }
     {
         __condition__ : "VARS.dist in ['CO9']"
@@ -287,7 +285,6 @@ __overwrite__ :
         'APPLICATION.products.boost'     : {tag:'1.71.0',  base: 'no', section: 'version_1_71_0_CO9'                 } # spns #29324
         'APPLICATION.products.gdal'      : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_CO9'                  } # spns #29324
         'APPLICATION.products.openturns' : {tag: '1.24',   base: 'no', section: 'version_1_24_CO9'                   }
-        'APPLICATION.products.ParaView'  : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_CO9', hpc: 'yes' }
         'APPLICATION.products.root'      : {tag: '6.22.02', base: 'no', section: 'version_6_22_02_CO9'               }
     }
     {
@@ -298,7 +295,6 @@ __overwrite__ :
     {
         __condition__ : "VARS.dist in ['DB09']"
         'APPLICATION.products.openturns': {tag:'1.24', base:'no', section:'version_1_24_DB09'                       }
-        'APPLICATION.products.ParaView' : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_DB09', hpc: 'yes'}
         'APPLICATION.products.URANIE'   : {tag: '4.8.0',  base: 'no', section: 'version_4_8_0_DB09'                 }
     }
     {
