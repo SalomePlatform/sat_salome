@@ -223,7 +223,7 @@ APPLICATION :
         'SOLVERLAB'
         'TopIIVolMesh'
         #'TESTBASE'
-        'CEATESTBASE' : 'SalomeV9'
+        'CEATESTBASE'
     }
     profile :
     {

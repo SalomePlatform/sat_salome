@@ -210,7 +210,7 @@ APPLICATION :
         'SOLVERLAB' : {tag: 'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'TopIIVolMesh'
         #'TESTBASE'
-        'CEATESTBASE' : 'SalomeV9'
+        'CEATESTBASE'
     }
     profile :
     {

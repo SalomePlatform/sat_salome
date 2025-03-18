@@ -220,7 +220,7 @@ APPLICATION :
         'YDEFX'
         'pmml'
         #'TESTBASE'
-        'CEATESTBASE' : 'SalomeV9'
+        'CEATESTBASE'
     }
     profile :
     {
