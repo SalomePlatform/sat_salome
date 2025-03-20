@@ -38,6 +38,7 @@ default :
     properties:
     {
         is_SALOME_module : "yes"
+        is_SALOME_product: "yes"
         has_unit_tests
     }
 }
@@ -80,6 +81,7 @@ version_V6_6_0 :
     properties:
     {
         is_SALOME_module : "yes"
+        is_SALOME_product: "yes"
         has_unit_tests
     }
 } 

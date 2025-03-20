@@ -54,6 +54,7 @@ default :
     properties :
     {
         incremental : 'yes'
+        is_SALOME_product: "yes"
     }
 }
 

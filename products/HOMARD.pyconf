@@ -26,6 +26,7 @@ default :
     {
         has_salome_gui : "yes"
         is_SALOME_module : "yes"
+        is_SALOME_product: "yes"
         incremental : "yes"
         has_unit_tests
     }
@@ -35,7 +36,7 @@ default :
 default_win:
 {
     build_source : "script"
-    compil_script  : "HOMARD_MED_MINGW.bat"	
+    compil_script  : "HOMARD_MED_MINGW.bat"
     depend : [ "SMESH", "boost", "hdf5", "medfile", "pthreads"]
 }
 

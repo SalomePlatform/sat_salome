@@ -35,5 +35,6 @@ default :
     {
       incremental : "yes"
       single_install_dir : "yes"
+      is_SALOME_product: "yes"
     }
 }

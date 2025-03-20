@@ -31,6 +31,7 @@ default :
     properties:
     {
         is_SALOME_module : "yes"
+        is_SALOME_product: "yes"
         incremental : "yes"
     }
     patches: []
@@ -68,6 +69,7 @@ version_8_1_0_to_9_1_0 :
     properties:
     {
         is_SALOME_module : "yes"
+        is_SALOME_product: "yes"
     }
 }
 
@@ -104,5 +106,6 @@ version_V7_8_0 :
     properties:
     {
         is_SALOME_module : "yes"
+        is_SALOME_product: "yes"
     }
 }

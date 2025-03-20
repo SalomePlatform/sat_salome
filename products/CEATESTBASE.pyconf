@@ -22,5 +22,6 @@ default :
     {
         not_in_package : "yes"
         is_opensource  : "no"
+        is_SALOME_product: "yes"
     }
 }

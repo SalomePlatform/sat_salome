@@ -17,6 +17,7 @@ default :
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     properties :
     {
+        is_SALOME_product: "yes"
         compilation : "no"
         not_in_package : "yes"
         is_opensource  : "no"

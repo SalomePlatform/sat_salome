@@ -18,6 +18,7 @@ default :
         compilation : "no"
         configure_dependency : "yes"  # the source of this module is required for the configuration of salome
         is_SALOME_module : "yes"
+        is_SALOME_product: "yes"
         sources_in_package : "yes"
         incremental: "yes"
     }

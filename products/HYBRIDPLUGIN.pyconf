@@ -35,7 +35,8 @@ default :
     properties:
     {
         is_SALOME_module : "yes"
+        is_SALOME_product: "yes"
         has_unit_tests
-	incremental : "yes"
+        incremental : "yes"
     }
 } 

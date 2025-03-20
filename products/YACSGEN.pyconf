@@ -27,6 +27,7 @@ default :
     properties:
     {
        incremental : "yes"
+       is_SALOME_product: "yes"
     }
 } 
  
@@ -38,6 +39,7 @@ version_V7_8_BR :
     {
        incremental : "yes"
        is_SALOME_module : "yes"
+       is_SALOME_product: "yes"
     }
 } 
  

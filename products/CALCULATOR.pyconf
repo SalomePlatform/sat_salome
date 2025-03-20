@@ -35,6 +35,7 @@ default :
     properties:
     {
         is_SALOME_module : "yes"
+        is_SALOME_product: "yes"
     }
 }
 
@@ -74,5 +75,6 @@ version_6_6_0_to_9_1_0 :
     properties:
     {
         is_SALOME_module : "yes"
+        is_SALOME_product: "yes"
     }
 }

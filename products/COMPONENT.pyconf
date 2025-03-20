@@ -34,5 +34,6 @@ default :
     {
        incremental : "yes"
        is_SALOME_module : "yes"
+       is_SALOME_product: "yes"
     }
 }

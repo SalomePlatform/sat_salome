@@ -22,6 +22,7 @@ default :
     properties:
     {
         is_SALOME_module : "yes"
+        is_SALOME_product: "yes"
         is_salome_application : "yes"
         incremental : "yes"
     }

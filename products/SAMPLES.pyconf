@@ -21,6 +21,7 @@ default :
     properties :    
     {
        incremental : "yes"
+       is_SALOME_product: "yes"
        compilation : "no"
        sources_in_package : "yes"
     }

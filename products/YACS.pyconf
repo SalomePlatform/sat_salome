@@ -45,6 +45,7 @@ default :
     {
         has_salome_gui : "yes"
         is_SALOME_module : "yes"
+        is_SALOME_product: "yes"
         has_unit_tests
         incremental : "yes"
     }

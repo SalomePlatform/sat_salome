@@ -39,6 +39,7 @@ default_win :
     {
       incremental : "yes"
       single_install_dir : "no" # aimed to solve sat #18914
+      is_SALOME_product: "yes"
     }
     patches : []
 }

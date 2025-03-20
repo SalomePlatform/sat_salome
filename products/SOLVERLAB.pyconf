@@ -40,6 +40,7 @@ default :
     properties:
     {
         is_SALOME_module : "yes"
+        is_SALOME_product: "yes"
         incremental : "yes"
     }
     patches: []
@@ -109,6 +110,7 @@ version_V9_10_0_MPI :
     properties:
     {
         is_SALOME_module : "yes"
+        is_SALOME_product: "yes"
         incremental : "yes"
         has_salome_gui : "yes"
     }
@@ -119,6 +121,7 @@ version_V9_9_0 :
     properties:
     {
         is_SALOME_module : "yes"
+        is_SALOME_product: "yes"
         incremental : "yes"
         has_salome_gui : "yes"
     }
@@ -144,6 +147,7 @@ version_V9_9_0_MPI :
     properties:
     {
         is_SALOME_module : "yes"
+        is_SALOME_product: "yes"
         incremental : "yes"
         has_salome_gui : "yes"
     }
@@ -154,6 +158,7 @@ version_V9_8_0 :
     properties:
     {
         is_SALOME_module : "yes"
+        is_SALOME_product: "yes"
         incremental : "yes"
         has_salome_gui : "yes"
     }
