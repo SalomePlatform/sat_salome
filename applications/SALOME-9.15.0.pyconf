@@ -223,7 +223,7 @@ APPLICATION :
         'SOLVERLAB'
         'TopIIVolMesh'
         #'TESTBASE'
-        'CEATESTBASE'
+        'CEATESTBASE' : 'master'
     }
     profile :
     {
