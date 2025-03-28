@@ -3,7 +3,7 @@
 
 APPLICATION :
 {
-    name : 'SALOME-V9_15_0a1-native'
+    name : 'SALOME-9.15.0-native'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
     tag : 'V9_15_0a1'
     dev : 'no'

@@ -3,7 +3,7 @@
 
 APPLICATION :
 {
-    name : 'SALOME-V9_15_0a1'
+    name : 'SALOME-9.15.0'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name
     cmake_generator : 'Visual Studio 15 2017'
     cmake_build_type: 'Release' # Debug, RelWithDebInfo, Release, MinSizeRel
