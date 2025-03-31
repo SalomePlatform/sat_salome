@@ -297,8 +297,9 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['DB09']"
-        'APPLICATION.products.openturns'        : {tag:'1.23', base:'no', section:'version_1_23_DB09'}
+        'APPLICATION.products.openturns': {tag:'1.23', base:'no', section:'version_1_23_DB09'                       }
         'APPLICATION.products.ParaView' : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_DB09', hpc: 'yes'}
+        'APPLICATION.products.URANIE'   : {tag: '4.8.0',  base: 'no', section: 'version_4_8_0_DB09'                 }
     }
     {
         __condition__ : "VARS.dist in ['UB18.04']"
