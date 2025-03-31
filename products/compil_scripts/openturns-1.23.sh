@@ -1,4 +1,4 @@
-#!/bin/bash                                                                                                                                                                              
+#!/bin/bash
 
 echo "##########################################################################"
 echo "openturns" $VERSION
@@ -191,7 +191,7 @@ case $LINUX_DISTRIBUTION in
     DB9)
         echo "WARNING: Skipping MIXMOD - since libxml++ compilation is quite tedious on that platform"
         echo "WARNING: You can either target the stretch archives and install libxml++-dev and compile or leave it as it is"
-        
+
         ;;
     *)
         echo
@@ -201,7 +201,7 @@ case $LINUX_DISTRIBUTION in
             echo "ERROR on cmake"
             exit 1
         fi
-        
+
         echo
         echo "*** make" $MAKE_OPTIONS
         make $MAKE_OPTIONS
@@ -209,7 +209,7 @@ case $LINUX_DISTRIBUTION in
             echo "ERROR on make"
             exit 2
         fi
-        
+
         echo
         echo "*** make install"
         make install
@@ -232,7 +232,7 @@ if [[ -d "$SOURCE_DIR/otfftw-0.15" ]]; then
     OTC["otsvm"]="0.14"
 
     for k in ${!OTC[@]};
-    do         
+    do
         echo
         echo "*** C O M P O N E N T : $k-${OTC[$k]} "
         if [[ $k == "otagrum" ]]; then
@@ -241,7 +241,7 @@ if [[ -d "$SOURCE_DIR/otfftw-0.15" ]]; then
         fi
         cd  $BUILD_DIR
         mkdir ${BUILD_DIR}/$k
-        cd ${BUILD_DIR}/$k 
+        cd ${BUILD_DIR}/$k
         CMAKE_EXTRA_OPTIONS=
         if [[ $DIST_NAME == "CO" ]]; then
             CMAKE_EXTRA_OPTIONS+=" -DBUILD_DOC=OFF"  # needs extra latex modules on CentOS 7, 8
@@ -298,7 +298,7 @@ if [[ -d "$SOURCE_DIR/otfftw-0.15" ]]; then
             echo "ERROR on cmake"
             exit 1
         fi
-        
+
         echo
         echo "*** make" $MAKE_OPTIONS
         make $MAKE_OPTIONS
@@ -307,7 +307,7 @@ if [[ -d "$SOURCE_DIR/otfftw-0.15" ]]; then
             echo "ERROR on make"
             exit 2
         fi
-        
+
         echo
         echo "*** make install"
         make install
@@ -339,7 +339,7 @@ if [[ -d "$SOURCE_DIR/otfftw-0.15" ]]; then
     OTP["otpod"]="0.6.11"
     OTP["otwrapy"]="0.12.1"
     for k in ${!OTP[@]};
-    do 
+    do
         echo
         echo "*** C O M P O N E N T : $k-${OTP[$k]} "
 
@@ -611,9 +611,6 @@ if [[ -d "$SOURCE_DIR/otfftw-0.15" ]]; then
             cp $SOURCE_DIR/addons/site-patch.py ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages/site.py
         elif [ -f $SITE_PATCH ]; then
             cp $SITE_PATCH ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages/site.py
-	else
-	    echo "ERROR: could not find: $SITE_PATCH"
-	    exit 7
         fi
     elif [ -f ${PYTHON_ROOT_DIR}/lib/python${PYTHON_VERSION}/site-packages/setuptools/site-patch.py ]; then
         cp ${PYTHON_ROOT_DIR}/lib/python${PYTHON_VERSION}/site-packages/setuptools/site-patch.py ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages/site.py
