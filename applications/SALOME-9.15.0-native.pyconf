@@ -170,7 +170,7 @@ APPLICATION :
         #'dxf_shaper_plugin'
         'SHAPERSTUDY'
         'RESTRICTED'
-        'LIBBATCH' : 'V2_5_0'
+        'LIBBATCH' : 'V2_6_0'
         'KERNEL'
         'MEDCOUPLING' : {tag:'V9_15_0a1', base: 'no', section: 'version_V9_15_0_MPI', hpc: 'yes'}
         'GUI'
