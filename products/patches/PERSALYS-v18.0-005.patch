@@ -1,0 +1,11 @@
+--- persalys_v18.0-ref/main/launcher.cxx	2025-04-02 16:11:14.000000000 +0200
++++ persalys_v18.0-dev/main/launcher.cxx	2025-04-07 09:32:04.000000000 +0200
+@@ -108,7 +108,7 @@
+     {
+       fs::create_directories(pythonuserbase_dir / "Python312" / "site-packages");
+     }
+-    catch (const std::filesystem::filesystem_error &)
++    catch (const fs::filesystem_error &)
+     {
+     }
+   }

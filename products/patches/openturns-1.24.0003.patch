@@ -1,8 +1,6 @@
-diff --git a/lib/test/CMakeLists.txt b/lib/test/CMakeLists.txt
-index ce92b5c..aa69dc0 100644
---- a/lib/test/CMakeLists.txt
-+++ b/lib/test/CMakeLists.txt
-@@ -729,7 +729,7 @@ ot_check_test (QuadraticLeastSquares_std)
+--- openturns/openturns-1.24/lib/test/CMakeLists.txt	2025-04-03 12:53:28.012842479 +0200
++++ openturns.dev/openturns-1.24/lib/test/CMakeLists.txt	2025-04-03 12:57:08.123034928 +0200
+@@ -729,7 +729,7 @@
  ot_check_test (LinearLeastSquares_std)
  
  

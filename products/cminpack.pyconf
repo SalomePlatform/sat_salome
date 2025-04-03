@@ -45,6 +45,12 @@ version_1_3_10 :
     compil_script: 'cminpack-1.3.10.sh'
 }
 
+version_1_3_10_win :
+{
+    build_source : "script"
+    compil_script: 'cminpack-1.3.10.bat'
+}
+
 version_1_3_9 :
 {
     build_source : "script"

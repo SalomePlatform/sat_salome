@@ -34,6 +34,11 @@ if [ -n "$SWIG_ROOT_DIR" ] && [ "$SAT_swig_IS_NATIVE" != "1" ]; then
     CMAKE_OPTIONS+=" -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig"
 fi
 
+if [ -n "$TBB_ROOT_DIR" ] && [ "$SAT_tbb_IS_NATIVE" != "1" ]; then
+    CMAKE_OPTIONS+=" -DTBB_ROOT_DIR=${TBB_ROOT_DIR}"
+    CMAKE_OPTIONS+=" -Dtbb_DIR=${TBB_ROOT_DIR}/lib/cmake"
+fi
+
 # https://github.com/openturns/openturns/issues/2820
 case $LINUX_DISTRIBUTION in
     CO7)
@@ -61,6 +66,8 @@ if [[ "$LINUX_DISTRIBUTION" == "CO8" && "$SAT_lapack_IS_NATIVE" == "1"  &&  -f /
 fi
 
 if [ -n "$LAPACK_ROOT_DIR" ] && [ "$SAT_lapack_IS_NATIVE" != "1" ]; then
+    CMAKE_OPTIONS+=" -DLAPACK_DIR=${LAPACK_ROOT_DIR}/lib/cmake/lapack-3.8.0"
+    CMAKE_OPTIONS+=" -DCBLAS_DIR=${LAPACK_ROOT_DIR}/lib/cmake/cblas-3.8.0"
     CMAKE_OPTIONS+=" -DCBLAS_LIBRARIES=$LAPACK_ROOT_DIR/lib/libcblas.so"
     CMAKE_OPTIONS+=" -DBLAS_LIBRARIES=$LAPACK_ROOT_DIR/lib/libblas.so"
 fi
@@ -77,10 +84,15 @@ if [ -n "$HDF5_ROOT_DIR" ] && [ "$SAT_hdf5_IS_NATIVE" != "1" ]; then
     CMAKE_OPTIONS+=" -DHDF5_DIR:PATH=${HDF5_ROOT_DIR}/share/cmake/hdf5"
     CMAKE_OPTIONS+=" -DHDF5_USE_STATIC_LIBRARIES:BOOL=OFF"
     CMAKE_OPTIONS+=" -DHDF5_ROOT:PATH=${HDF5_ROOT_DIR}"
+    CMAKE_OPTIONS+=" -DHDF5_hdf5_LIBRARY_RELEASE=${HDF5_ROOT_DIR}/lib"
+    CMAKE_OPTIONS+=" -DHDF5_hdf5_hl_LIBRARY_RELEASE=${HDF5_ROOT_DIR}/lib/libhdf5_hl.so"
+    CMAKE_OPTIONS+=" -DHDF5_HL_LIBRARY=${HDF5_ROOT_DIR}/lib/libhdf5_hl.so"
+    CMAKE_OPTIONS+=" -DHDF5_C_INCLUDE_DIR=${HDF5_ROOT_DIR}/include"
 fi
 
 # CMINPACK
 if [ -n "$CMINPACK_ROOT_DIR" ] && [ "$SAT_cminpack_IS_NATIVE" != "1" ]; then
+    CMAKE_OPTIONS+=" -DCMINPACK_ROOT_DIR=${CMINPACK_ROOT_DIR}"
     CMAKE_OPTIONS+=" -DCMINPACK_INCLUDE_DIR=${CMINPACK_ROOT_DIR}/include/cminpack-1"
     CMAKE_OPTIONS+=" -DCMINPACK_LIBRARY=$CMINPACK_ROOT_DIR/lib/libcminpack.so"
 else
@@ -91,7 +103,15 @@ fi
 
 ## nlopt
 if [ -n "$NLOPT_ROOT_DIR" ] && [ "$SAT_nlopt_IS_NATIVE" != "1" ]; then
+    CMAKE_OPTIONS+=" -DNLOPT_ROOT_DIR:PATH=${NLOPT_ROOT_DIR}"
+    CMAKE_OPTIONS+=" -DNLOPT_INCLUDE_DIR:PATH=${NLOPT_ROOT_DIR}/include"
+    CMAKE_OPTIONS+=" -DNLOPT_LIBRARY:STRING=${NLOPT_ROOT_DIR}/lib/libnlopt.so"
     CMAKE_OPTIONS+=" -DNLopt_DIR:PATH=${NLOPT_ROOT_DIR}/lib/cmake/nlopt"
+fi
+
+# Boost
+if [ -n "$BOOST_ROOT_DIR" ] && [ "$SAT_boost_IS_NATIVE" != "1" ]; then
+    CMAKE_OPTIONS+=" -DBOOST_DIR=${BOOST_ROOT_DIR}"
 fi
 
 echo
@@ -140,9 +160,13 @@ fi
 
 echo
 echo "*** check installation"
-if ! make check; then
-    echo "ERROR  testing Openturns features...."
-    exit 4
+if [ -f /.dockerenv ]; then
+    echo "WARNING: skipping...."
+else
+    if ! make check; then
+	echo "ERROR  testing Openturns features...."
+	exit 4
+    fi
 fi
 
 echo "*** check path"

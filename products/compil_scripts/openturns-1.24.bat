@@ -178,12 +178,6 @@ SET CMAKE_MODULE_OPTIONS=%CMAKE_OPTIONS% -DBUILD_DOC=OFF
 CALL:MODULE_BUILDER otrobopt "%SOURCE_DIR%\otrobopt-0.15" "%BUILD_DIR%\otrobopt" "%PRODUCT_INSTALL%" "%CMAKE_MODULE_OPTIONS%"
 
 echo ##########################################################################
-echo otsubsetinverse 1.10
-echo ##########################################################################
-SET CMAKE_MODULE_OPTIONS=%CMAKE_OPTIONS% -DBUILD_DOC=OFF
-CALL:MODULE_BUILDER otsubsetinverse "%SOURCE_DIR%\otsubsetinverse-1.10" "%BUILD_DIR%\otsubsetinverse" "%PRODUCT_INSTALL%" "%CMAKE_MODULE_OPTIONS%"
-
-echo ##########################################################################
 echo otsvm 0.15
 echo ##########################################################################
 SET CMAKE_MODULE_OPTIONS=%CMAKE_OPTIONS% -DBUILD_DOC=OFF
