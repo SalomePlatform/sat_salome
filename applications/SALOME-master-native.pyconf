@@ -49,7 +49,7 @@ APPLICATION :
         cgns : '4.2.0'
         chardet : 'native'
         click : 'native'
-        cmake : '3.25.2'
+        cmake : '3.31.6'
         cppunit : 'native'
         cminpack: '1.3.10'
         cork : '5987de5'
@@ -257,7 +257,6 @@ __overwrite__ :
         #
         __condition__ : "VARS.dist in ['UB22.04']"
         'APPLICATION.rm_products'               : ['TTK', 'markdown_it_py', 'mdurl','nose_py3','assimulo'] # TTK causes crashes
-        'APPLICATION.products.cmake'            : 'native' # TTK requires cmake > 3.21
         'APPLICATION.products.cftime'           : 'native'
         'APPLICATION.products.h5py'             : 'native'
         'APPLICATION.products.meshio'           : {tag: '5.3.5' , base: 'no', section: 'version_5_3_5_no_pip'    }
@@ -279,7 +278,6 @@ __overwrite__ :
         'APPLICATION.products.FMILibrary'       : '2.4.1'
         'APPLICATION.products.PyFMI'            : '2.13.1'
         'APPLICATION.products.swig'             : '4.0.2'
-        'APPLICATION.products.cmake'            : 'native'
         'APPLICATION.products.cftime'           : 'native'
         'APPLICATION.products.h5py'             : 'native'
         'APPLICATION.products.markdown_it_py'   : 'native'
@@ -338,7 +336,6 @@ __overwrite__ :
     {
         __condition__ : "VARS.dist in ['DB12']"
         'APPLICATION.rm_products'               : ['nose_py3','assimulo'] #
-        'APPLICATION.products.cmake'            : 'native' # TTK requires cmake > 3.21
         'APPLICATION.products.cftime'           : 'native'
         'APPLICATION.products.h5py'             : 'native'
         'APPLICATION.products.markdown_it_py'   : 'native'
@@ -466,7 +463,6 @@ __overwrite__ :
         'APPLICATION.rm_products' : ['mesa','nose_py3','assimulo']
         'APPLICATION.products.markdown_it_py'   : 'native'
         'APPLICATION.products.rich'             : 'native'
-        'APPLICATION.products.cmake'            : 'native'
         'APPLICATION.products.omniORB'          : '4.2.5'
         'APPLICATION.products.omniORBpy'        : '4.2.5'
         'APPLICATION.products.qwt'              : '6.1.6'
@@ -486,7 +482,6 @@ __overwrite__ :
         'APPLICATION.products.petsc'            : '3.20.5'
         'APPLICATION.products.markdown_it_py'   : 'native'
         'APPLICATION.products.rich'             : 'native'
-        'APPLICATION.products.cmake'            : 'native'
         'APPLICATION.products.omniORB'          : '4.2.5'
         'APPLICATION.products.qwt'              : '6.1.6'
         'APPLICATION.products.netcdf'           : '4.6.2'
