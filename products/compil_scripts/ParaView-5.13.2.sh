@@ -109,6 +109,14 @@ fi
 
 ### Qt settings
 CMAKE_OPTIONS+=" -DPARAVIEW_USE_QT:BOOL=ON"
+case $LINUX_DISTRIBUTION in
+    CO9*)
+        CMAKE_OPTIONS+=" -DPARAVIEW_QT_VERSION=5"
+        CMAKE_OPTIONS+=" -DVTK_QT_VERSION=5"
+        ;;
+    *)
+        ;;
+esac
 
 ### Python settings
 CMAKE_OPTIONS+=" -DPARAVIEW_USE_PYTHON:BOOL=ON"

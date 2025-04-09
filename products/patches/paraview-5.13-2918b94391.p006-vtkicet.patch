@@ -1,0 +1,14 @@
+diff -Naru ParaView-5.11.0/ThirdParty/IceT/vtkicet/CMakeLists.txt ParaView/ThirdParty/IceT/vtkicet/CMakeLists.txt
+--- ParaView-5.11.0/ThirdParty/IceT/vtkicet/CMakeLists.txt	2022-11-18 15:26:51.000000000 +0100
++++ ParaView/ThirdParty/IceT/vtkicet/CMakeLists.txt	2024-11-21 18:29:28.765236525 +0100
+@@ -175,8 +175,8 @@
+ ENDIF()
+ 
+ IF (CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_CLANG)
+-  SET(ICET_C_FLAGS_WARN "-ansi -Wall -Wno-long-long -Wextra -Wformat-security -Wshadow -Wunused -Wreturn-type -Wpointer-arith -Wdeclaration-after-statement")
+-  SET(ICET_C_FLAGS_WARN_LIST -ansi -Wall -Wno-long-long -Wextra -Wformat-security -Wshadow -Wunused -Wreturn-type -Wpointer-arith -Wdeclaration-after-statement)
++  SET(ICET_C_FLAGS_WARN "-Wall -Wno-long-long -Wextra -Wformat-security -Wshadow -Wunused -Wreturn-type -Wpointer-arith -Wdeclaration-after-statement")
++  SET(ICET_C_FLAGS_WARN_LIST -Wall -Wno-long-long -Wextra -Wformat-security -Wshadow -Wunused -Wreturn-type -Wpointer-arith -Wdeclaration-after-statement)
+ ENDIF (CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_CLANG)
+ 
+ # Configure testing support.
