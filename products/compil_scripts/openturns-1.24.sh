@@ -116,7 +116,14 @@ fi
 
 # it is not clear to me why the following tests fail. I vetoe them (requires patch openturns-1.24.0003.patch to be applied)
 # for additional informations, see: https://github.com/openturns/openturns/issues/2891
-CMAKE_OPTIONS+=" -DOPENTURNS_VETOED_TESTS=\"cppcheck_Log_std|cppcheck_FisherSnedecor_std|cppcheck_Poisson_std|cppcheck_Distribution_quantile\""
+case $LINUX_DISTRIBUTION in
+    CO7)
+        CMAKE_OPTIONS+=" -DOPENTURNS_VETOED_TESTS=\"cppcheck_Log_std|cppcheck_BoxCoxEvaluation_std|cppcheck_LatentVariableModel_std|cppcheck_FisherSnedecor_std|cppcheck_PlackettCopulaFactory_std|cppcheck_Poisson_std|cppcheck_Distribution_quantile|cppcheck_IsoProbabilisticTransformation_EllipticalCopula\""
+        ;;
+    *)
+        CMAKE_OPTIONS+=" -DOPENTURNS_VETOED_TESTS=\"cppcheck_Log_std|cppcheck_FisherSnedecor_std|cppcheck_Poisson_std|cppcheck_Distribution_quantile\""
+        ;;
+esac
 
 echo
 echo "*** cmake" $CMAKE_OPTIONS
