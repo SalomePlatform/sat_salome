@@ -51,7 +51,7 @@ esac
 
 # https://github.com/persalys/persalys/issues/745
 case $LINUX_DISTRIBUTION in
-    UB22*|CO8*|CO9*|FD36|FD37|FD38|FD40)
+    CO7|UB22*|CO8*|CO9*|FD36|FD37|FD38|FD40)
         echo "WARNING: switching OFF TBB support"
         CMAKE_OPTIONS+=" -DUSE_TBB=OFF"
         ;;
@@ -116,14 +116,7 @@ fi
 
 # it is not clear to me why the following tests fail. I vetoe them (requires patch openturns-1.24.0003.patch to be applied)
 # for additional informations, see: https://github.com/openturns/openturns/issues/2891
-case $LINUX_DISTRIBUTION in
-    CO7)
-        CMAKE_OPTIONS+=" -DOPENTURNS_VETOED_TESTS=\"cppcheck_Log_std|cppcheck_BoxCoxEvaluation_std|cppcheck_LatentVariableModel_std|cppcheck_FisherSnedecor_std|cppcheck_PlackettCopulaFactory_std|cppcheck_Poisson_std|cppcheck_Distribution_quantile|cppcheck_IsoProbabilisticTransformation_EllipticalCopula\""
-        ;;
-    *)
-        CMAKE_OPTIONS+=" -DOPENTURNS_VETOED_TESTS=\"cppcheck_Log_std|cppcheck_FisherSnedecor_std|cppcheck_Poisson_std|cppcheck_Distribution_quantile\""
-        ;;
-esac
+CMAKE_OPTIONS+=" -DOPENTURNS_VETOED_TESTS=\"cppcheck_Log_std|cppcheck_FisherSnedecor_std|cppcheck_Poisson_std|cppcheck_Distribution_quantile\""
 
 echo
 echo "*** cmake" $CMAKE_OPTIONS

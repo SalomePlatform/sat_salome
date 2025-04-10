@@ -343,6 +343,7 @@ version_CR753_SALOME_PATCH :
     {
       incremental : "no"
     }
+    patches : []
 }
 
 version_CR753_SALOME_PATCH_win :
@@ -395,6 +396,7 @@ version_CR753_SALOME_PATCH_win :
     }
     depend : ['freetype', 'freeimage', 'tbb']
     build_depend : ["cmake", "doxygen"]
+    patches : ["CAS-9c84b526cd.patch"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     properties:
