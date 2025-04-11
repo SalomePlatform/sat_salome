@@ -316,6 +316,7 @@ __overwrite__ :
         'APPLICATION.products.rich'             : {tag: '13.7.1', base: 'no', section: 'version_13_7_1_no_pip'   }
         'APPLICATION.products.meshio'           : {tag: '5.3.4', base:  'no', section: 'version_5_3_4_no_pip'}
         'APPLICATION.products.numpy'            : {tag: '1.20.3', base: 'no', section: 'version_1_20_3'        }
+        'APPLICATION.products.ParaView'         : {tag:'5.13.2918b94391', base: 'no',  section: 'version_5_13_2_MPI_DB10', hpc: 'yes'}
     }
     {
         __condition__ : "VARS.dist in ['DB11']"
