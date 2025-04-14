@@ -11,18 +11,15 @@ default :
     }
     environ :
     {
-        # OP 19/04/2017 Artifact 8482 : Ajout des variables CAS dans la
-        #                               section environ pour conserver
-        #                               la generalite du script CAS.py
-        CSF_ShadersDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Shaders"
-        CSF_UnitsLexicon : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
-        CSF_UnitsDefinition : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
-        CSF_SHMessage : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "SHMessage"
-        CSF_XSMessage : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "XSMessage"
+        CSF_ShadersDirectory      : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Shaders"
+        CSF_UnitsLexicon          : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
+        CSF_UnitsDefinition       : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
+        CSF_SHMessage             : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "SHMessage"
+        CSF_XSMessage             : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "XSMessage"
         CSF_MDTVTexturesDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Textures"
-        MMGT_REENTRANT : "1"
-        CSF_StandardDefaults : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
-        CSF_PluginDefaults : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        MMGT_REENTRANT            : "1"
+        CSF_StandardDefaults      : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        CSF_PluginDefaults        : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
            
         env_script : $name + ".py"
     }
@@ -31,6 +28,94 @@ default :
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     install_dir : 'base'
+    properties:
+    {
+      incremental : "no"
+    }
+}
+
+version_CR790_SALOME_PATCH :
+{
+    name : "CAS"
+    build_source : "script"
+    compil_script :  "CAS_7.9.sh"
+    get_source : "git"
+    git_info:
+    {
+        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo_dev : $repo
+    }
+    environ :
+    {
+        CSF_ShadersDirectory      : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Shaders"
+        CSF_UnitsLexicon          : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
+        CSF_UnitsDefinition       : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
+        CSF_SHMessage             : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "SHMessage"
+        CSF_XSMessage             : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "XSMessage"
+        CSF_MDTVTexturesDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Textures"
+        MMGT_REENTRANT            : "1"
+        CSF_StandardDefaults      : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        CSF_PluginDefaults        : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        env_script                : $name + ".py"
+    }
+    depend : ['freetype', 'freeimage', 'rapidjson']
+    build_depend : ["cmake", "doxygen"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties:
+    {
+      incremental : "no"
+    }
+}
+
+version_CR790_SALOME_PATCH_win :
+{
+    name : "CAS"
+    build_source : "script"
+    compil_script :  "CAS_7.9.bat"
+    get_source : "git"
+    git_info:
+    {
+        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo_dev : $repo
+    }
+    environ :
+    {
+        CSF_OCCTBinPath          : $install_dir + $VARS.sep + "win64" + $VARS.sep + "vc14" + $VARS.sep + "bin"
+        CSF_OCCTLibPath          : $install_dir + $VARS.sep + "win64" + $VARS.sep + "vc14" + $VARS.sep + "lib"
+        CSF_OCCTIncludePath      : $install_dir + $VARS.sep + "inc"
+        CSF_OCCTResourcePath     : $install_dir + $VARS.sep + "src"
+        CSF_OCCTDataPath         : $install_dir + $VARS.sep + "data"
+        CSF_OCCTSamplesPath      : $install_dir + $VARS.sep + "samples"
+        CSF_OCCTTestsPath        : $install_dir + $VARS.sep + "tests"
+        CSF_OCCTDocPath          : $install_dir + $VARS.sep + "doc"
+        CSF_SHMessage            : $install_dir + $VARS.sep + "src" + $VARS.sep + "SHMessage"
+        CSF_MDTVTexturesDirectory: $install_dir + $VARS.sep + "src" + $VARS.sep + "Textures"
+        CSF_ShadersDirectory     : $install_dir + $VARS.sep + "src" + $VARS.sep + "Shaders"
+        CSF_XSMessage            : $install_dir + $VARS.sep + "src" + $VARS.sep + "XSMessage"
+        CSF_TObjMessage          : $install_dir + $VARS.sep + "src" + $VARS.sep + "TObj"
+        CSF_StandardDefaults     : $install_dir + $VARS.sep + "src" + $VARS.sep + "StdResource"
+        CSF_PluginDefaults       : $install_dir + $VARS.sep + "src" + $VARS.sep + "StdResource"
+        CSF_XCAFDefaults         : $install_dir + $VARS.sep + "src" + $VARS.sep + "StdResource"
+        CSF_TObjDefaults         : $install_dir + $VARS.sep + "src" + $VARS.sep + "StdResource"
+        CSF_StandardLiteDefaults : $install_dir + $VARS.sep + "src" + $VARS.sep + "StdResource"
+        CSF_IGESDefaults         : $install_dir + $VARS.sep + "src" + $VARS.sep + "XSTEPResource"
+        CSF_STEPDefaults         : $install_dir + $VARS.sep + "src" + $VARS.sep + "XSTEPResource"
+        CSF_XmlOcafResource      : $install_dir + $VARS.sep + "src" + $VARS.sep + "XmlOcafResource"
+        CSF_MIGRATION_TYPES      : $install_dir + $VARS.sep + "src" + $VARS.sep + "StdResource" + $VARS.sep + "MigrationSheet.txt"
+        CSF_UnitsDefinition      : $install_dir + $VARS.sep + "src" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
+
+        MMGT_CLEAR     : "1"
+        MMGT_REENTRANT : "1"
+        CSF_LANGUAGE   : "us"
+
+        env_script : $name + ".py"
+    }
+    depend : ['freetype', 'freeimage', 'rapidjson']
+    build_depend : ["cmake", "doxygen"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     properties:
     {
       incremental : "no"
@@ -50,15 +135,15 @@ version_CR780_SALOME_PATCH :
     }
     environ :
     {
-        CSF_ShadersDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Shaders"
-        CSF_UnitsLexicon : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
-        CSF_UnitsDefinition : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
-        CSF_SHMessage : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "SHMessage"
-        CSF_XSMessage : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "XSMessage"
+        CSF_ShadersDirectory      : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Shaders"
+        CSF_UnitsLexicon          : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
+        CSF_UnitsDefinition       : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
+        CSF_SHMessage             : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "SHMessage"
+        CSF_XSMessage             : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "XSMessage"
         CSF_MDTVTexturesDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Textures"
-        MMGT_REENTRANT : "1"
-        CSF_StandardDefaults : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
-        CSF_PluginDefaults : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        MMGT_REENTRANT            : "1"
+        CSF_StandardDefaults      : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        CSF_PluginDefaults        : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
         env_script : $name + ".py"
     }
     depend : ['freetype', 'freeimage', 'rapidjson']
@@ -139,15 +224,15 @@ version_SALOME_9_14_a2_V7_8_0 :
     }
     environ :
     {
-        CSF_ShadersDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Shaders"
-        CSF_UnitsLexicon : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
-        CSF_UnitsDefinition : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
-        CSF_SHMessage : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "SHMessage"
-        CSF_XSMessage : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "XSMessage"
+        CSF_ShadersDirectory      : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Shaders"
+        CSF_UnitsLexicon          : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
+        CSF_UnitsDefinition       : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
+        CSF_SHMessage             : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "SHMessage"
+        CSF_XSMessage             : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "XSMessage"
         CSF_MDTVTexturesDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Textures"
-        MMGT_REENTRANT : "1"
-        CSF_StandardDefaults : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
-        CSF_PluginDefaults : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        MMGT_REENTRANT            : "1"
+        CSF_StandardDefaults      : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        CSF_PluginDefaults        : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
         env_script : $name + ".py"
     }
     depend : ['freetype', 'freeimage']
@@ -229,15 +314,15 @@ version_SALOME_9_13_V7_8_0 :
     }
     environ :
     {
-        CSF_ShadersDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Shaders"
-        CSF_UnitsLexicon : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
-        CSF_UnitsDefinition : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
-        CSF_SHMessage : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "SHMessage"
-        CSF_XSMessage : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "XSMessage"
+        CSF_ShadersDirectory      : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Shaders"
+        CSF_UnitsLexicon          : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
+        CSF_UnitsDefinition       : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
+        CSF_SHMessage             : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "SHMessage"
+        CSF_XSMessage             : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "XSMessage"
         CSF_MDTVTexturesDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Textures"
-        MMGT_REENTRANT : "1"
-        CSF_StandardDefaults : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
-        CSF_PluginDefaults : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        MMGT_REENTRANT            : "1"
+        CSF_StandardDefaults      : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        CSF_PluginDefaults        : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
         env_script : $name + ".py"
     }
     depend : ['freetype', 'freeimage']
@@ -324,15 +409,15 @@ version_CR753_SALOME_PATCH :
     }
     environ :
     {
-        CSF_ShadersDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Shaders"
-        CSF_UnitsLexicon : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
-        CSF_UnitsDefinition : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
-        CSF_SHMessage : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "SHMessage"
-        CSF_XSMessage : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "XSMessage"
+        CSF_ShadersDirectory      : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Shaders"
+        CSF_UnitsLexicon          : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
+        CSF_UnitsDefinition       : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
+        CSF_SHMessage             : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "SHMessage"
+        CSF_XSMessage             : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "XSMessage"
         CSF_MDTVTexturesDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Textures"
-        MMGT_REENTRANT : "1"
-        CSF_StandardDefaults : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
-        CSF_PluginDefaults : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        MMGT_REENTRANT            : "1"
+        CSF_StandardDefaults      : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        CSF_PluginDefaults        : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
         env_script : $name + ".py"
     }
     depend : ['freetype', 'freeimage']
@@ -418,15 +503,15 @@ version_V7_5_3p2 :
     }
     environ :
     {
-        CSF_ShadersDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Shaders"
-        CSF_UnitsLexicon : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
-        CSF_UnitsDefinition : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
-        CSF_SHMessage : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "SHMessage"
-        CSF_XSMessage : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "XSMessage"
+        CSF_ShadersDirectory      : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Shaders"
+        CSF_UnitsLexicon          : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
+        CSF_UnitsDefinition       : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
+        CSF_SHMessage             : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "SHMessage"
+        CSF_XSMessage             : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "XSMessage"
         CSF_MDTVTexturesDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Textures"
-        MMGT_REENTRANT : "1"
-        CSF_StandardDefaults : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
-        CSF_PluginDefaults : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        MMGT_REENTRANT            : "1"
+        CSF_StandardDefaults      : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        CSF_PluginDefaults        : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
         env_script : $name + ".py"
     }
     depend : ['freetype', 'freeimage']
@@ -506,15 +591,15 @@ version_V7_5_3p1 :
     }
     environ :
     {
-        CSF_ShadersDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Shaders"
-        CSF_UnitsLexicon : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
-        CSF_UnitsDefinition : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
-        CSF_SHMessage : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "SHMessage"
-        CSF_XSMessage : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "XSMessage"
+        CSF_ShadersDirectory      : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Shaders"
+        CSF_UnitsLexicon          : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
+        CSF_UnitsDefinition       : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
+        CSF_SHMessage             : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "SHMessage"
+        CSF_XSMessage             : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "XSMessage"
         CSF_MDTVTexturesDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Textures"
-        MMGT_REENTRANT : "1"
-        CSF_StandardDefaults : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
-        CSF_PluginDefaults : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        MMGT_REENTRANT            : "1"
+        CSF_StandardDefaults      : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        CSF_PluginDefaults        : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
         env_script : $name + ".py"
     }
     depend : ['freetype', 'freeimage']
@@ -594,18 +679,15 @@ version_V7_5_0 :
     }
     environ :
     {
-        # OP 19/04/2017 Artifact 8482 : Ajout des variables CAS dans la
-        #                               section environ pour conserver
-        #                               la generalite du script CAS.py
-        CSF_ShadersDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Shaders"
-        CSF_UnitsLexicon : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
-        CSF_UnitsDefinition : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
-        CSF_SHMessage : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "SHMessage"
-        CSF_XSMessage : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "XSMessage"
+        CSF_ShadersDirectory      : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Shaders"
+        CSF_UnitsLexicon          : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
+        CSF_UnitsDefinition       : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
+        CSF_SHMessage             : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "SHMessage"
+        CSF_XSMessage             : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "XSMessage"
         CSF_MDTVTexturesDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Textures"
-        MMGT_REENTRANT : "1"
-        CSF_StandardDefaults : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
-        CSF_PluginDefaults : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        MMGT_REENTRANT            : "1"
+        CSF_StandardDefaults      : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        CSF_PluginDefaults        : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
         env_script : $name + ".py"
     }
     depend : ['freetype', 'freeimage']
@@ -688,18 +770,15 @@ version_V7_4_0p2 :
     }
     environ :
     {
-        # OP 19/04/2017 Artifact 8482 : Ajout des variables CAS dans la
-        #                               section environ pour conserver
-        #                               la generalite du script CAS.py
-        CSF_ShadersDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Shaders"
-        CSF_UnitsLexicon : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
-        CSF_UnitsDefinition : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
-        CSF_SHMessage : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "SHMessage"
-        CSF_XSMessage : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "XSMessage"
+        CSF_ShadersDirectory      : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Shaders"
+        CSF_UnitsLexicon          : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
+        CSF_UnitsDefinition       : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
+        CSF_SHMessage             : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "SHMessage"
+        CSF_XSMessage             : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "XSMessage"
         CSF_MDTVTexturesDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Textures"
-        MMGT_REENTRANT : "1"
-        CSF_StandardDefaults : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
-        CSF_PluginDefaults : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        MMGT_REENTRANT            : "1"
+        CSF_StandardDefaults      : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        CSF_PluginDefaults        : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
            
         env_script : $name + ".py"
     }
@@ -779,18 +858,15 @@ version_V7_4_0p1 :
     }
     environ :
     {
-        # OP 19/04/2017 Artifact 8482 : Ajout des variables CAS dans la
-        #                               section environ pour conserver
-        #                               la generalite du script CAS.py
-        CSF_ShadersDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Shaders"
-        CSF_UnitsLexicon : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
-        CSF_UnitsDefinition : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
-        CSF_SHMessage : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "SHMessage"
-        CSF_XSMessage : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "XSMessage"
+        CSF_ShadersDirectory      : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Shaders"
+        CSF_UnitsLexicon          : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
+        CSF_UnitsDefinition       : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
+        CSF_SHMessage             : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "SHMessage"
+        CSF_XSMessage             : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "XSMessage"
         CSF_MDTVTexturesDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Textures"
-        MMGT_REENTRANT : "1"
-        CSF_StandardDefaults : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
-        CSF_PluginDefaults : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        MMGT_REENTRANT            : "1"
+        CSF_StandardDefaults      : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        CSF_PluginDefaults        : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
            
         env_script : $name + ".py"
     }
@@ -870,15 +946,15 @@ version_V7_3_0p4 :
     }
     environ :
     {
-        CSF_ShadersDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Shaders"
-        CSF_UnitsLexicon : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
-        CSF_UnitsDefinition : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
-        CSF_SHMessage : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "SHMessage"
-        CSF_XSMessage : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "XSMessage"
+        CSF_ShadersDirectory      : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Shaders"
+        CSF_UnitsLexicon          : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
+        CSF_UnitsDefinition       : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
+        CSF_SHMessage             : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "SHMessage"
+        CSF_XSMessage             : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "XSMessage"
         CSF_MDTVTexturesDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Textures"
-        MMGT_REENTRANT : "1"
-        CSF_StandardDefaults : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
-        CSF_PluginDefaults : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        MMGT_REENTRANT            : "1"
+        CSF_StandardDefaults      : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        CSF_PluginDefaults        : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
            
         env_script : $name + ".py"
     }
@@ -958,15 +1034,15 @@ version_V7_3_0p3 :
     }
     environ :
     {
-        CSF_ShadersDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Shaders"
-        CSF_UnitsLexicon : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
-        CSF_UnitsDefinition : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
-        CSF_SHMessage : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "SHMessage"
-        CSF_XSMessage : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "XSMessage"
+        CSF_ShadersDirectory      : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Shaders"
+        CSF_UnitsLexicon          : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
+        CSF_UnitsDefinition       : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
+        CSF_SHMessage             : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "SHMessage"
+        CSF_XSMessage             : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "XSMessage"
         CSF_MDTVTexturesDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Textures"
-        MMGT_REENTRANT : "1"
-        CSF_StandardDefaults : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
-        CSF_PluginDefaults : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        MMGT_REENTRANT            : "1"
+        CSF_StandardDefaults      : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        CSF_PluginDefaults        : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
            
         env_script : $name + ".py"
     }
@@ -1042,18 +1118,15 @@ version_6_0_0_to_7_0_0 :
     get_source : "archive"
     environ :
     {
-        # OP 19/04/2017 Artifact 8482 : Ajout des variables CAS dans la
-        #                               section environ pour conserver
-        #                               la generalite du script CAS.py
-        CSF_UnitsLexicon : $install_dir + $VARS.sep + "src" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
-        CSF_UnitsDefinition : $install_dir + $VARS.sep + "src" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
-        CSF_SHMessage : $install_dir + $VARS.sep + "src" + $VARS.sep + "SHMessage"
-        CSF_XSMessage : $install_dir + $VARS.sep + "src" + $VARS.sep + "XSMessage"
-        CSF_MDTVFontDirectory : $install_dir + $VARS.sep + "src" + $VARS.sep + "FontMFT"
+        CSF_UnitsLexicon          : $install_dir + $VARS.sep + "src" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
+        CSF_UnitsDefinition       : $install_dir + $VARS.sep + "src" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
+        CSF_SHMessage             : $install_dir + $VARS.sep + "src" + $VARS.sep + "SHMessage"
+        CSF_XSMessage             : $install_dir + $VARS.sep + "src" + $VARS.sep + "XSMessage"
+        CSF_MDTVFontDirectory     : $install_dir + $VARS.sep + "src" + $VARS.sep + "FontMFT"
         CSF_MDTVTexturesDirectory : $install_dir + $VARS.sep + "src" + $VARS.sep + "Textures"
-        MMGT_REENTRANT : "1"
-        CSF_StandardDefaults : $install_dir + $VARS.sep + "src" + $VARS.sep + "StdResource"
-        CSF_PluginDefaults : $install_dir + $VARS.sep + "src" + $VARS.sep + "StdResource"
+        MMGT_REENTRANT            : "1"
+        CSF_StandardDefaults      : $install_dir + $VARS.sep + "src" + $VARS.sep + "StdResource"
+        CSF_PluginDefaults        : $install_dir + $VARS.sep + "src" + $VARS.sep + "StdResource"
 
         env_script : $name + ".py"
     }
@@ -1072,18 +1145,15 @@ version_6_5_4 :
     get_source : "archive"
     environ :
     {
-        # OP 19/04/2017 Artifact 8482 : Ajout des variables CAS dans la
-        #                               section environ pour conserver
-        #                               la generalite du script CAS.py
-        CSF_UnitsLexicon : $install_dir + $VARS.sep + "src" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
-        CSF_UnitsDefinition : $install_dir + $VARS.sep + "src" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
-        CSF_SHMessage : $install_dir + $VARS.sep + "src" + $VARS.sep + "SHMessage"
-        CSF_XSMessage : $install_dir + $VARS.sep + "src" + $VARS.sep + "XSMessage"
-        CSF_MDTVFontDirectory : $install_dir + $VARS.sep + "src" + $VARS.sep + "FontMFT"
+        CSF_UnitsLexicon          : $install_dir + $VARS.sep + "src" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
+        CSF_UnitsDefinition       : $install_dir + $VARS.sep + "src" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
+        CSF_SHMessage             : $install_dir + $VARS.sep + "src" + $VARS.sep + "SHMessage"
+        CSF_XSMessage             : $install_dir + $VARS.sep + "src" + $VARS.sep + "XSMessage"
+        CSF_MDTVFontDirectory     : $install_dir + $VARS.sep + "src" + $VARS.sep + "FontMFT"
         CSF_MDTVTexturesDirectory : $install_dir + $VARS.sep + "src" + $VARS.sep + "Textures"
-        MMGT_REENTRANT : "1"
-        CSF_StandardDefaults : $install_dir + $VARS.sep + "src" + $VARS.sep + "StdResource"
-        CSF_PluginDefaults : $install_dir + $VARS.sep + "src" + $VARS.sep + "StdResource"
+        MMGT_REENTRANT            : "1"
+        CSF_StandardDefaults      : $install_dir + $VARS.sep + "src" + $VARS.sep + "StdResource"
+        CSF_PluginDefaults        : $install_dir + $VARS.sep + "src" + $VARS.sep + "StdResource"
 
         env_script : $name + ".py"
     }
@@ -1103,18 +1173,15 @@ version_7_0_0 :
     get_source : "archive"
     environ :
     {
-        # OP 19/04/2017 Artifact 8482 : Ajout des variables CAS dans la
-        #                               section environ pour conserver
-        #                               la generalite du script CAS.py
-        CSF_ShadersDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Shaders"
-        CSF_UnitsLexicon : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
-        CSF_UnitsDefinition : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
-        CSF_SHMessage : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "SHMessage"
-        CSF_XSMessage : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "XSMessage"
+        CSF_ShadersDirectory      : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Shaders"
+        CSF_UnitsLexicon          : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
+        CSF_UnitsDefinition       : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
+        CSF_SHMessage             : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "SHMessage"
+        CSF_XSMessage             : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "XSMessage"
         CSF_MDTVTexturesDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Textures"
-        MMGT_REENTRANT : "1"
-        CSF_StandardDefaults : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
-        CSF_PluginDefaults : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        MMGT_REENTRANT            : "1"
+        CSF_StandardDefaults      : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        CSF_PluginDefaults        : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
 
         env_script : $name + ".py"
     }

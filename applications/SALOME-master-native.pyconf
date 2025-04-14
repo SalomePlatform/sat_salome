@@ -40,7 +40,7 @@ APPLICATION :
         Babel : 'native'
         BasicIterativeStatistics :  'v0.1.0'
         boost : 'native'
-        CAS : {tag : 'CR780-SALOME-PATCH', section: 'version_CR780_SALOME_PATCH', base:  'no'}
+        CAS : {tag : 'CR790-SALOME-PATCH', section: 'version_CR790_SALOME_PATCH', base:  'no'}
         catalyst: {tag: '2.0', section: 'version_v2_0_0', base: 'no'}
         C3PO: 'v2.3'
         certifi : 'native'

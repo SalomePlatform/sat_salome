@@ -46,13 +46,16 @@ version_3_16_0 :
 
 version_3_18_0:
 {
-  compil_script :  "freeimage-3.18.0.sh"
-  patches : [] 
+    compil_script :  "freeimage-3.18.0.sh"
+    patches : [
+                'freeimage-3.18.0.p001.patch',
+                'freeimage-3.18.0.p002.patch',
+                'freeimage-3.18.0.p003.patch'
+              ]
 }
 
 version_3_18_0_win:
 {
-  compil_script :  "freeimage.bat"
-  patches : ['freeimage-3.18.0_windows.patch'] 
+    compil_script :  "freeimage.bat"
+    patches : ['freeimage-3.18.0_windows.patch']
 }
-
