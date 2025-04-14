@@ -136,6 +136,14 @@ version_V9_15_0_MPI :
        "pytz",
        "openmpi"
     ]
+    git_commands: [
+                   'git config -f .gitmodules submodule.src/Plugins/MEDReader.url ../medreader',
+                   'git config -f .git/config submodule.src/Plugins/MEDReader.url ../medreader',
+                   'git submodule sync',
+                   'git submodule update --init --remote'
+                   'cd src/Plugins/MEDReader'
+                   'git checkout V9_15_0a1'
+                  ]
     patches : []
 }
 
