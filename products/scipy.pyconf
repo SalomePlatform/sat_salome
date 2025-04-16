@@ -70,6 +70,17 @@ version_1_5_2_no_pip :
     }
 }
 
+version_1_5_2_DB10 :
+{
+    patches : [ "scipy-1.5.2_limit_pybind11_version_for_py37.patch"]
+    compil_script : "scipy-1.5.2.sh"
+    properties :
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+}
+
 version_1_3_0 : 
 {
 }
