@@ -1,0 +1,11 @@
+--- scipy-1.5.2_ref/setup.py	2020-07-23 03:48:12.013504743 +0200
++++ scipy-1.5.2_dev/setup.py	2025-04-16 16:52:29.020989522 +0200
+@@ -514,7 +514,7 @@
+                           else [])
+ 
+     install_requires = build_requires
+-    setup_requires = build_requires + ['pybind11>=2.4.3']
++    setup_requires = build_requires + ['pybind11>=2.4.3, <2.14.0']
+ 
+     metadata = dict(
+         name='scipy',
