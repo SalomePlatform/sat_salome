@@ -87,6 +87,8 @@ if NOT %ERRORLEVEL% == 0 (
     exit 3
 )
 
+copy /Y /B  %PRODUCT_INSTALL%\bin\zlib.dll %PRODUCT_INSTALL%\bin\zlib1.dll
+
 if %SAT_DEBUG% == 1 (
   copy /Y /B  %PRODUCT_INSTALL%\lib\zlibd.lib %PRODUCT_INSTALL%\lib\zlib.lib
   copy /Y /B  %PRODUCT_INSTALL%\bin\zlibd1.dll %PRODUCT_INSTALL%\bin\zlib1.dll
