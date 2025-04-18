@@ -23,3 +23,8 @@ default :
         incremental : "yes"
     }
 }
+
+default_win:
+{
+    depend : ["CAS" "CONFIGURATION", "pthreads"]
+}
