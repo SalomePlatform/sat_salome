@@ -466,8 +466,9 @@ __overwrite__ :
         'APPLICATION.products.qwt'              : '6.1.6'
         'APPLICATION.products.netcdf'           : '4.6.2'
         'APPLICATION.products.swig'             : '4.0.2'
-        'APPLICATION.products.meshio'           : {tag: '5.3.5' ,    base: 'no', section: 'version_5_3_5_no_pip'                }
+        'APPLICATION.products.meshio'           : {tag: '5.3.5',     base: 'no', section: 'version_5_3_5_no_pip'                }
         'APPLICATION.products.opencv'           : {tag: '3.2.0',     base: 'no', section: 'version_3_2_0_FD38'                  }
+        'APPLICATION.products.petsc'            : {tag: '3.20.5',    base: 'no', section: 'version_3_20_5_FD38'                 }
         'APPLICATION.products.PyFMI'            : {tag: '2.6',       base: 'no', section: 'version_2_6_FD38'                    }
         'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD38'                  }
         'APPLICATION.products.gmsh'             : {tag: '4.10.3',    base: 'no', section: 'version_4_10_3_with_CAS_7_8_FD38'    }
@@ -495,6 +496,7 @@ __overwrite__ :
         'APPLICATION.products.rapidjson'        : {tag: '1.1.0',          base: 'no', section: 'version_1_1_0_FD40'                  }
         'APPLICATION.products.ParaView'         : {tag:'5.13.2918b94391', base: 'no',  section: 'version_5_13_2_MPI_FD40', hpc: 'yes'}
         'APPLICATION.products.KERNEL'           : {tag: 'master',         base: 'no', section: 'default_FD40'                        }
+        'APPLICATION.products.petsc'            : {tag: '3.20.5',         base: 'no', section: 'version_3_20_5_FD40'                 }
         'APPLICATION.products.SOLVERLAB'        : {tag: 'master',         base: 'no', section: 'version_V9_14_0_FD40'                }
     }
 ]
