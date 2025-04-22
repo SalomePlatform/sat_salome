@@ -70,6 +70,7 @@ version_4_10_3_with_CAS_7_8_win:
   compil_script : "gmsh-4.10.3.bat"
   depend : ["CAS","lapack","hdf5","medfile", "cgns"]
   patches : ['gmsh-4.10.3-occt780-win.patch']
+  nb_proc: 4
 }
 
 version_4_10_3_with_CAS_7_8_win_dbg:

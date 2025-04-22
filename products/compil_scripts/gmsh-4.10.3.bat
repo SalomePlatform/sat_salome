@@ -90,7 +90,7 @@ echo *********************************************************************
 echo *** installation Headers...
 echo *********************************************************************
 echo.
-msbuild  /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64  /p:BuildProjectReferences=false get_headers.vcxproj
+msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64  /p:BuildProjectReferences=false get_headers.vcxproj
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on msbuild get_headers.vcxproj
     exit 4
@@ -123,9 +123,9 @@ FOR %%f IN (*.h) do (
 ENDLOCAL
 
 REM these two files need to be moved to bin, adding bin directory to PATH does not help.
-cp %PRODUCT_INSTALL%\lib\gmsh.py %PRODUCT_INSTALL%\bin\gmsh.py
+COPY /Y %PRODUCT_INSTALL%\lib\gmsh.py %PRODUCT_INSTALL%\bin\gmsh.py
 if %SAT_DEBUG% == 0 (
-  cp %PRODUCT_INSTALL%\lib\gmsh.dll %PRODUCT_INSTALL%\bin\gmsh.dll
+  COPY /Y /B %PRODUCT_INSTALL%\lib\gmsh.dll %PRODUCT_INSTALL%\bin\gmsh.dll
 )
 
 echo.

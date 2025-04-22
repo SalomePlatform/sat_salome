@@ -14,7 +14,7 @@ echo *********************************************************************
 echo.
 
 cd %SOURCE_DIR%
-xcopy * %PRODUCT_INSTALL% /E /I /Q
+xcopy * %PRODUCT_INSTALL% /E /I /Q /Y
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on xcopy
     exit 1
