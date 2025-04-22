@@ -22,7 +22,6 @@ default :
               'GUI',
               'boost',
               'CAS',
-              "CommonGeomLib",
               'Python',
               'hdf5',
               'omniORB',
@@ -40,7 +39,7 @@ default :
               'eigen'
              ]
     build_depend : ["cmake", "swig", "doxygen"]
-    opt_depend : ["sphinxcontrib_napoleon"]
+    opt_depend : ["CommonGeomLib","sphinxcontrib_napoleon"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     properties:
