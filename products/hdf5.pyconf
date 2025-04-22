@@ -40,6 +40,7 @@ default_Autotools :
 default_win :
 {
    archive_info : {archive_name : "hdf5-" + $APPLICATION.products.hdf5 + "_windows.tar.gz"}
+   nb_procs : 4 # concurrent access leads to permission denied
 }
 
 version_1_10_11 :
