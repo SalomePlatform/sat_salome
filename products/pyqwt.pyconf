@@ -22,7 +22,7 @@ default :
        env_script : "pyqwt.py"
     }
     depend : ['Python','setuptools','numpy', 'qwt', 'PyQt']
-    opt_depend: []
+    opt_depend: ['wheel']
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     install_dir : 'base'
