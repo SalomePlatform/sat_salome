@@ -42,6 +42,8 @@ version_3_20_5_FD38 :
     depend : ["hdf5", "Python", "lapack","fftw", "llvm", "metis", "medfile", "mpi4py", "scotch" ]
     patches: ['petsc-3.20.5-mpi4py.patch']
     nb_proc: 4
+}
+
 version_3_20_5_DB10 :
 {
     compil_script :  "petsc-3.20.5.sh"
