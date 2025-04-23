@@ -1,0 +1,12 @@
+diff -Naur '--exclude=*.tar.gz*' petsc/src/binding/petsc4py/conf/confpetsc.py petsc.dev/src/binding/petsc4py/conf/confpetsc.py
+--- petsc/src/binding/petsc4py/conf/confpetsc.py	2024-02-27 04:09:17.000000000 +0100
++++ petsc.dev/src/binding/petsc4py/conf/confpetsc.py	2025-04-17 17:17:00.473139564 +0200
+@@ -130,7 +130,7 @@
+             return
+     finally:
+         os.chdir(cwd)
+-    require = 'Cython >= %s' % VERSION
++    require = 'Cython >= %s, < 3.1.0' % VERSION
+     if setuptools and not cython_chk(VERSION, verbose=False):
+         if sys.modules.get('Cython'):
+             removed = getattr(sys.modules['Cython'], '__version__', '')

@@ -242,16 +242,16 @@ __overwrite__ :
         'APPLICATION.products.nlopt'            : '2.7.0'
         'APPLICATION.products.qt'               : '5.15.15'
         'APPLICATION.products.qwt'              : '6.1.6'
-        'APPLICATION.products.poetry'           : {tag: '1.5.1', base: 'no', section: 'version_1_5_1_x86_64' }
         'APPLICATION.products.PyQt'             : '5.15.3'
         'APPLICATION.products.sip'              : '5.5.0'
-        'APPLICATION.products.PyFMI'            : {tag: '2.6',    base: 'no', section: 'version_2_6_no_pip'      }
-        'APPLICATION.products.scipy'            : {tag: '1.5.2',  base: 'no', section: 'version_1_5_2_no_pip'    } # scipy >= 1.4 - system one too old
-        'APPLICATION.products.mdurl'            : {tag: '0.1.2',  base: 'no', section: 'version_0_1_2_no_pip'    }
-        'APPLICATION.products.markdown_it_py'   : {tag: '3.0.0',  base: 'no', section: 'version_3_0_0_no_pip'    }
-        'APPLICATION.products.rich'             : {tag: '13.7.1', base: 'no', section: 'version_13_7_1_no_pip'   }
-        'APPLICATION.products.numpy'            : {tag: '1.20.3', base: 'no', section: 'version_1_20_3'          }
-        'APPLICATION.products.meshio'           : {tag: '5.3.5' , base: 'no', section: 'version_5_3_5_no_pip'    }
+        'APPLICATION.products.poetry'           : {tag: '1.5.1',  base: 'no', section: 'version_1_5_1_x86_64' }
+        'APPLICATION.products.PyFMI'            : {tag: '2.6',    base: 'no', section: 'version_2_6_no_pip'   }
+        'APPLICATION.products.scipy'            : {tag: '1.5.2',  base: 'no', section: 'version_1_5_2_no_pip' } # scipy >= 1.4 - system one too old
+        'APPLICATION.products.mdurl'            : {tag: '0.1.2',  base: 'no', section: 'version_0_1_2_no_pip' }
+        'APPLICATION.products.markdown_it_py'   : {tag: '3.0.0',  base: 'no', section: 'version_3_0_0_no_pip' }
+        'APPLICATION.products.rich'             : {tag: '13.7.1', base: 'no', section: 'version_13_7_1_no_pip'}
+        'APPLICATION.products.numpy'            : {tag: '1.20.3', base: 'no', section: 'version_1_20_3'       }
+        'APPLICATION.products.meshio'           : {tag: '5.3.5' , base: 'no', section: 'version_5_3_5_no_pip' }
     }
     {
         #
@@ -259,79 +259,81 @@ __overwrite__ :
         'APPLICATION.rm_products'               : ['TTK', 'markdown_it_py', 'mdurl','nose_py3','assimulo'] # TTK causes crashes
         'APPLICATION.products.cftime'           : 'native'
         'APPLICATION.products.h5py'             : 'native'
-        'APPLICATION.products.meshio'           : {tag: '5.3.5' , base: 'no', section: 'version_5_3_5_no_pip'    }
         'APPLICATION.products.netCDF4'          : 'native'
         'APPLICATION.products.rich'             : 'native'
         'APPLICATION.products.opencv'           : '3.2.0'
         'APPLICATION.products.netcdf'           : '4.6.2'
         'APPLICATION.products.omniORB'          : '4.2.5'
         'APPLICATION.products.omniORBpy'        : '4.2.5'
-        'APPLICATION.products.PyFMI'            : {tag: '2.6',       base: 'no', section: 'version_2_6_UB22_04'                    }
-        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_UB22_04'                  }
+        'APPLICATION.products.meshio'           : {tag: '5.3.5' , base: 'no', section: 'version_5_3_5_no_pip' }
+        'APPLICATION.products.PyFMI'            : {tag: '2.6',    base: 'no', section: 'version_2_6_UB22_04'  }
+        'APPLICATION.products.medfile'          : {tag: '4.1.1',  base: 'no', section: 'version_4_1_1_UB22_04'}
     }
     {
         #
         __condition__ : "VARS.dist in ['UB24.04']"
+        'APPLICATION.products.cftime'           : 'native'
+        'APPLICATION.products.h5py'             : 'native'
+        'APPLICATION.products.markdown_it_py'   : 'native'
+        'APPLICATION.products.netCDF4'          : 'native'
+        'APPLICATION.products.rich'             : 'native'
         'APPLICATION.products.assimulo'         : '3.5.2'
         'APPLICATION.products.netcdf'           : '4.6.2'
         'APPLICATION.products.opencv'           : '3.2.0'
         'APPLICATION.products.FMILibrary'       : '2.4.1'
         'APPLICATION.products.PyFMI'            : '2.13.1'
         'APPLICATION.products.swig'             : '4.0.2'
-        'APPLICATION.products.cftime'           : 'native'
-        'APPLICATION.products.h5py'             : 'native'
-        'APPLICATION.products.markdown_it_py'   : 'native'
-        'APPLICATION.products.meshio'           : {tag: '5.3.5' , base: 'no', section: 'version_5_3_5_no_pip'    }
-        'APPLICATION.products.netCDF4'          : 'native'
-        'APPLICATION.products.rich'             : 'native'
-        'APPLICATION.products.omniORBpy'        : {tag: '4.2.5',     base: 'no', section: 'version_4_2_5_UB24_04'                  }
-        'APPLICATION.products.nose_py3'         : {tag: '1.6.9',     base: 'no', section: 'version_1_6_9_no_pip'                   }
-        'APPLICATION.products.rkCommon'         : {tag: '1.5.1',     base: 'no', section: 'version_1_5_1_UB24_04'                  }
-        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_UB24_04'                  }
-        'APPLICATION.products.gmsh'             : {tag: '4.10.3',    base: 'no', section: 'version_4_10_3_with_CAS_7_8_UB24_04'    }
+        'APPLICATION.products.meshio'           : {tag: '5.3.5',  base: 'no', section: 'version_5_3_5_no_pip'               }
+        'APPLICATION.products.omniORBpy'        : {tag: '4.2.5',  base: 'no', section: 'version_4_2_5_UB24_04'              }
+        'APPLICATION.products.nose_py3'         : {tag: '1.6.9',  base: 'no', section: 'version_1_6_9_no_pip'               }
+        'APPLICATION.products.rkCommon'         : {tag: '1.5.1',  base: 'no', section: 'version_1_5_1_UB24_04'              }
+        'APPLICATION.products.medfile'          : {tag: '4.1.1',  base: 'no', section: 'version_4_1_1_UB24_04'              }
+        'APPLICATION.products.gmsh'             : {tag: '4.10.3', base: 'no', section: 'version_4_10_3_with_CAS_7_8_UB24_04'}
     }
     {
         # DB10:
         #   - Qt minimal version 5.15
         #   - xmlpatterns executable
         __condition__ : "VARS.dist in ['DB10']"
-        'APPLICATION.rm_products'       : ['nose_py3','assimulo', 'irmb', 'mcut']
-        'APPLICATION.products.cminpack' : 'native'
-        'APPLICATION.products.nlopt'    : '2.7.0'
-        'APPLICATION.products.opencv'   : '3.2.0'
-        'APPLICATION.products.hdf5'     : 'native'
-        'APPLICATION.products.pytest'   : '8.1.1'
-        'APPLICATION.products.poetry_core' : '1.6.1'
-        'APPLICATION.products.poetry'   : {tag: '1.5.1', base: 'no', section: 'version_1_5_1_x86_64' }
-        'APPLICATION.products.PyFMI'    : {tag:'2.6',     base: 'no',  section: 'version_2_6_no_pip'                 }
-        'APPLICATION.products.qt'       : '5.15.15'
-        'APPLICATION.products.qwt'      : '6.1.6'
-        'APPLICATION.products.PyQt'     : '5.15.3'
-        'APPLICATION.products.sip'      : '5.5.0'
-        'APPLICATION.products.scipy'    : {tag: '1.5.2',  base: 'no', section: 'version_1_5_2_DB10'                }  # scipy >= 1.4 - system one too old
-        'APPLICATION.products.swig'     : '4.0.2'
-        'APPLICATION.products.openmpi'  : '4.1.5'
-        'APPLICATION.products.mdurl'            : {tag: '0.1.2', base: 'no', section: 'version_0_1_2_no_pip'    }
-        'APPLICATION.products.markdown_it_py'   : {tag: '2.2.0', base : 'no', section: 'version_2_2_0_no_pip'}
-        'APPLICATION.products.rich'             : {tag: '13.7.1', base: 'no', section: 'version_13_7_1_no_pip'   }
-        'APPLICATION.products.meshio'           : {tag: '5.3.4', base:  'no', section: 'version_5_3_4_no_pip'}
-        'APPLICATION.products.numpy'            : {tag: '1.20.3', base: 'no', section: 'version_1_20_3'        }
-        'APPLICATION.products.ParaView'         : {tag:'5.13.2918b94391', base: 'no',  section: 'version_5_13_2_MPI_DB10', hpc: 'yes'}
+        'APPLICATION.rm_products'               : ['nose_py3','assimulo', 'irmb', 'mcut']
+        'APPLICATION.products.cminpack'         : 'native'
+        'APPLICATION.products.hdf5'             : 'native'
+        'APPLICATION.products.nlopt'            : '2.7.0'
+        'APPLICATION.products.opencv'           : '3.2.0'
+        'APPLICATION.products.pytest'           : '8.1.1'
+        'APPLICATION.products.poetry_core'      : '1.6.1'
+        'APPLICATION.products.qt'               : '5.15.15'
+        'APPLICATION.products.qwt'              : '6.1.6'
+        'APPLICATION.products.PyQt'             : '5.15.3'
+        'APPLICATION.products.sip'              : '5.5.0'
+        'APPLICATION.products.swig'             : '4.0.2'
+        'APPLICATION.products.openmpi'          : '4.1.5'
+        'APPLICATION.products.poetry'           : {tag: '1.5.1',          base: 'no', section: 'version_1_5_1_x86_64'               }
+        'APPLICATION.products.PyFMI'            : {tag:'2.6',             base: 'no', section: 'version_2_6_no_pip'                 }
+        'APPLICATION.products.scipy'            : {tag: '1.5.2',          base: 'no', section: 'version_1_5_2_DB10'                 }  # scipy >= 1.4 - system one too old
+        'APPLICATION.products.pyqwt'            : {tag : '0.12.1',        base: 'no', section: 'version_0_12_1_DB10'                }
+        'APPLICATION.products.petsc'            : {tag: '3.20.5',         base: 'no', section: 'version_3_20_5_DB10'                }
+        'APPLICATION.products.mdurl'            : {tag: '0.1.2',          base: 'no', section: 'version_0_1_2_no_pip'               }
+        'APPLICATION.products.markdown_it_py'   : {tag: '2.2.0',          base: 'no', section: 'version_2_2_0_no_pip'               }
+        'APPLICATION.products.rich'             : {tag: '13.7.1',         base: 'no', section: 'version_13_7_1_no_pip'              }
+        'APPLICATION.products.meshio'           : {tag: '5.3.4',          base: 'no', section: 'version_5_3_4_no_pip'               }
+        'APPLICATION.products.numpy'            : {tag: '1.20.3',         base: 'no', section: 'version_1_20_3'                     }
+        'APPLICATION.products.ParaView'         : {tag:'5.13.2918b94391', base: 'no', section: 'version_5_13_2_MPI_DB10', hpc: 'yes'}
     }
     {
         __condition__ : "VARS.dist in ['DB11']"
         'APPLICATION.rm_products'               : ['nose_py3','assimulo'] #
         'APPLICATION.products.cminpack'         : 'native'
+        'APPLICATION.products.rich'             : 'native'
         'APPLICATION.products.opencv'           : '3.2.0'
         'APPLICATION.products.hdf5'             : 'native'
         'APPLICATION.products.pytest'           : '8.1.1'
-        'APPLICATION.products.pyyaml'           : {tag: '6.0',   base: 'no', section: 'version_6_0_x86_64'    }
-        'APPLICATION.products.mdurl'            : {tag: '0.1.2', base: 'no', section: 'version_0_1_2_no_pip'    }
-        'APPLICATION.products.markdown_it_py'   : {tag: '3.0.0', base : 'no', section: 'version_3_0_0_no_pip'}
-        'APPLICATION.products.PyFMI'            : {tag:'2.6',    base: 'no', section: 'version_2_6_no_pip'}
-        'APPLICATION.products.rich'             : 'native'
-        'APPLICATION.products.meshio'           : {tag:'5.3.5', base:  'no', section: 'version_5_3_5_no_pip'}
-        'APPLICATION.products.numpy'            : {tag: '1.20.3', base: 'no', section: 'version_1_20_3'        }
+        'APPLICATION.products.pyyaml'           : {tag: '6.0',    base: 'no', section: 'version_6_0_x86_64'  }
+        'APPLICATION.products.mdurl'            : {tag: '0.1.2',  base: 'no', section: 'version_0_1_2_no_pip'}
+        'APPLICATION.products.markdown_it_py'   : {tag: '3.0.0',  base: 'no', section: 'version_3_0_0_no_pip'}
+        'APPLICATION.products.PyFMI'            : {tag: '2.6',    base: 'no', section: 'version_2_6_no_pip'  }
+        'APPLICATION.products.meshio'           : {tag: '5.3.5',  base: 'no', section: 'version_5_3_5_no_pip'}
+        'APPLICATION.products.numpy'            : {tag: '1.20.3', base: 'no', section: 'version_1_20_3'      }
     }
     {
         __condition__ : "VARS.dist in ['DB12']"
@@ -341,33 +343,33 @@ __overwrite__ :
         'APPLICATION.products.h5py'             : 'native'
         'APPLICATION.products.markdown_it_py'   : 'native'
         'APPLICATION.products.mdurl'            : 'native'
-        'APPLICATION.products.meshio'           : {tag: '5.3.5', base:  'no', section: 'version_5_3_5_no_pip'}
         'APPLICATION.products.netCDF4'          : 'native'
         'APPLICATION.products.rich'             : 'native'
-        'APPLICATION.products.opencv'           : {tag: '3.2.0',     base: 'no', section: 'version_3_2_0_DB12'}
         'APPLICATION.products.swig'             : '4.0.2'
         'APPLICATION.products.tbb'              : '2021.9.0'
-        'APPLICATION.products.PyFMI'            : {tag: '2.6',       base: 'no', section: 'version_2_6_DB12'          }
-        'APPLICATION.products.poetry'   : {tag: '1.5.1', base: 'no', section: 'version_1_5_1_x86_64' }
+        'APPLICATION.products.opencv'           : {tag: '3.2.0', base: 'no', section: 'version_3_2_0_DB12'  }
+        'APPLICATION.products.meshio'           : {tag: '5.3.5', base: 'no', section: 'version_5_3_5_no_pip'}
+        'APPLICATION.products.PyFMI'            : {tag: '2.6',   base: 'no', section: 'version_2_6_DB12'    }
+        'APPLICATION.products.poetry'           : {tag: '1.5.1', base: 'no', section: 'version_1_5_1_x86_64'}
     }
     {
         # CentOS 8 repositories don't include sphinxintl package which must be installed through pip.
         # To avoid its missing (system_info pyconf key doesn't handle this use case), we embed it.
         __condition__ : "VARS.dist in ['CO8']"
         'APPLICATION.rm_products'               : ['nose_py3','assimulo', 'poetry', 'poetry_core', 'BasicIterativeStatistics'] #
-        'APPLICATION.products.sphinxintl'       : {tag: '0.9.10', base: 'no', section: 'version_0_9_10_no_pip'  }
         'APPLICATION.products.nlopt'            : '2.7.0'
-        'APPLICATION.products.openturns'        : {tag: '1.24',   base: 'no', section: 'version_1_24_CO8'       }
-        'APPLICATION.products.PyFMI'            : {tag: '2.6',    base: 'no', section: 'version_2_6_no_pip'     }
-        'APPLICATION.products.statsmodels'      : {tag: '0.6.1',  base: 'no', section: 'version_0_6_1_no_pip'   }
-        'APPLICATION.products.gdal'             : {tag: '2.4.0',  base: 'no', section: 'version_2_4_0_CO8_native'} # spns #29324
         'APPLICATION.products.swig'             : '4.0.2'
-        'APPLICATION.products.mdurl'            : {tag: '0.1.0',  base: 'no', section: 'version_0_1_0_no_pip' }
-        'APPLICATION.products.markdown_it_py'   : {tag: '2.0.1',  base: 'no', section: 'version_2_0_1_no_pip' }
-        'APPLICATION.products.rich'             : {tag: '12.6.0', base: 'no', section: 'version_12_6_0_no_pip'}
-        'APPLICATION.products.meshio'           : {tag: '4.3.13', base: 'no', section: 'version_4_3_13_no_pip' }
-        'APPLICATION.products.h5py'             : {tag: '3.0.0',  base: 'no', section: 'version_3_0_0_no_pip' }
-        'APPLICATION.products.poetry_core'      : {tag: '1.9.0',  base: 'no', section: 'version_1_9_0_x86_64' }
+        'APPLICATION.products.sphinxintl'       : {tag: '0.9.10', base: 'no', section: 'version_0_9_10_no_pip'   }
+        'APPLICATION.products.openturns'        : {tag: '1.24',   base: 'no', section: 'version_1_24_CO8'        }
+        'APPLICATION.products.PyFMI'            : {tag: '2.6',    base: 'no', section: 'version_2_6_no_pip'      }
+        'APPLICATION.products.statsmodels'      : {tag: '0.6.1',  base: 'no', section: 'version_0_6_1_no_pip'    }
+        'APPLICATION.products.gdal'             : {tag: '2.4.0',  base: 'no', section: 'version_2_4_0_CO8_native'} # spns #29324
+        'APPLICATION.products.mdurl'            : {tag: '0.1.0',  base: 'no', section: 'version_0_1_0_no_pip'    }
+        'APPLICATION.products.markdown_it_py'   : {tag: '2.0.1',  base: 'no', section: 'version_2_0_1_no_pip'    }
+        'APPLICATION.products.rich'             : {tag: '12.6.0', base: 'no', section: 'version_12_6_0_no_pip'   }
+        'APPLICATION.products.meshio'           : {tag: '4.3.13', base: 'no', section: 'version_4_3_13_no_pip'   }
+        'APPLICATION.products.h5py'             : {tag: '3.0.0',  base: 'no', section: 'version_3_0_0_no_pip'    }
+        'APPLICATION.products.poetry_core'      : {tag: '1.9.0',  base: 'no', section: 'version_1_9_0_x86_64'    }
     }
     {
          __condition__ : "VARS.dist in ['CO9']"
@@ -380,23 +382,23 @@ __overwrite__ :
         'APPLICATION.products.opencv'           : '3.2.0'
         'APPLICATION.products.openmpi'          : '4.1.5'
         'APPLICATION.products.sip'              : '5.5.0'
-        'APPLICATION.products.openturns'        : {tag: '1.24',    base: 'no', section: 'version_1_24_CO9'                  }
-        'APPLICATION.products.patsy'            : {tag: '0.5.4',   base: 'no', section: 'version_0_5_4_no_pip'              }
-        'APPLICATION.products.qt'               : {tag: '5.15.15', base: 'no', section: 'version_5_15_15_CO9'               }
-        'APPLICATION.products.mdurl'            : {tag: '0.1.2',   base: 'no', section: 'version_0_1_2_no_pip'              }
-        'APPLICATION.products.markdown_it_py'   : {tag: '3.0.0',   base: 'no', section: 'version_3_0_0_no_pip'              }
-        'APPLICATION.products.rich'             : {tag: '13.7.1',  base: 'no', section: 'version_13_7_1_no_pip'             }
-        'APPLICATION.products.meshio'           : {tag: '5.3.5' ,  base: 'no', section: 'version_5_3_5_no_pip'              }
-        'APPLICATION.products.sphinxintl'       : {tag: '0.9.10',  base: 'no', section: 'version_0_9_10_no_pip'             }
-        'APPLICATION.products.PyFMI'            : {tag: '2.6',     base: 'no', section: 'version_2_6_no_pip'                }
-        'APPLICATION.products.numpydoc'         : {tag: '0.9.0',   base: 'no', section: 'version_0_9_0_no_pip'              }
-        'APPLICATION.products.pandas'           : {tag: '1.1.5',   base: 'no', section: 'version_1_1_5_no_pip'              }
-        'APPLICATION.products.statsmodels'      : {tag: '0.14.1',  base: 'no', section: 'version_0_14_1_no_pip'             }
-        'APPLICATION.products.nose'             : {tag: '1.3.7',   base: 'no', section: 'version_1_3_7_no_pip'              }
-        'APPLICATION.products.YDEFX'            : {tag: 'master',  base: 'no', section: 'version_master_CO9'                }
-        'APPLICATION.products.YACS'             : {tag: 'master',  base: 'no', section: 'version_master_CO9'                }
-        'APPLICATION.products.URANIE'           : {tag: '4.8.0',   base: 'no', section: 'version_4_8_0_CO9'                 }
-        'APPLICATION.products.poetry_core'      : {tag: '1.9.0',   base: 'no', section: 'version_1_9_0_x86_64'              }
+        'APPLICATION.products.openturns'        : {tag: '1.24',    base: 'no', section: 'version_1_24_CO9'     }
+        'APPLICATION.products.patsy'            : {tag: '0.5.4',   base: 'no', section: 'version_0_5_4_no_pip' }
+        'APPLICATION.products.qt'               : {tag: '5.15.15', base: 'no', section: 'version_5_15_15_CO9'  }
+        'APPLICATION.products.mdurl'            : {tag: '0.1.2',   base: 'no', section: 'version_0_1_2_no_pip' }
+        'APPLICATION.products.markdown_it_py'   : {tag: '3.0.0',   base: 'no', section: 'version_3_0_0_no_pip' }
+        'APPLICATION.products.rich'             : {tag: '13.7.1',  base: 'no', section: 'version_13_7_1_no_pip'}
+        'APPLICATION.products.meshio'           : {tag: '5.3.5' ,  base: 'no', section: 'version_5_3_5_no_pip' }
+        'APPLICATION.products.sphinxintl'       : {tag: '0.9.10',  base: 'no', section: 'version_0_9_10_no_pip'}
+        'APPLICATION.products.PyFMI'            : {tag: '2.6',     base: 'no', section: 'version_2_6_no_pip'   }
+        'APPLICATION.products.numpydoc'         : {tag: '0.9.0',   base: 'no', section: 'version_0_9_0_no_pip' }
+        'APPLICATION.products.pandas'           : {tag: '1.1.5',   base: 'no', section: 'version_1_1_5_no_pip' }
+        'APPLICATION.products.statsmodels'      : {tag: '0.14.1',  base: 'no', section: 'version_0_14_1_no_pip'}
+        'APPLICATION.products.nose'             : {tag: '1.3.7',   base: 'no', section: 'version_1_3_7_no_pip' }
+        'APPLICATION.products.YDEFX'            : {tag: 'master',  base: 'no', section: 'version_master_CO9'   }
+        'APPLICATION.products.YACS'             : {tag: 'master',  base: 'no', section: 'version_master_CO9'   }
+        'APPLICATION.products.URANIE'           : {tag: '4.8.0',   base: 'no', section: 'version_4_8_0_CO9'    }
+        'APPLICATION.products.poetry_core'      : {tag: '1.9.0',   base: 'no', section: 'version_1_9_0_x86_64' }
     }
     {
         __condition__ : "VARS.dist in ['FD32']"
@@ -419,7 +421,7 @@ __overwrite__ :
         'APPLICATION.products.h5py'             : {tag: '3.11.0', base: 'no', section: 'version_3_11_0_no_pip'}
         'APPLICATION.products.YACS'             : {tag: 'master', base: 'no', section: 'version_master_FD32'  }
         'APPLICATION.products.poetry_core'      : {tag: '1.9.0',  base: 'no', section: 'version_1_9_0_x86_64' }
-        'APPLICATION.products.poetry'           : {tag: '1.5.1', base: 'no', section: 'version_1_5_1_x86_64' }
+        'APPLICATION.products.poetry'           : {tag: '1.5.1', base: 'no', section: 'version_1_5_1_x86_64'  }
     }
     {
         __condition__ : "VARS.dist in ['FD34']"
@@ -436,25 +438,25 @@ __overwrite__ :
         'APPLICATION.products.h5py'             : {tag: '3.11.0', base: 'no', section: 'version_3_11_0_no_pip'}
         'APPLICATION.products.PyFMI'            : {tag: '2.6',    base: 'no', section: 'version_2_6_no_pip'   }
         'APPLICATION.products.gdal'             : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_FD34'   } # spns #29324
-        'APPLICATION.products.poetry'           : {tag: '1.5.1', base: 'no', section: 'version_1_5_1_x86_64' }
+        'APPLICATION.products.poetry'           : {tag: '1.5.1', base: 'no', section: 'version_1_5_1_x86_64'  }
     }
     {
         __condition__ : "VARS.dist in ['FD36']"
         'APPLICATION.rm_products'               : ['nose_py3','assimulo'] #
-        'APPLICATION.products.opencv'           : {tag: '3.2.0',     base: 'no', section: 'version_3_2_0_FD36'                  }
         'APPLICATION.products.omniORB'          : '4.2.5'
         'APPLICATION.products.omniORBpy'        : '4.2.5'
         'APPLICATION.products.qwt'              : '6.1.6'
         'APPLICATION.products.netcdf'           : '4.6.2'
-        'APPLICATION.products.numpy'            : {tag: '1.22.2',    base: 'no', section: 'version_1_22_2'                      }
-        'APPLICATION.products.PyFMI'            : {tag: '2.6',       base: 'no', section: 'version_2_6_no_pip'                  }
-        'APPLICATION.products.root'             : {tag: '6.22.02',   base: 'no', section: 'version_6_22_02_FD36'                }
-        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD36'                  }
-        'APPLICATION.products.mdurl'            : {tag: '0.1.2',  base: 'no', section: 'version_0_1_2_no_pip' }
-        'APPLICATION.products.markdown_it_py'   : {tag: '3.0.0',  base: 'no', section: 'version_3_0_0_no_pip' }
-        'APPLICATION.products.rich'             : {tag: '13.7.1', base: 'no', section: 'version_13_7_1_no_pip'}
-        'APPLICATION.products.meshio'           : {tag: '5.3.5' , base: 'no', section: 'version_5_3_5_no_pip' }
-        'APPLICATION.products.h5py'             : {tag: '3.11.0', base: 'no', section: 'version_3_11_0_no_pip'}
+        'APPLICATION.products.opencv'           : {tag: '3.2.0',   base: 'no', section: 'version_3_2_0_FD36'   }
+        'APPLICATION.products.numpy'            : {tag: '1.22.2',  base: 'no', section: 'version_1_22_2'       }
+        'APPLICATION.products.PyFMI'            : {tag: '2.6',     base: 'no', section: 'version_2_6_no_pip'   }
+        'APPLICATION.products.root'             : {tag: '6.22.02', base: 'no', section: 'version_6_22_02_FD36' }
+        'APPLICATION.products.medfile'          : {tag: '4.1.1',   base: 'no', section: 'version_4_1_1_FD36'   }
+        'APPLICATION.products.mdurl'            : {tag: '0.1.2',   base: 'no', section: 'version_0_1_2_no_pip' }
+        'APPLICATION.products.markdown_it_py'   : {tag: '3.0.0',   base: 'no', section: 'version_3_0_0_no_pip' }
+        'APPLICATION.products.rich'             : {tag: '13.7.1',  base: 'no', section: 'version_13_7_1_no_pip'}
+        'APPLICATION.products.meshio'           : {tag: '5.3.5' ,  base: 'no', section: 'version_5_3_5_no_pip' }
+        'APPLICATION.products.h5py'             : {tag: '3.11.0',  base: 'no', section: 'version_3_11_0_no_pip'}
     }
     {
         __condition__ : "VARS.dist in ['FD38']"

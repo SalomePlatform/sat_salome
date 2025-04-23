@@ -10,7 +10,7 @@ default :
     }
 
     patches : []
-    system_info : 
+    system_info :
     {
         rpm : []
         rpm_dev : []
@@ -36,6 +36,17 @@ default :
 version_0_12_1_no_pip :
 {
     compil_script: "pyqwt-0.12.1" + $VARS.scriptExtension
+    properties :
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+}
+
+version_0_12_1_DB10 :
+{
+    compil_script: "pyqwt-0.12.1" + $VARS.scriptExtension
+    patches: ['pyqwt-0.12.1-downgrade-python-min-version-py37.patch']
     properties :
     {
       incremental : "yes"
