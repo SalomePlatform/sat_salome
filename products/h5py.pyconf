@@ -59,6 +59,18 @@ version_3_10_0_no_pip:
    }
 }
 
+version_3_10_0_FD40:
+{
+   compil_script: "h5py-3.10.0"  + $VARS.scriptExtension
+   patches : ["h5py-3.10.0-p001.patch"]
+   archive_info : {archive_name : "h5py-3.10.0.tar.gz"}
+   properties :
+   {
+     incremental : "yes"
+     pip : "no"
+   }
+}
+
 version_3_9_0_no_pip:
 {
    compil_script: "h5py-3.9.0"  + $VARS.scriptExtension
