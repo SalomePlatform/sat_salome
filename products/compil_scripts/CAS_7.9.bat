@@ -106,11 +106,30 @@ if NOT %ERRORLEVEL% == 0 (
 
 taskkill /F /IM "mspdbsrv.exe"
 
-
 if %SAT_DEBUG% == 1 (
     xcopy %PRODUCT_INSTALL%\win64\vc14\bind %PRODUCT_INSTALL%\win64\vc14\bin  /E /I /Q
     xcopy %PRODUCT_INSTALL%\win64\vc14\libd %PRODUCT_INSTALL%\win64\vc14\lib  /E /I /Q
 )
+
+REM Patching OpentCASCADEVisualsationTargets.cmake such that downstream projects find FreeImage and FreeType
+REM For additional information, see bos #45011
+cd %PRODUCT_INSTALL%\cmake
+set freeImageIn=FreeImage.lib
+set freeImageOut=%FREEIMAGE_ROOT_DIR:\=/%/FreeImage.lib
+powershell -Command "(Get-Content OpenCASCADEVisualizationTargets.cmake).replace('%freeImageIn%', '%freeImageOut%') |Set-Content  OpenCASCADEVisualizationTargets.cmake"
+if NOT %ERRORLEVEL% == 0 (
+    echo ERROR on patching plugin OpenCASCADEVisualizationTargets.cmake
+    exit 4
+)
+
+set freeTypeIn=freetype.lib
+set freetypeOut=%FREETYPE_ROOT_DIR:\=/%/freetype.lib
+powershell -Command "(Get-Content OpenCASCADEVisualizationTargets.cmake).replace('%freeTypeIn%', '%freetypeOut%') |Set-Content  OpenCASCADEVisualizationTargets.cmake"
+if NOT %ERRORLEVEL% == 0 (
+    echo ERROR on patching plugin OpenCASCADEVisualizationTargets.cmake
+    exit 4
+)
+
 
 echo.
 echo ########## END
