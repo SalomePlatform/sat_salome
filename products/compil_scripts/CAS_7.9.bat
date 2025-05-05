@@ -115,7 +115,7 @@ REM Patching OpentCASCADEVisualsationTargets.cmake such that downstream projects
 REM For additional information, see bos #45011
 cd %PRODUCT_INSTALL%\cmake
 set freeImageIn=FreeImage.lib
-set freeImageOut=%FREEIMAGE_ROOT_DIR:\=/%/FreeImage.lib
+set freeImageOut=%FREEIMAGE_ROOT_DIR:\=/%/lib/FreeImage.lib
 powershell -Command "(Get-Content OpenCASCADEVisualizationTargets.cmake).replace('%freeImageIn%', '%freeImageOut%') |Set-Content  OpenCASCADEVisualizationTargets.cmake"
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on patching plugin OpenCASCADEVisualizationTargets.cmake
@@ -123,7 +123,7 @@ if NOT %ERRORLEVEL% == 0 (
 )
 
 set freeTypeIn=freetype.lib
-set freetypeOut=%FREETYPE_ROOT_DIR:\=/%/freetype.lib
+set freetypeOut=%FREETYPE_ROOT_DIR:\=/%/lib/freetype.lib
 powershell -Command "(Get-Content OpenCASCADEVisualizationTargets.cmake).replace('%freeTypeIn%', '%freetypeOut%') |Set-Content  OpenCASCADEVisualizationTargets.cmake"
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on patching plugin OpenCASCADEVisualizationTargets.cmake
