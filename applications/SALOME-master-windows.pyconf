@@ -96,7 +96,7 @@ APPLICATION :
         markupsafe : '1.1.1'
         matplotlib : '3.3.4'
         #mcut : 'b5b0ec6'
-        medfile : '4.1.1'
+        medfile : '4.1.2'
         mesa : '19.2.3'
         meshbooleanplugin : 'main'
         MeshGems : '2.15-1'

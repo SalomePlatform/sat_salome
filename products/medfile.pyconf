@@ -31,7 +31,25 @@ default_Autotools :
     build_depend : []
 }
 
-# needed in order to screen with windows version - see below
+version_4_1_2 :
+{
+    compil_script : 'med-4.1.2.sh'
+    test_build : "make check"
+    build_depend : ['swig']
+}
+
+version_4_1_2_win :
+{
+    compil_script :  "med-4.1.2.bat"
+    patches : []
+    properties :
+    {
+       incremental : "yes"
+       single_install_dir: "yes" # aimed to solve sat #18914
+       has_unit_tests : "yes"
+    }
+}
+
 version_4_1_1 :
 {
     compil_script : 'med-4.1.1.sh'
@@ -54,7 +72,6 @@ version_4_1_1_win :
     }
 }
 
-# needed in order to screen with windows version - see below
 version_4_1_1_UB24_04 :
 {
     compil_script : 'med-4.1.1.sh'
@@ -63,13 +80,20 @@ version_4_1_1_UB24_04 :
     patches: ['SPNS-29880-medfile_FD40.patch', 'medfile_py-compile.patch']
 }
 
-# needed in order to screen with windows version - see below
 version_4_1_1_UB22_04 :
 {
     compil_script : 'med-4.1.1.sh'
     test_build : "make check"
     build_depend : ['swig']
     patches: ['SPNS-29880-medfile.patch']
+}
+
+version_4_1_1_DB12 :
+{
+    compil_script : 'med-4.1.1.sh'
+    test_build : "make check"
+    build_depend : ['swig']
+    patches: ['SPNS-29880-medfile_FD40.patch', 'medfile_py-compile.patch']
 }
 
 version_4_1_1_FD40 :
@@ -104,14 +128,12 @@ version_4_1_1_FD36 :
     patches: ['SPNS-29880-medfile.patch']
 }
 
-# needed in order to screen with windows version - see below
 version_4_1_0 :
 {
   compil_script :  "med-4.1.0.sh"
   patches : []
 }
 
-# needed in order to screen with windows version - see below
 version_4_1_0_hdf5 :
 {
   compil_script :  "med-4.1.0.sh"
@@ -131,7 +153,6 @@ version_4_1_0_win :
   patches : ['med-4.1.0_win_3x_files_support.patch', 'med-4.1.0_hdf5_native_long.patch']
 }
 
-# needed in order to screen with windows version - see below
 version_4_0_0 : 
 {
   patches : []

@@ -7,6 +7,7 @@ import platform
 def set_env(env, prereq_dir, version):
     env.set('SWIG_ROOT', prereq_dir)
     env.set('SWIG_ROOT_DIR', prereq_dir)
+    env.set('SWIG_VERSION', version)
     env.prepend('PATH', os.path.join(prereq_dir, 'bin'))
     if platform.system() == "Windows" :
         env.set('SWIG_LIB', os.path.join( prereq_dir, "Lib"))
