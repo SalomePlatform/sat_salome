@@ -25,14 +25,14 @@ version_3_20_5 :
 {
     compil_script :  "petsc-3.20.5.sh"
     depend : ["hdf5", "Python", "lapack","fftw", "llvm", "metis", "medfile", "mpi4py", "scotch" ]
-    patches: ['petsc-3.20.5-mpi4py.patch']
+    patches: ['petsc-3.20.5-mpi4py.patch', 'petsc-3.20.5-limit-cython-version.patch']
 }
 
 version_3_20_5_FD40 :
 {
     compil_script :  "petsc-3.20.5.sh"
     depend : ["hdf5", "Python", "lapack","fftw", "llvm", "metis", "medfile", "mpi4py", "scotch" ]
-    patches: ['petsc-3.20.5-mpi4py.patch']
+    patches: ['petsc-3.20.5-mpi4py.patch', 'petsc-3.20.5-limit-cython-version.patch']
     nb_proc: 4
 }
 
@@ -40,7 +40,7 @@ version_3_20_5_FD38 :
 {
     compil_script :  "petsc-3.20.5.sh"
     depend : ["hdf5", "Python", "lapack","fftw", "llvm", "metis", "medfile", "mpi4py", "scotch" ]
-    patches: ['petsc-3.20.5-mpi4py.patch']
+    patches: ['petsc-3.20.5-mpi4py.patch', 'petsc-3.20.5-limit-cython-version.patch']
     nb_proc: 4
 }
 
@@ -48,7 +48,7 @@ version_3_20_5_DB10 :
 {
     compil_script :  "petsc-3.20.5.sh"
     depend : ["hdf5", "Python", "lapack","fftw", "llvm", "metis", "medfile", "mpi4py", "scotch" ]
-    patches: ['petsc-3.20.5-mpi4py.patch', 'petsc-3.20.5-limit-cython-version-py37.patch']
+    patches: ['petsc-3.20.5-mpi4py.patch', 'petsc-3.20.5-limit-cython-version.patch']
 }
 
 version_3_19_4 :
