@@ -50,6 +50,14 @@ version_4_1_2_win :
     }
 }
 
+version_4_1_2_UB24_04 :
+{
+    compil_script : 'med-4.1.2.sh'
+    patches : ['med-4.1.2.p001-Test_MEDnStructElement_Rd.UB24.04.patch']
+    test_build : "make check"
+    build_depend : ['swig']
+}
+
 version_4_1_1 :
 {
     compil_script : 'med-4.1.1.sh'
