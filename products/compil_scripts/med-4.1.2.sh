@@ -9,28 +9,17 @@ LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
 rm -rf ${BUILD_DIR}
 mkdir ${BUILD_DIR}
 cd $BUILD_DIR
-cp -r $SOURCE_DIR/* $BUILD_DIR/
 
 # If Docker rootless, ensure that user can read them
 if [ -f /.dockerenv ]; then
-    find $BUILD_DIR -type f -exec chmod u+rwx {} \;
+    find $SOURCE_DIR -type f -exec chmod u+rwx {} \;
 fi
-
-# if [ -f /.dockerenv ] && [ "$LINUX_DISTRIBUTION" == "CO7" ]; then
-#     echo "WARNING: rerunning autoreconf since tools are too old and were reinstalled"
-#     autoreconf --force --install
-#     if [ $? -ne 0 ]; then
-#         echo "ERROR on autoreconf!"
-#         exit 1
-#     fi
-# fi
 
 CONFIGURE_FLAGS=
 CONFIGURE_FLAGS+=' CFLAGS=-m64 CXXFLAGS=-m64' 
 CONFIGURE_FLAGS+=' --enable-python=yes'
 CONFIGURE_FLAGS+=' --enable-mesgerr'
 CONFIGURE_FLAGS+=' --enable-installtest'
-CONFIGURE_FLAGS+=' --disable-doc'
 
 function version_ge() { test "$(echo "$@" | tr " " "\n" | sort -rV | head -n 1)" == "$1"; }
 if version_ge $HDF5_VERSION "1.12.1" ; then
@@ -63,7 +52,7 @@ fi
 
 echo
 echo "*** configure   --prefix=$PRODUCT_INSTALL FFLAGS=\"${FFLAGS}\"   FCFLAGS=\"${FCFLAGS}\"   $CONFIGURE_FLAGS"
-$BUILD_DIR/configure --prefix=$PRODUCT_INSTALL FFLAGS="${FFLAGS}"     FCFLAGS="${FCFLAGS}"     $CONFIGURE_FLAGS
+$SOURCE_DIR/configure --prefix=$PRODUCT_INSTALL FFLAGS="${FFLAGS}"     FCFLAGS="${FCFLAGS}"     $CONFIGURE_FLAGS
 if [ $? -ne 0 ]; then
     echo "ERROR on configure"
     exit 1
