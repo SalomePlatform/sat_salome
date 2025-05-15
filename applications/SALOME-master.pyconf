@@ -39,7 +39,7 @@ APPLICATION :
         Babel : '2.14.0'
         BasicIterativeStatistics :  'v0.1.0'
         boost : '1.71.0'
-        CAS : {tag : 'CR790-SALOME-PATCH', section: 'version_CR790_SALOME_PATCH', base: 'no'}
+        CAS : {tag : 'SALOME_9_15_V7_9_0a1', section: 'version_SALOME_9_15_V7_9_0a1', base:  'no'}
         catalyst: {tag: '2.0', section: 'version_v2_0_0', base: 'no'}
         C3PO: 'v2.3'
         certifi : '2018.8.24'
@@ -182,7 +182,7 @@ APPLICATION :
         'SHAPER'
         'SHAPERSTUDY'
         'RESTRICTED'
-        'LIBBATCH'
+        'LIBBATCH' : 'V2_6_1'
         'KERNEL'
         'MEDCOUPLING' : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'GUI'
@@ -245,23 +245,14 @@ APPLICATION :
 }
 __overwrite__ :
 [
-    {
-        __condition__ : "VARS.dist in ['FD30']"
-        'APPLICATION.products.gcc' : '9.3.0'
-    }
-    {
-        __condition__ : "VARS.dist in ['FD32']"
-        # https://github.com/scipy/scipy/issues/11611
-        'APPLICATION.products.scipy' : '1.5.2'
-        'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
-        'APPLICATION.products.gdal': {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_FD32'} # spns #29324
-    }
+    #
     {
         __condition__ : "VARS.dist in ['CO7']"
         'APPLICATION.rm_products'       : ['gcc', 'gmp', 'mpc', 'mpfr']
-        'APPLICATION.products.openturns': {tag:'1.24', base:'no', section:'version_1_24_CO7'                       }
-        'APPLICATION.products.URANIE'   : {tag: '4.8.0',  base: 'no', section: 'version_4_8_0_CO7'                 }
+        'APPLICATION.products.openturns': {tag: '1.24',  base:'no',  section: 'version_1_24_CO7'  }
+        'APPLICATION.products.URANIE'   : {tag: '4.8.0', base: 'no', section: 'version_4_8_0_CO7' }
     }
+    #
     {
         __condition__ : "VARS.dist in ['CO8']"
         'APPLICATION.rm_products'       : ['gcc', 'gmp', 'mpc', 'mpfr', 'zeromq']
@@ -272,38 +263,32 @@ __overwrite__ :
         'APPLICATION.products.Python'   : '3.10.16'
         'APPLICATION.products.pytz'     : '2021.1'
         'APPLICATION.products.scipy'    : '1.8.0'
-        'APPLICATION.products.numpy'    : {tag: '1.22.2', base: 'no', section: 'version_1_22_2_CO8'                }
-        'APPLICATION.products.gdal'     : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_CO8'                 } # spns #29324
-        'APPLICATION.products.openturns': {tag:'1.24',    base:'no',  section:'version_1_24_CO8'                   }
+        'APPLICATION.products.numpy'    : {tag: '1.22.2', base: 'no', section: 'version_1_22_2_CO8' }
+        'APPLICATION.products.gdal'     : {tag: '2.4.0',  base: 'no', section: 'version_2_4_0_CO8'  }
+        'APPLICATION.products.openturns': {tag: '1.24',   base: 'no', section: 'version_1_24_CO8'   }
     }
+    #
     {
         __condition__ : "VARS.dist in ['CO9']"
-        'APPLICATION.products.gcc'       : '11.4.0'
         'APPLICATION.rm_products'        : ['zeromq']
+        'APPLICATION.products.gcc'       : '11.4.0'
         'APPLICATION.products.openmpi'   : '4.1.6'
         'APPLICATION.products.hdf5'      : '1.10.5'
-        'APPLICATION.products.boost'     : {tag:'1.71.0',  base: 'no', section: 'version_1_71_0_CO9'                 } # spns #29324
-        'APPLICATION.products.gdal'      : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_CO9'                  } # spns #29324
-        'APPLICATION.products.openturns' : {tag: '1.24',   base: 'no', section: 'version_1_24_CO9'                   }
-        'APPLICATION.products.root'      : {tag: '6.22.02', base: 'no', section: 'version_6_22_02_CO9'               }
+        'APPLICATION.products.boost'     : {tag: '1.71.0',  base: 'no', section: 'version_1_71_0_CO9' } # spns #29324
+        'APPLICATION.products.gdal'      : {tag: '2.4.0',   base: 'no', section: 'version_2_4_0_CO9'  } # spns #29324
+        'APPLICATION.products.openturns' : {tag: '1.24',    base: 'no', section: 'version_1_24_CO9'   }
+        'APPLICATION.products.root'      : {tag: '6.22.02', base: 'no', section: 'version_6_22_02_CO9'}
     }
+    #
     {
         __condition__ : "VARS.dist in ['DB10']"
         'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
-        'APPLICATION.products.gdal': {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_DB10'} # spns #29324
+        'APPLICATION.products.gdal': {tag: '2.4.0',   base: 'no', section: 'version_2_4_0_DB10'        }
     }
+    #
     {
         __condition__ : "VARS.dist in ['DB09']"
-        'APPLICATION.products.openturns': {tag:'1.24', base:'no', section:'version_1_24_DB09'                       }
-        'APPLICATION.products.URANIE'   : {tag: '4.8.0',  base: 'no', section: 'version_4_8_0_DB09'                 }
-    }
-    {
-        __condition__ : "VARS.dist in ['UB18.04']"
-        'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
-    }
-    {
-        __condition__ : "VARS.dist in ['UB20.04']"
-        'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
-        'APPLICATION.products.gdal': {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_UB20_04'} # spns #29324
+        'APPLICATION.products.openturns': {tag: '1.24',  base: 'no', section: 'version_1_24_DB09'      }
+        'APPLICATION.products.URANIE'   : {tag: '4.8.0', base: 'no', section: 'version_4_8_0_DB09'     }
     }
 ]
