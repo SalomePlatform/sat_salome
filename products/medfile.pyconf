@@ -24,11 +24,44 @@ default :
     }
 }
 
+default_win:
+{
+    properties :
+    {
+       incremental : "yes"
+       single_install_dir: "yes" # aimed to solve sat #18914
+    }
+    build_depend : ["cmake", "swig"]
+}
+
 default_Autotools :
 {
     compil_script :  "med.sh"
     test_build : "make check"
     build_depend : []
+}
+
+version_4_2_0 :
+{
+    archive_info :
+    {
+        archive_name : "med-4.2.0.tar.gz"
+    }
+    compil_script : 'med-4.2.0.sh'
+    test_build : "make check"
+    build_depend : ['swig']
+}
+
+version_4_2_0_win :
+{
+    compil_script :  "med-4.2.0.bat"
+    patches : []
+    properties :
+    {
+       incremental : "yes"
+       single_install_dir: "no"
+    }
+    build_depend : ["cmake", "swig"]
 }
 
 version_4_1_2 :
@@ -76,7 +109,6 @@ version_4_1_1_win :
     {
        incremental : "yes"
        single_install_dir: "yes" # aimed to solve sat #18914
-       has_unit_tests : "yes"
     }
 }
 

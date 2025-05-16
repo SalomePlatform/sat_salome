@@ -94,7 +94,7 @@ APPLICATION :
         markdown_it_py : '3.0.0'
         markupsafe : '1.1.1'
         matplotlib : '3.3.4'
-        medfile : '4.1.2'
+        medfile : '4.2.0'
         mesa : '19.2.3'
         meshbooleanplugin : 'main'
         MeshGems : '2.15-1'
