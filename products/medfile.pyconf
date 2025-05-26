@@ -59,7 +59,7 @@ version_4_2_0_win :
     properties :
     {
        incremental : "yes"
-       single_install_dir: "no"
+       single_install_dir: "yes"
     }
     build_depend : ["cmake", "swig"]
 }
