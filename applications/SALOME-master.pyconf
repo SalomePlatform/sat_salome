@@ -256,7 +256,7 @@ __overwrite__ :
     #
     {
         __condition__ : "VARS.dist in ['CO8']"
-        'APPLICATION.rm_products'       : ['gcc', 'gmp', 'mpc', 'mpfr', 'zeromq']
+        'APPLICATION.rm_products'       : ['gcc', 'gmp', 'mpc', 'mpfr', 'zeromq', 'mcut'] # mcut requires c++20
         'APPLICATION.products.boost'    : '1.75.0'
         'APPLICATION.products.dateutil' : '2.8.1'
         'APPLICATION.products.pandas'   : '1.4.0'
@@ -283,12 +283,13 @@ __overwrite__ :
     #
     {
         __condition__ : "VARS.dist in ['DB10']"
-        'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
+        'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr', 'mcut'] # mcut requires c++20
         'APPLICATION.products.gdal': {tag: '2.4.0',   base: 'no', section: 'version_2_4_0_DB10'        }
     }
     #
     {
         __condition__ : "VARS.dist in ['DB09']"
+        'APPLICATION.rm_products'       : ['mcut'] # mcut requires c++20
         'APPLICATION.products.openturns': {tag: '1.24',  base: 'no', section: 'version_1_24_DB09'      }
         'APPLICATION.products.URANIE'   : {tag: '4.8.0', base: 'no', section: 'version_4_8_0_DB09'     }
     }
