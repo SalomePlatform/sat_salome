@@ -34,7 +34,6 @@ default :
     opt_depend : [
                   "cgal",
                   "cork",
-                  "irmb",
                   "libigl"
                  ]
     

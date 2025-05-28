@@ -92,6 +92,7 @@ APPLICATION :
         markupsafe : '2.1.5'
         markdown_it_py: '3.0.0'
         matplotlib : '3.8.2'
+        mcut : 'b5b0ec6'
         mdurl: '0.1.2'
         medfile : '4.2.0'
         mesa : '19.0.8'

@@ -73,7 +73,6 @@ APPLICATION :
         hdf5 : '1.10.3'
         idna : 'native'
         imagesize : 'native'
-        irmb : '67d77b4'
         ispc : '1.15.0'
         Jinja2 : 'native'
         jsoncpp : 'native'
@@ -271,7 +270,7 @@ __overwrite__ :
     {
         #
         __condition__ : "VARS.dist in ['DB10']"
-        'APPLICATION.rm_products'               : ['nose_py3','assimulo', 'irmb', 'mcut']
+        'APPLICATION.rm_products'               : ['nose_py3','assimulo', 'mcut'] # mcut requires c++20
         'APPLICATION.products.cminpack'         : 'native'
         'APPLICATION.products.hdf5'             : 'native'
         'APPLICATION.products.nlopt'            : '2.7.0'
