@@ -81,8 +81,9 @@ default :
         }
         "FD40" :
         {
-           rpm : ["lz4-libs", "gsl", "openmpi", "netcdf", "gdal", "libxml++", "freetype", "zlib-ng-compat", "zlib-ng-compat", "zlib-ng-compat-static"]
-           rpm_dev : ["lz4-devel", "qt5-qtbase-devel", "gsl-devel", "openmpi-devel", "netcdf-devel", "gdal-devel", "libxml++-devel", "freetype-devel"]
+           rpm : ["lz4-libs", "gsl", "openmpi", "netcdf", "gdal", "libxml++", "freetype", "zlib-ng-compat", "zlib-ng-compat", "zlib-ng-compat-static", "python3-scikit-learn"]
+           rpm_dev : ["lz4-devel", "qt5-qtbase-devel", "gsl-devel", "openmpi-devel", "netcdf-devel", "gdal-devel", "libxml++-devel", "freetype-devel", "libtirpc-devel",
+                      "openblas-devel", "qt5-qtsvg-devel", "protobuf-devel", "mpfr-devel", "libXrandr-devel", "texlive-latex", "texlive-amscls", "tex-preview", "qt5-qtbase-devel"]
         }
         "DB08" :
         {
