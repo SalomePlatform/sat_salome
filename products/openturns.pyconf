@@ -1,6 +1,6 @@
 default :
 {
-    name : "openturns"
+    name : "OT"
     build_source : "script"
     compil_script :  $name + $VARS.scriptExtension
     get_source : "archive"
@@ -12,8 +12,8 @@ default :
     build_depend : ["cmake", "swig"]
     opt_depend : ['openmpi','psutil','numpy','scipy','statsmodels']
     patches : []
-    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
-    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + 'openturns'
+    build_dir : $APPLICATION.workdir  + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     install_dir : 'base'
     properties :
     {
@@ -24,13 +24,11 @@ default :
 
 default_win :
 {
-    name : "openturns"
     compil_script :  'pip_install' + $VARS.scriptExtension
     properties :
     {
-      single_install_dir : "yes"
+      single_install_dir : "no"
       incremental : "yes"
-      pip : "yes"
     }
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'pthreads']
     opt_depend : []
@@ -78,10 +76,7 @@ version_1_24_CO9 :
 
 version_1_24_win :
 {
-    name : "OT"
     compil_script :  "openturns-1.24.bat"
-    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + 'openturns'
-    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     depend : ['Python', 'openblas', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'fftw']
     opt_depend : ['pandas', 'statsmodels', 'patsy']
     patches : ['openturns-1.24.0003.patch']
@@ -94,6 +89,9 @@ version_1_24_win :
 
 version_1_23 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.23.sh"
     patches : []
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI', 'boost']
@@ -103,9 +101,9 @@ version_1_23 :
 version_1_23_win :
 {
     name : "OT"
-    compil_script :  "openturns-1.23.bat"
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + 'openturns'
-    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep  + 'BUILD'   + $VARS.sep + $name
+    compil_script :  "openturns-1.23.bat"
     depend : ['Python', 'openblas', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'fftw']
     opt_depend : ['pandas', 'statsmodels', 'patsy']
     patches : ['openturns-1.23.0002.patch']
@@ -118,6 +116,9 @@ version_1_23_win :
 
 version_1_23_CO7 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.23.sh"
     patches : ['openturns-1.23.0001.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI', 'boost']
@@ -126,6 +127,9 @@ version_1_23_CO7 :
 
 version_1_23_CO8 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.23.sh"
     patches : ['openturns-1.23.0001.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI', 'boost']
@@ -134,6 +138,9 @@ version_1_23_CO8 :
 
 version_1_23_CO9 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.23.sh"
     patches : ['openturns-1.23.0001.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI', 'boost']
@@ -142,6 +149,9 @@ version_1_23_CO9 :
 
 version_1_23_DB09 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.23.sh"
     patches : ['openturns-1.23.0001.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI', 'boost']
@@ -150,6 +160,9 @@ version_1_23_DB09 :
 
 version_1_22 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.22.sh"
     patches : []
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI', 'boost']
@@ -158,6 +171,9 @@ version_1_22 :
 
 version_1_22_CO7 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.22.sh"
     patches : ['openturns-1.22.0001.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI', 'boost']
@@ -166,6 +182,9 @@ version_1_22_CO7 :
 
 version_1_22_CO8 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.22.sh"
     patches : ['openturns-1.22.0001.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI', 'boost']
@@ -174,6 +193,9 @@ version_1_22_CO8 :
 
 version_1_22_DB09 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.22.sh"
     patches : ['openturns-1.22.0001.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI', 'boost']
@@ -183,9 +205,9 @@ version_1_22_DB09 :
 version_1_22_win :
 {
     name : "OT"
-    compil_script :  "openturns-1.22.bat"
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + 'openturns'
-    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep  + 'BUILD'   + $VARS.sep + $name
+    compil_script :  "openturns-1.22.bat"
     depend : ['Python', 'openblas', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'fftw']
     opt_depend : ['pandas', 'statsmodels', 'patsy']
     patches : ['openturns-1.22.0002.patch']
@@ -198,6 +220,9 @@ version_1_22_win :
 
 version_1_21 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.21.sh"
     patches : ['openturns-1.21.0001.patch', 'openturns-1.21.0005.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI', 'boost']
@@ -207,9 +232,9 @@ version_1_21 :
 version_1_21_win :
 {
     name : "OT"
-    compil_script :  "openturns-1.21.bat"
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + 'openturns'
-    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
+    compil_script :  "openturns-1.21.bat"
     depend : ['Python', 'openblas', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'fftw']
     opt_depend : ['pandas', 'statsmodels', 'patsy']
     patches : ['openturns-1.21.0003.patch', 'openturns-1.21.0004.patch']
@@ -222,6 +247,9 @@ version_1_21_win :
 
 version_1_21_DB12 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.21.sh"
     patches : ['openturns-1.21.0001.patch','openturns-1.21.0005.patch', 'openturns-1.21.0006.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI', 'boost']
@@ -230,6 +258,9 @@ version_1_21_DB12 :
 
 version_1_21_RO8 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.21.sh"
     patches : ['openturns-1.21.0001.patch','openturns-1.21.0005.patch', 'openturns-1.21.0006.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI', 'boost']
@@ -238,6 +269,9 @@ version_1_21_RO8 :
 
 version_1_21_CO8 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.21.sh"
     patches : ['openturns-1.21.0002.patch', 'openturns-1.21.0005.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI', 'boost']
@@ -246,6 +280,9 @@ version_1_21_CO8 :
 
 version_1_21_DB09 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.21.sh"
     patches : ['openturns-1.21.0002.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI', 'boost']
@@ -254,6 +291,9 @@ version_1_21_DB09 :
 
 version_1_21_CO7 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.21.sh"
     patches : ['openturns-1.21.0002.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI', 'boost']
@@ -262,6 +302,9 @@ version_1_21_CO7 :
 
 version_1_20_1 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.20.1" + $VARS.scriptExtension
     patches : []
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
@@ -271,9 +314,9 @@ version_1_20_1 :
 version_1_20_1_win :
 {
     name : "OT"
-    compil_script :  "openturns-1.20.1.bat"
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + 'openturns'
-    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir  + $VARS.sep + 'BUILD'   + $VARS.sep + $name
+    compil_script :  "openturns-1.20.1.bat"
     depend : ['Python', 'openblas', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'fftw']
     opt_depend : ['pandas', 'statsmodels', 'patsy']
     patches : ["openturns-1.20.1.0004.patch", "openturns-1.20.1.0005.patch"]
@@ -286,6 +329,9 @@ version_1_20_1_win :
 
 version_1_20_1_UB22_04 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.20.1" + $VARS.scriptExtension
     patches : ['openturns-1.20.1.0002.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
@@ -294,6 +340,9 @@ version_1_20_1_UB22_04 :
 
 version_1_20_1_UB20_04 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.20.1" + $VARS.scriptExtension
     patches : ['openturns-1.20.1.0002.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
@@ -302,6 +351,9 @@ version_1_20_1_UB20_04 :
 
 version_1_20_1_DB11 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.20.1" + $VARS.scriptExtension
     patches : ['openturns-1.20.1.0002.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
@@ -310,6 +362,9 @@ version_1_20_1_DB11 :
 
 version_1_20_1_DB09 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.20.1" + $VARS.scriptExtension
     patches : ['openturns-1.20.1.0001.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
@@ -318,6 +373,9 @@ version_1_20_1_DB09 :
 
 version_1_20_1_CO8 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.20.1" + $VARS.scriptExtension
     patches : ['openturns-1.20.1.0001.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
@@ -326,6 +384,9 @@ version_1_20_1_CO8 :
 
 version_1_20_1_CO7 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.20.1" + $VARS.scriptExtension
     patches : ['openturns-1.20.1.0001.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
@@ -334,6 +395,9 @@ version_1_20_1_CO7 :
 
 version_1_20_1_FD38 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.20.1" + $VARS.scriptExtension
     patches : []
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
@@ -342,6 +406,9 @@ version_1_20_1_FD38 :
 
 version_1_20_1_FD37 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.20.1" + $VARS.scriptExtension
     patches : []
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
@@ -350,6 +417,9 @@ version_1_20_1_FD37 :
 
 version_1_20_1_FD36 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.20.1" + $VARS.scriptExtension
     patches : []
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
@@ -358,6 +428,9 @@ version_1_20_1_FD36 :
 
 version_1_20_1_FD34 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.20.1" + $VARS.scriptExtension
     patches : ['openturns-1.20.1.0002.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
@@ -366,6 +439,9 @@ version_1_20_1_FD34 :
 
 version_1_20_1_FD32 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.20.1" + $VARS.scriptExtension
     patches : ['openturns-1.20.1.0002.patch', 'openturns-1.20.1.0003.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
@@ -374,6 +450,9 @@ version_1_20_1_FD32 :
 
 version_1_19 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.19" + $VARS.scriptExtension
     patches : ['openturns-1.19.0001.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
@@ -382,6 +461,9 @@ version_1_19 :
 
 version_1_19_win :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     properties :
     {
       incremental : "yes"
@@ -394,6 +476,9 @@ version_1_19_win :
 
 version_1_19_UB22_04 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.19" + $VARS.scriptExtension
     patches : ['openturns-1.19.0001.patch', 'openturns-1.19.0003.patch', 'openturns-1.19.0004.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
@@ -402,6 +487,9 @@ version_1_19_UB22_04 :
 
 version_1_19_UB20_04 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.19" + $VARS.scriptExtension
     patches : ['openturns-1.19.0002.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
@@ -410,6 +498,9 @@ version_1_19_UB20_04 :
 
 version_1_19_FD36 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.19" + $VARS.scriptExtension
     patches : ['openturns-1.19.0001.patch', 'openturns-1.19.0003.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
@@ -418,6 +509,9 @@ version_1_19_FD36 :
 
 version_1_19_FD34 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.19" + $VARS.scriptExtension
     patches : ['openturns-1.19.0001.patch', 'openturns-1.19.0003.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
@@ -426,6 +520,9 @@ version_1_19_FD34 :
 
 version_1_19_FD32 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.19" + $VARS.scriptExtension
     patches : ['openturns-1.19.0001.patch', 'openturns-1.19.0003.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
@@ -434,6 +531,9 @@ version_1_19_FD32 :
 
 version_1_18 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.18" + $VARS.scriptExtension
     patches : ['openturns-1.18.0001.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
@@ -442,6 +542,9 @@ version_1_18 :
 
 version_1_18_FD34 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.18" + $VARS.scriptExtension
     patches : ['openturns-1.18.0001.patch', 'openturns-1.18.0002.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
@@ -450,6 +553,9 @@ version_1_18_FD34 :
 
 version_1_18_FD32 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.18" + $VARS.scriptExtension
     patches : ['openturns-1.18.0001.patch', 'openturns-1.18.0002.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
@@ -458,6 +564,9 @@ version_1_18_FD32 :
 
 version_1_18_win :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     properties :
     {
       incremental : "yes"
@@ -470,6 +579,9 @@ version_1_18_win :
 
 version_1_17 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep  + $name
     compil_script :  "openturns-1.17" + $VARS.scriptExtension
     patches : ['openturns-1.17.0001.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
@@ -478,6 +590,9 @@ version_1_17 :
 
 version_1_17_FD32 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.17" + $VARS.scriptExtension
     patches : ['openturns-1.17.0001.patch', 'openturns-1.17.0002.patch']
     depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'cminpack', 'FMILibrary', 'PyFMI']
@@ -486,6 +601,9 @@ version_1_17_FD32 :
 
 version_1_17_win :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     properties :
     {
       incremental : "yes"
@@ -498,11 +616,24 @@ version_1_17_win :
 
 version_1_16 :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     compil_script :  "openturns-1.16" + $VARS.scriptExtension
     patches : ['openturns-1.16.0001.patch','openturns-1.16.0002.patch']
 }
 
 version_1_16_win :
 {
+    name : "openturns"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
+    properties :
+    {
+      incremental : "yes"
+      pip : "yes"
+    }
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'pthreads']
+    opt_depend : []
     patches : []
 }
