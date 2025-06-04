@@ -23,8 +23,9 @@ default :
     install_dir : 'base'
     properties :
     {
-      incremental : "yes"
+      incremental        : "yes"
       single_install_dir : "no"
+      is_SALOME_product  : "yes"
     }
 }
 
@@ -33,8 +34,9 @@ default_win :
     cmake_options : "-DCPPUNIT_ROOT_DIR=%CPPUNIT_ROOT_DIR%"
     properties :
     {
-      incremental : "yes"
+      incremental        : "yes"
       single_install_dir : "yes"
+      is_SALOME_product  : "yes"
     }
     build_depend : ["cmake", "swig", "doxygen", "cppunit"]
 }

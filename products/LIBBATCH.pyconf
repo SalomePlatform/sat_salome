@@ -23,7 +23,8 @@ default :
     install_dir : "base"
     properties:
     {
-        incremental : "yes"
+        incremental      : "yes"
+        is_SALOME_product: "yes"
     }
 }
 
@@ -43,8 +44,9 @@ version_V2_6_1_win:
     cmake_options : '-DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig.exe -DLIBBATCH_CXX_STANDARD=17 '
     properties:
     {
-        incremental : 'yes'
-        single_install_dir: 'yes' # aimed to solve sat #18914
+        incremental       : "yes"
+        single_install_dir: "yes" # aimed to resolve sat #18914
+        is_SALOME_product : "yes"
     }
 }
 
@@ -58,8 +60,9 @@ version_V2_5_0_win:
     cmake_options : '-DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig.exe -DLIBBATCH_CXX_STANDARD=17 '
     properties:
     {
-        incremental : 'yes'
-        single_install_dir: 'yes' # aimed to solve sat #18914
+        incremental       : "yes"
+        single_install_dir: "yes" # aimed to resolve sat #18914
+        is_SALOME_product : "yes"
     }
 }
 
@@ -73,8 +76,9 @@ version_V2_4_6_win:
     cmake_options : '-DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig.exe -DLIBBATCH_CXX_STANDARD=17 '
     properties:
     {
-        incremental : 'yes'
-        single_install_dir: 'yes' # aimed to solve sat #18914
+        incremental       : "yes"
+        single_install_dir: "yes" # aimed to resolve sat #18914
+        is_SALOME_product : "yes"
     }
 }
 
