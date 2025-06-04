@@ -37,12 +37,14 @@ APPLICATION :
         # PREREQUISITES :
         alabaster : '0.7.6'
         Babel : '2.14.0'
+        BasicIterativeStatistics :  'v0.1.0'
         boost : '1.71.0'
         CAS : {tag : 'SALOME_9_15_V7_9_0a1', section: 'version_SALOME_9_15_V7_9_0a1', base:  'no'}
         catalyst: {tag: '2.0', section: 'version_v2_0_0', base: 'no'}
         C3PO: 'v2.3'
         certifi : '2018.8.24'
         cftime: '1.6.3'
+        cgal : 'v5.6.1'
         cgns : {tag : '4.2.0', hpc : 'yes'}
         chardet : '3.0.4'
         charset_normalizer : '3.3.2'
@@ -74,7 +76,7 @@ APPLICATION :
         gdal :  {tag : '2.4.0',  hpc : 'yes'}
         gmsh :  {tag : '4.10.3', section :  'version_4_10_3_with_CAS_7_8_MPI', hpc : 'yes', base : 'no'}
         graphviz : '2.38.0'
-        h5py : '3.11.0'
+        h5py : {tag: '3.9.0', base: 'no', section: 'version_3_9_0_no_pip'}
         hdf5 : {tag : '1.10.3', hpc : 'yes'}
         idna : '2.7'
         imagesize : '1.4.1'
@@ -90,8 +92,9 @@ APPLICATION :
         markupsafe : '2.1.5'
         markdown_it_py: '3.0.0'
         matplotlib : '3.8.2'
+        mcut : 'b5b0ec6'
         mdurl: '0.1.2'
-        medfile : {tag : '4.1.2', hpc : 'yes'}
+        medfile : {tag : '4.2.0', hpc : 'yes'}
         mesa : '19.0.8'
         MeshGems : {tag : '2.15-1', hpc : 'yes'}
         meshio : {tag: '5.3.5' , base: 'no', section : 'version_5_3_5_no_pip'}
@@ -117,18 +120,24 @@ APPLICATION :
         patsy : '0.5.4'
         ParaView : {tag:'5.13.2918b94391', base: 'no',  section: 'version_5_13_2_MPI', hpc: 'yes'}
         PERSALYS: 'v18.0'
-        petsc : {tag : '3.16.0', base: 'no', section: 'version_3_16_0', hpc: 'yes'}
+        petsc : {tag : '3.20.5', base: 'no', section: 'version_3_20_5_MPI', hpc: 'yes'}
         Pillow : '8.4.0'
         planegcs : '0.18-3cb6890'
+        poetry : {tag: '1.8.3', base: 'no', section: 'version_1_8_3_x86_64'    }
+        poetry_core : '1.9.0'
+        pyyaml : {tag: '6.0',   base: 'no', section: 'version_6_0_x86_64'    }
         psutil : '5.9.8'
         PyFMI : {tag: '2.6',   base: 'no', section: 'version_2_6_no_pip'}
         Pygments : '2.17.2'
         pyparsing : '3.1.1'
         PyQt : '5.15.3'
+        pyqwt: {tag : '0.12.1', base : 'no', section : 'version_0_12_1_no_pip', hpc: 'no'}
         pyreadline : '2.0'
+        pytest :  '8.1.1'
         Python : '3.9.14'
         pytz : '2017.2'
         qt : '5.15.15'
+        qtpy : {tag : '2.4.1', base : 'no', section : 'version_2_4_1_no_pip', hpc: 'no'}
         qwt : '6.1.6'
         rapidjson : '1.1.0'
         requests : '2.31.0'
@@ -173,10 +182,10 @@ APPLICATION :
         'SHAPER'
         'SHAPERSTUDY'
         'RESTRICTED'
-        'LIBBATCH' : 'V2_6_0'
+        'LIBBATCH' : 'V2_6_1'
         'KERNEL'      : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes', verbose: 'yes'}
         'MEDCOUPLING' : {tag:'master', base: 'no', section: 'default_MPI_STD', hpc: 'yes', verbose: 'yes'}
-        'GUI' : {verbose : 'yes'}
+        'GUI'
         'CommonGeomLib'
         'GEOM'
         'SMESH'
@@ -242,16 +251,26 @@ __overwrite__ :
         'APPLICATION.products.openturns': {tag: '1.24',   base: 'no', section: 'version_1_24_CO7', hpc: 'yes'      }
         'APPLICATION.products.URANIE'   : {tag: '4.8.0',  base: 'no', section: 'version_4_8_0_CO7'                 }
     }
+    #
     {
         __condition__ : "VARS.dist in ['CO8']"
-        'APPLICATION.rm_products'  : ['gcc', 'gmp', 'mpc', 'mpfr', 'zeromq']
-        'APPLICATION.products.gdal'      : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_CO8',      hpc: 'yes' } # spns #29324
-        'APPLICATION.products.openturns': {tag: '1.24',   base: 'no', section: 'version_1_24_CO8', hpc: 'yes'      }
+        'APPLICATION.rm_products'       : ['gcc', 'gmp', 'mpc', 'mpfr', 'zeromq', 'mcut'] # mcut requires c++20
+        'APPLICATION.products.boost'    : '1.75.0'
+        'APPLICATION.products.dateutil' : '2.8.1'
+        'APPLICATION.products.pandas'   : '1.4.0'
+        'APPLICATION.products.pyyaml'   : '6.0'
+        'APPLICATION.products.Python'   : '3.10.16'
+        'APPLICATION.products.pytz'     : '2021.1'
+        'APPLICATION.products.scipy'    : '1.8.0'
+        'APPLICATION.products.numpy'    : {tag: '1.22.2', base: 'no', section: 'version_1_22_2_CO8'            }
+        'APPLICATION.products.gdal'     : {tag: '2.4.0',  base: 'no', section: 'version_2_4_0_CO8', hpc: 'yes' } # spns #29324
+        'APPLICATION.products.openturns': {tag: '1.24',   base: 'no', section: 'version_1_24_CO8',  hpc: 'yes' }
     }
+    #
     {
         __condition__ : "VARS.dist in ['CO9']"
-        'APPLICATION.products.gcc' : '11.4.0'
-        'APPLICATION.rm_products'  : ['zeromq']
+        'APPLICATION.rm_products'        : ['zeromq']
+        'APPLICATION.products.gcc'       : '11.4.0'
         'APPLICATION.products.openmpi'   : '4.1.6'
         'APPLICATION.products.hdf5'      : '1.10.5'
         'APPLICATION.products.boost'     : {tag: '1.71.0',  base: 'no', section: 'version_1_71_0_CO9',     hpc: 'no'  } # spns #29324

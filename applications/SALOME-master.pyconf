@@ -250,7 +250,7 @@ __overwrite__ :
     {
         __condition__ : "VARS.dist in ['CO7']"
         'APPLICATION.rm_products'       : ['gcc', 'gmp', 'mpc', 'mpfr']
-        'APPLICATION.products.openturns': {tag: '1.24',  base:'no',  section: 'version_1_24_CO7'  }
+        'APPLICATION.products.openturns': {tag: '1.24',  base: 'no', section: 'version_1_24_CO7'  }
         'APPLICATION.products.URANIE'   : {tag: '4.8.0', base: 'no', section: 'version_4_8_0_CO7' }
     }
     #
@@ -279,12 +279,6 @@ __overwrite__ :
         'APPLICATION.products.gdal'      : {tag: '2.4.0',   base: 'no', section: 'version_2_4_0_CO9'  } # spns #29324
         'APPLICATION.products.openturns' : {tag: '1.24',    base: 'no', section: 'version_1_24_CO9'   }
         'APPLICATION.products.root'      : {tag: '6.22.02', base: 'no', section: 'version_6_22_02_CO9'}
-    }
-    #
-    {
-        __condition__ : "VARS.dist in ['DB10']"
-        'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr', 'mcut'] # mcut requires c++20
-        'APPLICATION.products.gdal': {tag: '2.4.0',   base: 'no', section: 'version_2_4_0_DB10'        }
     }
     #
     {

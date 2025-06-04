@@ -13,7 +13,6 @@ APPLICATION :
     debug   : 'no'
     base    : 'no'
     python3 : 'yes'
-    pyver   : '3.9'
     environ :
     {
         build : 

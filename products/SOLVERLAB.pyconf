@@ -70,6 +70,25 @@ default_FD40:
     patches : ['SOLVERLAB_FD40.patch']
 }
 
+version_V9_15_0_MPI :
+{
+    depend :
+    [
+        'hdf5',
+        'matplotlib',
+        'medfile',
+        'numpy',
+        'ParaView',
+        'petsc',
+        'Python',
+        'KERNEL',
+        'GUI',
+        'MEDCOUPLING',
+        'openmpi'
+    ]
+    opt_depend : ['mpi4py']
+}
+
 version_V9_15_0_FD40:
 {
     patches : ['SOLVERLAB_FD40.patch']

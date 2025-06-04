@@ -5,7 +5,7 @@ APPLICATION :
 {
     name     : 'SALOME-9.15.0-MPI'
     workdir  : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag      : '9.15.0'
+    tag      : 'V9_15_0a2'
     dev      : 'no'
     verbose  : 'no'
     debug    : 'no'
@@ -14,7 +14,7 @@ APPLICATION :
     platform : ['CO7', 'CO8', 'CO9']
     environ  :
     {
-        build : 
+        build :
         {
            CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
            RESTRICTED_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "RESTRICTED"
@@ -37,19 +37,22 @@ APPLICATION :
         # PREREQUISITES :
         alabaster : '0.7.6'
         Babel : '2.14.0'
+        BasicIterativeStatistics :  'v0.1.0'
         boost : '1.71.0'
-        CAS : {tag : 'SALOME_9_13_V7_8_0', section: 'version_CR780_SALOME_PATCH', base: 'no'}
-        catalyst: '2.0'
+        CAS : {tag : 'SALOME_9_15_V7_9_0a1', section: 'version_SALOME_9_15_V7_9_0a1', base:  'no'}
+        catalyst: {tag: '2.0', section: 'version_v2_0_0', base: 'no'}
         C3PO: 'v2.3'
         certifi : '2018.8.24'
         cftime: '1.6.3'
+        cgal : 'v5.6.1'
         cgns : {tag : '4.2.0', hpc : 'yes'}
         chardet : '3.0.4'
         charset_normalizer : '3.3.2'
         click : '6.7'
-        cmake : '3.25.2'
-        cminpack: '1.3.6'
+        cmake : '3.31.6'
+        cminpack: '1.3.10'
         contourpy : '1.2.0'
+        cork : '5987de5'
         cppunit : '1.13.2'
         cycler : '0.10.0'
         Cython : '0.29.37'
@@ -59,19 +62,21 @@ APPLICATION :
         eigen : '3.3.4'
         embree : '3.12.2'
         FMILibrary : '2.0.3'
+        fftw : '3.3.10'
         fonttools : '4.48.1'
         freeimage : '3.16.0'
         freetype : '2.9.1'
         gcc  :  '8.5.0'
+        libigl : 'v2.5.0'
         mpc : 'native'
         gmp : 'native'
         mmg : '5.6.0'
-        mmgplugin: 'v1.0.0'
+        mmgplugin: 'main'
         mpfr : 'native'
         gdal :  {tag : '2.4.0',  hpc : 'yes'}
         gmsh :  {tag : '4.10.3', section :  'version_4_10_3_with_CAS_7_8_MPI', hpc : 'yes', base : 'no'}
         graphviz : '2.38.0'
-        h5py : '3.11.0'
+        h5py : {tag: '3.9.0', base: 'no', section: 'version_3_9_0_no_pip'}
         hdf5 : {tag : '1.10.3', hpc : 'yes'}
         idna : '2.7'
         imagesize : '1.4.1'
@@ -79,6 +84,7 @@ APPLICATION :
         importlib_resources: '6.1.1'
         ispc : '1.15.0'
         Jinja2 : '3.1.3'
+        jsoncpp : '1.9.6'
         kiwisolver : '1.3.1'
         lapack : '3.8.0'
         libxml2 : '2.9.12'
@@ -86,8 +92,9 @@ APPLICATION :
         markupsafe : '2.1.5'
         markdown_it_py: '3.0.0'
         matplotlib : '3.8.2'
+        mcut : 'b5b0ec6'
         mdurl: '0.1.2'
-        medfile : {tag : '4.1.1', hpc : 'yes'}
+        medfile : {tag : '4.2.0', hpc : 'yes'}
         mesa : '19.0.8'
         MeshGems : {tag : '2.15-1', hpc : 'yes'}
         meshio : {tag: '5.3.5' , base: 'no', section : 'version_5_3_5_no_pip'}
@@ -96,41 +103,47 @@ APPLICATION :
         netgen : '5.3.1_with_CAS_7.8'
         netcdf : {tag : '4.6.2', hpc : 'yes'}
         netCDF4 : '1.6.5'
-        nlopt : '2.5.0'
+        nlopt : '2.7.0'
         nose: '1.3.7'
         numpy : '1.21.1'
         numpydoc : '1.6.0'
         omniORB : '4.2.5'
         omniORBpy : '4.2.5'
         opencv : '3.2.0'
-        openmpi : '3.1.6' # current version of hdf5 is not compatible with openmpi 4, if compiled with MPI support
-        openturns:  {tag : '1.22', section: 'version_1_22_CO7', hpc : 'yes'}
+        openmpi : '4.0.3'
+        openturns:  {tag : '1.24', section: 'version_1_24', hpc : 'yes'}
         openVKL: '0.11.0'
         ospray : '2.4.0'
         packaging : '23.2'
         packagespy : '74152cd'
         pandas : '1.1.5'
         patsy : '0.5.4'
-        ParaView : {tag:'5.11.0', base: 'no',  section: 'version_5_11_0_MPI', hpc: 'yes'}
-        PERSALYS: 'v17.0.1'
-        petsc : {tag : '3.16.0', base: 'no', section: 'version_3_16_0', hpc: 'yes'}
+        ParaView : {tag:'5.13.2918b94391', base: 'no',  section: 'version_5_13_2_MPI', hpc: 'yes'}
+        PERSALYS: 'v18.0'
+        petsc : {tag : '3.20.5', base: 'no', section: 'version_3_20_5_MPI', hpc: 'yes'}
         Pillow : '8.4.0'
         planegcs : '0.18-3cb6890'
+        poetry : {tag: '1.8.3', base: 'no', section: 'version_1_8_3_x86_64'    }
+        poetry_core : '1.9.0'
+        pyyaml : {tag: '6.0',   base: 'no', section: 'version_6_0_x86_64'    }
         psutil : '5.9.8'
         PyFMI : {tag: '2.6',   base: 'no', section: 'version_2_6_no_pip'}
         Pygments : '2.17.2'
         pyparsing : '3.1.1'
         PyQt : '5.15.3'
+        pyqwt: {tag : '0.12.1', base : 'no', section : 'version_0_12_1_no_pip', hpc: 'no'}
         pyreadline : '2.0'
+        pytest :  '8.1.1'
         Python : '3.9.14'
         pytz : '2017.2'
         qt : '5.15.15'
+        qtpy : {tag : '2.4.1', base : 'no', section : 'version_2_4_1_no_pip', hpc: 'no'}
         qwt : '6.1.6'
         rapidjson : '1.1.0'
         requests : '2.31.0'
         rich : '13.7.1'
         rkCommon : '1.5.1'
-        root: '6.22.02'
+        root: '6.28.10'
         salome_system : 'native'
         scipy : '1.6.2'
         scotch : {tag: '6.1.2', section: 'version_6_1_2_MPI', hpc: 'yes', base: 'no'}
@@ -161,7 +174,7 @@ APPLICATION :
         urllib3 : '1.23'
         zeromq: '4.3.1'
         zipp : '3.17.0'
-        URANIE : '4.7.0'
+        URANIE : '4.8.0'
 
         # SALOME MODULES :
         'CONFIGURATION'
@@ -169,10 +182,10 @@ APPLICATION :
         'SHAPER'
         'SHAPERSTUDY'
         'RESTRICTED'
-        'LIBBATCH' : 'V2_6_0'
-        'KERNEL'      : {tag:'9.15.0', base: 'no', section: 'default_MPI', hpc: 'yes', verbose: 'yes'}
-        'MEDCOUPLING' : {tag:'9.15.0', base: 'no', section: 'default_MPI_STD', hpc: 'yes', verbose: 'yes'}
-        'GUI' : {verbose : 'yes'}
+        'LIBBATCH' : 'V2_6_1'
+        'KERNEL'      : {tag:'V9_15_0a2', base: 'no', section: 'version_V9_15_0_MPI',     hpc: 'yes', verbose: 'yes'}
+        'MEDCOUPLING' : {tag:'V9_15_0a2', base: 'no', section: 'version_V9_15_0_MPI_STD', hpc: 'yes', verbose: 'yes'}
+        'GUI'
         'CommonGeomLib'
         'GEOM'
         'SMESH'
@@ -182,12 +195,12 @@ APPLICATION :
         'HYBRIDPLUGIN'
         'HexoticPLUGIN'
         'GMSHPLUGIN'
-        'HEXABLOCK' : {tag:'9.15.0', base: 'no', section: 'default_MPI', hpc: 'yes', verbose: 'yes'}
+        'HEXABLOCK' : {tag:'V9_15_0a2', base: 'no', section: 'version_V9_15_0_MPI', hpc: 'yes', verbose: 'yes'}
         'HEXABLOCKPLUGIN'
-        'HOMARD'    : {tag:'9.15.0', base: 'no', section: 'default_MPI', hpc: 'yes'}
-        'FIELDS'    : {tag:'9.15.0', base: 'no', section: 'default_MPI', hpc: 'yes'}
-        'PARAVIS'   : {tag:'9.15.0', base: 'no', section: 'default_MPI', hpc: 'yes'}
-        'JOBMANAGER': {tag:'9.15.0', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'HOMARD'    : {tag:'V9_15_0a2', base: 'no', section: 'version_V9_15_0_MPI', hpc: 'yes'}
+        'FIELDS'    : {tag:'V9_15_0a2', base: 'no', section: 'version_V9_15_0_MPI', hpc: 'yes'}
+        'PARAVIS'   : {tag:'V9_15_0a2', base: 'no', section: 'version_V9_15_0_MPI', hpc: 'yes'}
+        'JOBMANAGER': {tag:'V9_15_0a2', base: 'no', section: 'version_V9_15_0_MPI', hpc: 'yes'}
         'YACS'
         'YACSGEN'
         'DOCUMENTATION'
@@ -207,7 +220,7 @@ APPLICATION :
         'YDEFX'
         'pmml'
         'SALOMEBOOTSTRAP'
-        'SOLVERLAB' : {tag: '9.15.0', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'SOLVERLAB' : {tag: 'V9_15_0a2', base: 'no', section: 'version_V9_15_0_MPI', hpc: 'yes'}
         'TopIIVolMesh'
         #'TESTBASE'
         'CEATESTBASE'
@@ -216,7 +229,7 @@ APPLICATION :
     {
         launcher_name : "salome"
     }
-    test_base : 
+    test_base :
     {
         name : "SALOME"
         tag : "SalomeV9"
@@ -233,54 +246,36 @@ APPLICATION :
 __overwrite__ :
 [
     {
-        __condition__ : "VARS.dist in ['FD30']"
-        'APPLICATION.products.gcc' : '9.3.0'
-    }
-    {
-        __condition__ : "VARS.dist in ['FD32']"
-        # https://github.com/scipy/scipy/issues/11611
-        'APPLICATION.products.scipy' : '1.5.2'
-        'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
-        'APPLICATION.products.gdal': {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_FD32'} # spns #29324
-    }
-    {
         __condition__ : "VARS.dist in ['CO7']"
         'APPLICATION.rm_products'         : ['gcc', 'gmp', 'mpc', 'mpfr']
-        'APPLICATION.products.openturns'  : {tag: '1.22',  base: 'no', section: 'version_1_22_CO7', hpc: 'yes' }
-        'APPLICATION.products.ParaView'   : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_CO7', hpc: 'yes'}
+        'APPLICATION.products.openturns': {tag: '1.24',   base: 'no', section: 'version_1_24_CO7', hpc: 'yes'      }
+        'APPLICATION.products.URANIE'   : {tag: '4.8.0',  base: 'no', section: 'version_4_8_0_CO7'                 }
     }
+    #
     {
         __condition__ : "VARS.dist in ['CO8']"
-        'APPLICATION.rm_products'  : ['gcc', 'gmp', 'mpc', 'mpfr', 'zeromq']
-        'APPLICATION.products.gdal'      : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_CO8',      hpc: 'yes' } # spns #29324
-        'APPLICATION.products.openturns' : {tag: '1.22',   base: 'no', section: 'version_1_22_CO8',       hpc: 'yes' }
-        'APPLICATION.products.ParaView'  : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_CO8', hpc: 'yes'}
+        'APPLICATION.rm_products'       : ['gcc', 'gmp', 'mpc', 'mpfr', 'zeromq', 'mcut'] # mcut requires c++20
+        'APPLICATION.products.boost'    : '1.75.0'
+        'APPLICATION.products.dateutil' : '2.8.1'
+        'APPLICATION.products.pandas'   : '1.4.0'
+        'APPLICATION.products.pyyaml'   : '6.0'
+        'APPLICATION.products.Python'   : '3.10.16'
+        'APPLICATION.products.pytz'     : '2021.1'
+        'APPLICATION.products.scipy'    : '1.8.0'
+        'APPLICATION.products.numpy'    : {tag: '1.22.2', base: 'no', section: 'version_1_22_2_CO8'            }
+        'APPLICATION.products.gdal'     : {tag: '2.4.0',  base: 'no', section: 'version_2_4_0_CO8', hpc: 'yes' } # spns #29324
+        'APPLICATION.products.openturns': {tag: '1.24',   base: 'no', section: 'version_1_24_CO8',  hpc: 'yes' }
     }
+    #
     {
         __condition__ : "VARS.dist in ['CO9']"
-        'APPLICATION.products.gcc' : '11.4.0'
-        'APPLICATION.rm_products'  : ['zeromq']
+        'APPLICATION.rm_products'        : ['zeromq']
+        'APPLICATION.products.gcc'       : '11.4.0'
         'APPLICATION.products.openmpi'   : '4.1.6'
         'APPLICATION.products.hdf5'      : '1.10.5'
-        'APPLICATION.products.boost'     : {tag:'1.71.0',  base: 'no', section: 'version_1_71_0_CO9',     hpc: 'no'  } # spns #29324
-        'APPLICATION.products.gdal'      : {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_CO9',      hpc: 'yes' } # spns #29324
-        'APPLICATION.products.openturns' : {tag: '1.23',   base: 'no', section: 'version_1_23_CO9',       hpc: 'yes' }
-        'APPLICATION.products.ParaView'  : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_CO9', hpc: 'yes' }
+        'APPLICATION.products.boost'     : {tag: '1.71.0',  base: 'no', section: 'version_1_71_0_CO9',     hpc: 'no'  } # spns #29324
+        'APPLICATION.products.gdal'      : {tag: '2.4.0',   base: 'no', section: 'version_2_4_0_CO9',      hpc: 'yes' } # spns #29324
+        'APPLICATION.products.openturns' : {tag: '1.24',    base: 'no', section: 'version_1_24_CO9',       hpc: 'yes' }
         'APPLICATION.products.root'      : {tag: '6.22.02', base: 'no', section: 'version_6_22_02_CO9'                }
-    }
-    {
-        __condition__ : "VARS.dist in ['DB10']"
-        'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
-        'APPLICATION.products.gdal': {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_DB10'} # spns #29324
-    }
-    {
-        __condition__ : "VARS.dist in ['DB09']"
-        'APPLICATION.products.openturns'  : {tag: '1.22',  base: 'no', section: 'version_1_22_DB09', hpc: 'yes' }
-        'APPLICATION.products.ParaView'   : {tag: '5.11.0', base: 'no', section: 'version_5_11_0_MPI_DB09', hpc: 'yes'}
-    }
-    {
-        __condition__ : "VARS.dist in ['UB20.04']"
-        'APPLICATION.rm_products' : ['gcc', 'gmp', 'mpc', 'mpfr']
-        'APPLICATION.products.gdal': {tag:'2.4.0',   base: 'no', section: 'version_2_4_0_UB20_04'} # spns #29324
     }
 ]

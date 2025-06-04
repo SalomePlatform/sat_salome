@@ -51,6 +51,13 @@ version_3_20_5_DB10 :
     patches: ['petsc-3.20.5-mpi4py.patch', 'petsc-3.20.5-limit-cython-version.patch']
 }
 
+version_3_20_5_MPI :
+{
+    compil_script :  "petsc-3.20.5.sh"
+    depend : ["hdf5", "Python", "lapack","fftw", "llvm", "ParMetis", "medfile", "mpi4py", "scotch" ]
+    patches: ['petsc-3.20.5-mpi4py.patch', 'petsc-3.20.5-limit-cython-version.patch']
+}
+
 version_3_19_4 :
 {
     compil_script :  "petsc-3.19.4.sh"
