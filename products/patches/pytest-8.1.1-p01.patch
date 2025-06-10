@@ -1,0 +1,11 @@
+--- pytest-8.1.1_ref/pyproject.toml	2024-03-09 11:49:29.000000000 +0000
++++ pytest-8.1.1_dev/pyproject.toml	2025-06-10 19:36:57.500256616 +0000
+@@ -16,7 +16,7 @@
+     {name = "Florian Bruhin"},
+     {name = "Others (See AUTHORS)"},
+ ]
+-requires-python = ">=3.8"
++requires-python = ">=3.7"
+ classifiers = [
+     "Development Status :: 6 - Mature",
+     "Intended Audience :: Developers",

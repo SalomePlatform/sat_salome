@@ -16,11 +16,11 @@ fi
 
 if [ "${SAT_Python_IS_NATIVE}" != "1" ] || [ -z "${PYTEST}" ]; then
     echo
-    echo "*** install with $PYTHONBIN -m pip install . --cache-dir=${BUILD_DIR}/cache/pip"
-    ${PYTHONBIN} -m pip install . --prefix=$PRODUCT_INSTALL --cache-dir=$BUILD_DIR/cache/pip -vvv 
+    echo "*** install with $PYTHONBIN -m pip install . --cache-dir=${BUILD_DIR}/cache/pip --no-deps "
+    ${PYTHONBIN} -m pip install . --prefix=$PRODUCT_INSTALL --cache-dir=$BUILD_DIR/cache/pip  --no-deps -vvvv
     if [ $? -ne 0 ]; then
         echo "pip install pytest fails"
-        echo 3
+        exit 1
     fi
 fi
 

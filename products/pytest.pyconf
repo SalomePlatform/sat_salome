@@ -37,3 +37,8 @@ default_win :
     }
     depend : ['Python', 'setuptools', 'numpy', 'openturns', 'Cython', 'iniconfig', 'exceptiongroup', 'tomli']
 }
+
+version_8_1_1 :
+{
+  patches : ['pytest-8.1.1-p01.patch']
+}
