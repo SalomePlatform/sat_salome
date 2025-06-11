@@ -33,6 +33,8 @@ default :
 version_v2_3 :
 {
     compil_script  : "C3PO-v2.3.sh"
+    opt_depend: ["openmpi", "mpi4py"]
+    build_depend : ["cmake", "swig", "cppunit", "pytest"]
     patches: ['C3PO-v2.3-0001.patch', 'C3PO-v2.3-0002.patch']
 }
 
