@@ -271,7 +271,7 @@ __overwrite__ :
     #
     {
         __condition__ : "VARS.dist in ['CO9']"
-        'APPLICATION.rm_products'        : ['zeromq']
+        'APPLICATION.rm_products'        : ['zeromq', 'URANIE']
         'APPLICATION.products.gcc'       : '11.4.0'
         'APPLICATION.products.openmpi'   : '4.1.6'
         'APPLICATION.products.hdf5'      : '1.10.5'
