@@ -266,6 +266,7 @@ __overwrite__ :
         'APPLICATION.products.nose_py3'         : {tag: '1.6.9',  base: 'no', section: 'version_1_6_9_no_pip'               }
         'APPLICATION.products.rkCommon'         : {tag: '1.5.1',  base: 'no', section: 'version_1_5_1_UB24_04'              }
         'APPLICATION.products.gmsh'             : {tag: '4.10.3', base: 'no', section: 'version_4_10_3_with_CAS_7_8_UB24_04'}
+        'APPLICATION.products.ParaView'         : {tag: '5.13.2918b94391', base: 'no', section: 'version_5_13_2_MPI_UB24_04', hpc: 'yes'}
     }
     {
         #
