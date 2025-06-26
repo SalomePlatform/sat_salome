@@ -142,7 +142,7 @@ version_V9_15_0_MPI :
                    'git submodule sync',
                    'git submodule update --init --remote'
                    'cd src/Plugins/MEDReader'
-                   'git checkout V9_15_0a2'
+                   'git checkout V9_15_0b1'
                   ]
     patches : []
 }

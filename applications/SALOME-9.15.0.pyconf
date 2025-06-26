@@ -5,7 +5,7 @@ APPLICATION :
 {
     name     : 'SALOME-9.15.0'
     workdir  : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag      : 'V9_15_0a2'
+    tag      : 'V9_15_0b1'
     dev      : 'no'
     verbose  : 'no'
     debug    : 'no'
@@ -185,7 +185,7 @@ APPLICATION :
         'RESTRICTED'
         'LIBBATCH' : 'V2_6_1'
         'KERNEL'
-        'MEDCOUPLING' : {tag:'V9_15_0a2', base: 'no', section: 'version_V9_15_0_MPI', hpc: 'yes'}
+        'MEDCOUPLING' : {tag:'V9_15_0b1', base: 'no', section: 'version_V9_15_0_MPI', hpc: 'yes'}
         'GUI'
         'CommonGeomLib'
         'GEOM'
@@ -200,7 +200,7 @@ APPLICATION :
         'HEXABLOCKPLUGIN'
         'HOMARD'
         'FIELDS'
-        'PARAVIS' : {tag:'V9_15_0a2', base: 'no', section: 'version_V9_15_0_MPI', hpc: 'yes'}
+        'PARAVIS' : {tag:'V9_15_0b1', base: 'no', section: 'version_V9_15_0_MPI', hpc: 'yes'}
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
@@ -250,7 +250,7 @@ __overwrite__ :
     {
         __condition__ : "VARS.dist in ['CO7']"
         'APPLICATION.rm_products'       : ['gcc', 'gmp', 'mpc', 'mpfr']
-        'APPLICATION.products.openturns': {tag: '1.24',  base:'no',  section: 'version_1_24_CO7'  }
+        'APPLICATION.products.openturns': {tag: '1.24',  base: 'no', section: 'version_1_24_CO7'  }
         'APPLICATION.products.URANIE'   : {tag: '4.8.0', base: 'no', section: 'version_4_8_0_CO7' }
     }
     #
