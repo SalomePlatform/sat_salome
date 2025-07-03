@@ -29,7 +29,12 @@ REM clean BUILD directory
 if exist "%BUILD_DIR%" rmdir /Q /S %BUILD_DIR%
 mkdir %BUILD_DIR%
 
-set PVLIBVERSION=5.11
+REM bos #46141: extract Major and minor from version, assuming version reads
+set PVLIBVERSION=
+for /f "tokens=1-2 delims=." %%a in ("%VERSION%") do (
+    set "PVLIBVERSION=%%a.%%b"
+)
+echo PVLIBVERSION=%PVLIBVERSION%
 
 set python_name=python%PYTHON_VERSION%
 
