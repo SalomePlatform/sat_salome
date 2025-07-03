@@ -266,7 +266,7 @@ if NOT %ERRORLEVEL% == 0 (
 REM in order to fullfill some prerequistes by GUI!
 cd %PRODUCT_INSTALL%\bin
 mkdir Lib
-MOVE /Y site-packages Lib\site-packages
+MOVE /Y %PRODUCT_INSTALL%\lib\site-packages Lib\site-packages
 
 REM move 
 set MSBUILDDISABLENODEREUSE=1
