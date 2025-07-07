@@ -1,0 +1,13 @@
+diff --git a/paravis_ref/src/Plugins/CMakeLists.txt b/paravis_dev/src/Plugins/CMakeLists.txt
+index 141cd2e..e95e6da 100644
+--- a/paravis_ref/src/Plugins/CMakeLists.txt
++++ b/paravis_dev/src/Plugins/CMakeLists.txt
+@@ -28,7 +28,7 @@ SET(_subdirs
+   ArrayRenamer
+   JSONReader
+   DevelopedSurface
+-  StaticMesh
++#  StaticMesh
+   GaussToCell
+   VoroGauss
+   CADRepresentation
