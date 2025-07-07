@@ -76,7 +76,8 @@ version_5_13_2_win :
                'paraview-5.13-2918b94391.p002-FindMPI.patch',
                'paraview-5.13-2918b94391.p003-FindCGNS.patch',
                'paraview-5.13-2918b94391.p004-FindFreetype.patch',
-               'paraview-5.13-2918b94391.p008-FindTBB_tbbmalloc_proxy_issue.patch'
+               'paraview-5.13-2918b94391.p008-FindTBB_tbbmalloc_proxy_issue.patch',
+               'paraview-5.13-2918b94391.p009-vtkModuleWrapPython.patch'
               ]
 }
 

@@ -97,7 +97,7 @@ set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DVTK_BUILD_QT_DESIGNER_PLUGIN:BOOL=OFF
 REM Python settings
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DPARAVIEW_USE_PYTHON:BOOL=ON
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DVTK_WRAP_PYTHON:BOOL=ON
-set CMAKE_OPTIONS=%CMAKE_OPTIONS%  -DPython3_EXECUTABLE:FILEPATH=%PYTHON_ROOT_DIR:\=/%/python3.exe
+set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DPython3_EXECUTABLE:FILEPATH=%PYTHON_ROOT_DIR:\=/%/python3.exe
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DPython3_INCLUDE_DIR:FILEPATH=%PYTHON_ROOT_DIR:\=/%/include
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DPython3_LIBRAY_DIRS=%PYTHON_ROOT_DIR:\=/%/libs
 if %SAT_DEBUG% == 0 (
@@ -263,13 +263,14 @@ if NOT %ERRORLEVEL% == 0 (
     exit 3
 )
 
-REM in order to fullfill some prerequistes by GUI!
-cd %PRODUCT_INSTALL%\bin
-mkdir Lib
-MOVE /Y %PRODUCT_INSTALL%\lib\site-packages Lib\site-packages
-
-REM move 
 set MSBUILDDISABLENODEREUSE=1
+
+REM in order to fullfill some prerequistes by GUI!
+if NOT exist "%PRODUCT_INSTALL%\bin\Lib\site-packages" (
+  cd %PRODUCT_INSTALL%\bin
+  mkdir Lib
+  MOVE /Y %PRODUCT_INSTALL%\lib\site-packages Lib\site-packages
+)
 
 REM In debug mode, we need to rename all .pyd to _d.pyd... don't ask why. Seems like a known bug in OmniORB.
 if %SAT_DEBUG% == 1 (

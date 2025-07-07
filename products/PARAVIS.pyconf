@@ -82,7 +82,7 @@ default_win:
        "pytz",
        "sphinxintl"
     ]
-    patches : []
+    patches : ['paravis-9.15.0-p01-medwriter.patch', 'paravis-9.15.0-p02-medreader.patch']
 }
 
 default_MPI :
@@ -110,6 +110,34 @@ default_MPI :
        "openmpi"
     ]
     patches : []
+}
+
+version_V9_15_0 :
+{
+    cmake_options : "-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON -DBUILD_TESTING=ON"
+    git_info:
+    {
+      repositories :
+      {
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/paravis.git"
+        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "paravis.git"
+        gitpub : $PROJECTS.projects.salome.git_info.git_server.gitpub.url + "modules/paravis.git"
+      }
+      git_commands: [
+                     'git config -f .gitmodules submodule.src/Plugins/MEDReader.url ../medreader',
+                     'git config -f .git/config submodule.src/Plugins/MEDReader.url ../medreader',
+                     'git submodule sync',
+                     'git submodule update --init --remote',
+                     'cd src/Plugins/MEDReader'
+                     'git checkout V9_15_BR'
+                    ]
+    }
+}
+
+version_V9_15_0_win :
+{
+  cmake_options : "-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON -DBUILD_TESTING=ON"
+  patches : ['paravis-9.15.0-p01-medwriter.patch', 'paravis-9.15.0-p02-medreader.patch']
 }
 
 version_V9_15_0_MPI :
@@ -228,6 +256,7 @@ version_V9_14_0_win:
        "pytz",
        "sphinxintl"
     ]
+    patches : []
 }
 
 version_V9_14_0_MPI :
@@ -284,6 +313,12 @@ version_V9_13_0 :
       }
       git_commands: []
     }
+    patches : []
+}
+
+version_V9_13_0_win :
+{
+    patches : []
 }
 
 version_V9_13_0_MPI :
@@ -374,6 +409,11 @@ version_V9_12_0 :
    }
 }
 
+version_V9_12_0_win :
+{
+    patches : []
+}
+
 version_V9_12_0_MPI :
 {
    git_info:
@@ -423,6 +463,11 @@ version_V9_11_0 :
      }
      git_commands: []
    }
+}
+
+version_V9_11_0_win :
+{
+    patches : []
 }
 
 version_V9_11_0_MPI :
@@ -476,6 +521,11 @@ version_V9_10_0 :
    }
 }
 
+version_V9_10_0_win :
+{
+    patches : []
+}
+
 version_V9_10_0_MPI :
 {
    git_info:
@@ -527,6 +577,11 @@ version_V9_9_0 :
    }
 }
 
+version_V9_9_0_win :
+{
+    patches : []
+}
+
 version_V9_9_0_MPI :
 {
    git_info:
@@ -575,6 +630,11 @@ version_V9_8_0 :
      git_commands: []
    }
    cmake_options : "-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON -DBUILD_TESTING=ON"
+}
+
+version_V9_8_0_win :
+{
+    patches : []
 }
 
 version_V9_8_0_MPI :
@@ -628,6 +688,11 @@ version_V9_7_0 :
    cmake_options : "-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON -DBUILD_TESTING=ON"
 }
 
+version_V9_7_0_win :
+{
+    patches : []
+}
+
 version_V9_7_0_MPI :
 {
     git_info:
@@ -679,6 +744,11 @@ version_V9_6_0 :
     patches : ['PARAVIS-MEDLoaderForPV-64BITS_IDS.patch'] # port-back post-9.6.0 PARAVIS fix # bos #20444
 }
 
+version_V9_6_0_win :
+{
+    patches : []
+}
+
 version_V9_6_0_MPI :
 {
     git_info:
@@ -716,21 +786,6 @@ version_V9_6_0_MPI :
    patches : ['PARAVIS-MEDLoaderForPV-64BITS_IDS.patch'] # port-back post-9.6.0 PARAVIS fix # bos #20444
 }
 
-version_V9_4_0 :
-{
-    git_info:
-    {
-      repositories :
-      {
-        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/paravis.git"
-        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "paravis.git"
-        gitpub : $PROJECTS.projects.salome.git_info.git_server.gitpub.url + "modules/paravis.git"
-      }
-      git_commands: []
-    }
-   cmake_options : "-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON "
-}
-
 version_V9_5_0 :
 {
     git_info:
@@ -746,6 +801,31 @@ version_V9_5_0 :
     cmake_options : "-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON "
 }
 
+version_V9_5_0_win :
+{
+    patches : []
+}
+
+version_V9_4_0 :
+{
+    git_info:
+    {
+      repositories :
+      {
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/paravis.git"
+        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "paravis.git"
+        gitpub : $PROJECTS.projects.salome.git_info.git_server.gitpub.url + "modules/paravis.git"
+      }
+      git_commands: []
+    }
+   cmake_options : "-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON "
+}
+
+version_V9_4_0_win :
+{
+    patches : []
+}
+
 version_V9_3_0 :
 {
     git_info:
@@ -759,6 +839,11 @@ version_V9_3_0 :
       git_commands: []
     }
     cmake_options : "-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON "
+}
+
+version_V9_3_0_win :
+{
+    patches : []
 }
 
 version_7_8_0_to_9_1_0 :
