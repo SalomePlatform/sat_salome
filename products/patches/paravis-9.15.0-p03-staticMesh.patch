@@ -1,8 +1,6 @@
-diff --git a/paravis_ref/src/Plugins/CMakeLists.txt b/paravis_dev/src/Plugins/CMakeLists.txt
-index 141cd2e..e95e6da 100644
---- a/paravis_ref/src/Plugins/CMakeLists.txt
-+++ b/paravis_dev/src/Plugins/CMakeLists.txt
-@@ -28,7 +28,7 @@ SET(_subdirs
+--- paravis_ref/src/Plugins/CMakeLists.txt	2025-07-07 10:59:27.779615908 +0200
++++ paravis_dev/src/Plugins/CMakeLists.txt	2025-07-07 17:10:35.144600867 +0200
+@@ -28,7 +28,7 @@
    ArrayRenamer
    JSONReader
    DevelopedSurface
