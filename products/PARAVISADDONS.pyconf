@@ -60,6 +60,9 @@ default :
 
 default_win :
 {
+    # bos #46196 - make the build directory as short as possible since
+    # build will fail if build type is RelWithDebInfo.
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + "PVA"
     depend :
     [
         'PARAVIS'

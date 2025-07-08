@@ -65,32 +65,6 @@
      #
      DataRepresentation2 = Show()
      DataRepresentation2.EdgeColor = [0.0, 0.0, 0.5000076295109483]
---- paravis_ref/src/Plugins/MEDReader/plugin/Test/testMEDReader22.py	2025-07-07 10:59:27.880616959 +0200
-+++ paravis_dev/src/Plugins/MEDReader/plugin/Test/testMEDReader22.py	2025-07-07 11:00:27.491239027 +0200
-@@ -88,7 +88,10 @@
-     ds_bl = blocks.GetBlock(0)
-     MyAssert(ds_bl.GetNumberOfCells()==4)
-     bl_ref_conn = np.array([ 1,  0,  6,  7,  2,  1,  7,  8,  7,  6, 12, 13,  8,  7, 13, 14],dtype=np.int32)
--    MyAssert(ds_bl.GetCellData().GetNumberOfArrays() == 4 )# 3 for field, mesh and FamilyIdCell +1 for vtkGhostType
-+    if platform.system() == "Windows" :
-+        MyAssert(ds_bl.GetCellData().GetNumberOfArrays() == 3 )# 3 for field, mesh and FamilyIdCell
-+    else:
-+        MyAssert(ds_bl.GetCellData().GetNumberOfArrays() == 4 )#  3 for field, mesh and FamilyIdCell +1 for vtkGhostTyp
-     MyAssert(np.all( bl_ref_conn == numpy_support.vtk_to_numpy( ds_bl.GetCells().GetConnectivityArray() )) )
-     MyAssert( mc.DataArrayDouble(numpy_support.vtk_to_numpy( ds_bl.GetCellData().GetArray("field") )).isEqual(f.getArray()[grp_BottomLeft],1e-12) )
-     # test of bottom right
-@@ -111,7 +114,10 @@
-     MyAssert( mc.DataArrayDouble(numpy_support.vtk_to_numpy( ds_tr.GetCellData().GetArray("field") )).isEqual(f.getArray()[grp_TopRight],1e-12) )
-     #
-     for ds in [ds_bl,ds_br,ds_tl,ds_tr]:
--        MyAssert(ds.GetPointData().GetNumberOfArrays() == 2 )# 1 for field2 + vtkGhostType
-+        if platform.system() == "Windows" :
-+            MyAssert(ds.GetPointData().GetNumberOfArrays() == 1 )# 1 for field2
-+        else:
-+            MyAssert(ds.GetPointData().GetNumberOfArrays() == 2 )# 1 for field2 + vtkGhostType
-         MyAssert(ds.GetNumberOfPoints()==36) # for performance reasons all blocks share the same input coordinates
-         MyAssert(mc.DataArrayDouble( numpy_support.vtk_to_numpy( ds.GetPointData().GetArray("field2") ) ).isEqual(f2.getArray(),1e-12) )
- 
 --- paravis_ref/src/Plugins/MEDReader/plugin/Test/testMEDReader23.py	2025-07-07 10:59:27.880616959 +0200
 +++ paravis_dev/src/Plugins/MEDReader/plugin/Test/testMEDReader23.py	2025-07-07 11:00:27.491239027 +0200
 @@ -23,6 +23,7 @@
@@ -114,3 +88,67 @@
  ReadUnstructuredGrid = servermanager.Fetch(myMedReader).GetBlock(0)
  numpy_support.vtk_to_numpy( ReadUnstructuredGrid.GetPointData().GetArray('GlobalNodeIds') )
  # check match of coordinates written in testMEDReader23.med file and its representation
+--- paravis_ref/src/Plugins/MEDReader/plugin/Test/testMEDReader22.py	2025-07-07 10:59:27.880616959 +0200
++++ paravis_dev/src/Plugins/MEDReader/plugin/Test/testMEDReader22.py	2025-07-08 10:07:50.930019404 +0200
+@@ -24,6 +24,7 @@
+ Test of GroupsAsMultiBlocks filter in the MEDReader plugin.
+ """
+ 
++import platform
+ from paraview.simple import *
+ paraview.simple._DisableFirstRenderCameraReset()
+ from vtk.util import numpy_support
+@@ -88,7 +89,10 @@
+     ds_bl = blocks.GetBlock(0)
+     MyAssert(ds_bl.GetNumberOfCells()==4)
+     bl_ref_conn = np.array([ 1,  0,  6,  7,  2,  1,  7,  8,  7,  6, 12, 13,  8,  7, 13, 14],dtype=np.int32)
+-    MyAssert(ds_bl.GetCellData().GetNumberOfArrays() == 4 )# 3 for field, mesh and FamilyIdCell +1 for vtkGhostType
++    if platform.system() == "Windows" :
++        MyAssert(ds_bl.GetCellData().GetNumberOfArrays() == 3 )# 3 for field, mesh and FamilyIdCell
++    else:
++        MyAssert(ds_bl.GetCellData().GetNumberOfArrays() == 4 )#  3 for field, mesh and FamilyIdCell +1 for vtkGhostTyp
+     MyAssert(np.all( bl_ref_conn == numpy_support.vtk_to_numpy( ds_bl.GetCells().GetConnectivityArray() )) )
+     MyAssert( mc.DataArrayDouble(numpy_support.vtk_to_numpy( ds_bl.GetCellData().GetArray("field") )).isEqual(f.getArray()[grp_BottomLeft],1e-12) )
+     # test of bottom right
+@@ -111,7 +115,10 @@
+     MyAssert( mc.DataArrayDouble(numpy_support.vtk_to_numpy( ds_tr.GetCellData().GetArray("field") )).isEqual(f.getArray()[grp_TopRight],1e-12) )
+     #
+     for ds in [ds_bl,ds_br,ds_tl,ds_tr]:
+-        MyAssert(ds.GetPointData().GetNumberOfArrays() == 2 )# 1 for field2 + vtkGhostType
++        if platform.system() == "Windows" :
++            MyAssert(ds.GetPointData().GetNumberOfArrays() == 1 )# 1 for field2
++        else:
++            MyAssert(ds.GetPointData().GetNumberOfArrays() == 2 )# 1 for field2 + vtkGhostType
+         MyAssert(ds.GetNumberOfPoints()==36) # for performance reasons all blocks share the same input coordinates
+         MyAssert(mc.DataArrayDouble( numpy_support.vtk_to_numpy( ds.GetPointData().GetArray("field2") ) ).isEqual(f2.getArray(),1e-12) )
+ 
+--- paravis_ref/src/Plugins/MEDReader/plugin/Test/testMEDReader25.py	2025-07-07 10:59:27.880616959 +0200
++++ paravis_dev/src/Plugins/MEDReader/plugin/Test/testMEDReader25.py	2025-07-08 10:07:53.594047999 +0200
+@@ -23,6 +23,8 @@
+ Test of mixed polyhderon and hexahedron in the MEDReader plugin.
+ """
+ 
++import os
++import platform
+ import sys
+ from paraview.simple import *
+ paraview.simple._DisableFirstRenderCameraReset()
+@@ -128,11 +130,14 @@
+ 
+     # Check first block
+     ds_data = mb_data.GetBlock(0)
+-    MyAssert(ds_data.GetNumberOfPoints()) == 60;
++    MyAssert(ds_data.GetNumberOfPoints()) == 60
+     MyAssert(ds_data.GetNumberOfCells()) == 18
+-    MyAssert(ds_data.GetPointData().GetNumberOfArrays() == 2) # field2, vtkGhostType
+-    MyAssert(ds_data.GetCellData().GetNumberOfArrays() == 4) # familiyIdCell, field, mesh, vtkGhostType
+-
++    if platform.system() == "Windows":
++        MyAssert(ds_data.GetPointData().GetNumberOfArrays() == 1) # field2
++        MyAssert(ds_data.GetCellData().GetNumberOfArrays() == 3) # familiyIdCell, field, mesh
++    else:
++        MyAssert(ds_data.GetPointData().GetNumberOfArrays() == 2) # field2, vtkGhostType
++        MyAssert(ds_data.GetCellData().GetNumberOfArrays() == 4) # familiyIdCell, field, mesh, vtkGhostType
+     # Check array content
+     ds_data_ref_conn = np.array([0,11,1,3,15,26,16,18,1,6,5,3,16,21,20,18,13,10,9,6,28,25,24,21,7,12,14,13,22,27,29,28,15,26,16,18,
+         30,41,31,33,16,21,20,18,31,36,35,33,28,25,24,21,43,40,39,36,22,27,29,28,37,42,44,43,30,41,31,33,45,56,46,48,31,36,35,33,46,
