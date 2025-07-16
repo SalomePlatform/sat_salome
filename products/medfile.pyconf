@@ -55,7 +55,7 @@ version_4_2_0 :
 version_4_2_0_win :
 {
     compil_script :  "med-4.2.0.bat"
-    patches : []
+    patches : ['med-4.2.0_win_3x_files_support.patch']
     properties :
     {
        incremental : "yes"
