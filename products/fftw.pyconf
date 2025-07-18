@@ -4,12 +4,12 @@ default :
     build_source : "script"
     compil_script :  $name + $VARS.scriptExtension
     get_source : "archive"
-    system_info : 
+    system_info :
     {
         rpm : ["fftw"]
-        rpm_dev : ["fftw-devel"] #, "fftw-openmpi-devel"
-        apt : ["fftw"]
-        apt_dev : ["fftw-dev"] #, "libfftw3-mpi-dev"
+        rpm_dev : ["fftw-devel"] #,
+        apt : ["libfftw3-bin"]
+        apt_dev : ["libfftw3-dev"] #,
     }
     archive_info:
     {
