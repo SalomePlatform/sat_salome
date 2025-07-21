@@ -6,6 +6,9 @@ echo "##########################################################################
 
 LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
 
+# useful function
+function version_ge() { test "$(echo "$@" | tr " " "\n" | sort -rV | head -n 1)" == "$1"; }
+
 export PATH=$(pwd)/bin:$PATH
 export PYTHONPATH=$(pwd):$PYTHONPATH
 export PYTHONPATH=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages:$PYTHONPATH
@@ -371,7 +374,12 @@ do
                     fi
                 else
                     echo "INFO: install scikit-learn-1.0"
-                    ${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/scikit-learn-1.0/scikit-learn-1.0.tar.gz --no-deps --prefix=$PRODUCT_INSTALL --no-build-isolation --no-use-pep517
+                    PIP3_VERSION=$(pip3 --version|cut -d ' ' -f2)
+                    PIP3_OPTIONS=--no-build-isolation
+                    if version_ge $PIP3_VERSION "19" ; then
+                        PIP3_OPTIONS+=" --no-use-pep517"
+                    fi
+                    ${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/scikit-learn-1.0/scikit-learn-1.0.tar.gz --no-deps --prefix=$PRODUCT_INSTALL --no-build-isolation $PIP3_OPTIONS
                     if [ $? -ne 0 ]
                     then
                         echo "FATAL: could not install scikit-1.0"
@@ -392,7 +400,12 @@ do
                     fi
                 else
                     echo "INFO: install threadpoolctl-3.0.0"
-                    ${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip  $SOURCE_DIR/threadpoolctl-3.0.0/threadpoolctl-3.0.0-py3-none-any.whl --no-deps --prefix=$PRODUCT_INSTALL --no-build-isolation --no-use-pep517
+                    PIP3_VERSION=$(pip3 --version|cut -d ' ' -f2)
+                    PIP3_OPTIONS=--no-build-isolation
+                    if version_ge $PIP3_VERSION "19" ; then
+                        PIP3_OPTIONS+=" --no-use-pep517"
+                    fi
+                    ${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip  $SOURCE_DIR/threadpoolctl-3.0.0/threadpoolctl-3.0.0-py3-none-any.whl --no-deps --prefix=$PRODUCT_INSTALL $PIP3_OPTIONS
                     if [ $? -ne 0 ]
                     then
                         echo "FATAL: could not install threadpoolctl 3.0.0"
