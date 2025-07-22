@@ -82,7 +82,6 @@ default_win:
        "pytz",
        "sphinxintl"
     ]
-    patches : ['paravis-9.15.0-p01-medwriter.patch', 'paravis-9.15.0-p02-medreader.patch', 'paravis-9.15.0-p03-staticMesh.patch']
 }
 
 default_MPI :
@@ -137,7 +136,6 @@ version_V9_15_0 :
 version_V9_15_0_win :
 {
   cmake_options : "-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON -DBUILD_TESTING=ON"
-  patches : ['paravis-9.15.0-p01-medwriter.patch', 'paravis-9.15.0-p02-medreader.patch', 'paravis-9.15.0-p03-staticMesh.patch']
 }
 
 version_V9_15_0_MPI :
