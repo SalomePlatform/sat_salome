@@ -127,7 +127,7 @@ version_V9_15_0 :
                      'git config -f .git/config submodule.src/Plugins/MEDReader.url ../medreader',
                      'git submodule sync',
                      'git submodule update --init --remote',
-                     'cd src/Plugins/MEDReader'
+                     'cd src/Plugins/MEDReader',
                      'git checkout V9_15_BR'
                     ]
     }
@@ -166,8 +166,8 @@ version_V9_15_0_MPI :
                    'git config -f .gitmodules submodule.src/Plugins/MEDReader.url ../medreader',
                    'git config -f .git/config submodule.src/Plugins/MEDReader.url ../medreader',
                    'git submodule sync',
-                   'git submodule update --init --remote'
-                   'cd src/Plugins/MEDReader'
+                   'git submodule update --init --remote',
+                   'cd src/Plugins/MEDReader',
                    'git checkout V9_15_BR'
                   ]
     patches : []
@@ -228,8 +228,8 @@ version_V9_14_0_win:
                      'git config -f .gitmodules submodule.src/Plugins/MEDReader.url ../medreader',
                      'git config -f .git/config submodule.src/Plugins/MEDReader.url ../medreader',
                      'git submodule sync',
-                     'git submodule update --init --remote'
-                     'cd src/Plugins/MEDReader'
+                     'git submodule update --init --remote',
+                     'cd src/Plugins/MEDReader',
                      'git checkout V9_14_0'
                     ]
     }
@@ -271,8 +271,8 @@ version_V9_14_0_MPI :
                      'git config -f .gitmodules submodule.src/Plugins/MEDReader.url ../medreader',
                      'git config -f .git/config submodule.src/Plugins/MEDReader.url ../medreader',
                      'git submodule sync',
-                     'git submodule update --init --remote'
-                     'cd src/Plugins/MEDReader'
+                     'git submodule update --init --remote',
+                     'cd src/Plugins/MEDReader',
                      'git checkout V9_14_0'
                     ]
     }

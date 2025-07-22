@@ -195,7 +195,7 @@ APPLICATION :
         'HEXABLOCKPLUGIN'
         #'HOMARD'
         'FIELDS'
-        'PARAVIS'
+        'PARAVIS' : {tag: 'V9_15_BR', section: 'version_V9_15_0', base : 'no'}
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
