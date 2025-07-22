@@ -971,6 +971,87 @@ version_V6_6_0 :
     ]
 }
 
+version_V9_14_0_ALAMOS :
+{
+    git_info:
+    {
+      repositories :
+      {
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/paravis.git"
+        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "paravis.git"
+      }
+      git_commands: [
+                     'git config -f .gitmodules submodule.src/Plugins/MEDReader.url ../medreader',
+                     'git config -f .git/config submodule.src/Plugins/MEDReader.url ../medreader',
+                     'git submodule sync',
+                     'git submodule update --init --remote'
+                     'cd src/Plugins/MEDReader'
+                     'git checkout V9_14_0'
+                    ]
+    }
+    cmake_options : "-DSALOME_PARAVIS_USE_GEOM_SOURCE=OFF -DSALOME_PARAVIS_USE_SMESH_SOURCE=OFF"
+    depend : [
+       "KERNEL",
+       "GUI",
+       "MEDCOUPLING",
+       "SMESH",
+       "FIELDS",
+       "Python",
+       "qt",
+       "boost",
+       "hdf5",
+       "medfile",
+       "ParaView",
+       "CAS",
+       "omniORB",
+       "docutils",
+       "libxml2",
+       "six",
+       "pytz"
+    ]
+}
+
+version_V9_14_0_ALAMOS_win :
+{
+    git_info:
+    {
+      repositories :
+      {
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/paravis.git"
+        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "paravis.git"
+      }
+      git_commands: [
+                     'git config -f .gitmodules submodule.src/Plugins/MEDReader.url ../medreader',
+                     'git config -f .git/config submodule.src/Plugins/MEDReader.url ../medreader',
+                     'git submodule sync',
+                     'git submodule update --init --remote'
+                     'cd src/Plugins/MEDReader'
+                     'git checkout V9_14_0'
+                    ]
+    }
+    cmake_options : "-DSALOME_PARAVIS_USE_GEOM_SOURCE=OFF -DSALOME_PARAVIS_USE_SMESH_SOURCE=OFF"
+    depend : [
+       "KERNEL",
+       "GUI",
+       "MEDCOUPLING",
+       "FIELDS",
+       "GEOM",
+       "SMESH",
+       "Python",
+       "qt",
+       "boost",
+       "hdf5",
+       "medfile",
+       "ParaView",
+       "CAS",
+       "omniORB",
+       "docutils",
+       "libxml2",
+       "six",
+       "pytz"
+    ]
+}
+
 version_alamos :
 {
     git_info:
