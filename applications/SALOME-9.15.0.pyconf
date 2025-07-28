@@ -260,7 +260,7 @@ __overwrite__ :
         'APPLICATION.products.boost'    : '1.75.0'
         'APPLICATION.products.dateutil' : '2.8.1'
         'APPLICATION.products.pandas'   : '1.4.0'
-        'APPLICATION.products.pyyaml'   : '6.0'
+        'APPLICATION.products.pyyaml'   : {tag: '6.0', base: 'no', section: 'version_6_0_CO8'}
         'APPLICATION.products.Python'   : '3.10.16'
         'APPLICATION.products.pytz'     : '2021.1'
         'APPLICATION.products.scipy'    : '1.8.0'

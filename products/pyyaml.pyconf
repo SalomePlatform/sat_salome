@@ -47,3 +47,13 @@ version_6_0_x86_64:
       pip : "no"
     }
 }
+
+version_6_0_CO8:
+{
+    archive_info : {archive_prefix : "PyYAML"}
+    properties:
+    {
+      incremental : "yes"
+      pip : "yes"
+    }
+}
