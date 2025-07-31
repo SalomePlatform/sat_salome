@@ -41,7 +41,17 @@ default :
     }
 }
 
-version_4ea7299:
+version_v1_0_0 :
+{
+  depend : ["SMESH",
+            "mmg",
+            "PyQt",
+            "Python",
+            "numpy"
+           ]
+}
+
+version_4ea7299 :
 {
   get_source : "archive"
   archive_info: {archive_name: 'mmgplugin-4ea7299.tar.gz'}

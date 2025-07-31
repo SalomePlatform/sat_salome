@@ -46,10 +46,32 @@ default :
 default_win :
 {
     opt_depend : ["cgal", "libigl", "cork"]
-    patches : []
 }
 
-version_no_irmb_mcut :
+version_v1_0_0 :
 {
- patches: ['meshbooleanplugin-p01.irmb-mcut.patch'] # remove irmb and mcut since requires c++20
+    depend : ["CONFIGURATION",
+              "SMESH",
+              "PyQt",
+              "Python",
+              "numpy",
+              "pyqwt",
+              "qtpy"
+             ]
+    build_depend : ["cmake", "cppunit"]
+    opt_depend : ["cgal", "libigl", "mcut", "irmb", "cork"]
+}
+  
+version_v1_0_0_win :
+{
+    depend : ["CONFIGURATION",
+              "SMESH",
+              "PyQt",
+              "Python",
+              "numpy",
+              "pyqwt",
+              "qtpy"
+             ]
+    build_depend : ["cmake", "cppunit"]
+    opt_depend : ["cgal", "libigl", "cork"]
 }

@@ -5,7 +5,7 @@ APPLICATION :
 {
     name : 'SALOME-9.15.0-native'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag : 'V9_15_0rc1'
+    tag : 'V9_15_0'
     dev : 'no'
     verbose :'no'
     debug : 'no'
@@ -88,13 +88,13 @@ APPLICATION :
         markdown_it_py : '3.0.0'
         medfile : '4.2.0'
         mesa : {tag : '19.0.8-x86_64-'+$VARS.dist, base: 'no', section: 'version_bin'}
-        meshbooleanplugin : 'main'
+        meshbooleanplugin : 'v1.0.0'
         MeshGems : '2.15-1'
         meshio: '5.3.5'
         metis : 'native'
         mpi4py: 'native'
         mmg : '5.6.0'
-        mmgplugin: 'main'
+        mmgplugin: 'v1.0.0'
         netgen : '5.3.1_with_CAS_7.8'
         netcdf : 'native'
         netCDF4: 'native'
@@ -111,7 +111,6 @@ APPLICATION :
         openturns: '1.24'
         ospray : '2.4.0'
         packaging : 'native'
-        packagespy : '74152cd'
         pandas : 'native'
         patsy : 'native'
         ParaView : {tag:'5.13.2918b94391', base: 'no',  section: 'version_5_13_2_MPI', hpc: 'yes'}
@@ -171,7 +170,7 @@ APPLICATION :
         'RESTRICTED'
         'LIBBATCH' : 'V2_6_1'
         'KERNEL'
-        'MEDCOUPLING' : {tag:'V9_15_0rc1', base: 'no', section: 'version_V9_15_0_MPI', hpc: 'yes'}
+        'MEDCOUPLING' : {tag:'V9_15_0', base: 'no', section: 'version_V9_15_0_MPI', hpc: 'yes'}
         'GUI'
         'CommonGeomLib'
         'GEOM'
@@ -186,7 +185,7 @@ APPLICATION :
         'HEXABLOCKPLUGIN'
         'HOMARD'
         'FIELDS'
-        'PARAVIS': {tag:'V9_15_0rc1', base: 'no', section: 'version_V9_15_0_MPI', hpc: 'yes'}
+        'PARAVIS': {tag:'V9_15_0', base: 'no', section: 'version_V9_15_0_MPI', hpc: 'yes'}
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
@@ -210,7 +209,7 @@ APPLICATION :
         'SOLVERLAB'
         'TopIIVolMesh'
         #'TESTBASE'
-        'CEATESTBASE' : 'master'
+        'CEATESTBASE'
     }
     profile :
     {
@@ -374,8 +373,8 @@ __overwrite__ :
         'APPLICATION.products.pandas'           : {tag: '1.1.5',   base: 'no', section: 'version_1_1_5_no_pip' }
         'APPLICATION.products.statsmodels'      : {tag: '0.14.1',  base: 'no', section: 'version_0_14_1_no_pip'}
         'APPLICATION.products.nose'             : {tag: '1.3.7',   base: 'no', section: 'version_1_3_7_no_pip' }
-        'APPLICATION.products.YDEFX'            : {tag: 'V9_15_0rc1',  base: 'no', section: 'version_V9_15_0_CO9'   }
-        'APPLICATION.products.YACS'             : {tag: 'V9_15_0rc1',  base: 'no', section: 'version_V9_15_0_CO9'   }
+        'APPLICATION.products.YDEFX'            : {tag: 'V9_15_0', base: 'no', section: 'version_V9_15_0_CO9'   }
+        'APPLICATION.products.YACS'             : {tag: 'V9_15_0', base: 'no', section: 'version_V9_15_0_CO9'   }
         'APPLICATION.products.URANIE'           : {tag: '4.8.0',   base: 'no', section: 'version_4_8_0_CO9'    }
         'APPLICATION.products.poetry_core'      : {tag: '1.9.0',   base: 'no', section: 'version_1_9_0_x86_64' }
     }
@@ -420,8 +419,8 @@ __overwrite__ :
         'APPLICATION.products.rkCommon'         : {tag: '1.5.1',           base: 'no', section: 'version_1_5_1_FD40'                 }
         'APPLICATION.products.rapidjson'        : {tag: '1.1.0',           base: 'no', section: 'version_1_1_0_FD40'                 }
         'APPLICATION.products.ParaView'         : {tag: '5.13.2918b94391', base: 'no', section: 'version_5_13_2_MPI_FD40', hpc: 'yes'}
-        'APPLICATION.products.KERNEL'           : {tag: 'V9_15_0rc1',       base: 'no', section: 'version_V9_15_0_FD40'               }
+        'APPLICATION.products.KERNEL'           : {tag: 'V9_15_0',         base: 'no', section: 'version_V9_15_0_FD40'               }
         'APPLICATION.products.petsc'            : {tag: '3.20.5',          base: 'no', section: 'version_3_20_5_FD40'                }
-        'APPLICATION.products.SOLVERLAB'        : {tag: 'V9_15_0rc1',       base: 'no', section: 'version_V9_15_0_FD40'               }
+        'APPLICATION.products.SOLVERLAB'        : {tag: 'V9_15_0',         base: 'no', section: 'version_V9_15_0_FD40'               }
     }
 ]

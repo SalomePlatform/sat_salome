@@ -7,7 +7,7 @@ APPLICATION :
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name
     cmake_generator : 'Visual Studio 15 2017'
     cmake_build_type: 'Release' # Debug, RelWithDebInfo, Release, MinSizeRel
-    tag : 'V9_15_0rc1'
+    tag : 'V9_15_0'
     dev : 'no'
     verbose : 'no'
     debug   : 'no'
@@ -95,12 +95,12 @@ APPLICATION :
         matplotlib : '3.3.4'
         medfile : '4.2.0'
         mesa : '19.2.3'
-        meshbooleanplugin : 'main'
+        meshbooleanplugin : 'v1.0.0'
         MeshGems : '2.15-1'
         meshio: '5.3.5'
         metis : '5.1.0'
         mmg : '5.6.0'
-        mmgplugin: 'main'
+        mmgplugin: 'v1.0.0'
         mpir: '855491e'
         msvc : '2017'
         netcdf : '4.6.2'
@@ -195,7 +195,7 @@ APPLICATION :
         'HEXABLOCKPLUGIN'
         #'HOMARD'
         'FIELDS'
-        'PARAVIS' : {tag: 'V9_15_0rc1', section: 'version_V9_15_0', base : 'no'}
+        'PARAVIS' : {tag: 'V9_15_0', section: 'version_V9_15_0', base : 'no'}
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
@@ -216,7 +216,7 @@ APPLICATION :
         'YDEFX'
         'pmml'
         #'TESTBASE'
-        'CEATESTBASE' : 'master'
+        'CEATESTBASE'
     }
     profile :
     {

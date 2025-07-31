@@ -69,7 +69,7 @@ APPLICATION :
         mpc : 'native'
         gmp : 'native'
         mmg : '5.6.0'
-        mmgplugin: 'main'
+        mmgplugin: 'v1.0.0'
         mpfr : 'native'
         gdal : '2.4.0'
         gmsh : '4.10.3_with_CAS_7.8'
@@ -92,7 +92,7 @@ APPLICATION :
         mdurl: '0.1.2'
         medfile : '4.1.1'
         mesa : '19.0.8'
-        meshbooleanplugin : 'main'
+        meshbooleanplugin : 'v1.0.0'
         MeshGems : '2.15-1'
         meshio : {tag: '5.3.5' , base: 'no', section : 'version_5_3_5_no_pip'}
         mpi4py : {tag: '3.1.0',  base: 'no', section : 'version_3_1_0_no_pip'}

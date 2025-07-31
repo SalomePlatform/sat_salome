@@ -5,7 +5,7 @@ APPLICATION :
 {
     name     : 'SALOME-9.15.0'
     workdir  : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag      : 'V9_15_0rc1'
+    tag      : 'V9_15_0'
     dev      : 'no'
     verbose  : 'no'
     debug    : 'no'
@@ -71,7 +71,7 @@ APPLICATION :
         mpc : 'native'
         gmp : 'native'
         mmg : '5.6.0'
-        mmgplugin: 'main'
+        mmgplugin: 'v1.0.0'
         mpfr : 'native'
         gdal : '2.4.0'
         gmsh : '4.10.3_with_CAS_7.8'
@@ -96,7 +96,7 @@ APPLICATION :
         mdurl: '0.1.2'
         medfile : '4.2.0'
         mesa : '19.0.8'
-        meshbooleanplugin : 'main'
+        meshbooleanplugin : 'v1.0.0'
         MeshGems : '2.15-1'
         meshio : {tag: '5.3.5' , base: 'no', section : 'version_5_3_5_no_pip'}
         mpi4py : {tag: '3.1.0',  base: 'no', section : 'version_3_1_0_no_pip'}
@@ -116,7 +116,6 @@ APPLICATION :
         openVKL: '0.11.0'
         ospray : '2.4.0'
         packaging : '23.2'
-        packagespy : '74152cd'
         pandas : '1.1.5'
         patsy : '0.5.4'
         ParaView : {tag:'5.13.2918b94391', base: 'no',  section: 'version_5_13_2_MPI', hpc: 'yes'}
@@ -185,7 +184,7 @@ APPLICATION :
         'RESTRICTED'
         'LIBBATCH' : 'V2_6_1'
         'KERNEL'
-        'MEDCOUPLING' : {tag:'V9_15_0rc1', base: 'no', section: 'version_V9_15_0_MPI', hpc: 'yes'}
+        'MEDCOUPLING' : {tag:'V9_15_0', base: 'no', section: 'version_V9_15_0_MPI', hpc: 'yes'}
         'GUI'
         'CommonGeomLib'
         'GEOM'
@@ -200,7 +199,7 @@ APPLICATION :
         'HEXABLOCKPLUGIN'
         'HOMARD'
         'FIELDS'
-        'PARAVIS' : {tag:'V9_15_0rc1', base: 'no', section: 'version_V9_15_0_MPI', hpc: 'yes'}
+        'PARAVIS' : {tag:'V9_15_0', base: 'no', section: 'version_V9_15_0_MPI', hpc: 'yes'}
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
@@ -224,7 +223,7 @@ APPLICATION :
         'SOLVERLAB'
         'TopIIVolMesh'
         #'TESTBASE'
-        'CEATESTBASE' : 'master'
+        'CEATESTBASE'
     }
     profile :
     {

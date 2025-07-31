@@ -65,7 +65,7 @@ APPLICATION :
         mpc : 'native'
         gmp : 'native'
         mmg : '5.6.0'
-        mmgplugin: 'main'
+        mmgplugin: 'v1.0.0'
         mpfr : 'native'
         gdal : '2.4.0'
         gmsh : '4.10.3_with_CAS_7.8'
@@ -107,7 +107,6 @@ APPLICATION :
         openVKL: '0.11.0'
         ospray : '2.4.0'
         packaging : '23.2'
-        packagespy : '74152cd'
         pandas : '1.1.5'
         patsy : '0.5.4'
         ParaView : {tag:'5.11.0', base: 'no',  section: 'version_5_11_0_MPI', hpc: 'yes'}
