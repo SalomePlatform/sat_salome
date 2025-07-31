@@ -46,7 +46,7 @@ APPLICATION :
         lapack : '3.8.0'
         libxml2 : '2.9.12'
         markupsafe : '2.1.5'
-        medfile : {tag : '4.1.1', hpc : 'yes'}
+        medfile : {tag : '4.2.0', hpc : 'yes'}
         mpi4py: {tag: '3.1.0', base: 'no', section : 'version_3_1_0_no_pip'}
         numpy : '1.21.1'
         openmpi : '3.1.6'
@@ -74,6 +74,7 @@ APPLICATION :
         sphinxcontrib_serializinghtml : '1.1.10'
         sphinxcontrib_napoleon : '0.6.1'
         sphinxcontrib_websupport : '1.2.7'
+        sphinx_rtd_theme : '2.0.0'
         sphinxintl: '2.1.0'
         swig : '4.0.2'
         urllib3 : '1.23'
@@ -99,13 +100,7 @@ APPLICATION :
 __overwrite__ :
 [
     {
-        __condition__ : "VARS.dist in ['FD32']"
-        # gcc https://github.com/scipy/scipy/issues/11611
-        # either patch numpy to include -fallow-argument-mismatch or move to that version
-        'APPLICATION.products.scipy' : '1.5.2'
-    }
-    {
-        __condition__: "VARS.dist in ['FD34', 'FD36', 'FD37', 'FD38']"
+        __condition__: "VARS.dist in ['FD38']"
         # gcc https://github.com/scipy/scipy/issues/11611
         # either patch numpy to include -fallow-argument-mismatch or move to that version
         'APPLICATION.products.scipy' : '1.5.2'
@@ -121,5 +116,12 @@ __overwrite__ :
         # gcc https://github.com/scipy/scipy/issues/11611
         # either patch numpy to include -fallow-argument-mismatch or move to that version
         'APPLICATION.products.scipy' : '1.5.2'
+    }
+    #
+    {
+        __condition__ : "VARS.dist in ['CO9']"
+        'APPLICATION.products.openmpi'   : '4.1.6'
+        'APPLICATION.products.hdf5'      : '1.10.5'
+        'APPLICATION.products.boost'     : {tag: '1.71.0',  base: 'no', section: 'version_1_71_0_CO9',     hpc: 'no'  } # spns #29324
     }
 ]

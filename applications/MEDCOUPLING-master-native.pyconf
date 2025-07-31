@@ -29,7 +29,7 @@ APPLICATION :
         boost : 'native'
         certifi : 'native'
         click : 'native'
-        cmake : '3.25.2' 
+        cmake : 'native'
         cppunit : 'native'
         chardet : 'native'
         Cython : 'native'
@@ -43,7 +43,7 @@ APPLICATION :
         lapack : 'native'
         libxml2 : 'native'
         markupsafe : 'native'
-        medfile : '4.1.1'
+        medfile : '4.2.0'
         metis : 'native'
         mpi4py : 'native'
         numpy : 'native'
@@ -99,37 +99,10 @@ __overwrite__ :
         'APPLICATION.products.openmpi'          : '4.1.5'
     }
     {
-        __condition__ : "VARS.dist in ['UB22.04']"
-        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_UB22_04'}
-    }
-    {
-        __condition__ : "VARS.dist in ['UB24.04']"
-        'APPLICATION.products.cmake'            : 'native'
-        'APPLICATION.products.swig'             : '4.0.2'
-        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_UB24_04'}
-    }
-    {
-        __condition__ : "VARS.dist in ['FD32']"
-        'APPLICATION.products.lapack'           : '3.8.0'
-    }
-    {
-        __condition__ : "VARS.dist in ['FD34']"
-        'APPLICATION.products.lapack'           : '3.8.0'
-    }
-    {
-        __condition__ : "VARS.dist in ['FD36']"
-        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD36'}
-    }
-    {
-        __condition__ : "VARS.dist in ['FD38']"
-        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD38'}
-    }
-    {
         __condition__ : "VARS.dist in ['FD40']"
         'APPLICATION.products.Cython'           : {tag: 'native',     base: 'no', section: 'default_FD40'}
         'APPLICATION.products.cmake'            : 'native'
         'APPLICATION.products.hdf5'             : '1.10.11'
         'APPLICATION.products.swig'             : '4.0.2'
-        'APPLICATION.products.medfile'          : {tag: '4.1.1',     base: 'no', section: 'version_4_1_1_FD40'                  }
     }
 ]
