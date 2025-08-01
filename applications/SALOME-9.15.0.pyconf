@@ -5,7 +5,7 @@ APPLICATION :
 {
     name     : 'SALOME-9.15.0'
     workdir  : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag      : 'V9_15_BR'
+    tag      : 'V9_15_0'
     dev      : 'no'
     verbose  : 'no'
     debug    : 'no'
@@ -184,7 +184,7 @@ APPLICATION :
         'RESTRICTED'
         'LIBBATCH' : 'V2_6_1'
         'KERNEL'
-        'MEDCOUPLING' : {tag:'V9_15_BR', base: 'no', section: 'version_V9_15_0_MPI', hpc: 'yes'}
+        'MEDCOUPLING' : {tag:'V9_15_0', base: 'no', section: 'version_V9_15_0_MPI', hpc: 'yes'}
         'GUI'
         'CommonGeomLib'
         'GEOM'
@@ -199,7 +199,7 @@ APPLICATION :
         'HEXABLOCKPLUGIN'
         'HOMARD'
         'FIELDS'
-        'PARAVIS' : {tag:'V9_15_BR', base: 'no', section: 'version_V9_15_0_MPI', hpc: 'yes'}
+        'PARAVIS' : {tag:'V9_15_0', base: 'no', section: 'version_V9_15_0_MPI', hpc: 'yes'}
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
