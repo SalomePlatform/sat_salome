@@ -1,0 +1,127 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+APPLICATION :
+{
+    name     : 'MEDCOUPLING-9.15.0-MPI'
+    workdir  : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
+    tag      : 'V9_15_0'
+    base     : 'no'
+    debug    : 'no'
+    python3  : 'yes'
+    platform : ['CO7', 'CO8', 'DB09']
+    environ  :
+    {
+        build :
+        {
+            CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
+            SALOME_USE_64BIT_IDS : '1'
+        }
+        launch :
+        {
+            PYTHONIOENCODING:"UTF_8"
+        }
+    }
+    products :
+    {
+        # PREREQUISITES :
+        alabaster : '0.7.6'
+        Babel : '2.14.0'
+        boost : '1.71.0'
+        certifi : '2018.8.24'
+        click : '6.7'
+        cmake : '3.25.2'
+        cppunit : '1.13.2'
+        chardet : '3.0.4'
+        charset_normalizer : '3.3.2'
+        Cython : '0.29.37'
+        docutils : '0.20.1'
+        doxygen : '1.8.14'
+        graphviz : '2.38.0'
+        hdf5 : {tag : '1.10.3', hpc : 'yes'}
+        idna : '2.7'
+        imagesize : '1.4.1'
+        importlib_metadata : '7.0.1'
+        Jinja2 : '3.1.3'
+        lapack : '3.8.0'
+        libxml2 : '2.9.12'
+        markupsafe : '2.1.5'
+        medfile : {tag : '4.2.0', hpc : 'yes'}
+        mpi4py: {tag: '3.1.0', base: 'no', section : 'version_3_1_0_no_pip'}
+        numpy : '1.21.1'
+        openmpi : '3.1.6'
+        packaging : '23.2'
+        ParMetis : '3.1.1'
+        pockets : '0.6.2'
+        Pygments : '2.17.2'
+        pyparsing : '3.1.1'
+        pyreadline : '2.0'
+        Python : '3.9.14'
+        pytz : '2017.2'
+        requests : '2.31.0'
+        scipy : '1.6.2'
+        scotch : '6.1.2'
+        setuptools : '69.0.3'
+        six : '1.10.0'
+        snowballstemmer : '2.2.0'
+        Sphinx : '7.2.6'
+        sphinxcontrib_applehelp : '1.0.8'
+        sphinxcontrib_devhelp : '1.0.6'
+        sphinxcontrib_jsmath : '1.0.1'
+        sphinxcontrib_jquery : '4.1'
+        sphinxcontrib_qthelp : '1.0.7'
+        sphinxcontrib_htmlhelp : '2.0.5'
+        sphinxcontrib_serializinghtml : '1.1.10'
+        sphinxcontrib_napoleon : '0.6.1'
+        sphinxcontrib_websupport : '1.2.7'
+        sphinx_rtd_theme : '2.0.0'
+        sphinxintl: '2.1.0'
+        swig : '4.0.2'
+        urllib3 : '1.23'
+        zipp : '3.17.0'
+
+        # SALOME MODULES :
+        'CONFIGURATION'
+        'MEDCOUPLING' : {tag:'V9_15_0', base: 'no', section: 'version_V9_15_0_MPI_STD', hpc: 'yes'} # FIXME
+    }
+    test_base : 
+    {
+        name : "SALOME"
+        tag : "SalomeV9"
+    }
+    properties :
+    {
+        git_server : 'tuleap'
+        pip : 'yes'
+        pip_install_dir : 'python'
+        single_install_dir : "no"
+    }
+}
+__overwrite__ :
+[
+    {
+        __condition__: "VARS.dist in ['FD38']"
+        # gcc https://github.com/scipy/scipy/issues/11611
+        # either patch numpy to include -fallow-argument-mismatch or move to that version
+        'APPLICATION.products.scipy' : '1.5.2'
+    }
+    {
+        __condition__ : "VARS.dist in ['DB11']"
+        # gcc https://github.com/scipy/scipy/issues/11611
+        # either patch numpy to include -fallow-argument-mismatch or move to that version
+        'APPLICATION.products.scipy' : '1.5.2'
+    }
+    {
+        __condition__ : "VARS.dist in ['UB22.04']"
+        # gcc https://github.com/scipy/scipy/issues/11611
+        # either patch numpy to include -fallow-argument-mismatch or move to that version
+        'APPLICATION.products.scipy' : '1.5.2'
+    }
+    #
+    {
+        __condition__ : "VARS.dist in ['CO9']"
+        'APPLICATION.products.openmpi'   : '4.1.6'
+        'APPLICATION.products.hdf5'      : '1.10.5'
+        'APPLICATION.products.boost'     : {tag: '1.71.0',  base: 'no', section: 'version_1_71_0_CO9',     hpc: 'no'  } # spns #29324
+    }
+]
