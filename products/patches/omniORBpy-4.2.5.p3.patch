@@ -1,0 +1,99 @@
+diff -Naur '--exclude=*.pyc' omniORBpy/modules/pyExceptions.cc omniORBpy.dev/modules/pyExceptions.cc
+--- omniORBpy/modules/pyExceptions.cc	2018-12-11 00:03:23.000000000 +0100
++++ omniORBpy.dev/modules/pyExceptions.cc	2025-06-11 09:53:32.174049892 +0200
+@@ -102,7 +102,7 @@
+     exca = Py_BuildValue((char*)"(ii)", ex.minor(), ex.completed());
+   }
+ 
+-  PyObject* exci = PyEval_CallObject(excc, exca);
++  PyObject* exci = PyObject_CallObject(excc, exca);
+   Py_DECREF(exca);
+   if (exci) {
+     // If we couldn't create the exception object, there will be a
+@@ -122,7 +122,7 @@
+   OMNIORB_ASSERT(excc);
+ 
+   PyObject* exca = Py_BuildValue((char*)"(ii)", ex.minor(), ex.completed());
+-  PyObject* exci = PyEval_CallObject(excc, exca);
++  PyObject* exci = PyObject_CallObject(excc, exca);
+   Py_DECREF(exca);
+ 
+   return exci;
+@@ -454,7 +454,7 @@
+ 		     unmarshalPyObject(pystream,
+ 				       PyTuple_GET_ITEM(desc_, j)));
+   }
+-  exc_ = PyEval_CallObject(excclass, exctuple);
++  exc_ = PyObject_CallObject(excclass, exctuple);
+ 
+   if (!exc_) {
+     // Oh dear. Python exception constructor threw an exception.
+diff -Naur '--exclude=*.pyc' omniORBpy/modules/pyLocalObjects.cc omniORBpy.dev/modules/pyLocalObjects.cc
+--- omniORBpy/modules/pyLocalObjects.cc	2019-05-20 17:45:36.000000000 +0200
++++ omniORBpy.dev/modules/pyLocalObjects.cc	2025-06-11 09:53:32.174049892 +0200
+@@ -389,7 +389,7 @@
+ #endif
+   
+   // Do the up-call
+-  pyservant = PyEval_CallObject(method, argtuple);
++  pyservant = PyObject_CallObject(method, argtuple);
+   Py_DECREF(method);
+   Py_DECREF(argtuple);
+ 
+@@ -513,7 +513,7 @@
+ #endif
+   
+   // Do the up-call
+-  result = PyEval_CallObject(method, argtuple);
++  result = PyObject_CallObject(method, argtuple);
+   Py_DECREF(method);
+   Py_DECREF(argtuple);
+ 
+@@ -567,7 +567,7 @@
+ #endif
+   
+   // Do the up-call
+-  rettuple = PyEval_CallObject(method, argtuple);
++  rettuple = PyObject_CallObject(method, argtuple);
+   Py_DECREF(method);
+   Py_DECREF(argtuple);
+ 
+@@ -702,7 +702,7 @@
+ #endif
+ 
+   // Do the up-call
+-  result = PyEval_CallObject(method, argtuple);
++  result = PyObject_CallObject(method, argtuple);
+   Py_DECREF(method);
+   Py_DECREF(argtuple);
+ 
+@@ -737,7 +737,7 @@
+ 			   omniPy::createPyPOAObject(parent), name);
+ 
+   // Do the up-call
+-  pyresult = PyEval_CallObject(method, argtuple);
++  pyresult = PyObject_CallObject(method, argtuple);
+   Py_DECREF(method);
+   Py_DECREF(argtuple);
+ 
+diff -Naur '--exclude=*.pyc' omniORBpy/modules/pyThreadCache.cc omniORBpy.dev/modules/pyThreadCache.cc
+--- omniORBpy/modules/pyThreadCache.cc	2019-09-26 13:51:59.000000000 +0200
++++ omniORBpy.dev/modules/pyThreadCache.cc	2025-06-11 09:53:32.174049892 +0200
+@@ -182,7 +182,7 @@
+   // that case, the re-entry will get a valid Python thread state,
+   // albeit without a threading.Thread object.
+ 
+-  cn->workerThread = PyEval_CallObject(omniPy::pyWorkerThreadClass,
++  cn->workerThread = PyObject_CallObject(omniPy::pyWorkerThreadClass,
+ 				       omniPy::pyEmptyTuple);
+   if (!cn->workerThread) {
+     if (omniORB::trace(1)) {
+@@ -284,7 +284,7 @@
+   PyThreadState_Swap(threadState_);
+ #endif
+ 
+-  workerThread_ = PyEval_CallObject(omniPy::pyWorkerThreadClass,
++  workerThread_ = PyObject_CallObject(omniPy::pyWorkerThreadClass,
+ 				    omniPy::pyEmptyTuple);
+   if (!workerThread_) {
+     if (omniORB::trace(2)) {

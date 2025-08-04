@@ -1,0 +1,12 @@
+diff -Naur '--exclude=*.git' mcut/source/math.cpp mcut_dev/source/math.cpp
+--- mcut/source/math.cpp	2025-05-09 15:30:01.332346391 +0200
++++ mcut_dev/source/math.cpp	2025-04-23 23:46:50.360112991 +0200
+@@ -37,7 +37,7 @@
+ #include <algorithm> // std::sort
+ #include <cstdlib>
+ #include <tuple> // std::make_tuple std::get<>
+-
++#include <stdint.h> //std::uint32_t
+ 
+     double square_root(const double& number)
+     {

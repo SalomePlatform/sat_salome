@@ -5,7 +5,7 @@ default :
     compil_script :  $name + $VARS.scriptExtension
     get_source : "archive"
     patches : []
-    system_info : 
+    system_info :
     {
         rpm : []
         rpm_dev : ["python3-sip-devel"]
@@ -40,6 +40,22 @@ version_5_5_0 :
     compil_script :  'sip-5.5.0' + $VARS.scriptExtension
     archive_info : {archive_name : "sip-5.5.0-PyQt5_sip-12.8.1.tar.gz"}
     patches : ['sip-5.5.0-sipSetBool.patch']
+    depend : ['Python', 'qt']
+    opt_depend: ['toml', 'packaging']
+}
+
+version_5_5_0_CO10 :
+{
+    compil_script :  'sip-5.5.0' + $VARS.scriptExtension
+    archive_info : {archive_name : "sip-5.5.0-PyQt5_sip-12.17.0.tar.gz"}
+    depend : ['Python', 'qt']
+    opt_depend: ['toml', 'packaging']
+}
+
+version_5_5_0_DB13 :
+{
+    compil_script :  'sip-5.5.0' + $VARS.scriptExtension
+    archive_info : {archive_name : "sip-5.5.0-PyQt5_sip-12.17.0.tar.gz"}
     depend : ['Python', 'qt']
     opt_depend: ['toml', 'packaging']
 }

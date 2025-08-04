@@ -15,7 +15,7 @@ case $LINUX_DISTRIBUTION in
         NATIVE_PATH="/usr/lib64"
         ;;
     *)
-	echo "WARNING: using default path: $NATIVE_PATH"
+        echo "WARNING: using default path: $NATIVE_PATH"
         ;;
 esac
 

@@ -4,6 +4,7 @@ echo "##########################################################################
 echo "PyQt" $VERSION
 echo "##########################################################################"
 
+LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
 python_name=python$PYTHON_VERSION
 
 cd $SOURCE_DIR
@@ -22,15 +23,27 @@ then
     export PYTHONPATH=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages:$PYTHONPATH
 fi
 
-echo
-echo "*** configure.py --confirm-license --no-designer-plugin --verbose --bindir=${PRODUCT_INSTALL}/bin --destdir=${PRODUCT_INSTALL}/lib/$python_name/site-packages --stubsdir=${PRODUCT_INSTALL}/lib/$python_name/site-packages --sipdir=${SIP_ROOT_DIR} --disable=QtNetwork --disable=QtWebSockets"
-$PYTHONBIN ./configure.py --confirm-license --no-designer-plugin --verbose \
-    --bindir=${PRODUCT_INSTALL}/bin \
-    --destdir=${PRODUCT_INSTALL}/lib/$python_name/site-packages \
-    --stubsdir=${PRODUCT_INSTALL}/lib/$python_name/site-packages \
-    --sipdir=${SIP_ROOT_DIR} \
-    --disable=QtNetwork --disable=QtWebSockets 2>&1
+CONFIGURE_OPTIONS=
+CONFIGURE_OPTIONS+=" --confirm-license"
+CONFIGURE_OPTIONS+=" --no-designer-plugin"
+CONFIGURE_OPTIONS+=" --verbose"
+CONFIGURE_OPTIONS+=" --bindir=${PRODUCT_INSTALL}/bin"
+CONFIGURE_OPTIONS+=" --destdir=${PRODUCT_INSTALL}/lib/$python_name/site-packages"
+CONFIGURE_OPTIONS+=" --stubsdir=${PRODUCT_INSTALL}/lib/$python_name/site-packages"
+CONFIGURE_OPTIONS+=" --sipdir=${SIP_ROOT_DIR}"
+CONFIGURE_OPTIONS+=" --disable=QtNetwork"
+CONFIGURE_OPTIONS+=" --disable=QtWebSockets"
 
+case $LINUX_DISTRIBUTION in
+    CO10)
+        CONFIGURE_OPTIONS+=" --qmake=$(which qmake-qt5)"
+        CONFIGURE_OPTIONS+=" --qml-plugindir=${PRODUCT_INSTALL}/lib"
+        ;;
+esac
+
+echo
+echo "*** configure.py $CONFIGURE_OPTIONS"
+$PYTHONBIN ./configure.py $CONFIGURE_OPTIONS 2>&1
 if [ $? -ne 0 ]
 then
     echo "ERROR on configure"

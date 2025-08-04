@@ -54,6 +54,17 @@ version_3_18_0:
               ]
 }
 
+version_3_18_0_CO10 :
+{
+    compil_script :  "freeimage-3.18.0.sh"
+    patches : [
+                'freeimage-3.18.0.p001.patch',
+                'freeimage-3.18.0.p002.patch',
+                'freeimage-3.18.0.p003.patch',
+                'freeimage-3.18.0.p004.patch'
+              ]
+}
+
 version_3_18_0_win:
 {
     compil_script :  "freeimage.bat"

@@ -10,7 +10,21 @@ cd $BUILD_DIR
 cp -R $SOURCE_DIR/* .
 
 case $LINUX_DISTRIBUTION in
+    FD42)
+        echo
+        echo "*** ${PYTHONBIN} -m pip install Assimulo-3.5.2-cp313-cp313-linux_x86_64.whl --prefix=${PRODUCT_INSTALL}"
+        if ! ${PYTHONBIN} -m pip install Assimulo-3.5.2-cp313-cp313-linux_x86_64.whl --prefix=${PRODUCT_INSTALL}; then
+           echo "Error on pip install"
+        fi 
+        ;;
     FD40)
+        echo
+        echo "*** ${PYTHONBIN} -m pip install Assimulo-3.5.2-cp312-cp312-linux_x86_64.whl --prefix=${PRODUCT_INSTALL}"
+        if ! ${PYTHONBIN} -m pip install Assimulo-3.5.2-cp312-cp312-linux_x86_64.whl --prefix=${PRODUCT_INSTALL}; then
+           echo "Error on pip install"
+        fi 
+        ;;
+    CO10)
         echo
         echo "*** ${PYTHONBIN} -m pip install Assimulo-3.5.2-cp312-cp312-linux_x86_64.whl --prefix=${PRODUCT_INSTALL}"
         if ! ${PYTHONBIN} -m pip install Assimulo-3.5.2-cp312-cp312-linux_x86_64.whl --prefix=${PRODUCT_INSTALL}; then

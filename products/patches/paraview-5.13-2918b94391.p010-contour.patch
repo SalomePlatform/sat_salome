@@ -1,0 +1,33 @@
+diff -Naur '--exclude=*.git' ParaView/VTK/ThirdParty/vtkm/vtkvtkm/vtk-m/vtkm/filter/contour/worklet/mir/MIRTables.h ParaView_dev/VTK/ThirdParty/vtkm/vtkvtkm/vtk-m/vtkm/filter/contour/worklet/mir/MIRTables.h
+--- ParaView/VTK/ThirdParty/vtkm/vtkvtkm/vtk-m/vtkm/filter/contour/worklet/mir/MIRTables.h	2025-04-29 15:07:30.000000000 +0200
++++ ParaView_dev/VTK/ThirdParty/vtkm/vtkvtkm/vtk-m/vtkm/filter/contour/worklet/mir/MIRTables.h	2025-04-23 21:29:44.787812021 +0200
+@@ -11402,7 +11402,7 @@
+ 
+     VTKM_EXEC vtkm::UInt8 GetPoint(vtkm::Id pointIndex) const
+     {
+-      return this->CellFacePortal.Get(pointIndex);
++      return this->CellEdgesPortal.Get(pointIndex);
+     }
+ 
+   private:
+diff -Naur '--exclude=*.git' ParaView/VTK/ThirdParty/vtkm/vtkvtkm/vtk-m/vtkm/filter/scalar_topology/worklet/contourtree_distributed/HierarchicalContourTree.h ParaView_dev/VTK/ThirdParty/vtkm/vtkvtkm/vtk-m/vtkm/filter/scalar_topology/worklet/contourtree_distributed/HierarchicalContourTree.h
+--- ParaView/VTK/ThirdParty/vtkm/vtkvtkm/vtk-m/vtkm/filter/scalar_topology/worklet/contourtree_distributed/HierarchicalContourTree.h	2025-04-29 15:07:30.000000000 +0200
++++ ParaView_dev/VTK/ThirdParty/vtkm/vtkvtkm/vtk-m/vtkm/filter/scalar_topology/worklet/contourtree_distributed/HierarchicalContourTree.h	2025-04-23 21:22:23.442613463 +0200
+@@ -663,7 +663,7 @@
+   auto hyperarcsPortal = this->Hyperarcs.ReadPortal();
+   auto regularNodeGlobalIdsPortal = this->RegularNodeGlobalIds.ReadPortal();
+   auto whichIterationPortal = this->WhichIteration.ReadPortal();
+-  auto whichRoundPortal = this->whichRound.ReadPortal();
++  auto whichRoundPortal = this->WhichRound.ReadPortal();
+   auto superarcsPortal = this->Superarcs.ReadPortal();
+   auto superparentsPortal = this->Superparents.ReadPortal();
+   for (vtkm::Id supernode = 0; supernode < this->Supernodes.GetNumberOfValues(); supernode++)
+@@ -708,7 +708,7 @@
+     if (contourtree_augmented::NoSuchElement(superarcTo))
+     { // no superarc
+       // if it occurred on the final round, it's the global root and is shown as the NULL node
+-      if (whichRoundPortal.Get(superarcFrom) == this->NRounds)
++      if (whichRoundPortal.Get(superarcFrom) == this->NumRounds)
+       { // root node
+         outstream << "\tSN" << std::setw(1) << superarcFrom << " -> SA" << std::setw(1) << superarc
+                   << " [label=\"S" << std::setw(1) << superarc << "\",style=dotted]\n";

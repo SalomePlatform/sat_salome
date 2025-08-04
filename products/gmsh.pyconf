@@ -19,7 +19,7 @@ default :
       incremental : "yes"
     }
     post_script: "fix_permissions.sh"
-} 
+}
 
 default_win:
 {
@@ -55,6 +55,29 @@ version_4_10_3_with_CAS_7_8_FD40:
   patches : ["gmsh-4.10.3-gc13-fc38.patch", "gmsh-4.10.3-occt780.patch", "gmsh-4.10.3-gcc14.patch"]
 }
 
+version_4_10_3_with_CAS_7_8_DB13:
+{
+  archive_info : {archive_name : "gmsh-4.10.3.tar.gz"}
+  compil_script : "gmsh-4.10.3.sh"
+  depend : ["CAS","lapack","hdf5","medfile", "cgns"]
+  patches : ["gmsh-4.10.3-gc13-fc38.patch", "gmsh-4.10.3-occt780.patch", "gmsh-4.10.3-gcc14-db13.patch"]
+}
+
+version_4_10_3_with_CAS_7_8_FD42:
+{
+  archive_info : {archive_name : "gmsh-4.10.3.tar.gz"}
+  compil_script : "gmsh-4.10.3.sh"
+  depend : ["CAS","lapack","hdf5","medfile", "cgns"]
+  patches : ["gmsh-4.10.3-gc13-fc38.patch", "gmsh-4.10.3-occt780.patch", "gmsh-4.10.3-gcc14.patch", "gmsh-4.10.3-gcc15.patch"]
+}
+
+version_4_10_3_with_CAS_7_8_CO10:
+{
+  archive_info : {archive_name : "gmsh-4.10.3.tar.gz"}
+  compil_script : "gmsh-4.10.3.sh"
+  depend : ["CAS","lapack","hdf5","medfile", "cgns"]
+  patches : ["gmsh-4.10.3-gc13-fc38.patch", "gmsh-4.10.3-occt780.patch", "gmsh-4.10.3-gcc14.patch"]
+}
 
 version_4_10_3_with_CAS_7_8_UB24_04:
 {

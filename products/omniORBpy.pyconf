@@ -29,6 +29,17 @@ version_4_2_6_win:
   patches : ['omniORBpy-4.2.6.p1.patch']
 }
 
+version_4_3_2 :
+{
+    system_info :
+    {
+        rpm : []
+        rpm_dev : ["omniORBpy-devel"]
+        apt : []
+        apt_dev : []
+    }
+}
+
 version_4_2_5:
 {
   patches: ['omniORBpy-4.2.5.p1.patch']
@@ -42,4 +53,19 @@ version_4_2_5_UB24_04:
 version_4_2_5_FD40:
 {
   patches: ['omniORBpy-4.2.5.p1.patch','omniORBpy-4.2.5.p2.patch']
+}
+
+version_4_2_5_FD42:
+{
+  patches: ['omniORBpy-4.2.5.p1.patch','omniORBpy-4.2.5.p2.patch','omniORBpy-4.2.5.p3.patch']
+}
+
+version_4_2_5_CO10:
+{
+  patches: ['omniORBpy-4.2.5.p1.patch','omniORBpy-4.2.5.p2.patch']
+}
+
+version_4_2_5_DB13:
+{
+  patches: ['omniORBpy-4.2.5.p1.patch','omniORBpy-4.2.5.p2.patch','omniORBpy-4.2.5.p3.patch']
 }

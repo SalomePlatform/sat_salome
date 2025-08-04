@@ -33,6 +33,16 @@ version_1_5_1_UB24_04 :
   patches: ['rkCommon-1.5.1-skip-FindTBB.patch']
 }
 
+version_1_5_1_CO10 :
+{
+  patches: ['rkCommon-1.5.1-skip-FindTBB.patch']
+}
+
+version_1_5_1_FD42 :
+{
+  patches: ['rkCommon-1.5.1-skip-FindTBB.patch']
+}
+
 version_1_5_1_FD40 :
 {
   patches: ['rkCommon-1.5.1-skip-FindTBB.patch']

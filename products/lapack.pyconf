@@ -4,9 +4,9 @@ default :
     build_source : "script"
     compil_script : $name + $VARS.scriptExtension
     get_source : "archive"
-    system_info : 
+    system_info :
     {
-        rpm : ["lapack"]
+        rpm : ["lapack","lapack-static"]
         rpm_dev : ["lapack-devel"]
         apt : ["liblapack3", "liblapacke"]
         apt_dev : ["liblapack-dev", "liblapacke-dev"]

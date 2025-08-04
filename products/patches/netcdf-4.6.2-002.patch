@@ -1,0 +1,12 @@
+diff -Naur netcdf/ncdump/utils.h netcdf.dev/ncdump/utils.h
+--- netcdf/ncdump/utils.h	2022-01-10 20:42:47.000000000 +0100
++++ netcdf.dev/ncdump/utils.h	2025-06-10 14:49:15.454375004 +0200
+@@ -18,7 +18,7 @@
+ #define NC_GRP_DELIM '/'
+ 
+ typedef int bool_t;
+-enum {false=0, true=1};
++//enum {false=0, true=1};
+ 
+ struct safebuf_t;
+ /* Buffer structure for implementing growable strings, used in

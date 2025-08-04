@@ -4,6 +4,8 @@ echo "##########################################################################
 echo "netgen" $VERSION
 echo "##########################################################################"
 
+LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
+
 cp -r $SOURCE_DIR/* .
 
 # If Docker rootless, ensure that user can read them
@@ -14,26 +16,25 @@ fi
 echo
 echo "*** manual call of the aclocal, libtoolize, autoconf and automake in order to re-generate configure script and Makefiles"
 aclocal -I m4 
-if [ $? -ne 0 ]
-then
+if [ $? -ne 0 ]; then
     echo "error on manual call to aclocal"
     exit 1
 fi
+
 libtoolize --force --copy --automake
-if [ $? -ne 0 ]
-then
+if [ $? -ne 0 ]; then
     echo "error on manual call to libtoolize"
     exit 1
 fi
+
 autoconf
-if [ $? -ne 0 ]
-then
+if [ $? -ne 0 ]; then
     echo "error on manual call to autoconf"
     exit 1
 fi
+
 automake --copy --gnu --add-missing
-if [ $? -ne 0 ]
-then
+if [ $? -ne 0 ]; then
     echo "error on manual call to automake"
     exit 1
 fi
@@ -64,23 +65,27 @@ echo "*** configure"
 BFLAG="-m64"
 OLEVEL="-O2"
 
-if [ "${TCLHOME}" != '/usr' ]
-then
+if [ "${TCLHOME}" != "/usr" ]; then
     TCL_TK_OPTIONS="--with-tcl=${TCLHOME}/lib --with-tk=${TCLHOME}/lib --with-tclinclude=${TCLHOME}/include"
 fi
-echo ./configure --prefix=${PRODUCT_INSTALL} \
-    --with-occ=${CASROOT} \
-    --disable-openmp \
-    ${TCL_TK_OPTIONS} \
-    CXXFLAGS="-I${CASROOT}/include/opencascade ${OLEVEL} ${BFLAG} -std=c++0x"
-./configure --prefix=${PRODUCT_INSTALL} \
-    --with-occ=${CASROOT} \
-    --disable-openmp \
-    ${TCL_TK_OPTIONS} \
-    CXXFLAGS="-I${CASROOT}/include/opencascade ${OLEVEL} ${BFLAG} -std=c++0x" #-std=gnu++11" #-std=c++11 -std=c++0x"
 
-if [ $? -ne 0 ]
-then
+CONFIGURE_FLAGS="-std=c++0x"
+if [ "$LINUX_DISTRIBUTION" == "FD42" ]; then
+    CONFIGURE_FLAGS+=" -fpermissive"
+fi   
+echo ./configure --prefix=${PRODUCT_INSTALL} \
+     --with-occ=${CASROOT} \
+     --disable-openmp \
+     ${TCL_TK_OPTIONS} \
+     CXXFLAGS="-I${CASROOT}/include/opencascade ${OLEVEL} ${BFLAG} ${CONFIGURE_FLAGS}"
+
+./configure --prefix=${PRODUCT_INSTALL} \
+            --with-occ=${CASROOT} \
+            --disable-openmp \
+            ${TCL_TK_OPTIONS} \
+            CXXFLAGS="-I${CASROOT}/include/opencascade ${OLEVEL} ${BFLAG} ${CONFIGURE_FLAGS}"
+
+if [ $? -ne 0 ]; then
     echo "error on configure"
     exit 1
 fi
@@ -88,8 +93,7 @@ fi
 echo
 echo "*** make ${MAKE_OPTIONS}"
 make  ${MAKE_OPTIONS}
-if [ $? -ne 0 ]
-then
+if [ $? -ne 0 ]; then
     echo "error on make"
     exit 2
 fi
@@ -97,8 +101,7 @@ fi
 echo
 echo "*** install"
 make install
-if [ $? -ne 0 ]
-then
+if [ $? -ne 0 ]; then
     echo "error on make install"
     exit 3
 fi

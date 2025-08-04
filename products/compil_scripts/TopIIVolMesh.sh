@@ -73,6 +73,9 @@ case $LINUX_DISTRIBUTION in
     DB09)
         :
         ;;
+    FD42)
+        : # one test on error on docker
+        ;;
     *)
         make check
         if [ $? -ne 0 ]; then

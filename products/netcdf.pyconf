@@ -47,6 +47,16 @@ version_4_6_2:
     patches : ['netcdf-4.6.2-001.patch']
 }
 
+version_4_6_2_FD42:
+{
+    archive_info :
+    {
+      archive_name  : "netcdf-c-4.6.2.tar.gz"
+    }
+    compil_script :  "netcdf-4.6.2" + $VARS.scriptExtension
+    patches : ['netcdf-4.6.2-001.patch','netcdf-4.6.2-002.patch']
+}
+
 version_4_6_2_win :
 {
     properties :

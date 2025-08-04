@@ -6,10 +6,10 @@ default :
     get_source : "archive"
     system_info :
     {
-        rpm : ["rapidjson"]
+        rpm : []
         rpm_dev : ["rapidjson-devel"]
         apt : []
-        apt_dev : []
+        apt_dev : ["rapidjson-dev"]
     }
     patches : []
     environ :
@@ -36,6 +36,11 @@ default_win :
       incremental : "yes"
       single_install_dir : "yes"
     }
+}
+
+version_1_1_0_FD42 :
+{
+    patches : ["rapidjson-1.1.0-gcc14.patch"]
 }
 
 version_1_1_0_FD40 :

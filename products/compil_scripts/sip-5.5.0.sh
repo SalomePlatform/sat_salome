@@ -4,6 +4,33 @@ echo "##########################################################################
 echo SIP + PyQt5_sip $VERSION
 echo "##########################################################################"
 
+fix_lib_path(){
+	mkdir -p $PRODUCT_INSTALL/lib/python$PYTHON_VERSION
+	# ensure that lib is used
+	if [ -d "$PRODUCT_INSTALL/local" ]; then
+		cp -r $PRODUCT_INSTALL/local/* $PRODUCT_INSTALL/
+		rm -rf $PRODUCT_INSTALL/local
+	fi
+
+	if [ -d "$PRODUCT_INSTALL/lib64" ]; then
+		echo "WARNING: renaming lib64 directory to lib"
+		mv $PRODUCT_INSTALL/lib64/* $PRODUCT_INSTALL/lib/
+		rm -rf $PRODUCT_INSTALL/lib64
+	elif [ -d "$PRODUCT_INSTALL/local/lib64" ]; then
+		echo "WARNING: renaming local/lib64 directory to lib"
+		mv $PRODUCT_INSTALL/local/lib64/* $PRODUCT_INSTALL/lib
+		rm -rf $PRODUCT_INSTALL/local
+	elif [ -d $PRODUCT_INSTALL/lib ]; then
+		:
+	else
+		echo "WARNING: unhandled case! Please ensure that script is consistent!"
+	fi
+
+	if [ -d ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/dist-packages ]; then
+	    mv ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/dist-packages ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages
+	fi
+}
+
 LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
 
 rm -rf $BUILD_DIR
@@ -62,25 +89,21 @@ else
     fi
 fi
 
-mkdir -p $PRODUCT_INSTALL/lib/python$PYTHON_VERSION
-# ensure that lib is used
-if [ -d "$PRODUCT_INSTALL/lib64" ]; then
-	echo "WARNING: renaming lib64 directory to lib"
-	mv $PRODUCT_INSTALL/lib64/* $PRODUCT_INSTALL/lib/
-	rm -rf $PRODUCT_INSTALL/lib64
-elif [ -d "$PRODUCT_INSTALL/local/lib64" ]; then
-	echo "WARNING: renaming local/lib64 directory to lib"
-	mv $PRODUCT_INSTALL/local/lib64/* $PRODUCT_INSTALL/lib
-	rm -rf $PRODUCT_INSTALL/local
-elif [ -d $PRODUCT_INSTALL/lib ]; then
-	:
-else
-	echo "WARNING: unhandled case! Please ensure that script is consistent!"
-fi
+fix_lib_path
+
+PYQT5_SIP_VERSION=
+case $LINUX_DISTRIBUTION in
+    CO10|DB13)
+        PYQT5_SIP_VERSION=12.17.0
+        ;;
+    *)
+        PYQT5_SIP_VERSION=12.8.1
+        ;;
+esac
 
 cd $BUILD_DIR
-cp -R $SOURCE_DIR/PyQt5_sip-12.8.1 $BUILD_DIR/PyQt5_sip-12.8.1
-cd $BUILD_DIR/PyQt5_sip-12.8.1
+cp -R $SOURCE_DIR/PyQt5_sip-$PYQT5_SIP_VERSION $BUILD_DIR/PyQt5_sip-$PYQT5_SIP_VERSION
+cd $BUILD_DIR/PyQt5_sip-$PYQT5_SIP_VERSION
 
 echo
 echo "*** build with $PYTHONBIN"
@@ -111,20 +134,7 @@ else
     fi
 fi
 
-# ensure that lib is used
-if [ -d "$PRODUCT_INSTALL/lib64" ]; then
-	echo "WARNING: renaming lib64 directory to lib"
-	cp -r $PRODUCT_INSTALL/lib64/* $PRODUCT_INSTALL/lib
-	rm -rf $PRODUCT_INSTALL/lib64
-elif [ -d "$PRODUCT_INSTALL/local/lib64" ]; then
-	echo "WARNING: renaming local/lib64 directory to lib"
-	mv $PRODUCT_INSTALL/local/lib64/* $PRODUCT_INSTALL/lib
-	rm -rf $PRODUCT_INSTALL/local
-elif [ -d $PRODUCT_INSTALL/lib ]; then
-	:
-else
-	echo "WARNING: unhandled case! Please ensure that script is consistent!"
-fi
+fix_lib_path
 
 mkdir $PRODUCT_INSTALL/include
 cp *.h $PRODUCT_INSTALL/include

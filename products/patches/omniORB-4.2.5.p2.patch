@@ -1,0 +1,221 @@
+diff -Naur '--exclude=*.pyc' '--exclude=*.swp' omniORB/src/tool/omkdepend/def.h omniORB.dev/src/tool/omkdepend/def.h
+--- omniORB/src/tool/omkdepend/def.h	2017-02-16 00:35:34.000000000 +0100
++++ omniORB.dev/src/tool/omkdepend/def.h	2025-06-11 09:17:16.830278584 +0200
+@@ -129,15 +129,15 @@
+ char			*realloc();
+ #endif
+ 
+-char			*copy();
+-char			*base_name();
+-char			*get_line();
+-struct symtab		*slookup();
+-struct symtab		*isdefined();
+-struct symtab		*fdefined();
+-struct filepointer	*getfile();
+-struct inclist		*newinclude();
+-struct inclist		*inc_path();
++char			*copy(char *str);
++char			*base_name(char *file);
++char			*get_line(struct filepointer *fp);
++struct symtab		*slookup(char *symbol, struct inclist *file);
++struct symtab		*isdefined(char *symbol, struct inclist *file, struct inclist **srcfile);
++struct symtab		*fdefined(char *symbol, struct inclist *file, struct inclist **srcfile);
++struct filepointer	*getfile(char *file);
++struct inclist		*newinclude(char *newfile, char* incstring);
++struct inclist		*inc_path(char *file, char *include, boolean dot);
+ 
+ #if NeedVarargsPrototypes
+ extern void fatalerr(char *, ...);
+diff -Naur '--exclude=*.pyc' '--exclude=*.swp' omniORB/src/tool/omkdepend/ifparser.c omniORB.dev/src/tool/omkdepend/ifparser.c
+--- omniORB/src/tool/omkdepend/ifparser.c	2017-02-16 00:35:34.000000000 +0100
++++ omniORB.dev/src/tool/omkdepend/ifparser.c	2025-06-11 09:32:23.578060370 +0200
+@@ -73,10 +73,7 @@
+ 
+ 
+ static const char *
+-parse_variable (g, cp, varp)
+-    IfParser *g;
+-    const char *cp;
+-    const char **varp;
++parse_variable (IfParser *g, const char *cp, const char **varp)
+ {
+     SKIPSPACE (cp);
+ 
+@@ -91,10 +88,7 @@
+ 
+ 
+ static const char *
+-parse_number (g, cp, valp)
+-    IfParser *g;
+-    const char *cp;
+-    int *valp;
++parse_number (IfParser *g, const char *cp,int *valp)    
+ {
+     SKIPSPACE (cp);
+ 
+@@ -107,10 +101,7 @@
+ 
+ 
+ static const char *
+-parse_value (g, cp, valp)
+-    IfParser *g;
+-    const char *cp;
+-    int *valp;
++parse_value (IfParser *g, const char *cp, int *valp)
+ {
+     const char *var;
+ 
+@@ -187,10 +178,7 @@
+ 
+ 
+ static const char *
+-parse_product (g, cp, valp)
+-    IfParser *g;
+-    const char *cp;
+-    int *valp;
++parse_product (IfParser *g, const char *cp, int *valp)
+ {
+     int rightval;
+ 
+@@ -218,10 +206,7 @@
+ 
+ 
+ static const char *
+-parse_sum (g, cp, valp)
+-    IfParser *g;
+-    const char *cp;
+-    int *valp;
++parse_sum (IfParser *g, const char *cp, int *valp)
+ {
+     int rightval;
+ 
+@@ -244,10 +229,7 @@
+ 
+ 
+ static const char *
+-parse_shift (g, cp, valp)
+-    IfParser *g;
+-    const char *cp;
+-    int *valp;
++parse_shift (IfParser *g, const char *cp, int *valp)
+ {
+     int rightval;
+ 
+@@ -274,10 +256,7 @@
+ 
+ 
+ static const char *
+-parse_inequality (g, cp, valp)
+-    IfParser *g;
+-    const char *cp;
+-    int *valp;
++parse_inequality (IfParser *g, const char *cp, int *valp)
+ {
+     int rightval;
+ 
+@@ -310,10 +289,7 @@
+ 
+ 
+ static const char *
+-parse_equality (g, cp, valp)
+-    IfParser *g;
+-    const char *cp;
+-    int *valp;
++parse_equality (IfParser *g, const char *cp, int *valp)
+ {
+     int rightval;
+ 
+@@ -340,10 +316,7 @@
+ 
+ 
+ static const char *
+-parse_band (g, cp, valp)
+-    IfParser *g;
+-    const char *cp;
+-    int *valp;
++parse_band (IfParser *g, const char *cp, int *valp)
+ {
+     int rightval;
+ 
+@@ -363,10 +336,7 @@
+ 
+ 
+ static const char *
+-parse_bor (g, cp, valp)
+-    IfParser *g;
+-    const char *cp;
+-    int *valp;
++parse_bor (IfParser *g, const char *cp, int *valp)
+ {
+     int rightval;
+ 
+@@ -386,10 +356,7 @@
+ 
+ 
+ static const char *
+-parse_land (g, cp, valp)
+-    IfParser *g;
+-    const char *cp;
+-    int *valp;
++parse_land (IfParser *g, const char *cp, int *valp)
+ {
+     int rightval;
+ 
+@@ -409,10 +376,7 @@
+ 
+ 
+ static const char *
+-parse_lor (g, cp, valp)
+-    IfParser *g;
+-    const char *cp;
+-    int *valp;
++parse_lor (IfParser *g, const char *cp, int *valp)
+ {
+     int rightval;
+ 
+@@ -436,10 +400,7 @@
+  ****************************************************************************/
+ 
+ const char *
+-ParseIfExpression (g, cp, valp)
+-    IfParser *g;
+-    const char *cp;
+-    int *valp;
++ParseIfExpression (IfParser *g, const char *cp, int *valp)
+ {
+     return parse_lor (g, cp, valp);
+ }
+diff -Naur '--exclude=*.pyc' '--exclude=*.swp' omniORB/src/tool/omkdepend/ifparser.h omniORB.dev/src/tool/omkdepend/ifparser.h
+--- omniORB/src/tool/omkdepend/ifparser.h	2018-05-08 18:57:00.000000000 +0200
++++ omniORB.dev/src/tool/omkdepend/ifparser.h	2025-06-11 09:34:51.753481826 +0200
+@@ -65,13 +65,13 @@
+ 
+ typedef struct _if_parser {
+     struct {				/* functions */
+-	char *(*handle_error) (/* struct _if_parser *, const char *,
+-				 const char * */);
+-	int (*eval_variable) (/* struct _if_parser *, const char *, int */);
+-	int (*eval_defined) (/* struct _if_parser *, const char *, int */);
++	char *(*handle_error) (struct _if_parser *, const char *,
++				 const char *);
++	int (*eval_variable) (struct _if_parser *, const char *, int);
++	int (*eval_defined) (struct _if_parser *, const char *, int);
+     } funcs;
+     char *data;
+ } IfParser;
+ 
+-char *ParseIfExpression (/* IfParser *, const char *, int * */);
++char *ParseIfExpression (IfParser *, const char *, int * );
+ 
+diff -Naur '--exclude=*.pyc' '--exclude=*.swp' omniORB/src/tool/omniidl/cxx/cccp/cccp.c omniORB.dev/src/tool/omniidl/cxx/cccp/cccp.c
+--- omniORB/src/tool/omniidl/cxx/cccp/cccp.c	2017-03-03 23:44:52.000000000 +0100
++++ omniORB.dev/src/tool/omniidl/cxx/cccp/cccp.c	2025-06-11 09:38:51.418650011 +0200
+@@ -305,7 +305,7 @@
+ extern char *sys_errlist[];
+ #else	/* HAVE_STRERROR */
+ #ifndef DONT_DECLARE_STRERROR
+-char *strerror ();
++char *strerror (int);
+ #endif
+ #endif
+ #else	/* VMS */

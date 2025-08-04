@@ -26,9 +26,11 @@ def set_nativ_env(env):
     try:
       import distro
       if any(distribution in distro.name().lower() for distribution in ["rocky", "centos", "fedora"]) :
-        prereq_dir='/usr'
-        prereq_inc= '/usr/include/openmpi-x86_64'
+        prereq_dir='/usr/lib64/openmpi'
+        prereq_inc= '/usr/include/openmpi-x86_64/scotch'
         prereq_lib='/usr/lib64/openmpi/lib'
+        env.set('PTScotch_DIR', '/usr/lib64/openmpi/lib/cmake/scotch')
+        env.set('PTSCTOCH_LIBRARIES', '/usr/lib64/openmpi/lib/libptscotch.so')
       elif any(distribution in distro.name().lower() for distribution in ["debian", "ubuntu", "tuxedo os", "linux mint"]) :
         prereq_dir='/usr'
         prereq_inc='/usr/include/scotch-long'
@@ -38,9 +40,11 @@ def set_nativ_env(env):
     except:
         import platform
         if any(distribution in platform.linux_distribution()[0].lower() for distribution in ["rocky", "centos", "fedora"]) :
-            prereq_dir='/usr'
-            prereq_inc= '/usr/include/openmpi-x86_64'
+            prereq_dir='/usr/lib64/openmpi'
+            prereq_inc= '/usr/include/openmpi-x86_64/scotch'
             prereq_lib='/usr/lib64/openmpi/lib'
+            env.set('PTScotch_DIR', '/usr/lib64/openmpi/lib/cmake/scotch')
+            env.set('PTSCTOCH_LIBRARIES', '/usr/lib64/openmpi/lib/libptscotch.so')
         else:
           print("Unimplemented distribution (2): {}".format(platform.linux_distribution()[0].lower()))
 

@@ -29,6 +29,20 @@ default_win :
    }
 }
 
+version_3_13_5 :
+{
+    build_source : "script"
+    compil_script :  "embree-3.13.5" + $VARS.scriptExtension
+    archive_info : {archive_name : "embree-3.13.5-x86_64.tar.gz"}
+    patches : []
+    depend : []
+}
+
+version_3_12_2_FD42 :
+{
+  patches : ['embree-3.12.2-gcc15.patch']
+}
+
 version_3_3_0_CO6 :
 {
   patches : ['embree-3.5.2-centos6.patch']

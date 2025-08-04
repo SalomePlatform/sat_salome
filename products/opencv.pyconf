@@ -44,6 +44,24 @@ version_3_2_0 :
                "SPNS-29988-opencv-3.2.0-cv2.patch"]
 }
 
+version_3_2_0_CO10 :
+{
+    patches : ["opencv-3.2.0-ccache.patch", 
+               "SPNS-29988-opencv-3.2.0-persistence.patch", 
+               "SPNS-29988-opencv-3.2.0-cv2.patch", 
+               "opencv-Revert-cuda-fix-fp16-compilation.patch", 
+               "opencv-Revert-check-FP16-build-condition-correctly.patch"]
+}
+
+version_3_2_0_FD42 :
+{
+    patches : ["opencv-3.2.0-ccache.patch",
+               "SPNS-29988-opencv-3.2.0-persistence.patch",
+               "SPNS-29988-opencv-3.2.0-cv2.patch",
+               "opencv-Revert-cuda-fix-fp16-compilation.patch",
+               "opencv-Revert-check-FP16-build-condition-correctly.patch"]
+}
+
 version_3_2_0_FD40 :
 {
     patches : ["opencv-3.2.0-ccache.patch", "SPNS-29988-opencv-3.2.0-persistence.patch", "SPNS-29988-opencv-3.2.0-cv2.patch"]

@@ -1,0 +1,14 @@
+diff --git a/modules/core/include/opencv2/core/cvdef.h b/modules/core/include/opencv2/core/cvdef.h
+index 699b166..efc24ca 100644
+--- a/modules/core/include/opencv2/core/cvdef.h
++++ b/modules/core/include/opencv2/core/cvdef.h
+@@ -303,8 +303,7 @@ enum CpuFeatures {
+ #define CV_2PI 6.283185307179586476925286766559
+ #define CV_LOG2 0.69314718055994530941723212145818
+ 
+-#if defined __ARM_FP16_FORMAT_IEEE \
+-    && !defined __CUDACC__
++#if defined (__ARM_FP16_FORMAT_IEEE)
+ #  define CV_FP16_TYPE 1
+ #else
+ #  define CV_FP16_TYPE 0

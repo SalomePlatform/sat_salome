@@ -1,0 +1,39 @@
+diff -Naur '--exclude=*.git' cgal/BGL/include/CGAL/boost/graph/iterator.h cgal_dev/BGL/include/CGAL/boost/graph/iterator.h
+--- cgal/BGL/include/CGAL/boost/graph/iterator.h	2025-05-09 15:29:15.052382636 +0200
++++ cgal_dev/BGL/include/CGAL/boost/graph/iterator.h	2025-04-23 23:30:40.784420102 +0200
+@@ -214,11 +214,6 @@
+ 
+ #ifndef DOXYGEN_RUNNING
+ 
+-  explicit operator bool() const
+-  {
+-    return (! (this->base() == nullptr));
+-  }
+-
+   bool operator==( const Self& i) const {
+     CGAL_assertion( anchor == anchor);
+     return  ( g == i.g) && ( pos == i.pos) && ( winding == i.winding);
+@@ -308,11 +303,6 @@
+ 
+ #ifndef DOXYGEN_RUNNING
+ 
+-  explicit operator bool() const
+-  {
+-    return (! (this->base() == nullptr));
+-  }
+-
+   bool operator==( const Self& i) const {
+     CGAL_assertion( anchor == anchor);
+     return  ( g == i.g) && ( pos == i.pos) && ( winding == i.winding);
+@@ -400,11 +390,6 @@
+   pointer           operator -> ( )       { return &pos; }
+   const value_type* operator -> ( ) const { return &pos; }
+ 
+-  explicit operator bool() const
+-  {
+-    return (! (this->base() == nullptr));
+-  }
+-
+   bool operator==( const Self& i) const {
+     CGAL_assertion( anchor == anchor);
+     return  ( g == i.g) && ( pos == i.pos) && ( winding == i.winding);

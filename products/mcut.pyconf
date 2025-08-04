@@ -56,3 +56,14 @@ version_b5b0ec6:
              'mcut-b5b0ec6-p02_cgsboolean.patch'
             ]
 }
+
+version_b5b0ec6_FD42:
+{
+  build_source: "script"
+  compil_script: "mcut" + $VARS.scriptExtension
+  patches : [
+             'mcut-b5b0ec6-p01_cgsboolean.patch',
+             'mcut-b5b0ec6-p02_cgsboolean.patch'
+             'mcut-b5b0ec6-p03_stdint.patch'
+            ]
+}

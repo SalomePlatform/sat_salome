@@ -31,6 +31,17 @@ version_4_2_3_win_dbg:
   patches: ['omniORB-4.2.3-windows-debug.patch']
 }
 
+version_4_3_2 :
+{
+    system_info :
+    {
+        rpm : ["omniORB"]
+        rpm_dev : ["omniORB-devel"] 
+        apt : []
+        apt_dev : []
+    }
+}
+
 version_4_2_3 :
 {
   patches: []
@@ -44,6 +55,11 @@ version_4_2_3_win:
 version_4_2_5:
 {
   patches: ['omniORB-4.2.5.p1.patch']
+}
+
+version_4_2_5_FD42:
+{
+  patches: ['omniORB-4.2.5.p1.patch','omniORB-4.2.5.p2.patch']
 }
 
 version_4_2_6 :

@@ -1,0 +1,14 @@
+diff -pruN SOLVERLAB_src/CoreFlows/Models/src/utilitaire_algebre.cxx SOLVERLAB_dev/CoreFlows/Models/src/utilitaire_algebre.cxx
+--- SOLVERLAB_src/CoreFlows/Models/src/utilitaire_algebre.cxx	2024-12-02 18:19:29.210771719 +0100
++++ SOLVERLAB_dev/CoreFlows/Models/src/utilitaire_algebre.cxx	2024-12-02 18:21:26.069967569 +0100
+@@ -1066,8 +1066,8 @@ int roots_polynoms::rpoly(double *op, in
+  			{Lmin = L[j]; imin = j;}
+ 
+  		//on met la vp � zero si elle est trop petite
+- 		if( fabs(Lmin.real()) < epsilon) Lmin.real()=0;
+- 		if( fabs(Lmin.imag()) < epsilon) Lmin.imag()=0;
++ 		if( fabs(Lmin.real()) < epsilon) Lmin.real(0);
++ 		if( fabs(Lmin.imag()) < epsilon) Lmin.imag(0);
+ 
+  		switch (i) {
+  		case 0: {

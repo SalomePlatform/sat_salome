@@ -48,6 +48,11 @@ else
     CMAKE_OPTIONS+=" -DBUILD_opencv_java=OFF"
 fi
 
+# on our build dockers, for security issues, we remove write rights on ccache
+if [ -f /.dockerenv ]; then
+    CMAKE_OPTIONS+=" -DENABLE_CCACHE=OFF"
+fi
+
 
 rm -rf $BUILD_DIR
 mkdir -p $BUILD_DIR

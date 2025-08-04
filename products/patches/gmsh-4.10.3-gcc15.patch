@@ -1,0 +1,23 @@
+--- gmsh-4.10.3_ref/src/mesh/meshGRegionHxt.cpp	2022-05-26 10:51:23.000000000 +0200
++++ gmsh-4.10.3_dev/src/mesh/meshGRegionHxt.cpp	2025-08-06 22:09:17.409228216 +0200
+@@ -24,8 +24,8 @@
+ 
+ #if defined(HAVE_HXT)
+ 
+-extern "C" {
+ #include "hxt_omp.h"
++extern "C" {
+ #include "hxt_tetMesh.h"
+ #include "hxt_tetDelaunay.h"
+ }
+--- gmsh-4.10.3_ref/contrib/hxt/tetBR/src/hxt_boundary_recovery.cxx	2022-05-26 10:51:23.000000000 +0200
++++ gmsh-4.10.3_dev/contrib/hxt/tetBR/src/hxt_boundary_recovery.cxx	2025-08-06 22:11:35.526023010 +0200
+@@ -1,7 +1,7 @@
++#include "hxt_omp.h"
+ extern "C" {
+ #include "hxt_mesh.h"
+ #include "hxt_tools.h"
+-#include "hxt_omp.h"
+ #include "predicates.h"
+ }
+ 

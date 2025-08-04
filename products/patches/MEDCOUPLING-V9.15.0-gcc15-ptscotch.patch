@@ -1,0 +1,33 @@
+diff -Naur '--exclude=*.git' MEDCOUPLING/src/MEDPartitioner/MEDPARTITIONER_PTScotchGraph.cxx MEDCOUPLING_dev/src/MEDPartitioner/MEDPARTITIONER_PTScotchGraph.cxx
+--- MEDCOUPLING/src/MEDPartitioner/MEDPARTITIONER_PTScotchGraph.cxx	2025-06-30 15:42:13.136738554 +0200
++++ MEDCOUPLING_dev/src/MEDPartitioner/MEDPARTITIONER_PTScotchGraph.cxx	2025-06-30 15:47:47.578074377 +0200
+@@ -96,15 +96,15 @@
+         0,              // baseval               , base first indice 0
+         n,              // vertlocnbr            , nb of local graph nodes
+         n,              // vertlocmax            , should be set to vertlocnbr for graphs without holes
+-        xadj,           // vertloctab[vertnbr+1] , index vertex table
++        (int*)xadj,           // vertloctab[vertnbr+1] , index vertex table
+         0,              // vendloctab            , index end vertex table if disjoint, set to zero
+-        cellWeightPtr,  // veloloctab            , graph vertices loads, set to zero
+-        vlbloctab,      // vlblocltab            , vertex label array : global vertex index
++        (int*)cellWeightPtr,  // veloloctab            , graph vertices loads, set to zero
++        (int*)vlbloctab,      // vlblocltab            , vertex label array : global vertex index
+         xadj[n],        // edgelocnbr            , number of edges
+         xadj[n],        // edgelocsiz            , same as edgelocnbr if edgeloctab is compact
+-        adjncy,         // edgeloctab[edgelocnbr], global indexes of edges
++        (int*)adjncy,         // edgeloctab[edgelocnbr], global indexes of edges
+         0,              // edgegsttab            , optional, should be computed internally, set to zero
+-        edgeWeightPtr
++        (int*)edgeWeightPtr
+     );  // edloloctab            , graph edges loads, set to zero
+ 
+     SCOTCH_Strat scotch_strategy;
+@@ -118,7 +118,7 @@
+     {
+         if (MyGlobals::_Verbose > 10)
+             std::cout << "SCOTCHGraph::graphPart SCOTCH_graphPart" << std::endl;
+-        SCOTCH_dgraphPart(&scotch_graph, nparts, &scotch_strategy, partition.get());
++        SCOTCH_dgraphPart(&scotch_graph, nparts, &scotch_strategy, (int*)partition.get());
+     }
+     else  // partition for 1 subdomain
+     {

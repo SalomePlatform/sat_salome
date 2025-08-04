@@ -1,0 +1,56 @@
+diff -Naur gmsh/contrib/blossom/concorde97/EDGEGEN/edgegen.c gmsh.dev/contrib/blossom/concorde97/EDGEGEN/edgegen.c
+--- gmsh/contrib/blossom/concorde97/EDGEGEN/edgegen.c	2022-05-26 10:51:23.000000000 +0200
++++ gmsh.dev/contrib/blossom/concorde97/EDGEGEN/edgegen.c	2025-07-10 13:08:22.504213723 +0200
+@@ -88,6 +88,7 @@
+ #include "kdtree.h"
+ #include "linkern.h"
+ #include "fmatch.h"
++#include <string.h>
+
+ #define SWAP(x,y,t) ((t)=(x),(x)=(y),(y)=(t))
+
+diff -Naur gmsh/contrib/blossom/concorde97/TSP/prob_io.c gmsh.dev/contrib/blossom/concorde97/TSP/prob_io.c
+--- gmsh/contrib/blossom/concorde97/TSP/prob_io.c	2022-05-26 10:51:23.000000000 +0200
++++ gmsh.dev/contrib/blossom/concorde97/TSP/prob_io.c	2025-07-10 13:22:08.416439901 +0200
+@@ -70,6 +70,7 @@
+ #include "util.h"
+ #include "tsp.h"
+ #include "bigguy.h"
++#include <string.h>
+
+ #ifdef CC_PROTOTYPE_ANSI
+
+diff -Naur gmsh/contrib/blossom/concorde97/TSP/tsp_lp.c gmsh.dev/contrib/blossom/concorde97/TSP/tsp_lp.c
+--- gmsh/contrib/blossom/concorde97/TSP/tsp_lp.c	2022-05-26 10:51:23.000000000 +0200
++++ gmsh.dev/contrib/blossom/concorde97/TSP/tsp_lp.c	2025-07-10 13:28:33.780259347 +0200
+@@ -217,6 +217,7 @@
+ #include "lp.h"
+ #include "bigguy.h"
+ #include "cut.h"
++#include <string.h>
+
+ /*
+    parameters for addbad_variables.  Addbad generates edges (x,y) with
+diff -Naur gmsh/contrib/blossom/concorde97/UTIL/getdata.c gmsh.dev/contrib/blossom/concorde97/UTIL/getdata.c
+--- gmsh/contrib/blossom/concorde97/UTIL/getdata.c	2022-05-26 10:51:23.000000000 +0200
++++ gmsh.dev/contrib/blossom/concorde97/UTIL/getdata.c	2025-07-10 13:31:36.322056385 +0200
+@@ -161,6 +161,7 @@
+
+ #include "machdefs.h"
+ #include "util.h"
++#include <string.h>
+
+ #define MATRAND_SCALE 10  /* Range of edge lengths: [0, MATRAND_SCALE * n) */
+
+diff -Naur gmsh/contrib/blossom/concorde97/UTIL/safe_io.c gmsh.dev/contrib/blossom/concorde97/UTIL/safe_io.c
+--- gmsh/contrib/blossom/concorde97/UTIL/safe_io.c	2022-05-26 10:51:23.000000000 +0200
++++ gmsh.dev/contrib/blossom/concorde97/UTIL/safe_io.c	2025-07-10 13:41:27.175910474 +0200
+@@ -56,6 +56,8 @@
+
+ #include "machdefs.h"
+ #include "util.h"
++#include <string.h>
++#include <unistd.h>
+
+ #ifndef SEEK_SET
+ #ifdef L_SET

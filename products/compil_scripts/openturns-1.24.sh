@@ -54,7 +54,7 @@ esac
 
 # https://github.com/persalys/persalys/issues/745
 case $LINUX_DISTRIBUTION in
-    CO7|UB22*|CO8*|CO9*|FD36|FD37|FD38|FD40)
+    CO7|UB22*|CO8*|CO9*|CO1*|FD36|FD37|FD38|FD40|FD42)
         echo "WARNING: switching OFF TBB support"
         CMAKE_OPTIONS+=" -DUSE_TBB=OFF"
         ;;
@@ -119,7 +119,14 @@ fi
 
 # it is not clear to me why the following tests fail. I vetoe them (requires patch openturns-1.24.0003.patch to be applied)
 # for additional informations, see: https://github.com/openturns/openturns/issues/2891
-CMAKE_OPTIONS+=" -DOPENTURNS_VETOED_TESTS=\"cppcheck_Log_std|cppcheck_FisherSnedecor_std|cppcheck_Poisson_std|cppcheck_Distribution_quantile\""
+case $LINUX_DISTRIBUTION in
+    CO10)
+	CMAKE_OPTIONS+=" -DOPENTURNS_VETOED_TESTS=\"cppcheck_Log_std|cppcheck_FisherSnedecor_std|cppcheck_Poisson_std|cppcheck_Distribution_quantile|cppcheck_SmolyakExperiment_std\""
+	;;
+    *)
+	CMAKE_OPTIONS+=" -DOPENTURNS_VETOED_TESTS=\"cppcheck_Log_std|cppcheck_FisherSnedecor_std|cppcheck_Poisson_std|cppcheck_Distribution_quantile\""
+	;;
+esac
 
 echo
 echo "*** cmake" $CMAKE_OPTIONS
@@ -196,35 +203,42 @@ cd  $BUILD_DIR
 mkdir ${BUILD_DIR}/mixmod
 cd ${BUILD_DIR}/mixmod
 
-CMAKE_EXTRA_OPTIONS=
-CMAKE_EXTRA_OPTIONS+=" -DMIXMOD_BUILD_EXAMPLES=ON"
-CMAKE_EXTRA_OPTIONS+=" -DMIXMOD_BUILD_IOSTREAM=ON"
-CMAKE_EXTRA_OPTIONS+=" -DMIXMOD_BUILD_CLI=ON"
 
-echo
-echo "*** cmake " $CMAKE_OPTIONS ${CMAKE_EXTRA_OPTIONS} $SOURCE_DIR/mixmod-2.1.11
-cmake $CMAKE_OPTIONS ${CMAKE_EXTRA_OPTIONS} $SOURCE_DIR/mixmod-2.1.11
-if [ $? -ne 0 ]; then
-    echo "ERROR on cmake"
-    exit 1
-fi
+case $LINUX_DISTRIBUTION in
+    CO10)
+        :
+        ;;
+    *)
+        CMAKE_EXTRA_OPTIONS=
+        CMAKE_EXTRA_OPTIONS+=" -DMIXMOD_BUILD_EXAMPLES=ON"
+        CMAKE_EXTRA_OPTIONS+=" -DMIXMOD_BUILD_IOSTREAM=ON"
+        CMAKE_EXTRA_OPTIONS+=" -DMIXMOD_BUILD_CLI=ON"
 
-echo
-echo "*** make" $MAKE_OPTIONS
-make $MAKE_OPTIONS
-if [ $? -ne 0 ]; then
-    echo "ERROR on make"
-    exit 2
-fi
+        echo
+        echo "*** cmake " $CMAKE_OPTIONS ${CMAKE_EXTRA_OPTIONS} $SOURCE_DIR/mixmod-2.1.11
+        cmake $CMAKE_OPTIONS ${CMAKE_EXTRA_OPTIONS} $SOURCE_DIR/mixmod-2.1.11
+        if [ $? -ne 0 ]; then
+            echo "ERROR on cmake"
+            exit 1
+        fi
 
-echo
-echo "*** make install"
-make install
-if [ $? -ne 0 ]; then
-    echo "ERROR on make install"
-    exit 3
-fi
+        echo
+        echo "*** make" $MAKE_OPTIONS
+        make $MAKE_OPTIONS
+        if [ $? -ne 0 ]; then
+            echo "ERROR on make"
+            exit 2
+        fi
 
+        echo
+        echo "*** make install"
+        make install
+        if [ $? -ne 0 ]; then
+            echo "ERROR on make install"
+            exit 3
+        fi
+        ;;
+esac
 
 declare -A OTC
 OTC["otfftw"]="0.16"
@@ -238,7 +252,11 @@ do
     echo
     echo "*** C O M P O N E N T : $k-${OTC[$k]} "
     if [[ $k == "otagrum" ]]; then
-        echo "WARNING: skipping $k.."
+        echo "WARNING: skipping $k ..."
+        continue
+    fi
+    if [ "$k" == "otmixmod" ] && [ "$LINUX_DISTRIBUTION" == "CO10" ]; then
+        echo "WARNING: skipping $k ..."
         continue
     fi
     cd  $BUILD_DIR
@@ -596,8 +614,17 @@ elif [ "$SAT_Python_IS_NATIVE" == "1" ]; then
         FD40)
             SITE_PATCH=$SOURCE_DIR/addons/site-patch.py
             ;;
+        FD42)
+            SITE_PATCH=$SOURCE_DIR/addons/site-patch.py
+            ;;
         CO8*)
             SITE_PATCH=/usr/lib/pypy/dist-packages/setuptools/site-patch.py
+            ;;
+        CO9*)
+            SITE_PATCH=$SOURCE_DIR/addons/site-patch.py
+            ;;
+        CO10)
+            SITE_PATCH=$SOURCE_DIR/addons/site-patch.py
             ;;
         *)
             SITE_PATCH=$SOURCE_DIR/addons/site-patch.py

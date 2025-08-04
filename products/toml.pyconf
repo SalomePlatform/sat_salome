@@ -25,3 +25,13 @@ default :
         pip : "yes"
     }
 }
+
+version_0_10_2_no_pip :
+{
+    compil_script : 'toml-0.10.2' + $VARS.scriptExtension
+    properties:
+    {
+        incremental : "yes"
+        pip : "no"
+    }
+}

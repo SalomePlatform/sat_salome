@@ -1,0 +1,29 @@
+diff -Naur '--exclude=*.git' embree/kernels/geometry/pointi.h embree_dev/kernels/geometry/pointi.h
+--- embree/kernels/geometry/pointi.h	2021-01-21 17:55:21.000000000 +0100
++++ embree_dev/kernels/geometry/pointi.h	2025-04-23 13:52:34.923933717 +0200
+@@ -210,9 +210,11 @@
+     };
+ 
+     /*! output operator */
+-    friend __forceinline embree_ostream operator<<(embree_ostream cout, const PointMi& line)
++    //friend __forceinline embree_ostream operator<<(embree_ostream cout, const PointMi& line)
++    friend __forceinline embree_ostream operator<<(embree_ostream cout, const PointMi& point)
+     {
+-      return cout << "Line" << M << "i {" << line.v0 << ", " << line.geomID() << ", " << line.primID() << "}";
++      //return cout << "Line" << M << "i {" << line.v0 << ", " << line.geomID() << ", " << line.primID() << "}";
++      return cout << "Point" << M << "i {" << point.geomID() << ", " << point.primID() << "}";
+     }
+ 
+    public:
+diff -Naur '--exclude=*.git' embree/kernels/subdiv/bezier_curve.h embree_dev/kernels/subdiv/bezier_curve.h
+--- embree/kernels/subdiv/bezier_curve.h	2021-01-21 17:55:21.000000000 +0100
++++ embree_dev/kernels/subdiv/bezier_curve.h	2025-04-23 13:47:58.175128683 +0200
+@@ -135,7 +135,7 @@
+       }
+       
+       friend embree_ostream operator<<(embree_ostream cout, const QuadraticBezierCurve& a) {
+-        return cout << "QuadraticBezierCurve ( (" << a.u.lower << ", " << a.u.upper << "), " << a.v0 << ", " << a.v1 << ", " << a.v2 << ")";
++	return cout << "QuadraticBezierCurve (" << a.v0 << ", " << a.v1 << ", " << a.v2 << ")";
+       }
+     };
+   

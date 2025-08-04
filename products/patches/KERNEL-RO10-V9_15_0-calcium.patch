@@ -1,0 +1,12 @@
+diff --git a/src/DSC/DSC_User/Datastream/Calcium/CalciumC.c b/src/DSC/DSC_User/Datastream/Calcium/CalciumC.c
+index 5fdc9f47e..cc6f49e5e 100644
+--- a/src/DSC/DSC_User/Datastream/Calcium/CalciumC.c
++++ b/src/DSC/DSC_User/Datastream/Calcium/CalciumC.c
+@@ -35,7 +35,6 @@
+ // Interface C de SalomeCalcium
+ 
+ typedef int InfoType;
+-typedef char bool;
+ 
+ //TODO: ajouter les prototypes pour eviter les pbs de passage par valeur
+ InfoType ecp_fint_ (void * component, char* nomVar, float t);

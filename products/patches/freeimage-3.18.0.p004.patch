@@ -1,0 +1,70 @@
+diff -Naur freeimage/Source/LibJXR/image/decode/segdec.c freeimage.dev/Source/LibJXR/image/decode/segdec.c
+--- freeimage/Source/LibJXR/image/decode/segdec.c	2013-12-06 23:04:54.000000000 +0100
++++ freeimage.dev/Source/LibJXR/image/decode/segdec.c	2025-07-22 12:58:08.617201830 +0200
+@@ -26,6 +26,9 @@
+ //
+ //*@@@---@@@@******************************************************************
+ 
++
++#include <string.h>
++#include <unistd.h>
+ #include "strcodec.h"
+ #include "decode.h"
+ 
+@@ -49,6 +52,9 @@
+ #define _FORCEINLINE
+ #endif // X86OPT_INLINE
+ 
++#define _byteswap_ulong(x) __builtin_bswap32(x)
++
++
+ //================================================================
+ // Memory access functions
+ //================================================================
+diff -Naur freeimage/Source/LibJXR/jxrgluelib/JXRGlueJxr.c freeimage.dev/Source/LibJXR/jxrgluelib/JXRGlueJxr.c
+--- freeimage/Source/LibJXR/jxrgluelib/JXRGlueJxr.c	2013-12-06 23:04:54.000000000 +0100
++++ freeimage.dev/Source/LibJXR/jxrgluelib/JXRGlueJxr.c	2025-07-22 12:31:32.373477137 +0200
+@@ -28,6 +28,7 @@
+ //*@@@---@@@@******************************************************************
+ #include <limits.h>
+ #include <JXRGlue.h>
++#include <wchar.h>
+ 
+ 
+ static const char szHDPhotoFormat[] = "<dc:format>image/vnd.ms-photo</dc:format>";
+diff -Naur freeimage/Source/ZLib/gzlib.c freeimage.dev/Source/ZLib/gzlib.c
+--- freeimage/Source/ZLib/gzlib.c	2017-01-16 06:29:40.000000000 +0100
++++ freeimage.dev/Source/ZLib/gzlib.c	2025-07-22 12:32:23.757165313 +0200
+@@ -3,6 +3,8 @@
+  * For conditions of distribution and use, see copyright notice in zlib.h
+  */
+ 
++#include <stdlib.h>
++#include <unistd.h>
+ #include "gzguts.h"
+ 
+ #if defined(_WIN32) && !defined(__BORLANDC__) && !defined(__MINGW32__)
+diff -Naur freeimage/Source/ZLib/gzread.c freeimage.dev/Source/ZLib/gzread.c
+--- freeimage/Source/ZLib/gzread.c	2017-01-01 20:37:10.000000000 +0100
++++ freeimage.dev/Source/ZLib/gzread.c	2025-07-22 12:32:53.568002145 +0200
+@@ -3,6 +3,8 @@
+  * For conditions of distribution and use, see copyright notice in zlib.h
+  */
+ 
++#include <string.h>
++#include <unistd.h>
+ #include "gzguts.h"
+ 
+ /* Local functions */
+diff -Naur freeimage/Source/ZLib/gzwrite.c freeimage.dev/Source/ZLib/gzwrite.c
+--- freeimage/Source/ZLib/gzwrite.c	2017-01-16 06:29:40.000000000 +0100
++++ freeimage.dev/Source/ZLib/gzwrite.c	2025-07-22 12:33:29.224822822 +0200
+@@ -3,6 +3,8 @@
+  * For conditions of distribution and use, see copyright notice in zlib.h
+  */
+ 
++#include <string.h>
++#include <unistd.h>
+ #include "gzguts.h"
+ 
+ /* Local functions */

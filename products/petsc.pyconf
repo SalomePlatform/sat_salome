@@ -4,6 +4,13 @@ default :
     build_source : "script"
     compil_script :  $name + ".sh"
     get_source : "archive"
+    system_info :
+    {
+        rpm : ['petsc']
+        rpm_dev : ['petsc-devel']
+        apt : []
+        apt_dev : []
+    }
     environ :
     {
        env_script : $name + ".py"
@@ -21,11 +28,27 @@ default :
     post_script: "fix_permissions.sh"
 }
 
+version_3_22_3 :
+{
+    compil_script :  "petsc-3.22.3.sh"
+    depend : ["hdf5", "Python", "lapack","fftw", "llvm", "metis", "medfile", "mpi4py", "scotch" ]
+    patches: ['petsc-3.20.5-mpi4py.patch',
+              'petsc-3.22.2-avoid_fake_MKL_detection.patch']
+}
+
 version_3_20_5 :
 {
     compil_script :  "petsc-3.20.5.sh"
     depend : ["hdf5", "Python", "lapack","fftw", "llvm", "metis", "medfile", "mpi4py", "scotch" ]
     patches: ['petsc-3.20.5-mpi4py.patch', 'petsc-3.20.5-limit-cython-version.patch']
+}
+
+version_3_20_5_CO10 :
+{
+    compil_script :  "petsc-3.20.5.sh"
+    depend : ["hdf5", "Python", "lapack","fftw", "llvm", "metis", "medfile", "mpi4py", "scotch" ]
+    patches: ['petsc-3.20.5-mpi4py.patch', 'petsc-3.20.5-limit-cython-version.patch']
+    nb_proc: 4
 }
 
 version_3_20_5_FD40 :

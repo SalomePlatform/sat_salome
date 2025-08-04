@@ -65,9 +65,19 @@ default_MPI :
     opt_depend : ['mpi4py']
 }
 
+default_FD42:
+{
+    patches : ['SOLVERLAB_FD42.patch']
+}
+
 default_FD40:
 {
     patches : ['SOLVERLAB_FD40.patch']
+}
+
+default_CO10:
+{
+    patches : ['SOLVERLAB_CO10.patch']
 }
 
 version_V9_15_0_MPI :
@@ -89,9 +99,19 @@ version_V9_15_0_MPI :
     opt_depend : ['mpi4py']
 }
 
+version_V9_15_0_FD42:
+{
+    patches : ['SOLVERLAB_FD42.patch']
+}
+
 version_V9_15_0_FD40:
 {
     patches : ['SOLVERLAB_FD40.patch']
+}
+
+version_V9_15_0_CO10:
+{
+    patches : ['SOLVERLAB_CO10.patch']
 }
 
 version_V9_14_0_FD40 :
