@@ -77,7 +77,7 @@ APPLICATION :
         gmsh :  {tag : '4.10.3', section :  'version_4_10_3_with_CAS_7_8_MPI', hpc : 'yes', base : 'no'}
         graphviz : '2.38.0'
         h5py : {tag: '3.9.0', base: 'no', section: 'version_3_9_0_no_pip'}
-        hdf5 : {tag : '1.10.3', hpc : 'yes'}
+        hdf5 : {tag : '1.10.5', hpc : 'yes'}
         idna : '2.7'
         imagesize : '1.4.1'
         importlib_metadata : '7.0.1'
@@ -271,7 +271,6 @@ __overwrite__ :
         'APPLICATION.rm_products'        : ['zeromq']
         'APPLICATION.products.gcc'       : '11.4.0'
         'APPLICATION.products.openmpi'   : '4.1.6'
-        'APPLICATION.products.hdf5'      : '1.10.5'
         'APPLICATION.products.boost'     : {tag: '1.71.0',  base: 'no', section: 'version_1_71_0_CO9',     hpc: 'no'  } # spns #29324
         'APPLICATION.products.gdal'      : {tag: '2.4.0',   base: 'no', section: 'version_2_4_0_CO9',      hpc: 'yes' } # spns #29324
         'APPLICATION.products.openturns' : {tag: '1.24',    base: 'no', section: 'version_1_24_CO9',       hpc: 'yes' }

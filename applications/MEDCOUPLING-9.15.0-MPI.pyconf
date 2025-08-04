@@ -38,7 +38,7 @@ APPLICATION :
         docutils : '0.20.1'
         doxygen : '1.8.14'
         graphviz : '2.38.0'
-        hdf5 : {tag : '1.10.3', hpc : 'yes'}
+        hdf5 : {tag : '1.10.5', hpc : 'yes'}
         idna : '2.7'
         imagesize : '1.4.1'
         importlib_metadata : '7.0.1'
@@ -49,7 +49,7 @@ APPLICATION :
         medfile : {tag : '4.2.0', hpc : 'yes'}
         mpi4py: {tag: '3.1.0', base: 'no', section : 'version_3_1_0_no_pip'}
         numpy : '1.21.1'
-        openmpi : '3.1.6'
+        openmpi : '4.0.3'
         packaging : '23.2'
         ParMetis : '3.1.1'
         pockets : '0.6.2'
@@ -121,7 +121,6 @@ __overwrite__ :
     {
         __condition__ : "VARS.dist in ['CO9']"
         'APPLICATION.products.openmpi'   : '4.1.6'
-        'APPLICATION.products.hdf5'      : '1.10.5'
         'APPLICATION.products.boost'     : {tag: '1.71.0',  base: 'no', section: 'version_1_71_0_CO9',     hpc: 'no'  } # spns #29324
     }
 ]
