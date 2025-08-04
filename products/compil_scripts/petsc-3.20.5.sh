@@ -15,6 +15,7 @@ case $LINUX_DISTRIBUTION in
         NATIVE_PATH="/usr/lib64"
         ;;
     *)
+	echo "WARNING: using default path: $NATIVE_PATH"
         ;;
 esac
 
@@ -113,39 +114,35 @@ CONFIGURE_FLAGS+=" --PETSC_ARCH=installed-arch-linux2-c-opt"
 CONFIGURE_FLAGS+=" --PETSC_DIR=${BUILD_DIR}"
 
 echo "*** configure --prefix=${PRODUCT_INSTALL} ${CONFIGURE_FLAGS}"
-if ! ./configure --prefix=${PRODUCT_INSTALL} ${CONFIGURE_FLAGS}
-then
+./configure --prefix=${PRODUCT_INSTALL} ${CONFIGURE_FLAGS}
+if [ $? -ne 0 ]; then
     echo "ERROR on configure"
     exit 1
 fi
 
 echo
 echo "*** make" $MAKE_OPTIONS
-if ! make "$MAKE_OPTIONS"
-then
+make $MAKE_OPTIONS
+if [ $? -ne 0 ]; then
     echo "ERROR on make"
     exit 2
 fi
 
-# CentOS 6 automatically set PETSC_ARCH to arch-linux2-c-debug : remove arch specification
-# MAKE_OPTIONS=$MAKE_OPTIONS" PETSC_ARCH=arch-linux-c-debug"
-
 echo
 echo "*** make install"
-if ! make "$MAKE_OPTIONS" install
-then
+make install
+if [ $? -ne 0 ]; then
     echo "ERROR on make install"
     exit 3
 fi
 
 echo
 echo "*** make check"
-if ! make "$MAKE_OPTIONS" check
-then
+make check
+if [ $? -ne 0 ]; then
     echo "ERROR on make check"
     exit 4
 fi
 
 echo
 echo "########## END"
-

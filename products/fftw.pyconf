@@ -37,10 +37,17 @@ default_win :
    }
 }
 
+version_3_3_10 :
+{
+  depend : ['Python', 'cmake']
+  opt_depend: ['openmpi']
+  compil_script: "fftw-3.3.10.sh"
+}
+
 version_3_3_9 :
 {}
 
-version_3_3_9_win:
+version_3_3_9_win :
 {
    compil_script: "fftw-3.3.9.bat"
 }
