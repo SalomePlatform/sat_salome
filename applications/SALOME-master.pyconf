@@ -259,7 +259,7 @@ __overwrite__ :
         'APPLICATION.products.boost'    : '1.75.0'
         'APPLICATION.products.dateutil' : '2.8.1'
         'APPLICATION.products.pandas'   : '1.4.0'
-        'APPLICATION.products.pyyaml'   : '6.0'
+        'APPLICATION.products.pyyaml'   : {tag: '6.0', base: 'no', section: 'version_6_0_CO8'}
         'APPLICATION.products.Python'   : '3.10.16'
         'APPLICATION.products.pytz'     : '2021.1'
         'APPLICATION.products.scipy'    : '1.8.0'
@@ -270,14 +270,14 @@ __overwrite__ :
     #
     {
         __condition__ : "VARS.dist in ['CO9']"
-        'APPLICATION.rm_products'        : ['zeromq', 'URANIE']
+        'APPLICATION.rm_products'        : ['zeromq']
         'APPLICATION.products.gcc'       : '11.4.0'
         'APPLICATION.products.openmpi'   : '4.1.6'
         'APPLICATION.products.hdf5'      : '1.10.5'
         'APPLICATION.products.boost'     : {tag: '1.71.0',  base: 'no', section: 'version_1_71_0_CO9' } # spns #29324
         'APPLICATION.products.gdal'      : {tag: '2.4.0',   base: 'no', section: 'version_2_4_0_CO9'  } # spns #29324
         'APPLICATION.products.openturns' : {tag: '1.24',    base: 'no', section: 'version_1_24_CO9'   }
-        'APPLICATION.products.root'      : {tag: '6.22.02', base: 'no', section: 'version_6_22_02_CO9'}
+        'APPLICATION.products.URANIE'    : {tag: '4.8.0',   base: 'no', section: 'version_4_8_0_CO9'  }
     }
     #
     {
