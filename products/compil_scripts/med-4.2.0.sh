@@ -17,16 +17,16 @@ fi
 
 CONFIGURE_FLAGS=
 CONFIGURE_FLAGS+=' CFLAGS=-m64 CXXFLAGS=-m64' 
-CONFIGURE_FLAGS+=' --enable-python=yes'
 CONFIGURE_FLAGS+=' --enable-mesgerr'
 CONFIGURE_FLAGS+=' --enable-installtest'
 
 if [ -n "$SAT_HPC" ]; then
-    export CXX=${MPI_CXX_COMPILER}
-    export CC=${MPI_C_COMPILER}
-    CONFIGURE_FLAGS+=' --enable-parallel'
+    export CXX=$(which mpicxx)
+    export CC=$(which mpicc)
+    export F77=$(which mpif77)
 else
     export F77=gfortran
+    CONFIGURE_FLAGS+=' --enable-python=yes'
 fi
 
 if [ "$SALOME_USE_64BIT_IDS" == "1" ]; then
@@ -102,6 +102,12 @@ if [ -d $PRODUCT_INSTALL/local ]; then
 fi
 if [ -d $PRODUCT_INSTALL/lib/python${PYTHON_VERSION}/dist-packages ]; then
     mv $PRODUCT_INSTALL/lib/python${PYTHON_VERSION}/dist-packages $PRODUCT_INSTALL/lib/python${PYTHON_VERSION}/site-packages
+fi
+
+if [ -f /.dockerenv ]; then
+    # allow running as root on a docker
+    export OMPI_ALLOW_RUN_AS_ROOT=1
+    export OMPI_ALLOW_RUN_AS_ROOT_CONFIRM=1
 fi
 
 echo
