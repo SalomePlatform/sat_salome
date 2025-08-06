@@ -21,9 +21,10 @@ CONFIGURE_FLAGS+=' --enable-mesgerr'
 CONFIGURE_FLAGS+=' --enable-installtest'
 
 if [ -n "$SAT_HPC" ]; then
-    export CXX=$(which mpicxx)
-    export CC=$(which mpicc)
-    export F77=$(which mpif77)
+    export CXX=${MPI_CXX_COMPILER}
+    export CC=${MPI_C_COMPILER}
+    export FC=${MPI_Fortran_COMPILER}
+    CONFIGURE_FLAGS+=' --enable-python=no'
 else
     export F77=gfortran
     CONFIGURE_FLAGS+=' --enable-python=yes'
