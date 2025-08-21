@@ -36,7 +36,7 @@ APPLICATION :
         docutils : 'native'
         doxygen : 'native'
         graphviz : 'native'
-        hdf5 : '1.10.3'
+        hdf5 : 'native'
         idna : 'native'
         imagesize : 'native'
         Jinja2 : 'native'
@@ -71,7 +71,7 @@ APPLICATION :
         'CONFIGURATION'
         'MEDCOUPLING' : {tag:'master', base:'no', section:'default_MPI', hpc:'yes'}
     }
-    test_base : 
+    test_base :
     {
         name : "SALOME"
         tag : "SalomeV9"
@@ -87,22 +87,39 @@ APPLICATION :
 __overwrite__ :
 [
     {
+        #
+        __condition__ : "VARS.dist in ['DB10']"
+        'APPLICATION.products.swig'             : '4.0.2'
+
+    }
+    {
+        #
+        __condition__ : "VARS.dist in ['DB12']"
+        'APPLICATION.products.swig'             : '4.0.2'
+
+    }
+    {
+        #
+        __condition__ : "VARS.dist in ['UB24.04']"
+        'APPLICATION.products.swig'             : '4.0.2'
+    }
+    {
         __condition__ : "VARS.dist in ['CO8']"
-        'APPLICATION.products.lapack'           : '3.8.0'
-        'APPLICATION.products.sphinxintl' : '0.9.10'
-        'PRODUCTS.sphinxintl.default.properties.pip' : "no"
+        'APPLICATION.products.lapack'                : '3.8.0'
+        'APPLICATION.products.hdf5'                  : '1.10.3'
+        'APPLICATION.products.sphinxintl'            : {tag: '0.9.10', base: 'no', section: 'version_0_9_10_no_pip'   }
     }
     {
         __condition__ : "VARS.dist in ['CO9']"
         'APPLICATION.products.lapack'           : '3.8.0'
-        'APPLICATION.products.sphinxintl'       : {tag: '0.9.10',  base: 'no', section: 'version_0_9_10_no_pip' }
         'APPLICATION.products.openmpi'          : '4.1.5'
+        'APPLICATION.products.hdf5'             : '1.10.3'
+        'APPLICATION.products.sphinxintl'       : {tag: '0.9.10',  base: 'no', section: 'version_0_9_10_no_pip' }
     }
     {
         __condition__ : "VARS.dist in ['FD40']"
-        'APPLICATION.products.Cython'           : {tag: 'native',     base: 'no', section: 'default_FD40'}
-        'APPLICATION.products.cmake'            : 'native'
-        'APPLICATION.products.hdf5'             : '1.10.11'
         'APPLICATION.products.swig'             : '4.0.2'
+        'APPLICATION.products.hdf5'             : '1.10.11'
+        'APPLICATION.products.Cython'           : {tag: 'native',     base: 'no', section: 'default_FD40'}
     }
 ]

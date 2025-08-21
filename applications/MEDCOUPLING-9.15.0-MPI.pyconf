@@ -60,7 +60,7 @@ APPLICATION :
         pytz : '2017.2'
         requests : '2.31.0'
         scipy : '1.6.2'
-        scotch : '6.1.2'
+        scotch : {tag: '6.1.2', section: 'version_6_1_2_MPI', hpc: 'yes', base: 'no'}
         setuptools : '69.0.3'
         six : '1.10.0'
         snowballstemmer : '2.2.0'
@@ -84,7 +84,7 @@ APPLICATION :
         'CONFIGURATION'
         'MEDCOUPLING' : {tag:'V9_15_0', base: 'no', section: 'version_V9_15_0_MPI_STD', hpc: 'yes'} # FIXME
     }
-    test_base : 
+    test_base :
     {
         name : "SALOME"
         tag : "SalomeV9"
