@@ -146,5 +146,6 @@ __overwrite__ :
         'APPLICATION.products.swig'             : '4.0.2'
         'APPLICATION.products.Cython'           : {tag: 'native',         base: 'no', section: 'default_FD42' }
         'APPLICATION.products.medfile'          : {tag: '4.2.0',          base: 'no', section: 'version_4_2_0_FD42'}
+        'APPLICATION.products.scotch'           : {tag: 'native',         base: 'no', section: 'version_7_0_6_MPI',        hpc: 'yes'}
     }
 ]
