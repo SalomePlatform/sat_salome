@@ -117,9 +117,25 @@ __overwrite__ :
         'APPLICATION.products.sphinxintl'       : {tag: '0.9.10',  base: 'no', section: 'version_0_9_10_no_pip' }
     }
     {
+         __condition__ : "VARS.dist in ['CO10']"
+        'APPLICATION.rm_products' : ['sphinxcontrib_websupport']
+        'APPLICATION.products.cmake'                    : 'native'
+        'APPLICATION.products.swig'                     : '4.0.2'
+        'APPLICATION.products.hdf5'                     : '1.10.11'
+        'APPLICATION.products.Cython'                   : {tag: 'native',          base: 'no', section: 'default_CO10'          }
+        'APPLICATION.products.sphinxintl'               : {tag: '0.9.10',          base: 'no', section: 'version_0_9_10_no_pip' }
+    }
+    {
         __condition__ : "VARS.dist in ['FD40']"
         'APPLICATION.products.swig'             : '4.0.2'
         'APPLICATION.products.hdf5'             : '1.10.11'
         'APPLICATION.products.Cython'           : {tag: 'native',     base: 'no', section: 'default_FD40'}
+    }
+    {
+        __condition__ : "VARS.dist in ['FD42']"
+        'APPLICATION.products.cmake'            : 'native'
+        'APPLICATION.products.hdf5'             : '1.10.11'
+        'APPLICATION.products.swig'             : '4.0.2'
+        'APPLICATION.products.Cython'           : {tag: 'native',         base: 'no', section: 'default_FD42' }
     }
 ]
