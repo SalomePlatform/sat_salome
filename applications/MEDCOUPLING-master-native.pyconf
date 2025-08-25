@@ -98,6 +98,14 @@ __overwrite__ :
         'APPLICATION.products.swig'             : '4.0.2'
 
     }
+    #
+    {
+        __condition__ : "VARS.dist in ['DB13']"
+        'APPLICATION.products.cmake'            : 'native'
+        'APPLICATION.products.hdf5'             : '1.10.11'
+        'APPLICATION.products.swig'             : '4.0.2'
+        'APPLICATION.products.medfile'          : {tag: '4.2.0',           base: 'no', section: 'version_4_2_0_DB13'                    }
+    }
     {
         #
         __condition__ : "VARS.dist in ['UB24.04']"
@@ -137,5 +145,6 @@ __overwrite__ :
         'APPLICATION.products.hdf5'             : '1.10.11'
         'APPLICATION.products.swig'             : '4.0.2'
         'APPLICATION.products.Cython'           : {tag: 'native',         base: 'no', section: 'default_FD42' }
+        'APPLICATION.products.medfile'          : {tag: '4.2.0',          base: 'no', section: 'version_4_2_0_FD42'}
     }
 ]
