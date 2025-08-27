@@ -81,7 +81,6 @@ version_5_13_2_win :
               ]
 }
 
-
 version_5_13_2_MPI :
 {
     compil_script :  'ParaView-5.13.2.sh'
@@ -104,6 +103,33 @@ version_5_13_2_MPI :
                'paraview-5.13-2918b94391.p003-FindCGNS.patch',
                'paraview-5.13-2918b94391.p004-FindFreetype.patch',
                'paraview-5.13-2918b94391.p008-FindTBB_tbbmalloc_proxy_issue.patch'
+              ]
+}
+
+
+version_5_13_2_MPI_LATA_64BITS_IDS :
+{
+    compil_script :  'ParaView-5.13.2.sh'
+    archive_info : {archive_name : "ParaView-2918b94391.tar.gz"}
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'PyQt',
+              'sip',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst']
+    patches : ['paraview-5.13-2918b94391.p002-FindMPI.patch',
+               'paraview-5.13-2918b94391.p003-FindCGNS.patch',
+               'paraview-5.13-2918b94391.p004-FindFreetype.patch',
+               'paraview-5.13-2918b94391.p008-FindTBB_tbbmalloc_proxy_issue.patch',
+               'paraview-5.13-2918b94391.p011-LATA_64BITS_IDS.patch'
               ]
 }
 
