@@ -20,6 +20,7 @@ def set_env(env, prereq_dir, version):
     else:
         env.prepend('PKG_CONFIG_PATH', os.path.join(prereq_dir, 'lib', 'pkgconfig'))
         env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib'))      
+        env.prepend('freetype_DIR', prereq_dir)
 
 def set_nativ_env(env):
     pass

@@ -17,6 +17,25 @@ else
 fi
 CMAKE_OPTIONS+=" -DCMAKE_INSTALL_LIBDIR:STRING=lib"
 
+if [ -n "$BOOST_ROOT_DIR" ] && [ "${SAT_boost_IS_NATIVE}" != "1" ]; then
+    CMAKE_OPTIONS+=" -DBoost_DIR:PATH=${Boost_DIR}"
+    CMAKE_OPTIONS+=" -DBoost_INCLUDE_DIR:PATH=${BOOST_ROOT_DIR}/include"
+fi
+
+if [ -n "$FREETYPE_ROOT_DIR" ] && [ "${SAT_freetype_IS_NATIVE}" != "1" ]; then
+    CMAKE_OPTIONS+=" -DFREETYPE_ROOT_DIR:PATH=${FREETYPE_ROOT_DIR}"
+    CMAKE_OPTIONS+=" -DFREETYPE_INCLUDE_DIRS:STRING=${FREETYPE_ROOT_DIR}/include/freetype2"
+    CMAKE_OPTIONS+=" -DFREETYPE_LIBRARY:STRING=${FREETYPE_ROOT_DIR}/lib/libfreetype.so"
+    CMAKE_OPTIONS+=" -Dpkgcfg_lib_PKG_FONTCONFIG_free:STRING=${FREETYPE_ROOT_DIR}/lib/libfreetype.so"
+fi
+
+if [ -n "$LAPACK_ROOT_DIR" ] && [ "$SAT_lapack_IS_NATIVE" != "1" ]; then
+    CMAKE_OPTIONS+=" -DLAPACK_DIR=${LAPACK_DIR}"
+    CMAKE_OPTIONS+=" -DCBLAS_DIR=${CBLAS_DIR}"
+    CMAKE_OPTIONS+=" -DCBLAS_LIBRARIES=$LAPACK_ROOT_DIR/lib/libcblas.so"
+    CMAKE_OPTIONS+=" -DBLAS_LIBRARIES=$LAPACK_ROOT_DIR/lib/libblas.so"
+fi
+
 echo "*** cmake" $CMAKE_OPTIONS
 cmake $CMAKE_OPTIONS $SOURCE_DIR
 

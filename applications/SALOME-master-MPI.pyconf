@@ -273,6 +273,7 @@ __overwrite__ :
         'APPLICATION.products.openmpi'   : '4.1.6'
         'APPLICATION.products.boost'     : {tag: '1.71.0',  base: 'no', section: 'version_1_71_0_CO9',     hpc: 'no'  } # spns #29324
         'APPLICATION.products.gdal'      : {tag: '2.4.0',   base: 'no', section: 'version_2_4_0_CO9',      hpc: 'yes' } # spns #29324
+        'APPLICATION.products.libigl'    : {tag: 'v2.5.0',  base: 'no', section: 'version_v2_5_0_CO9'                 }
         'APPLICATION.products.openturns' : {tag: '1.24',    base: 'no', section: 'version_1_24_CO9',       hpc: 'yes' }
         'APPLICATION.products.URANIE'    : {tag: '4.8.0',   base: 'no', section: 'version_4_8_0_CO9'                  }
     }

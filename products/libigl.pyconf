@@ -78,6 +78,26 @@ version_v2_5_0_win:
              ]
 }
 
+version_v2_5_0_CO9:
+{
+  get_source : "archive"
+  build_source :  "script"
+  compil_script : "libigl-v2.5.0" + $VARS.scriptExtension
+  patches: ['libigl-v2.5.0-p01_609_Boolean.patch', 'libigl-v2.5.0-p02_FindCGAL.patch', 'libigl-v2.5.0-p04-FindEmbree.patch']
+  depend : ["SMESH",
+              "mmg",
+              "PyQt",
+              "Python",
+              "numpy",
+              "boost",
+              "libxml2",
+              "eigen",
+              "embree",
+              "cgal",
+              "lapack"
+             ]
+}
+
 version_v2_5_0_x86_64:
 {
     build_source : "script"

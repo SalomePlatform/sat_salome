@@ -19,6 +19,29 @@ CMAKE_OPTIONS+=" -Dembree_DIR:PATH=${EMBREE_ROOT_DIR}/lib/cmake/embree-${EMBREE_
 # Embree CMake defines EMBREE_INCLUDE_DIRS but TTK uses EMBREE_INCUDE_DIR which is undefined.
 CMAKE_OPTIONS+=" -DEMBREE_INCLUDE_DIR=${EMBREE_ROOT_DIR}/include"
 
+if [ -n "$BOOST_ROOT_DIR" ] && [ "${SAT_boost_IS_NATIVE}" != "1" ]; then
+    CMAKE_OPTIONS+=" -DBoost_DIR:PATH=${Boost_DIR}"
+    CMAKE_OPTIONS+=" -DBoost_INCLUDE_DIR:PATH=${BOOST_ROOT_DIR}/include"
+fi
+
+if [ -n "$LIBXML2_ROOT_DIR" ] && [ "${SAT_libxml2_IS_NATIVE}" != "1" ]; then
+    CMAKE_OPTIONS+=" -DLIBXML2_INCLUDE_DIR:STRING=${LIBXML2_ROOT_DIR}/include/libxml2"
+    CMAKE_OPTIONS+=" -DLIBXML2_LIBRARIES:STRING=${LIBXML2_ROOT_DIR}/lib/libxml2.so"
+    CMAKE_OPTIONS+=" -DLIBXML2_XMLLINT_EXECUTABLE=${LIBXML2_ROOT_DIR}/bin/xmllint"
+    CMAKE_OPTIONS+=" -Dpkgcfg_lib_PC_LIBXML_xml2=${LIBXML2_ROOT_DIR}/lib/libxml2.so"
+fi
+
+if [ -n "$FREETYPE_ROOT_DIR" ] && [ "${SAT_freetype_IS_NATIVE}" != "1" ]; then
+    CMAKE_OPTIONS+=" -DFREETYPE_ROOT_DIR:PATH=${FREETYPE_ROOT_DIR}"
+    CMAKE_OPTIONS+=" -DFREETYPE_INCLUDE_DIRS:STRING=${FREETYPE_ROOT_DIR}/include/freetype2"
+    CMAKE_OPTIONS+=" -DFREETYPE_LIBRARY:STRING=${FREETYPE_ROOT_DIR}/lib/libfreetype.so"
+    CMAKE_OPTIONS+=" -Dpkgcfg_lib_PKG_FONTCONFIG_free:STRING=${FREETYPE_ROOT_DIR}/lib/libfreetype.so"
+fi
+
+if [ -n "$QT5_ROOT_DIR" ] && [ "${SAT_qt_IS_NATIVE}" != "1" ]; then
+    CMAKE_OPTIONS+=" -Dqt_xmlpatterns_executable:PATH=${QT5_ROOT_DIR}/bin/xmlpatterns"
+fi
+
 # CPU optimization leads to non portable TTK  see bos #43158
 CMAKE_OPTIONS+=" -DTTK_ENABLE_CPU_OPTIMIZATION=OFF"
 

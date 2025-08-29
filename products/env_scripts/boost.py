@@ -21,6 +21,7 @@ def set_env(env, prereq_dir, version):
   else :
     env.set('BOOSTDIR', prereq_dir)
     env.set('BOOST_ROOT_DIR', prereq_dir)
+    env.set('Boost_DIR', os.path.join(prereq_dir,'lib','cmake', 'Boost-' + version))
     env.prepend('PATH', os.path.join(prereq_dir, 'include'))
     env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib'))
         

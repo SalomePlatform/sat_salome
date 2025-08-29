@@ -15,6 +15,7 @@ def set_env(env, prereq_dir, version):
         pyver = 'python' + env.get('PYTHON_VERSION')
         env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'lib', pyver, 'site-packages'))
         env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib'))
+        env.prepend('PKG_CONFIG_PATH', os.path.join(prereq_dir, 'lib', 'pkgconfig'))
 
 def set_nativ_env(env):
     pass
