@@ -246,7 +246,7 @@ __overwrite__ :
 [
     {
         __condition__ : "VARS.dist in ['CO7']"
-        'APPLICATION.rm_products'         : ['gcc', 'gmp', 'mpc', 'mpfr']
+        'APPLICATION.rm_products'         : ['gcc', 'gmp', 'mpc', 'mpfr', 'mcut']
         'APPLICATION.products.openturns': {tag: '1.24',   base: 'no', section: 'version_1_24_CO7', hpc: 'yes'      }
         'APPLICATION.products.URANIE'   : {tag: '4.8.0',  base: 'no', section: 'version_4_8_0_CO7'                 }
     }
