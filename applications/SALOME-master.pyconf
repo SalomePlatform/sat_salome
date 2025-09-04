@@ -21,6 +21,7 @@ APPLICATION :
            SALOME_USE_64BIT_IDS : '1'
            VTK_SMP_IMPLEMENTATION_TYPE : TBB # OpenMP # choose among: sequential / OpenMP / TBB switches
            SALOME_GMSH_HEADERS_STD : '1'
+           OMNIORBPY_REMOVE_INIT : '1'
         }
         launch :
         {
@@ -241,6 +242,7 @@ APPLICATION :
         pip : 'yes'
         pip_install_dir : 'python'
         single_install_dir : "no"
+        modules_use_pip : "yes"
     }
 }
 __overwrite__ :

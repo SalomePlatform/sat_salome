@@ -52,5 +52,9 @@ fi
 cd $OMNIORB_ROOT_DIR/lib
 find . -name "*.so*" |xargs chmod u+rwx 
 
+if [ "${OMNIORBPY_REMOVE_INIT}" == "1" ]; then
+    sed -i '2491,2496 d' $OMNIORB_ROOT_DIR/lib/python${PYTHON_VERSION}/site-packages/omniidl_be/python.py
+fi
+
 echo
 echo "########## END"

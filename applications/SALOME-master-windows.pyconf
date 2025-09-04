@@ -23,6 +23,7 @@ APPLICATION :
             SALOME_USE_64BIT_IDS : '1'
             SET_usr_docs_VARS : "1" # required for PyEditor build
             CMAKE_GENERATOR : '"Visual Studio 15 2017"'
+            OMNIORBPY_REMOVE_INIT : '1'
         }
         launch :
         {
@@ -234,6 +235,7 @@ APPLICATION :
         pip : 'yes'
         pip_install_dir : 'python'
         single_install_dir : "yes"
+        modules_use_pip : "yes"
     }
 }
 
