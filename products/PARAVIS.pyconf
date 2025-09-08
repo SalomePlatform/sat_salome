@@ -55,6 +55,7 @@ default :
         is_SALOME_module : "yes"
         is_SALOME_product: "yes"
         incremental : "yes"
+        without_pip_kernel : "yes"
     }
     patches : []
 }
@@ -109,6 +110,14 @@ default_MPI :
        "openmpi"
     ]
     patches : []
+    properties:
+    {
+        has_salome_gui : "yes"
+        is_SALOME_module : "yes"
+        is_SALOME_product: "yes"
+        incremental : "yes"
+        without_pip_kernel : "yes"
+    }
 }
 
 version_V9_15_0 :
