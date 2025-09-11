@@ -49,7 +49,6 @@ default :
         is_SALOME_product: "yes"
         incremental : "yes"
         has_unit_tests : "yes"
-        without_pip_kernel :"yes"
     }
     cmake_options :   "-DCMAKE_CXX_FLAGS=-fpermissive -DNO_SolveSpace=TRUE -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DADD_COMPATIBILITY_TESTS=ON -DADD_MODELS_TESTS=ON -DADD_HDF_TESTS=ON"
     patches : []

@@ -116,7 +116,6 @@ default_MPI :
         is_SALOME_module : "yes"
         is_SALOME_product: "yes"
         incremental : "yes"
-        without_pip_kernel : "yes"
     }
 }
 
