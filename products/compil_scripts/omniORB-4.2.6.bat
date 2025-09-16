@@ -51,8 +51,14 @@ echo Setting path to Python binary...
 sed "s/#PYTHON = \/cygdrive\/c\/Python36\/python/PYTHON = \/cygdrive\/%CYGWIN_PYTHON_ROOT_DIR%\/python/g" < %PLATFORM_REF% >  %PLATFORM_MK%.1
 
 echo Setting path to openssl binary (don't use /cygwin path approach since it's buggy use path a la windows...
-set CYGWIN_OPENSSL_ROOT_DIR=%OPENSSL_ROOT_DIR:\=\/%
-sed "s/#OPEN_SSL_ROOT = \/cygdrive\/c\/openssl/OPEN_SSL_ROOT = %CYGWIN_OPENSSL_ROOT_DIR%/g" < %PLATFORM_MK%.1 >  %PLATFORM_MK%
+
+if defined OPENSSL_ROOT_DIR (
+  set CYGWIN_OPENSSL_ROOT_DIR=%OPENSSL_ROOT_DIR:\=\/%
+  sed "s/#OPEN_SSL_ROOT = \/cygdrive\/c\/openssl/OPEN_SSL_ROOT = %CYGWIN_OPENSSL_ROOT_DIR%/g" < %PLATFORM_MK%.1 >  %PLATFORM_MK%
+) else (
+  copy /Y %PLATFORM_MK%.1  %PLATFORM_MK%
+)
+
 cd %BUILD_DIR%\src
 echo INFO: compilation starts now...
 set PATH=%PATH%;%CYGWIN_ROOT_DIR%\bin;%PYTHON_ROOT_DIR%
