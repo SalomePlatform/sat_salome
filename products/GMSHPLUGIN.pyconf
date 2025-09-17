@@ -7,8 +7,7 @@ default :
     {
       repositories :
       {
-        #tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/gmshplugin.git"
-        tuleap : $PROJECTS.projects.salome.git_info.git_server.github.url + "gmshplugin.git"
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/gmshplugin.git"
         github : $PROJECTS.projects.salome.git_info.git_server.github.url + "gmshplugin.git"
         gitpub : $PROJECTS.projects.salome.git_info.git_server.gitpub.url + "plugins/gmshplugin.git"
       }
