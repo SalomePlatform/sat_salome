@@ -27,6 +27,18 @@ version_f8dafde2d7 :
   patches: ['ttk-f8dafde2d7-p01.patch']
 }
 
+version_f8dafde2d7_CO7 :
+{
+  depend : ['Python', 'openblas', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'ParaView', 'boost', 'qt', 'embree', "graphviz"]
+  patches: ['ttk-f8dafde2d7-p01.patch']
+}
+
+version_f8dafde2d7_CO8 :
+{
+  depend : ['Python', 'openblas', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'ParaView', 'boost', 'qt', 'embree', "graphviz"]
+  patches: ['ttk-f8dafde2d7-p01.patch']
+}
+
 version_f8dafde2d7_win :
 {
   patches: ['ttk-f8dafde2d7-p01.patch', 'ttk-f8dafde2d7-p02.patch']

@@ -1,8 +1,8 @@
 #!/bin/bash
 
-echo "##########################################################################"
-echo "lapack" $VERSION
-echo "##########################################################################"
+echo ##########################################################################
+echo "$PRODUCT_NAME $VERSION"
+echo ##########################################################################
 
 LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
 
@@ -25,12 +25,14 @@ fi
 
 CMAKE_OPTIONS+=" -DBUILD_SHARED_LIBS:BOOL=ON"
 CMAKE_OPTIONS+=" -DCMAKE_INSTALL_LIBDIR:STRING=lib"
-CMAKE_OPTIONS+=" -DCMAKE_CXX_FLAGS=-fPIC"
 CMAKE_OPTIONS+=" -DCMAKE_C_FLAGS=-fPIC"
-CMAKE_OPTIONS+=" -DUSE_OPTIMIZED_BLAS=OFF"
-CMAKE_OPTIONS+=" -DCBLAS=ON"
-CMAKE_OPTIONS+=" -DBLAS=ON"
-CMAKE_OPTIONS+=" -DLAPACKE=ON"
+CMAKE_OPTIONS+=" -DBUILD_BENCHMARKS=ON"
+CMAKE_OPTIONS+=" -DDYNAMIC_ARCH=ON"
+CMAKE_OPTIONS+=" -DDYNAMIC_OLDER=ON"
+CMAKE_OPTIONS+=" -DUSE_THREAD=ON"
+CMAKE_OPTIONS+=" -DTARGET=GENERIC"
+CMAKE_OPTIONS+=" -DBINARY=64"
+CMAKE_OPTIONS+=" -DMAX_THREADS=64"
 
 echo
 echo "*** cmake ${CMAKE_OPTIONS}"

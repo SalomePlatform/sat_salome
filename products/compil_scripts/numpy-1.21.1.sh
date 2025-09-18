@@ -11,19 +11,18 @@ cp -R $SOURCE_DIR/* .
 
 rm -f site.cfg
 
-if [ "$SAT_openblas_IS_NATIVE" != "1" ]; then
-    echo "Lapack is embedded... Make numpy aware of it..."
-    {
-        echo "[DEFAULT]"
-        echo "library_dirs = ${OPENBLASHOME}/lib"
-        echo "include_dirs = ${OPENBLASHOME}/include"
-        echo
-        echo "[blas]"
-        echo "libraries = openblas"
-        echo
-        echo "[lapack]"
-        echo "libraries = openblas"
-    } > site.cfg
+if [ "$SAT_lapack_IS_NATIVE" != "1" ]; then
+   {
+	echo "[DEFAULT]"
+	echo "library_dirs = ${LAPACKHOME}/lib"
+	echo "include_dirs = ${LAPACKHOME}/include"
+    echo
+	echo "[blas]"
+	echo "libraries = blas"
+	echo
+	echo "[lapack]"
+	echo "libraries = lapack"
+   } > site.cfg
 fi
 
 USE_OLD_SETUPTOOLS=false
@@ -40,9 +39,8 @@ export PYTHONPATH=${PRODUCT_INSTALL}/${PRODUCT_LIB}/python${PYTHON_VERSION}/site
 
 echo
 if [ $USE_OLD_SETUPTOOLS ]; then
-    #echo "*** install with ${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip . --no-build-isolation  --prefix=$PRODUCT_INSTALL"
-    #${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip . --no-deps  --prefix=$PRODUCT_INSTALL -vvv
-    ${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip ${PRODUCT_NAME}==${VERSION} --no-binary ${PRODUCT_NAME} --prefix=$PRODUCT_INSTALL -vvv
+    echo "*** install with ${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip . --no-deps  --prefix=$PRODUCT_INSTALL"
+    ${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip . --no-deps  --prefix=$PRODUCT_INSTALL -vvv
     if [ $? -ne 0 ]
     then
         echo "ERROR on build"

@@ -22,7 +22,7 @@ default :
     properties:
     {
       incremental : "yes"
-      pip : "no"
+      pip : "yes"
     }
 }
 

@@ -5,18 +5,18 @@ default :
     compil_script :  'pip_install' + $VARS.scriptExtension
     get_source : "archive"
     patches : []
-    system_info : 
+    system_info :
     {
         rpm : []
-        rpm_dev : []
-        apt : ['python3-wheel']
-        apt_dev : []
+        rpm_dev : ['python3-wheel']
+        apt : []
+        apt_dev : ['python3-wheel']
     }
     environ :
     {
        env_script : "wheel.py"
     }
-    depend : ['Python','setuptools','numpy', 'qwt', 'PyQt', 'qtpy']
+    depend : ['Python','setuptools']
     opt_depend: []
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name

@@ -39,6 +39,7 @@ default_win :
 
 version_1_22_2:
 {
+    depend : [ 'Python', 'setuptools', 'wheel', 'Cython', 'openblas' ]
     properties:
     {
       incremental : "yes"
@@ -48,8 +49,15 @@ version_1_22_2:
     patches: ['SPNS-29988-numpy-1.22.patch']
 }
 
-version_1_22_2_CO8:
+version_1_21_1:
 {
+    depend : [ 'Python', 'setuptools', 'wheel', 'Cython', 'openblas' ]
+    properties:
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+    compil_script : "numpy-1.21.1.sh"
 }
 
 version_1_21_6_win_dbg:

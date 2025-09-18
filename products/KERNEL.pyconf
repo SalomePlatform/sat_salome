@@ -109,6 +109,54 @@ default_32BIT_IDS :
     cmake_options : "-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_CMAKE_DEBUG=ON -DSALOME_USE_64BIT_IDS=OFF"
 }
 
+default_CO7 :
+{
+    depend : ["Python",
+              "boost",
+              "cppunit",
+              "numpy",
+              "openblas",
+              "hdf5",
+              "omniORB",
+              "omniORBpy",
+              "docutils",
+              "libxml2",
+              "Sphinx",
+              "sphinxintl",
+              "Jinja2",
+              "setuptools",
+              "Pygments",
+              "pytz",
+              "LIBBATCH",
+              "psutil",
+              "CAS"
+              ]
+}
+
+default_CO8 :
+{
+    depend : ["Python",
+              "boost",
+              "cppunit",
+              "numpy",
+              "openblas",
+              "hdf5",
+              "omniORB",
+              "omniORBpy",
+              "docutils",
+              "libxml2",
+              "Sphinx",
+              "sphinxintl",
+              "Jinja2",
+              "setuptools",
+              "Pygments",
+              "pytz",
+              "LIBBATCH",
+              "psutil",
+              "CAS"
+              ]
+}
+
 default_FD42 :
 {
     cmake_options : "-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_CMAKE_DEBUG=ON -DSALOME_USE_64BIT_IDS=ON -DCMAKE_C_FLAGS=\"-Wno-error=implicit-function-declaration\""

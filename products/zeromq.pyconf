@@ -40,3 +40,15 @@ version_4_3_1:
 {
     compil_script :  'zeromq-4.3.1' + $VARS.scriptExtension
 }
+
+version_4_3_1_CO7:
+{
+    depend : ['Python', 'openblas', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'netcdf', 'gdal']
+    compil_script :  'zeromq-4.3.1' + $VARS.scriptExtension
+}
+
+version_4_3_1_CO8:
+{
+    depend : ['Python', 'openblas', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'netcdf', 'gdal']
+    compil_script :  'zeromq-4.3.1' + $VARS.scriptExtension
+}

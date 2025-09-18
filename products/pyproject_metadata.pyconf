@@ -1,22 +1,16 @@
 default :
 {
-    name : "Pillow"
+    name : "pyproject_metadata"
     build_source : "script"
     compil_script :  'pip_install' + $VARS.scriptExtension
     get_source : "archive"
     system_info :
     {
-        rpm : ["python3-pillow"]
-        rpm_dev : []
-        apt : ["python3-pil"]
-        apt_dev : []
     }
     environ :
     {
-       env_script : $name + ".py"
     }
-    depend : ['Python', 'setuptools', 'docutils', 'freetype']
-    opt_depend: ['wheel']
+    depend : ['Python', 'packaging']
     patches : []
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
@@ -25,16 +19,5 @@ default :
     {
       incremental : "yes"
       pip : "yes"
-    }
-}
-
-version_8_4_0:
-{
-
-    compil_script :  "Pillow.sh"
-    properties:
-    {
-      incremental : "yes"
-      pip : "no"
     }
 }

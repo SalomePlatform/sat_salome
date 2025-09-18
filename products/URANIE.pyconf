@@ -67,7 +67,20 @@ version_4_8_0_CO7 :
         archive_name : "URANIE-4.8.0-Source.tar.gz"
     }
     patches: ["URANIE-4.8.0-p002.patch"]
-    depend : ['Python', 'root','nlopt','lapack', 'boost','jsoncpp', 'FMILibrary', 'libxml2', 'fftw']
+    depend : ['Python', 'root','nlopt','openblas', 'boost','jsoncpp', 'FMILibrary', 'libxml2', 'fftw']
+    build_depend : ["cmake", 'swig', 'cppunit']
+    opt_depend: ["openmpi"]
+}
+
+version_4_8_0_CO8 :
+{
+    compil_script : "URANIE-4.8.0.sh"
+    archive_info :
+    {
+        archive_name : "URANIE-4.8.0-Source.tar.gz"
+    }
+    patches: ["URANIE-4.8.0-p002.patch"]
+    depend : ['Python', 'root','nlopt','openblas', 'boost','jsoncpp', 'FMILibrary', 'libxml2', 'fftw']
     build_depend : ["cmake", 'swig', 'cppunit']
     opt_depend: ["openmpi"]
 }

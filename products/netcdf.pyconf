@@ -47,6 +47,28 @@ version_4_9_2:
     patches : []
 }
 
+version_4_9_2_CO7:
+{
+    archive_info :
+    {
+      archive_name  : "netcdf-c-4.9.2.tar.gz"
+    }
+    compil_script :  "netcdf-4.9.2" + $VARS.scriptExtension
+    depend : ['Python', 'openblas', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen']
+    patches : []
+}
+
+version_4_9_2_CO8:
+{
+    archive_info :
+    {
+      archive_name  : "netcdf-c-4.9.2.tar.gz"
+    }
+    compil_script :  "netcdf-4.9.2" + $VARS.scriptExtension
+    depend : ['Python', 'openblas', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen']
+    patches : []
+}
+
 version_4_9_2_win :
 {
     properties :

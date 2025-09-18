@@ -62,7 +62,19 @@ version_2_4_1_FD40 :
 
 version_2_0_3 :
 {
-   patches : ['FMILibrary-2.0.3-installdir.patch']
+    patches : ['FMILibrary-2.0.3-installdir.patch']
+}
+
+version_2_0_3_CO7 :
+{
+    depend : ['Python', 'openblas', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib']
+    patches : ['FMILibrary-2.0.3-installdir.patch']
+}
+
+version_2_0_3_CO8 :
+{
+    depend : ['Python', 'openblas', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib']
+    patches : ['FMILibrary-2.0.3-installdir.patch']
 }
 
 version_2_0_3_win :

@@ -1,0 +1,38 @@
+default :
+{
+    name : "ninja"
+    build_source : "cmake"
+    cmake_options : "-DBUILD_TESTING=OFF"
+    get_source : "archive"
+    system_info :
+    {
+        rpm : []
+        rpm_dev : ["ninja-build"]
+        apt : []
+        apt_dev : ["ninja-build"]
+    }
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : []
+    build_depend : ["cmake"]
+    patches : []
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+      incremental : "yes"
+    }
+}
+
+version_1_12_1 :
+{
+    build_source : "script"
+    compil_script :  "ninja" + $VARS.scriptExtension
+    archive_info : {archive_name : "ninja-1.12.1-x86_64.tar.gz"}
+    patches : []
+    depend : []
+}
+

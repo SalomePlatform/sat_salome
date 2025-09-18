@@ -5,7 +5,7 @@ default :
     compil_script : "pip_install" + $VARS.scriptExtension
     get_source : "archive"
     patches : []
-    system_info : 
+    system_info :
     {
         rpm : ["python3-scipy"]
         rpm_dev : []
@@ -16,7 +16,7 @@ default :
     {
        env_script : $name + ".py"
     }
-    depend : ['numpy','lapack']
+    depend : ['numpy', 'lapack']
     build_depend : ["cmake"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
@@ -31,6 +31,33 @@ default :
 default_win :
 {
    archive_info : {archive_name : "scipy-" + $APPLICATION.products.scipy + "_windows.tar.gz"}
+}
+
+
+version_1_11_4:
+{
+    depend : ['Python', 'setuptools', 'wheel', 'Cython', 'numpy', 'openblas', 'meson_python', 'pythran']
+    build_depend : ["cmake", "pybind11"]
+    compil_script : "scipy-1.7.1.sh"
+    archive_info : {archive_name : "scipy-1.11.4.tar.gz"}
+    properties :
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+}
+
+version_1_7_1:
+{
+    depend : ['Python', 'setuptools', 'wheel', 'Cython', 'numpy', 'openblas', 'pythran']
+    build_depend : ["cmake", "pybind11"]
+    compil_script : "scipy-1.7.1.sh"
+    archive_info : {archive_name : "scipy-1.7.1-deps.tar.gz"}
+    properties :
+    {
+      incremental : "yes"
+      pip : "no"
+    }
 }
 
 version_1_6_2:
@@ -81,7 +108,7 @@ version_1_5_2_DB10 :
     }
 }
 
-version_1_3_0 : 
+version_1_3_0 :
 {
 }
 

@@ -5,6 +5,7 @@ import platform
 
 def set_env(env, prereq_dir, version):
     env.set('FREETYPEDIR', prereq_dir)
+    env.set('FREETYPE_ROOT', prereq_dir)
     env.set('FREETYPE_ROOT_DIR', prereq_dir)    # update for cmake
     
     env.set('FREETYPE_BIN', os.path.join(prereq_dir, 'bin'))
