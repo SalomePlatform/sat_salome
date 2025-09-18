@@ -39,7 +39,8 @@ default :
               "opencv",
               "six",
               "pytz",
-              "psutil"
+              "psutil",
+              "eigen"
              ]
     build_depend : ["cmake", "swig", "doxygen", "cppunit"]
     patches : []
@@ -65,6 +66,7 @@ default_win :
               "CAS",
               "CommonGeomLib",
               "Python",
+              "eigen",
               "hdf5",
               "omniORB",
               "qt",
@@ -132,7 +134,8 @@ version_V9_10_0_win :
               "six",
               "pytz",
               "psutil",
-              "sphinxintl"
+              "sphinxintl",
+              "eigen"
              ]
     patches : ['GEOM-9.10.0-visual-2019.patch']
     nb_proc : 1
