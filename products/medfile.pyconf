@@ -41,6 +41,42 @@ default_Autotools :
     build_depend : []
 }
 
+version_5_1_0 :
+{
+    archive_info :
+    {
+        archive_name : "med-5.1.0beta1.tar.gz"
+    }
+    compil_script : 'med-5.1.0.sh'
+    test_build : "make check"
+    build_depend : ['swig']
+}
+
+version_5_1_0_win :
+{
+    compil_script :  "med-5.1.0.bat"
+    patches : []
+    build_depend : ["cmake", "swig"]
+}
+
+version_5_0_2 :
+{
+    archive_info :
+    {
+        archive_name : "med-5.0.2rc1.tar.gz"
+    }
+    compil_script : 'med-5.0.2.sh'
+    test_build : "make check"
+    build_depend : ['swig']
+}
+
+version_5_0_2_win :
+{
+    compil_script :  "med-5.0.2.bat"
+    patches : []
+    build_depend : ["cmake", "swig"]
+}
+
 version_4_2_0 :
 {
     archive_info :
