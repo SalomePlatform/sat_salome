@@ -43,6 +43,18 @@ default_win :
    nb_proc : 4 # concurrent access leads to permission denied
 }
 
+version_1_12_3 :
+{
+    compil_script : "hdf5-1.12.3.sh"
+    patches : []
+}
+
+version_1_12_3_win :
+{
+    compil_script : "hdf5-1.12.3.bat"
+    patches : []
+}
+
 version_1_10_11 :
 {
     compil_script : "hdf5-1.10.11.sh"
