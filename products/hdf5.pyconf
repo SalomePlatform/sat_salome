@@ -51,6 +51,7 @@ version_1_12_3 :
 
 version_1_12_3_win :
 {
+    archive_info : {archive_name : "hdf5-1.12.3.tar.gz"}
     compil_script : "hdf5-1.12.3.bat"
     patches : []
 }

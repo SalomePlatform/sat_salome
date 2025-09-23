@@ -1,0 +1,12 @@
+diff -Naur  med-5.0.2rc1-ref/src/hdfi/_MEDfileCreate.c med-5.0.2rc1-dev/src/hdfi/_MEDfileCreate.c
+--- med-5.0.2rc1-ref/src/hdfi/_MEDfileCreate.c	2025-07-15 16:55:31.000000000 +0200
++++ med-5.0.2rc1-dev/src/hdfi/_MEDfileCreate.c	2025-09-23 10:24:47.964986716 +0200
+@@ -59,7 +59,7 @@
+ 									\
+     /* SSCRUTE("-------- 3 -------"); */				\
+     if ( (major < 4) || ((major >= 4) && (minor == MED_MIN) ) ) {	\
+-      _fp = fopen(filename, "w");					\
++      _fp = fopen(filename, "wb");					\
+       if(!_fp) {							\
+ 	MED_ERR_(_fid,MED_ERR_CREATE,MED_ERR_FILE,filename);		\
+ 	ISCRUTE(major);ISCRUTE(minor);ISCRUTE(release);			\

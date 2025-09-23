@@ -73,8 +73,32 @@ version_5_0_2 :
 version_5_0_2_win :
 {
     compil_script :  "med-5.0.2.bat"
-    patches : []
+    patches : ["medfile-5.0.2-python-3.13-p002.patch"]
     build_depend : ["cmake", "swig"]
+}
+
+version_5_0_2_DB13 :
+{
+    archive_info :
+    {
+        archive_name : "med-5.0.2rc1.tar.gz"
+    }
+    compil_script : 'med-5.0.2.sh'
+    test_build : "make check"
+    build_depend : ['swig']
+    patches: ['medfile-5.0.2-python-3.13-p001.patch']
+}
+
+version_5_0_2_FD42 :
+{
+    archive_info :
+    {
+        archive_name : "med-5.0.2rc1.tar.gz"
+    }
+    compil_script : 'med-5.0.2.sh'
+    test_build : "make check"
+    build_depend : ['swig']
+    patches: ['medfile-5.0.2-python-3.13-p001.patch']
 }
 
 version_4_2_0 :

@@ -1,4 +1,4 @@
-#!/bin/bash
+61;7600;1c#!/bin/bash
 
 echo "##########################################################################"
 echo "med" $VERSION
@@ -15,26 +15,28 @@ if [ -f /.dockerenv ]; then
     find $SOURCE_DIR -type f -exec chmod u+rwx {} \;
 fi
 
+# In the frame of bos #46972, one can clearly see that the presence of this environment variable
+# screws up the compilation of medfile.
+unset SWIG_LIB
+
 CONFIGURE_FLAGS=
 CONFIGURE_FLAGS+=' CFLAGS=-m64 CXXFLAGS=-m64' 
 CONFIGURE_FLAGS+=' --enable-mesgerr'
 CONFIGURE_FLAGS+=' --enable-installtest'
+CONFIGURE_FLAGS+=" --with-f90"
+CONFIGURE_FLAGS+=' --enable-python=yes'
 
 if [ -n "$SAT_HPC" ]; then
     export CXX=${MPI_CXX_COMPILER}
     export CC=${MPI_C_COMPILER}
     export FC=${MPI_Fortran_COMPILER}
-    CONFIGURE_FLAGS+=' --enable-python=no'
-else
-    export F77=gfortran
-    CONFIGURE_FLAGS+=' --enable-python=yes'
 fi
 
 if [ "$SALOME_USE_64BIT_IDS" == "1" ]; then
     echo "WARNING: user requested 64 bits encoding for integers..."
-    export  FFLAGS="-g -O2 -ffixed-line-length-none -fdefault-integer-8"
-    export FCFLAGS="-fdefault-integer-8"
     CONFIGURE_FLAGS+=' --with-med_int=long'
+    export  FFLAGS="-g -O2 -fdefault-integer-8 -fallow-argument-mismatch"
+    export FCFLAGS="-g -O2 -fdefault-integer-8 -fallow-argument-mismatch"
 else
     export  FFLAGS="-g -O2 -ffixed-line-length-none"
     export FCFLAGS="-g -O2 -ffixed-line-length-none"
@@ -44,6 +46,13 @@ if [ "${SAT_Python_IS_NATIVE}" != "1" ]; then
     CONFIGURE_FLAGS+=" --with-python_prefix=$PYTHON_ROOT_DIR"
 fi
 
+if [ "${SAT_hdf5_IS_NATIVE}" != "1" ]; then
+    CONFIGURE_FLAGS+=" --with-hdf5=$HDF5_ROOT_DIR"
+fi
+
+if [ "${SAT_swig_IS_NATIVE}" != "1" ]; then
+    CONFIGURE_FLAGS+=" --with-swig=$SWIG_ROOT_DIR"
+fi
 echo
 echo "*** configure   --prefix=$PRODUCT_INSTALL FFLAGS=\"${FFLAGS}\"   FCFLAGS=\"${FCFLAGS}\"   $CONFIGURE_FLAGS"
 $SOURCE_DIR/configure --prefix=$PRODUCT_INSTALL FFLAGS="${FFLAGS}"     FCFLAGS="${FCFLAGS}"     $CONFIGURE_FLAGS
