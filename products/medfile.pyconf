@@ -59,6 +59,30 @@ version_5_1_0_win :
     build_depend : ["cmake", "swig"]
 }
 
+version_5_1_0_DB13 :
+{
+    archive_info :
+    {
+        archive_name : "med-5.1.0beta1.tar.gz"
+    }
+    compil_script : 'med-5.1.0.sh'
+    test_build : "make check"
+    build_depend : ['swig']
+    patches: ['medfile-5.1.0-python-3.13-p001.patch']
+}
+
+version_5_1_0_FD42 :
+{
+    archive_info :
+    {
+        archive_name : "med-5.1.0beta1.tar.gz"
+    }
+    compil_script : 'med-5.1.0.sh'
+    test_build : "make check"
+    build_depend : ['swig']
+    patches: ['medfile-5.1.0-python-3.13-p001.patch']
+}
+
 version_5_0_2 :
 {
     archive_info :

@@ -1,0 +1,252 @@
+diff -Naur med-5.1.0beta1-ref/python/medequivalence_long_wrap.cc med-5.1.0beta1-dev/python/medequivalence_long_wrap.cc
+--- med-5.1.0beta1-ref/python/medequivalence_long_wrap.cc	2025-07-18 12:40:25.000000000 +0200
++++ med-5.1.0beta1-dev/python/medequivalence_long_wrap.cc	2025-09-22 13:29:40.000000000 +0200
+@@ -23833,7 +23833,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_entity_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg7);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_CallObject(pclass, pargs);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_entity_type");
+     
+     
+diff -Naur med-5.1.0beta1-ref/python/medfield_long_wrap.cc med-5.1.0beta1-dev/python/medfield_long_wrap.cc
+--- med-5.1.0beta1-ref/python/medfield_long_wrap.cc	2025-07-18 12:40:26.000000000 +0200
++++ med-5.1.0beta1-dev/python/medfield_long_wrap.cc	2025-09-22 13:29:40.000000000 +0200
+@@ -24670,7 +24670,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_field_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg6);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_CallObject(pclass, pargs);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_field_type");
+     
+     
+@@ -25345,7 +25345,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_field_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg5);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_CallObject(pclass, pargs);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_field_type");
+     
+     
+@@ -26465,7 +26465,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_entity_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg5);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_CallObject(pclass, pargs);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_entity_type");
+     
+     
+diff -Naur med-5.1.0beta1-ref/python/medmesh_long_wrap.cc med-5.1.0beta1-dev/python/medmesh_long_wrap.cc
+--- med-5.1.0beta1-ref/python/medmesh_long_wrap.cc	2025-07-18 12:40:26.000000000 +0200
++++ med-5.1.0beta1-dev/python/medmesh_long_wrap.cc	2025-09-22 13:29:40.000000000 +0200
+@@ -23355,7 +23355,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_mesh_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg5);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_CallObject(pclass, pargs);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_mesh_type");
+     
+     
+@@ -23380,7 +23380,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_sorting_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg8);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_CallObject(pclass, pargs);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_sorting_type");
+     
+     
+@@ -23407,7 +23407,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_axis_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg10);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_CallObject(pclass, pargs);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_axis_type");
+     
+     
+@@ -23557,7 +23557,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_mesh_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg6);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_CallObject(pclass, pargs);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_mesh_type");
+     
+     
+@@ -23582,7 +23582,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_sorting_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg9);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_CallObject(pclass, pargs);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_sorting_type");
+     
+     
+@@ -23609,7 +23609,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_axis_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg11);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_CallObject(pclass, pargs);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_axis_type");
+     
+     
+@@ -23903,7 +23903,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_grid_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg3);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_CallObject(pclass, pargs);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_grid_type");
+     
+     
+@@ -24978,7 +24978,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_sorting_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg3);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_CallObject(pclass, pargs);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_sorting_type");
+     
+     
+@@ -30553,7 +30553,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_axis_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg6);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_CallObject(pclass, pargs);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_axis_type");
+     
+     
+@@ -30682,7 +30682,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_axis_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg7);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_CallObject(pclass, pargs);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_axis_type");
+     
+     
+diff -Naur med-5.1.0beta1-ref/python/medparameter_long_wrap.cc med-5.1.0beta1-dev/python/medparameter_long_wrap.cc
+--- med-5.1.0beta1-ref/python/medparameter_long_wrap.cc	2025-07-18 12:40:25.000000000 +0200
++++ med-5.1.0beta1-dev/python/medparameter_long_wrap.cc	2025-09-22 13:29:40.000000000 +0200
+@@ -23297,7 +23297,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_parameter_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg4);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_CallObject(pclass, pargs);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_parameter_type");
+     
+     
+@@ -23400,7 +23400,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_parameter_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg3);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_CallObject(pclass, pargs);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_parameter_type");
+     
+     
+diff -Naur med-5.1.0beta1-ref/python/medstructelement_long_wrap.cc med-5.1.0beta1-dev/python/medstructelement_long_wrap.cc
+--- med-5.1.0beta1-ref/python/medstructelement_long_wrap.cc	2025-07-18 12:40:26.000000000 +0200
++++ med-5.1.0beta1-dev/python/medstructelement_long_wrap.cc	2025-09-22 13:29:40.000000000 +0200
+@@ -23558,7 +23558,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_entity_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg6);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_CallObject(pclass, pargs);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_entity_type");
+     
+     
+@@ -23789,7 +23789,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_entity_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg7);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_CallObject(pclass, pargs);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_entity_type");
+     
+     
+@@ -23980,7 +23980,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_attribute_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg4);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_CallObject(pclass, pargs);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_attribute_type");
+     
+     
+@@ -24007,7 +24007,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_entity_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg6);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_CallObject(pclass, pargs);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_entity_type");
+     
+     
+@@ -24149,7 +24149,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_attribute_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg5);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_CallObject(pclass, pargs);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_attribute_type");
+     
+     
+@@ -24176,7 +24176,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_entity_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg7);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_CallObject(pclass, pargs);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_entity_type");
+     
+     
+@@ -24480,7 +24480,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_attribute_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg4);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_CallObject(pclass, pargs);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_attribute_type");
+     
+     
+@@ -24595,7 +24595,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_attribute_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg5);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_CallObject(pclass, pargs);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_attribute_type");
+     
+     
+diff -Naur med-5.1.0beta1-ref/python/medsubdomain_long_wrap.cc med-5.1.0beta1-dev/python/medsubdomain_long_wrap.cc
+--- med-5.1.0beta1-ref/python/medsubdomain_long_wrap.cc	2025-07-18 12:40:25.000000000 +0200
++++ med-5.1.0beta1-dev/python/medsubdomain_long_wrap.cc	2025-09-22 13:29:40.000000000 +0200
+@@ -23753,7 +23753,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_entity_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg7);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_CallObject(pclass, pargs);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_entity_type");
+     
+     
+@@ -23780,7 +23780,7 @@
+     if (pclass == NULL) printf("%s\n","Can't get class med_entity_type");
+     Py_DECREF(pmod);
+     pargs  = Py_BuildValue("(i)",*arg9);
+-    pinst  = PyEval_CallObject(pclass, pargs);
++    pinst  = PyObject_CallObject(pclass, pargs);
+     if (pinst == NULL) printf("%s\n","Can't instanciate class med_entity_type");
+     
+     
