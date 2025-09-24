@@ -18,9 +18,9 @@ def set_env(env, prereq_dir, version):
     # FOR NUMPY AND SCIPY
     env.set('BLAS', os.path.join(prereq_dir, 'lib'))
     env.set('OPENBLAS', os.path.join(prereq_dir, 'lib'))
+    env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib'))
+    env.set('openblas_DIR', os.path.join(prereq_dir, 'lib','cmake','OpenBLAS'))
   else:
     env.prepend('PATH', os.path.join(prereq_dir, 'bin'))
-
 def set_nativ_env(env):
     env.set('OPENBLASHOME', '/usr')
-

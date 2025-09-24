@@ -4,6 +4,7 @@ default :
     build_source : "script"
     compil_script : $name + $VARS.scriptExtension
     get_source : "archive"
+    archive_info : {archive_name : "OpenBLAS-" + $APPLICATION.products.openblas + ".tar.gz"}
     system_info : 
     {
     }
@@ -25,12 +26,17 @@ default :
 
 default_win:
 {
-    archive_info : {archive_name : "OpenBLAS-" + $APPLICATION.products.openblas + ".tar.gz"} #FIXME
     properties :
     {
       incremental : "yes"
       single_install_dir : "yes"
     }
+}
+
+version_0_3_26:
+{
+    build_source : "script"
+    compil_script : "openblas-0.3.26.sh"
 }
 
 version_0_3_23:
