@@ -76,7 +76,7 @@ version_1_10_3 :
 
 version_1_10_3_win :
 {
-    compil_script : "hdf5CMake.bat"
+    compil_script : "hdf5-1.10.3.bat"
     patches : ['hdf5-1.10.3.patch', 'hdf5-1.10.3.win_unicode_new.patch' ]
 }
 
