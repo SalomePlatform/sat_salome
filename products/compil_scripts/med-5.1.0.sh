@@ -30,6 +30,8 @@ if [ -n "$SAT_HPC" ]; then
     export CXX=${MPI_CXX_COMPILER}
     export CC=${MPI_C_COMPILER}
     export FC=${MPI_Fortran_COMPILER}
+else
+    export F77=gfortran
 fi
 
 if [ "$SALOME_USE_64BIT_IDS" == "1" ]; then
