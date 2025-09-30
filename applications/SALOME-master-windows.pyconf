@@ -214,7 +214,7 @@ APPLICATION :
         'PARAVISADDONS'
         'PY2CPP'
         'OPENTURNS_SALOME'
-        'YDEFX'
+        'YDEFX' : 'agy/43708_win_compat_0'
         'pmml'
         #'TESTBASE'
         'CEATESTBASE'
