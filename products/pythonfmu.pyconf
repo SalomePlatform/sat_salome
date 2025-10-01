@@ -1,14 +1,14 @@
 default :
 {
-    name : "threadpoolctl"
+    name : "pythonfmu"
     build_source : "script"
     compil_script :  "pip_install" + $VARS.scriptExtension
     get_source : "archive"
     system_info :
     {
-       rpm : ["python3-threadpoolctl"]
+       rpm : []
        rpm_dev : []
-       apt : ["python3-threadpoolctl"]
+       apt : []
        apt_dev : []
     }
     environ :
@@ -26,13 +26,12 @@ default :
     }
 }
 
-default_win :
+version_0_6_3:
 {
-   compil_script :  'pip_install_whl' + $VARS.scriptExtension
-   depend : ["Python","setuptools", "scipy", "decorator"]
-   properties:
-   {
-     incremental : "yes"
-     pip : "yes"
-   }
+    compil_script :  "pythonfmu-0.6.3.sh"
+    properties:
+    {
+      incremental : "yes"
+      pip : "no"
+    }
 }

@@ -15,7 +15,7 @@ default :
     {
        env_script : $name + ".py"
     }
-    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen']
+    depend : ['Python']
     opt_depend: []
     patches : []
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name

@@ -15,7 +15,7 @@ default :
     {
       env_script: $name + ".py"
     }
-    depend : ['Python', 'setuptools', 'numpy', 'pyyaml', 'openturns', 'poetry_core', 'pytest']
+    depend : ['Python', 'setuptools', 'numpy', 'pyyaml', 'poetry_core', 'pytest']
     opt_depend: ['poetry']
     patches : []
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name

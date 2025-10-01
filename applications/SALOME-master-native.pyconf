@@ -57,6 +57,7 @@ APPLICATION :
         cycler : 'native'
         Cython : 'native'
         dateutil : 'native'
+        dill : 'native' # 0.3.4
         docutils : 'native'
         doxygen : 'native'
         #DXF : '7.8.0'
@@ -76,6 +77,7 @@ APPLICATION :
         imagesize : 'native'
         ispc : '1.15.0'
         Jinja2 : 'native'
+        joblib : 'native' # 1.1.0
         jsoncpp : 'native'
         kiwisolver : 'native'
         lapack : 'native'
@@ -109,13 +111,13 @@ APPLICATION :
         opencv : 'native'
         openmpi: 'native'
         openVKL : '0.11.0'
-        openturns: '1.24'
+        openturns: '1.25.1'
         ospray : '2.4.0'
         packaging : 'native'
         pandas : 'native'
         patsy : 'native'
         ParaView : {tag:'5.13.2918b94391', base: 'no',  section: 'version_5_13_2_MPI', hpc: 'yes'}
-        PERSALYS : 'v18.0'
+        PERSALYS : 'v19.0'
         petsc : '3.20.5'
         Pillow : 'native'
         planegcs : '0.18-3cb6890'
@@ -131,6 +133,7 @@ APPLICATION :
         pyreadline : 'native'
         pytest :  'native'
         Python : 'native'
+        pythonfmu : '0.6.3'
         pytz : 'native'
         qt : 'native'
         qtpy : {tag : '2.4.1', base : 'no', section : 'version_2_4_1_no_pip', hpc: 'no'}
@@ -141,6 +144,7 @@ APPLICATION :
         rich : '13.7.1'
         root: '6.28.10'
         scipy : 'native'
+        scikit_learn : 'native' # 1.2.2/1.0
         scotch : {tag: '6.1.2', section: 'version_6_1_2_MPI', hpc: 'yes', base: 'no'}
         setuptools : 'native'
         sip : 'native'
@@ -155,8 +159,10 @@ APPLICATION :
         salome_system : 'native'
         tbb : 'native'
         tcl : 'native'
+        threadpoolctl : 'native' # 3.5.0
         tk : 'native'
         toml: 'native'
+        tqdm : 'native' # 4.66.5
         TTK : 'f8dafde2d7'
         urllib3 : 'native'
         zeromq: '4.3.1'
@@ -245,8 +251,9 @@ __overwrite__ :
         'APPLICATION.products.netcdf'           : '4.6.2'
         'APPLICATION.products.omniORB'          : '4.2.5'
         'APPLICATION.products.omniORBpy'        : '4.2.5'
-        'APPLICATION.products.meshio'           : {tag: '5.3.5' , base: 'no', section: 'version_5_3_5_no_pip' }
-        'APPLICATION.products.PyFMI'            : {tag: '2.6',    base: 'no', section: 'version_2_6_UB22_04'  }
+        'APPLICATION.products.meshio'           : {tag: '5.3.5' , base: 'no', section: 'version_5_3_5_no_pip'  }
+        'APPLICATION.products.PyFMI'            : {tag: '2.6',    base: 'no', section: 'version_2_6_UB22_04'   }
+        'APPLICATION.products.openturns'        : {tag: '1.25.1', base: 'no', section: 'version_1_25_1_UB22_04'}
     }
     {
         #
@@ -391,8 +398,9 @@ __overwrite__ :
         'APPLICATION.products.opencv'           : '3.2.0'
         'APPLICATION.products.openmpi'          : '4.1.5'
         'APPLICATION.products.sip'              : '5.5.0'
+        'APPLICATION.products.joblib'           : {tag: '1.2.0',   base: 'no', section: 'version_1_2_0_no_pip' }
+        'APPLICATION.products.scikit_learn'     : {tag: '1.2.2',   base: 'no', section: 'version_1_2_2_no_pip' }
         'APPLICATION.products.h5py'             : {tag: '3.9.0',   base: 'no', section: 'version_3_9_0_no_pip' }
-        'APPLICATION.products.openturns'        : {tag: '1.24',    base: 'no', section: 'version_1_24_CO9'     }
         'APPLICATION.products.patsy'            : {tag: '0.5.4',   base: 'no', section: 'version_0_5_4_no_pip' }
         'APPLICATION.products.qt'               : {tag: '5.15.15', base: 'no', section: 'version_5_15_15_CO9'  }
         'APPLICATION.products.mdurl'            : {tag: '0.1.2',   base: 'no', section: 'version_0_1_2_no_pip' }

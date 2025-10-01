@@ -17,7 +17,7 @@ default :
     {
        env_script : $name + ".py"
     }
-    depend : ['Python', 'setuptools', 'numpy', 'openturns', 'Cython', 'pyyaml', 'pytest', 'poetry_core']
+    depend : ['Python', 'setuptools', 'numpy', 'Cython', 'pyyaml', 'pytest', 'poetry_core']
     opt_depend : ['build']
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name

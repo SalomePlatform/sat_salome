@@ -1,0 +1,29 @@
+--- openturns-1.25.1_ref/openturns-1.25.1/lib/test/CMakeLists.txt	2025-02-28 10:42:34.000000000 +0100
++++ openturns-1.24_dev/openturns-1.25.1/lib/test/CMakeLists.txt	2025-04-10 09:02:40.417600909 +0200
+@@ -23,6 +23,7 @@
+   add_library (CRT_fp8 STATIC EXCLUDE_FROM_ALL CRT_fp8.c)
+ endif ()
+ 
++set(OPENTURNS_VETOED_TESTS "cppcheck_Log_std" CACHE STRING "Set of tests to be vetoed. See https://github.com/openturns/openturns/issues/2891")
+ set (CHECK_ENVIRONMENT "OPENTURNS_CONFIG_PATH=${PROJECT_BINARY_DIR}/lib/etc")
+ 
+ # This macro compiles and runs a C++ test
+@@ -729,7 +730,15 @@
+ ot_check_test (LinearLeastSquares_std)
+ 
+ 
+-add_custom_target (cppcheck COMMAND ${CMAKE_CTEST_COMMAND} --build-config ${CMAKE_BUILD_TYPE} --tests-regex "^cppcheck_"
+-                    DEPENDS ${CHECK_TO_BE_RUN}
+-                    COMMENT "Run C++ pre-installation tests")
++# Check whether vetoed tests are defined through the OPENTURNS_VETOED_TESTS environment variable
++if (OPENTURNS_VETOED_TESTS)
++  message(WARNING "vetoe this set of tests: ${OPENTURNS_VETOED_TESTS}")
++  add_custom_target (cppcheck COMMAND ${CMAKE_CTEST_COMMAND} --build-config ${CMAKE_BUILD_TYPE} --tests-regex "^cppcheck_" -E "${OPENTURNS_VETOED_TESTS}"
++    DEPENDS ${CHECK_TO_BE_RUN}
++    COMMENT "Run C++ pre-installation tests")
++else()
++  add_custom_target (cppcheck COMMAND ${CMAKE_CTEST_COMMAND} --build-config ${CMAKE_BUILD_TYPE} --tests-regex "^cppcheck_"
++    DEPENDS ${CHECK_TO_BE_RUN}
++    COMMENT "Run C++ pre-installation tests")
++endif()
+ add_dependencies (check cppcheck)

@@ -8,21 +8,21 @@ default :
     {
        rpm : ["python3-scikit-learn"]
        rpm_dev : []
-       apt : ["python3-scikit-learn"]
+       apt : ["python3-sklearn"]
        apt_dev : []
     }
     environ :
     {
        env_script : $name + ".py"
     }
-    depend : ['Python', 'scipy']
+    depend : ['Python','scipy', 'joblib', 'numpy', 'threadpoolctl']
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
-    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    build_dir  : $APPLICATION.workdir + $VARS.sep + 'BUILD'   + $VARS.sep + $name
     install_dir : 'base'
     properties:
     {
       incremental : "yes"
-      pip : "no"
+      pip : "yes"
     }
 }
 
@@ -34,5 +34,17 @@ default_win :
    {
      incremental : "yes"
      pip : "yes"
+   }
+}
+
+version_1_2_2_no_pip: 
+{
+   compil_script :  'pip_install_whl' + $VARS.scriptExtension
+   depend : ["Python","setuptools", "scipy", "joblib"]
+   archive_info : {archive_name : "scikit-learn-1.2.2.tar.gz"}
+   properties:
+   {
+     incremental : "yes"
+     pip : "no"
    }
 }

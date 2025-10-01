@@ -22,7 +22,7 @@ default :
     properties:
     {
       incremental : "yes"
-      pip : "no"
+      pip : "yes"
     }
 }
 
@@ -34,5 +34,25 @@ default_win :
    {
      incremental : "yes"
      pip : "yes"
+   }
+}
+
+version_1_2_0_no_pip : {
+   compil_script :  'pip_install_whl' + $VARS.scriptExtension
+   depend : ["Python","setuptools"]
+   properties:
+   {
+     incremental : "yes"
+     pip : "no"
+   }
+}
+
+version_1_1_0_no_pip : {
+   compil_script :  'pip_install_whl' + $VARS.scriptExtension
+   depend : ["Python","setuptools"]
+   properties:
+   {
+     incremental : "yes"
+     pip : "no"
    }
 }
