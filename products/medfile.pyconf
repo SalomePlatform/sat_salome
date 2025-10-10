@@ -41,6 +41,24 @@ default_Autotools :
     build_depend : []
 }
 
+version_6_0_0 :
+{
+    archive_info :
+    {
+        archive_name : "med-6.0.0alpha1.tar.gz"
+    }
+    compil_script : 'med-6.0.0.sh'
+    test_build : "make check"
+    build_depend : ['swig']
+}
+
+version_6_0_0_win :
+{
+    compil_script :  "med-6.0.0.bat"
+    patches : []
+    build_depend : ["cmake", "swig"]
+}
+
 version_5_1_0 :
 {
     archive_info :

@@ -40,8 +40,8 @@ if NOT %ERRORLEVEL% == 0 (
 
 REM Build LIB
 echo.
-echo *** msbuild %BUILD_DIR%\jpeg.sln /t:build /p:Configuration=%PRODUCT_BUILD_TYPE%;Platform=x64 
-msbuild %BUILD_DIR%\jpeg.sln /t:build /p:Configuration=%PRODUCT_BUILD_TYPE%;Platform=x64 
+echo *** msbuild %BUILD_DIR%\jpeg.sln /t:build /p:Configuration=%PRODUCT_BUILD_TYPE%;Platform=x64 /p:WindowsTargetPlatformVersion=%WindowsSDKVersion%
+msbuild %BUILD_DIR%\jpeg.sln /t:build /p:Configuration=%PRODUCT_BUILD_TYPE%;Platform=x64 /p:WindowsTargetPlatformVersion=%WindowsSDKVersion%
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on msbuild
     exit 2
@@ -49,8 +49,8 @@ if NOT %ERRORLEVEL% == 0 (
 
 REM Build DLL
 echo.
-echo *** msbuild %BUILD_DIR%\jpeg.sln /t:build /p:Configuration=DLL;Platform=x64 
-msbuild %BUILD_DIR%\jpeg.sln /t:build /p:Configuration=DLL;Platform=x64 
+echo *** msbuild %BUILD_DIR%\jpeg.sln /t:build /p:Configuration=DLL;Platform=x64 /p:WindowsTargetPlatformVersion=%WindowsSDKVersion%
+msbuild %BUILD_DIR%\jpeg.sln /t:build /p:Configuration=DLL;Platform=x64 /p:WindowsTargetPlatformVersion=%WindowsSDKVersion%
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on msbuild
     exit 2

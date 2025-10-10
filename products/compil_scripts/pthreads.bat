@@ -45,9 +45,9 @@ if NOT %ERRORLEVEL% == 0 (
 
 REM Compilation
 echo.
-echo *** %BUILD_DIR%\pthread.sln /t:build /p:Configuration=%PRODUCT_BUILD_TYPE%;Platform=%PLATFORM_TARGET%
+echo *** %BUILD_DIR%\pthread.sln /t:build /p:Configuration=%PRODUCT_BUILD_TYPE%;Platform=%PLATFORM_TARGET% /p:WindowsTargetPlatformVersion=%WindowsSDKVersion%
 
-msbuild %BUILD_DIR%\pthread.sln /t:build /p:Configuration=%PRODUCT_BUILD_TYPE%;Platform=%PLATFORM_TARGET%
+msbuild %BUILD_DIR%\pthread.sln /t:build /p:Configuration=%PRODUCT_BUILD_TYPE%;Platform=%PLATFORM_TARGET% /p:WindowsTargetPlatformVersion=%WindowsSDKVersion%
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on msbuild
     exit 3

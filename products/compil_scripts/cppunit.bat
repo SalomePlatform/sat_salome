@@ -48,30 +48,30 @@ if NOT %ERRORLEVEL% == 0 (
 
 echo.
 echo -------------------------------------------------------------------------------
-echo msbuild cppunit.vcxproj %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=%PLATFORM_TARGET%
+echo msbuild cppunit.vcxproj %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=%PLATFORM_TARGET% /p:WindowsTargetPlatformVersion=%WindowsSDKVersion%
 echo -------------------------------------------------------------------------------
 
 cd %BUILD_DIR%\src\cppunit
 
-msbuild cppunit.vcxproj %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=%PLATFORM_TARGET%
+msbuild cppunit.vcxproj %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=%PLATFORM_TARGET% /p:WindowsTargetPlatformVersion=%WindowsSDKVersion%
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on msbuild
     exit 21
 )
 
-msbuild cppunit.vcxproj %MAKE_OPTIONS% /p:Configuration=Debug /p:TargetName=cppunitd /p:Platform=%PLATFORM_TARGET%
+msbuild cppunit.vcxproj %MAKE_OPTIONS% /p:Configuration=Debug /p:TargetName=cppunitd /p:Platform=%PLATFORM_TARGET% /p:WindowsTargetPlatformVersion=%WindowsSDKVersion%
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on msbuild
     exit 22
 )
 
-msbuild cppunit_dll.vcxproj %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=%PLATFORM_TARGET%
+msbuild cppunit_dll.vcxproj %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=%PLATFORM_TARGET% /p:WindowsTargetPlatformVersion=%WindowsSDKVersion%
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on msbuild
     exit 23
 )
 
-msbuild cppunit_dll.vcxproj %MAKE_OPTIONS% /p:Configuration=Debug /p:TargetName=cppunitd_dll /p:Platform=%PLATFORM_TARGET%
+msbuild cppunit_dll.vcxproj %MAKE_OPTIONS% /p:Configuration=Debug /p:TargetName=cppunitd_dll /p:Platform=%PLATFORM_TARGET% /p:WindowsTargetPlatformVersion=%WindowsSDKVersion%
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on msbuild
     exit 24

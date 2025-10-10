@@ -1,7 +1,7 @@
 @echo off
 
 echo ##########################################################################
-echo hdf5 %VERSION%
+echo med %VERSION%
 echo ##########################################################################
 
 IF NOT DEFINED SAT_DEBUG (
@@ -22,26 +22,30 @@ if %SAT_DEBUG% == 1 (
 )
 
 if NOT exist "%PRODUCT_INSTALL%" mkdir %PRODUCT_INSTALL%
-
 REM clean BUILD directory
 if exist "%BUILD_DIR%" rmdir /Q /S %BUILD_DIR%
 mkdir %BUILD_DIR%
 
-SET CMAKE_OPTIONS=-DCMAKE_INSTALL_PREFIX:STRING=%PRODUCT_INSTALL:\=/%
+SET CMAKE_OPTIONS=
+SET CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_INSTALL_PREFIX:STRING=%PRODUCT_INSTALL:\=/%
 SET CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_BUILD_TYPE:STRING=%PRODUCT_BUILD_TYPE%
-SET CMAKE_OPTIONS=%CMAKE_OPTIONS% -DBUILD_SHARED_LIBS:BOOL=ON
-SET CMAKE_OPTIONS=%CMAKE_OPTIONS% -DHDF5_ALLOW_EXTERNAL_SUPPORT:BOOL=ON
-SET CMAKE_OPTIONS=%CMAKE_OPTIONS% -DALLOW_UNSUPPORTED:BOOL=ON
-SET CMAKE_OPTIONS=%CMAKE_OPTIONS% -DHDF5_BUILD_TOOLS:BOOL=ON  
-SET CMAKE_OPTIONS=%CMAKE_OPTIONS% -DHDF5_BUILD_HL_LIB:BOOL=ON
-SET CMAKE_OPTIONS=%CMAKE_OPTIONS% -DHDF5_BUILD_CPP_LIB:BOOL=ON
-if DEFINED ZLIB_ROOT_DIR (
-  SET CMAKE_OPTIONS=%CMAKE_OPTIONS% -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=ON
+SET CMAKE_OPTIONS=%CMAKE_OPTIONS% -DMEDFILE_BUILD_STATIC_LIBS:BOOL=OFF
+SET CMAKE_OPTIONS=%CMAKE_OPTIONS% -DMEDFILE_BUILD_SHARED_LIBS:BOOL=ON
+SET CMAKE_OPTIONS=%CMAKE_OPTIONS% -DHDF5_ROOT_DIR:STRING=%HDF5_ROOT_DIR%
+SET CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_IMPORT_LIBRARY_PREFIX="" 
+SET CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_IMPORT_LIBRARY_SUFFIX=".lib"
+SET CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_Fortran_FLAGS="-fimplicit-none -i8"
+if DEFINED SALOME_USE_64BIT_IDS (
+    SET CMAKE_OPTIONS=%CMAKE_OPTIONS% -DMED_MEDINT_TYPE:STRING="long long"
 )
-SET CMAKE_OPTIONS=%CMAKE_OPTIONS% -DHDF5_ENABLE_PARALLEL:BOOL=OFF
-set CMAKE_OPTIONS=%CMAKE_OPTIONS% -G %CMAKE_GENERATOR% -A x64
 
-set MSBUILDDISABLENODEREUSE=1
+if DEFINED SAT_HPC (
+    SET CMAKE_OPTIONS=%CMAKE_OPTIONS% -DMEDFILE_USE_MPI:BOOL=ON
+) else (
+    SET CMAKE_OPTIONS=%CMAKE_OPTIONS% -DMEDFILE_USE_MPI:BOOL=OFF
+)
+
+SET CMAKE_OPTIONS=%CMAKE_OPTIONS% -G %CMAKE_GENERATOR% -A x64
 
 cd %BUILD_DIR%
 
@@ -58,10 +62,10 @@ if NOT %ERRORLEVEL% == 0 (
 
 echo.
 echo --------------------------------------------------------------------------
-echo *** msbuild %MAKE_OPTIONS% ALL_BUILD.vcxproj /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64
+echo *** msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64 ALL_BUILD.vcxproj
 echo --------------------------------------------------------------------------
 
-msbuild %MAKE_OPTIONS% ALL_BUILD.vcxproj /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64
+msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE%  /p:Platform=x64 ALL_BUILD.vcxproj
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on msbuild ALL_BUILD.vcxproj
     exit 2
@@ -69,14 +73,25 @@ if NOT %ERRORLEVEL% == 0 (
 
 echo.
 echo --------------------------------------------------------------------------
-echo *** msbuild %MAKE_OPTIONS% INSTALL.vcxproj /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64
+echo *** msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64 INSTALL.vcxproj
 echo --------------------------------------------------------------------------
 
-msbuild %MAKE_OPTIONS% INSTALL.vcxproj /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64
+msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64 INSTALL.vcxproj
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on msbuild INSTALL.vcxproj
     exit 3
 )
+
+@set PATH=%PRODUCT_INSTALL%\lib;%PATH%
+msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64 RUN_TESTS.vcxproj
+if NOT %ERRORLEVEL% == 0 (
+    echo ERROR on msbuild RUN_TESTS.vcxproj
+    exit 4
+)
+
+REM rename documentation directory
+cd  %PRODUCT_INSTALL%\share\doc
+mv med-fichier* med
 
 taskkill /F /IM "mspdbsrv.exe"
 

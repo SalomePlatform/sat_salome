@@ -9,8 +9,6 @@ IF NOT DEFINED SAT_DEBUG (
 )
 
 SET PRODUCT_BUILD_TYPE=release
-
-REM TODO: NGH: not Tested yet
 if %SAT_DEBUG% == 1 (
   set PRODUCT_BUILD_TYPE=debug
 )
@@ -23,8 +21,12 @@ if exist "%BUILD_DIR%" rmdir /Q /S %BUILD_DIR%
 mkdir %BUILD_DIR%
 
 cd %SOURCE_DIR%
+xcopy * %BUILD_DIR%\ /E /I /Q /Y
 
-call bootstrap.bat
+cd %BUILD_DIR%
+
+set VC_VERSION=vc141
+call bootstrap.bat %VC_VERSION%
 
 echo.
 echo --------------------------------------------------------------------------

@@ -41,6 +41,20 @@ default_win :
 {
    archive_info : {archive_name : "hdf5-" + $APPLICATION.products.hdf5 + "_windows.tar.gz"}
    nb_proc : 4 # concurrent access leads to permission denied
+   opt_depend: ['zlib']
+}
+
+version_1_14_6 :
+{
+    compil_script : "hdf5-1.14.6.sh"
+    patches : []
+}
+
+version_1_14_6_win :
+{
+    archive_info : {archive_name : "hdf5-1.14.6.tar.gz"}
+    compil_script : "hdf5-1.14.6.bat"
+    patches : []
 }
 
 version_1_12_3 :
