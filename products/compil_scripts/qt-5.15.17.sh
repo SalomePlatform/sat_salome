@@ -27,15 +27,28 @@ fi
 # clean build directory
 rm -rf $BUILD_DIR && mkdir -p $BUILD_DIR && cd $BUILD_DIR
 
-# For -qt-harfbuzz option, see spns #9694
+CONFIGURE_OPTIONS=
+CONFIGURE_OPTIONS+=" -prefix $PRODUCT_INSTALL"
+CONFIGURE_OPTIONS+=" $BUILD_TYPE"
+CONFIGURE_OPTIONS+=" -opensource"
+CONFIGURE_OPTIONS+=" -nomake tests"
+CONFIGURE_OPTIONS+=" -nomake examples"
+CONFIGURE_OPTIONS+=" -no-rpath"
+CONFIGURE_OPTIONS+=" -verbose -no-separate-debug-info -confirm-license"
+CONFIGURE_OPTIONS+=" -qt-libpng -xcb -no-eglfs -dbus-runtime"
+CONFIGURE_OPTIONS+=" -skip qtwebengine"
+CONFIGURE_OPTIONS+=" -skip wayland"
+CONFIGURE_OPTIONS+=" -skip qtgamepad"
+CONFIGURE_OPTIONS+=" -system-freetype"
+# qt-harfbuzz - see spns #9694
+CONFIGURE_OPTIONS+=" -qt-harfbuzz"
+CONFIGURE_OPTIONS+=" -no-openssl"
+CONFIGURE_OPTIONS+=" -no-glib"
+CONFIGURE_OPTIONS+=" -no-jasper"
+
 echo
-echo "*** configure -prefix $PRODUCT_INSTALL $BUILD_TYPE -opensource -nomake tests -nomake examples -no-rpath -verbose -no-separate-debug-info -confirm-license -qt-libpng -xcb -no-eglfs -dbus-runtime -skip qtwebengine -skip wayland -skip qtgamepad -system-freetype -qt-harfbuzz -no-openssl -no-glib -no-jasper"
-
-$SOURCE_DIR/configure -prefix $PRODUCT_INSTALL $BUILD_TYPE -opensource -nomake tests -nomake examples -no-rpath \
-    -verbose -no-separate-debug-info -confirm-license -qt-libpng -xcb -no-eglfs -dbus-runtime -skip qtwebengine \
-    -skip wayland -skip qtgamepad -system-freetype -qt-harfbuzz \
-    -no-openssl -no-glib -no-jasper
-
+echo "*** configure ${CONFIGURE_OPTIONS}"
+$SOURCE_DIR/configure ${CONFIGURE_OPTIONS}
 if [ $? -ne 0 ]; then
     echo "ERROR on configure"
     exit 2
@@ -65,7 +78,6 @@ if [ $? -ne 0 ]; then
     echo "ERROR on make clean"
     exit 5
 fi
-
 
 if [ "${SINGULARITY_NAME}" != "" ]; then
     for f in $(ls ${PRODUCT_INSTALL}/lib/libQt5Core.so*); do

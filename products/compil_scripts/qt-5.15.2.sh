@@ -7,10 +7,10 @@ echo "##########################################################################
 LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
 case $LINUX_DISTRIBUTION in
     FD32|DB11)
-	export  QMAKE_CXXFLAGS="-std=c++11"
-	;;
+        export  QMAKE_CXXFLAGS="-std=c++11"
+        ;;
     *)
-	;;
+        ;;
 esac
 
 if [ -n "$SINGULARITY_NAME" ]; then
@@ -20,8 +20,7 @@ if [ -n "$SINGULARITY_NAME" ]; then
     patch -Nbp1 -i $PATCH_DIR/qt_5_15_2_remove_ABI_tag.patch
 fi
 
-if [ -n "$SAT_DEBUG" ]
-then
+if [ -n "$SAT_DEBUG" ]; then
     BUILD_TYPE="-debug"
 else
     BUILD_TYPE="-release"
@@ -39,8 +38,7 @@ $SOURCE_DIR/configure -prefix $PRODUCT_INSTALL $BUILD_TYPE -opensource -nomake t
     -skip wayland -skip qtgamepad -system-freetype -qt-harfbuzz \
     -no-openssl -no-glib -no-jasper
 
-if [ $? -ne 0 ]
-then
+if [ $? -ne 0 ]; then
     echo "ERROR on configure"
     exit 2
 fi
@@ -48,8 +46,7 @@ fi
 echo
 echo "*** make" $MAKE_OPTIONS
 make $MAKE_OPTIONS
-if [ $? -ne 0 ]
-then
+if [ $? -ne 0 ]; then
     echo "ERROR on make"
     exit 3
 fi
@@ -57,8 +54,7 @@ fi
 echo
 echo "*** make install"
 make install
-if [ $? -ne 0 ]
-then
+if [ $? -ne 0 ]; then
     echo "ERROR on make install"
     exit 4
 fi
@@ -67,10 +63,19 @@ fi
 echo
 echo "*** make clean"
 make clean
-if [ $? -ne 0 ]
-then
+if [ $? -ne 0 ]; then
     echo "ERROR on make clean"
     exit 5
+fi
+
+if [ "${SINGULARITY_NAME}" != "" ]; then
+    for f in $(ls ${PRODUCT_INSTALL}/lib/libQt5Core.so*); do
+        test -L $f
+        if [ $? -ne 0 ]; then
+            echo "INFO: stripping $f"
+            strip --remove-section=.note.ABI-tag ${f}
+        fi
+    done
 fi
 
 echo

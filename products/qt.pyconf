@@ -25,6 +25,19 @@ default_win:
    check_install : []
 }
 
+version_5_15_17 :
+{
+  compil_script : "qt-5.15.17" + $VARS.scriptExtension
+  depend : ["freetype", 'llvm']
+}
+
+version_5_15_17_win :
+{
+  depend : ["freetype"]
+  build_depend : ["llvm", "jom"]
+  opt_depend : ['openssl']
+}
+
 version_5_15_15 :
 {
   compil_script : "qt-5.15.15" + $VARS.scriptExtension
