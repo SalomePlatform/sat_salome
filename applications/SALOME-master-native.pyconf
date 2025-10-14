@@ -220,6 +220,7 @@ APPLICATION :
         'OPENTURNS_SALOME'
         'YDEFX'
         'pmml'
+        'pybatch'
         'SALOMEBOOTSTRAP'
         'SOLVERLAB'
         'TopIIVolMesh'
