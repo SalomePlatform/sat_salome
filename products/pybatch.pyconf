@@ -13,7 +13,7 @@ default :
       }
     }
     patches : []
-    system_info : 
+    system_info :
     {
         rpm     : []
         rpm_dev : []
