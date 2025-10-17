@@ -36,6 +36,7 @@ version_5_15_17_win :
   depend : ["freetype"]
   build_depend : ["llvm", "jom"]
   opt_depend : ['openssl']
+  patches : ['qt-5.15.17-p01.JSCell-NAN-windowsSDK.patch']
 }
 
 version_5_15_15 :
