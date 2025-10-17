@@ -40,6 +40,14 @@ if NOT %ERRORLEVEL% == 0 (
    exit 2
 )
 
+REM with bos #43708 we need to remove the __init__.py which can be created by OmniORB
+if DEFINED OMNIORBPY_REMOVE_INIT (
+  if %OMNIORBPY_REMOVE_INIT% == 1 (
+    cd %OMNIORB_ROOT_DIR%\lib\python\omniidl_be
+    powershell -Command "(Get-Content python.py) | Where-Object {$PSItem.ReadCount -lt 2491 -or $PSItem.ReadCount -gt 2496} | Set-Content python.py"
+  )
+)
+
 if %SAT_DEBUG% == 1 (
   cd %OMNIORB_ROOT_DIR%
   powershell -Command "Get-ChildItem -File -Recurse *.pyd| ForEach-Object {if ((!$_.Name.EndsWith('_d.pyd'))) {  $_ | Copy-Item -Destination {$_.Name  -replace '.pyd','_d.pyd'}}}"

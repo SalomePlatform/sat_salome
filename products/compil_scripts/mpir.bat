@@ -44,11 +44,11 @@ if NOT %ERRORLEVEL% == 0 (
 
 echo.
 echo *********************************************************************
-echo *** msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64 lib_mpir_gc.vcxproj
+echo *** msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64 /p:WindowsTargetPlatformVersion=%WindowsSDKVersion% lib_mpir_gc.vcxproj
 echo *********************************************************************
 echo.
 
-msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64 lib_mpir_gc.vcxproj
+msbuild %MAKE_OPTIONS% /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=x64 /p:WindowsTargetPlatformVersion=%WindowsSDKVersion% lib_mpir_gc.vcxproj
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on msbuild  lib_mpir_gc.vcxproj
     exit 2

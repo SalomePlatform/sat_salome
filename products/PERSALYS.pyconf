@@ -96,9 +96,10 @@ version_v18_0_win :
               'pthreads'
            ]
     patches : ['PERSALYS-v18.0-002.patch',
-               'PERSALYS-v18.0-003.patch',
                'PERSALYS-v18.0-004.patch',
-               'PERSALYS-v18.0-005.patch']
+               'PERSALYS-v18.0-005.patch',
+               'PERSALYS-v18.0-006.patch'
+           ]
 }
 
 version_v17_0_1 :

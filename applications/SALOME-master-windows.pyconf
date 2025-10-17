@@ -44,7 +44,7 @@ APPLICATION :
         attrs : '24.2.0'
         Babel : '2.7.0'
         BasicIterativeStatistics : 'v0.1.0'
-        boost : '1.67.0'
+        boost : '1.79.0'
         CAS : {tag: 'CR790-SALOME-PATCH', section:'version_CR790_SALOME_PATCH_win', base: 'no'}
         certifi : '2019.6.16'
         cftime : '1.6.3'
@@ -83,6 +83,7 @@ APPLICATION :
         iniconfig : '2.0.0'
         ispc : '1.15.0'
         Jinja2 : '2.10.1'
+        jom : '1.1.4'
         kiwisolver : '1.4.5'
         lapack : '3.8.0'
         libigl : {tag: 'v2.5.0-x86_64-'+$VARS.dist, section : 'version_v2_5_0_x86_64', base : 'no'}
@@ -139,7 +140,7 @@ APPLICATION :
         pyreadline : '3.4.1'
         Python : '3.9.14'
         pytz : '2020.1'
-        qt : '5.15.15'
+        qt : '5.15.17'
         qtpy : {tag : '2.4.1', base : 'no', section : 'version_2_4_1_no_pip'}
         qwt : '6.1.6'
         rapidjson : '1.1.0'
