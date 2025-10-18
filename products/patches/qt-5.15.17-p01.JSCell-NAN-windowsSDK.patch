@@ -1,5 +1,5 @@
---- /volatile/catB/ng780475/workspace/qt-everywhere-src-5.15.17-ref/qtscript/src/3rdparty/javascriptcore/JavaScriptCore/runtime/JSCell.cpp	2025-10-17 12:25:33.158066597 +0200
-+++ /volatile/catB/ng780475/workspace/qt-everywhere-src-5.15.17-dev/qtscript/src/3rdparty/javascriptcore/JavaScriptCore/runtime/JSCell.cpp	2025-10-17 12:25:40.698134949 +0200
+--- qt-everywhere-src-5.15.17_ref/qtscript/src/3rdparty/javascriptcore/JavaScriptCore/runtime/JSCell.cpp	2023-11-24 16:26:49.000000000 +0100
++++ qt-everywhere-src-5.15.17_dev/qtscript/src/3rdparty/javascriptcore/JavaScriptCore/runtime/JSCell.cpp	2025-10-18 16:24:05.202058553 +0200
 @@ -31,7 +31,7 @@
  namespace JSC {
  
