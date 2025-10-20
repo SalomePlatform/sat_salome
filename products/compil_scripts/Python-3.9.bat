@@ -152,8 +152,8 @@ if NOT %ERRORLEVEL% == 0 (
     exit 1
 )
 
-echo *** msbuild %BUILD_DIR%\PCBuild\pcbuild.sln /t:Build /m /nologo /v:m /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=%PLATFORM_TARGET% /p:BuildProjectReferences=false /p:OutDir=%PRODUCT_INSTALL%\
-msbuild %BUILD_DIR%\PCBuild\pcbuild.sln  /t:Build /m /nologo /v:m /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=%PLATFORM_TARGET% /p:OutDir=%PRODUCT_INSTALL%\
+echo *** msbuild %BUILD_DIR%\PCBuild\pcbuild.sln /t:Build /m /nologo /v:m /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=%PLATFORM_TARGET% /p:WindowsTargetPlatformVersion=%WindowsSDKVersion% /p:BuildProjectReferences=false /p:OutDir=%PRODUCT_INSTALL%\
+msbuild %BUILD_DIR%\PCBuild\pcbuild.sln  /t:Build /m /nologo /v:m /p:Configuration=%PRODUCT_BUILD_TYPE% /p:Platform=%PLATFORM_TARGET% /p:WindowsTargetPlatformVersion=%WindowsSDKVersion% /p:OutDir=%PRODUCT_INSTALL%\
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on msbuild
     exit 2
