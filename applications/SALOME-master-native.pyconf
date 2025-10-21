@@ -57,6 +57,7 @@ APPLICATION :
         cycler : 'native'
         Cython : 'native'
         dateutil : 'native'
+        decorator: 'native'
         dill : 'native' # 0.3.4
         docutils : 'native'
         doxygen : 'native'
