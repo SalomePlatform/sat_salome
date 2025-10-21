@@ -1,0 +1,12 @@
+diff -Naur '--exclude=.git' mcut/CMakeLists.txt mcut.dev/CMakeLists.txt
+--- mcut/CMakeLists.txt	2025-10-21 09:22:04.411048065 +0200
++++ mcut.dev/CMakeLists.txt	2025-10-21 09:15:43.844460524 +0200
+@@ -217,7 +217,7 @@
+ 	FetchContent_Populate(
+ 		mio
+ 		GIT_REPOSITORY 			https://github.com/cutdigital/mio.git
+-		GIT_TAG main
++		GIT_TAG a71c0a4a4e439214d87bc64915d68be397735cbb
+ 	)
+ 
+ 	set(mio_include_dir ${mio_SOURCE_DIR}/include)

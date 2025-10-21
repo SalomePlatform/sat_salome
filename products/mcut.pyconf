@@ -12,7 +12,7 @@ default :
       }
     }
     patches : []
-    system_info : 
+    system_info :
     {
         rpm : []
         rpm_dev : []
@@ -36,7 +36,7 @@ default :
                   "cork",
                   "libigl"
                  ]
-    
+
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     install_dir : 'base'
@@ -53,7 +53,8 @@ version_b5b0ec6:
   compil_script: "mcut" + $VARS.scriptExtension
   patches : [
              'mcut-b5b0ec6-p01_cgsboolean.patch',
-             'mcut-b5b0ec6-p02_cgsboolean.patch'
+             'mcut-b5b0ec6-p02_cgsboolean.patch',
+             'mcut-b5b0ec6-p04_mio-tag.patch'
             ]
 }
 
@@ -63,7 +64,8 @@ version_b5b0ec6_FD42:
   compil_script: "mcut" + $VARS.scriptExtension
   patches : [
              'mcut-b5b0ec6-p01_cgsboolean.patch',
-             'mcut-b5b0ec6-p02_cgsboolean.patch'
-             'mcut-b5b0ec6-p03_stdint.patch'
+             'mcut-b5b0ec6-p02_cgsboolean.patch',
+             'mcut-b5b0ec6-p03_stdint.patch',
+             'mcut-b5b0ec6-p04_mio-tag.patch'
             ]
 }
