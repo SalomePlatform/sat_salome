@@ -37,6 +37,11 @@ CONFIGURE_OPTIONS+=" --disable=QtWebSockets"
 case $LINUX_DISTRIBUTION in
     CO10)
         CONFIGURE_OPTIONS+=" --qmake=$(which qmake-qt5)"
+        ;;
+esac
+
+case $LINUX_DISTRIBUTION in
+    CO10|DB13)
         CONFIGURE_OPTIONS+=" --qml-plugindir=${PRODUCT_INSTALL}/lib"
         ;;
 esac
@@ -88,7 +93,7 @@ else
 fi
 
 cd $PRODUCT_INSTALL/lib
-find . -name "*.so*" |xargs chmod u+rwx 
+find . -name "*.so*" |xargs chmod u+rwx
 
 echo
 echo "########## END"
