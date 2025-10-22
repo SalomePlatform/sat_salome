@@ -46,6 +46,7 @@ default_win :
 
 version_1_14_6 :
 {
+    archive_info : {archive_name : "hdf5-1.14.6.tar.gz"}
     compil_script : "hdf5-1.14.6.sh"
     patches : []
 }

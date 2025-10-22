@@ -45,7 +45,7 @@ version_6_0_0 :
 {
     archive_info :
     {
-        archive_name : "med-6.0.0alpha1.tar.gz"
+        archive_name : "med-6.0.0.tar.gz"
     }
     compil_script : 'med-6.0.0.sh'
     test_build : "make check"
@@ -55,6 +55,10 @@ version_6_0_0 :
 version_6_0_0_win :
 {
     compil_script :  "med-6.0.0.bat"
+    archive_info :
+    {
+        archive_name : "med-6.0.0beta2.tar.gz" # FIXME
+    }
     patches : []
     build_depend : ["cmake", "swig"]
 }
