@@ -186,7 +186,7 @@ APPLICATION :
         'GUI'
         'CommonGeomLib'
         'GEOM'
-        'SMESH'
+        'SMESH' : 'bos/47612'
         'NETGENPLUGIN'
         'BLSURFPLUGIN'
         'GHS3DPLUGIN'
