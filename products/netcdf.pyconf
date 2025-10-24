@@ -37,6 +37,16 @@ default_win :
     opt_depend : []
 }
 
+version_4_9_2:
+{
+    archive_info :
+    {
+      archive_name  : "netcdf-c-4.9.2.tar.gz"
+    }
+    compil_script :  "netcdf-4.9.2" + $VARS.scriptExtension
+    patches : []
+}
+
 version_4_6_2:
 {
     archive_info :
