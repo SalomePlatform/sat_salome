@@ -342,7 +342,7 @@ __overwrite__ :
         'APPLICATION.products.nlopt'            : '2.7.0'
         'APPLICATION.products.swig'             : '4.0.2'
         'APPLICATION.products.sphinxintl'       : {tag: '0.9.10', base: 'no', section: 'version_0_9_10_no_pip'   }
-        'APPLICATION.products.openturns'        : {tag: '1.24',   base: 'no', section: 'version_1_24_CO8'        }
+        'APPLICATION.products.openturns'        : {tag: '1.25.1',  base: 'no', section: 'version_1_25_1_CO8'     }
         'APPLICATION.products.PyFMI'            : {tag: '2.6',    base: 'no', section: 'version_2_6_no_pip'      }
         'APPLICATION.products.statsmodels'      : {tag: '0.6.1',  base: 'no', section: 'version_0_6_1_no_pip'    }
         'APPLICATION.products.gdal'             : {tag: '2.4.0',  base: 'no', section: 'version_2_4_0_CO8_native'}
@@ -411,6 +411,7 @@ __overwrite__ :
         'APPLICATION.products.assimulo'                 : {tag: '3.5.2',           base: 'no', section: 'version_3_5_2_x86_64'               }
         'APPLICATION.products.FMILibrary'               : {tag: '2.4.1',           base: 'no', section: 'version_2_4_1_CO10'                 }
         'APPLICATION.products.PyFMI'                    : {tag: '2.13.1',          base: 'no', section: 'version_2_13_1_x86_64'              }
+        'APPLICATION.products.openturns'                : {tag: '1.25.1',          base: 'no', section: 'version_1_25_1_CO10'                }
         'APPLICATION.products.omniORBpy'                : {tag: '4.2.5',           base: 'no', section: 'version_4_2_5_CO10'                 }
         'APPLICATION.products.KERNEL'                   : {tag: 'master',          base: 'no', section: 'default_CO10'                       }
         'APPLICATION.products.ParaView'                 : {tag: '5.13.2918b94391', base: 'no', section: 'version_5_13_2_MPI_CO10', hpc: 'yes'}

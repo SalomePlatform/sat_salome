@@ -137,6 +137,32 @@ version_1_25_1_CO8 :
     opt_depend : ['pandas', 'statsmodels', 'patsy']
 }
 
+version_1_25_1_CO10 :
+{
+    compil_script :  "openturns-1.25.1.sh"
+    patches : ['openturns-1.25.1.0001.patch']
+    depend : [
+		'Python',
+		'lapack',
+		'fftw',
+		'hdf5',
+		'tbb',
+		'nlopt',
+		'libxml2',
+		'eigen',
+		'matplotlib',
+		'cminpack',
+		'FMILibrary',
+		'PyFMI',
+		'boost',
+		'dill',
+		'pythonfmu',
+		'scikit_learn',
+		'tqdm'
+	    ]
+    opt_depend : ['pandas', 'statsmodels', 'patsy']
+}
+
 version_1_25_1_win :
 {
     compil_script :  "openturns-1.25.1.bat"
