@@ -105,7 +105,7 @@ APPLICATION :
         mmgplugin: 'v1.0.0'
         mpir: '855491e'
         msvc : '2017'
-        netcdf : '4.6.2'
+        netcdf : '4.9.2'
         netCDF4: '1.6.5'
         netgen : {tag:'5.3.1', base: 'no',  section: 'version_5_3_1_with_CAS_7_8_win'}
         nlopt : '2.7.1'
