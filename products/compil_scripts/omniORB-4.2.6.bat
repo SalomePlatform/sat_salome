@@ -8,10 +8,10 @@ IF NOT DEFINED SAT_DEBUG (
   SET SAT_DEBUG=0
 )
 
-if NOT exist "%PRODUCT_INSTALL%" mkdir %PRODUCT_INSTALL%
+if NOT exist "%PRODUCT_INSTALL%" mkdir "%PRODUCT_INSTALL%"
 REM clean BUILD directory
-if exist "%BUILD_DIR%" rmdir /Q /S %BUILD_DIR%
-mkdir %BUILD_DIR%
+if exist "%BUILD_DIR%" rmdir /Q /S "%BUILD_DIR%"
+mkdir "%BUILD_DIR%"
 
 if NOT defined CYGWIN_ROOT_DIR (
   echo ERROR: Please set the environment variable: CYGWIN_ROOT_DIR
@@ -20,35 +20,48 @@ if NOT defined CYGWIN_ROOT_DIR (
   echo INFO: Cygwin suite environment variable is set to: %CYGWIN_ROOT_DIR%
 )
 
-if exist "%BUILD_DIR%" rmdir /Q /S "%BUILD_DIR%"
-mkdir %BUILD_DIR%
-
-cd %SOURCE_DIR%
-xcopy * %BUILD_DIR% /E /I /Q
+cd "%SOURCE_DIR%"
+xcopy * "%BUILD_DIR%" /E /I /Q
 if NOT %ERRORLEVEL% == 0 (
   echo ERROR on xcopy
   exit 2
 )
 
+REM retrieve the major version of VisualStudion
+set VISUAL_STUDIO_VERSION=%VisualStudioVersion:.=&REM.%
+if "%VISUAL_STUDIO_VERSION%" =="15" (
+   set VS_CONFIGURATON_FILE=x86_win32_vs_15
+) else if "%VISUAL_STUDIO_VERSION%" =="16" (
+   set VS_CONFIGURATON_FILE=x86_win32_vs_16
+) else if "%VISUAL_STUDIO_VERSION%" =="17" (
+   set VS_CONFIGURATON_FILE=x86_win32_vs_16
+) else (
+  echo FATAL: unknown VISUAL version: %VISUAL_STUDIO_VERSION% -  update compilation script omniORB-4.2.6.bat!
+  exit 1
+)
 REM select the correct platform
 set CONFIG_MK=%BUILD_DIR%\config\config.mk
 set CONFIG_REF=%BUILD_DIR%\config\config.mk.ref
 set CONFIG_DBG=%BUILD_DIR%\config\config.mk.dbg
 copy %CONFIG_MK% %CONFIG_REF%
 if %SAT_DEBUG% == 0 (
-  echo INFO: activating platform target: x86_win32_vs_15
-  sed "s/#platform = x86_win32_vs_15/platform = x86_win32_vs_15/g" < %CONFIG_REF% >  %CONFIG_MK%
+  echo INFO: activating platform target: %VS_CONFIGURATON_FILE%
+  sed "s/#platform = %VS_CONFIGURATON_FILE%/platform = %VS_CONFIGURATON_FILE%/g" < %CONFIG_REF% >  %CONFIG_MK%
 )
 
 REM target our Python in the configuration file
-set PLATFORM_MK=%BUILD_DIR%\mk\platforms\x86_win32_vs_15.mk
-set PLATFORM_REF=%BUILD_DIR%\mk\platforms\x86_win32_vs_15.mk.ref
+set PLATFORM_MK=%BUILD_DIR%\mk\platforms\%VS_CONFIGURATON_FILE%.mk
+set PLATFORM_REF=%BUILD_DIR%\mk\platforms\%VS_CONFIGURATON_FILE%.mk.ref
 copy %PLATFORM_MK% %PLATFORM_REF%
 
 set CYGWIN_PYTHON_ROOT_DIR=%PYTHON_ROOT_DIR:\=\/%
 set CYGWIN_PYTHON_ROOT_DIR=%CYGWIN_PYTHON_ROOT_DIR::=%
 echo Setting path to Python binary...
-sed "s/#PYTHON = \/cygdrive\/c\/Python36\/python/PYTHON = \/cygdrive\/%CYGWIN_PYTHON_ROOT_DIR%\/python/g" < %PLATFORM_REF% >  %PLATFORM_MK%.1
+if "%VISUAL_STUDIO_VERSION%" =="15" (
+  sed "s/#PYTHON = \/cygdrive\/c\/Python36\/python/PYTHON = \/cygdrive\/%CYGWIN_PYTHON_ROOT_DIR%\/python/g" < %PLATFORM_REF% >  %PLATFORM_MK%.1
+) else (
+  sed "s/#PYTHON = \/cygdrive\/c\/Python37\/python/PYTHON = \/cygdrive\/%CYGWIN_PYTHON_ROOT_DIR%\/python/g" < %PLATFORM_REF% >  %PLATFORM_MK%.1
+)
 
 echo Setting path to openssl binary (don't use /cygwin path approach since it's buggy use path a la windows...
 

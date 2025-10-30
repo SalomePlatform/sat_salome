@@ -13,19 +13,31 @@ if %SAT_DEBUG% == 1 (
   set PRODUCT_BUILD_TYPE=-debug-and-release
 )
 
-if NOT exist "%PRODUCT_INSTALL%" mkdir %PRODUCT_INSTALL%
+if NOT exist "%PRODUCT_INSTALL%" mkdir "%PRODUCT_INSTALL%"
 REM clean BUILD directory
-if exist "%BUILD_DIR%" rmdir /Q /S %BUILD_DIR%
-mkdir %BUILD_DIR%
+if exist "%BUILD_DIR%" rmdir /Q /S "%BUILD_DIR%"
+mkdir "%BUILD_DIR%"
 
-cd %SOURCE_DIR%
+cd "%SOURCE_DIR%"
+
+set VISUAL_STUDIO_VERSION=%VisualStudioVersion:.=&REM.%
+if "%VISUAL_STUDIO_VERSION%" =="15" (
+   set VS_CONFIGURATON_FILE=win32-msvc2017
+) else if "%VISUAL_STUDIO_VERSION%" =="16" (
+   set VS_CONFIGURATON_FILE=win32-msvc2019
+) else if "%VISUAL_STUDIO_VERSION%" =="17" (
+   set VS_CONFIGURATON_FILE=win32-msvc2022
+) else (
+  echo FATAL: unknown VISUAL version: %VISUAL_STUDIO_VERSION% -  update compilation script qt-5.15.17.bat!
+  exit 1
+)
 
 REM Configure
 echo.
 echo --------------------------------------------------------------------------
 echo *** configure  
 echo --------------------------------------------------------------------------
-set QT_OPTIONS=-platform win32-msvc2017
+set QT_OPTIONS=-platform %VS_CONFIGURATON_FILE%
 set QT_OPTIONS=%QT_OPTIONS% -opensource -confirm-license %PRODUCT_BUILD_TYPE%
 set QT_OPTIONS=%QT_OPTIONS% -no-angle -opengl desktop -nomake examples -nomake tests 
 set QT_OPTIONS=%QT_OPTIONS% -skip qtwebengine  -skip wayland -skip qtgamepad

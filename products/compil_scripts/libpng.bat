@@ -14,12 +14,12 @@ REM TODO: NGH: not Tested yet
 REM if %SAT_DEBUG% == 1 (
 REM   set PRODUCT_BUILD_TYPE=Debug
 REM )
-if NOT exist "%PRODUCT_INSTALL%" mkdir %PRODUCT_INSTALL%
+if NOT exist "%PRODUCT_INSTALL%" mkdir "%PRODUCT_INSTALL%"
 REM clean BUILD directory
-if exist "%BUILD_DIR%" rmdir /Q /S %BUILD_DIR%
-mkdir %BUILD_DIR%
+if exist "%BUILD_DIR%" rmdir /Q /S "%BUILD_DIR%"
+mkdir "%BUILD_DIR%"
 
-cd %SOURCE_DIR%
+cd "%SOURCE_DIR%"
 
 xcopy include %PRODUCT_INSTALL%\include /E /I /Q
 if NOT %ERRORLEVEL% == 0 (

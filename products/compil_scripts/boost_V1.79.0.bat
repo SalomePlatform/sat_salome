@@ -9,7 +9,7 @@ IF NOT DEFINED SAT_DEBUG (
 )
 
 IF NOT DEFINED CMAKE_GENERATOR (
-  SET CMAKE_GENERATOR="Visual Studio 15 2017 Win64"
+  SET CMAKE_GENERATOR="Visual Studio 15 2017"
 )
 
 SET PRODUCT_BUILD_TYPE=release
@@ -27,7 +27,18 @@ cd %SOURCE_DIR%
 xcopy * %BUILD_DIR%\ /E /I /Q /Y
 cd %BUILD_DIR%
 
-set VC_VERSION=vc141
+REM retrieve the major version of VisualStudion
+set VISUAL_STUDIO_VERSION=%VisualStudioVersion:.=&REM.%
+if "%VISUAL_STUDIO_VERSION%" =="15" (
+   SET VC_VERSION=v141
+) else if "%VISUAL_STUDIO_VERSION%" =="16" (
+   set VC_VERSION=vc142
+) else if "%VISUAL_STUDIO_VERSION%" =="17" (
+   set VC_VERSION=vc143
+) else (
+  echo FATAL: unknown VISUAL version: %VISUAL_STUDIO_VERSION% -  update compilation script boost_V1.79.0.bat!
+  exit 1
+)
 
 call bootstrap.bat %VC_VERSION%
 

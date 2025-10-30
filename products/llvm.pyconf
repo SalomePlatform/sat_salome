@@ -38,7 +38,8 @@ version_8_0_1_clang :
 
 version_8_0_1_clang_win :
 {
-    cmake_options : ' -DCMAKE_INSTALL_PREFIX=%LLVM_ROOT_DIR% -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON  -DPYTHON_EXECUTABLE:STRING=%PYTHON_ROOT_DIR%/python.exe -DLLVM_INSTALL_UTILS:BOOL=ON -DLLVM_ENABLE_DUMP:BOOL=ON -Thost=x64'
+   build_source : "script"
+   compil_script: "llvm-8.0.1.bat"
    depend : [ 'Python' ]
    archive_info:
    {

@@ -41,6 +41,7 @@ version_2021_12_0_win :
     archive_info : {archive_name : "oneTBB-2021.12.0.tar.gz"}
     depend : ['Python']
     build_depend : ['swig', 'cmake']
+    opt_depend : []
     properties :
     {
       incremental : "yes"

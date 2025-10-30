@@ -21,14 +21,14 @@ if %SAT_DEBUG% == 1 (
   set PRODUCT_BUILD_TYPE=Debug
 )
 
-if NOT exist "%PRODUCT_INSTALL%" mkdir %PRODUCT_INSTALL%
+if NOT exist "%PRODUCT_INSTALL%" mkdir "%PRODUCT_INSTALL%"
 if NOT exist "%PRODUCT_INSTALL%\bin" mkdir %PRODUCT_INSTALL%\bin
 
 REM clean BUILD directory
-if exist "%BUILD_DIR%" rmdir /Q /S %BUILD_DIR%
-mkdir %BUILD_DIR%
+if exist "%BUILD_DIR%" rmdir /Q /S "%BUILD_DIR%"
+mkdir "%BUILD_DIR%"
 
-cd %BUILD_DIR%
+cd "%BUILD_DIR%"
 set PATH=%SOURCE_DIR%\windows\dependencies\graphviz-build-utilities;%PATH%
 set CMAKE_OPTIONS=
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DCMAKE_INSTALL_PREFIX=%PRODUCT_INSTALL%
