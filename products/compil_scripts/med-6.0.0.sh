@@ -4,6 +4,8 @@ echo "##########################################################################
 echo "med" $VERSION
 echo "##########################################################################"
 
+GCC_VERSION_MAJOR=$($(which gcc) --version | head -n 1 | cut -d' ' -f3 | cut -d'.' -f1)
+
 LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
 
 rm -rf ${BUILD_DIR}
@@ -20,7 +22,7 @@ fi
 unset SWIG_LIB
 
 CONFIGURE_FLAGS=
-CONFIGURE_FLAGS+=' CFLAGS=-m64 CXXFLAGS=-m64' 
+CONFIGURE_FLAGS+=' CFLAGS=-m64 CXXFLAGS=-m64'
 CONFIGURE_FLAGS+=' --enable-mesgerr'
 CONFIGURE_FLAGS+=' --enable-installtest'
 CONFIGURE_FLAGS+=" --with-f90"
@@ -37,8 +39,13 @@ fi
 if [ "$SALOME_USE_64BIT_IDS" == "1" ]; then
     echo "WARNING: user requested 64 bits encoding for integers..."
     CONFIGURE_FLAGS+=' --with-med_int=long'
-    export  FFLAGS="-g -O2 -fdefault-integer-8 -fallow-argument-mismatch"
-    export FCFLAGS="-g -O2 -fdefault-integer-8 -fallow-argument-mismatch"
+    export  FFLAGS="-g -O2 -fdefault-integer-8"
+    export FCFLAGS="-g -O2 -fdefault-integer-8"
+    if [ "${GCC_VERSION_MAJ}" -gt "8" ]; then
+        FFLAGS+=" -fallow-argument-mismatch"
+        FCFLAGS+=" -fallow-argument-mismatch"
+    fi
+    export ${FFLAGS} ${FCFLAGS}
 else
     export  FFLAGS="-g -O2 -ffixed-line-length-none"
     export FCFLAGS="-g -O2 -ffixed-line-length-none"
