@@ -1,0 +1,30 @@
+default :
+{
+    name : "sqlite"
+    build_source : "script"
+    compil_script : $name + $VARS.scriptExtension
+    get_source : "archive"
+    system_info :
+    {
+       rpm : []
+       rpm_dev : ["sqlite-devel"]
+       apt : []
+       apt_dev : ["libsqlite3-dev"]
+    }
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : []
+    build_depend : []
+    opt_depend : []
+    patches : []
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+      single_install_dir : "no"
+      incremental : "yes"
+    }
+}

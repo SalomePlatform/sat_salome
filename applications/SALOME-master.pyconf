@@ -76,7 +76,7 @@ APPLICATION :
         mmg : '5.6.0'
         mmgplugin: 'v1.0.0'
         mpfr : 'native'
-        gdal : '2.4.0'
+        gdal : '3.7.1'
         gmsh : '4.10.3_with_CAS_7.8'
         graphviz : '2.38.0'
         h5py : {tag: '3.9.0', base: 'no', section: 'version_3_9_0_no_pip'}
@@ -129,6 +129,7 @@ APPLICATION :
         planegcs : '0.18-3cb6890'
         poetry : {tag: '1.8.3', base: 'no', section: 'version_1_8_3_x86_64'    }
         poetry_core : '1.9.0'
+        proj : '9.2.1'
         pyyaml : {tag: '6.0',   base: 'no', section: 'version_6_0_x86_64'    }
         psutil : '5.9.8'
         PyFMI : {tag: '2.6',   base: 'no', section: 'version_2_6_no_pip'}
@@ -168,6 +169,7 @@ APPLICATION :
         sphinxcontrib_websupport : '1.2.7'
         sphinx_rtd_theme : '2.0.0'
         sphinxintl: '2.1.0'
+        sqlite: '3.26.0'
         statsmodels: '0.14.1'
         swig : '4.0.2'
         tabulate : '0.9.0'
@@ -273,7 +275,6 @@ __overwrite__ :
         'APPLICATION.products.pytz'     : '2021.1'
         'APPLICATION.products.scipy'    : '1.8.0'
         'APPLICATION.products.numpy'    : {tag: '1.22.2', base: 'no', section: 'version_1_22_2_CO8' }
-        'APPLICATION.products.gdal'     : {tag: '2.4.0',  base: 'no', section: 'version_2_4_0_CO8'  }
         'APPLICATION.products.openturns': {tag: '1.25.1',   base: 'no', section: 'version_1_25_1_CO8'   }
     }
     #
@@ -283,9 +284,7 @@ __overwrite__ :
         'APPLICATION.products.gcc'       : '11.4.0'
         'APPLICATION.products.openmpi'   : '4.1.6'
         'APPLICATION.products.boost'     : {tag: '1.71.0',  base: 'no', section: 'version_1_71_0_CO9' } # spns #29324
-        'APPLICATION.products.gdal'      : {tag: '2.4.0',   base: 'no', section: 'version_2_4_0_CO9'  } # spns #29324
         'APPLICATION.products.libigl'    : {tag: 'v2.5.0',  base: 'no', section: 'version_v2_5_0_CO9' }
-        'APPLICATION.products.openturns' : {tag: '1.24',    base: 'no', section: 'version_1_24_CO9'   }
         'APPLICATION.products.URANIE'    : {tag: '4.8.0',   base: 'no', section: 'version_4_8_0_CO9'  }
     }
     #
