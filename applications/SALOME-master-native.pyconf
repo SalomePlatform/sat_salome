@@ -98,7 +98,7 @@ APPLICATION :
         metis : 'native'
         mpi4py: 'native'
         mmg : '5.6.0'
-        mmgplugin: 'v1.0.0'
+        mmgplugin: 'main'
         netgen : '5.3.1_with_CAS_7.8'
         netcdf : '4.9.2'
         netCDF4: 'native' #FIXME
