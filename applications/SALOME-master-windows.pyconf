@@ -74,7 +74,7 @@ APPLICATION :
         FMILibrary : '2.0.3'
         freeimage : '3.18.0'
         freetype : '2.13.3'
-        gmsh : '4.10.3_with_CAS_7.8'
+        gmsh : '4.14.1'
         graphviz : '2.44.1'
         hdf5 : '1.14.6'
         h5py : '3.11.0'

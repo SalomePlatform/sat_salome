@@ -77,7 +77,7 @@ APPLICATION :
         mmgplugin: 'main'
         mpfr : 'native'
         gdal : '3.7.1'
-        gmsh : '4.10.3_with_CAS_7.8'
+        gmsh : '4.14.1'
         graphviz : '2.38.0'
         h5py : {tag: '3.9.0', base: 'no', section: 'version_3_9_0_no_pip'}
         hdf5 : '1.14.6'

@@ -70,7 +70,7 @@ APPLICATION :
         freetype : 'native'
         gl2ps : 'native'
         gdal : 'native'
-        gmsh : '4.10.3_with_CAS_7.8'
+        gmsh : '4.14.1'
         graphviz : 'native'
         h5py : 'native'
         hdf5 : '1.14.6'
@@ -271,7 +271,6 @@ __overwrite__ :
         'APPLICATION.products.omniORBpy'        : {tag: '4.2.5',  base: 'no', section: 'version_4_2_5_UB24_04'              }
         'APPLICATION.products.nose_py3'         : {tag: '1.6.9',  base: 'no', section: 'version_1_6_9_no_pip'               }
         'APPLICATION.products.rkCommon'         : {tag: '1.5.1',  base: 'no', section: 'version_1_5_1_UB24_04'              }
-        'APPLICATION.products.gmsh'             : {tag: '4.10.3', base: 'no', section: 'version_4_10_3_with_CAS_7_8_UB24_04'}
         'APPLICATION.products.ParaView'         : {tag: '5.13.2918b94391', base: 'no', section: 'version_5_13_2_MPI_UB24_04', hpc: 'yes'}
     }
     #
@@ -326,7 +325,6 @@ __overwrite__ :
         'APPLICATION.products.PyQt'             : '5.15.3'
         'APPLICATION.products.sip'              : {tag: '5.5.0',           base: 'no', section: 'version_5_5_0_DB13'                    }
         'APPLICATION.products.FMILibrary'       : {tag: '2.4.1',           base: 'no', section: 'version_2_4_1_FD40'                    }
-        'APPLICATION.products.gmsh'             : {tag: '4.10.3',          base: 'no', section: 'version_4_10_3_with_CAS_7_8_DB13'      }
         'APPLICATION.products.meshio'           : {tag: '5.3.5',           base: 'no', section: 'version_5_3_5_no_pip'                  }
         'APPLICATION.products.omniORBpy'        : {tag: '4.2.5',           base: 'no', section: 'version_4_2_5_DB13'                    }
         'APPLICATION.products.nose_py3'         : {tag: '1.6.9',           base: 'no', section: 'version_1_6_9_no_pip'                  }
@@ -402,7 +400,6 @@ __overwrite__ :
         'APPLICATION.products.sip'                      : {tag: '5.5.0',           base: 'no', section: 'version_5_5_0_CO10'                 }
         'APPLICATION.products.Cython'                   : {tag: 'native',          base: 'no', section: 'default_CO10'                       }
         'APPLICATION.products.meshio'                   : {tag: '5.3.5',           base: 'no', section: 'version_5_3_5_no_pip'               }
-        'APPLICATION.products.gmsh'                     : {tag: '4.10.3',          base: 'no', section: 'version_4_10_3_with_CAS_7_8_CO10'   }
         'APPLICATION.products.opencv'                   : {tag: '3.2.0',           base: 'no', section: 'version_3_2_0_CO10'                 }
         'APPLICATION.products.toml'                     : {tag: '0.10.2',          base: 'no', section: 'version_0_10_2_no_pip'              }
         'APPLICATION.products.rkCommon'                 : {tag: '1.5.1',           base: 'no', section: 'version_1_5_1_CO10'                 }
@@ -433,7 +430,6 @@ __overwrite__ :
         'APPLICATION.products.opencv'           : {tag: '3.2.0',     base: 'no', section: 'version_3_2_0_FD38'                  }
         'APPLICATION.products.petsc'            : {tag: '3.20.5',    base: 'no', section: 'version_3_20_5_FD38'                 }
         'APPLICATION.products.PyFMI'            : {tag: '2.6',       base: 'no', section: 'version_2_6_FD38'                    }
-        'APPLICATION.products.gmsh'             : {tag: '4.10.3',    base: 'no', section: 'version_4_10_3_with_CAS_7_8_FD38'    }
     }
     #
     {
@@ -449,7 +445,6 @@ __overwrite__ :
         'APPLICATION.products.Cython'           : {tag: 'native',          base: 'no', section: 'default_FD40'                       }
         'APPLICATION.products.meshio'           : {tag: '5.3.5' ,          base: 'no', section: 'version_5_3_5_no_pip'               }
         'APPLICATION.products.opencv'           : {tag: '3.2.0',           base: 'no', section: 'version_3_2_0_FD40'                 }
-        'APPLICATION.products.gmsh'             : {tag: '4.10.3',          base: 'no', section: 'version_4_10_3_with_CAS_7_8_FD40'   }
         'APPLICATION.products.omniORBpy'        : {tag: '4.2.5',           base: 'no', section: 'version_4_2_5_FD40'                 }
         'APPLICATION.products.FMILibrary'       : {tag: '2.4.1',           base: 'no', section: 'version_2_4_1_FD40'                 }
         'APPLICATION.products.nose_py3'         : {tag: '1.6.9',           base: 'no', section: 'version_1_6_9_no_pip'               }
@@ -478,7 +473,6 @@ __overwrite__ :
         'APPLICATION.products.Cython'           : {tag: 'native',         base: 'no', section: 'default_FD42'                        }
         'APPLICATION.products.meshio'           : {tag: '5.3.5' ,         base: 'no', section: 'version_5_3_5_no_pip'                }
         'APPLICATION.products.opencv'           : {tag: '3.2.0',          base: 'no', section: 'version_3_2_0_FD42'                  }
-        'APPLICATION.products.gmsh'             : {tag: '4.10.3',         base: 'no', section: 'version_4_10_3_with_CAS_7_8_FD42'    }
         'APPLICATION.products.omniORBpy'        : {tag: '4.2.5',          base: 'no', section: 'version_4_2_5_FD42'                  }
         'APPLICATION.products.FMILibrary'       : {tag: '2.4.1',          base: 'no', section: 'version_2_4_1_FD42'                  }
         'APPLICATION.products.nose_py3'         : {tag: '1.6.9',          base: 'no', section: 'version_1_6_9_no_pip'                }

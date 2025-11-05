@@ -37,6 +37,11 @@ default :
     patches: []
 }
 
+default_win:
+{
+	cmake_options: "-DGMSH_DIR=%GMSH_DIR% -DGMSH_INCLUDE_DIRS=%GMSH_INCLUDE_DIRS% -DGMSH_LIBRARIES=%GMSH_LIBRARIES%"
+}
+
 version_8_1_0_to_9_1_0 :
 {
     name : "GMSHPLUGIN"
