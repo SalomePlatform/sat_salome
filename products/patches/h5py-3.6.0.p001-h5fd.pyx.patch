@@ -1,0 +1,10 @@
+--- h5py-3.6.0_ref/h5py/h5fd.pyx	2021-11-16 10:53:06.000000000 +0100
++++ h5py-3.6.0_dev/h5py/h5fd.pyx	2025-11-06 17:02:45.730128966 +0100
+@@ -190,6 +190,7 @@
+ cdef H5FD_class_t info
+ memset(&info, 0, sizeof(info))
+ 
++info.version = 0x01
+ info.name = 'fileobj'
+ info.maxaddr = libc.stdint.SIZE_MAX - 1
+ info.fc_degree = H5F_CLOSE_WEAK

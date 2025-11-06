@@ -1,0 +1,10 @@
+--- h5py-3.6.0_ref/h5py/api_types_hdf5.pxd	2021-11-16 10:53:06.000000000 +0100
++++ h5py-3.6.0_dev/h5py/api_types_hdf5.pxd	2025-11-06 17:03:14.802129862 +0100
+@@ -236,6 +236,7 @@
+ 
+   # Class information for each file driver
+   ctypedef struct H5FD_class_t:
++    unsigned version
+     const char *name
+     haddr_t maxaddr
+     H5F_close_degree_t fc_degree
