@@ -182,7 +182,7 @@ APPLICATION :
         'GUI'
         'CommonGeomLib'
         'GEOM'
-        'SMESH' : 'bos/47612'
+        'SMESH'
         'NETGENPLUGIN'
         'BLSURFPLUGIN'
         'GHS3DPLUGIN'
