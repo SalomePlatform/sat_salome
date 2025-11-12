@@ -99,7 +99,7 @@ APPLICATION :
         matplotlib : '3.8.2'
         mcut : 'b5b0ec6'
         mdurl: '0.1.2'
-        medfile : '6.0.0'
+        medfile : '6.0.1'
         mesa : '19.0.8'
         meshbooleanplugin : 'v1.0.0'
         MeshGems : '2.15-1'
