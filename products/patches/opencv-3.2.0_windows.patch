@@ -1,22 +1,36 @@
---- opencv_ref/cmake/OpenCVDetectCXXCompiler.cmake
-+++ opencv/cmake/OpenCVDetectCXXCompiler.cmake
-@@ -162,6 +162,8 @@
+--- opencv-3.2.0_ref/cmake/OpenCVDetectCXXCompiler.cmake	2019-07-16 15:47:28.000000000 +0200
++++ opencv-3.2.0_dev/cmake/OpenCVDetectCXXCompiler.cmake	2025-11-07 16:18:46.712823682 +0100
+@@ -160,8 +160,14 @@
+     set(OpenCV_RUNTIME vc12)
+   elseif(MSVC_VERSION EQUAL 1900)
      set(OpenCV_RUNTIME vc14)
-   elseif(MSVC_VERSION EQUAL 1910)
+-  elseif(MSVC_VERSION EQUAL 1910)
++  elseif(MSVC_VERSION GREATER_EQUAL 1910 AND MSVC_VERSION LESS_EQUAL 1919)
      set(OpenCV_RUNTIME vc15)
-+  elseif(MSVC_VERSION EQUAL 1916)
-+    set(OpenCV_RUNTIME vc15)
++  elseif(MSVC_VERSION GREATER_EQUAL 1920 AND MSVC_VERSION LESS_EQUAL 1929)
++    set(OpenCV_RUNTIME vc16)
++  elseif(MSVC_VERSION GREATER_EQUAL 1930 AND MSVC_VERSION LESS_EQUAL 1939)
++    set(OpenCV_RUNTIME vc17)
++  else()
++    MESSAGE(FATAL "MSVC version ${MSVSC_VERSION} is not supported!")
    endif()
  elseif(MINGW)
    set(OpenCV_RUNTIME mingw)
---- opencv_ref/cmake/templates/OpenCVConfig.root-WIN32.cmake.in
-+++ opencv/cmake/templates/OpenCVConfig.root-WIN32.cmake.in
-@@ -80,6 +80,8 @@
+--- opencv-3.2.0_ref/cmake/templates/OpenCVConfig.root-WIN32.cmake.in	2019-07-16 15:47:28.000000000 +0200
++++ opencv-3.2.0_dev/cmake/templates/OpenCVConfig.root-WIN32.cmake.in	2025-11-07 16:58:30.234590821 +0100
+@@ -78,8 +78,14 @@
+     set(OpenCV_RUNTIME vc12)
+   elseif(MSVC_VERSION EQUAL 1900)
      set(OpenCV_RUNTIME vc14)
-   elseif(MSVC_VERSION EQUAL 1910)
+-  elseif(MSVC_VERSION EQUAL 1910)
++  elseif(MSVC_VERSION GREATER_EQUAL 1910 AND MSVC_VERSION LESS_EQUAL 1919)
      set(OpenCV_RUNTIME vc15)
-+  elseif(MSVC_VERSION EQUAL 1916)
-+    set(OpenCV_RUNTIME vc15)
++  elseif(MSVC_VERSION GREATER_EQUAL 1920 AND MSVC_VERSION LESS_EQUAL 1929)
++    set(OpenCV_RUNTIME vc16)
++  elseif(MSVC_VERSION GREATER_EQUAL 1930 AND MSVC_VERSION LESS_EQUAL 1939)
++    set(OpenCV_RUNTIME vc17)
++  else()
++    MESSAGE(FATAL "MSVC version ${MSVSC_VERSION} is not supported!")
    endif()
  elseif(MINGW)
    set(OpenCV_RUNTIME mingw)

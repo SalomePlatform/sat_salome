@@ -29,6 +29,16 @@ default :
     patches : []
 }
 
+version_16_0_6 :
+{
+    build_source : "script"
+    compil_script: "llvm-16.0.6" + $VARS.scriptExtension
+    archive_info:
+    {
+      archive_name : "llvm-project-16.0.6.src.tar.gz"
+    }
+}
+
 version_8_0_1_clang :
 {
     build_source : "script"
@@ -50,22 +60,5 @@ version_8_0_1_clang_win :
      incremental : "yes"
      compile_time : "yes"
    }
-   patches : []
-}
-
-version_8_0_1_clang_win_dbg :
-{
-   build_source : "script"
-   compil_script: "llvm-8.0.1.bat"
-   depend : [ 'Python' ]
-   archive_info:
-   {
-     archive_name : "llvm-8.0.1-clang.tar.gz"
-   }
-   properties:
-   {
-     incremental : "yes"
-     compile_time : "yes"
-   }
-   patches : []
+   patches : ['llvm-8.0.1.p004.string.patch']
 }

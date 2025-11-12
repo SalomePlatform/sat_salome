@@ -29,6 +29,12 @@ default_win :
    }
 }
 
+version_4_4_0 :
+{
+  archive_info : {archive_name : "embree-4.4.0.tar.gz"}
+}
+
+
 version_3_13_5 :
 {
     build_source : "script"

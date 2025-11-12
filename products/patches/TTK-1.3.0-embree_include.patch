@@ -1,0 +1,11 @@
+diff -Naur TTK/CMake/config.cmake TTK_dev/CMake/config.cmake
+--- TTK/CMake/config.cmake	2025-10-29 13:19:18.246053552 +0100
++++ TTK_dev/CMake/config.cmake	2025-10-29 13:21:14.033128812 +0100
+@@ -173,6 +173,7 @@
+ 
+ find_package(EMBREE 3.4 QUIET)
+ if(EMBREE_FOUND)
++  set(EMBREE_INCLUDE_DIR  ${EMBREE_INCLUDE_DIRS})
+   option(TTK_ENABLE_EMBREE "Enable embree raytracing for ttkCinemaImaging" ON)
+   message(STATUS "Found Embree ${EMBREE_VERSION} (${EMBREE_LIBRARY})")
+ else()

@@ -29,6 +29,37 @@ default_win :
     }
 }
 
+version_2_12_0 :
+{
+  archive_info:
+  {
+    archive_name : "ospray-2.12.0.tar.gz"
+  }
+  cmake_options : "-DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang -DEMBREE_ISPC_SUPPORT=ON -DEMBREE_TUTORIALS=OFF -Dembree_DIR=${embree_DIR} -DOSPRAY_ENABLE_APPS=OFF  -DCMAKE_INSTALL_LIBDIR=lib -Drkcommon_DIR=${rkcommon_DIR} -Dispcrt_DIR=${ispcrt_DIR}"
+  depend : ['embree','openVKL', 'rkCommon', 'ispc']
+}
+
+version_2_12_0_win :
+{
+    cmake_options : '  -Dembree_DIR=%embree_DIR% -DTBB_ROOT=%TBB_DIR% -DOSPRAY_TASKING_SYSTEM=TBB  -DOSPRAY_ENABLE_APPS=OFF -DOSPRAY_ENABLE_TUTORIALS=OFF '
+  depend : ['embree','openVKL', 'rkCommon', 'tbb', 'ispc']
+}
+
+version_2_7_1 :
+{
+  archive_info:
+  {
+    archive_name : "ospray-v2.7.1.tar.gz"
+  }
+  cmake_options : "-DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang -DEMBREE_ISPC_SUPPORT=ON -DEMBREE_TUTORIALS=OFF -Dembree_DIR=${embree_DIR} -DOSPRAY_ENABLE_APPS=OFF  -DCMAKE_INSTALL_LIBDIR=lib -Drkcommon_DIR=${rkcommon_DIR}"
+  depend : ['embree','openVKL', 'rkCommon']
+}
+
+version_2_7_1_win :
+{
+  cmake_options : '  -Dembree_DIR=%embree_DIR% -DTBB_ROOT=%TBB_DIR% -DOSPRAY_TASKING_SYSTEM=TBB  -DOSPRAY_ENABLE_APPS=OFF -DOSPRAY_ENABLE_TUTORIALS=OFF '
+  depend : ['embree','openVKL', 'rkCommon', 'tbb']
+}
 version_2_4_0 :
 {
   cmake_options : "-DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang -DEMBREE_ISPC_SUPPORT=ON -DEMBREE_TUTORIALS=OFF -Dembree_DIR=${embree_DIR} -DOSPRAY_ENABLE_APPS=OFF  -DCMAKE_INSTALL_LIBDIR=lib -Drkcommon_DIR=${rkcommon_DIR}"

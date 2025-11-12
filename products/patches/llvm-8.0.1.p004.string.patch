@@ -1,0 +1,11 @@
+--- llvm-8.0.1-ref/include/llvm/Demangle/MicrosoftDemangleNodes.h	2019-01-08 22:05:51.000000000 +0100
++++ llvm-8.0.1-dev/include/llvm/Demangle/MicrosoftDemangleNodes.h	2025-11-03 10:55:52.993653310 +0100
+@@ -4,7 +4,7 @@
+ #include "llvm/Demangle/Compiler.h"
+ #include "llvm/Demangle/StringView.h"
+ #include <array>
+-
++#include <string>
+ class OutputStream;
+ 
+ namespace llvm {

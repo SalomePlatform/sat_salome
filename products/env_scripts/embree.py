@@ -6,6 +6,7 @@ def set_env(env, prereq_dir, version):
   env.set('EMBREE_ROOT_DIR', prereq_dir)
   env.set('EMBREE_VERSION', version)
   env.set('embree_DIR', os.path.join(prereq_dir, 'lib', 'cmake', 'embree-'+version))
+  env.set('EMBREE_DIR', os.path.join(prereq_dir, 'lib', 'cmake', 'embree-'+version))
   if platform.system() == "Windows":
     env.prepend('PATH',os.path.join(prereq_dir, 'bin'))
   else:

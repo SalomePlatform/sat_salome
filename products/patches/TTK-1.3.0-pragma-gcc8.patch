@@ -1,0 +1,171 @@
+diff -Naur TTK/core/base/discreteGradient/DiscreteGradient.cpp TTK_dev/core/base/discreteGradient/DiscreteGradient.cpp
+--- TTK/core/base/discreteGradient/DiscreteGradient.cpp	2024-12-04 12:12:44.000000000 +0100
++++ TTK_dev/core/base/discreteGradient/DiscreteGradient.cpp	2025-10-30 16:22:44.615676003 +0100
+@@ -25,23 +25,28 @@
+ 
+   // clear & init gradient memory
+ #ifdef TTK_ENABLE_OPENMP
+-#pragma omp parallel master num_threads(threadNumber_)
++#pragma omp parallel num_threads(threadNumber_)
+ #endif
+   {
+-    for(int i = 0; i < dimensionality_; ++i) {
+ #ifdef TTK_ENABLE_OPENMP
+-#pragma omp task
++#pragma omp master
+ #endif
+-      {
+-        (*gradient_)[2 * i].clear();
+-        (*gradient_)[2 * i].resize(numberOfCells[i], -1);
+-      }
++    {
++      for(int i = 0; i < dimensionality_; ++i) {
++#ifdef TTK_ENABLE_OPENMP
++#pragma omp task
++#endif 
++        { 
++          (*gradient_)[2 * i].clear();
++          (*gradient_)[2 * i].resize(numberOfCells[i], -1);
++        }
+ #ifdef TTK_ENABLE_OPENMP
+ #pragma omp task
+ #endif
+-      {
+-        (*gradient_)[2 * i + 1].clear();
+-        (*gradient_)[2 * i + 1].resize(numberOfCells[i + 1], -1);
++        {
++          (*gradient_)[2 * i + 1].clear();
++          (*gradient_)[2 * i + 1].resize(numberOfCells[i + 1], -1);
++        }
+       }
+     }
+   }
+diff -Naur TTK/core/base/discreteMorseSandwich/DiscreteMorseSandwich.h TTK_dev/core/base/discreteMorseSandwich/DiscreteMorseSandwich.h
+--- TTK/core/base/discreteMorseSandwich/DiscreteMorseSandwich.h	2024-12-04 12:12:44.000000000 +0100
++++ TTK_dev/core/base/discreteMorseSandwich/DiscreteMorseSandwich.h	2025-10-30 16:38:20.477334448 +0100
+@@ -435,76 +435,90 @@
+         return;
+       }
+ #ifdef TTK_ENABLE_OPENMP
+-#pragma omp parallel master num_threads(threadNumber_)
++#pragma omp parallel num_threads(threadNumber_)
+ #endif
+-      {
++  {
++#ifdef TTK_ENABLE_OPENMP
++#pragma omp master
++#endif
++    {
+ #ifdef TTK_ENABLE_OPENMP
+ #pragma omp task
+-#endif // TTK_ENABLE_OPENMP
+-        this->firstRepMin_.resize(triangulation.getNumberOfVertices());
+-        if(dim > 1) {
++#endif
++      this->firstRepMin_.resize(triangulation.getNumberOfVertices());
++
++      if(dim > 1) {
+ #ifdef TTK_ENABLE_OPENMP
+ #pragma omp task
+ #endif
+-          this->firstRepMax_.resize(triangulation.getNumberOfCells());
+-        }
+-        if(dim > 2) {
++        this->firstRepMax_.resize(triangulation.getNumberOfCells());
++      }
++
++      if(dim > 2) {
+ #ifdef TTK_ENABLE_OPENMP
+ #pragma omp task
+ #endif
+-          this->critEdges_.resize(triangulation.getNumberOfEdges());
++        this->critEdges_.resize(triangulation.getNumberOfEdges());
++
+ #ifdef TTK_ENABLE_OPENMP
+ #pragma omp task
+ #endif
+-          this->edgeTrianglePartner_.resize(
+-            triangulation.getNumberOfEdges(), -1);
++        this->edgeTrianglePartner_.resize(
++          triangulation.getNumberOfEdges(), -1);
++
+ #ifdef TTK_ENABLE_OPENMP
+ #pragma omp task
+ #endif
+-          this->onBoundary_.resize(triangulation.getNumberOfEdges(), false);
++        this->onBoundary_.resize(triangulation.getNumberOfEdges(), false);
++
+ #ifdef TTK_ENABLE_OPENMP
+ #pragma omp task
+ #endif
+-          this->s2Mapping_.resize(triangulation.getNumberOfTriangles(), -1);
++        this->s2Mapping_.resize(triangulation.getNumberOfTriangles(), -1);
++
+ #ifdef TTK_ENABLE_OPENMP
+ #pragma omp task
+ #endif
+-          this->s1Mapping_.resize(triangulation.getNumberOfEdges(), -1);
+-        }
+-        for(int i = 0; i < dim + 1; ++i) {
++        this->s1Mapping_.resize(triangulation.getNumberOfEdges(), -1);
++      }
++
++      for(int i = 0; i < dim + 1; ++i) {
+ #ifdef TTK_ENABLE_OPENMP
+ #pragma omp task
+ #endif
+-          this->pairedCritCells_[i].resize(
+-            this->dg_.getNumberOfCells(i, triangulation), false);
+-        }
+-        // NOTE:
+-        // a for loop used to stand here, but gcc 13 looks buggy with it...
+-        if(dim >= 1) {
++        this->pairedCritCells_[i].resize(
++          this->dg_.getNumberOfCells(i, triangulation), false);
++      }
++
++      if(dim >= 1) {
+ #ifdef TTK_ENABLE_OPENMP
+ #pragma omp task
+ #endif
+-          this->critCellsOrder_[1].resize(
+-            this->dg_.getNumberOfCells(1, triangulation), -1);
+-        }
+-        if(dim >= 2) {
++        this->critCellsOrder_[1].resize(
++          this->dg_.getNumberOfCells(1, triangulation), -1);
++      }
++
++      if(dim >= 2) {
+ #ifdef TTK_ENABLE_OPENMP
+ #pragma omp task
+ #endif
+-          this->critCellsOrder_[2].resize(
+-            this->dg_.getNumberOfCells(2, triangulation), -1);
+-        }
+-        if(dim >= 3) {
++        this->critCellsOrder_[2].resize(
++          this->dg_.getNumberOfCells(2, triangulation), -1);
++      }
++
++      if(dim >= 3) {
+ #ifdef TTK_ENABLE_OPENMP
+ #pragma omp task
+ #endif
+-          this->critCellsOrder_[3].resize(
+-            this->dg_.getNumberOfCells(3, triangulation), -1);
+-        }
++        this->critCellsOrder_[3].resize(
++          this->dg_.getNumberOfCells(3, triangulation), -1);
+       }
+-      this->printMsg("Memory allocations", 1.0, tm.getElapsedTime(), 1,
+-                     debug::LineMode::NEW, debug::Priority::DETAIL);
+     }
++  }
++
++  this->printMsg("Memory allocations", 1.0, tm.getElapsedTime(), 1,
++               debug::LineMode::NEW, debug::Priority::DETAIL);
++}
+ 
+     void clear() {
+       Timer tm{};

@@ -33,6 +33,23 @@ default_win :
     build_depend : ["cmake", "llvm"]
 }
 
+version_1_21_1 :
+{
+    build_source : "script"
+    compil_script :  "ispc-1.21.1" + $VARS.scriptExtension
+    archive_info : {archive_name : "ispc-v1.21.1-linux-oneapi.tar.gz"}
+    patches : ['ispc-1.21.1-p001-fix_libpath.patch']
+    depend : []
+}
+
+version_1_21_1_win :
+{
+    compil_script :  "ispc-1.21.1.bat"
+    archive_info : {archive_name : "ispc-v1.21.1-windows.tar.gz"}
+    patches : []
+    build_depend : ["cmake", "llvm"]
+}
+
 version_1_15_0 :
 {
     build_source : "script"

@@ -5,7 +5,7 @@ import os.path, platform
 
 def set_env(env, prereq_dir, version):
   env.set('RKCOMMON_ROOT_DIR', prereq_dir)
-  env.set('rkcommon_DIR', os.path.join(prereq_dir, 'lib','cmake','rkcommon-1.5.1'))
+  env.set('rkcommon_DIR', os.path.join(prereq_dir, 'lib','cmake','rkcommon-'+ version))
   if platform.system()=="Windows" :
     env.prepend('PATH', os.path.join(prereq_dir,'bin'))
   else:

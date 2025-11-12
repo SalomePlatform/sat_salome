@@ -10,10 +10,6 @@ rm -rf ${BUILD_DIR}
 mkdir ${BUILD_DIR}
 cd $BUILD_DIR
 
-export CC=$(which gcc)
-export FC=$(which gfortran)
-export CXX=$(which g++)
-
 CMAKE_OPTIONS="$SOURCE_DIR"
 CMAKE_OPTIONS+=" -DCMAKE_INSTALL_PREFIX=$PRODUCT_INSTALL"
 

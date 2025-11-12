@@ -94,7 +94,8 @@ version_3_2_0_win :
 {
     patches : ["opencv-3.2.0-ccache.patch",
                "opencv-3.2.0_windows.patch",
-               "SPNS-29988-opencv-3.2.0-cv2.patch"
+               "SPNS-29988-opencv-3.2.0-cv2.patch",
+               "opencv-3.2.0.p004-shuffle.patch"
               ]
 }
 

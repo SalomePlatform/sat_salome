@@ -15,8 +15,12 @@ def set_env(env, prereq_dir, version):
     pyver = 'python' + env.get('PYTHON_VERSION')
     env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'lib', pyver, 'site-packages'))
   else:
-    env.prepend('PATH', os.path.join(prereq_dir, 'x64','vc15','bin'))
-    env.prepend('PATH', os.path.join(prereq_dir, 'x64','vc15','lib'))
+    if os.path.exists(os.path.join(prereq_dir, 'x64','vc15','bin')):
+        env.prepend('PATH', os.path.join(prereq_dir, 'x64','vc15','bin'))
+        env.prepend('PATH', os.path.join(prereq_dir, 'x64','vc15','lib'))
+    elif os.path.exists(os.path.join(prereq_dir, 'x64','vc16','bin')):
+        env.prepend('PATH', os.path.join(prereq_dir, 'x64','vc16','bin'))
+        env.prepend('PATH', os.path.join(prereq_dir, 'x64','vc16','lib'))
     env.set('OpenCV_INCLUDE_DIRS', os.path.join(prereq_dir, 'include'))
     env.append('OpenCV_INCLUDE_DIRS',os.path.join(prereq_dir, 'include','opencv'))
     env.append('OpenCV_INCLUDE_DIRS',os.path.join(prereq_dir, 'include','opencv2'))
