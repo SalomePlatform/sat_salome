@@ -24,9 +24,9 @@ CMAKE_OPTIONS+=" -DENABLE_ONELAB_METAMODEL=OFF"
 CMAKE_OPTIONS+=" -DENABLE_PARSER=ON"
 CMAKE_OPTIONS+=" -DENABLE_PETSC=OFF"
 CMAKE_OPTIONS+=" -DENABLE_PRIVATE_API=ON"
-CMAKE_OPTIONS+=" -DENABLE_CGNS=OFF"
+CMAKE_OPTIONS+=" -DENABLE_CGNS=ON"
 CMAKE_OPTIONS+=" -DCMAKE_INSTALL_LIBDIR=${PRODUCT_INSTALL}/lib" # strangely on Ubuntu GMSH installs the .so in lib instead of lib/lib64 - so force to lib64
-CMAKE_OPTIONS+=" -DCMAKE_PREFIX_PATH=${LAPACK_ROOT_DIR};${HDF5_ROOT_DIR};${MEDFILE_ROOT_DIR};" # set path of third libraries to our associated internal products
+CMAKE_OPTIONS+=" -DCMAKE_PREFIX_PATH=${LAPACK_ROOT_DIR};${HDF5_ROOT_DIR};${MEDFILE_ROOT_DIR};${CGNS_ROOT_DIR};" # set path of third libraries to our associated internal products
 CMAKE_OPTIONS+=" -DENABLE_OPENMP=ON"     # get OpenMP based parallelism working
 CMAKE_OPTIONS+=" -DENABLE_PLUGINS=OFF"   # needed for correct GmshFinalize() after version 4.3.0
 if [[ $DIST_NAME == "FD" && $DIST_VERSION == "32" ]]
