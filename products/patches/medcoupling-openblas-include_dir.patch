@@ -1,0 +1,12 @@
+diff --git a/src/ShapeRecogn/Test/CMakeLists.txt b/src/ShapeRecogn/Test/CMakeLists.txt
+index db9a9a5c1..f2d6e6b1a 100644
+--- a/src/ShapeRecogn/Test/CMakeLists.txt
++++ b/src/ShapeRecogn/Test/CMakeLists.txt
+@@ -20,6 +20,7 @@
+ 
+ include_directories(
+   ${CPPUNIT_INCLUDE_DIRS}
++  ${LAPACKE_INCLUDE_DIRS}
+   ${HDF5_INCLUDE_DIRS}
+   ${MEDFILE_INCLUDE_DIRS}
+   ${CMAKE_CURRENT_SOURCE_DIR}/..
