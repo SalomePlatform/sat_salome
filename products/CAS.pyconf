@@ -6,7 +6,7 @@ default :
     get_source : "git"
     git_info:
     {
-        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo : "https://github.com/Open-Cascade-SAS/OCCT-Archive.git"
         repo_dev : $repo
     }
     environ :
@@ -42,7 +42,7 @@ version_CR790_SALOME_PATCH :
     get_source : "git"
     git_info:
     {
-        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo : "https://github.com/Open-Cascade-SAS/OCCT-Archive.git"
         repo_dev : $repo
     }
     environ :
@@ -77,7 +77,7 @@ version_CR790_SALOME_PATCH_win :
     get_source : "git"
     git_info:
     {
-        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo : "https://github.com/Open-Cascade-SAS/OCCT-Archive.git"
         repo_dev : $repo
     }
     environ :
@@ -130,7 +130,7 @@ version_SALOME_9_15_V7_9_0a1 :
     get_source : "git"
     git_info:
     {
-        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo : "https://github.com/Open-Cascade-SAS/OCCT-Archive.git"
         repo_dev : $repo
     }
     environ :
@@ -165,7 +165,7 @@ version_SALOME_9_15_V7_9_0a1_win :
     get_source : "git"
     git_info:
     {
-        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo : "https://github.com/Open-Cascade-SAS/OCCT-Archive.git"
         repo_dev : $repo
     }
     environ :
@@ -218,7 +218,7 @@ version_CR780_SALOME_PATCH :
     get_source : "git"
     git_info:
     {
-        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo : "https://github.com/Open-Cascade-SAS/OCCT-Archive.git"
         repo_dev : $repo
     }
     environ :
@@ -253,7 +253,7 @@ version_CR780_SALOME_PATCH_win :
     get_source : "git"
     git_info:
     {
-        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo : "https://github.com/Open-Cascade-SAS/OCCT-Archive.git"
         repo_dev : $repo
     }
     patches : ["CAS-9c84b526cd.patch"]
@@ -307,7 +307,7 @@ version_SALOME_9_14_a2_V7_8_0 :
     get_source : "git"
     git_info:
     {
-        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo : "https://github.com/Open-Cascade-SAS/OCCT-Archive.git"
         repo_dev : $repo
     }
     environ :
@@ -342,7 +342,7 @@ version_SALOME_9_14_a2_V7_8_0_win :
     get_source : "git"
     git_info:
     {
-        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo : "https://github.com/Open-Cascade-SAS/OCCT-Archive.git"
         repo_dev : $repo
     }
     environ :
@@ -397,7 +397,7 @@ version_SALOME_9_13_V7_8_0 :
     get_source : "git"
     git_info:
     {
-        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo : "https://github.com/Open-Cascade-SAS/OCCT-Archive.git"
         repo_dev : $repo
     }
     environ :
@@ -432,7 +432,7 @@ version_SALOME_9_13_V7_8_0_win :
     get_source : "git"
     git_info:
     {
-        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo : "https://github.com/Open-Cascade-SAS/OCCT-Archive.git"
         repo_dev : $repo
     }
     environ :
@@ -491,7 +491,7 @@ version_CR753_SALOME_PATCH :
     }
     git_info:
     {
-        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo : "https://github.com/Open-Cascade-SAS/OCCT-Archive.git"
         repo_dev : $repo
     }
     environ :
@@ -532,7 +532,7 @@ version_CR753_SALOME_PATCH_win :
     }
     git_info:
     {
-        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo : "https://github.com/Open-Cascade-SAS/OCCT-Archive.git"
         repo_dev : $repo
     }
     environ :
@@ -585,7 +585,7 @@ version_V7_5_3p2 :
     #get_source : "archive"
     git_info:
     {
-        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo : "https://github.com/Open-Cascade-SAS/OCCT-Archive.git"
         repo_dev : $repo
     }
     environ :
@@ -620,7 +620,7 @@ version_V7_5_3p2_win :
     get_source : "git"
     git_info:
     {
-        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo : "https://github.com/Open-Cascade-SAS/OCCT-Archive.git"
         repo_dev : $repo
     }
     environ :
@@ -673,7 +673,7 @@ version_V7_5_3p1 :
     #get_source : "archive"
     git_info:
     {
-        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo : "https://github.com/Open-Cascade-SAS/OCCT-Archive.git"
         repo_dev : $repo
     }
     environ :
@@ -708,7 +708,7 @@ version_V7_5_3p1_win :
     get_source : "git"
     git_info:
     {
-        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo : "https://github.com/Open-Cascade-SAS/OCCT-Archive.git"
         repo_dev : $repo
     }
     environ :
@@ -761,7 +761,7 @@ version_V7_5_0 :
     #get_source : "archive"
     git_info:
     {
-        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo : "https://github.com/Open-Cascade-SAS/OCCT-Archive.git"
         repo_dev : $repo
     }
     environ :
@@ -800,7 +800,7 @@ version_V7_5_0_win :
     }
     git_info:
     {
-        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo : "https://github.com/Open-Cascade-SAS/OCCT-Archive.git"
         repo_dev : $repo
     }
     environ :
@@ -852,7 +852,7 @@ version_V7_4_0p2 :
     get_source : "git"
     git_info:
     {
-        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo : "https://github.com/Open-Cascade-SAS/OCCT-Archive.git"
         repo_dev : $repo
     }
     environ :
@@ -888,7 +888,7 @@ version_V7_4_0p2_win :
     get_source : "git"
     git_info:
     {
-        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo : "https://github.com/Open-Cascade-SAS/OCCT-Archive.git"
         repo_dev : $repo
     }
     environ :
@@ -940,7 +940,7 @@ version_V7_4_0p1 :
     get_source : "git"
     git_info:
     {
-        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo : "https://github.com/Open-Cascade-SAS/OCCT-Archive.git"
         repo_dev : $repo
     }
     environ :
@@ -976,7 +976,7 @@ version_V7_4_0p1_win :
     get_source : "git"
     git_info:
     {
-        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo : "https://github.com/Open-Cascade-SAS/OCCT-Archive.git"
         repo_dev : $repo
     }
     environ :
@@ -1028,7 +1028,7 @@ version_V7_3_0p4 :
     get_source : "git"
     git_info:
     {
-        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo : "https://github.com/Open-Cascade-SAS/OCCT-Archive.git"
         repo_dev : $repo
     }
     environ :
@@ -1064,7 +1064,7 @@ version_V7_3_0p4_win :
     get_source : "git"
     git_info:
     {
-        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo : "https://github.com/Open-Cascade-SAS/OCCT-Archive.git"
         repo_dev : $repo
     }
     environ :
@@ -1116,7 +1116,7 @@ version_V7_3_0p3 :
     get_source : "git"
     git_info:
     {
-        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo : "https://github.com/Open-Cascade-SAS/OCCT-Archive.git"
         repo_dev : $repo
     }
     environ :
@@ -1152,7 +1152,7 @@ version_V7_3_0p3_win :
     get_source : "git"
     git_info:
     {
-        repo : "http://git.dev.opencascade.org/repos/occt.git"
+        repo : "https://github.com/Open-Cascade-SAS/OCCT-Archive.git"
         repo_dev : $repo
     }
     environ :
