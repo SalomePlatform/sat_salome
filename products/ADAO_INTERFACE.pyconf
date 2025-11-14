@@ -2,7 +2,7 @@ default :
 {
     name : "ADAO_INTERFACE"
     build_source : "cmake"
-    cmake_options : "-DPY2CPP_ROOT_DIR=${PY2CPP_ROOT_DIR}"
+    cmake_options : "-DPY2CPP_ROOT_DIR=${PY2CPP_ROOT_DIR}" # if used llvm 16.0.6 and ispc 1.21.1, we need to add -DAEL_ENABLE_TESTS=OFF -DCMAKE_SHARED_LINKER_FLAGS=\"-Wl,--allow-shlib-undefined\"
     get_source : "git"
     git_info:
     {

@@ -37,6 +37,7 @@ version_16_0_6 :
     {
       archive_name : "llvm-project-16.0.6.src.tar.gz"
     }
+    patches : ['llvm-16.0.6-ld-symlink-lld.patch'] # see https://github.com/ispc/ispc/blob/main/superbuild/ld-symlink-lld.patch
 }
 
 version_8_0_1_clang :

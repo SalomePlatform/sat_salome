@@ -30,6 +30,71 @@ default :
     }
 }
 
+version_6_1_0 :
+{
+    compil_script :  'ParaView-6.1.0.sh'
+    archive_info : {archive_name : "ParaView-6.1.0-c61dcc8ee0.tar.gz"}
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'PyQt',
+              'sip',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
+    opt_depend : ['ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst', 'ONNX']
+    patches : []
+}
+
+version_6_1_0_win :
+{
+    compil_script :  'ParaView-6.1.0.bat'
+    archive_info : {archive_name : "ParaView-6.1.0-c61dcc8ee0.tar.gz"}
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'boost',
+              'libxml2',
+              'freetype',
+              'cgns',
+              'Pygments',
+              'pthreads',
+              'zlib'
+             ]
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'rkCommon', 'matplotlib', 'ONNX']
+    patches : ['paraview-6.1.0-c61dcc8ee0.p002-add_dll_directory.patch',
+               'paraview-6.1.0-c61dcc8ee0.p003-vtkModuleWrapPython.patch',
+               'paraview-6.1.0-c61dcc8ee0.p004-vtkONNXInference.patch'
+  ]
+}
+
+version_6_1_0_MPI :
+{
+    compil_script :  'ParaView-6.1.0.sh'
+    archive_info : {archive_name : "ParaView-6.1.0-c61dcc8ee0.tar.gz"}
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'PyQt',
+              'sip',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst', 'ONNX']
+    patches : ['paraview-6.1.0-c61dcc8ee0.p001-FindCGNS.patch']
+}
+
 version_5_13_2 :
 {
     compil_script :  'ParaView-5.13.2.sh'

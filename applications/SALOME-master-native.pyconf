@@ -63,20 +63,20 @@ APPLICATION :
         doxygen : 'native'
         #DXF : '7.8.0'
         eigen : 'native'
-        embree : '3.12.2'
+        embree : '3.13.1'
         FMILibrary : '2.0.3'
         fftw : 'native'
         freeimage : 'native'
         freetype : 'native'
         gl2ps : 'native'
-        gdal : 'native'
+        gdal : '3.7.1'
         gmsh : '4.14.1'
         graphviz : 'native'
         h5py : 'native'
         hdf5 : '1.14.6'
         idna : 'native'
         imagesize : 'native'
-        ispc : '1.15.0'
+        ispc : '1.16.1'
         Jinja2 : 'native'
         joblib : 'native' # 1.1.0
         jsoncpp : 'native'
@@ -109,15 +109,16 @@ APPLICATION :
         numpydoc : 'native'
         omniORB : '4.2.5'
         omniORBpy : '4.2.5'
+        ONNX: '1.22.0'
         opencv : 'native'
         openmpi: 'native'
-        openVKL : '0.11.0'
+        openVKL : '1.0.1'
         openturns: '1.25.1'
-        ospray : '2.4.0'
+        ospray : '2.7.1'
         packaging : 'native'
         pandas : 'native'
         patsy : 'native'
-        ParaView : {tag:'5.13.2918b94391', base: 'no',  section: 'version_5_13_2_MPI', hpc: 'yes'}
+        ParaView : {tag:'6.1.0.c61dcc8ee0', base: 'no',  section: 'version_6_1_0_MPI', hpc: 'yes'}
         PERSALYS : 'v19.0'
         petsc : '3.20.5'
         Pillow : 'native'
@@ -125,6 +126,7 @@ APPLICATION :
         psutil : 'native'
         poetry : {tag: '1.8.3', base: 'no', section: 'version_1_8_3_x86_64' }
         poetry_core : '1.9.0'
+        proj : 'native'
         pyyaml: 'native'
         PyFMI : '2.6'
         Pygments : 'native'
@@ -141,7 +143,7 @@ APPLICATION :
         qwt : 'native'
         rapidjson : '1.1.0'
         requests : 'native'
-        rkCommon : '1.5.1'
+        rkCommon : '1.7.0'
         rich : '13.7.1'
         root: '6.28.10'
         scipy : 'native'
@@ -155,6 +157,7 @@ APPLICATION :
         sphinxcontrib_websupport : 'native'
         sphinxintl: 'native'
         sphinx_rtd_theme : 'native'
+        sqlite: 'native'
         statsmodels : 'native'
         swig : 'native'
         salome_system : 'native'
@@ -164,7 +167,7 @@ APPLICATION :
         tk : 'native'
         toml: 'native'
         tqdm : 'native' # 4.66.5
-        TTK : 'f8dafde2d7'
+        TTK : '1.3.0'
         urllib3 : 'native'
         zeromq: '4.3.1'
         URANIE : '4.8.0'
@@ -179,10 +182,10 @@ APPLICATION :
         'LIBBATCH' : 'V2_6_1'
         'KERNEL'
         'MEDCOUPLING' : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
-        'GUI'
+        'GUI': 'bos/47676'
         'CommonGeomLib'
         'GEOM'
-        'SMESH'
+        'SMESH' : 'bos/47676'
         'NETGENPLUGIN'
         'BLSURFPLUGIN'
         'GHS3DPLUGIN'
@@ -193,7 +196,7 @@ APPLICATION :
         'HEXABLOCKPLUGIN'
         'HOMARD'
         'FIELDS'
-        'PARAVIS': {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'PARAVIS': {tag:'kw_186_data_array', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
@@ -209,7 +212,7 @@ APPLICATION :
         'PY2CPP'
         'ADAO'
         'ADAO_INTERFACE'
-        'PARAVISADDONS'
+        'PARAVISADDONS' : 'kw_186_medcoupling_dataarray'
         'OPENTURNS_SALOME'
         'YDEFX'
         'pmml'
@@ -270,8 +273,6 @@ __overwrite__ :
         'APPLICATION.products.meshio'           : {tag: '5.3.5',  base: 'no', section: 'version_5_3_5_no_pip'               }
         'APPLICATION.products.omniORBpy'        : {tag: '4.2.5',  base: 'no', section: 'version_4_2_5_UB24_04'              }
         'APPLICATION.products.nose_py3'         : {tag: '1.6.9',  base: 'no', section: 'version_1_6_9_no_pip'               }
-        'APPLICATION.products.rkCommon'         : {tag: '1.5.1',  base: 'no', section: 'version_1_5_1_UB24_04'              }
-        'APPLICATION.products.ParaView'         : {tag: '5.13.2918b94391', base: 'no', section: 'version_5_13_2_MPI_UB24_04', hpc: 'yes'}
     }
     #
     {
@@ -328,8 +329,6 @@ __overwrite__ :
         'APPLICATION.products.meshio'           : {tag: '5.3.5',           base: 'no', section: 'version_5_3_5_no_pip'                  }
         'APPLICATION.products.omniORBpy'        : {tag: '4.2.5',           base: 'no', section: 'version_4_2_5_DB13'                    }
         'APPLICATION.products.nose_py3'         : {tag: '1.6.9',           base: 'no', section: 'version_1_6_9_no_pip'                  }
-        'APPLICATION.products.rkCommon'         : {tag: '1.5.1',           base: 'no', section: 'version_1_5_1_UB24_04'                 }
-        'APPLICATION.products.ParaView'         : {tag: '5.13.2918b94391', base: 'no', section: 'version_5_13_2_MPI_UB24_04', hpc: 'yes'}
         'APPLICATION.products.KERNEL'           : {tag: 'master',          base: 'no', section: 'default_DB13'                          }
     }
     #
@@ -342,7 +341,6 @@ __overwrite__ :
         'APPLICATION.products.openturns'        : {tag: '1.25.1',  base: 'no', section: 'version_1_25_1_CO8'     }
         'APPLICATION.products.PyFMI'            : {tag: '2.6',    base: 'no', section: 'version_2_6_no_pip'      }
         'APPLICATION.products.statsmodels'      : {tag: '0.6.1',  base: 'no', section: 'version_0_6_1_no_pip'    }
-        'APPLICATION.products.gdal'             : {tag: '2.4.0',  base: 'no', section: 'version_2_4_0_CO8_native'}
         'APPLICATION.products.mdurl'            : {tag: '0.1.0',  base: 'no', section: 'version_0_1_0_no_pip'    }
         'APPLICATION.products.markdown_it_py'   : {tag: '2.0.1',  base: 'no', section: 'version_2_0_1_no_pip'    }
         'APPLICATION.products.rich'             : {tag: '12.6.0', base: 'no', section: 'version_12_6_0_no_pip'   }
@@ -401,7 +399,6 @@ __overwrite__ :
         'APPLICATION.products.meshio'                   : {tag: '5.3.5',           base: 'no', section: 'version_5_3_5_no_pip'               }
         'APPLICATION.products.opencv'                   : {tag: '3.2.0',           base: 'no', section: 'version_3_2_0_CO10'                 }
         'APPLICATION.products.toml'                     : {tag: '0.10.2',          base: 'no', section: 'version_0_10_2_no_pip'              }
-        'APPLICATION.products.rkCommon'                 : {tag: '1.5.1',           base: 'no', section: 'version_1_5_1_CO10'                 }
         'APPLICATION.products.sphinxintl'               : {tag: '0.9.10',          base: 'no', section: 'version_0_9_10_no_pip'              }
         'APPLICATION.products.nose_py3'                 : {tag: '1.6.9',           base: 'no', section: 'version_1_6_9_no_pip'               }
         'APPLICATION.products.assimulo'                 : {tag: '3.5.2',           base: 'no', section: 'version_3_5_2_x86_64'               }
@@ -410,7 +407,6 @@ __overwrite__ :
         'APPLICATION.products.openturns'                : {tag: '1.25.1',          base: 'no', section: 'version_1_25_1_CO10'                }
         'APPLICATION.products.omniORBpy'                : {tag: '4.2.5',           base: 'no', section: 'version_4_2_5_CO10'                 }
         'APPLICATION.products.KERNEL'                   : {tag: 'master',          base: 'no', section: 'default_CO10'                       }
-        'APPLICATION.products.ParaView'                 : {tag: '5.13.2918b94391', base: 'no', section: 'version_5_13_2_MPI_CO10', hpc: 'yes'}
         'APPLICATION.products.petsc'                    : {tag: '3.20.5',          base: 'no', section: 'version_3_20_5_CO10'                }
     }
     #
@@ -446,9 +442,7 @@ __overwrite__ :
         'APPLICATION.products.omniORBpy'        : {tag: '4.2.5',           base: 'no', section: 'version_4_2_5_FD40'                 }
         'APPLICATION.products.FMILibrary'       : {tag: '2.4.1',           base: 'no', section: 'version_2_4_1_FD40'                 }
         'APPLICATION.products.nose_py3'         : {tag: '1.6.9',           base: 'no', section: 'version_1_6_9_no_pip'               }
-        'APPLICATION.products.rkCommon'         : {tag: '1.5.1',           base: 'no', section: 'version_1_5_1_FD40'                 }
         'APPLICATION.products.rapidjson'        : {tag: '1.1.0',           base: 'no', section: 'version_1_1_0_FD40'                 }
-        'APPLICATION.products.ParaView'         : {tag: '5.13.2918b94391', base: 'no', section: 'version_5_13_2_MPI_FD40', hpc: 'yes'}
         'APPLICATION.products.KERNEL'           : {tag: 'master',          base: 'no', section: 'default_FD40'                       }
         'APPLICATION.products.petsc'            : {tag: '3.20.5',          base: 'no', section: 'version_3_20_5_FD40'                }
     }
@@ -473,10 +467,8 @@ __overwrite__ :
         'APPLICATION.products.omniORBpy'        : {tag: '4.2.5',          base: 'no', section: 'version_4_2_5_FD42'                  }
         'APPLICATION.products.FMILibrary'       : {tag: '2.4.1',          base: 'no', section: 'version_2_4_1_FD42'                  }
         'APPLICATION.products.nose_py3'         : {tag: '1.6.9',          base: 'no', section: 'version_1_6_9_no_pip'                }
-        'APPLICATION.products.rkCommon'         : {tag: '1.5.1',          base: 'no', section: 'version_1_5_1_FD42'                  }
         'APPLICATION.products.rapidjson'        : {tag: '1.1.0',          base: 'no', section: 'version_1_1_0_FD42'                  }
         'APPLICATION.products.scotch'           : {tag: 'native',         base: 'no', section: 'version_7_0_6_MPI', hpc: 'yes'       }
-        'APPLICATION.products.ParaView'         : {tag:'5.13.2918b94391', base: 'no', section: 'version_5_13_2_MPI_FD42', hpc: 'yes' }
         'APPLICATION.products.KERNEL'           : {tag: 'master',         base: 'no', section: 'default_FD42'                        }
         'APPLICATION.products.MEDCOUPLING'      : {tag: 'master',         base: 'no', section: 'version_V9_15_0_MPI_FD42', hpc: 'yes'}
     }

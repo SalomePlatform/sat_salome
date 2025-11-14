@@ -121,11 +121,11 @@ fi
 # for additional informations, see: https://github.com/openturns/openturns/issues/2891
 case $LINUX_DISTRIBUTION in
     CO10)
-	CMAKE_OPTIONS+=" -DOPENTURNS_VETOED_TESTS=\"cppcheck_Log_std|cppcheck_FisherSnedecor_std|cppcheck_Poisson_std|cppcheck_Distribution_quantile|cppcheck_SmolyakExperiment_std\""
-	;;
+        CMAKE_OPTIONS+=" -DOPENTURNS_VETOED_TESTS=\"cppcheck_Log_std|cppcheck_FisherSnedecor_std|cppcheck_Poisson_std|cppcheck_Distribution_quantile|cppcheck_SmolyakExperiment_std\""
+        ;;
     *)
-	CMAKE_OPTIONS+=" -DOPENTURNS_VETOED_TESTS=\"cppcheck_Log_std|cppcheck_FisherSnedecor_std|cppcheck_Poisson_std|cppcheck_Distribution_quantile\""
-	;;
+        CMAKE_OPTIONS+=" -DOPENTURNS_VETOED_TESTS=\"cppcheck_Log_std|cppcheck_FisherSnedecor_std|cppcheck_Poisson_std|cppcheck_Distribution_quantile\""
+        ;;
 esac
 
 echo

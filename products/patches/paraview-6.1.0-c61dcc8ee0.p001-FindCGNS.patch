@@ -1,0 +1,13 @@
+--- ParaView_ref/VTK/CMake/FindCGNS.cmake	2025-10-23 22:57:04.000000000 +0200
++++ ParaView_dev/VTK/CMake/FindCGNS.cmake	2025-10-27 14:37:43.747070425 +0100
+@@ -5,6 +5,10 @@
+ # CGNS_LIBRARIES   - List of fully qualified libraries to link against when using CGNS.
+ # CGNS_FOUND       - Do not attempt to use CGNS if "no" or undefined.
+ 
++SET(CGNS_ROOT_DIR $ENV{CGNS_ROOT_DIR} CACHE PATH "Path to the CGNS.")
++IF(CGNS_ROOT_DIR)
++ LIST(APPEND CMAKE_PREFIX_PATH "${CGNS_ROOT_DIR}")
++ENDIF(CGNS_ROOT_DIR)
+ find_path(CGNS_INCLUDE_DIR
+   NAMES
+     cgnslib.h

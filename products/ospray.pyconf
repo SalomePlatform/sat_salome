@@ -52,7 +52,7 @@ version_2_7_1 :
     archive_name : "ospray-v2.7.1.tar.gz"
   }
   cmake_options : "-DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang -DEMBREE_ISPC_SUPPORT=ON -DEMBREE_TUTORIALS=OFF -Dembree_DIR=${embree_DIR} -DOSPRAY_ENABLE_APPS=OFF  -DCMAKE_INSTALL_LIBDIR=lib -Drkcommon_DIR=${rkcommon_DIR}"
-  depend : ['embree','openVKL', 'rkCommon']
+  depend : ['embree','openVKL', 'rkCommon', 'ispc']
 }
 
 version_2_7_1_win :

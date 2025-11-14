@@ -54,14 +54,14 @@ def set_paraview_env(env, version):
             env.prepend('PYTHONPATH', os.path.join(site_packages, 'vtk'))
             env.prepend('PYTHONPATH', os.path.join(site_packages))
     else:
-        paralib = os.path.join(root, 'lib', 'paraview-' + version)
+        paralib = os.path.join(root, 'lib', 'paraview')
         env.prepend('PV_PLUGIN_PATH', paralib)
         # bos #26828
         env.prepend('PV_PLUGIN_PATH', os.path.join(paralib, 'plugins'))
         env.prepend('PYTHONPATH', os.path.join(paralib, 'site-packages'))
         env.prepend('PYTHONPATH', os.path.join(paralib, 'site-packages', 'vtk'))
-        env.prepend('PATH', os.path.join(root, 'include', 'paraview-' + version))
-        env.prepend('LD_LIBRARY_PATH', os.path.join(root, 'lib', 'paraview-' + version))
+        env.prepend('PATH', os.path.join(root, 'include', 'paraview'))
+        env.prepend('LD_LIBRARY_PATH', paralib)
         env.prepend('PYTHONPATH', paralib)
 
 def set_vtk_env(env, version):

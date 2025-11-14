@@ -1,0 +1,26 @@
+diff -Naur ispc/CMakeLists.txt ispc.dev/CMakeLists.txt
+--- ispc/CMakeLists.txt	2023-10-10 17:55:48.000000000 +0200
++++ ispc.dev/CMakeLists.txt	2025-11-26 22:22:18.096510434 +0100
+@@ -245,7 +245,7 @@
+ # Get ispc version
+ get_ispc_version("${CMAKE_CURRENT_SOURCE_DIR}/common/version.h")
+
+-find_package(Python3 REQUIRED)
++find_package(Python3 EXACT $ENV{PYTHON_VERSION} REQUIRED)
+     if (NOT Python3_Interpreter_FOUND)
+         message(FATAL_ERROR "Python interpreter is not found")
+     endif()
+@@ -617,6 +617,13 @@
+ # Link against LLVM libraries
+ target_link_libraries(${PROJECT_NAME} ${LLVM_LIBRARY_LIST} ${CMAKE_DL_LIBS})
+
++# --- ZLIB Patch ---
++find_package(ZLIB REQUIRED)
++if(ZLIB_FOUND)
++    include_directories(${ZLIB_INCLUDE_DIRS})
++    target_link_libraries(${PROJECT_NAME} ${ZLIB_LIBRARIES})
++endif()
++
+ if (XE_ENABLED)
+     # Link against Xe libraries
+     foreach(xeLib ${XE_LIBRARY_LIST})

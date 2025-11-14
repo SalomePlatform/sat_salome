@@ -7,31 +7,31 @@ echo "##########################################################################
 # useful functions
 version_ge() { test "$(echo "$@" | tr " " "\n" | sort -rV | head -n 1)" == "$1"; }
 
-fix_lib_path(){
-	mkdir -p $PRODUCT_INSTALL/lib/python$PYTHON_VERSION
-	# ensure that lib is used
-	if [ -d "$PRODUCT_INSTALL/local" ]; then
-		cp -r $PRODUCT_INSTALL/local/* $PRODUCT_INSTALL/
-		rm -rf $PRODUCT_INSTALL/local
-	fi
+function fix_lib_path(){
+    mkdir -p $PRODUCT_INSTALL/lib/python$PYTHON_VERSION
+    # ensure that lib is used
+    if [ -d "$PRODUCT_INSTALL/local" ]; then
+        cp -r $PRODUCT_INSTALL/local/* $PRODUCT_INSTALL/
+        rm -rf $PRODUCT_INSTALL/local
+    fi
 
-	if [ -d "$PRODUCT_INSTALL/lib64" ]; then
-		echo "WARNING: renaming lib64 directory to lib"
-		mv $PRODUCT_INSTALL/lib64/* $PRODUCT_INSTALL/lib/
-		rm -rf $PRODUCT_INSTALL/lib64
-	elif [ -d "$PRODUCT_INSTALL/local/lib64" ]; then
-		echo "WARNING: renaming local/lib64 directory to lib"
-		mv $PRODUCT_INSTALL/local/lib64/* $PRODUCT_INSTALL/lib
-		rm -rf $PRODUCT_INSTALL/local
-	elif [ -d $PRODUCT_INSTALL/lib ]; then
-		:
-	else
-		echo "WARNING: unhandled case! Please ensure that script is consistent!"
-	fi
+    if [ -d "$PRODUCT_INSTALL/lib64" ]; then
+        echo "WARNING: renaming lib64 directory to lib"
+        mv $PRODUCT_INSTALL/lib64/* $PRODUCT_INSTALL/lib/
+        rm -rf $PRODUCT_INSTALL/lib64
+    elif [ -d "$PRODUCT_INSTALL/local/lib64" ]; then
+        echo "WARNING: renaming local/lib64 directory to lib"
+        mv $PRODUCT_INSTALL/local/lib64/* $PRODUCT_INSTALL/lib
+        rm -rf $PRODUCT_INSTALL/local
+    elif [ -d $PRODUCT_INSTALL/lib ]; then
+        :
+    else
+        echo "WARNING: unhandled case! Please ensure that script is consistent!"
+    fi
 
-	if [ -d ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/dist-packages ]; then
-	    mv ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/dist-packages ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages
-	fi
+    if [ -d ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/dist-packages ]; then
+        mv ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/dist-packages ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages
+    fi
 }
 
 LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
@@ -153,8 +153,8 @@ case $LINUX_DISTRIBUTION in
         CMAKE_OPTIONS+=" -DOPENTURNS_VETOED_TESTS=\"cppcheck_Log_std|cppcheck_FisherSnedecor_std|cppcheck_Poisson_std|cppcheck_Distribution_quantile|cppcheck_SmolyakExperiment_std\""
         ;;
     UB22*)
-	CMAKE_OPTIONS+=" -DOPENTURNS_VETOED_TESTS=\"cppcheck_PosteriorDistribution_std\""
-	;;
+        CMAKE_OPTIONS+=" -DOPENTURNS_VETOED_TESTS=\"cppcheck_PosteriorDistribution_std\""
+        ;;
     *)
         CMAKE_OPTIONS+=" -DOPENTURNS_VETOED_TESTS=\"cppcheck_Log_std|cppcheck_FisherSnedecor_std|cppcheck_Poisson_std|cppcheck_Distribution_quantile|cppcheck_GeneralLinearModelAlgorithm_std\""
         ;;
@@ -345,7 +345,7 @@ do
     echo "${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip . --no-deps  --target=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages"
     ${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip . --no-deps  --target=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages
     if [ $? -ne 0 ]; then
-	echo "ERROR: ${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip . --no-deps  --target=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages"
+        echo "ERROR: ${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip . --no-deps  --target=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages"
         exit 4
     fi
     #

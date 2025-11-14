@@ -2,7 +2,7 @@ default :
 {
     name : "GUI"
     build_source : "cmake"
-    cmake_options : "-DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig"
+    cmake_options : "-DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig" # if used llvm 16.0.6 and ispc 1.21.1, we need to add -DCMAKE_SHARED_LINKER_FLAGS=\"-Wl,--allow-shlib-undefined\"
     get_source : "git"
     git_info:
     {
@@ -272,7 +272,7 @@ version_python_async :
               ]
     build_depend : ["cmake", "swig", "doxygen", "cppunit"]
     patches : [
-               "GUI_Python_async.patch" 
+               "GUI_Python_async.patch"
     ]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name

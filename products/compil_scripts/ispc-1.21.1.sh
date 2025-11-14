@@ -1,34 +1,47 @@
 #!/bin/bash
 
 echo "##########################################################################"
-echo "ispc" $VERSION
+echo "ispc $VERSION"
 echo "##########################################################################"
 
-if [ -d "$SOURCE_DIR/bin" ]; then
-    echo "INFO: about to copy the ispc binary utility to the installation folder: $PRODUCT_INSTALL/bin"
-    mkdir -p "$PRODUCT_INSTALL/bin"
-    cp -r "$SOURCE_DIR/bin/"* "$PRODUCT_INSTALL/bin"
-    chmod -R +x $PRODUCT_INSTALL/bin/*
+CMAKE_OPTIONS=""
+CMAKE_OPTIONS+=" -DCMAKE_INSTALL_PREFIX=${PRODUCT_INSTALL}"
+CMAKE_OPTIONS+=" -DCMAKE_INSTALL_LIBDIR=lib"
+if [ -n "$SAT_DEBUG" ]; then
+    CMAKE_OPTIONS+=" -DCMAKE_BUILD_TYPE:STRING=Debug"
 else
-    echo "FATAL: NOT IMPLEMENTED"
+    CMAKE_OPTIONS+=" -DCMAKE_BUILD_TYPE:STRING=Release"
+fi
+CMAKE_OPTIONS+=" -DISPC_INCLUDE_EXAMPLES:BOOL=OFF"
+CMAKE_OPTIONS+=" -DISPC_INCLUDE_TESTS=OFF"
+CMAKE_OPTIONS+=" -DISPC_INCLUDE_UTILS:BOOL=OFF"
+
+cd ${BUILD_DIR}
+
+echo
+echo "*** cmake ${CMAKE_OPTIONS} ${SOURCE_DIR}"
+cmake ${CMAKE_OPTIONS} ${SOURCE_DIR}
+if [ $? -ne 0 ]
+then
+    echo "ERROR on cmake"
     exit 1
 fi
 
-if [ -d "$SOURCE_DIR/lib64" ]; then
-    echo "INFO: about to copy the ispc libraries to the installation folder: $PRODUCT_INSTALL/lib"
-    mkdir -p "$PRODUCT_INSTALL/lib"
-    cp -r "$SOURCE_DIR/lib64/"* "$PRODUCT_INSTALL/lib"
-else
-    echo "FATAL: libraries not found"
+echo
+echo "*** make ${MAKE_OPTIONS}"
+make ${MAKE_OPTIONS}
+if [ $? -ne 0 ]
+then
+    echo "ERROR on make"
     exit 2
 fi
 
-if [ -d "$SOURCE_DIR/include" ]; then
-    echo "INFO: about to cpoy the include files to the installation folder: $PRODUCT_INSTALL/include"
-    mkdir -p "$PRODUCT_INSTALL/include"
-    cp -r "$SOURCE_DIR/include/"* "$PRODUCT_INSTALL/include"
-else
-    echo "FATAL: include files not found"
+echo
+echo "*** make install"
+make install
+if [ $? -ne 0 ]
+then
+    echo "ERROR on make install"
     exit 3
 fi
 

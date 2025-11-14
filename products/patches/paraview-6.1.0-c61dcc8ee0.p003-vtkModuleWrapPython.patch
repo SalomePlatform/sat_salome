@@ -1,0 +1,15 @@
+--- ParaView-6.1.0-c61dcc8ee0_ref/VTK/CMake/vtkModuleWrapPython.cmake	2025-10-23 22:57:04.000000000 +0200
++++ ParaView-6.1.0-c61dcc8ee0_dev/VTK/CMake/vtkModuleWrapPython.cmake	2025-11-07 13:34:03.347210233 +0100
+@@ -63,11 +63,7 @@
+   endif ()
+ 
+   if (MSVC)
+-    if (CMAKE_INSTALL_LIBDIR STREQUAL "lib")
+-      set(destination "lib/site-packages")
+-    else ()
+-      set(destination "Lib/site-packages")
+-    endif ()
++    set(destination "${CMAKE_INSTALL_BINDIR}/Lib/site-packages")
+   else ()
+     if (NOT DEFINED "Python3_VERSION_MAJOR" OR
+         NOT DEFINED "Python3_VERSION_MINOR")

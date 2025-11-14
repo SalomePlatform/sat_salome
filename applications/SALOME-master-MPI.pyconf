@@ -21,6 +21,7 @@ APPLICATION :
            SALOME_USE_64BIT_IDS : '1'
            VTK_SMP_IMPLEMENTATION_TYPE : TBB # OpenMP # choose among: sequential / OpenMP / TBB switches
            SALOME_GMSH_HEADERS_STD : '1'
+           OMNIORBPY_REMOVE_INIT : '1'
         }
         launch :
         {
@@ -57,10 +58,12 @@ APPLICATION :
         cycler : '0.10.0'
         Cython : '0.29.37'
         dateutil : '2.7.3'
+        decorator : '5.1.0'
+        dill : '0.3.4'
         docutils : '0.20.1'
         doxygen : '1.8.14'
         eigen : '3.3.4'
-        embree : '3.12.2'
+        embree : '4.4.0'
         FMILibrary : '2.0.3'
         fftw :  {tag : '3.3.10', hpc : 'yes', base : 'no'}
         fonttools : '4.48.1'
@@ -82,8 +85,9 @@ APPLICATION :
         imagesize : '1.4.1'
         importlib_metadata : '7.0.1'
         importlib_resources: '6.1.1'
-        ispc : '1.15.0'
+        ispc : '1.21.1'
         Jinja2 : '3.1.3'
+        joblib : '1.2.0'
         jsoncpp : '1.9.6'
         kiwisolver : '1.3.1'
         lapack : '3.8.0'
@@ -111,14 +115,14 @@ APPLICATION :
         omniORBpy : '4.2.5'
         opencv : '3.2.0'
         openmpi : '4.0.3'
-        openturns:  {tag : '1.24', section: 'version_1_24', hpc : 'yes'}
-        openVKL: '0.11.0'
-        ospray : '2.4.0'
+        openturns:  {tag : '1.25.1', section: 'version_1_25_1', hpc : 'yes'}
+        openVKL: '1.3.2'
+        ospray : '2.12.0'
         packaging : '23.2'
         pandas : '1.1.5'
         patsy : '0.5.4'
-        ParaView : {tag:'5.13.2918b94391', base: 'no',  section: 'version_5_13_2_MPI', hpc: 'yes'}
-        PERSALYS: 'v18.0'
+        ParaView : {tag:'6.1.0.c61dcc8ee0', base: 'no',  section: 'version_6_1_0_MPI', hpc: 'yes'}
+        PERSALYS: 'v19.0'
         petsc : {tag : '3.20.5', base: 'no', section: 'version_3_20_5_MPI', hpc: 'yes'}
         Pillow : '8.4.0'
         planegcs : '0.18-3cb6890'
@@ -134,6 +138,7 @@ APPLICATION :
         pyreadline : '2.0'
         pytest :  '8.1.1'
         Python : '3.9.14'
+        pythonfmu : '0.6.3'
         pytz : '2017.2'
         qt : '5.15.15'
         qtpy : {tag : '2.4.1', base : 'no', section : 'version_2_4_1_no_pip', hpc: 'no'}
@@ -141,10 +146,11 @@ APPLICATION :
         rapidjson : '1.1.0'
         requests : '2.31.0'
         rich : '13.7.1'
-        rkCommon : '1.5.1'
+        rkCommon : '1.11.0'
         root: '6.28.10'
         salome_system : 'native'
         scipy : '1.6.2'
+        scikit_learn : '1.2.2' #1.0
         scotch : {tag: '6.1.2', section: 'version_6_1_2_MPI', hpc: 'yes', base: 'no'}
         setuptools : '69.0.3'
         sip : '5.5.0'
@@ -166,8 +172,10 @@ APPLICATION :
         tabulate : '0.9.0'
         tbb : '2019_U8'
         tcl : '8.6.0'
+        threadpoolctl : '3.5.0'
         tk : '8.6.0'
         toml: '0.10.2'
+        tqdm : '4.66.5'
         tomli : '2.0.1'
         TTK : 'f8dafde2d7'
         urllib3 : '1.23'
@@ -184,10 +192,10 @@ APPLICATION :
         'LIBBATCH' : 'V2_6_1'
         'KERNEL'      : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes', verbose: 'yes'}
         'MEDCOUPLING' : {tag:'master', base: 'no', section: 'default_MPI_STD', hpc: 'yes', verbose: 'yes'}
-        'GUI'
+        'GUI': 'kw_186_geom_extractor_version'
         'CommonGeomLib'
         'GEOM'
-        'SMESH'
+        'SMESH' : 'kw_186_variant_api'
         'NETGENPLUGIN'
         'BLSURFPLUGIN'
         'GHS3DPLUGIN'
@@ -198,7 +206,7 @@ APPLICATION :
         'HEXABLOCKPLUGIN'
         'HOMARD'    : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'FIELDS'    : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
-        'PARAVIS'   : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'PARAVIS': {tag:'kw_186_data_array', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'JOBMANAGER': {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'YACS'
         'YACSGEN'
@@ -214,9 +222,9 @@ APPLICATION :
         'PY2CPP'
         'ADAO'
         'ADAO_INTERFACE'
-        'PARAVISADDONS'
+        'PARAVISADDONS' : 'kw_186_medcoupling_dataarray'
         'OPENTURNS_SALOME'
-        'YDEFX'
+        'YDEFX' : 'agy/43708_win_compat_0'
         'pmml'
         'SALOMEBOOTSTRAP'
         'SOLVERLAB' : {tag: 'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
@@ -240,14 +248,16 @@ APPLICATION :
         pip : 'yes'
         pip_install_dir : 'python'
         single_install_dir : "no"
+        modules_use_pip : "yes"
     }
 }
 __overwrite__ :
 [
+    #
     {
         __condition__ : "VARS.dist in ['CO7']"
         'APPLICATION.rm_products'         : ['gcc', 'gmp', 'mpc', 'mpfr', 'mcut']
-        'APPLICATION.products.openturns': {tag: '1.24',   base: 'no', section: 'version_1_24_CO7', hpc: 'yes'      }
+        'APPLICATION.products.openturns': {tag: '1.25.1',  base: 'no', section: 'version_1_25_1_CO7', hpc:'yes'  }
         'APPLICATION.products.URANIE'   : {tag: '4.8.0',  base: 'no', section: 'version_4_8_0_CO7'                 }
     }
     #
@@ -257,13 +267,13 @@ __overwrite__ :
         'APPLICATION.products.boost'    : '1.75.0'
         'APPLICATION.products.dateutil' : '2.8.1'
         'APPLICATION.products.pandas'   : '1.4.0'
-        'APPLICATION.products.pyyaml'   : '6.0'
+        'APPLICATION.products.pyyaml'   : {tag: '6.0', base: 'no', section: 'version_6_0_CO8'}
         'APPLICATION.products.Python'   : '3.10.16'
         'APPLICATION.products.pytz'     : '2021.1'
         'APPLICATION.products.scipy'    : '1.8.0'
-        'APPLICATION.products.numpy'    : {tag: '1.22.2', base: 'no', section: 'version_1_22_2_CO8'            }
+        'APPLICATION.products.numpy'    : {tag: '1.22.2', base: 'no', section: 'version_1_22_2_CO8'}
+        'APPLICATION.products.openturns': {tag: '1.25.1',   base: 'no', section: 'version_1_25_1_CO8', hpc: 'yes'          }
         'APPLICATION.products.gdal'     : {tag: '2.4.0',  base: 'no', section: 'version_2_4_0_CO8', hpc: 'yes' } # spns #29324
-        'APPLICATION.products.openturns': {tag: '1.24',   base: 'no', section: 'version_1_24_CO8',  hpc: 'yes' }
     }
     #
     {
@@ -274,7 +284,6 @@ __overwrite__ :
         'APPLICATION.products.boost'     : {tag: '1.71.0',  base: 'no', section: 'version_1_71_0_CO9',     hpc: 'no'  } # spns #29324
         'APPLICATION.products.gdal'      : {tag: '2.4.0',   base: 'no', section: 'version_2_4_0_CO9',      hpc: 'yes' } # spns #29324
         'APPLICATION.products.libigl'    : {tag: 'v2.5.0',  base: 'no', section: 'version_v2_5_0_CO9'                 }
-        'APPLICATION.products.openturns' : {tag: '1.24',    base: 'no', section: 'version_1_24_CO9',       hpc: 'yes' }
         'APPLICATION.products.URANIE'    : {tag: '4.8.0',   base: 'no', section: 'version_4_8_0_CO9'                  }
     }
 ]

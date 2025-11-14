@@ -32,12 +32,18 @@ default_win:
     build_depend : ['cmake']
 }
 
-
 version_1_3_2:
 {
   build_source : "script"
   compil_script: "openVKL-1.3.2" + $VARS.scriptExtension
   archive_info : {archive_name : "openvkl-1.3.2.tar.gz"}
+}
+
+version_1_0_1:
+{
+  build_source : "script"
+  compil_script: "openVKL-1.0.1" + $VARS.scriptExtension
+  archive_info : {archive_name : "openvkl-1.0.1.tar.gz"}
 }
 
 version_0_11_0:

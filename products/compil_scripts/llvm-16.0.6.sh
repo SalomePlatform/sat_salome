@@ -1,0 +1,60 @@
+#!/bin/bash
+
+echo "##########################################################################"
+echo "LLVM " $VERSION
+echo "##########################################################################"
+
+CMAKE_OPTION=""
+CMAKE_OPTIONS+=" -DCMAKE_INSTALL_PREFIX:STRING=${PRODUCT_INSTALL}"
+
+if [ -n "$SAT_DEBUG" ]; then
+    CMAKE_OPTIONS+=" -DCMAKE_BUILD_TYPE:STRING=Debug"
+else
+    CMAKE_OPTIONS+=" -DCMAKE_BUILD_TYPE:STRING=Release"
+fi
+CMAKE_OPTIONS+=" -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON"
+CMAKE_OPTIONS+=" -DPython3_EXECUTABLE:FILEPATH=${PYTHONBIN}"
+CMAKE_OPTIONS+=" -DLLVM_INSTALL_UTILS:BOOL=ON"
+CMAKE_OPTIONS+=" -DLLVM_ENABLE_DUMP:BOOL=ON"
+CMAKE_OPTIONS+=" -DLLVM_INCLUDE_TESTS:BOOL=OFF"
+CMAKE_OPTIONS+=" -DLLVM_INCLUDE_UTILS:BOOL=OFF"
+CMAKE_OPTIONS+=" -DLLVM_ENABLE_RTTI:BOOL=ON"
+CMAKE_OPTIONS+=" -DLLVM_ENABLE_LIBXML2:BOOL=OFF"
+CMAKE_OPTIONS+=" -DLLVM_ENABLE_BINDINGS:BOOL=OFF"
+CMAKE_OPTIONS+=" -DLLVM_ENABLE_ZSTD:BOOL=OFF"
+CMAKE_OPTIONS+=" -DLLVM_INCLUDE_BENCHMARKS:BOOL=OFF"
+CMAKE_OPTIONS+=" -DLLVM_INCLUDE_EXAMPLES:BOOL=OFF"
+CMAKE_OPTIONS+=" -DLLVM_INCLUDE_RUNTIMES:BOOL=OFF"
+CMAKE_OPTIONS+=" -DLLVM_ENABLE_PROJECTS=clang;llvm;lld"
+#CMAKE_OPTIONS+=" -DLLVM_BUILD_SHARED_LIBS=ON"
+#CMAKE_OPTIONS+=" -DLLVM_TARGETS_TO_BUILD:STRING=X86"
+#CMAKE_OPTIONS+=" -DCMAKE_INSTALL_RPATH:STRING=${PRODUCT_INSTALL}/lib"
+
+cd $BUILD_DIR
+cmake ${CMAKE_OPTIONS} $SOURCE_DIR/llvm
+if [ $? -ne 0 ]; then
+    echo "ERROR on cmake"
+    exit 1
+fi
+
+echo
+echo "*** make" $MAKE_OPTIONS
+make $MAKE_OPTIONS
+if [ $? -ne 0 ]
+then
+    echo "ERROR on make"
+    exit 2
+fi
+
+echo
+echo "*** make install"
+make install
+if [ $? -ne 0 ]
+then
+    echo "ERROR on make install"
+    exit 3
+fi
+
+echo
+echo "########## END"
+
