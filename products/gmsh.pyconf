@@ -38,27 +38,25 @@ version_4_14_1:
   depend : ["CAS","lapack","hdf5","medfile", "cgns"]
 }
 
+version_4_14_1_CO7:
+{
+  archive_info : {archive_name : "gmsh-4.14.1-source.tgz"}
+  compil_script : "gmsh-4.14.1" + $VARS.scriptExtension
+  depend : ["CAS","openblas","hdf5","medfile", "cgns"]
+}
+
+version_4_14_1_CO8:
+{
+  archive_info : {archive_name : "gmsh-4.14.1-source.tgz"}
+  compil_script : "gmsh-4.14.1" + $VARS.scriptExtension
+  depend : ["CAS","openblas","hdf5","medfile", "cgns"]
+}
+
 version_4_10_3_with_CAS_7_8:
 {
   archive_info : {archive_name : "gmsh-4.10.3.tar.gz"}
   compil_script : "gmsh-4.10.3.sh"
   depend : ["CAS","lapack","hdf5","medfile", "cgns"]
-  patches : ['gmsh-4.10.3-occt780.patch']
-}
-
-version_4_10_3_with_CAS_7_8_CO7:
-{
-  archive_info : {archive_name : "gmsh-4.10.3.tar.gz"}
-  compil_script : "gmsh-4.10.3.sh"
-  depend : ["CAS","openblas","hdf5","medfile", "cgns"]
-  patches : ['gmsh-4.10.3-occt780.patch']
-}
-
-version_4_10_3_with_CAS_7_8_CO8:
-{
-  archive_info : {archive_name : "gmsh-4.10.3.tar.gz"}
-  compil_script : "gmsh-4.10.3.sh"
-  depend : ["CAS","openblas","hdf5","medfile", "cgns"]
   patches : ['gmsh-4.10.3-occt780.patch']
 }
 
