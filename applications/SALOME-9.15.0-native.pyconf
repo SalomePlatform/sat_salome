@@ -356,8 +356,8 @@ __overwrite__ :
         'APPLICATION.products.nose_py3'         : {tag: '1.6.9',           base: 'no', section: 'version_1_6_9_no_pip'                  }
         'APPLICATION.products.rkCommon'         : {tag: '1.5.1',           base: 'no', section: 'version_1_5_1_UB24_04'                 }
         'APPLICATION.products.ParaView'         : {tag: '5.13.2918b94391', base: 'no', section: 'version_5_13_2_MPI_UB24_04', hpc: 'yes'}
-        'APPLICATION.products.KERNEL'           : {tag: 'V9_15_0',          base: 'no', section: 'default_DB13'                          }
-        'APPLICATION.products.SOLVERLAB'        : {tag: 'V9_15_0',          base: 'no', section: 'default_FD40'                          }
+        'APPLICATION.products.KERNEL'           : {tag: 'V9_15_0',         base: 'no', section: 'version_V9_15_0_DB13'                  }
+        'APPLICATION.products.SOLVERLAB'        : {tag: 'V9_15_0',         base: 'no', section: 'version_V9_15_0_FD40'                  }
     }
     #
     {
