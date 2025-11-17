@@ -277,6 +277,7 @@ __overwrite__ :
         'APPLICATION.products.gmsh'       : {tag: '4.14.1', base: 'no', section: 'version_4_14_1_CO7'}
         'APPLICATION.products.libigl'     : {tag: 'v2.5.0',  base: 'no', section: 'version_v2_5_0_CO7' }
         'APPLICATION.products.netcdf'     : {tag: '4.9.2',  base: 'no', section: 'version_4_9_2_CO7'  }
+        'APPLICATION.products.numpy'      : {tag: '1.22.2',  base: 'no', section: 'version_1_22_2_CO7'  }
         'APPLICATION.products.openturns'  : {tag: '1.25.1', base: 'no', section: 'version_1_25_1_CO7' }
         'APPLICATION.products.petsc'      : {tag: '3.20.5', base: 'no', section: 'version_3_20_5_CO7' }
         'APPLICATION.products.TTK'        : {tag: 'f8dafde2d7', base: 'no', section: 'version_f8dafde2d7_CO7' }
@@ -302,6 +303,7 @@ __overwrite__ :
         'APPLICATION.products.gmsh'       : {tag: '4.14.1', base: 'no', section: 'version_4_14_1_CO8'}
         'APPLICATION.products.libigl'     : {tag: 'v2.5.0',  base: 'no', section: 'version_v2_5_0_CO8' }
         'APPLICATION.products.netcdf'     : {tag: '4.9.2',  base: 'no', section: 'version_4_9_2_CO8'  }
+        'APPLICATION.products.numpy'      : {tag: '1.22.2',  base: 'no', section: 'version_1_22_2_CO8'  }
         'APPLICATION.products.openturns'  : {tag: '1.25.1', base: 'no', section: 'version_1_25_1_CO8' }
         'APPLICATION.products.petsc'      : {tag: '3.20.5', base: 'no', section: 'version_3_20_5_CO8' }
         'APPLICATION.products.TTK'        : {tag: 'f8dafde2d7', base: 'no', section: 'version_f8dafde2d7_CO8' }

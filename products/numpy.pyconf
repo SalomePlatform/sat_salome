@@ -39,6 +39,29 @@ default_win :
 
 version_1_22_2:
 {
+    properties:
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+    compil_script : "numpy-1.22.2.sh"
+    patches: ['SPNS-29988-numpy-1.22.patch']
+}
+
+version_1_22_2_CO7:
+{
+    depend : [ 'Python', 'setuptools', 'wheel', 'Cython', 'openblas' ]
+    properties:
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+    compil_script : "numpy-1.22.2.sh"
+    patches: ['SPNS-29988-numpy-1.22.patch']
+}
+
+version_1_22_2_CO8:
+{
     depend : [ 'Python', 'setuptools', 'wheel', 'Cython', 'openblas' ]
     properties:
     {
@@ -51,7 +74,8 @@ version_1_22_2:
 
 version_1_21_1:
 {
-    depend : [ 'Python', 'setuptools', 'wheel', 'Cython', 'openblas' ]
+    depend : [ 'Python', 'setuptools',  'Cython' ]
+    opt_dep: ['wheel', 'openblas']
     properties:
     {
       incremental : "yes"
