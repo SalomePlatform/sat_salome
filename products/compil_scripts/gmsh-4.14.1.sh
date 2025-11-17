@@ -42,6 +42,9 @@ then
     fi
 fi
 
+# spns #47907 -  switch on python wrapper
+CMAKE_OPTIONS+=" -DWRAP_PYTHON=ON"
+
 echo "*** cmake" $CMAKE_OPTIONS
 cmake $CMAKE_OPTIONS $SOURCE_DIR
 

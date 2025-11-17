@@ -35,21 +35,21 @@ version_4_14_1:
 {
   archive_info : {archive_name : "gmsh-4.14.1-source.tgz"}
   compil_script : "gmsh-4.14.1" + $VARS.scriptExtension
-  depend : ["CAS","lapack","hdf5","medfile", "cgns"]
+  depend : ["CAS","lapack","hdf5","medfile", "cgns", "swig"]
 }
 
 version_4_14_1_CO7:
 {
   archive_info : {archive_name : "gmsh-4.14.1-source.tgz"}
   compil_script : "gmsh-4.14.1" + $VARS.scriptExtension
-  depend : ["CAS","openblas","hdf5","medfile", "cgns"]
+  depend : ["CAS","openblas","hdf5","medfile", "cgns", "swig"]
 }
 
 version_4_14_1_CO8:
 {
   archive_info : {archive_name : "gmsh-4.14.1-source.tgz"}
   compil_script : "gmsh-4.14.1" + $VARS.scriptExtension
-  depend : ["CAS","openblas","hdf5","medfile", "cgns"]
+  depend : ["CAS","openblas","hdf5","medfile", "cgns", "swig"]
 }
 
 version_4_10_3_with_CAS_7_8:
