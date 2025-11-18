@@ -33,16 +33,20 @@ default_win:
     }
 }
 
+version_0_3_29:
+{
+    build_source : "script"
+    compil_script : "openblas-0.3.29" + $VARS.scriptExtension
+}
+
 version_0_3_26:
 {
     build_source : "script"
-    compil_script : "openblas-0.3.26.sh"
+    compil_script : "openblas-0.3.26" + $VARS.scriptExtension
 }
 
 version_0_3_23:
-{}
-
-version_0_3_23_win:
 {
-  compil_script : 'openblas-0.3.23.bat'
+    build_source : "script"
+    compil_script : "openblas-0.3.23" + $VARS.scriptExtension
 }

@@ -25,3 +25,8 @@ default :
       pip : "yes"
     }
 }
+
+default_win:
+{
+    depend : ['Python', 'setuptools'] # Ninja is shipped with Visual 2019
+}

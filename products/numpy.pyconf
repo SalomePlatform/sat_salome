@@ -35,6 +35,7 @@ default_win :
         archive_name : "numpy-"  + $APPLICATION.products.numpy + "_windows.tar.gz"
     }
     depend : [ 'Python', 'setuptools', 'Cython']
+    opt_depend : ['lapack', 'openblas']
 }
 
 version_1_22_2:
@@ -45,6 +46,23 @@ version_1_22_2:
       pip : "no"
     }
     compil_script : "numpy-1.22.2.sh"
+    patches: ['SPNS-29988-numpy-1.22.patch']
+}
+
+version_1_22_2_win:
+{
+    archive_info:
+    {
+      archive_name : "numpy-"  + $APPLICATION.products.numpy + ".tar.gz"
+    }
+    depend : [ 'Python', 'setuptools', 'wheel', 'Cython']
+    opt_depend : ['lapack', 'openblas']
+    properties:
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+    compil_script : "numpy-1.22.2.bat"
     patches: ['SPNS-29988-numpy-1.22.patch']
 }
 
@@ -84,30 +102,6 @@ version_1_21_1:
     compil_script : "numpy-1.21.1.sh"
 }
 
-version_1_21_6_win_dbg:
-{
-    name : "numpy"
-    build_source : "script"
-    compil_script : $name + $VARS.scriptExtension
-    get_source : "archive"
-    archive_info:
-    {
-        archive_name : "numpy-1.21.6.tar.gz"
-    }
-    depend : [ 'Python', 'setuptools', 'Cython']
-    environ :
-    {
-       env_script : $name + ".py"
-    }
-    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
-    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
-    properties:
-    {
-      incremental : "yes"
-      pip : "no"
-    }
-}
-
 version_1_20_3:
 {
     properties:
@@ -117,30 +111,6 @@ version_1_20_3:
     }
     compil_script : "numpy-1.20.3.sh"
     patches: ['numpy-1.20.3.pO1.patch', 'numpy-1.20.3.pO2.patch', 'numpy-1.20.3.pO3.patch']
-}
-
-version_1_16_4_win_dbg:
-{
-    name : "numpy"
-    build_source : "script"
-    compil_script : $name + $VARS.scriptExtension
-    get_source : "archive"
-    archive_info:
-    {
-        archive_name : "numpy-1.16.4_windows.tar.gz"
-    }
-    depend : [ 'Python', 'setuptools', 'Cython']
-    environ :
-    {
-       env_script : $name + ".py"
-    }
-    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
-    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
-    properties:
-    {
-      incremental : "yes"
-      pip : "no"
-    }
 }
 
 version_1_15_5:

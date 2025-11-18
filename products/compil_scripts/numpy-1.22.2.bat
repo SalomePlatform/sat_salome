@@ -1,0 +1,72 @@
+@echo off
+
+echo ##########################################################################
+echo numpy %VERSION%
+echo ##########################################################################
+
+REM install in python directly
+SET INSTALL_CENTRALLY=0
+
+IF NOT DEFINED SAT_DEBUG (
+  SET SAT_DEBUG=0
+)
+
+if NOT exist "%PRODUCT_INSTALL%" mkdir %PRODUCT_INSTALL%
+REM clean BUILD directory
+if exist "%BUILD_DIR%" rmdir /Q /S %BUILD_DIR%
+mkdir %BUILD_DIR%
+cd %SOURCE_DIR%
+xcopy * %BUILD_DIR% /E /I /Q
+if NOT %ERRORLEVEL% == 0 (
+    echo ERROR on xcopy
+    exit 1
+)
+
+cd %BUILD_DIR%
+
+echo.
+echo Lapack is embedded. Expose it to Numpy
+
+echo [DEFAULT] > site.cfg
+echo library_dirs = %OPENBLASHOME:\=/%/lib>> site.cfg
+echo include_dirs = %OPENBLASHOME:\=/%/include>> site.cfg
+echo. >> site.cfg
+echo [blas]>> site.cfg
+echo libraries = openblas>>site.cfg
+echo. >> site.cfg
+echo [lapack]>> site.cfg
+echo libraries = openblas>>site.cfg
+
+echo.
+echo --------------------------------------------------------------------------
+echo Launching "python.exe setup.py build"
+echo --------------------------------------------------------------------------
+set BUILD_OPT=
+if %SAT_DEBUG% == 1 (
+   set BUILD_OPT=--debug
+)
+
+%PYTHON_ROOT_DIR%\python.exe setup.py build %BUILD_OPT%
+
+echo.
+echo --------------------------------------------------------------------------
+echo Launching "python.exe setup.py install"
+echo --------------------------------------------------------------------------
+
+if %INSTALL_CENTRALLY% == 1 (
+    %PYTHON_ROOT_DIR%\python.exe setup.py install --old-and-unmanageable
+) else (
+    %PYTHON_ROOT_DIR%\python.exe setup.py install  --single-version-externally-managed --root=/ --prefix=%PRODUCT_INSTALL% --install-lib=%PRODUCT_INSTALL%\lib\python%PYTHON_VERSION%\site-packages --old-and-unmanageable
+)
+
+if NOT %ERRORLEVEL% == 0 (
+    echo ERROR on setup.py install 
+    exit 3
+)
+
+echo.
+echo Product %PRODUCT_NAME% version: %VERSION%> %PRODUCT_INSTALL%\README.txt
+echo Installation folder: %PYTHON_ROOT_DIR%>> %PRODUCT_INSTALL%\README.txt
+
+echo.
+echo ########## END

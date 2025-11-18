@@ -92,7 +92,7 @@ APPLICATION :
         markdown_it_py : '3.0.0'
         medfile : '6.0.1'
         mesa : {tag : '19.0.8-x86_64-'+$VARS.dist, base: 'no', section: 'version_bin'}
-        meshbooleanplugin : 'v1.0.0'
+        meshbooleanplugin : 'main'
         MeshGems : '2.15-1'
         meshio: '5.3.5'
         metis : 'native'

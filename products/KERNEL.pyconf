@@ -57,7 +57,6 @@ default_win :
     depend : ["Python",
               "boost",
               "numpy",
-              "lapack",
               "hdf5",
               "omniORB",
               "omniORBpy",
@@ -74,8 +73,8 @@ default_win :
               "psutil",
               "CAS"
               ]
+    opt_depend : ["SALOMEBOOTSTRAP", "lapack", "openblas"]
     build_depend : ["cmake", "swig", "doxygen", "cppunit"]
-    opt_depend : ["SALOMEBOOTSTRAP"]
 }
 
 default_MPI :
@@ -92,6 +91,7 @@ default_MPI :
               "libxml2",
               "Sphinx",
               "sphinxintl",
+              "sphinx_rtd_theme",
               "Jinja2",
               "setuptools",
               "Pygments",

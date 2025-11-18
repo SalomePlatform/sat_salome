@@ -33,8 +33,8 @@ default_win :
       single_install_dir : "no"
       incremental : "yes"
     }
-    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'pthreads']
-    opt_depend : []
+    depend : ['Python', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'pthreads']
+    opt_depend : ['lapack', 'openblas']
 }
 
 version_4_9_2:

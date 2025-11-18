@@ -30,7 +30,7 @@ default_win :
       single_install_dir : "no"
       incremental : "yes"
     }
-    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'pthreads']
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'pthreads', 'dill']
     opt_depend : []
 }
 
@@ -166,7 +166,7 @@ version_1_25_1_CO10 :
 version_1_25_1_win :
 {
     compil_script :  "openturns-1.25.1.bat"
-    depend : ['Python', 'openblas', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'fftw']
+    depend : ['Python', 'openblas', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib', 'fftw', 'dill']
     opt_depend : ['pandas', 'statsmodels', 'patsy']
     patches : []
     properties :

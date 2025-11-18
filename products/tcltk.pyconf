@@ -28,6 +28,12 @@ default_win:
     }
 }
 
+version_8_6_17:
+{
+    compil_script : "tcltk-8.6.17" + $VARS.scriptExtension
+    patches : []
+}
+
 # needed in order to screen with windows version - see below
 version_8_6_9:
 {
@@ -36,5 +42,6 @@ version_8_6_9:
 
 version_8_6_9_win:
 {
+  compil_script : "tcltk-8.6.9.bat"
   patches : ["tcltk-8.6.9_windows.patch"]
 }

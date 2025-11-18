@@ -23,7 +23,7 @@ default :
 
 default_win:
 {
-    depend : ["CAS", "pthreads","hdf5","medfile"]
+    depend : ["CAS", "pthreads", "hdf5", "medfile", "openblas"]
     properties :
     {
       incremental : "yes"
@@ -36,6 +36,11 @@ version_4_14_1:
   archive_info : {archive_name : "gmsh-4.14.1-source.tgz"}
   compil_script : "gmsh-4.14.1" + $VARS.scriptExtension
   depend : ["CAS","lapack","hdf5","medfile", "cgns", "swig"]
+}
+
+version_4_14_1_win:
+{
+  depend : ["CAS", "openblas", "hdf5", "medfile", "cgns", "swig"]
 }
 
 version_4_14_1_CO7:
@@ -117,19 +122,6 @@ version_4_10_3_with_CAS_7_8_win:
   nb_proc: 4
 }
 
-version_4_10_3_with_CAS_7_8_win_dbg:
-{
-  depend : ["CAS","lapack","hdf5","medfile", "cgns"]
-  compil_script : "gmsh-4.10.3.bat"
-  patches: ['gmsh-4.10.3-occt780-win.patch',
-            'gmsh-4.10.3-windows.patch']
-  properties :
-  {
-    incremental : "yes"
-    single_install_dir : "no"
-  }
-}
-
 version_4_10_3_with_CAS_7_8_MPI:
 {
   archive_info : {archive_name : "gmsh-4.10.3.tar.gz"}
@@ -162,18 +154,6 @@ version_4_10_3_MPI:
 {
   compil_script : "gmsh-4.10.3.sh"
   depend : ["CAS","lapack","hdf5","medfile", "cgns", "openmpi"]
-}
-
-version_4_10_3_win_dbg:
-{
-  depend : ["CAS","lapack","hdf5","medfile", "cgns"]
-  compil_script : "gmsh-4.10.3.bat"
-  patches: ['gmsh-4.10.3-windows.patch']
-  properties :
-  {
-    incremental : "yes"
-    single_install_dir : "no"
-  }
 }
 
 version_4_8_4:

@@ -9,10 +9,13 @@ IF NOT DEFINED SAT_DEBUG (
 )
 
 SET PRODUCT_BUILD_TYPE=Release
-REM TODO: NGH: not Tested yet
-REM if %SAT_DEBUG% == 1 (
-REM   set PRODUCT_BUILD_TYPE=Debug
-REM )
+IF DEFINED SAT_CMAKE_BUILD_TYPE (
+  SET PRODUCT_BUILD_TYPE=%SAT_CMAKE_BUILD_TYPE%
+)
+
+if %SAT_DEBUG% == 1 (
+  set PRODUCT_BUILD_TYPE=Debug
+)
 
 if NOT exist "%PRODUCT_INSTALL%" mkdir %PRODUCT_INSTALL%
 REM clean BUILD directory
@@ -37,16 +40,16 @@ if NOT %ERRORLEVEL% == 0 (
 )
 
 echo.
-echo *** %BUILD_DIR%\LIBF77\Libf77.vcxproj /t:build /p:Configuration=%PRODUCT_BUILD_TYPE%;Platform=x64
-msbuild %BUILD_DIR%\LIBF77\Libf77.vcxproj /t:build /p:Configuration=%PRODUCT_BUILD_TYPE%;Platform=x64
+echo *** %BUILD_DIR%\LIBF77\Libf77.vcxproj /t:build /p:Configuration=%PRODUCT_BUILD_TYPE%;Platform=x64 /p:WindowsTargetPlatformVersion=%WindowsSDKVersion%
+msbuild %BUILD_DIR%\LIBF77\Libf77.vcxproj /t:build /p:Configuration=%PRODUCT_BUILD_TYPE%;Platform=x64 /p:WindowsTargetPlatformVersion=%WindowsSDKVersion%
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on msbuild. Cannot build Libf77
     exit 2
 )
 
 echo.
-echo *** %BUILD_DIR%\LIBI77\Libi77.vcxproj /t:build /p:Configuration=%PRODUCT_BUILD_TYPE%;Platform=x64 
-msbuild %BUILD_DIR%\LIBI77\Libi77.vcxproj /t:build /p:Configuration=%PRODUCT_BUILD_TYPE%;Platform=x64
+echo *** %BUILD_DIR%\LIBI77\Libi77.vcxproj /t:build /p:Configuration=%PRODUCT_BUILD_TYPE%;Platform=x64 /p:WindowsTargetPlatformVersion=%WindowsSDKVersion%
+msbuild %BUILD_DIR%\LIBI77\Libi77.vcxproj /t:build /p:Configuration=%PRODUCT_BUILD_TYPE%;Platform=x64 /p:WindowsTargetPlatformVersion=%WindowsSDKVersion%
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on msbuild. Cannot build Libi77
     exit 2
@@ -55,8 +58,8 @@ if NOT %ERRORLEVEL% == 0 (
 REM the binary should be compiled in 32 bits mode, otherwise c generated files from fortran are empty...
 REM see BOS #16524
 echo.
-echo *** %BUILD_DIR%\SRC\f2c.vcxproj /t:build /p:Configuration=%PRODUCT_BUILD_TYPE%;Platform=x86 
-msbuild %BUILD_DIR%\SRC\f2c.vcxproj /t:build /p:Configuration=%PRODUCT_BUILD_TYPE%;Platform=x86
+echo *** %BUILD_DIR%\SRC\f2c.vcxproj /t:build /p:Configuration=%PRODUCT_BUILD_TYPE%;Platform=x86 /p:WindowsTargetPlatformVersion=%WindowsSDKVersion%
+msbuild %BUILD_DIR%\SRC\f2c.vcxproj /t:build /p:Configuration=%PRODUCT_BUILD_TYPE%;Platform=x86 /p:WindowsTargetPlatformVersion=%WindowsSDKVersion%
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on msbuild. Cannot build f2c.exe
     exit 2

@@ -32,6 +32,8 @@ default :
 
 default_win :
 {
+    depend : ['Python', 'openblas', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib']
+    opt_depend : []
     properties :
     {
       single_install_dir : "yes"
@@ -82,7 +84,6 @@ version_1_3_6_win:
 {
     depend : ['Python', 'openblas', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib']
     build_depend : ["cmake", "swig"]
-    opt_depend : ['openmpi']
     compil_script: 'cminpack-1.3.6.bat'
     patches : ["cminpack-1.3.6-openblas.patch"]
 }

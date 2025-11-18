@@ -31,8 +31,10 @@ default :
 default_win :
 {
    archive_info : {archive_name : "scipy-" + $APPLICATION.products.scipy + "_windows.tar.gz"}
+    depend : ['numpy']
+    opt_depend: ['lapack', 'openblas']
+    build_depend : ["cmake"]
 }
-
 
 version_1_11_4:
 {
@@ -44,6 +46,19 @@ version_1_11_4:
     {
       incremental : "yes"
       pip : "no"
+    }
+}
+
+version_1_11_4_win:
+{
+    compil_script : "scipy-1.11.4.bat"
+    archive_info : {archive_name : "scipy-1.11.4.tar.gz"}
+    depend : ['numpy']
+    opt_depend : ['Python', 'setuptools', 'wheel', 'Cython', 'numpy', 'openblas', 'meson_python', 'pythran', 'pybind11']
+    properties :
+    {
+      incremental : "yes"
+      pip : "yes" # TODO: for now on, we use the pip wheel. in order to compile scipy, we need to compile flang which requires a bump in the llvm version
     }
 }
 
@@ -73,8 +88,8 @@ version_1_6_2_win:
     pip : "yes"
   }
   archive_info : {archive_name : "scipy-1.6.2.tar.gz"}
-  depend : ['numpy','lapack']
-  opt_depend : ['pybind11', 'openblas']
+  depend : ['numpy']
+  opt_depend : ['pybind11', 'openblas', 'lapack']
 }
 
 version_1_4_1 :
@@ -114,7 +129,7 @@ version_1_3_0 :
 
 version_1_3_0_win :
 {
-    compil_script : "scipy.bat"
+    compil_script : "scipy-1.3.0.bat"
 }
 
 version_0_18_1 :
@@ -139,7 +154,7 @@ version_0_15_1 :
 
 version_0_15_1_win :
 {
-    compil_script : "scipy.bat"
+    compil_script : "scipy-0.15.1.bat"
 }
 
 version_0_13_3 :
