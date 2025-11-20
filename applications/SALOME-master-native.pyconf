@@ -321,6 +321,7 @@ __overwrite__ :
         'APPLICATION.products.opencv'           : '3.2.0'
         'APPLICATION.products.petsc'            : '3.22.3'
         'APPLICATION.products.PyFMI'            : '2.13.1'
+        'APPLICATION.products.PyQt'             : '5.15.3'
         'APPLICATION.products.swig'             : '4.0.2'
         'APPLICATION.products.sip'              : {tag: '5.5.0',           base: 'no', section: 'version_5_5_0_DB13'                    }
         'APPLICATION.products.FMILibrary'       : {tag: '2.4.1',           base: 'no', section: 'version_2_4_1_FD40'                    }
