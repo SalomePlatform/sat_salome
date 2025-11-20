@@ -20,14 +20,13 @@ fix_lib_path(){
 		echo "WARNING: renaming local/lib64 directory to lib"
 		mv $PRODUCT_INSTALL/local/lib64/* $PRODUCT_INSTALL/lib
 		rm -rf $PRODUCT_INSTALL/local
-	elif [ -d $PRODUCT_INSTALL/lib ]; then
-		:
 	else
 		echo "WARNING: unhandled case! Please ensure that script is consistent!"
 	fi
 
+    mkdir -p ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages
 	if [ -d ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/dist-packages ]; then
-	    mv ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/dist-packages ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages
+	    cp -r ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/dist-packages/* ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages/
 	fi
 }
 
@@ -48,14 +47,6 @@ USE_SETUP=false
 if [[ "$PYTHON_VERSION" == "3.6" ]]; then
     USE_SETUP=true
 fi
-
-case $LINUX_DISTRIBUTION in
-    CO9)
-        USE_SETUP=false
-        ;;
-    *)
-        ;;
-esac
 
 # we don't install in python directory -> modify environment as described in INSTALL file
 export PATH=$(pwd)/bin:$PATH
@@ -93,7 +84,7 @@ fix_lib_path
 
 PYQT5_SIP_VERSION=
 case $LINUX_DISTRIBUTION in
-    CO10|DB13)
+    CO10)
         PYQT5_SIP_VERSION=12.17.0
         ;;
     *)
@@ -101,40 +92,42 @@ case $LINUX_DISTRIBUTION in
         ;;
 esac
 
-cd $BUILD_DIR
-cp -R $SOURCE_DIR/PyQt5_sip-$PYQT5_SIP_VERSION $BUILD_DIR/PyQt5_sip-$PYQT5_SIP_VERSION
-cd $BUILD_DIR/PyQt5_sip-$PYQT5_SIP_VERSION
-
-echo
-echo "*** build with $PYTHONBIN"
-if [ "$USE_SETUP" == "true" ]; then
-    $PYTHONBIN setup.py build
-    if [ $? -ne 0 ]
-    then
-        echo "ERROR on build"
-        exit 2
-    fi
+if [ $LINUX_DISTRIBUTION != "DB13" ]; then
+    cd $BUILD_DIR
+    cp -R $SOURCE_DIR/PyQt5_sip-$PYQT5_SIP_VERSION $BUILD_DIR/PyQt5_sip-$PYQT5_SIP_VERSION
+    cd $BUILD_DIR/PyQt5_sip-$PYQT5_SIP_VERSION
 
     echo
-    echo "*** install with $PYTHONBIN"
-    $PYTHONBIN setup.py install --prefix=$PRODUCT_INSTALL
-    if [ $? -ne 0 ]
-    then
-        echo "ERROR on install"
-        exit 3
+    echo "*** build with $PYTHONBIN"
+    if [ "$USE_SETUP" == "true" ]; then
+        $PYTHONBIN setup.py build
+        if [ $? -ne 0 ]
+        then
+            echo "ERROR on build"
+            exit 2
+        fi
+
+        echo
+        echo "*** install with $PYTHONBIN"
+        $PYTHONBIN setup.py install --prefix=$PRODUCT_INSTALL
+        if [ $? -ne 0 ]
+        then
+            echo "ERROR on install"
+            exit 3
+        fi
+    else
+        echo
+        echo "*** install with $PYTHONBIN"
+        $PYTHONBIN -m pip install --cache-dir=$BUILD_DIR/cache/pip  .  --no-deps --prefix=$PRODUCT_INSTALL
+        if [ $? -ne 0 ]
+        then
+            echo "ERROR on install"
+            exit 3
+        fi
     fi
-else
-    echo
-    echo "*** install with $PYTHONBIN"
-    $PYTHONBIN -m pip install --cache-dir=$BUILD_DIR/cache/pip  .  --no-deps --prefix=$PRODUCT_INSTALL
-    if [ $? -ne 0 ]
-    then
-        echo "ERROR on install"
-        exit 3
-    fi
+
+    fix_lib_path
 fi
-
-fix_lib_path
 
 mkdir $PRODUCT_INSTALL/include
 cp *.h $PRODUCT_INSTALL/include
