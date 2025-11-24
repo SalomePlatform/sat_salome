@@ -41,7 +41,7 @@ if [ "$SALOME_USE_64BIT_IDS" == "1" ]; then
     CONFIGURE_FLAGS+=' --with-med_int=long'
     export  FFLAGS="-g -O2 -fdefault-integer-8"
     export FCFLAGS="-g -O2 -fdefault-integer-8"
-    if [ "${GCC_VERSION_MAJ}" -gt "8" ]; then
+    if [ "${GCC_VERSION_MAJOR}" -gt "8" ]; then
         FFLAGS+=" -fallow-argument-mismatch"
         FCFLAGS+=" -fallow-argument-mismatch"
     fi
