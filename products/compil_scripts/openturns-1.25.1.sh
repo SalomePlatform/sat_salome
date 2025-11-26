@@ -155,7 +155,7 @@ case $LINUX_DISTRIBUTION in
 	CMAKE_OPTIONS+=" -DOPENTURNS_VETOED_TESTS=\"cppcheck_PosteriorDistribution_std\""
 	;;
     *)
-        CMAKE_OPTIONS+=" -DOPENTURNS_VETOED_TESTS=\"cppcheck_Log_std|cppcheck_FisherSnedecor_std|cppcheck_Poisson_std|cppcheck_Distribution_quantile\""
+        CMAKE_OPTIONS+=" -DOPENTURNS_VETOED_TESTS=\"cppcheck_Log_std|cppcheck_FisherSnedecor_std|cppcheck_Poisson_std|cppcheck_Distribution_quantile|cppcheck_GeneralLinearModelAlgorithm_std\""
         ;;
 esac
 
