@@ -56,6 +56,21 @@ then
     exit 3
 fi
 
+
+if [ -d "${PRODUCT_INSTALL}/lib64" ]; then
+    if [ -d "$PRODUCT_INSTALL/lib" ]; then
+        cp -r $PRODUCT_INSTALL/lib64/python$PYTHON_VERSION $PRODUCT_INSTALL/lib/
+    else
+        echo "WARNING: moving lib64 to lib"
+        mv $PRODUCT_INSTALL/lib64/python$PYTHON_VERSION/site-packages/* $PRODUCT_INSTALL/lib/python$PYTHON_VERSION/site-packages/
+    fi
+    rm -rf ${PRODUCT_INSTALL}/lib64
+elif [ -d "${PRODUCT_INSTALL}/local/lib64" ]; then
+    echo "WARNING: moving local/lib64 to lib"
+    mv $PRODUCT_INSTALL/lib64/python$PYTHON_VERSION/site-packages/* $PRODUCT_INSTALL/lib/python$PYTHON_VERSION/site-packages/
+    rm -rf ${PRODUCT_INSTALL}/local/lib64
+fi
+
 echo
 echo "########## END"
 

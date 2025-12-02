@@ -91,14 +91,15 @@ case $LINUX_DISTRIBUTION in
 esac
 
 # Blas/Lapack
-if [[ "$LINUX_DISTRIBUTION" == "CO8" && "$SAT_lapack_IS_NATIVE" == "1"  &&  -f /usr/lib64/libcblas.so && -f /usr/lib64/libblas.so ]]; then
-    CMAKE_OPTIONS+=" -DCBLAS_LIBRARIES=/usr/lib64/libcblas.so"
-    CMAKE_OPTIONS+=" -DBLAS_LIBRARIES=/usr/lib64/libblas.so"
+if [ -n "$OPENBLAS_ROOT_DIR" ] && [ "$SAT_openblas_IS_NATIVE" != "1" ]; then
+    CMAKE_OPTIONS+=" -DOpenBLAS_DIR=${OpenBLAS_DIR}"
+    CMAKE_OPTIONS+=" -DCBLAS_LIBRARIES=$OPENBLAS_ROOT_DIR/lib/libopenblas.so"
+    CMAKE_OPTIONS+=" -DBLAS_LIBRARIES=$OPENBLAS_ROOT_DIR/lib/libopenblas.so"
 fi
 
 if [ -n "$LAPACK_ROOT_DIR" ] && [ "$SAT_lapack_IS_NATIVE" != "1" ]; then
-    CMAKE_OPTIONS+=" -DLAPACK_DIR=${LAPACK_ROOT_DIR}/lib/cmake/lapack-3.8.0"
-    CMAKE_OPTIONS+=" -DCBLAS_DIR=${LAPACK_ROOT_DIR}/lib/cmake/cblas-3.8.0"
+    CMAKE_OPTIONS+=" -DLAPACK_DIR=${LAPACK_DIR}"
+    CMAKE_OPTIONS+=" -DCBLAS_DIR=${CBLAS_DIR}"
     CMAKE_OPTIONS+=" -DCBLAS_LIBRARIES=$LAPACK_ROOT_DIR/lib/libcblas.so"
     CMAKE_OPTIONS+=" -DBLAS_LIBRARIES=$LAPACK_ROOT_DIR/lib/libblas.so"
 fi

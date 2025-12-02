@@ -25,15 +25,25 @@ CMAKE_OPTIONS+=" -DBUILD_SHARED_LIBS=ON"
 CMAKE_OPTIONS+=" -DBUILD_EXAMPLES=OFF"
 CMAKE_OPTIONS+=" -DCMAKE_INSTALL_LIBDIR:STRING=lib"
 
+# OpenBLAS
+if [ -n "$OPENBLAS_ROOT_DIR" ] && [ "${SAT_openblas_IS_NATIVE}" != "1" ]; then
+    CMAKE_OPTIONS+=" -DOpenBLAS_DIR=${OpenBLAS_DIR}"
+    CMAKE_OPTIONS+=" -DCBLAS_LIBRARIES=$OPENBLAS_ROOT_DIR/lib/libopenblas.so"
+    CMAKE_OPTIONS+=" -DBLAS_LIBRARIES=$OPENBLAS_ROOT_DIR/lib/libopenblas.so"
+fi
+
 # Blas/Lapack
 if [ -n "$LAPACK_ROOT_DIR" ] && [ "${SAT_lapack_IS_NATIVE}" != "1" ]; then
-    CMAKE_OPTIONS+=" -DLAPACK_DIR=${LAPACK_ROOT_DIR}/lib/cmake/lapack-3.8.0"
-    CMAKE_OPTIONS+=" -DCBLAS_DIR=${LAPACK_ROOT_DIR}/lib/cmake/cblas-3.8.0"
+    CMAKE_OPTIONS+=" -DLAPACK_DIR=${LAPACK_DIR}"
+    CMAKE_OPTIONS+=" -DCBLAS_DIR=${CBLAS_DIR}"
     CMAKE_OPTIONS+=" -DCBLAS_LIBRARIES=$LAPACK_ROOT_DIR/lib/libcblas.so"
     CMAKE_OPTIONS+=" -DBLAS_LIBRARIES=$LAPACK_ROOT_DIR/lib/libblas.so"
     CMAKE_OPTIONS+=" -DCBLAS_INCLUDE_DIRS=${LAPACK_ROOT_DIR}/include "
-elif [ -d /usr/include/cblas ]; then
-    CMAKE_OPTIONS+=" -DCBLAS_INCLUDE_DIRS=/usr/include/cblas "
+fi
+
+#
+if [ "${SAT_lapack_IS_NATIVE}" == "1" ] || [ "${SAT_openblas_IS_NATIVE}" == "1" ]; then
+	CMAKE_OPTIONS+=" -DCBLAS_INCLUDE_DIRS=/usr/include/cblas"
 fi
 
 echo

@@ -53,6 +53,10 @@ version_4_3_1_CO7:
 
 version_4_3_1_CO8:
 {
+    archive_info :
+    {
+       archive_name : "zeromq-4.3.1.tar.gz"
+    }
     depend : ['Python', 'openblas', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'netcdf', 'gdal']
     compil_script :  'zeromq-4.3.1' + $VARS.scriptExtension
 }

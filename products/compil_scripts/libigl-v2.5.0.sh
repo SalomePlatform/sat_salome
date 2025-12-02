@@ -36,6 +36,12 @@ if [ -n "$LAPACK_ROOT_DIR" ] && [ "$SAT_lapack_IS_NATIVE" != "1" ]; then
     CMAKE_OPTIONS+=" -DBLAS_LIBRARIES=$LAPACK_ROOT_DIR/lib/libblas.so"
 fi
 
+if [ -n "$OPENBLAS_ROOT_DIR" ] && [ "$SAT_openblas_IS_NATIVE" != "1" ]; then
+    CMAKE_OPTIONS+=" -DOpenBLAS_DIR=${OpenBLAS_DIR}"
+    CMAKE_OPTIONS+=" -DCBLAS_LIBRARIES=$OPENBLAS_ROOT_DIR/lib/libopenblas.so"
+    CMAKE_OPTIONS+=" -DBLAS_LIBRARIES=$OPENBLAS_ROOT_DIR/lib/libopenblas.so"
+fi
+
 echo "*** cmake" $CMAKE_OPTIONS
 cmake $CMAKE_OPTIONS $SOURCE_DIR
 

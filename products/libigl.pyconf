@@ -134,7 +134,7 @@ version_v2_5_0_CO9:
               "eigen",
               "embree",
               "cgal",
-              "lapack"
+              "openblas"
              ]
 }
 
