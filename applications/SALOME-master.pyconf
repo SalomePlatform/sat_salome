@@ -238,7 +238,7 @@ APPLICATION :
         'ADAO_INTERFACE'
         'PARAVISADDONS'
         'OPENTURNS_SALOME'
-        'YDEFX' : 'agy/43708_win_compat_0'
+        'YDEFX'
         'pmml'
         'SALOMEBOOTSTRAP'
         'SOLVERLAB'
