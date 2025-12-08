@@ -57,6 +57,13 @@ version_3_20_5_CO8 :
     patches: ['petsc-3.20.5-mpi4py.patch', 'petsc-3.20.5-limit-cython-version.patch']
 }
 
+version_3_20_5_CO9 :
+{
+    compil_script :  "petsc-3.20.5.sh"
+    depend : ["hdf5", "Python", "openblas","fftw", "llvm", "metis", "medfile", "numpy", "mpi4py", "scotch" ]
+    patches: ['petsc-3.20.5-mpi4py.patch', 'petsc-3.20.5-limit-cython-version.patch']
+}
+
 version_3_20_5_CO10 :
 {
     compil_script :  "petsc-3.20.5.sh"

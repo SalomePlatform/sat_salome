@@ -77,6 +77,12 @@ version_2_0_3_CO8 :
     patches : ['FMILibrary-2.0.3-installdir.patch']
 }
 
+version_2_0_3_CO9 :
+{
+    depend : ['Python', 'openblas', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'matplotlib']
+    patches : ['FMILibrary-2.0.3-installdir.patch']
+}
+
 version_2_0_3_win :
 {
    build_source : "script"

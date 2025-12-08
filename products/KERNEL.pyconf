@@ -21,7 +21,6 @@ default :
               "boost",
               "cppunit",
               "numpy",
-              "lapack",
               "hdf5",
               "omniORB",
               "omniORBpy",
@@ -38,7 +37,7 @@ default :
               "CAS"
               ]
     build_depend : ["cmake", "swig", "doxygen", "cppunit"]
-    opt_depend : ["SALOMEBOOTSTRAP"]
+    opt_depend : ["SALOMEBOOTSTRAP", "lapack", "openblas"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     properties:
@@ -107,54 +106,6 @@ default_MPI :
 default_32BIT_IDS :
 {
     cmake_options : "-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_CMAKE_DEBUG=ON -DSALOME_USE_64BIT_IDS=OFF"
-}
-
-default_CO7 :
-{
-    depend : ["Python",
-              "boost",
-              "cppunit",
-              "numpy",
-              "openblas",
-              "hdf5",
-              "omniORB",
-              "omniORBpy",
-              "docutils",
-              "libxml2",
-              "Sphinx",
-              "sphinxintl",
-              "Jinja2",
-              "setuptools",
-              "Pygments",
-              "pytz",
-              "LIBBATCH",
-              "psutil",
-              "CAS"
-              ]
-}
-
-default_CO8 :
-{
-    depend : ["Python",
-              "boost",
-              "cppunit",
-              "numpy",
-              "openblas",
-              "hdf5",
-              "omniORB",
-              "omniORBpy",
-              "docutils",
-              "libxml2",
-              "Sphinx",
-              "sphinxintl",
-              "Jinja2",
-              "setuptools",
-              "Pygments",
-              "pytz",
-              "LIBBATCH",
-              "psutil",
-              "CAS"
-              ]
 }
 
 default_FD42 :

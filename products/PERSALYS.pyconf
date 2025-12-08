@@ -145,6 +145,43 @@ version_v19_0_CO8 :
    post_script: "add_persalys-v19.0_doc.sh"
 }
 
+version_v19_0_CO9 :
+{
+   compil_script : 'PERSALYS-v19.0.sh'
+   archive_info :
+   {
+       archive_name : "persalys_v19.0.tar.gz"
+   }
+    depend : ['Python',
+              'openblas',
+              'hdf5',
+              'cgns',
+              'tbb',
+              'nlopt',
+              'libxml2',
+              'eigen',
+              'netcdf',
+              'gdal',
+              'boost',
+              'ADAO',
+              'ADAO_INTERFACE',
+              'KERNEL',
+              'GUI',
+              'Sphinx',
+              'qwt',
+              'qt',
+              'ParaView',
+              'openturns',
+              'numpydoc',
+              'YACS',
+              'YDEFX',
+              'CAS',
+              'CONFIGURATION'
+           ]
+   patches : ['PERSALYS-v19.0-001.patch']
+   post_script: "add_persalys-v19.0_doc.sh"
+}
+
 version_v19_0_win :
 {
    compil_script : 'PERSALYS-v19.0.bat'

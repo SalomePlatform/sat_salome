@@ -272,75 +272,65 @@ __overwrite__ :
     {
         __condition__ : "VARS.dist in ['CO7']"
         'APPLICATION.rm_products'         : ['gcc', 'gmp', 'mpc', 'mpfr', 'mcut']
-        'APPLICATION.products.cminpack'   : {tag: '1.3.10', base: 'no', section: 'version_1_3_10_CO8' }
-        'APPLICATION.products.FMILibrary' : {tag: '2.0.3',  base: 'no', section: 'version_2_0_3_CO7'  }
-        'APPLICATION.products.gdal'       : {tag: '3.7.1',  base: 'no', section: 'version_3_7_1_CO7'  }
-        'APPLICATION.products.gmsh'       : {tag: '4.14.1', base: 'no', section: 'version_4_14_1_CO7'}
-        'APPLICATION.products.libigl'     : {tag: 'v2.5.0',  base: 'no', section: 'version_v2_5_0_CO7' }
-        'APPLICATION.products.netcdf'     : {tag: '4.9.2',  base: 'no', section: 'version_4_9_2_CO7'  }
-        'APPLICATION.products.numpy'      : {tag: '1.22.2',  base: 'no', section: 'version_1_22_2_CO7'  }
-        'APPLICATION.products.openturns'  : {tag: '1.25.1', base: 'no', section: 'version_1_25_1_CO7' }
-        'APPLICATION.products.petsc'      : {tag: '3.20.5', base: 'no', section: 'version_3_20_5_CO7' }
-        'APPLICATION.products.TTK'        : {tag: '1.3.0',   base: 'no', section: 'version_1_3_0_CO7'   }
-        'APPLICATION.products.zeromq'     : {tag: '4.3.1',  base: 'no', section: 'version_4_3_1_CO7'  }
-        'APPLICATION.products.PERSALYS'   : {tag: 'v19.0',  base: 'no', section: 'version_v19_0_CO7'  }
-        'APPLICATION.products.URANIE'     : {tag: '4.8.0',  base: 'no', section: 'version_4_8_0_CO7'  }
-        'APPLICATION.products.MEDCOUPLING' : {tag:'master', base: 'no', section: 'default_MPI_CO7', hpc: 'yes'}
-        'APPLICATION.products.KERNEL'      : {tag:'master', base: 'no', section: 'default_CO7'}
+        'APPLICATION.products.cminpack'   : {tag: '1.3.10', base: 'no', section: 'version_1_3_10_CO7'         }
+        'APPLICATION.products.FMILibrary' : {tag: '2.0.3',  base: 'no', section: 'version_2_0_3_CO7'          }
+        'APPLICATION.products.gdal'       : {tag: '3.7.1',  base: 'no', section: 'version_3_7_1_CO7'          }
+        'APPLICATION.products.gmsh'       : {tag: '4.14.1', base: 'no', section: 'version_4_14_1_CO7'         }
+        'APPLICATION.products.libigl'     : {tag: 'v2.5.0', base: 'no', section: 'version_v2_5_0_CO7'         }
+        'APPLICATION.products.netcdf'     : {tag: '4.9.2',  base: 'no', section: 'version_4_9_2_CO7'          }
+        'APPLICATION.products.numpy'      : {tag: '1.22.2', base: 'no', section: 'version_1_22_2_CO7'         }
+        'APPLICATION.products.openturns'  : {tag: '1.25.1', base: 'no', section: 'version_1_25_1_CO7'         }
+        'APPLICATION.products.petsc'      : {tag: '3.20.5', base: 'no', section: 'version_3_20_5_CO7'         }
+        'APPLICATION.products.TTK'        : {tag: '1.3.0',  base: 'no', section: 'version_1_3_0_CO7'          }
+        'APPLICATION.products.zeromq'     : {tag: '4.3.1',  base: 'no', section: 'version_4_3_1_CO7'          }
+        'APPLICATION.products.PERSALYS'   : {tag: 'v19.0',  base: 'no', section: 'version_v19_0_CO7'          }
+        'APPLICATION.products.URANIE'     : {tag: '4.8.0',  base: 'no', section: 'version_4_8_0_CO7'          }
+        'APPLICATION.products.MEDCOUPLING': {tag: 'master', base: 'no', section: 'default_MPI_CO7', hpc: 'yes'}
     }
     #
     {
         __condition__ : "VARS.dist in ['CO8']"
-        'APPLICATION.rm_products'       : ['gcc', 'gmp', 'mpc', 'mpfr', 'zeromq', 'mcut'] # mcut requires c++20
-        'APPLICATION.products.boost'    : '1.75.0'
-        'APPLICATION.products.dateutil' : '2.8.1'
-        'APPLICATION.products.pandas'   : '1.4.0'
-        'APPLICATION.products.pyyaml'   : {tag: '6.0', base: 'no', section: 'version_6_0_CO8'}
-        'APPLICATION.products.Python'   : '3.10.16'
-        'APPLICATION.products.pytz'     : '2021.1'
-        'APPLICATION.products.cminpack'   : {tag: '1.3.10', base: 'no', section: 'version_1_3_10_CO8'  }
-        'APPLICATION.products.FMILibrary' : {tag: '2.0.3',  base: 'no', section: 'version_2_0_3_CO8'  }
-        'APPLICATION.products.gdal'       : {tag: '3.7.1',  base: 'no', section: 'version_3_7_1_CO8'  }
-        'APPLICATION.products.gmsh'       : {tag: '4.14.1', base: 'no', section: 'version_4_14_1_CO8'}
-        'APPLICATION.products.libigl'     : {tag: 'v2.5.0',  base: 'no', section: 'version_v2_5_0_CO8' }
-        'APPLICATION.products.netcdf'     : {tag: '4.9.2',  base: 'no', section: 'version_4_9_2_CO8'  }
-        'APPLICATION.products.numpy'      : {tag: '1.22.2',  base: 'no', section: 'version_1_22_2_CO8'  }
-        'APPLICATION.products.openturns'  : {tag: '1.25.1', base: 'no', section: 'version_1_25_1_CO8' }
-        'APPLICATION.products.petsc'      : {tag: '3.20.5', base: 'no', section: 'version_3_20_5_CO8' }
-        'APPLICATION.products.TTK'      : {tag: '1.3.0',   base: 'no', section: 'version_1_3_0_CO8'   }
-        'APPLICATION.products.zeromq'     : {tag: '4.3.1',  base: 'no', section: 'version_4_3_1_CO8'  }
-        'APPLICATION.products.PERSALYS'   : {tag: 'v19.0',  base: 'no', section: 'version_v19_0_CO8'  }
-        'APPLICATION.products.URANIE'     : {tag: '4.8.0',  base: 'no', section: 'version_4_8_0_CO8'  }
-        'APPLICATION.products.MEDCOUPLING' : {tag:'master', base: 'no', section: 'default_MPI_CO8', hpc: 'yes'}
-        'APPLICATION.products.KERNEL'      : {tag:'master', base: 'no', section: 'default_CO8'}
+        'APPLICATION.rm_products'         : ['gcc', 'gmp', 'mpc', 'mpfr', 'zeromq', 'mcut'] # mcut requires c++20
+        'APPLICATION.products.boost'      : '1.75.0'
+        'APPLICATION.products.dateutil'   : '2.8.1'
+        'APPLICATION.products.pandas'     : '1.4.0'
+        'APPLICATION.products.Python'     : '3.10.16'
+        'APPLICATION.products.pytz'       : '2021.1'
+        'APPLICATION.products.cminpack'   : {tag: '1.3.10', base: 'no', section: 'version_1_3_10_CO8'         }
+        'APPLICATION.products.FMILibrary' : {tag: '2.0.3',  base: 'no', section: 'version_2_0_3_CO8'          }
+        'APPLICATION.products.gdal'       : {tag: '3.7.1',  base: 'no', section: 'version_3_7_1_CO8'          }
+        'APPLICATION.products.gmsh'       : {tag: '4.14.1', base: 'no', section: 'version_4_14_1_CO8'         }
+        'APPLICATION.products.libigl'     : {tag: 'v2.5.0', base: 'no', section: 'version_v2_5_0_CO8'         }
+        'APPLICATION.products.netcdf'     : {tag: '4.9.2',  base: 'no', section: 'version_4_9_2_CO8'          }
+        'APPLICATION.products.numpy'      : {tag: '1.22.2', base: 'no', section: 'version_1_22_2_CO8'         }
+        'APPLICATION.products.openturns'  : {tag: '1.25.1', base: 'no', section: 'version_1_25_1_CO8'         }
+        'APPLICATION.products.petsc'      : {tag: '3.20.5', base: 'no', section: 'version_3_20_5_CO8'         }
+        'APPLICATION.products.pyyaml'     : {tag: '6.0',    base: 'no', section: 'version_6_0_CO8'            }
+        'APPLICATION.products.TTK'        : {tag: '1.3.0',  base: 'no', section: 'version_1_3_0_CO8'          }
+        'APPLICATION.products.zeromq'     : {tag: '4.3.1',  base: 'no', section: 'version_4_3_1_CO8'          }
+        'APPLICATION.products.PERSALYS'   : {tag: 'v19.0',  base: 'no', section: 'version_v19_0_CO8'          }
+        'APPLICATION.products.URANIE'     : {tag: '4.8.0',  base: 'no', section: 'version_4_8_0_CO8'          }
+        'APPLICATION.products.MEDCOUPLING': {tag: 'master', base: 'no', section: 'default_MPI_CO8', hpc: 'yes'}
     }
     #
     {
         __condition__ : "VARS.dist in ['CO9']"
-        'APPLICATION.products.gcc'       : '11.4.0'
-        'APPLICATION.products.openmpi'   : '4.1.6'
-        'APPLICATION.products.cminpack'   : {tag: '1.3.10', base: 'no', section: 'version_1_3_10_CO8'  }
-        'APPLICATION.products.FMILibrary' : {tag: '2.0.3',  base: 'no', section: 'version_2_0_3_CO8'  }
-        'APPLICATION.products.libigl'     : {tag: 'v2.5.0',  base: 'no', section: 'version_v2_5_0_CO8' }
-        'APPLICATION.products.gdal'       : {tag: '3.7.1',  base: 'no', section: 'version_3_7_1_CO8'  }
-        'APPLICATION.products.gmsh'       : {tag: '4.14.1', base: 'no', section: 'version_4_14_1_CO8'}
-        'APPLICATION.products.netcdf'     : {tag: '4.9.2',  base: 'no', section: 'version_4_9_2_CO8'  }
-        'APPLICATION.products.numpy'      : {tag: '1.22.2',  base: 'no', section: 'version_1_22_2_CO8'  }
-        'APPLICATION.products.openturns'  : {tag: '1.25.1', base: 'no', section: 'version_1_25_1_CO8' }
-        'APPLICATION.products.PERSALYS'   : {tag: 'v19.0',  base: 'no', section: 'version_v19_0_CO8'  }
-        'APPLICATION.products.petsc'      : {tag: '3.20.5', base: 'no', section: 'version_3_20_5_CO8' }
-        'APPLICATION.products.TTK'        : {tag: 'f8dafde2d7', base: 'no', section: 'version_f8dafde2d7_CO8' }
-        'APPLICATION.products.zeromq'     : {tag: '4.3.1',  base: 'no', section: 'version_4_3_1_CO8'  }
-        'APPLICATION.products.URANIE'     : {tag: '4.8.0',  base: 'no', section: 'version_4_8_0_CO8'  }
-        'APPLICATION.products.boost'     : {tag: '1.71.0',  base: 'no', section: 'version_1_71_0_CO9' } # spns #29324
-        'APPLICATION.products.MEDCOUPLING' : {tag:'master', base: 'no', section: 'default_MPI_CO8', hpc: 'yes'}
-        'APPLICATION.products.KERNEL'      : {tag:'master', base: 'no', section: 'default_CO8'}
-    }
-    #
-    {
-        __condition__ : "VARS.dist in ['DB09']"
-        'APPLICATION.rm_products'       : ['mcut'] # mcut requires c++20
-        'APPLICATION.products.openturns': {tag: '1.24',  base: 'no', section: 'version_1_24_DB09'      }
-        'APPLICATION.products.URANIE'   : {tag: '4.8.0', base: 'no', section: 'version_4_8_0_DB09'     }
+        'APPLICATION.products.gcc'        : '11.4.0'
+        'APPLICATION.products.openmpi'    : '4.1.6'
+        'APPLICATION.products.cminpack'   : {tag: '1.3.10', base: 'no', section: 'version_1_3_10_CO9'          }
+        'APPLICATION.products.FMILibrary' : {tag: '2.0.3',  base: 'no', section: 'version_2_0_3_CO9'           }
+        'APPLICATION.products.libigl'     : {tag: 'v2.5.0', base: 'no', section: 'version_v2_5_0_CO9'          }
+        'APPLICATION.products.gdal'       : {tag: '3.7.1',  base: 'no', section: 'version_3_7_1_CO9'           }
+        'APPLICATION.products.gmsh'       : {tag: '4.14.1', base: 'no', section: 'version_4_14_1_CO9'          }
+        'APPLICATION.products.netcdf'     : {tag: '4.9.2',  base: 'no', section: 'version_4_9_2_CO9'           }
+        'APPLICATION.products.numpy'      : {tag: '1.22.2', base: 'no', section: 'version_1_22_2_CO9'          }
+        'APPLICATION.products.openturns'  : {tag: '1.25.1', base: 'no', section: 'version_1_25_1_CO9'          }
+        'APPLICATION.products.PERSALYS'   : {tag: 'v19.0',  base: 'no', section: 'version_v19_0_CO9'           }
+        'APPLICATION.products.petsc'      : {tag: '3.20.5', base: 'no', section: 'version_3_20_5_CO9'          }
+        'APPLICATION.products.TTK'        : {tag: '1.3.0',  base: 'no', section: 'version_1_3_0_CO9'           }
+        'APPLICATION.products.zeromq'     : {tag: '4.3.1',  base: 'no', section: 'version_4_3_1_CO9'           }
+        'APPLICATION.products.URANIE'     : {tag: '4.8.0',  base: 'no', section: 'version_4_8_0_CO9'           }
+        'APPLICATION.products.boost'      : {tag: '1.71.0', base: 'no', section: 'version_1_71_0_CO9'          } # spns #29324
+        'APPLICATION.products.MEDCOUPLING': {tag: 'master',  base: 'no', section: 'default_MPI_CO9', hpc: 'yes'}
     }
 ]
