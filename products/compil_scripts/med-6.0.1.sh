@@ -39,13 +39,14 @@ fi
 if [ "$SALOME_USE_64BIT_IDS" == "1" ]; then
     echo "WARNING: user requested 64 bits encoding for integers..."
     CONFIGURE_FLAGS+=' --with-med_int=long'
-    export  FFLAGS="-g -O2 -fdefault-integer-8"
-    export FCFLAGS="-g -O2 -fdefault-integer-8"
+     FFLAGS="-g -O2 -fdefault-integer-8"
+    FCFLAGS="-g -O2 -fdefault-integer-8"
     if [ "${GCC_VERSION_MAJOR}" -gt "8" ]; then
-        FFLAGS+=" -fallow-argument-mismatch"
+         FFLAGS+=" -fallow-argument-mismatch"
         FCFLAGS+=" -fallow-argument-mismatch"
     fi
-    export ${FFLAGS} ${FCFLAGS}
+    export  FFLAGS=${FFLAGS}
+    export FCFLAGS=${FCFLAGS}
 else
     export  FFLAGS="-g -O2 -ffixed-line-length-none"
     export FCFLAGS="-g -O2 -ffixed-line-length-none"
@@ -55,9 +56,10 @@ if [ "${SAT_Python_IS_NATIVE}" != "1" ]; then
     CONFIGURE_FLAGS+=" --with-python_prefix=$PYTHON_ROOT_DIR"
 fi
 
-if [ "${SAT_hdf5_IS_NATIVE}" != "1" ]; then
-    CONFIGURE_FLAGS+=" --with-hdf5=$HDF5_ROOT_DIR"
-fi
+#if [ "${SAT_hdf5_IS_NATIVE}" != "1" ]; then
+CONFIGURE_FLAGS+=" --with-hdf5=$HDF5_ROOT_DIR"
+CONFIGURE_FLAGS+=" --with-hdf5-include=$HDF5_ROOT_DIR/include"
+#fi
 
 if [ "${SAT_swig_IS_NATIVE}" != "1" ]; then
     CONFIGURE_FLAGS+=" --with-swig=$SWIG_ROOT_DIR"

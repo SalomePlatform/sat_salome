@@ -171,6 +171,7 @@ APPLICATION :
         urllib3 : 'native'
         zeromq: '4.3.1'
         URANIE : '4.8.0'
+        #xarray: 'native'
 
         # SALOME MODULES :
         'CONFIGURATION'
@@ -314,7 +315,10 @@ __overwrite__ :
         'APPLICATION.rm_products' : ['mesa']
         'APPLICATION.products.cmake'            : 'native'
         'APPLICATION.products.cftime'           : 'native'
+        'APPLICATION.products.gdal'             : 'native'
+        'APPLICATION.products.hdf5'             : 'native'
         'APPLICATION.products.markdown_it_py'   : 'native'
+        'APPLICATION.products.netcdf'           : 'native'
         'APPLICATION.products.netCDF4'          : 'native'
         'APPLICATION.products.rapidjson'        : 'native'
         'APPLICATION.products.rich'             : 'native'
@@ -383,31 +387,34 @@ __overwrite__ :
     {
          __condition__ : "VARS.dist in ['CO10']"
         'APPLICATION.rm_products' : ['mesa', 'nose', 'sphinxcontrib_websupport']
-        'APPLICATION.products.cmake'                    : 'native'
-        'APPLICATION.products.markdown_it_py'           : 'native'
-        'APPLICATION.products.rapidjson'                : 'native'
-        'APPLICATION.products.rich'                     : 'native'
-        'APPLICATION.products.embree'                   : '3.13.5'
-        'APPLICATION.products.nlopt'                    : '2.7.0'
-        'APPLICATION.products.qwt'                      : '6.1.6'
-        'APPLICATION.products.swig'                     : '4.0.2'
-        'APPLICATION.products.PyQt'                     : '5.15.3'
-        'APPLICATION.products.omniORB'                  : '4.2.5'
-        'APPLICATION.products.freeimage'                : {tag: '3.18.0',          base: 'no', section: 'version_3_18_0_CO10'                }
-        'APPLICATION.products.sip'                      : {tag: '5.5.0',           base: 'no', section: 'version_5_5_0_CO10'                 }
-        'APPLICATION.products.Cython'                   : {tag: 'native',          base: 'no', section: 'default_CO10'                       }
-        'APPLICATION.products.meshio'                   : {tag: '5.3.5',           base: 'no', section: 'version_5_3_5_no_pip'               }
-        'APPLICATION.products.opencv'                   : {tag: '3.2.0',           base: 'no', section: 'version_3_2_0_CO10'                 }
-        'APPLICATION.products.toml'                     : {tag: '0.10.2',          base: 'no', section: 'version_0_10_2_no_pip'              }
-        'APPLICATION.products.sphinxintl'               : {tag: '0.9.10',          base: 'no', section: 'version_0_9_10_no_pip'              }
-        'APPLICATION.products.nose_py3'                 : {tag: '1.6.9',           base: 'no', section: 'version_1_6_9_no_pip'               }
-        'APPLICATION.products.assimulo'                 : {tag: '3.5.2',           base: 'no', section: 'version_3_5_2_x86_64'               }
-        'APPLICATION.products.FMILibrary'               : {tag: '2.4.1',           base: 'no', section: 'version_2_4_1_CO10'                 }
-        'APPLICATION.products.PyFMI'                    : {tag: '2.13.1',          base: 'no', section: 'version_2_13_1_x86_64'              }
-        'APPLICATION.products.openturns'                : {tag: '1.25.1',          base: 'no', section: 'version_1_25_1_CO10'                }
-        'APPLICATION.products.omniORBpy'                : {tag: '4.2.5',           base: 'no', section: 'version_4_2_5_CO10'                 }
-        'APPLICATION.products.KERNEL'                   : {tag: 'master',          base: 'no', section: 'default_CO10'                       }
-        'APPLICATION.products.petsc'                    : {tag: '3.20.5',          base: 'no', section: 'version_3_20_5_CO10'                }
+        'APPLICATION.products.cmake'          : 'native'
+        'APPLICATION.products.gdal'           : 'native'
+        'APPLICATION.products.hdf5'           : 'native'
+        'APPLICATION.products.markdown_it_py' : 'native'
+        'APPLICATION.products.netcdf'         : 'native'
+        'APPLICATION.products.rapidjson'      : 'native'
+        'APPLICATION.products.rich'           : 'native'
+        'APPLICATION.products.embree'         : '3.13.5'
+        'APPLICATION.products.nlopt'          : '2.7.0'
+        'APPLICATION.products.qwt'            : '6.1.6'
+        'APPLICATION.products.swig'           : '4.0.2'
+        'APPLICATION.products.PyQt'           : '5.15.3'
+        'APPLICATION.products.omniORB'        : '4.2.5'
+        'APPLICATION.products.freeimage'      : {tag: '3.18.0',          base: 'no', section: 'version_3_18_0_CO10'                }
+        'APPLICATION.products.sip'            : {tag: '5.5.0',           base: 'no', section: 'version_5_5_0_CO10'                 }
+        'APPLICATION.products.Cython'         : {tag: 'native',          base: 'no', section: 'default_CO10'                       }
+        'APPLICATION.products.meshio'         : {tag: '5.3.5',           base: 'no', section: 'version_5_3_5_no_pip'               }
+        'APPLICATION.products.opencv'         : {tag: '3.2.0',           base: 'no', section: 'version_3_2_0_CO10'                 }
+        'APPLICATION.products.toml'           : {tag: '0.10.2',          base: 'no', section: 'version_0_10_2_no_pip'              }
+        'APPLICATION.products.sphinxintl'     : {tag: '0.9.10',          base: 'no', section: 'version_0_9_10_no_pip'              }
+        'APPLICATION.products.nose_py3'       : {tag: '1.6.9',           base: 'no', section: 'version_1_6_9_no_pip'               }
+        'APPLICATION.products.assimulo'       : {tag: '3.5.2',           base: 'no', section: 'version_3_5_2_x86_64'               }
+        'APPLICATION.products.FMILibrary'     : {tag: '2.4.1',           base: 'no', section: 'version_2_4_1_CO10'                 }
+        'APPLICATION.products.PyFMI'          : {tag: '2.13.1',          base: 'no', section: 'version_2_13_1_x86_64'              }
+        'APPLICATION.products.openturns'      : {tag: '1.25.1',          base: 'no', section: 'version_1_25_1_CO10'                }
+        'APPLICATION.products.omniORBpy'      : {tag: '4.2.5',           base: 'no', section: 'version_4_2_5_CO10'                 }
+        'APPLICATION.products.KERNEL'         : {tag: 'master',          base: 'no', section: 'default_CO10'                       }
+        'APPLICATION.products.petsc'          : {tag: '3.20.5',          base: 'no', section: 'version_3_20_5_CO10'                }
     }
     #
     {
@@ -450,7 +457,10 @@ __overwrite__ :
         __condition__ : "VARS.dist in ['FD42']"
         'APPLICATION.rm_products'               : ['mesa','URANIE', 'root']
         'APPLICATION.products.cmake'            : 'native'
+        'APPLICATION.products.gdal'             : 'native'
+        'APPLICATION.products.hdf5'             : 'native'
         'APPLICATION.products.markdown_it_py'   : 'native'
+        'APPLICATION.products.netcdf'           : 'native'
         'APPLICATION.products.rich'             : 'native'
         'APPLICATION.products.petsc'            : '3.22.3'
         'APPLICATION.products.qwt'              : '6.1.6'
@@ -459,7 +469,7 @@ __overwrite__ :
         'APPLICATION.products.assimulo'         : {tag: '3.5.2',          base: 'no', section: 'version_3_5_2_x86_64'                }
         'APPLICATION.products.cgal'             : {tag: 'v5.6.1',         base: 'no', section: 'version_v5_6_1_FD42'                 }
         'APPLICATION.products.mcut'             : {tag: 'b5b0ec6',        base: 'no', section: 'version_b5b0ec6_FD42'                }
-        'APPLICATION.products.embree'           : {tag: '3.12.2',         base: 'no', section: 'version_3_12_2_FD42'                 }
+        'APPLICATION.products.embree'           : {tag: '3.13.1',         base: 'no', section: 'version_3_13_1_FD42'                 }
         'APPLICATION.products.PyFMI'            : {tag: '2.13.1',         base: 'no', section: 'version_2_13_1_x86_64'               }
         'APPLICATION.products.Cython'           : {tag: 'native',         base: 'no', section: 'default_FD42'                        }
         'APPLICATION.products.meshio'           : {tag: '5.3.5' ,         base: 'no', section: 'version_5_3_5_no_pip'                }
