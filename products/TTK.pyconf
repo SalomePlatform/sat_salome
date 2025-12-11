@@ -24,7 +24,7 @@ default :
 
 version_1_3_0:
 {
-    compil_script :  "TTK-1.3.0.sh"
+    compil_script :  "TTK-1.3.0" + $VARS.scriptExtension
     archive_info : {archive_name : "ttk-1.3.0-trimmed.tar.gz"}
     patches: ['TTK-1.3.0-embree_include.patch']
 }

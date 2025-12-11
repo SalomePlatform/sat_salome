@@ -37,9 +37,7 @@ def set_nativ_env(env):
 
 def set_paraview_env(env, version):
     root = env.get('PVHOME')
-    env.set('ParaView_DIR', os.path.join(root, 'lib', 'paraview-%s' % version))
     env.prepend('PATH', os.path.join(root, 'bin'))
-    
     if platform.system() == "Windows" :
         env.prepend('PATH', os.path.join(root, 'bin', 'paraview-' + version))
         env.prepend('PV_PLUGIN_PATH', os.path.join(root, 'bin', 'paraview-' + version, 'plugins'))
@@ -54,7 +52,13 @@ def set_paraview_env(env, version):
             env.prepend('PYTHONPATH', os.path.join(site_packages, 'vtk'))
             env.prepend('PYTHONPATH', os.path.join(site_packages))
     else:
-        paralib = os.path.join(root, 'lib', 'paraview')
+        # see spns #48124 or bos #47676 - since we use PARAVIEW_VERSIONED_INSTALL=OFF
+        if version >= '6.0':
+            paralib = os.path.join(root, 'lib', 'paraview')
+        else:
+            paralib = os.path.join(root, 'lib', 'paraview-%s' % version)
+
+        env.set('PARAVIEW_PLUGINS_DIR',os.path.join(paralib, 'plugins'))
         env.prepend('PV_PLUGIN_PATH', paralib)
         # bos #26828
         env.prepend('PV_PLUGIN_PATH', os.path.join(paralib, 'plugins'))
