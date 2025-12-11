@@ -58,6 +58,7 @@ version_1_21_1_win :
     compil_script :  "ispc-1.21.1.bat"
     archive_info : {archive_name : "ispc-v1.21.1-windows.tar.gz"}
     patches : []
+    depend : []
     build_depend : ["cmake", "llvm"]
 }
 
