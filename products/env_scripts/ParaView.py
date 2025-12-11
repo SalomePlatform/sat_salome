@@ -39,8 +39,14 @@ def set_paraview_env(env, version):
     root = env.get('PVHOME')
     env.prepend('PATH', os.path.join(root, 'bin'))
     if platform.system() == "Windows" :
-        env.prepend('PATH', os.path.join(root, 'bin', 'paraview-' + version))
-        env.prepend('PV_PLUGIN_PATH', os.path.join(root, 'bin', 'paraview-' + version, 'plugins'))
+        # see spns #48124 or bos #47676 - since we use PARAVIEW_VERSIONED_INSTALL=OFF
+        if version >= '6.0':
+            paralib = os.path.join(root, 'bin', 'paraview')
+        else:
+            paralib = os.path.join(root, 'bin', 'paraview-%s' % version)
+        env.prepend('PATH', paralib)
+        env.set('PARAVIEW_PLUGINS_DIR',os.path.join(paralib, 'plugins'))
+        env.prepend('PV_PLUGIN_PATH', os.path.join(paralib, 'plugins'))
         # bos #45920
         if version >= '5.13' :
             site_packages = os.path.join(root, 'bin', 'Lib', 'site-packages')
