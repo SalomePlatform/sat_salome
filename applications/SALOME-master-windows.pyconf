@@ -222,7 +222,7 @@ APPLICATION :
         'EFICAS'
         'EFICAS_TOOLS'
         'ADAO'
-        'PARAVISADDONS' : 'kw_186_medcoupling_dataarray'
+        'PARAVISADDONS' : 'bos/47676'
         'PY2CPP'
         'OPENTURNS_SALOME'
         'YDEFX'

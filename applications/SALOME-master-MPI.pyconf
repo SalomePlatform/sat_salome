@@ -192,10 +192,10 @@ APPLICATION :
         'LIBBATCH' : 'V2_6_1'
         'KERNEL'      : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes', verbose: 'yes'}
         'MEDCOUPLING' : {tag:'master', base: 'no', section: 'default_MPI_STD', hpc: 'yes', verbose: 'yes'}
-        'GUI': 'kw_186_geom_extractor_version'
+        'GUI': 'bos/47676'
         'CommonGeomLib'
         'GEOM'
-        'SMESH' : 'kw_186_variant_api'
+        'SMESH' : 'bos/47676'
         'NETGENPLUGIN'
         'BLSURFPLUGIN'
         'GHS3DPLUGIN'
@@ -222,9 +222,9 @@ APPLICATION :
         'PY2CPP'
         'ADAO'
         'ADAO_INTERFACE'
-        'PARAVISADDONS' : 'kw_186_medcoupling_dataarray'
+        'PARAVISADDONS' : 'bos/47676'
         'OPENTURNS_SALOME'
-        'YDEFX' : 'agy/43708_win_compat_0'
+        'YDEFX'
         'pmml'
         'SALOMEBOOTSTRAP'
         'SOLVERLAB' : {tag: 'master', base: 'no', section: 'default_MPI', hpc: 'yes'}

@@ -238,7 +238,7 @@ APPLICATION :
         'PY2CPP'
         'ADAO'
         'ADAO_INTERFACE'
-        'PARAVISADDONS' : 'kw_186_medcoupling_dataarray'
+        'PARAVISADDONS' : 'bos/47676'
         'OPENTURNS_SALOME'
         'YDEFX'
         'pmml'
