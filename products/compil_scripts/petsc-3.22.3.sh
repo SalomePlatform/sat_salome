@@ -49,7 +49,7 @@ fi
 
 if [ "$SAT_hdf5_IS_NATIVE" == "1" ]; then
     CONFIGURE_FLAGS+=" --with-hdf5=1"
-    if [ "$LINUX_DISTRIBUTION" == "FD42" ]; then
+    if [ "$LINUX_DISTRIBUTION" == "FD42" ] || [ "$LINUX_DISTRIBUTION" == "CO10" ]; then
         CONFIGURE_FLAGS+=" --with-hdf5-dir=/usr"
     else
         CONFIGURE_FLAGS+=" --with-hdf5-dir=$NATIVE_PATH/hdf5/serial/"

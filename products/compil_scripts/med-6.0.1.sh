@@ -56,10 +56,16 @@ if [ "${SAT_Python_IS_NATIVE}" != "1" ]; then
     CONFIGURE_FLAGS+=" --with-python_prefix=$PYTHON_ROOT_DIR"
 fi
 
-#if [ "${SAT_hdf5_IS_NATIVE}" != "1" ]; then
-CONFIGURE_FLAGS+=" --with-hdf5=$HDF5_ROOT_DIR"
-CONFIGURE_FLAGS+=" --with-hdf5-include=$HDF5_ROOT_DIR/include"
-#fi
+if [ "${SAT_hdf5_IS_NATIVE}" != "1" ]; then
+    CONFIGURE_FLAGS+=" --with-hdf5=$HDF5_ROOT_DIR"
+else
+    case $LINUX_DISTRIBUTION in
+        CO*|FD*)
+            CONFIGURE_FLAGS+=" --with-hdf5-include=$HDF5_ROOT_DIR/include"
+            ;;
+        *)
+    esac
+fi
 
 if [ "${SAT_swig_IS_NATIVE}" != "1" ]; then
     CONFIGURE_FLAGS+=" --with-swig=$SWIG_ROOT_DIR"

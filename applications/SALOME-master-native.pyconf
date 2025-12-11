@@ -396,6 +396,8 @@ __overwrite__ :
         'APPLICATION.products.rich'           : 'native'
         'APPLICATION.products.embree'         : '3.13.5'
         'APPLICATION.products.nlopt'          : '2.7.0'
+        'APPLICATION.products.openmpi'        : '4.1.5'
+        'APPLICATION.products.petsc'          : '3.22.3'
         'APPLICATION.products.qwt'            : '6.1.6'
         'APPLICATION.products.swig'           : '4.0.2'
         'APPLICATION.products.PyQt'           : '5.15.3'
@@ -414,7 +416,6 @@ __overwrite__ :
         'APPLICATION.products.openturns'      : {tag: '1.25.1',          base: 'no', section: 'version_1_25_1_CO10'                }
         'APPLICATION.products.omniORBpy'      : {tag: '4.2.5',           base: 'no', section: 'version_4_2_5_CO10'                 }
         'APPLICATION.products.KERNEL'         : {tag: 'master',          base: 'no', section: 'default_CO10'                       }
-        'APPLICATION.products.petsc'          : {tag: '3.20.5',          base: 'no', section: 'version_3_20_5_CO10'                }
     }
     #
     {
@@ -437,7 +438,9 @@ __overwrite__ :
         __condition__ : "VARS.dist in ['FD40']"
         'APPLICATION.products.markdown_it_py'   : 'native'
         'APPLICATION.products.rich'             : 'native'
+        'APPLICATION.products.gdal'             : '3.8.5'
         'APPLICATION.products.omniORB'          : '4.2.5'
+        'APPLICATION.products.openmpi'          : '4.1.5'
         'APPLICATION.products.qwt'              : '6.1.6'
         'APPLICATION.products.swig'             : '4.0.2'
         'APPLICATION.products.h5py'             : {tag: '3.10.0',          base: 'no', section: 'version_3_10_0_FD40'                }

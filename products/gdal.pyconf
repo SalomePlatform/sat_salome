@@ -32,6 +32,12 @@ default_win :
     opt_depend : []
 }
 
+version_3_8_5:
+{
+    compil_script :  'gdal-3.8.5' + $VARS.scriptExtension
+    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'netcdf', 'proj']
+}
+
 version_3_7_1:
 {
     compil_script :  'gdal-3.7.1' + $VARS.scriptExtension

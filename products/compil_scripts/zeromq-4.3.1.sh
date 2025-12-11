@@ -1,8 +1,10 @@
-#!/bin/bash                                                                                                                                                                              
+#!/bin/bash
 
 echo "##########################################################################"
 echo "zeromq" $VERSION
 echo "##########################################################################"
+
+LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
 
 CMAKE_OPTIONS=""
 CMAKE_OPTIONS+=" -DCMAKE_INSTALL_PREFIX:STRING=${PRODUCT_INSTALL}"
@@ -16,6 +18,10 @@ fi
 if [ -n "$MPI_ROOT_DIR" ]; then
     CMAKE_OPTIONS+=" -DCMAKE_CXX_COMPILER:STRING=${MPI_CXX_COMPILER}"
     CMAKE_OPTIONS+=" -DCMAKE_C_COMPILER:STRING=${MPI_C_COMPILER}"
+fi
+
+if [ $LINUX_DISTRIBUTION == "CO8" ]; then
+    CMAKE_OPTIONS+=" -DWITH_DOCS:BOOL=OFF"
 fi
 
 echo
