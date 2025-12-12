@@ -291,7 +291,7 @@ __overwrite__ :
     #
     {
         __condition__ : "VARS.dist in ['CO8']"
-        'APPLICATION.rm_products'         : ['gcc', 'gmp', 'mpc', 'mpfr', 'zeromq', 'mcut'] # mcut requires c++20
+        'APPLICATION.rm_products'         : ['gcc', 'gmp', 'mpc', 'mpfr', 'cork', 'mcut'] # mcut requires c++20
         'APPLICATION.products.boost'      : '1.75.0'
         'APPLICATION.products.dateutil'   : '2.8.1'
         'APPLICATION.products.pandas'     : '1.4.0'
