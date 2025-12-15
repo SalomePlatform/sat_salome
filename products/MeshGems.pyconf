@@ -37,6 +37,7 @@ default_win :
 
 version_2024_1 :
 {
+    archive_info : {archive_name : "MeshGems-2024.1.tar.gz"}
     properties :
     {
       is_distene : "no"
