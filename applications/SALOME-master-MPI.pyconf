@@ -192,10 +192,10 @@ APPLICATION :
         'LIBBATCH' : 'V2_6_1'
         'KERNEL'      : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes', verbose: 'yes'}
         'MEDCOUPLING' : {tag:'master', base: 'no', section: 'default_MPI_STD', hpc: 'yes', verbose: 'yes'}
-        'GUI': 'bos/47676'
+        'GUI'
         'CommonGeomLib'
         'GEOM'
-        'SMESH' : 'bos/47676'
+        'SMESH'
         'NETGENPLUGIN'
         'BLSURFPLUGIN'
         'GHS3DPLUGIN'
@@ -206,7 +206,7 @@ APPLICATION :
         'HEXABLOCKPLUGIN'
         'HOMARD'    : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'FIELDS'    : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
-        'PARAVIS': {tag:'kw_186_data_array', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'PARAVIS'   : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'JOBMANAGER': {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'YACS'
         'YACSGEN'
@@ -222,7 +222,7 @@ APPLICATION :
         'PY2CPP'
         'ADAO'
         'ADAO_INTERFACE'
-        'PARAVISADDONS' : 'bos/47676'
+        'PARAVISADDONS'
         'OPENTURNS_SALOME'
         'YDEFX'
         'pmml'

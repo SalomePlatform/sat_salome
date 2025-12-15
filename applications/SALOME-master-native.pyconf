@@ -11,7 +11,7 @@ APPLICATION :
     debug : 'no'
     base : 'no'
     python3 : 'yes'
-    platform : ["FD38", "FD40", "FD42", "CO8", "CO9", "CO10", "DB11", "DB12", "DB13","UB22.04", "UB24.04"]
+    platform : ["FD40", "FD42", "CO8", "CO9", "CO10", "DB11", "DB12", "DB13","UB22.04", "UB24.04"]
     environ :
     {
         build :
@@ -183,10 +183,10 @@ APPLICATION :
         'LIBBATCH' : 'V2_6_1'
         'KERNEL'
         'MEDCOUPLING' : {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
-        'GUI': 'bos/47676'
+        'GUI'
         'CommonGeomLib'
         'GEOM'
-        'SMESH' : 'bos/47676'
+        'SMESH'
         'NETGENPLUGIN'
         'BLSURFPLUGIN'
         'GHS3DPLUGIN'
@@ -197,7 +197,7 @@ APPLICATION :
         'HEXABLOCKPLUGIN'
         'HOMARD'
         'FIELDS'
-        'PARAVIS': {tag:'kw_186_data_array', base: 'no', section: 'default_MPI', hpc: 'yes'}
+        'PARAVIS': {tag:'master', base: 'no', section: 'default_MPI', hpc: 'yes'}
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
@@ -213,7 +213,7 @@ APPLICATION :
         'PY2CPP'
         'ADAO'
         'ADAO_INTERFACE'
-        'PARAVISADDONS' : 'bos/47676'
+        'PARAVISADDONS'
         'OPENTURNS_SALOME'
         'YDEFX'
         'pmml'
@@ -416,22 +416,6 @@ __overwrite__ :
         'APPLICATION.products.openturns'      : {tag: '1.25.1',          base: 'no', section: 'version_1_25_1_CO10'                }
         'APPLICATION.products.omniORBpy'      : {tag: '4.2.5',           base: 'no', section: 'version_4_2_5_CO10'                 }
         'APPLICATION.products.KERNEL'         : {tag: 'master',          base: 'no', section: 'default_CO10'                       }
-    }
-    #
-    {
-        __condition__ : "VARS.dist in ['FD38']"
-        'APPLICATION.rm_products' : ['mesa','nose_py3','assimulo']
-        'APPLICATION.products.markdown_it_py'   : 'native'
-        'APPLICATION.products.rich'             : 'native'
-        'APPLICATION.products.omniORB'          : '4.2.5'
-        'APPLICATION.products.omniORBpy'        : '4.2.5'
-        'APPLICATION.products.qwt'              : '6.1.6'
-        'APPLICATION.products.swig'             : '4.0.2'
-        'APPLICATION.products.h5py'             : {tag: '3.9.0',     base: 'no', section: 'version_3_9_0_no_pip'                }
-        'APPLICATION.products.meshio'           : {tag: '5.3.5',     base: 'no', section: 'version_5_3_5_no_pip'                }
-        'APPLICATION.products.opencv'           : {tag: '3.2.0',     base: 'no', section: 'version_3_2_0_FD38'                  }
-        'APPLICATION.products.petsc'            : {tag: '3.20.5',    base: 'no', section: 'version_3_20_5_FD38'                 }
-        'APPLICATION.products.PyFMI'            : {tag: '2.6',       base: 'no', section: 'version_2_6_FD38'                    }
     }
     #
     {
