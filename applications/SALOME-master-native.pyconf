@@ -93,7 +93,7 @@ APPLICATION :
         medfile : '6.0.1'
         mesa : {tag : '19.0.8-x86_64-'+$VARS.dist, base: 'no', section: 'version_bin'}
         meshbooleanplugin : 'main'
-        MeshGems : '2.15-1'
+        MeshGems : '2024-1'
         meshio: '5.3.5'
         metis : 'native'
         mpi4py: 'native'
@@ -280,6 +280,7 @@ __overwrite__ :
         __condition__ : "VARS.dist in ['DB11']"
         'APPLICATION.rm_products'               : ['nose_py3','assimulo']
         'APPLICATION.products.cminpack'         : 'native'
+        'APPLICATION.products.MeshGems'         : '2.15-1'
         'APPLICATION.products.rich'             : 'native'
         'APPLICATION.products.opencv'           : '3.2.0'
         'APPLICATION.products.pytest'           : '8.1.1'
@@ -299,6 +300,7 @@ __overwrite__ :
         'APPLICATION.products.cftime'           : 'native'
         'APPLICATION.products.markdown_it_py'   : 'native'
         'APPLICATION.products.mdurl'            : 'native'
+        'APPLICATION.products.MeshGems'         : '2.15-1'
         'APPLICATION.products.netCDF4'          : 'native'
         'APPLICATION.products.rich'             : 'native'
         'APPLICATION.products.swig'             : '4.0.2'
@@ -318,6 +320,7 @@ __overwrite__ :
         'APPLICATION.products.gdal'             : 'native'
         'APPLICATION.products.hdf5'             : 'native'
         'APPLICATION.products.markdown_it_py'   : 'native'
+        'APPLICATION.products.MeshGems'         : '2.15-1'
         'APPLICATION.products.netcdf'           : 'native'
         'APPLICATION.products.netCDF4'          : 'native'
         'APPLICATION.products.rapidjson'        : 'native'

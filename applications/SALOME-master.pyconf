@@ -102,7 +102,7 @@ APPLICATION :
         medfile : '6.0.1'
         mesa : '19.0.8'
         meshbooleanplugin : 'main'
-        MeshGems : '2.15-1'
+        MeshGems : '2024-1'
         meshio : {tag: '5.3.5' , base: 'no', section : 'version_5_3_5_no_pip'}
         meson: '1.9.1'
         meson_python: '0.14.0'
@@ -278,6 +278,7 @@ __overwrite__ :
         'APPLICATION.products.gdal'       : {tag: '3.7.1',  base: 'no', section: 'version_3_7_1_CO7'          }
         'APPLICATION.products.gmsh'       : {tag: '4.14.1', base: 'no', section: 'version_4_14_1_CO7'         }
         'APPLICATION.products.libigl'     : {tag: 'v2.5.0', base: 'no', section: 'version_v2_5_0_CO7'         }
+        'APPLICATION.MeshGems'            : '2.15-1'
         'APPLICATION.products.netcdf'     : {tag: '4.9.2',  base: 'no', section: 'version_4_9_2_CO7'          }
         'APPLICATION.products.numpy'      : {tag: '1.22.2', base: 'no', section: 'version_1_22_2_CO7'         }
         'APPLICATION.products.openturns'  : {tag: '1.25.1', base: 'no', section: 'version_1_25_1_CO7'         }
