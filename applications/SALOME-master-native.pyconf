@@ -93,7 +93,7 @@ APPLICATION :
         medfile : '6.0.1'
         mesa : {tag : '19.0.8-x86_64-'+$VARS.dist, base: 'no', section: 'version_bin'}
         meshbooleanplugin : 'main'
-        MeshGems : '2024-1'
+        MeshGems : '2024.1'
         meshio: '5.3.5'
         metis : 'native'
         mpi4py: 'native'

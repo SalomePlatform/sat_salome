@@ -102,7 +102,7 @@ APPLICATION :
         medfile : '6.0.1'
         mesa : '19.0.8'
         meshbooleanplugin : 'main'
-        MeshGems : '2024-1'
+        MeshGems : '2024.1'
         meshio : {tag: '5.3.5' , base: 'no', section : 'version_5_3_5_no_pip'}
         meson: '1.9.1'
         meson_python: '0.14.0'
