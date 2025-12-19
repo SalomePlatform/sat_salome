@@ -209,7 +209,7 @@ APPLICATION :
         'HELLO'
         'PYHELLO'
         'EFICAS' : 'master'
-        'EFICAS_TOOL' : 'master'
+        'EFICAS_TOOLS' : 'master'
         'PY2CPP'
         'ADAO'
         'ADAO_INTERFACE' : 'master'
