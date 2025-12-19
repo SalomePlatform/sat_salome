@@ -1,4 +1,3 @@
-# add sphinxintl to version_7_8_0_to_8_4_0
 default :
 {
     name : "KERNEL"
@@ -127,6 +126,54 @@ default_CO10 :
 default_DB13 :
 {
     cmake_options : "-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_CMAKE_DEBUG=ON -DSALOME_USE_64BIT_IDS=ON -DCMAKE_C_FLAGS=\"-Wno-error=implicit-function-declaration\""
+}
+
+
+version_V10_0_0 :
+{
+    cmake_options : "-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_CMAKE_DEBUG=ON -DSALOME_USE_64BIT_IDS=ON"
+}
+
+version_V10_0_0_DB13 :
+{
+    cmake_options : "-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_CMAKE_DEBUG=ON -DSALOME_USE_64BIT_IDS=ON -DCMAKE_C_FLAGS=\"-Wno-error=implicit-function-declaration\""
+}
+
+version_V10_0_0_FD42 :
+{
+    cmake_options : "-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_CMAKE_DEBUG=ON -DSALOME_USE_64BIT_IDS=ON -DCMAKE_C_FLAGS=\"-Wno-error=implicit-function-declaration\""
+    patches : ['KERNEL-FD42-V9_15_0-calcium.patch']
+}
+
+version_V10_0_0_CO10 :
+{
+    cmake_options : "-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_CMAKE_DEBUG=ON -DSALOME_USE_64BIT_IDS=ON -DCMAKE_C_FLAGS=\"-Wno-error=implicit-function-declaration\""
+}
+
+version_V10_0_0_MPI :
+{
+    cmake_options : "-DSALOME_USE_MPI=ON -DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_USE_64BIT_IDS=ON "
+    depend : ["Python",
+              "boost",
+              "numpy",
+              "lapack",
+              "hdf5",
+              "omniORB",
+              "omniORBpy",
+              "docutils",
+              "libxml2",
+              "Sphinx",
+              "sphinxintl",
+              "Jinja2",
+              "setuptools",
+              "Pygments",
+              "pytz",
+              "cppunit",
+              "openmpi",
+              "LIBBATCH",
+              "psutil"
+              ]
+    opt_depend : ["SALOMEBOOTSTRAP"]
 }
 
 version_V9_15_0_MPI :

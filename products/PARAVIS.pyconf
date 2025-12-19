@@ -119,6 +119,75 @@ default_MPI :
     }
 }
 
+version_V10_0_0 :
+{
+    cmake_options : "-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON -DBUILD_TESTING=ON"
+    git_info:
+    {
+      repositories :
+      {
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/paravis.git"
+        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "paravis.git"
+        gitpub : $PROJECTS.projects.salome.git_info.git_server.gitpub.url + "modules/paravis.git"
+      }
+      git_commands: [
+                     'git config -f .gitmodules submodule.src/Plugins/MEDReader.url ../medreader',
+                     'git config -f .git/config submodule.src/Plugins/MEDReader.url ../medreader',
+                     'git submodule sync',
+                     'git submodule update --init --remote',
+                     'cd src/Plugins/MEDReader',
+                     'git checkout V10_0_0a1' #FIXME
+                    ]
+    }
+}
+
+version_V10_0_0_win :
+{
+  cmake_options : "-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON -DBUILD_TESTING=ON"
+}
+
+version_V10_0_0_MPI :
+{
+    cmake_options : "-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON  -DSALOME_USE_MPI=ON -DCMAKE_CXX_COMPILER:STRING=${MPI_CXX_COMPILER} -DCMAKE_C_COMPILER:STRING=${MPI_C_COMPILER} "
+    depend : [
+       "KERNEL",
+       "GUI",
+       "MEDCOUPLING",
+       "FIELDS",
+       "GEOM",
+       "SMESH",
+       "Python",
+       "qt",
+       "boost",
+       "hdf5",
+       "medfile",
+       "ParaView",
+       "CAS",
+       "omniORB",
+       "docutils",
+       "libxml2",
+       "six",
+       "pytz",
+       "openmpi"
+    ]
+    patches : []
+    properties:
+    {
+        has_salome_gui : "yes"
+        is_SALOME_module : "yes"
+        is_SALOME_product: "yes"
+        incremental : "yes"
+    }
+      git_commands: [
+                     'git config -f .gitmodules submodule.src/Plugins/MEDReader.url ../medreader',
+                     'git config -f .git/config submodule.src/Plugins/MEDReader.url ../medreader',
+                     'git submodule sync',
+                     'git submodule update --init --remote',
+                     'cd src/Plugins/MEDReader',
+                     'git checkout V10_0_0a1' #FIXME
+                    ]
+}
+
 version_V9_15_0 :
 {
     cmake_options : "-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON -DBUILD_TESTING=ON"

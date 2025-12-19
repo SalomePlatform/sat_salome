@@ -50,6 +50,11 @@ version_master_CO9 :
     cmake_options : " -DQt5_DIR=${QT5_ROOT_DIR}/lib/cmake/Qt5 -DQt5Core_DIR=${QT5_ROOT_DIR}/lib/cmake/Qt5Core -DQt5Gui_DIR=${QT5_ROOT_DIR}/lib/cmake/Qt5Gui -DQt5Widgets_DIR=${QT5_ROOT_DIR}/lib/cmake/Qt5Widgets"
 }
 
+version_V10_0_0_CO9 :
+{
+    cmake_options : " -DQt5_DIR=${QT5_ROOT_DIR}/lib/cmake/Qt5 -DQt5Core_DIR=${QT5_ROOT_DIR}/lib/cmake/Qt5Core -DQt5Gui_DIR=${QT5_ROOT_DIR}/lib/cmake/Qt5Gui -DQt5Widgets_DIR=${QT5_ROOT_DIR}/lib/cmake/Qt5Widgets"
+}
+
 version_V9_15_0_CO9 :
 {
     cmake_options : " -DQt5_DIR=${QT5_ROOT_DIR}/lib/cmake/Qt5 -DQt5Core_DIR=${QT5_ROOT_DIR}/lib/cmake/Qt5Core -DQt5Gui_DIR=${QT5_ROOT_DIR}/lib/cmake/Qt5Gui -DQt5Widgets_DIR=${QT5_ROOT_DIR}/lib/cmake/Qt5Widgets"

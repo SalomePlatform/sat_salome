@@ -77,6 +77,32 @@ default_MPI :
             ]
 } 
 
+version_V10_0_0_MPI :
+{
+    cmake_options : "-DSALOME_USE_MPI=ON"
+    depend : [
+             "KERNEL", 
+             "GUI", 
+             "GEOM",
+             "boost", 
+             "CAS", 
+             "Python", 
+             "omniORB", 
+             "qt", 
+             "ParaView", 
+             "docutils", 
+             "libxml2", 
+             "Sphinx", 
+             "Jinja2", 
+             "setuptools", 
+             "Pygments", 
+             "six", 
+             "pytz",    
+             "markupsafe",
+             "openmpi"
+            ]
+} 
+
 version_V9_15_0_MPI :
 {
     cmake_options : "-DSALOME_USE_MPI=ON"

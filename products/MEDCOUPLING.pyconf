@@ -275,6 +275,140 @@ default_32BIT_IDS_MPI_STD :
     opt_depend : ["ParMetis", "metis"]
 }
 
+version_V10_0_0_MPI :
+{
+    cmake_options : "-DMEDCOUPLING_ENABLE_PYTHON=ON -DMEDCOUPLING_ENABLE_PARTITIONER=ON -DMEDCOUPLING_ENABLE_RENUMBER=ON -DMEDCOUPLING_PARTITIONER_METIS=ON -DMEDCOUPLING_PARTITIONER_PARMETIS=OFF -DMEDCOUPLING_PARTITIONER_SCOTCH=OFF -DMEDCOUPLING_PARTITIONER_PTSCOTCH=ON -DMEDCOUPLING_MICROMED=OFF -DMEDCOUPLING_USE_MPI=ON -DMEDCOUPLING_USE_64BIT_IDS=ON -DCMAKE_CXX_COMPILER:STRING=${MPI_CXX_COMPILER} -DCMAKE_C_COMPILER:STRING=${MPI_C_COMPILER} -DSCOTCH_ROOT_DIR=${SCOTCH_ROOT_DIR} -DPTSCOTCH_ROOT_DIR=${PTSCOTCH_ROOT_DIR} -DPTSCOTCH_INCLUDE_DIRS=${PTSCOTCH_INCLUDE_DIR}  -DMEDCOUPLING_ENABLE_SHAPERECOGN=ON"
+        depend : [
+              "boost",
+              "cppunit",
+              "Python",
+              "hdf5",
+              "medfile",
+              "scotch",
+              "docutils",
+              "libxml2",
+              "Sphinx",
+              "sphinxintl",
+              "setuptools",
+              "six",
+              "pytz",
+              "numpy",
+              "scipy",
+              "lapack",
+              "CONFIGURATION",
+              "openmpi"
+              ]
+        opt_depend : ["ParMetis", "metis", "BasicIterativeStatistics"]
+}
+
+version_V10_0_0_MPI_CO7 :
+{
+    cmake_options : "-DMEDCOUPLING_ENABLE_PYTHON=ON -DMEDCOUPLING_ENABLE_PARTITIONER=ON -DMEDCOUPLING_ENABLE_RENUMBER=ON -DMEDCOUPLING_PARTITIONER_METIS=ON -DMEDCOUPLING_PARTITIONER_PARMETIS=OFF -DMEDCOUPLING_PARTITIONER_SCOTCH=OFF -DMEDCOUPLING_PARTITIONER_PTSCOTCH=ON -DMEDCOUPLING_MICROMED=OFF -DMEDCOUPLING_USE_MPI=ON -DMEDCOUPLING_USE_64BIT_IDS=ON -DCMAKE_CXX_COMPILER:STRING=${MPI_CXX_COMPILER} -DCMAKE_C_COMPILER:STRING=${MPI_C_COMPILER} -DSCOTCH_ROOT_DIR=${SCOTCH_ROOT_DIR} -DPTSCOTCH_ROOT_DIR=${PTSCOTCH_ROOT_DIR} -DPTSCOTCH_INCLUDE_DIRS=${PTSCOTCH_INCLUDE_DIR}  -DMEDCOUPLING_ENABLE_SHAPERECOGN=ON"
+    depend : [
+              "boost",
+              "cppunit",
+              "Python",
+              "hdf5",
+              "medfile",
+              "scotch",
+              "docutils",
+              "libxml2",
+              "Sphinx",
+              "sphinxintl",
+              "setuptools",
+              "six",
+              "pytz",
+              "numpy",
+              "scipy",
+              "openblas",
+              "CONFIGURATION",
+              "openmpi"
+              ]
+    opt_depend : ["ParMetis", "metis", "BasicIterativeStatistics"]
+    patches: ['medcoupling_use_openblas.patch'] #FIXME
+}
+
+version_V10_0_0_MPI_CO8 :
+{
+    cmake_options : "-DMEDCOUPLING_ENABLE_PYTHON=ON -DMEDCOUPLING_ENABLE_PARTITIONER=ON -DMEDCOUPLING_ENABLE_RENUMBER=ON -DMEDCOUPLING_PARTITIONER_METIS=ON -DMEDCOUPLING_PARTITIONER_PARMETIS=OFF -DMEDCOUPLING_PARTITIONER_SCOTCH=OFF -DMEDCOUPLING_PARTITIONER_PTSCOTCH=ON -DMEDCOUPLING_MICROMED=OFF -DMEDCOUPLING_USE_MPI=ON -DMEDCOUPLING_USE_64BIT_IDS=ON -DCMAKE_CXX_COMPILER:STRING=${MPI_CXX_COMPILER} -DCMAKE_C_COMPILER:STRING=${MPI_C_COMPILER} -DSCOTCH_ROOT_DIR=${SCOTCH_ROOT_DIR} -DPTSCOTCH_ROOT_DIR=${PTSCOTCH_ROOT_DIR} -DPTSCOTCH_INCLUDE_DIRS=${PTSCOTCH_INCLUDE_DIR}  -DMEDCOUPLING_ENABLE_SHAPERECOGN=ON"
+    depend : [
+              "boost",
+              "cppunit",
+              "Python",
+              "hdf5",
+              "medfile",
+              "scotch",
+              "docutils",
+              "libxml2",
+              "Sphinx",
+              "sphinxintl",
+              "setuptools",
+              "six",
+              "pytz",
+              "numpy",
+              "scipy",
+              "openblas",
+              "CONFIGURATION",
+              "openmpi"
+              ]
+    opt_depend : ["ParMetis", "metis", "BasicIterativeStatistics"]
+    patches: ['medcoupling_use_openblas.patch', 'medcoupling-openblas-include_dir.patch'] #FIXME
+}
+
+version_V10_0_0_MPI_CO9 :
+{
+    cmake_options : "-DMEDCOUPLING_ENABLE_PYTHON=ON -DMEDCOUPLING_ENABLE_PARTITIONER=ON -DMEDCOUPLING_ENABLE_RENUMBER=ON -DMEDCOUPLING_PARTITIONER_METIS=ON -DMEDCOUPLING_PARTITIONER_PARMETIS=OFF -DMEDCOUPLING_PARTITIONER_SCOTCH=OFF -DMEDCOUPLING_PARTITIONER_PTSCOTCH=ON -DMEDCOUPLING_MICROMED=OFF -DMEDCOUPLING_USE_MPI=ON -DMEDCOUPLING_USE_64BIT_IDS=ON -DCMAKE_CXX_COMPILER:STRING=${MPI_CXX_COMPILER} -DCMAKE_C_COMPILER:STRING=${MPI_C_COMPILER} -DSCOTCH_ROOT_DIR=${SCOTCH_ROOT_DIR} -DPTSCOTCH_ROOT_DIR=${PTSCOTCH_ROOT_DIR} -DPTSCOTCH_INCLUDE_DIRS=${PTSCOTCH_INCLUDE_DIR}  -DMEDCOUPLING_ENABLE_SHAPERECOGN=ON"
+    depend : [
+              "boost",
+              "cppunit",
+              "Python",
+              "hdf5",
+              "medfile",
+              "scotch",
+              "docutils",
+              "libxml2",
+              "Sphinx",
+              "sphinxintl",
+              "setuptools",
+              "six",
+              "pytz",
+              "numpy",
+              "scipy",
+              "openblas",
+              "CONFIGURATION",
+              "openmpi"
+              ]
+    opt_depend : ["ParMetis", "metis", "BasicIterativeStatistics"]
+    patches: ['medcoupling_use_openblas.patch', 'medcoupling-openblas-include_dir.patch'] #FIXME
+}
+
+version_V10_0_0_MPI_STD:
+{
+    cmake_options : "-DMEDCOUPLING_ENABLE_PYTHON=ON -DMEDCOUPLING_ENABLE_PARTITIONER=OFF -DMEDCOUPLING_ENABLE_RENUMBER=ON -DMEDCOUPLING_PARTITIONER_METIS=OFF -DMEDCOUPLING_PARTITIONER_SCOTCH=ON -DMEDCOUPLING_PARTITIONER_PARMETIS=ON -DMEDCOUPLING_MICROMED=OFF -DMEDCOUPLING_USE_MPI=ON -DSALOME_USE_MPI=ON -DMEDCOUPLING_USE_64BIT_IDS=ON -DCMAKE_CXX_COMPILER:STRING=${MPI_CXX_COMPILER} -DCMAKE_C_COMPILER:STRING=${MPI_C_COMPILER}  -DMEDCOUPLING_ENABLE_SHAPERECOGN=ON"
+    depend : [
+              "boost",
+              "cppunit",
+              "Python",
+              "hdf5",
+              "medfile",
+              "scotch",
+              "docutils",
+              "libxml2",
+              "Sphinx",
+              "sphinxintl",
+              "setuptools",
+              "six",
+              "pytz",
+              "numpy",
+              "scipy",
+              "lapack",
+              "CONFIGURATION",
+              "openmpi",
+              "sphinx_rtd_theme"
+              ]
+    opt_depend : ["ParMetis", "BasicIterativeStatistics"]
+}
+
 version_V9_15_0_MPI :
 {
     cmake_options : "-DMEDCOUPLING_ENABLE_PYTHON=ON -DMEDCOUPLING_ENABLE_PARTITIONER=ON -DMEDCOUPLING_ENABLE_RENUMBER=ON -DMEDCOUPLING_PARTITIONER_METIS=ON -DMEDCOUPLING_PARTITIONER_PARMETIS=OFF -DMEDCOUPLING_PARTITIONER_SCOTCH=OFF -DMEDCOUPLING_PARTITIONER_PTSCOTCH=ON -DMEDCOUPLING_MICROMED=OFF -DMEDCOUPLING_USE_MPI=ON -DMEDCOUPLING_USE_64BIT_IDS=ON -DCMAKE_CXX_COMPILER:STRING=${MPI_CXX_COMPILER} -DCMAKE_C_COMPILER:STRING=${MPI_C_COMPILER} -DSCOTCH_ROOT_DIR=${SCOTCH_ROOT_DIR} -DPTSCOTCH_ROOT_DIR=${PTSCOTCH_ROOT_DIR} -DPTSCOTCH_INCLUDE_DIRS=${PTSCOTCH_INCLUDE_DIR}  -DMEDCOUPLING_ENABLE_SHAPERECOGN=ON"

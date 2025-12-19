@@ -69,6 +69,29 @@ default_MPI :
              ]
 }
 
+version_V10_0_0_MPI :
+{
+    cmake_options : "-DSALOME_USE_MPI=ON"
+    depend : [
+             "LIBBATCH", 
+             "KERNEL", 
+             "GUI", 
+             "Python",
+             "qt", 
+             "omniORB",
+             "boost", 
+             "Sphinx", 
+             "Jinja2", 
+             "setuptools", 
+             "Pygments", 
+             "docutils", 
+             "six", 
+             "pytz", 
+             "markupsafe",
+             "openmpi"
+             ]
+}
+
 version_V9_15_0_MPI :
 {
     cmake_options : "-DSALOME_USE_MPI=ON"
