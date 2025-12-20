@@ -5,7 +5,7 @@ APPLICATION :
 {
     name     : 'SALOME-10.0.0-MPI'
     workdir  : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag      : 'V10_0_0a1'
+    tag      : 'V10_0_0a2'
     dev      : 'no'
     verbose  : 'no'
     debug    : 'no'
@@ -191,8 +191,8 @@ APPLICATION :
         'SHAPERSTUDY'
         'RESTRICTED'
         'LIBBATCH' : 'V2_6_1'
-        'KERNEL'      : {tag:'V10_0_0a1', base: 'no', section: 'version_V10_0_0_MPI', hpc: 'yes', verbose: 'yes'}
-        'MEDCOUPLING' : {tag:'V10_0_0a1', base: 'no', section: 'version_V10_0_0_MPI_STD', hpc: 'yes', verbose: 'yes'}
+        'KERNEL'      : {tag:'V10_0_0a2', base: 'no', section: 'version_V10_0_0_MPI', hpc: 'yes', verbose: 'yes'}
+        'MEDCOUPLING' : {tag:'V10_0_0a2', base: 'no', section: 'version_V10_0_0_MPI_STD', hpc: 'yes', verbose: 'yes'}
         'GUI'
         'CommonGeomLib'
         'GEOM'
@@ -203,12 +203,12 @@ APPLICATION :
         'HYBRIDPLUGIN'
         'HexoticPLUGIN'
         'GMSHPLUGIN'
-        'HEXABLOCK' : {tag:'V10_0_0a1', base: 'no', section: 'version_V10_0_0_MPI', hpc: 'yes', verbose: 'yes'}
+        'HEXABLOCK' : {tag:'V10_0_0a2', base: 'no', section: 'version_V10_0_0_MPI', hpc: 'yes', verbose: 'yes'}
         'HEXABLOCKPLUGIN'
-        'HOMARD'    : {tag:'V10_0_0a1', base: 'no', section: 'version_V10_0_0_MPI', hpc: 'yes'}
-        'FIELDS'    : {tag:'V10_0_0a1', base: 'no', section: 'version_V10_0_0_MPI', hpc: 'yes'}
-        'PARAVIS'   : {tag:'V10_0_0a1', base: 'no', section: 'version_V10_0_0_MPI', hpc: 'yes'}
-        'JOBMANAGER': {tag:'V10_0_0a1', base: 'no', section: 'version_V10_0_0_MPI', hpc: 'yes'}
+        'HOMARD'    : {tag:'V10_0_0a2', base: 'no', section: 'version_V10_0_0_MPI', hpc: 'yes'}
+        'FIELDS'    : {tag:'V10_0_0a2', base: 'no', section: 'version_V10_0_0_MPI', hpc: 'yes'}
+        'PARAVIS'   : {tag:'V10_0_0a2', base: 'no', section: 'version_V10_0_0_MPI', hpc: 'yes'}
+        'JOBMANAGER': {tag:'V10_0_0a2', base: 'no', section: 'version_V10_0_0_MPI', hpc: 'yes'}
         'YACS'
         'YACSGEN'
         'DOCUMENTATION'
@@ -228,7 +228,7 @@ APPLICATION :
         'YDEFX'
         'pmml'
         'SALOMEBOOTSTRAP'
-        'SOLVERLAB' : {tag: 'V10_0_0a1', base: 'no', section: 'version_V10_0_0_MPI', hpc: 'yes'}
+        'SOLVERLAB' : {tag: 'V10_0_0a2', base: 'no', section: 'version_V10_0_0_MPI', hpc: 'yes'}
         'TopIIVolMesh'
         #'TESTBASE'
         'CEATESTBASE'
