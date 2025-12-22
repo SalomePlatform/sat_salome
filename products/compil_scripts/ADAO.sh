@@ -12,6 +12,10 @@ echo "Compile ADAO TOOL"
 echo "##########################################################################"
 
 export CURRENT_SOFTWARE_INSTALL_DIR=${PRODUCT_INSTALL}
+if [ -f /.dockerenv ]; then
+    export MPLCONFIGDIR=/tmp/.config/matplotlib
+    mkdir -p $MPLCONFIGDIR
+fi
 
 CMAKE_OPTIONS=""
 CMAKE_OPTIONS+=" -DCMAKE_INSTALL_PREFIX:STRING=${PRODUCT_INSTALL}"
