@@ -92,6 +92,18 @@ version_1_6_2_win:
   opt_depend : ['pybind11', 'openblas', 'lapack']
 }
 
+version_1_6_2_cp38_x86_64:
+{
+    depend : ['Python', 'setuptools', 'Cython', 'numpy']
+    compil_script : "scipy-1.6.2.sh"
+    archive_info : {archive_name : "scipy-1.6.2-cp38-x86_86.tar.gz"}
+    properties :
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+}
+
 version_1_4_1 :
 {
     patches : [ "scipy-1.4.1_limit_pybind11_version_for_py36.patch" ]

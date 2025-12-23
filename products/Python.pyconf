@@ -140,6 +140,12 @@ version_3_8_10:
   patches: []
 }
 
+version_3_8_0:
+{
+ compil_script : "Python-3.8.sh"
+  patches: []
+}
+
 version_3_9_14 :
 {
  compil_script : "Python-3.9.sh"
