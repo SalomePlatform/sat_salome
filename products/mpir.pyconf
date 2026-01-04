@@ -25,14 +25,15 @@ default :
     }
     depend : ["SMESH",
               "mmg",
-              "PyQt",
               "Python",
               "numpy"
              ]
     build_depend : ["cmake", "cppunit"]
     opt_depend : [
                   "cgal",
-                  "libigl"
+                  "libigl",
+                  "PyQt",
+                  "pyside"
                  ]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name

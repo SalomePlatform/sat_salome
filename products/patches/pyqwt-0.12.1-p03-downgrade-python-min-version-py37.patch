@@ -1,0 +1,12 @@
+diff -Naur '--exclude=*.swp' pyqwt/pyproject.toml pyqwt.dev/pyproject.toml
+--- pyqwt/pyproject.toml	2023-11-23 09:04:54.000000000 +0100
++++ pyqwt.dev/pyproject.toml	2025-04-17 16:36:27.815748937 +0200
+@@ -30,7 +30,7 @@
+     "Programming Language :: Python :: 3.11",
+     "Programming Language :: Python :: 3.12",
+ ]
+-requires-python = ">=3.8, <4"
++requires-python = ">=3.7, <4"
+ dependencies = ["NumPy>=1.21", "QtPy>=1.9"]
+ dynamic = ["version"]
+ 

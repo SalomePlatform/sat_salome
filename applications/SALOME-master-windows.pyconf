@@ -7,12 +7,13 @@ APPLICATION :
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name
     cmake_generator : 'Visual Studio 16 2019'
     cmake_build_type: 'Release' # Debug, RelWithDebInfo, Release, MinSizeRel
-    tag : 'master'  
-    dev : 'no'
-    verbose : 'no'
-    debug   : 'no'
-    base    : 'no'
-    python3 : 'yes'
+    tag       : 'master'  
+    dev       : 'no'
+    verbose   : 'no'
+    debug     : 'no'
+    base      : 'no'
+    python3   : 'yes'
+    use_pyside: 'no'
     environ :
     {
         build : 
@@ -140,6 +141,7 @@ APPLICATION :
         pyproject_metadata: '0.8.0'
         pyyaml: '6.0'
         pytest :  '8.3.2'
+        pyside : 'v5.15.17'
         psutil : '5.9.8'
         pthreads : '2.9.1'
         PyFMI : '2.6'
@@ -250,4 +252,17 @@ APPLICATION :
     }
 }
 
-__overwrite__ : []
+__overwrite__ : 
+[
+    {
+        #
+        __condition__ : "APPLICATION.use_pyside == 'yes'"
+        'APPLICATION.rm_products'               : ['PyQt','sip']
+        'APPLICATION.products.llvm': '12.0.1' # version compatible with Shiboken2/PySide2
+    }
+    {
+        #
+        __condition__ : "APPLICATION.use_pyside == 'no'"
+        'APPLICATION.rm_products'               : ['pyside']
+    }
+]

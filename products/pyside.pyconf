@@ -1,0 +1,228 @@
+default :
+{
+    name : "pyside"
+    build_source : "script"
+    compil_script :  $name + $VARS.scriptExtension
+    get_source : "archive"
+    system_info : 
+    {
+        rpm : []
+        rpm_dev : []
+        apt : ['libshiboken2', 'libshiboken2-py3', 'libpyside2-py3']
+        apt_dev : ['libpyside2-dev', 'libshiboken2-dev']
+    }
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : ['Python', 'qt']
+    opt_depend : ['packaging']
+    patches : []
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+      incremental : "yes"
+      single_install_dir : "no"
+    }
+}
+
+default_win:
+{
+    depend : ['Python', 'qt', 'llvm']
+    properties :
+    {
+      incremental : "yes"
+      single_install_dir : "no"
+    }
+}
+
+version_v5_15_17 :
+{
+    compil_script: "pyside-5.15.sh"
+    archive_info : {archive_name : "pyside-setup-opensource-src-5.15.17.tar.gz"}
+    patches : ["pyside-5.15.17.p001-rcc_path.patch", # if qt is system
+               "pyside-5.15.17.p002-site.patch",
+               "pyside-5.15.17.p003-config-pyver.patch",
+               "pyside-5.15.17-p004-Final-details-to-enable-3.12-wheel-compatibility.patch",
+               "pyside-5.15.17-p005-Modify-sendCommand-signatures.patch",
+               "pyside-5.15.17-p006-PyEnum-make-forgiving-duplicates-work-with-Python-3.11.patch",
+               "pyside-5.15.17-p007-Python-3.12-Fix-the-structure-of-class-property.patch",
+               "pyside-5.15.17-p008-Shiboken-Fix-the-oldest-shiboken-bug-ever.patch",
+               "pyside-5.15.17-p009-Stop-using-imp-module.patch",
+               "pyside-5.15.17-p010-Support-running-PySide-on-Python-3.12.patch",
+               "pyside-5.15.17-p011-blacklist-failing-tests.patch",
+               "pyside-5.15.17-p012-fix-spelling-errors.patch",
+               "pyside-5.15.17-p013-shiboken2-clang-Fix-and-simplify-resolveType-helper.patch",
+               "pyside-5.15.17-p014-shiboken2-clang-Fix-build-with-clang-16.patch",
+               "pyside-5.15.17-p015-shiboken2-clang-Fix-clashes-between-type-name-and-enumera.patch",
+               "pyside-5.15.17-p016-shiboken2-clang-Record-scope-resolution-of-arguments-func.patch",
+               "pyside-5.15.17-p017-shiboken2-clang-Remove-typedef-expansion.patch",
+               "pyside-5.15.17-p018-shiboken2-clang-Suppress-class-scope-look-up-for-paramete.patch",
+               "pyside-5.15.17-p019-shiboken2-clang-Write-scope-resolution-for-all-parameters.patch",
+               "pyside-5.15.17-p020-test-with-current-interpreter.patch",
+               "pyside-5.15.17-p021-update-sip-import.patch"
+              ]
+}
+
+version_v5_15_17_CO7 :
+{
+    compil_script: "pyside-5.15.sh"
+    archive_info : {archive_name : "pyside-setup-opensource-src-5.15.17.tar.gz"}
+    patches : ["pyside-5.15.17.p002-site.patch",
+               "pyside-5.15.17.p003-config-pyver.patch",
+               "pyside-5.15.17-p004-Final-details-to-enable-3.12-wheel-compatibility.patch",
+               "pyside-5.15.17-p005-Modify-sendCommand-signatures.patch",
+               "pyside-5.15.17-p006-PyEnum-make-forgiving-duplicates-work-with-Python-3.11.patch",
+               "pyside-5.15.17-p007-Python-3.12-Fix-the-structure-of-class-property.patch",
+               "pyside-5.15.17-p008-Shiboken-Fix-the-oldest-shiboken-bug-ever.patch",
+               "pyside-5.15.17-p009-Stop-using-imp-module.patch",
+               "pyside-5.15.17-p010-Support-running-PySide-on-Python-3.12.patch",
+               "pyside-5.15.17-p011-blacklist-failing-tests.patch",
+               "pyside-5.15.17-p012-fix-spelling-errors.patch",
+               "pyside-5.15.17-p013-shiboken2-clang-Fix-and-simplify-resolveType-helper.patch",
+               "pyside-5.15.17-p014-shiboken2-clang-Fix-build-with-clang-16.patch",
+               "pyside-5.15.17-p015-shiboken2-clang-Fix-clashes-between-type-name-and-enumera.patch",
+               "pyside-5.15.17-p016-shiboken2-clang-Record-scope-resolution-of-arguments-func.patch",
+               "pyside-5.15.17-p017-shiboken2-clang-Remove-typedef-expansion.patch",
+               "pyside-5.15.17-p018-shiboken2-clang-Suppress-class-scope-look-up-for-paramete.patch",
+               "pyside-5.15.17-p019-shiboken2-clang-Write-scope-resolution-for-all-parameters.patch",
+               "pyside-5.15.17-p020-test-with-current-interpreter.patch",
+               "pyside-5.15.17-p021-update-sip-import.patch"
+              ]
+}
+
+version_v5_15_17_CO8 :
+{
+    compil_script: "pyside-5.15.sh"
+    archive_info : {archive_name : "pyside-setup-opensource-src-5.15.17.tar.gz"}
+    patches : ["pyside-5.15.17.p002-site.patch",
+               "pyside-5.15.17.p003-config-pyver.patch",
+               "pyside-5.15.17-p004-Final-details-to-enable-3.12-wheel-compatibility.patch",
+               "pyside-5.15.17-p005-Modify-sendCommand-signatures.patch",
+               "pyside-5.15.17-p006-PyEnum-make-forgiving-duplicates-work-with-Python-3.11.patch",
+               "pyside-5.15.17-p007-Python-3.12-Fix-the-structure-of-class-property.patch",
+               "pyside-5.15.17-p008-Shiboken-Fix-the-oldest-shiboken-bug-ever.patch",
+               "pyside-5.15.17-p009-Stop-using-imp-module.patch",
+               "pyside-5.15.17-p010-Support-running-PySide-on-Python-3.12.patch",
+               "pyside-5.15.17-p011-blacklist-failing-tests.patch",
+               "pyside-5.15.17-p012-fix-spelling-errors.patch",
+               "pyside-5.15.17-p013-shiboken2-clang-Fix-and-simplify-resolveType-helper.patch",
+               "pyside-5.15.17-p014-shiboken2-clang-Fix-build-with-clang-16.patch",
+               "pyside-5.15.17-p015-shiboken2-clang-Fix-clashes-between-type-name-and-enumera.patch",
+               "pyside-5.15.17-p016-shiboken2-clang-Record-scope-resolution-of-arguments-func.patch",
+               "pyside-5.15.17-p017-shiboken2-clang-Remove-typedef-expansion.patch",
+               "pyside-5.15.17-p018-shiboken2-clang-Suppress-class-scope-look-up-for-paramete.patch",
+               "pyside-5.15.17-p019-shiboken2-clang-Write-scope-resolution-for-all-parameters.patch",
+               "pyside-5.15.17-p020-test-with-current-interpreter.patch",
+               "pyside-5.15.17-p021-update-sip-import.patch"
+              ]
+}
+
+version_v5_15_17_CO9 :
+{
+    compil_script: "pyside-5.15.sh"
+    archive_info : {archive_name : "pyside-setup-opensource-src-5.15.17.tar.gz"}
+    patches : ["pyside-5.15.17.p002-site.patch",
+               "pyside-5.15.17.p003-config-pyver.patch",
+               "pyside-5.15.17-p004-Final-details-to-enable-3.12-wheel-compatibility.patch",
+               "pyside-5.15.17-p005-Modify-sendCommand-signatures.patch",
+               "pyside-5.15.17-p006-PyEnum-make-forgiving-duplicates-work-with-Python-3.11.patch",
+               "pyside-5.15.17-p007-Python-3.12-Fix-the-structure-of-class-property.patch",
+               "pyside-5.15.17-p008-Shiboken-Fix-the-oldest-shiboken-bug-ever.patch",
+               "pyside-5.15.17-p009-Stop-using-imp-module.patch",
+               "pyside-5.15.17-p010-Support-running-PySide-on-Python-3.12.patch",
+               "pyside-5.15.17-p011-blacklist-failing-tests.patch",
+               "pyside-5.15.17-p012-fix-spelling-errors.patch",
+               "pyside-5.15.17-p013-shiboken2-clang-Fix-and-simplify-resolveType-helper.patch",
+               "pyside-5.15.17-p014-shiboken2-clang-Fix-build-with-clang-16.patch",
+               "pyside-5.15.17-p015-shiboken2-clang-Fix-clashes-between-type-name-and-enumera.patch",
+               "pyside-5.15.17-p016-shiboken2-clang-Record-scope-resolution-of-arguments-func.patch",
+               "pyside-5.15.17-p017-shiboken2-clang-Remove-typedef-expansion.patch",
+               "pyside-5.15.17-p018-shiboken2-clang-Suppress-class-scope-look-up-for-paramete.patch",
+               "pyside-5.15.17-p019-shiboken2-clang-Write-scope-resolution-for-all-parameters.patch",
+               "pyside-5.15.17-p020-test-with-current-interpreter.patch",
+               "pyside-5.15.17-p021-update-sip-import.patch"
+              ]
+}
+
+version_v5_15_17_FD42 :
+{
+    compil_script: "pyside-5.15.sh"
+    archive_info : {archive_name : "pyside-setup-opensource-src-5.15.17.tar.gz"}
+    patches : ["pyside-5.15.17.p001-rcc_path.patch", # if qt is system
+               "pyside-5.15.17.p002-site.patch",
+               "pyside-5.15.17.p003-config-pyver.patch",
+               "pyside-5.15.17-p004-Final-details-to-enable-3.12-wheel-compatibility.patch",
+               "pyside-5.15.17-p005-Modify-sendCommand-signatures.patch",
+               "pyside-5.15.17-p006-PyEnum-make-forgiving-duplicates-work-with-Python-3.11.patch",
+               "pyside-5.15.17-p007-Python-3.12-Fix-the-structure-of-class-property.patch",
+               "pyside-5.15.17-p008-Shiboken-Fix-the-oldest-shiboken-bug-ever.patch",
+               "pyside-5.15.17-p009-Stop-using-imp-module.patch",
+               "pyside-5.15.17-p010-Support-running-PySide-on-Python-3.12.patch",
+               "pyside-5.15.17-p011-blacklist-failing-tests.patch",
+               "pyside-5.15.17-p012-fix-spelling-errors.patch",
+               "pyside-5.15.17-p013-shiboken2-clang-Fix-and-simplify-resolveType-helper.patch",
+               "pyside-5.15.17-p014-shiboken2-clang-Fix-build-with-clang-16.patch",
+               "pyside-5.15.17-p015-shiboken2-clang-Fix-clashes-between-type-name-and-enumera.patch",
+               "pyside-5.15.17-p016-shiboken2-clang-Record-scope-resolution-of-arguments-func.patch",
+               "pyside-5.15.17-p017-shiboken2-clang-Remove-typedef-expansion.patch",
+               "pyside-5.15.17-p018-shiboken2-clang-Suppress-class-scope-look-up-for-paramete.patch",
+               "pyside-5.15.17-p019-shiboken2-clang-Write-scope-resolution-for-all-parameters.patch",
+               "pyside-5.15.17-p020-test-with-current-interpreter.patch",
+               "pyside-5.15.17-p021-update-sip-import.patch",
+               "pyside-5.15.17-p022-Python-3.13.patch",
+               "pyside-5.15.17-p023-uic-qt5-rcc-qt5.patch",
+               "pyside-5.15.17-p024-config-python-3.13-requires.patch"
+              ]
+}
+
+version_v5_15_17_win :
+{
+    compil_script: "pyside-5.15.bat"
+    archive_info : {archive_name : "pyside-setup-opensource-src-5.15.17.tar.gz"}
+    patches : ["pyside-5.15.17.p002-site.patch"	]
+}
+
+version_v5_15_16 :
+{
+    compil_script: "pyside-5.15.sh"
+    archive_info : {archive_name : "pyside-setup-opensource-src-5.15.16.tar.gz"}
+    patches : ["pyside-5.15.16.p001-rcc_path.patch", "pyside-5.15.16.p002-site.patch"]
+}
+
+version_v5_15_16_CO7 :
+{
+    compil_script: "pyside-5.15.sh"
+    archive_info : {archive_name : "pyside-setup-opensource-src-5.15.16.tar.gz"}
+    patches : ["pyside-5.15.16.p002-site.patch"]
+}
+
+version_v5_15_16_win :
+{
+    compil_script: "pyside-5.15.bat"
+    archive_info : {archive_name : "pyside-setup-opensource-src-5.15.16.tar.gz"}
+    patches : ["pyside-5.15.16.p002-site.patch"]
+}
+
+version_v5_15_15 :
+{
+    compil_script: "pyside-5.15.sh"
+    archive_info : {archive_name : "pyside-setup-opensource-src-5.15.15.tar.gz"}
+    patches : []
+}
+
+version_v5_15_15_win :
+{
+    compil_script: "pyside-5.15.bat"
+    archive_info : {archive_name : "pyside-setup-opensource-src-5.15.15.tar.gz"}
+    patches : []
+}
+
+version_v5_15_2_1_DB11 :
+{
+    compil_script: "pyside-5.15.sh"
+    archive_info : {archive_name : "pyside-setup-opensource-src-5.15.2.1.tar.gz"}
+    patches : ["pyside-5.15.2.p001-rcc_path.patch"]
+}

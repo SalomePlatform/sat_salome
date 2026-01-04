@@ -16,9 +16,9 @@ default :
         env_script : $name + ".py"
     }
     # OP distribute is not useful anymore
-    depend : ['Python', 'setuptools', 'PyQt',  'numpy', 'freetype', 'six', 'pytz', 'pyparsing', 'dateutil', 'cycler']
+    depend : ['Python', 'setuptools',  'numpy', 'freetype', 'six', 'pytz', 'pyparsing', 'dateutil', 'cycler']
     opt_depend : ['contourpy', 'fonttools', 'importlib_resources', 
-                  'kiwisolver', 'packaging', 'Pillow'
+                  'kiwisolver', 'packaging', 'Pillow', 'pyside', 'PyQt'
                  ]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
@@ -34,8 +34,8 @@ default_win :
 {
    compil_script : 'pip_install_whl' + $VARS.scriptExtension
    archive_info : {archive_name : "matplotlib-" + $APPLICATION.products.matplotlib + "_windows.tar.gz"}
-   depend : ['Python', 'PyQt',  'numpy', 'freetype', 'six', 'pytz', 'pyparsing', 'dateutil', 'setuptools', 'cycler']
-   opt_depend : ['kiwisolver', 'Pillow']
+   depend : ['Python', 'numpy', 'freetype', 'six', 'pytz', 'pyparsing', 'dateutil', 'setuptools', 'cycler']
+   opt_depend : ['kiwisolver', 'Pillow', 'pyside', 'PyQt']
    properties:
    {
      incremental : "yes"
@@ -45,7 +45,7 @@ default_win :
 
 version_3_3_4 :
 {
-    opt_depend : ['kiwisolver', 'packaging', 'Pillow']
+    opt_depend : ['kiwisolver', 'packaging', 'Pillow', 'pyside', 'PyQt']
     properties:
     {
       incremental : "yes"
@@ -55,7 +55,7 @@ version_3_3_4 :
 
 version_3_3_4_win :
 {
-    opt_depend : ['kiwisolver', 'packaging', 'Pillow']
+    opt_depend : ['kiwisolver', 'packaging', 'Pillow', 'pyside', 'PyQt']
     archive_info : {archive_name : "matplotlib-3.3.4.tar.gz"}
     properties:
     {
@@ -66,6 +66,7 @@ version_3_3_4_win :
 
 version_2_2_2 :
 {
+    opt_depend : ['kiwisolver', 'packaging', 'Pillow', 'pyside', 'PyQt']
     properties:
     {
       pip : "yes"
@@ -75,13 +76,15 @@ version_2_2_2 :
 
 version_2_0_2 :
 {
-    depend : ['Python', 'PyQt',  'numpy', 'freetype', 'six', 'pytz', 'pyparsing', 'dateutil', 'setuptools', 'cycler']
+    depend : ['Python', 'numpy', 'freetype', 'six', 'pytz', 'pyparsing', 'dateutil', 'setuptools', 'cycler']
+    opt_depend : ['kiwisolver', 'packaging', 'Pillow', 'pyside', 'PyQt']
 }
 
 version_1_4_3 :
 {
     name : "matplotlib"
-    depend : ['Python', 'PyQt',  'numpy', 'freetype', 'six', 'pytz', 'distribute', 'pyparsing', 'dateutil', 'setuptools']
+    depend : ['Python', 'numpy', 'freetype', 'six', 'pytz', 'distribute', 'pyparsing', 'dateutil', 'setuptools']
+    opt_depend : ['kiwisolver', 'packaging', 'Pillow', 'pyside', 'PyQt']
     patches : [
                $name + "_1_4_3_patch_freetype_detection_for_SAT.patch"
                $name + "-1.4.3_no_auto_download.patch"
@@ -93,6 +96,7 @@ version_1_4_2 :
 {
     name : "matplotlib"
     depend : ['Python', 'numpy', 'freetype']
+    opt_depend : ['kiwisolver', 'packaging', 'Pillow', 'pyside', 'PyQt']
     patches : [
                   $name + "_1_4_2_patch_freetype_detection_for_SAT.patch"
               ]

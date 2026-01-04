@@ -1,0 +1,12 @@
+--- PythonQwt-0.12.1_ref/qwt/plot_curve.py	2025-10-20 11:54:14.095784328 +0200
++++ PythonQwt-0.12.1_dev/qwt/plot_curve.py	2025-10-20 11:58:38.931173009 +0200
+@@ -38,6 +38,9 @@
+ if QT_API == "pyside6":
+     import shiboken6 as shiboken
+     import ctypes
++elif 'PYSIDE2_ROOT_DIR' in os.environ:
++    import shiboken2 as shiboken
++    import ctypes
+ 
+ import numpy as np
+ 

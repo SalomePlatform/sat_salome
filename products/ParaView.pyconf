@@ -38,8 +38,6 @@ version_6_1_0 :
               'Python',
               'hdf5',
               'qt',
-              'PyQt',
-              'sip',
               'boost',
               'libxml2',
               'freetype',
@@ -47,7 +45,7 @@ version_6_1_0 :
               'cgns',
               'Pygments'
               ]
-    opt_depend : ['ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst', 'ONNX']
+    opt_depend : ['ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst', 'sip', 'PyQt', 'pyside', 'ONNX']
     patches : []
 }
 
@@ -67,7 +65,7 @@ version_6_1_0_win :
               'pthreads',
               'zlib'
              ]
-    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'rkCommon', 'matplotlib', 'ONNX']
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'rkCommon', 'matplotlib', 'sip', 'PyQt', 'pyside', 'ONNX']
     patches : ['paraview-6.1.0-c61dcc8ee0.p002-add_dll_directory.patch',
                'paraview-6.1.0-c61dcc8ee0.p003-vtkModuleWrapPython.patch',
                'paraview-6.1.0-c61dcc8ee0.p004-vtkONNXInference.patch'
@@ -82,8 +80,6 @@ version_6_1_0_MPI :
               'Python',
               'hdf5',
               'qt',
-              'PyQt',
-              'sip',
               'boost',
               'libxml2',
               'freetype',
@@ -91,7 +87,7 @@ version_6_1_0_MPI :
               'cgns',
               'Pygments'
               ]
-    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst', 'ONNX']
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst', 'sip', 'PyQt', 'pyside', 'ONNX']
     patches : ['paraview-6.1.0-c61dcc8ee0.p001-FindCGNS.patch']
 }
 
@@ -103,8 +99,6 @@ version_5_13_2 :
               'Python',
               'hdf5',
               'qt',
-              'PyQt',
-              'sip',
               'boost',
               'libxml2',
               'freetype',
@@ -112,7 +106,7 @@ version_5_13_2 :
               'cgns',
               'Pygments'
               ]
-    opt_depend : ['ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst']
+    opt_depend : ['ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst', 'sip', 'PyQt', 'pyside']
     patches : ['paraview-5.13-2918b94391.p002-FindMPI.patch',
                'paraview-5.13-2918b94391.p003-FindCGNS.patch',
                'paraview-5.13-2918b94391.p004-FindFreetype.patch',
@@ -136,7 +130,7 @@ version_5_13_2_win :
               'pthreads',
               'zlib'
              ]
-    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'rkCommon', 'matplotlib']
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'rkCommon', 'matplotlib', 'sip', 'PyQt', 'pyside']
     patches : ['paraview-5.13-2918b94391.p001-add_dll_directory.patch',
                'paraview-5.13-2918b94391.p002-FindMPI.patch',
                'paraview-5.13-2918b94391.p003-FindCGNS.patch',
@@ -154,8 +148,6 @@ version_5_13_2_MPI :
               'Python',
               'hdf5',
               'qt',
-              'PyQt',
-              'sip',
               'boost',
               'libxml2',
               'freetype',
@@ -163,7 +155,7 @@ version_5_13_2_MPI :
               'cgns',
               'Pygments'
               ]
-    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst']
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst', 'sip', 'PyQt', 'pyside']
     patches : ['paraview-5.13-2918b94391.p002-FindMPI.patch',
                'paraview-5.13-2918b94391.p003-FindCGNS.patch',
                'paraview-5.13-2918b94391.p004-FindFreetype.patch',
@@ -206,8 +198,6 @@ version_5_13_2_MPI_DB10 :
               'Python',
               'hdf5',
               'qt',
-              'PyQt',
-              'sip',
               'boost',
               'libxml2',
               'freetype',
@@ -215,7 +205,7 @@ version_5_13_2_MPI_DB10 :
               'cgns',
               'Pygments'
               ]
-    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst']
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst', 'sip', 'PyQt', 'pyside']
     patches : ['paraview-5.13-2918b94391.p002-FindMPI.patch',
                'paraview-5.13-2918b94391.p003-FindCGNS.patch',
                'paraview-5.13-2918b94391.p004-FindFreetype.patch',
@@ -260,8 +250,6 @@ version_5_13_2_MPI_FD40 :
               'Python',
               'hdf5',
               'qt',
-              'PyQt',
-              'sip',
               'boost',
               'libxml2',
               'freetype',
@@ -269,7 +257,7 @@ version_5_13_2_MPI_FD40 :
               'cgns',
               'Pygments'
               ]
-    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst']
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst', 'sip', 'PyQt', 'pyside']
     patches : ['paraview-5.13-2918b94391.p002-FindMPI.patch',
                'paraview-5.13-2918b94391.p003-FindCGNS.patch',
                'paraview-5.13-2918b94391.p004-FindFreetype.patch',
@@ -315,8 +303,6 @@ version_5_13_2_MPI_UB24_04 :
               'Python',
               'hdf5',
               'qt',
-              'PyQt',
-              'sip',
               'boost',
               'libxml2',
               'freetype',
@@ -324,7 +310,7 @@ version_5_13_2_MPI_UB24_04 :
               'cgns',
               'Pygments'
               ]
-    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst']
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst', 'sip', 'PyQt', 'pyside']
     patches : ['paraview-5.13-2918b94391.p002-FindMPI.patch',
                'paraview-5.13-2918b94391.p003-FindCGNS.patch',
                'paraview-5.13-2918b94391.p004-FindFreetype.patch',
@@ -395,6 +381,8 @@ version_5_11_0_win :
               'Python',
               'hdf5',
               'qt',
+              'PyQt',
+              'sip',
               'boost',
               'libxml2',
               'freetype',
@@ -410,33 +398,6 @@ version_5_11_0_win :
                'paraview-5.11.0.p006-GIL.patch',
                'paraview-5.11.0.p009-openturns-1.21.patch',
                'paraview-5.11.0.p0011-add_dll_directory.patch',
-               'paraview-5.11.0.p013-bos-43522-EnSightGoldBinaryReader-fix-int-overflow-when-openin.patch'
-              ]
-}
-
-version_5_11_0_win_dbg :
-{
-    compil_script :  'ParaView-5.11.0.bat'
-    archive_info : {archive_name : "ParaView-5.11.0.tar.gz"}
-    depend : [
-              'Python',
-              'hdf5',
-              'qt',
-              'boost',
-              'libxml2',
-              'freetype',
-              'cgns',
-              'Pygments',
-              'pthreads',
-              'zlib'
-             ]
-    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'rkCommon', 'matplotlib']
-    patches : ['paraview-5.11.0.p001-FindCGNS.patch',
-               'paraview-5.11.0.p002-FindMPI.patch',
-               'paraview-5.11.0.p004-vtkUniformHyperTreeGrid.patch',
-               'paraview-5.11.0.p005-vtkPython-debug.patch',
-               'paraview-5.11.0.p006-GIL.patch',
-               'paraview-5.11.0.p009-openturns-1.21.patch',
                'paraview-5.11.0.p013-bos-43522-EnSightGoldBinaryReader-fix-int-overflow-when-openin.patch'
               ]
 }
@@ -783,6 +744,20 @@ version_5_9_0_int32 :
                'paraview.0018-spns-26351-autoconvert.patch',
                'paraview.0019-spns-26344-VTK-OpenMP.patch'
               ]
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'PyQt',
+              'sip',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf']
 }
 
 version_5_9_0_win :
@@ -793,6 +768,8 @@ version_5_9_0_win :
               'Python',
               'hdf5',
               'qt',
+              'PyQt',
+              'sip',
               'boost',
               'libxml2',
               'freetype',
@@ -818,44 +795,25 @@ version_5_9_0_win :
               ]
 }
 
-version_5_9_0_win_dbg :
+version_5_9_0_MPI :
 {
-    compil_script :  'ParaView-5.9.0.bat'
+    compil_script :  'ParaView-5.9.0.sh'
     archive_info : {archive_name : "ParaView-5.9.0-lata.tar.gz"}
     depend : [
               'Python',
               'hdf5',
               'qt',
+              'PyQt',
+              'sip',
               'boost',
               'libxml2',
               'freetype',
+              'matplotlib',
               'cgns',
-              'Pygments',
-              'pthreads',
-              'zlib'
-             ]
-    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'rkCommon', 'matplotlib']
-    patches : ['paraview.0003-ParaViewClient.patch',
-               'paraview.0004-ParaView_hdf5.patch',
-               'paraview.0005-ParaView_find_cgns.patch',
-               'paraview.0006-ParaView_find_libxml2.patch',
-               'paraview.0007-ParaView_find_freetype.patch',
-               'paraview.0009-ParaView_find_zlib.patch',
-               'paraview.0010-ParaView_CATALYST_cmake.patch',
-               'paraview.1001-ParaView_windows_catalyst_cmake.patch',
-               'paraview.0008-ParaView_coincident_rendering.patch',
-               'paraview.0011-ParaView_protobuf_crash.patch',
-               'paraview.0018-spns-26351-autoconvert.patch',
-               'paraview.0019-spns-26344-VTK-OpenMP.patch',
-               'paraview.0015-Paraview_VTKM_ioss.patch',
-               'paraview-5.9.0-vs-debug.patch'
+              'Pygments'
               ]
-}
-
-version_5_9_0_MPI :
-{
-    compil_script :  'ParaView-5.9.0.sh'
-    archive_info : {archive_name : "ParaView-5.9.0-lata.tar.gz"}
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'rkCommon', 'gdal', 'netcdf']
+    build_depend : ["cmake"]
     patches : ['paraview.0003-ParaViewClient.patch',
                'paraview.0004-ParaView_hdf5.patch',
                'paraview.0005-ParaView_find_cgns.patch',
@@ -897,6 +855,20 @@ version_5_9_0_MPI_LATA_64BITS_IDS :
                'paraview.0021-FindGDAL.patch',
                'paraview-0012-LATA_64BITS_IDS.patch'
               ]
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'PyQt',
+              'sip',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'rkCommon', 'gdal', 'netcdf']
 }
 
 version_5_9_0_FD36 :
@@ -922,6 +894,20 @@ version_5_9_0_FD36 :
                'paraview.0021-FindGDAL.patch',
                'paraview-5.9.0-python-3.10.Py_REFCNT.patch'
               ]
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'PyQt',
+              'sip',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf']
 }
 
 version_5_9_0_FD32 :
@@ -938,6 +924,20 @@ version_5_9_0_FD32 :
                'paraview.0018-spns-26351-autoconvert.patch',
                'paraview.0019-spns-26344-VTK-OpenMP.patch'
               ]
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'PyQt',
+              'sip',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf']
 }
 
 version_5_9_0_UB22_04 :
@@ -963,6 +963,20 @@ version_5_9_0_UB22_04 :
                'paraview.0021-FindGDAL.patch',
                'paraview-5.9.0-python-3.10.Py_REFCNT.patch'
               ]
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'PyQt',
+              'sip',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf']
 }
 
 version_5_9_0_UB20_04 :
@@ -986,6 +1000,20 @@ version_5_9_0_UB20_04 :
                'paraview.0019-spns-26344-VTK-OpenMP.patch',
                'paraview.0020.findMPI.patch'
               ]
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'PyQt',
+              'sip',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf']
 }
 
 version_5_9_0_CO8 :
@@ -1003,6 +1031,20 @@ version_5_9_0_CO8 :
                'paraview.0019-spns-26344-VTK-OpenMP.patch',
                'paraview.0020.findMPI.patch'
               ]
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'PyQt',
+              'sip',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf']
 }
 
 version_5_9_0_DB10 :
@@ -1028,6 +1070,20 @@ version_5_9_0_DB10 :
                'paraview.0019-spns-26344-VTK-OpenMP.patch',
                'paraview.0020.findMPI.patch'
               ]
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'PyQt',
+              'sip',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf']
 }
 
 version_5_9_0_DB11 :
@@ -1053,6 +1109,20 @@ version_5_9_0_DB11 :
                'paraview.0019-spns-26344-VTK-OpenMP.patch',
                'paraview.0020.findMPI.patch'
               ]
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'PyQt',
+              'sip',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf']
 }
 
 version_5_8_0 :
@@ -1069,6 +1139,20 @@ version_5_8_0 :
                'paraview.0010-ParaView_find_python.patch',
                'pv_coincident.patch'
               ]
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'PyQt',
+              'sip',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
+    opt_depend : ['ospray','tbb', 'openturns', 'gdal', 'netcdf']
 }
 
 version_5_8_0_int32 :
@@ -1085,6 +1169,20 @@ version_5_8_0_int32 :
                'paraview.0010-ParaView_find_python.patch',
                'pv_coincident.patch'
               ]
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'PyQt',
+              'sip',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
+    opt_depend : ['ospray','tbb', 'openturns', 'gdal', 'netcdf']
 }
 
 version_5_8_0_win :
@@ -1094,6 +1192,8 @@ version_5_8_0_win :
               'Python',
               'hdf5',
               'qt',
+              'PyQt',
+              'sip',
               'boost',
               'libxml2',
               'freetype',
@@ -1121,6 +1221,8 @@ version_5_8_0_win_int32 :
               'Python',
               'hdf5',
               'qt',
+              'PyQt',
+              'sip',
               'boost',
               'libxml2',
               'freetype',
@@ -1154,6 +1256,20 @@ version_5_8_0_MPI :
                'paraview.0012-VTKM_MPI.patch',
                'pv_coincident.patch'
               ]
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'PyQt',
+              'sip',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'rkCommon', 'gdal', 'netcdf']
 }
 
 version_5_8_0_MPI_LATA_64BITS_IDS :
@@ -1170,6 +1286,20 @@ version_5_8_0_MPI_LATA_64BITS_IDS :
                'pv_coincident.patch',
                'paraview-0012-LATA_64BITS_IDS.patch'
               ]
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'PyQt',
+              'sip',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'rkCommon', 'gdal', 'netcdf']
 }
 
 
@@ -1186,6 +1316,20 @@ version_5_8_0_MPI_int32 :
                'paraview.0012-VTKM_MPI.patch',
                'pv_coincident.patch'
               ]
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'PyQt',
+              'sip',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'rkCommon', 'gdal', 'netcdf']
 }
 
 version_5_8_0_FD30 :
@@ -1216,6 +1360,20 @@ version_5_8_0_FD32 :
                 'paraview.0009-ParaView_volume_mapper.patch',
                 'pv_coincident.patch'
               ]
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'PyQt',
+              'sip',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
+    opt_depend : ['ospray','tbb', 'openturns', 'gdal', 'netcdf']
 }
 
 version_5_8_0_CO7_OpenMP :
@@ -1232,6 +1390,20 @@ version_5_8_0_CO7_OpenMP :
                 'paraview.0011-vtkSMPSelection.patch',
                 'pv_coincident.patch'
               ]
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'PyQt',
+              'sip',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
+    opt_depend : ['ospray','tbb', 'openturns', 'gdal', 'netcdf']
 }
 
 version_5_8_0_CO8 :
@@ -1247,6 +1419,20 @@ version_5_8_0_CO8 :
                'paraview.0009-ParaView_volume_mapper.patch',
                'pv_coincident.patch'
               ]
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'PyQt',
+              'sip',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
+    opt_depend : ['ospray','tbb', 'openturns', 'gdal', 'netcdf']
 }
 
 

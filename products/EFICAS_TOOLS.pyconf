@@ -17,7 +17,7 @@ default :
     {
        env_script : $name + ".py"
     }
-    depend : ['PyQt', 'Sphinx', 'sip']
+    depend : ['GUI', 'Sphinx']
     build_depend : ["cmake"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
@@ -32,6 +32,6 @@ default :
 default_win :
 {
     build_source : "cmake"
-    depend : ['PyQt', 'Sphinx', 'zlib']
+    depend : ['GUI', 'Sphinx', 'zlib']
     cmake_options : ' -DPYTHON_EXECUTABLE=%PYTHONBIN%  -DWITH_TELEMAC_CATA=ON -DSALOME_GUI_BUILD_WITH_QT5:BOOL=ON -DBUILD_DOC=ON -DPYTHON_ROOT_DIR=%PYTHON_ROOT_DIR%   -DPYTHON_INCLUDE_PATH:STRING=%PYTHON_ROOT_DIR%/include -DPYTHON_LIBRARY=%PYTHON_ROOT_DIR%/libs/python%PYTHON_VERSION:.=%.lib -DPYUIC5=%PYUIC5%'
 }

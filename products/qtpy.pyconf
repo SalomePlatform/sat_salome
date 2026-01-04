@@ -21,8 +21,8 @@ default :
     {
        env_script : "qtpy.py"
     }
-    depend : ['Python','setuptools','numpy', 'qwt', 'PyQt']
-    opt_depend: []
+    depend : ['Python','setuptools','numpy', 'qwt']
+    opt_depend: ['pyside', 'PyQt']
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     install_dir : 'base'

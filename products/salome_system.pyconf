@@ -93,7 +93,7 @@ default :
         "FD42" :
         {
            rpm : ["lz4-libs", "gsl", "openmpi", "netcdf", "gdal", "libxml++", "freetype", "zlib-ng-compat", "zlib-ng-compat", "zlib-ng-compat-static"]
-           rpm_dev : ["lz4-devel", "qt5-qtbase-devel", "gsl-devel", "openmpi-devel", "netcdf-devel", "gdal-devel", "libxml++-devel", "freetype-devel"]
+           rpm_dev : ["lz4-devel", "qt5-qtcharts-devel", "qt5-qtbase-devel", "qt5-qtbase-private-devel", "gsl-devel", "openmpi-devel", "netcdf-devel", "gdal-devel", "libxml++-devel", "freetype-devel"]
         }
         "DB08" :
         {
@@ -133,8 +133,8 @@ default :
             apt : ["libdc1394-25", "libopenexr25", "libwebp6", "libgfortran5", "libilmbase25", "libevent-2.1-7", "libpng16-16", "libgcc-10-dev",
                    "libffi7", "libtinfo6", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0", "libjsoncpp24",
                    "openmpi-bin", "libnetcdf18", "libgdal28", "libtbb2", "pypy-setuptools", "libxml++2.6-2v5", "libfreetype6", "libncurses5"]
-            apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev", "libpcre2-dev",
-                       "qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools", "libopenmpi-dev",
+            apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev", "libpcre2-dev", "libclang-dev",
+                       "qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools", "libopenmpi-dev", "qtbase5-private-dev",
                        "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev", "libnetcdf-dev", "libgdal-dev",
                        "texlive-latex-base", "texlive-latex-extra", "dvipng", "libxml++2.6-dev", "libfreetype6-dev", "libxinerama-dev"]
         }
@@ -143,8 +143,8 @@ default :
             apt : ["libdc1394-25", "libopenexr-3-1-30", "libwebp7", "libgfortran5", "libevent-2.1-7", "libpng16-16", "libgcc",
                    "libffi8", "libtinfo6", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0", "libjsoncpp25",
                    "openmpi-bin", "libnetcdf19", "libgdal32", "libtbb12", "python3-setuptools", "libxml++2.6-2v5", "liblzf1", "libfreetype6", "libncurses5", "libgmp10", "libmpfr6"]
-            apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev", "libpcre2-dev",
-                       "qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools", "libopenmpi-dev",
+            apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev", "libpcre2-dev", "libclang-dev",
+                       "qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools", "libopenmpi-dev", "qtbase5-private-dev", "qtdeclarative5-private-dev",
                        "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev", "libnetcdf-dev", "libgdal-dev",
                        "texlive-latex-base", "texlive-latex-extra", "dvipng", "libxml++2.6-dev", "libfreetype6-dev", "libgmp-dev","libmpfr-dev", "libxinerama-dev"]
         }
@@ -192,7 +192,7 @@ default :
                    "libffi7", "libtinfo6", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0", "openmpi-bin", "libgdal30", "libopenblas0-serial", "libtbb12",
                    "libxml++2.6-2v5", "libfreetype6", "libncurses5", "libgmp10", "libmpfr6"]
             apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev",
-                       "qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools", "libopenmpi-dev", "libpcre2-dev",
+                       "qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools", "qtbase5-private-dev", "libopenmpi-dev", "libpcre2-dev",
                        "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev", "libgdal-dev", "dvipng", "libxml++2.6-dev", "libfreetype6-dev",
                        "libgmp-dev", "libmpfr-dev"]
         }

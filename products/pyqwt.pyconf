@@ -21,8 +21,8 @@ default :
     {
        env_script : "pyqwt.py"
     }
-    depend : ['Python','setuptools','numpy', 'qwt', 'PyQt']
-    opt_depend: ['wheel']
+    depend : ['Python','setuptools','numpy', 'qwt']
+    opt_depend: ['wheel', 'pyside', 'PyQt']
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     install_dir : 'base'
@@ -41,12 +41,20 @@ version_0_12_1_no_pip :
       incremental : "yes"
       pip : "no"
     }
+    patches: [
+              'pyqwt-0.12.1-p01-pyside2_scale_widget.patch',
+              'pyqwt-0.12.1-p02-pyside2_plot_curve_shiboken.patch'
+             ]
 }
 
 version_0_12_1_DB10 :
 {
     compil_script: "pyqwt-0.12.1" + $VARS.scriptExtension
-    patches: ['pyqwt-0.12.1-downgrade-python-min-version-py37.patch']
+    patches: [
+              'pyqwt-0.12.1-p01-pyside2_scale_widget.patch',
+              'pyqwt-0.12.1-p02-pyside2_plot_curve_shiboken.patch',
+              'pyqwt-0.12.1-p03-downgrade-python-min-version-py37.patch'
+             ]
     properties :
     {
       incremental : "yes"

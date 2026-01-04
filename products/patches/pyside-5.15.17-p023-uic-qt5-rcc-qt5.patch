@@ -1,0 +1,55 @@
+diff --git a/build_scripts/platforms/unix.py b/build_scripts/platforms/unix.py
+index 0795219..b223583 100644
+--- a/build_scripts/platforms/unix.py
++++ b/build_scripts/platforms/unix.py
+@@ -134,8 +134,8 @@ def prepare_packages_posix(self, vars):
+             "{st_build_dir}/{st_package_name}",
+             filter=[
+                 "pyside2-lupdate",
+-                "uic",
+-                "rcc",
++                "uic-qt5",
++                "rcc-qt5",
+             ],
+             recursive=False, vars=vars))
+ 
+@@ -204,7 +204,7 @@ def prepare_packages_posix(self, vars):
+             # compatibility
+             if sys.version_info[0] == 3:
+                 examples_path = "{st_build_dir}/{st_package_name}/examples".format(**vars)
+-                pyside_rcc_path = "/usr/bin/rcc"
++                pyside_rcc_path = "/usr/bin/rcc-qt5"
+                 pyside_rcc_options = ['-g', 'python']
+                 regenerate_qt_resources(examples_path, pyside_rcc_path, pyside_rcc_options)
+ 
+diff --git a/sources/pyside2-tools/pyside_tool.py b/sources/pyside2-tools/pyside_tool.py
+index ec27a81..eb94ae7 100755
+--- a/sources/pyside2-tools/pyside_tool.py
++++ b/sources/pyside2-tools/pyside_tool.py
+@@ -73,11 +73,11 @@ def qt_tool_wrapper(qt_tool, args):
+ 
+ 
+ def uic():
+-    qt_tool_wrapper("uic", ['-g', 'python'] + sys.argv[1:])
++    qt_tool_wrapper("uic-qt5", ['-g', 'python'] + sys.argv[1:])
+ 
+ 
+ def rcc():
+-    qt_tool_wrapper("rcc", ['-g', 'python'] + sys.argv[1:])
++    qt_tool_wrapper("rcc-qt5", ['-g', 'python'] + sys.argv[1:])
+ 
+ 
+ def designer():
+diff --git a/sources/pyside2-tools/CMakeLists.txt b/sources/pyside2-tools/CMakeLists.txt
+index ce65750..449bb24 100644
+--- a/sources/pyside2-tools/CMakeLists.txt
++++ b/sources/pyside2-tools/CMakeLists.txt
+@@ -43,7 +43,7 @@ endif()
+ if (WIN32)
+     set(EXE_EXT ".exe")
+ else()
+-    set(EXE_EXT "")
++    set(EXE_EXT "-qt5")
+ endif()
+ 
+ set(TOOLS_PATH "${_qt5Core_install_prefix}/bin")

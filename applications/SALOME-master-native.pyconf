@@ -3,14 +3,15 @@
 
 APPLICATION :
 {
-    name : 'SALOME-master-native'
-    workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag : 'master'
-    dev : 'no'
-    verbose :'no'
-    debug : 'no'
-    base : 'no'
-    python3 : 'yes'
+    name      : 'SALOME-master-native'
+    workdir   : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
+    tag       : 'master'
+    dev       : 'no'
+    verbose   :'no'
+    debug     : 'no'
+    base      : 'no'
+    python3   : 'yes'
+    use_pyside: 'no'
     platform : ["FD42", "CO8", "CO9", "CO10", "DB11", "DB12", "DB13","UB22.04", "UB24.04"]
     environ :
     {
@@ -134,6 +135,7 @@ APPLICATION :
         PyQt : 'native'
         pyqwt: {tag : '0.12.1', base : 'no', section : 'version_0_12_1_no_pip', hpc: 'no'}
         pyreadline : 'native'
+        pyside : 'v5.15.17'
         pytest :  'native'
         Python : 'native'
         pythonfmu : '0.6.3'
@@ -246,6 +248,16 @@ __overwrite__ :
 [
     {
         #
+        __condition__ : "APPLICATION.use_pyside == 'yes'"
+        'APPLICATION.rm_products_for_all_distributions'   : ['PyQt','sip']
+    }
+    {
+        #
+        __condition__ : "APPLICATION.use_pyside == 'no'"
+        'APPLICATION.rm_products_for_all_distributions'   : ['pyside']
+    }
+    {
+        #
         __condition__ : "VARS.dist in ['UB22.04']"
         'APPLICATION.rm_products'               : ['TTK', 'markdown_it_py', 'mdurl','nose_py3','assimulo'] # TTK causes crashes
         'APPLICATION.products.cftime'           : 'native'
@@ -272,9 +284,9 @@ __overwrite__ :
         'APPLICATION.products.PyFMI'            : '2.13.1'
         'APPLICATION.products.swig'             : '4.0.2'
         'APPLICATION.products.h5py'             : {tag: '3.12.1', base: 'no', section: 'version_3_12_1_no_pip'}
-        'APPLICATION.products.meshio'           : {tag: '5.3.5',  base: 'no', section: 'version_5_3_5_no_pip' }
-        'APPLICATION.products.omniORBpy'        : {tag: '4.2.5',  base: 'no', section: 'version_4_2_5_UB24_04'}
-        'APPLICATION.products.nose_py3'         : {tag: '1.6.9',  base: 'no', section: 'version_1_6_9_no_pip' }
+        'APPLICATION.products.meshio'           : {tag: '5.3.5',  base: 'no', section: 'version_5_3_5_no_pip'               }
+        'APPLICATION.products.omniORBpy'        : {tag: '4.2.5',  base: 'no', section: 'version_4_2_5_UB24_04'              }
+        'APPLICATION.products.nose_py3'         : {tag: '1.6.9',  base: 'no', section: 'version_1_6_9_no_pip'               }
     }
     #
     {
@@ -469,6 +481,7 @@ __overwrite__ :
         'APPLICATION.products.nose_py3'         : {tag: '1.6.9',          base: 'no', section: 'version_1_6_9_no_pip'                }
         'APPLICATION.products.rapidjson'        : {tag: '1.1.0',          base: 'no', section: 'version_1_1_0_FD42'                  }
         'APPLICATION.products.scotch'           : {tag: 'native',         base: 'no', section: 'version_7_0_6_MPI', hpc: 'yes'       }
+        'APPLICATION.products.pyside'           : {tag: 'v5.15.17',       base: 'no', section: 'version_v5_15_17_FD42'               }
         'APPLICATION.products.KERNEL'           : {tag: 'master',         base: 'no', section: 'default_FD42'                        }
         'APPLICATION.products.MEDCOUPLING'      : {tag: 'master',         base: 'no', section: 'version_V9_15_0_MPI_FD42', hpc: 'yes'}
     }

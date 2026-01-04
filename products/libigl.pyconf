@@ -25,7 +25,6 @@ default :
     }
     depend : ["SMESH",
               "mmg",
-              "PyQt",
               "Python",
               "numpy"
              ]
@@ -49,7 +48,6 @@ version_v2_5_0:
   patches: ['libigl-v2.5.0-p01_609_Boolean.patch', 'libigl-v2.5.0-p02_FindCGAL.patch', 'libigl-v2.5.0-p03-FindBLAS.patch', 'libigl-v2.5.0-p04-FindEmbree.patch']
     depend : ["SMESH",
               "mmg",
-              "PyQt",
               "Python",
               "numpy",
               "boost",
@@ -69,7 +67,6 @@ version_v2_5_0_CO7:
   patches: ['libigl-v2.5.0-p01_609_Boolean.patch', 'libigl-v2.5.0-p02_FindCGAL.patch', 'libigl-v2.5.0-p03-FindBLAS.patch', 'libigl-v2.5.0-p04-FindEmbree.patch']
   depend : ["SMESH",
             "mmg",
-            "PyQt",
             "Python",
             "numpy",
             "boost",
@@ -89,7 +86,6 @@ version_v2_5_0_CO8:
   patches: ['libigl-v2.5.0-p01_609_Boolean.patch', 'libigl-v2.5.0-p02_FindCGAL.patch', 'libigl-v2.5.0-p03-FindBLAS.patch', 'libigl-v2.5.0-p04-FindEmbree.patch']
   depend : ["SMESH",
             "mmg",
-            "PyQt",
             "Python",
             "numpy",
             "boost",
@@ -109,7 +105,6 @@ version_v2_5_0_win:
   patches: ['libigl-v2.5.0-p01_609_Boolean.patch']
     depend : ["SMESH",
               "mmg",
-              "PyQt",
               "Python",
               "numpy",
               "boost",
@@ -126,7 +121,6 @@ version_v2_5_0_CO9:
   patches: ['libigl-v2.5.0-p01_609_Boolean.patch', 'libigl-v2.5.0-p02_FindCGAL.patch', 'libigl-v2.5.0-p03-FindBLAS.patch', 'libigl-v2.5.0-p04-FindEmbree.patch']
   depend : ["SMESH",
             "mmg",
-            "PyQt",
             "Python",
             "numpy",
             "boost",

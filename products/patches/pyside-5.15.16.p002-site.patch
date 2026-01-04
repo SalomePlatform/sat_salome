@@ -1,0 +1,17 @@
+--- pyside-setup-opensource-src-5.15.16-ref/examples/utils/pyside2_config.py	2024-11-11 14:14:27.000000000 +0100
++++ pyside-setup-opensource-src-5.15.16-dev/examples/utils/pyside2_config.py	2025-07-31 15:30:43.347020805 +0200
+@@ -221,7 +221,13 @@
+ 
+ def find_package_path(dir_name):
+     for p in sys.path:
+-        if 'site-' in p:
++        # Salome integration:
++        # Changed because on Debian 11 shiboken being installed in 
++        # /usr/local/lib/python3.9/dist-packages
++        # instead of
++        # /home/user/.local/lib/python3.9/site-packages
++        #if 'site-' in p:
++        if 'site-' in p or 'dist-' in p:
+             package = os.path.join(p, dir_name)
+             if os.path.exists(package):
+                 return clean_path(os.path.realpath(package))

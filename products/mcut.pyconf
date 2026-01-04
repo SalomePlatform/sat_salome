@@ -25,7 +25,6 @@ default :
     }
     depend : ["SMESH",
               "mmg",
-              "PyQt",
               "Python",
               "numpy",
               "eigen"

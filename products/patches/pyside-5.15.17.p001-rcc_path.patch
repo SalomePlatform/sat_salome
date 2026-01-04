@@ -1,0 +1,11 @@
+--- pyside-setup-opensource-src-5.15.17_ref/build_scripts/platforms/unix.py	2025-05-11 08:40:53.209662498 +0200
++++ pyside-setup-opensource-src-5.15.17_dev/build_scripts/platforms/unix.py	2025-05-11 08:44:11.519635155 +0200
+@@ -204,7 +204,7 @@
+             # compatibility
+             if sys.version_info[0] == 3:
+                 examples_path = "{st_build_dir}/{st_package_name}/examples".format(**vars)
+-                pyside_rcc_path = "{install_dir}/bin/rcc".format(**vars)
++                pyside_rcc_path = "/usr/bin/rcc"
+                 pyside_rcc_options = ['-g', 'python']
+                 regenerate_qt_resources(examples_path, pyside_rcc_path, pyside_rcc_options)
+ 

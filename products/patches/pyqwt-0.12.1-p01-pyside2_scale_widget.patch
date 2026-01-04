@@ -1,0 +1,17 @@
+--- pyqwt-0.12.1_ref/qwt/scale_widget.py	2024-02-15 18:25:40.000000000 +0100
++++ pyqwt-0.12.1_dev/qwt/scale_widget.py	2025-07-28 13:00:55.505964158 +0200
+@@ -406,7 +406,13 @@
+         painter.setClipRegion(event.region())
+         opt = QStyleOption()
+         opt.initFrom(self)
+-        self.style().drawPrimitive(QStyle.PE_Widget, opt, painter, self)
++        try:
++            pStyle = self.style()
++            if pStyle:
++                pStyle.drawPrimitive(QStyle.PE_Widget, opt, painter, self)
++        except RuntimeError:
++            # Style object was deleted, skip drawing the primitive
++            pass
+         self.draw(painter)
+ 
+     def draw(self, painter):

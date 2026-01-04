@@ -3,15 +3,16 @@
 
 APPLICATION :
 {
-    name     : 'SALOME-master'
-    workdir  : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag      : 'master'
-    dev      : 'no'
-    verbose  : 'no'
-    debug    : 'no'
-    base     : 'no'
-    python3  : 'yes'
-    platform : ['CO7', 'CO8', 'CO9']
+    name       : 'SALOME-master'
+    workdir    : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
+    tag        : 'master'
+    dev        : 'no'
+    verbose    : 'no'
+    debug      : 'no'
+    base       : 'no'
+    python3    : 'yes'
+    use_pyside : 'no'
+    platform   : ['CO7', 'CO8', 'CO9']
     environ  :
     {
         build :
@@ -76,7 +77,7 @@ APPLICATION :
         mpc : 'native'
         gmp : 'native'
         mmg : '5.6.0'
-        mmgplugin: 'main'
+        mmgplugin : 'main'
         mpfr : 'native'
         gdal : '3.7.1'
         gmsh : '4.14.1'
@@ -149,6 +150,7 @@ APPLICATION :
         PyQt : '5.15.3'
         pyqwt: {tag : '0.12.1', base : 'no', section : 'version_0_12_1_no_pip', hpc: 'no'}
         pyreadline : '2.0'
+        pyside  : {tag: 'v5.15.17', base: 'no', section: 'version_v5_15_17'  }
         pytest :  '8.1.1'
         Python : '3.9.14'
         pythonfmu : '0.6.3'
@@ -269,25 +271,36 @@ APPLICATION :
 }
 __overwrite__ :
 [
+    {
+        #
+        __condition__ : "APPLICATION.use_pyside == 'yes'"
+        'APPLICATION.rm_products_for_all_distributions'       : ['PyQt','sip']
+    }
+    {
+        #
+        __condition__ : "APPLICATION.use_pyside == 'no'"
+        'APPLICATION.rm_products_for_all_distributions'      : ['pyside']
+    }
     #
     {
         __condition__ : "VARS.dist in ['CO7']"
         'APPLICATION.rm_products'         : ['gcc', 'gmp', 'mpc', 'mpfr', 'mcut', 'ONNX']
         'APPLICATION.products.MeshGems'   : '2.15-1'
-        'APPLICATION.products.cminpack'   : {tag: '1.3.10', base: 'no', section: 'version_1_3_10_CO7'         }
-        'APPLICATION.products.FMILibrary' : {tag: '2.0.3',  base: 'no', section: 'version_2_0_3_CO7'          }
-        'APPLICATION.products.gdal'       : {tag: '3.7.1',  base: 'no', section: 'version_3_7_1_CO7'          }
-        'APPLICATION.products.gmsh'       : {tag: '4.14.1', base: 'no', section: 'version_4_14_1_CO7'         }
-        'APPLICATION.products.libigl'     : {tag: 'v2.5.0', base: 'no', section: 'version_v2_5_0_CO7'         }
-        'APPLICATION.products.netcdf'     : {tag: '4.9.2',  base: 'no', section: 'version_4_9_2_CO7'          }
-        'APPLICATION.products.numpy'      : {tag: '1.22.2', base: 'no', section: 'version_1_22_2_CO7'         }
-        'APPLICATION.products.openturns'  : {tag: '1.25.1', base: 'no', section: 'version_1_25_1_CO7'         }
-        'APPLICATION.products.petsc'      : {tag: '3.20.5', base: 'no', section: 'version_3_20_5_CO7'         }
-        'APPLICATION.products.TTK'        : {tag: '1.3.0',  base: 'no', section: 'version_1_3_0_CO7'          }
-        'APPLICATION.products.zeromq'     : {tag: '4.3.1',  base: 'no', section: 'version_4_3_1_CO7'          }
-        'APPLICATION.products.PERSALYS'   : {tag: 'v19.0',  base: 'no', section: 'version_v19_0_CO7'          }
-        'APPLICATION.products.URANIE'     : {tag: '4.8.0',  base: 'no', section: 'version_4_8_0_CO7'          }
-        'APPLICATION.products.MEDCOUPLING': {tag: 'master', base: 'no', section: 'default_MPI_CO7', hpc: 'yes'}
+        'APPLICATION.products.cminpack'   : {tag: '1.3.10',  base: 'no', section: 'version_1_3_10_CO7'         }
+        'APPLICATION.products.FMILibrary' : {tag: '2.0.3',   base: 'no', section: 'version_2_0_3_CO7'          }
+        'APPLICATION.products.gdal'       : {tag: '3.7.1',   base: 'no', section: 'version_3_7_1_CO7'          }
+        'APPLICATION.products.gmsh'       : {tag: '4.14.1',  base: 'no', section: 'version_4_14_1_CO7'         }
+        'APPLICATION.products.libigl'     : {tag: 'v2.5.0',  base: 'no', section: 'version_v2_5_0_CO7'         }
+        'APPLICATION.products.netcdf'     : {tag: '4.9.2',   base: 'no', section: 'version_4_9_2_CO7'          }
+        'APPLICATION.products.numpy'      : {tag: '1.22.2',  base: 'no', section: 'version_1_22_2_CO7'         }
+        'APPLICATION.products.openturns'  : {tag: '1.25.1',  base: 'no', section: 'version_1_25_1_CO7'         }
+        'APPLICATION.products.petsc'      : {tag: '3.20.5',  base: 'no', section: 'version_3_20_5_CO7'         }
+        'APPLICATION.products.TTK'        : {tag: '1.3.0',   base: 'no', section: 'version_1_3_0_CO7'          }
+        'APPLICATION.products.zeromq'     : {tag: '4.3.1',   base: 'no', section: 'version_4_3_1_CO7'          }
+        'APPLICATION.products.PERSALYS'   : {tag: 'v19.0',   base: 'no', section: 'version_v19_0_CO7'          }
+        'APPLICATION.products.pyside'     : {tag: 'v5.15.17',base: 'no', section: 'version_v5_15_17_CO7'       }
+        'APPLICATION.products.URANIE'     : {tag: '4.8.0',   base: 'no', section: 'version_4_8_0_CO7'          }
+        'APPLICATION.products.MEDCOUPLING': {tag: 'master',  base: 'no', section: 'default_MPI_CO7', hpc: 'yes'}
     }
     #
     {
@@ -312,6 +325,7 @@ __overwrite__ :
         'APPLICATION.products.TTK'        : {tag: '1.3.0',  base: 'no', section: 'version_1_3_0_CO8'          }
         'APPLICATION.products.zeromq'     : {tag: '4.3.1',  base: 'no', section: 'version_4_3_1_CO8'          }
         'APPLICATION.products.PERSALYS'   : {tag: 'v19.0',  base: 'no', section: 'version_v19_0_CO8'          }
+        'APPLICATION.products.pyside'   : {tag: 'v5.15.17', base: 'no', section: 'version_v5_15_17_CO8'}
         'APPLICATION.products.URANIE'     : {tag: '4.8.0',  base: 'no', section: 'version_4_8_0_CO8'          }
         'APPLICATION.products.MEDCOUPLING': {tag: 'master', base: 'no', section: 'default_MPI_CO8', hpc: 'yes'}
     }
@@ -320,20 +334,21 @@ __overwrite__ :
         __condition__ : "VARS.dist in ['CO9']"
         'APPLICATION.products.gcc'        : '11.4.0'
         'APPLICATION.products.openmpi'    : '4.1.6'
-        'APPLICATION.products.cminpack'   : {tag: '1.3.10', base: 'no', section: 'version_1_3_10_CO9'          }
-        'APPLICATION.products.FMILibrary' : {tag: '2.0.3',  base: 'no', section: 'version_2_0_3_CO9'           }
-        'APPLICATION.products.libigl'     : {tag: 'v2.5.0', base: 'no', section: 'version_v2_5_0_CO9'          }
-        'APPLICATION.products.gdal'       : {tag: '3.7.1',  base: 'no', section: 'version_3_7_1_CO9'           }
-        'APPLICATION.products.gmsh'       : {tag: '4.14.1', base: 'no', section: 'version_4_14_1_CO9'          }
-        'APPLICATION.products.netcdf'     : {tag: '4.9.2',  base: 'no', section: 'version_4_9_2_CO9'           }
-        'APPLICATION.products.numpy'      : {tag: '1.22.2', base: 'no', section: 'version_1_22_2_CO9'          }
-        'APPLICATION.products.openturns'  : {tag: '1.25.1', base: 'no', section: 'version_1_25_1_CO9'          }
-        'APPLICATION.products.PERSALYS'   : {tag: 'v19.0',  base: 'no', section: 'version_v19_0_CO9'           }
-        'APPLICATION.products.petsc'      : {tag: '3.20.5', base: 'no', section: 'version_3_20_5_CO9'          }
-        'APPLICATION.products.TTK'        : {tag: '1.3.0',  base: 'no', section: 'version_1_3_0_CO9'           }
-        'APPLICATION.products.zeromq'     : {tag: '4.3.1',  base: 'no', section: 'version_4_3_1_CO9'           }
-        'APPLICATION.products.URANIE'     : {tag: '4.8.0',  base: 'no', section: 'version_4_8_0_CO9'           }
-        'APPLICATION.products.boost'      : {tag: '1.71.0', base: 'no', section: 'version_1_71_0_CO9'          } # spns #29324
-        'APPLICATION.products.MEDCOUPLING': {tag: 'master',  base: 'no', section: 'default_MPI_CO9', hpc: 'yes'}
+        'APPLICATION.products.cminpack'   : {tag: '1.3.10',   base: 'no', section: 'version_1_3_10_CO9'          }
+        'APPLICATION.products.FMILibrary' : {tag: '2.0.3',    base: 'no', section: 'version_2_0_3_CO9'           }
+        'APPLICATION.products.libigl'     : {tag: 'v2.5.0',   base: 'no', section: 'version_v2_5_0_CO9'          }
+        'APPLICATION.products.gdal'       : {tag: '3.7.1',    base: 'no', section: 'version_3_7_1_CO9'           }
+        'APPLICATION.products.gmsh'       : {tag: '4.14.1',   base: 'no', section: 'version_4_14_1_CO9'          }
+        'APPLICATION.products.netcdf'     : {tag: '4.9.2',    base: 'no', section: 'version_4_9_2_CO9'           }
+        'APPLICATION.products.numpy'      : {tag: '1.22.2',   base: 'no', section: 'version_1_22_2_CO9'          }
+        'APPLICATION.products.openturns'  : {tag: '1.25.1',   base: 'no', section: 'version_1_25_1_CO9'          }
+        'APPLICATION.products.PERSALYS'   : {tag: 'v19.0',    base: 'no', section: 'version_v19_0_CO9'           }
+        'APPLICATION.products.petsc'      : {tag: '3.20.5',   base: 'no', section: 'version_3_20_5_CO9'          }
+        'APPLICATION.products.pyside'     : {tag: 'v5.15.17', base: 'no', section: 'version_v5_15_17_CO9'        }
+        'APPLICATION.products.TTK'        : {tag: '1.3.0',    base: 'no', section: 'version_1_3_0_CO9'           }
+        'APPLICATION.products.zeromq'     : {tag: '4.3.1',    base: 'no', section: 'version_4_3_1_CO9'           }
+        'APPLICATION.products.URANIE'     : {tag: '4.8.0',    base: 'no', section: 'version_4_8_0_CO9'           }
+        'APPLICATION.products.boost'      : {tag: '1.71.0',   base: 'no', section: 'version_1_71_0_CO9'          } # spns #29324
+        'APPLICATION.products.MEDCOUPLING': {tag: 'master',   base: 'no', section: 'default_MPI_CO9', hpc: 'yes'}
     }
 ]

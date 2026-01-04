@@ -20,8 +20,6 @@ default :
     depend : ["KERNEL",
               "Python",
               "qt",
-              "sip",
-              "PyQt",
               "boost",
               "CAS",
               "qwt",
@@ -34,7 +32,7 @@ default :
               "libxml2",
               "sphinxintl"
            ]
-    opt_depend : ["sphinx_rtd_theme", "openmpi", "graphviz", "SALOMEBOOTSTRAP"]
+    opt_depend : ["sphinx_rtd_theme", "openmpi", "graphviz", "sip", "PyQt", "pyside", "SALOMEBOOTSTRAP"]
     build_depend : ["cmake", "swig", "doxygen", "cppunit"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
@@ -54,8 +52,58 @@ default_win :
     depend : ["KERNEL",
               "Python",
               "qt",
+              "boost",
+              "CAS",
+              "qwt",
+              "hdf5",
+              "freetype",
+              "freeimage",
+              "ParaView",
+              "omniORB",
+              "docutils",
+              "libxml2",
+              "sphinxintl",
+              "sphinxcontrib_websupport",
+              "sphinxcontrib_applehelp",
+              "sphinxcontrib_serializinghtml",
+              "graphviz"
+             ]
+    opt_depend : ["sphinx_rtd_theme", "sip", "PyQt", "pyside", "SALOMEBOOTSTRAP"]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+
+}
+
+version_V9_6_0_to_V9_15_0:
+{
+    depend : ["KERNEL",
+              "Python",
+              "qt",
               "sip",
               "PyQt",
+              "boost",
+              "CAS",
+              "qwt",
+              "hdf5",
+              "freetype",
+              "freeimage",
+              "ParaView",
+              "omniORB",
+              "docutils",
+              "libxml2",
+              "sphinxintl"
+           ]
+    opt_depend : ["sphinx_rtd_theme", "openmpi", "graphviz", "SALOMEBOOTSTRAP"]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+}
+
+version_V9_15_0_win:
+{
+    cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig.exe -DSALOME_BUILD_WITH_QT5:BOOL=ON "
+    depend : ["KERNEL",
+              "Python",
+              "qt",
+              "PyQt",
+              "sip",
               "boost",
               "CAS",
               "qwt",
@@ -74,31 +122,336 @@ default_win :
              ]
     opt_depend : ["sphinx_rtd_theme", "SALOMEBOOTSTRAP"]
     build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+}
 
+version_V9_14_0_win:
+{
+    cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig.exe -DSALOME_BUILD_WITH_QT5:BOOL=ON "
+    depend : ["KERNEL",
+              "Python",
+              "qt",
+              "PyQt",
+              "sip",
+              "boost",
+              "CAS",
+              "qwt",
+              "hdf5",
+              "freetype",
+              "freeimage",
+              "ParaView",
+              "omniORB",
+              "docutils",
+              "libxml2",
+              "sphinxintl",
+              "sphinxcontrib_websupport",
+              "sphinxcontrib_applehelp",
+              "sphinxcontrib_serializinghtml",
+              "graphviz"
+             ]
+    opt_depend : ["sphinx_rtd_theme", "SALOMEBOOTSTRAP"]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+}
+
+version_V9_13_0_win:
+{
+    cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig.exe -DSALOME_BUILD_WITH_QT5:BOOL=ON "
+    depend : ["KERNEL",
+              "Python",
+              "qt",
+              "PyQt",
+              "sip",
+              "boost",
+              "CAS",
+              "qwt",
+              "hdf5",
+              "freetype",
+              "freeimage",
+              "ParaView",
+              "omniORB",
+              "docutils",
+              "libxml2",
+              "sphinxintl",
+              "sphinxcontrib_websupport",
+              "sphinxcontrib_applehelp",
+              "sphinxcontrib_serializinghtml",
+              "graphviz"
+             ]
+    opt_depend : ["sphinx_rtd_theme", "SALOMEBOOTSTRAP"]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+}
+
+version_V9_12_0_win:
+{
+    cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig.exe -DSALOME_BUILD_WITH_QT5:BOOL=ON "
+    depend : ["KERNEL",
+              "Python",
+              "qt",
+              "PyQt",
+              "sip",
+              "boost",
+              "CAS",
+              "qwt",
+              "hdf5",
+              "freetype",
+              "freeimage",
+              "ParaView",
+              "omniORB",
+              "docutils",
+              "libxml2",
+              "sphinxintl",
+              "sphinxcontrib_websupport",
+              "sphinxcontrib_applehelp",
+              "sphinxcontrib_serializinghtml",
+              "graphviz"
+             ]
+    opt_depend : ["sphinx_rtd_theme", "SALOMEBOOTSTRAP"]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
 }
 
 version_ALAMOS_V9_12_0:
 {
-  patches : ['SPNS-37541-LightApp-APP_NAME.GUI-V9_12_0.patch']
+    depend : ["KERNEL",
+              "Python",
+              "qt",
+              "sip",
+              "PyQt",
+              "boost",
+              "CAS",
+              "qwt",
+              "hdf5",
+              "freetype",
+              "freeimage",
+              "ParaView",
+              "omniORB",
+              "docutils",
+              "libxml2",
+              "sphinxintl"
+           ]
+    opt_depend : ["sphinx_rtd_theme", "openmpi", "graphviz", "SALOMEBOOTSTRAP"]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+    patches : ['SPNS-37541-LightApp-APP_NAME.GUI-V9_12_0.patch']
 }
 
-version_V9_10_0:
+version_V9_11_0_win:
 {
-  patches: []
+    cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig.exe -DSALOME_BUILD_WITH_QT5:BOOL=ON "
+    depend : ["KERNEL",
+              "Python",
+              "qt",
+              "PyQt",
+              "sip",
+              "boost",
+              "CAS",
+              "qwt",
+              "hdf5",
+              "freetype",
+              "freeimage",
+              "ParaView",
+              "omniORB",
+              "docutils",
+              "libxml2",
+              "sphinxintl",
+              "sphinxcontrib_websupport",
+              "sphinxcontrib_applehelp",
+              "sphinxcontrib_serializinghtml",
+              "graphviz"
+             ]
+    opt_depend : ["sphinx_rtd_theme", "SALOMEBOOTSTRAP"]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
 }
 
 version_V9_10_0_win:
 {
+  cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig.exe -DSALOME_BUILD_WITH_QT5:BOOL=ON "
+  depend : ["KERNEL",
+            "Python",
+            "qt",
+            "sip",
+            "PyQt",
+            "boost",
+            "CAS",
+            "qwt",
+            "hdf5",
+            "freetype",
+            "freeimage",
+            "ParaView",
+            "omniORB",
+            "docutils",
+            "libxml2",
+            "sphinxintl",
+            "sphinxcontrib_websupport",
+            "sphinxcontrib_applehelp",
+            "sphinxcontrib_serializinghtml",
+            "graphviz"
+           ]
+  opt_depend : ["sphinx_rtd_theme", "SALOMEBOOTSTRAP"]
   patches: ["GUI-9.10.0-cmath-visual-2019.patch"]
+}
+
+version_V9_9_0_win:
+{
+    cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig.exe -DSALOME_BUILD_WITH_QT5:BOOL=ON "
+    depend : ["KERNEL",
+              "Python",
+              "qt",
+              "PyQt",
+              "sip",
+              "boost",
+              "CAS",
+              "qwt",
+              "hdf5",
+              "freetype",
+              "freeimage",
+              "ParaView",
+              "omniORB",
+              "docutils",
+              "libxml2",
+              "sphinxintl",
+              "sphinxcontrib_websupport",
+              "sphinxcontrib_applehelp",
+              "sphinxcontrib_serializinghtml",
+              "graphviz"
+             ]
+    opt_depend : ["sphinx_rtd_theme", "SALOMEBOOTSTRAP"]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+}
+
+version_V9_8_0_win:
+{
+  cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig.exe -DSALOME_BUILD_WITH_QT5:BOOL=ON "
+  depend : ["KERNEL",
+            "Python",
+            "qt",
+            "sip",
+            "PyQt",
+            "boost",
+            "CAS",
+            "qwt",
+            "hdf5",
+            "freetype",
+            "freeimage",
+            "ParaView",
+            "omniORB",
+            "docutils",
+            "libxml2",
+            "sphinxintl",
+            "sphinxcontrib_websupport",
+            "sphinxcontrib_applehelp",
+            "sphinxcontrib_serializinghtml",
+            "graphviz"
+           ]
+  opt_depend : ["sphinx_rtd_theme", "SALOMEBOOTSTRAP"]
+}
+
+version_V9_7_0_win:
+{
+  cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig.exe -DSALOME_BUILD_WITH_QT5:BOOL=ON "
+  depend : ["KERNEL",
+            "Python",
+            "qt",
+            "sip",
+            "PyQt",
+            "boost",
+            "CAS",
+            "qwt",
+            "hdf5",
+            "freetype",
+            "freeimage",
+            "ParaView",
+            "omniORB",
+            "docutils",
+            "libxml2",
+            "sphinxintl",
+            "sphinxcontrib_websupport",
+            "sphinxcontrib_applehelp",
+            "sphinxcontrib_serializinghtml",
+            "graphviz"
+           ]
+  opt_depend : ["sphinx_rtd_theme", "SALOMEBOOTSTRAP"]
+}
+
+
+version_V9_6_0_win:
+{
+  cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig.exe -DSALOME_BUILD_WITH_QT5:BOOL=ON "
+  depend : ["KERNEL",
+            "Python",
+            "qt",
+            "sip",
+            "PyQt",
+            "boost",
+            "CAS",
+            "qwt",
+            "hdf5",
+            "freetype",
+            "freeimage",
+            "ParaView",
+            "omniORB",
+            "docutils",
+            "libxml2",
+            "sphinxintl",
+            "sphinxcontrib_websupport",
+            "sphinxcontrib_applehelp",
+            "sphinxcontrib_serializinghtml",
+            "graphviz"
+           ]
+  opt_depend : ["sphinx_rtd_theme", "SALOMEBOOTSTRAP"]
 }
 
 version_V9_5_0:
 {
     cmake_options : "-DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig"
     patches: ['gui-SVTK-VTKView.patch'] # backporting bos #19139
+    depend : ["KERNEL",
+              "Python",
+              "qt",
+              "sip",
+              "PyQt",
+              "boost",
+              "CAS",
+              "qwt",
+              "hdf5",
+              "freetype",
+              "freeimage",
+              "ParaView",
+              "omniORB",
+              "docutils",
+              "libxml2",
+              "sphinxintl"
+           ]
+    opt_depend : ["sphinx_rtd_theme", "openmpi", "graphviz", "SALOMEBOOTSTRAP"]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
 }
 
-version_8_5_0_to_9_4_0 :
+version_V9_5_0_win:
+{
+  cmake_options : "-DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig"
+  depend : ["KERNEL",
+            "Python",
+            "qt",
+            "sip",
+            "PyQt",
+            "boost",
+            "CAS",
+            "qwt",
+            "hdf5",
+            "freetype",
+            "freeimage",
+            "ParaView",
+            "omniORB",
+            "docutils",
+            "libxml2",
+            "sphinxintl",
+            "sphinxcontrib_websupport",
+            "sphinxcontrib_applehelp",
+            "sphinxcontrib_serializinghtml",
+            "graphviz"
+           ]
+  opt_depend : ["sphinx_rtd_theme", "SALOMEBOOTSTRAP"]
+  patches: ['gui-SVTK-VTKView.patch'] # backporting bos #19139
+}
+
+version_V8_5_0_to_V9_4_0 :
 {
     cmake_options : "-DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig"
     depend : ["KERNEL",
@@ -121,9 +474,10 @@ version_8_5_0_to_9_4_0 :
               "sphinxcontrib_napoleon"
            ]
     build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+    opt_depend : ["sphinx_rtd_theme"]
 }
 
-version_9_4_0_win:
+version_V9_4_0_win:
 {
     depend : ["KERNEL",
               "Python",
@@ -148,6 +502,7 @@ version_9_4_0_win:
               "sphinxcontrib_napoleon"
              ]
     build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+    opt_depend : ["sphinx_rtd_theme"]
 }
 
 version_V9_3_0_win :
@@ -182,16 +537,53 @@ version_V9_3_0_win :
 version_PPGP_1_8:
 {
     cmake_options : "-DSALOME_ON_DEMAND=OFF"
+    depend : ["KERNEL",
+              "Python",
+              "qt",
+              "sip",
+              "PyQt",
+              "boost",
+              "CAS",
+              "qwt",
+              "hdf5",
+              "freetype",
+              "freeimage",
+              "ParaView",
+              "omniORB",
+              "docutils",
+              "libxml2",
+              "sphinxintl"
+           ]
+    opt_depend : ["sphinx_rtd_theme", "openmpi", "graphviz", "SALOMEBOOTSTRAP"]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
     patches: ['SALOMEAPP-GUI-V9_13_0.patch']
 }
 
 version_9_2_0_PPGP:
 {
-  patches: ['GUI-V9_2_0-visualCode.patch']
+    depend : ["KERNEL",
+              "Python",
+              "qt",
+              "sip",
+              "PyQt",
+              "boost",
+              "CAS",
+              "qwt",
+              "hdf5",
+              "freetype",
+              "freeimage",
+              "ParaView",
+              "omniORB",
+              "docutils",
+              "libxml2",
+              "sphinxintl"
+           ]
+    opt_depend : ["sphinx_rtd_theme", "openmpi", "graphviz", "SALOMEBOOTSTRAP"]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+    patches: ['GUI-V9_2_0-visualCode.patch']
 }
 
-# OP 19/04/2018 Add section for SALOME 7.8.0 to 8.4.0 due to new dependencies in SALOME 8.5.0
-version_7_8_0_to_8_4_0 :
+version_V7_8_0_to_V8_4_0 :
 {
     name : "GUI"
     build_source : "cmake"
