@@ -12,7 +12,7 @@ default :
         github : $PROJECTS.projects.salome.git_info.git_server.github.url + "pybatch.git"
       }
     }
-    patches : []
+    patches : ['pybatch-check_install.patch']
     system_info :
     {
         rpm     : []

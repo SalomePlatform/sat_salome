@@ -1,0 +1,44 @@
+diff --git a/pyproject.toml b/pyproject.toml
+index 93843ae..10a20cb 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -52,7 +52,8 @@ test = [
+     "pytest-timeout", # pytest --timeout=300
+     "pytest-html",    # html reports
+     "pytest-sugar",   # progress bar & better look output
+-    "tomli;python_version<'3.11'"
++    "tomli;python_version<'3.11'",
++    "tox >= 4.0",
+ ]
+ distrib = [
+     "build"
+diff --git a/tests/test_version.py b/tests/test_version.py
+index 2199088..2bab57d 100644
+--- a/tests/test_version.py
++++ b/tests/test_version.py
+@@ -19,6 +19,8 @@
+ def test_version():
+     import pybatch
+ 
++    pybatch_installation_dir=pybatch.__file__
++    assert "INSTALL" in pybatch_installation_dir or "BINARIES" in pybatch_installation_dir
+     assert pybatch.__version__ == "1.0"
+ 
+ 
+diff --git a/tox.ini b/tox.ini
+index b81fda5..abc6a9f 100644
+--- a/tox.ini
++++ b/tox.ini
+@@ -6,7 +6,11 @@ env_list =
+     docs
+ 
+ [testenv]
+-#skip_install = true
++skip_install = true
++passenv = PYTHONPATH
++setenv = 
++    PYTHONPATH = {env:PYTHONPATH}{:}{toxinidir}/tests
++
+ 
+ [testenv:lint]
+ description = Check syntax and format issues
