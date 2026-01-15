@@ -4,6 +4,8 @@ echo "##########################################################################
 echo "pybatch $VERSION"
 echo "##########################################################################"
 
+LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
+
 fix_lib_path(){
 	mkdir -p $PRODUCT_INSTALL/lib/python$PYTHON_VERSION
 	# ensure that lib is used
@@ -41,10 +43,19 @@ cd "${BUILD_DIR}"
 export PIP_DISABLE_PIP_VERSION_CHECK=1
 export PIP_CACHE_DIR=${BUILD_DIR}/cache/pip
 
+PIP_INSTALL_OPTIONS=
+PIP_INSTALL_OPTIONS+=" --no-binary :all:"
+if [ $LINUX_DISTRIBUTION != "DB11" ]; then
+    PIP_INSTALL_OPTIONS+=" --no-build-isolation"
+fi
+PIP_INSTALL_OPTIONS+=" --prefix=${PRODUCT_INSTALL}"
+PIP_INSTALL_OPTIONS+=" -vvv"
+
+
 echo
 echo "INFO: running installation command"
-echo "*** ${PYTHONBIN} -m pip install ${SOURCE_DIR}[paramiko] --no-binary :all: --no-build-isolation --prefix=${PRODUCT_INSTALL} -vvv"
-${PYTHONBIN} -m pip install "${SOURCE_DIR}[paramiko]" --no-binary :all: --no-build-isolation --prefix="${PRODUCT_INSTALL}" -vvv
+echo "*** ${PYTHONBIN} -m pip install ${SOURCE_DIR}[paramiko] ${PIP_INSTALL_OPTIONS}"
+${PYTHONBIN} -m pip install "${SOURCE_DIR}[paramiko]" ${PIP_INSTALL_OPTIONS}
 if [ $? -ne 0 ]; then
     echo "pip install pybatch fails"
     exit 4
