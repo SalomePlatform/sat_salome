@@ -1,0 +1,26 @@
+default :
+{
+    name : "pynacl"
+    build_source : "script"
+    compil_script :  $name + ".sh"
+    get_source : "archive"
+    system_info :
+    {
+        rpm : ['python3-nacl']
+        rpm_dev : []
+        apt : ['python3-nacl']
+        apt_dev : []
+    }
+    environ :
+    {
+#        env_script : $name + ".py"
+    }
+    depend : ['Python', 'setuptools', 'cffi'] #python3, python3-cffi-backend-api-min, python3-cffi-backend-api-max, libc6, libsodium23
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties:
+    {
+        pip : "yes"
+    }
+}

@@ -40,12 +40,14 @@ APPLICATION :
         alabaster : '0.7.6'
         Babel : '2.14.0'
         BasicIterativeStatistics :  'v0.1.0'
+        bcrypt : '5.0.0'
         beniget : '0.4.0'
         boost : '1.71.0'
         CAS : {tag : 'CR790-SALOME-PATCH', section: 'version_CR790_SALOME_PATCH', base:  'no'}
         catalyst: {tag: '2.0', section: 'version_v2_0_0', base: 'no'}
         C3PO: 'v2.3'
         certifi : '2018.8.24'
+        cffi : '2.0.0'
         cftime: '1.6.3'
         cgal : 'v5.6.1'
         cgns : '4.2.0'
@@ -57,6 +59,7 @@ APPLICATION :
         contourpy : '1.2.0'
         cork : '5987de5'
         cppunit : '1.13.2'
+        cryptography : '46.0.3'
         cycler : '0.10.0'
         Cython : '0.29.37'
         dateutil : '2.7.3'
@@ -73,6 +76,7 @@ APPLICATION :
         freetype : '2.9.1'
         gast : '0.5.0'
         gcc  :  '8.5.0'
+        gssapi :'1.8.3'
         libigl : 'v2.5.0'
         mpc : 'native'
         gmp : 'native'
@@ -88,6 +92,7 @@ APPLICATION :
         imagesize : '1.4.1'
         importlib_metadata : '7.0.1'
         importlib_resources: '6.1.1'
+        invoke : '2.2.1'
         ispc : '1.16.1'
         Jinja2 : '3.1.3'
         joblib : '1.2.0'
@@ -127,10 +132,11 @@ APPLICATION :
         openturns: '1.25.1'
         openVKL: '1.0.1'
         ospray : '2.7.1'
-        packaging : '23.2'
+        packaging : '24.2' #'23.2'
         pandas : '1.1.5'
         patsy : '0.5.4'
         ParaView : {tag:'6.0.0.c61dcc8ee0', base: 'no',  section: 'version_6_0_0_MPI', hpc: 'yes'}
+        paramiko : '4.0.0'
         PERSALYS: 'v19.0'
         petsc : '3.20.5'
         Pillow : '8.4.0'
@@ -139,8 +145,9 @@ APPLICATION :
         poetry : {tag: '1.8.3', base: 'no', section: 'version_1_8_3_x86_64'    }
         poetry_core : '1.9.0'
         proj : '9.2.1'
-        pyyaml : {tag: '6.0',   base: 'no', section: 'version_6_0_x86_64'    }
+        pycparser : '2.23'
         pybind11 : '2.11.0'
+        pynacl : '1.6.2'
         pythran : '0.14.0'
         psutil : '5.9.8'
         PyFMI : {tag: '2.6',   base: 'no', section: 'version_2_6_no_pip'}
@@ -155,6 +162,7 @@ APPLICATION :
         Python : '3.9.14'
         pythonfmu : '0.6.3'
         pytz : '2017.2'
+        pyyaml : {tag: '6.0',   base: 'no', section: 'version_6_0_x86_64'    }
         qt : '5.15.15'
         qtpy : {tag : '2.4.1', base : 'no', section : 'version_2_4_1_no_pip', hpc: 'no'}
         qwt : '6.1.6'
@@ -167,6 +175,7 @@ APPLICATION :
         scipy : '1.11.4'
         scikit_learn : '1.2.2' #1.0
         scotch : {tag: '6.1.2', section: 'version_6_1_2_MPI', hpc: 'yes', base: 'no'}
+        scp : '0.15.0'
         setuptools : '69.0.3'
         sip : '5.5.0'
         six : '1.10.0'
@@ -194,6 +203,7 @@ APPLICATION :
         tqdm : '4.66.5'
         tomli : '2.0.1'
         TTK : '1.3.0'
+        typing_extensions : '4.13.2'
         urllib3 : '1.23'
         zeromq: '4.3.1'
         zipp : '3.17.0'
@@ -230,7 +240,7 @@ APPLICATION :
         'YACSGEN'
         'DOCUMENTATION'
         'SAMPLES'
-        'COMPONENT'        
+        'COMPONENT'
         'PYCALCULATOR'
         'CALCULATOR'
         'HELLO'
