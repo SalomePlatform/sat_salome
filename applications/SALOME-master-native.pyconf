@@ -135,6 +135,7 @@ APPLICATION :
         poetry : {tag: '1.8.3', base: 'no', section: 'version_1_8_3_x86_64' }
         poetry_core : '1.9.0'
         proj : 'native'
+        pyasn1 : 'native'
         pycparser : 'native'
         PyFMI : '2.6'
         pynacl : 'native'
