@@ -27,6 +27,19 @@ CMAKE_OPTIONS+=" -DENABLE_PRIVATE_API=ON"
 CMAKE_OPTIONS+=" -DENABLE_CGNS=ON"
 CMAKE_OPTIONS+=" -DCMAKE_INSTALL_LIBDIR=${PRODUCT_INSTALL}/lib" # strangely on Ubuntu GMSH installs the .so in lib instead of lib/lib64 - so force to lib64
 CMAKE_OPTIONS+=" -DCMAKE_PREFIX_PATH=${LAPACK_ROOT_DIR};${HDF5_ROOT_DIR};${MEDFILE_ROOT_DIR};${CGNS_ROOT_DIR};" # set path of third libraries to our associated internal products
+
+CMAKE_OPTIONS+=" -DENABLE_MED=ON"
+if [ "${SAT_medfile_IS_NATIVE}" != "1" ]; then
+    CMAKE_OPTIONS+=" -DMED_LIB=${MEDFILE_ROOT_DIR}/lib/libmedC.so"
+    CMAKE_OPTIONS+=" -DMED_INC=${MEDFILE_ROOT_DIR}/include"
+fi
+
+CMAKE_OPTIONS+=" -DENABLE_CGNS=ON"
+if [ "${SAT_cgns_IS_NATIVE}" != "1" ]; then
+    CMAKE_OPTIONS+=" -DCGNS_LIB=${CGNS_ROOT_DIR}/lib/libcgns.so"
+    CMAKE_OPTIONS+=" -DCGNS_INC=${CGNS_ROOT_DIR}/include"
+fi
+
 CMAKE_OPTIONS+=" -DENABLE_OPENMP=ON"     # get OpenMP based parallelism working
 CMAKE_OPTIONS+=" -DENABLE_PLUGINS=OFF"   # needed for correct GmshFinalize() after version 4.3.0
 if [[ $DIST_NAME == "FD" && $DIST_VERSION == "32" ]]
