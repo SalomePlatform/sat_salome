@@ -31,3 +31,15 @@ default_win :
    compil_script :  'pip_install_whl' + $VARS.scriptExtension
    archive_info : {archive_name : "setuptools-" + $APPLICATION.products.setuptools + "_windows.tar.gz"}
 }
+
+version_80_9_0_no_pip :
+{
+    compil_script :  'pip_install_whl' + $VARS.scriptExtension
+    depend : ['Python','packaging']
+    properties:
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+}
+

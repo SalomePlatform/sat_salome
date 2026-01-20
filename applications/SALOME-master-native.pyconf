@@ -279,6 +279,8 @@ __overwrite__ :
         'APPLICATION.products.opencv'           : '3.2.0'
         'APPLICATION.products.omniORB'          : '4.2.5'
         'APPLICATION.products.omniORBpy'        : '4.2.5'
+        'APPLICATION.products.setuptools'       : {tag: '80.9.0', base: 'no', section: 'version_80_9_0_no_pip' }
+        'APPLICATION.products.packaging'        : {tag: '24.2',   base: 'no', section: 'version_24_2_no_pip'   }
         'APPLICATION.products.h5py'             : {tag: '3.6.0',  base: 'no', section: 'version_3_6_0_no_pip'  }
         'APPLICATION.products.meshio'           : {tag: '5.3.5' , base: 'no', section: 'version_5_3_5_no_pip'  }
         'APPLICATION.products.PyFMI'            : {tag: '2.6',    base: 'no', section: 'version_2_6_UB22_04'   }

@@ -31,3 +31,15 @@ default_win :
    compil_script :  'pip_install_whl' + $VARS.scriptExtension
    archive_info : {archive_name : "packaging-" + $APPLICATION.products.packaging + "_windows.tar.gz"}
 }
+
+version_24_2_no_pip:
+{
+    compil_script : "packaging-24.2" + $VARS.scriptExtension
+    depend : ['Python']
+    properties:
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+}
+
