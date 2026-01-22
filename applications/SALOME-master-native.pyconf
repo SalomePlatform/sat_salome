@@ -419,7 +419,7 @@ __overwrite__ :
     }
     {
          __condition__ : "VARS.dist in ['CO10']"
-        'APPLICATION.rm_products' : ['mesa', 'nose', 'sphinxcontrib_websupport', 'hdf5_openmpi']
+        'APPLICATION.rm_products' : ['mesa', 'nose', 'sphinxcontrib_websupport', 'invoke', 'hdf5_openmpi']
         'APPLICATION.products.cmake'          : 'native'
         'APPLICATION.products.gdal'           : 'native'
         'APPLICATION.products.hdf5'           : 'native'

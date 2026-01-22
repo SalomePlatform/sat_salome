@@ -6,7 +6,7 @@ default :
     get_source : "archive"
     system_info :
     {
-        rpm : ['python3-nacl']
+        rpm : ['python3-pynacl']
         rpm_dev : []
         apt : ['python3-nacl']
         apt_dev : []

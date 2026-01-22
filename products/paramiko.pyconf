@@ -15,7 +15,8 @@ default :
     {
 #        env_script : $name + ".py"
     }
-    depend : ['Python', 'setuptools', 'gssapi', 'pynacl', 'six', 'cryptography', 'bcrypt', 'invoke'] #
+    depend : ['Python', 'setuptools', 'gssapi', 'pynacl', 'six', 'cryptography', 'bcrypt']
+    opt_depend : ['invoke'] #
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     install_dir : 'base'
