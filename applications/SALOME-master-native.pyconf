@@ -460,7 +460,7 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['FD42']"
-        'APPLICATION.rm_products'               : ['mesa']
+        'APPLICATION.rm_products'               : ['mesa', 'hdf5_openmpi']
         'APPLICATION.products.cmake'            : 'native'
         'APPLICATION.products.gdal'             : 'native'
         'APPLICATION.products.hdf5'             : 'native'
