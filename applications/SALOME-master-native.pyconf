@@ -75,6 +75,7 @@ APPLICATION :
         graphviz : 'native'
         h5py : 'native'
         hdf5 : '1.14.6'
+        hdf5_par : {tag : '1.14.6', base: 'no', hpc:'yes'}
         idna : 'native'
         imagesize : 'native'
         ispc : '1.16.1'
@@ -259,7 +260,7 @@ __overwrite__ :
     {
         #
         __condition__ : "VARS.dist in ['UB22.04']"
-        'APPLICATION.rm_products'               : ['TTK', 'markdown_it_py', 'mdurl','nose_py3','assimulo'] # TTK causes crashes
+        'APPLICATION.rm_products'               : ['TTK', 'markdown_it_py', 'mdurl','nose_py3','assimulo', 'hdf5_par'] # TTK causes crashes
         'APPLICATION.products.cftime'           : 'native'
         'APPLICATION.products.netCDF4'          : 'native'
         'APPLICATION.products.rich'             : 'native'
@@ -274,6 +275,7 @@ __overwrite__ :
     {
         #
         __condition__ : "VARS.dist in ['UB24.04']"
+        'APPLICATION.rm_products'               : ['hdf5_par']
         'APPLICATION.products.cftime'           : 'native'
         'APPLICATION.products.markdown_it_py'   : 'native'
         'APPLICATION.products.netCDF4'          : 'native'
@@ -327,7 +329,7 @@ __overwrite__ :
     #
     {
         __condition__ : "VARS.dist in ['DB13']"
-        'APPLICATION.rm_products' : ['mesa']
+        'APPLICATION.rm_products' : ['mesa', 'hdf5_par']
         'APPLICATION.products.cmake'            : 'native'
         'APPLICATION.products.cftime'           : 'native'
         'APPLICATION.products.gdal'             : 'native'
@@ -355,7 +357,7 @@ __overwrite__ :
     #
     {
         __condition__ : "VARS.dist in ['CO8']"
-        'APPLICATION.rm_products'               : ['nose_py3','assimulo', 'poetry', 'poetry_core', 'BasicIterativeStatistics'] #
+        'APPLICATION.rm_products'               : ['nose_py3','assimulo', 'poetry', 'poetry_core', 'BasicIterativeStatistics', 'hdf5_par'] #
         'APPLICATION.products.nlopt'            : '2.7.0'
         'APPLICATION.products.swig'             : '4.0.2'
         'APPLICATION.products.sphinxintl'       : {tag: '0.9.10', base: 'no', section: 'version_0_9_10_no_pip'   }
@@ -372,7 +374,7 @@ __overwrite__ :
     #
     {
          __condition__ : "VARS.dist in ['CO9']"
-        'APPLICATION.rm_products'               : ['nose_py3','assimulo'] #
+        'APPLICATION.rm_products'               : ['nose_py3','assimulo', 'hdf5_par'] #
         'APPLICATION.products.lapack'           : '3.8.0'
         'APPLICATION.products.nlopt'            : '2.7.0'
         'APPLICATION.products.qwt'              : '6.1.6'
@@ -403,7 +405,7 @@ __overwrite__ :
     }
     {
          __condition__ : "VARS.dist in ['CO10']"
-        'APPLICATION.rm_products' : ['mesa', 'nose', 'sphinxcontrib_websupport']
+        'APPLICATION.rm_products' : ['mesa', 'nose', 'sphinxcontrib_websupport', 'hdf5_par']
         'APPLICATION.products.cmake'          : 'native'
         'APPLICATION.products.gdal'           : 'native'
         'APPLICATION.products.hdf5'           : 'native'
