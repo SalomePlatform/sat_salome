@@ -438,6 +438,7 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['FD40']"
+        'APPLICATION.rm_products'               : ['hdf5_openmpi']
         'APPLICATION.products.markdown_it_py'   : 'native'
         'APPLICATION.products.rich'             : 'native'
         'APPLICATION.products.gdal'             : '3.8.5'
