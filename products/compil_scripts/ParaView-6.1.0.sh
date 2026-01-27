@@ -308,6 +308,10 @@ fi
 # https://gitlab.kitware.com/paraview/paraview/-/issues/21594
 CMAKE_OPTIONS+=" -DPARAVIEW_PLUGIN_ENABLE_NodeEditor=OFF"
 
+# see bos #48775
+echo "WARNING: disable XArrayCFReader plugin"
+CMAKE_OPTIONS+=" -DPARAVIEW_PLUGIN_ENABLE_XArrayCFReader=OFF"
+
 # https://codev-tuleap.cea.fr/plugins/tracker/?aid=32848
 echo "WARNING: activating plugins autoload options!"
 CMAKE_OPTIONS+=" -DPARAVIEW_PLUGIN_AUTOLOAD_AcceleratedAlgorithms=ON"
