@@ -6,9 +6,9 @@ default :
     get_source : "archive"
     archive_info : {archive_name : $name + "-" + $APPLICATION.products.pytest + ".tar.gz"}
     patches : []
-    system_info : 
+    system_info :
     {
-        rpm : []
+        rpm : ['python3-pytest']
         rpm_dev : []
         apt : ['python3-pytest']
         apt_dev : []
