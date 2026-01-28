@@ -11,6 +11,7 @@ def set_env(env, prereq_dir, version):
     if not platform.system() == "Windows" :
         env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'lib', pyver, 'site-packages'))
         env.append('PATH',os.path.join(prereq_dir,'bin'))
+        env.set('PYTESTBIN',os.path.join(prereq_dir,'bin', 'pytest'))
     else:
         pass
 

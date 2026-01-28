@@ -22,11 +22,11 @@ if [ $? -ne 0 ]; then
     exit 2
 fi
 
-if [ "${SAT_Python_IS_NATIVE}" == "1" ] && [ "$PYTEST_ROOT_DIR" != "" ]; then
-    PYTEST=$(which pytest)
+if [ "${SAT_Python_IS_NATIVE}" == "1" ]; then
+    PYTESTBIN=$(which pytest)
 fi
 
-if [ "${SAT_Python_IS_NATIVE}" != "1" ] || [ -z "${PYTEST}" ]; then
+if [ "${SAT_Python_IS_NATIVE}" != "1" ] && [ -z "${PYTESTBIN}" ]; then
     echo
     echo "*** install with $PYTHONBIN -m pip install ${BUILD_DIR}/ext/pytest-8.1.1.tar.gz --cache-dir=${BUILD_DIR}/cache/pip"
     ${PYTHONBIN} -m pip install "${BUILD_DIR}/ext/pytest-8.1.1.tar.gz" --prefix="${PRODUCT_INSTALL}" --cache-dir="${BUILD_DIR}/cache/pip"

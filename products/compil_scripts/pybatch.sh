@@ -60,7 +60,39 @@ if [ $? -ne 0 ]; then
     echo "pip install pybatch fails"
     exit 4
 fi
+
 fix_lib_path
+
+#tests
+export PATH=${PRODUCT_INSTALL}/bin:${PATH}
+export PYTHONPATH=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages:${PYTHONPATH}
+
+if [ -f "${SOURCE_DIR}/conftest.py" ]; then
+    cp "${SOURCE_DIR}/conftest.py" "${PRODUCT_INSTALL}/conftest.py"
+fi
+
+if [ -d "${SOURCE_DIR}/tests" ]; then
+    cp -r "${SOURCE_DIR}/tests" "${PRODUCT_INSTALL}/tests"
+fi
+
+if [ -f "${PRODUCT_INSTALL}/conftest.py" ] && [ -d "${PRODUCT_INSTALL}/tests" ]; then
+    cd "${PRODUCT_INSTALL}"
+    ${PYTHONBIN} -m pytest
+    if [ $? -ne 0 ]; then
+        echo "ERROR: pybatch tests fails"
+        exit 5
+    fi
+    # remove pytest output files
+    rm -rf \
+        "${PRODUCT_INSTALL}/__pycache__" \
+        "${PRODUCT_INSTALL}/result_cancel.txt" \
+        "${PRODUCT_INSTALL}/result_submit.txt" \
+        "${PRODUCT_INSTALL}/.pytest_cache" \
+        "${PRODUCT_INSTALL}/result_state.txt" \
+        "${PRODUCT_INSTALL}/result_wait.txt"
+else
+    echo "WARNING: pybatch tests have not be run"
+fi
 
 echo
 echo "########## END"
