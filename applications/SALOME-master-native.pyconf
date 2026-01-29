@@ -312,7 +312,7 @@ __overwrite__ :
         'APPLICATION.products.MeshGems'         : '2.15-1'
         'APPLICATION.products.rich'             : 'native'
         'APPLICATION.products.opencv'           : '3.2.0'
-        'APPLICATION.products.pytest'           : '8.1.1'
+        'APPLICATION.products.pytest'           : {tag: '8.1.1',  base: 'no', section: 'version_8_1_1_DB11'  }
         'APPLICATION.products.pyyaml'           : {tag: '6.0',    base: 'no', section: 'version_6_0_x86_64'  }
         'APPLICATION.products.mdurl'            : {tag: '0.1.2',  base: 'no', section: 'version_0_1_2_no_pip'}
         'APPLICATION.products.markdown_it_py'   : {tag: '3.0.0',  base: 'no', section: 'version_3_0_0_no_pip'}

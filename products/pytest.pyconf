@@ -42,3 +42,9 @@ version_8_1_1 :
 {
   patches : ['pytest-8.1.1-p01.patch']
 }
+
+version_8_1_1_DB11 :
+{
+    archive_info : {archive_name : "pytest-8.1.1-whl.tar.gz"}
+    compil_script: "pytest-8.1.1-whl.sh"
+}
