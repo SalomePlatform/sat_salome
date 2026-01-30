@@ -184,7 +184,7 @@ APPLICATION :
         statsmodels: '0.14.1'
         swig : '4.0.2'
         tabulate : '0.9.0'
-        tbb : '2019_U8'
+        tbb : '2021.9.0'
         tcl : '8.6.0'
         threadpoolctl : '3.5.0'
         tk : '8.6.0'
