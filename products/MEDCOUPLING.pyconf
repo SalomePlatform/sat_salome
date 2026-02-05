@@ -175,7 +175,7 @@ default_MPI_CO9 :
               "openmpi"
               ]
     opt_depend : ["ParMetis", "metis", "BasicIterativeStatistics"]
-    patches: ['medcoupling_use_openblas.patch', 'medcoupling-openblas-include_dir.patch'] #FIXME
+    patches: ['medcoupling_use_openblas.patch', 'medcoupling-openblas-include_dir.patch', 'medcoupling-openblas-ignore-sys.patch'] #FIXME
 }
 
 default_MPI_STD:
