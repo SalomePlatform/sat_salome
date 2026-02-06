@@ -14,7 +14,7 @@ default :
     }
     environ :
     {
-        _SMESH_MeshersList : "HexoticPLUGIN"
+        _SMESH_MeshersList : "HexoticPlugin"
         SalomeAppConfig_ : $install_dir + $VARS.sep + "share" + $VARS.sep + "salome" + $VARS.sep + "resources" + $VARS.sep + "hexoticplugin"
     }
     depend : [
@@ -42,3 +42,47 @@ default :
     }
 } 
 
+version_V7_0_0_to_V9_15_0 :
+{
+    name : "HexoticPLUGIN"
+    build_source : "cmake"
+    get_source : "git"
+    git_info:
+    {
+      repositories :
+      {
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/hexoticplugin.git"
+        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "hexoticplugin.git"
+        gitpub : $PROJECTS.projects.salome.git_info.git_server.gitpub.url + "plugins/hexoticplugin.git"
+      }
+    }
+    environ :
+    {
+        _SMESH_MeshersList : "HexoticPLUGIN"
+        SalomeAppConfig_ : $install_dir + $VARS.sep + "share" + $VARS.sep + "salome" + $VARS.sep + "resources" + $VARS.sep + "hexoticplugin"
+    }
+    depend : [
+             "KERNEL",
+             "MEDCOUPLING", 
+             "GEOM", 
+             "SMESH",
+             "Python",  
+             "qt",  
+             "boost",  
+             "CAS",  
+             "hdf5",  
+             "omniORB",  
+             "docutils", 
+             "ParaView",  
+             "MeshGems" 
+              ]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        is_SALOME_module : "yes"
+        is_SALOME_product: "yes"
+	incremental : "yes"
+        has_unit_tests
+    }
+}
