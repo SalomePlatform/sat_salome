@@ -15,9 +15,14 @@ cd $BUILD_DIR
 export PYTHONPATH=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages:$PYTHONPATH
 export PATH=${PRODUCT_INSTALL}/bin:$PATH
 
-WHEELS=('typing_extensions-4.11.0-py3-none-any.whl'
-        'meshio-5.3.5-py3-none-any.whl'
-       )
+WHEELS=()
+
+if ! ${PYTHONBIN} -c "import typing_extensions"; then
+    WHEELS+=('typing_extensions-4.11.0-py3-none-any.whl')
+fi
+
+WHEELS+=('meshio-5.3.5-py3-none-any.whl')
+
 for WHEEL in "${WHEELS[@]}"; do
     ${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip  $SOURCE_DIR/$WHEEL --no-deps --target=$PRODUCT_INSTALL/lib/python${PYTHON_VERSION}/site-packages
     if [ $? -ne 0 ]; then
