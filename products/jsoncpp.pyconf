@@ -3,6 +3,7 @@ default :
 {
     name : "jsoncpp"
     build_source : "cmake"
+    cmake_options : "-DCMAKE_INSTALL_LIBDIR=lib"
     get_source : "archive"
     system_info :
     {
