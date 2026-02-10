@@ -14,23 +14,24 @@ default :
     }
     environ :
     {
-        _SMESH_MeshersList : "HexoticPlugin"
+        #_SMESH_MeshersList : "HexoticPlugin"
+        _SMESH_MeshersList : "HexoticPLUGIN"
         SalomeAppConfig_ : $install_dir + $VARS.sep + "share" + $VARS.sep + "salome" + $VARS.sep + "resources" + $VARS.sep + "hexoticplugin"
     }
     depend : [
              "KERNEL",
-             "MEDCOUPLING", 
-             "GEOM", 
+             "MEDCOUPLING",
+             "GEOM",
              "SMESH",
-             "Python",  
-             "qt",  
-             "boost",  
-             "CAS",  
-             "hdf5",  
-             "omniORB",  
-             "docutils", 
-             "ParaView",  
-             "MeshGems" 
+             "Python",
+             "qt",
+             "boost",
+             "CAS",
+             "hdf5",
+             "omniORB",
+             "docutils",
+             "ParaView",
+             "MeshGems"
               ]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
@@ -40,7 +41,7 @@ default :
         is_SALOME_product: "yes"
         has_unit_tests
     }
-} 
+}
 
 version_V7_0_0_to_V9_15_0 :
 {
@@ -58,23 +59,23 @@ version_V7_0_0_to_V9_15_0 :
     }
     environ :
     {
-        _SMESH_MeshersList : "HexoticPLUGIN"
+        #_SMESH_MeshersList : "HexoticPLUGIN"
         SalomeAppConfig_ : $install_dir + $VARS.sep + "share" + $VARS.sep + "salome" + $VARS.sep + "resources" + $VARS.sep + "hexoticplugin"
     }
     depend : [
              "KERNEL",
-             "MEDCOUPLING", 
-             "GEOM", 
+             "MEDCOUPLING",
+             "GEOM",
              "SMESH",
-             "Python",  
-             "qt",  
-             "boost",  
-             "CAS",  
-             "hdf5",  
-             "omniORB",  
-             "docutils", 
-             "ParaView",  
-             "MeshGems" 
+             "Python",
+             "qt",
+             "boost",
+             "CAS",
+             "hdf5",
+             "omniORB",
+             "docutils",
+             "ParaView",
+             "MeshGems"
               ]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
