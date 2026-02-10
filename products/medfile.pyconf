@@ -50,6 +50,7 @@ version_6_0_1 :
     compil_script : "med-6.0.1" + $VARS.scriptExtension
     test_build : "make check"
     build_depend : ['swig']
+    patches : ['med-6.0.1_win_3x_files_support.patch']
 }
 
 version_6_0_0 :

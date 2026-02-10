@@ -1,0 +1,15 @@
+diff -Naur medfile.ref/src/hdfi/_MEDfileCreate.c medfile/src/hdfi/_MEDfileCreate.c
+--- medfile.ref/src/hdfi/_MEDfileCreate.c	2025-11-06 10:25:17.000000000 +0100
++++ medfile/src/hdfi/_MEDfileCreate.c	2026-02-10 09:07:15.290605228 +0100
+@@ -16,9 +16,9 @@
+  */
+
+ #ifndef PPRO_NT_CALL
+-#define MED_FOPEN_FLAGS "wb"
+-#else
+ #define MED_FOPEN_FLAGS "w"
++#else
++#define MED_FOPEN_FLAGS "wb"
+ #endif
+
+ #define MED_CREATE_HDF_FILE_FOR_PREVIOUS_MED_VERSION(MED_MAJ,MED_MIN,HMM) \
