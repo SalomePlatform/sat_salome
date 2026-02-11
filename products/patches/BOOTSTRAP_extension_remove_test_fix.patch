@@ -1,0 +1,15 @@
+diff --git a/__RUN_SALOME__/Test/extension_remove/testscript.py b/__RUN_SALOME__/Test/extension_remove/testscript.py
+index 0d48f2d..0b9f177 100644
+--- a/__RUN_SALOME__/Test/extension_remove/testscript.py
++++ b/__RUN_SALOME__/Test/extension_remove/testscript.py
+@@ -3,7 +3,9 @@ import os, shutil
+ import glob
+ from pathlib import Path
+
+-from SalomeOnDemandTK.extension_utilities import logger
++import SalomeOnDemandTK.extension_utilities as ex_utils
++ex_utils.get_logger()
++logger = ex_utils.logger
+ from SalomeOnDemandTK.extension_remover import remove_salomex, AtRemoveAskerForce
+ extension_list = ["A","B","C","D","E","F"]
+ """

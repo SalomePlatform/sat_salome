@@ -4,7 +4,7 @@ default :
     build_source : "script"
     compil_script : "pip_install" + $VARS.scriptExtension
     get_source : "archive"
-    system_info : 
+    system_info :
     {
         rpm : []
         rpm_dev : []
@@ -29,23 +29,23 @@ default :
 
 
 version_2_13_1_x86_64 :
-{                                                                                                  
-  compil_script : "PyFMI-2.13.1.sh"                                                              
+{
+  compil_script : "PyFMI-2.13.1.sh"
   archive_info : {archive_name : "PyFMI-2.13.1-x86_64.tar.gz"}
-  depend : ["Python", "setuptools", "Cython", "FMILibrary", "matplotlib", "nose_py3", "assimulo"]                           
-  properties:                                                                                    
-  {                                                                          
+  depend : ["Python", "setuptools", "Cython", "FMILibrary", "matplotlib", "nose_py3", "assimulo"]
+  properties:
+  {
     incremental : "yes"
     pip : "no"
   }
 }
 
-version_2_13_1 :                                                                                   
-{                                                                                                  
-  compil_script : "PyFMI-2.13.1.sh"                                                              
-  depend : ["Python", "setuptools", "Cython", "FMILibrary", "matplotlib", "nose_py3", "assimulo"]                           
-  properties:                                                                                    
-  {                                                                          
+version_2_13_1 :
+{
+  compil_script : "PyFMI-2.13.1.sh"
+  depend : ["Python", "setuptools", "Cython", "FMILibrary", "matplotlib", "nose_py3", "assimulo"]
+  properties:
+  {
     incremental : "yes"
     pip : "no"
   }
@@ -69,6 +69,18 @@ version_2_6_win :
 {
     patches: ["PyFMI-2.6-importlogger.patch"]
     compil_script : "PyFMI-2.6.bat"
+    properties:
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+}
+
+
+version_2_6_CO8 :
+{
+    compil_script : "PyFMI-2.6.sh"
+    patches: ['pyfmi-2.6-python-3.1x.01.patch']
     properties:
     {
       incremental : "yes"
