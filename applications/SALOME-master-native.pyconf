@@ -300,9 +300,9 @@ __overwrite__ :
         'APPLICATION.products.PyFMI'            : '2.13.1'
         'APPLICATION.products.swig'             : '4.0.2'
         'APPLICATION.products.h5py'             : {tag: '3.12.1', base: 'no', section: 'version_3_12_1_no_pip'}
-        'APPLICATION.products.meshio'           : {tag: '5.3.5',  base: 'no', section: 'version_5_3_5_no_pip'               }
-        'APPLICATION.products.omniORBpy'        : {tag: '4.2.5',  base: 'no', section: 'version_4_2_5_UB24_04'              }
-        'APPLICATION.products.nose_py3'         : {tag: '1.6.9',  base: 'no', section: 'version_1_6_9_no_pip'               }
+        'APPLICATION.products.meshio'           : {tag: '5.3.5',  base: 'no', section: 'version_5_3_5_no_pip' }
+        'APPLICATION.products.omniORBpy'        : {tag: '4.2.5',  base: 'no', section: 'version_4_2_5_UB24_04'}
+        'APPLICATION.products.nose_py3'         : {tag: '1.6.9',  base: 'no', section: 'version_1_6_9_no_pip' }
     }
     #
     {
