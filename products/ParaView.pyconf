@@ -30,10 +30,10 @@ default :
     }
 }
 
-version_6_1_0 :
+version_6_0_0 :
 {
-    compil_script :  'ParaView-6.1.0.sh'
-    archive_info : {archive_name : "ParaView-6.1.0-c61dcc8ee0.tar.gz"}
+    compil_script :  'ParaView-6.0.0.sh'
+    archive_info : {archive_name : "ParaView-6.0.0-c61dcc8ee0.tar.gz"}
     depend : [
               'Python',
               'hdf5',
@@ -72,10 +72,10 @@ version_6_1_0_win :
   ]
 }
 
-version_6_1_0_MPI :
+version_6_0_0_MPI :
 {
-    compil_script :  'ParaView-6.1.0.sh'
-    archive_info : {archive_name : "ParaView-6.1.0-c61dcc8ee0.tar.gz"}
+    compil_script :  'ParaView-6.0.0.sh'
+    archive_info : {archive_name : "ParaView-6.0.0-c61dcc8ee0.tar.gz"}
     depend : [
               'Python',
               'hdf5',
