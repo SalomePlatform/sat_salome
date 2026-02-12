@@ -1,19 +1,31 @@
-#!/bin/bash                                                                                                                                                                              
+#!/bin/bash
 
 echo "##########################################################################"
 echo "h5py" $VERSION
 echo "##########################################################################"
+
+LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
 
 rm -rf ${BUILD_DIR}
 mkdir ${BUILD_DIR}
 cd $BUILD_DIR
 cp -r $SOURCE_DIR/* .
 
+PIP_OPTIONS=
+
+case $LINUX_DISTRIBUTION in
+	UB24*)
+        PIP_OPTIONS+=" --ignore-installed --no-deps"
+		;;
+	*)
+		;;
+esac
+
 H5PY_SETUP_REQUIRES=0
 ${PYTHONBIN} ./setup.py build
 
-echo "*** ${PYTHONBIN} -m pip install . --no-build-isolation --cache-dir=${BUILD_DIR}/cache/pip --prefix=${PRODUCT_INSTALL}"
-pip install . --no-build-isolation --cache-dir="${BUILD_DIR}/cache/pip" --prefix="${PRODUCT_INSTALL}"
+echo "*** ${PYTHONBIN} -m pip install . --no-build-isolation ${PIP_OPTIONS} --cache-dir=${BUILD_DIR}/cache/pip --prefix=${PRODUCT_INSTALL}"
+pip install . --no-build-isolation ${PIP_OPTIONS} --cache-dir="${BUILD_DIR}/cache/pip" --prefix="${PRODUCT_INSTALL}"
 if [ $? -ne 0 ]; then
     echo "pip install ${PRODUCT_NAME} fails"
     exit 1
