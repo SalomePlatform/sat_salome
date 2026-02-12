@@ -241,7 +241,7 @@ APPLICATION :
         'YACSGEN'
         'DOCUMENTATION'
         'SAMPLES'
-        'COMPONENT'        
+        'COMPONENT'
         'PYCALCULATOR'
         'CALCULATOR'
         'HELLO'
