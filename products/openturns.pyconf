@@ -37,7 +37,7 @@ default_win :
 version_1_25_1 :
 {
     compil_script :  "openturns-1.25.1.sh"
-    patches : []
+    patches : ['openturns-1.25.1.0001.patch']
     depend : [
 		'Python',
 		'lapack',
