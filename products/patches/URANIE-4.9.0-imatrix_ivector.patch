@@ -1,0 +1,37 @@
+diff -Naur URANIE/meTIER/sampler/souRCE/akconst.c URANIE.dev/meTIER/sampler/souRCE/akconst.c
+--- URANIE/meTIER/sampler/souRCE/akconst.c	2024-07-30 22:24:19.000000000 +0200
++++ URANIE.dev/meTIER/sampler/souRCE/akconst.c	2026-02-17 11:36:48.885584683 +0100
+@@ -28,7 +28,7 @@
+ #include "galois.h"
+ #include "akconst.h"
+ 
+-int *ivector(), **imatrix();
++int *ivector(int, int), **imatrix(int,  int,  int,  int);
+ 
+ /*  EVEN    EVEN    EVEN    EVEN    EVEN    EVEN    EVEN    EVEN  */
+ 
+diff -Naur URANIE/meTIER/sampler/souRCE/galois.h URANIE.dev/meTIER/sampler/souRCE/galois.h
+--- URANIE/meTIER/sampler/souRCE/galois.h	2024-07-30 22:24:19.000000000 +0200
++++ URANIE.dev/meTIER/sampler/souRCE/galois.h	2026-02-17 11:29:31.441915075 +0100
+@@ -1,7 +1,7 @@
+ /* Declarations for dynamic allocation */
+ 
+-int *ivector();
+-int **imatrix();
++int *ivector(int,  int);
++int **imatrix(int,  int,  int,  int);
+ 
+ /** 
+  * Definitions for Galois Fields used by OA Sampler
+diff -Naur URANIE/meTIER/sampler/souRCE/oa.c URANIE.dev/meTIER/sampler/souRCE/oa.c
+--- URANIE/meTIER/sampler/souRCE/oa.c	2024-07-30 22:24:19.000000000 +0200
++++ URANIE.dev/meTIER/sampler/souRCE/oa.c	2026-02-17 11:21:37.613385081 +0100
+@@ -23,7 +23,7 @@
+ #include "primes.h"
+ #include "oa.h"
+ 
+-int **imatrix(), *ivector();
++int **imatrix(int,  int,  int,  int), *ivector(int, int);
+ 
+ /**
+ 

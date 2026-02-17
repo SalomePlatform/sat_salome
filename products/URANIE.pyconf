@@ -20,6 +20,19 @@ default :
     }
 }
 
+version_4_9_0_FD42 :
+{
+    compil_script : "URANIE-4.9.0.sh"
+    archive_info :
+    {
+        archive_name : "URANIE-4.9.0-Source.tar.gz"
+    }
+    patches: ['URANIE-4.9.0-imatrix_ivector.patch']
+    depend : ['Python', 'root','nlopt','lapack', 'boost', 'fftw']
+    build_depend : ["cmake", 'swig', 'cppunit']
+    opt_depend: ["openmpi"]
+}
+
 version_4_9_0 :
 {
     compil_script : "URANIE-4.9.0.sh"

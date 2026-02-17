@@ -458,7 +458,7 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['FD42']"
-        'APPLICATION.rm_products'               : ['mesa','URANIE', 'root']
+        'APPLICATION.rm_products'               : ['mesa']
         'APPLICATION.products.cmake'            : 'native'
         'APPLICATION.products.gdal'             : 'native'
         'APPLICATION.products.hdf5'             : 'native'
@@ -485,5 +485,7 @@ __overwrite__ :
         'APPLICATION.products.pyside'           : {tag: 'v5.15.17',       base: 'no', section: 'version_v5_15_17_FD42'               }
         'APPLICATION.products.KERNEL'           : {tag: 'master',         base: 'no', section: 'default_FD42'                        }
         'APPLICATION.products.MEDCOUPLING'      : {tag: 'master',         base: 'no', section: 'version_V9_15_0_MPI_FD42', hpc: 'yes'}
+        'APPLICATION.products.root'             : {tag: '6.28.10',        base: 'no', section: 'version_6_28_10_FD42'                }
+        'APPLICATION.products.URANIE'           : {tag: '4.9.0',          base: 'no', section: 'version_4_9_0_FD42'                  }
     }
 ]
