@@ -27,5 +27,14 @@ echo.
 echo Product %PRODUCT_NAME% version: %VERSION%> %PRODUCT_INSTALL%\README.txt
 echo Installation folder: %PYTHON_ROOT_DIR%>> %PRODUCT_INSTALL%\README.txt
 
+REM RUN TESTS
+REM xcopy %SOURCE_DIR%\conftest.py %PRODUCT_INSTALL%\conftest.py /E /I /Q
+REM xcopy %SOURCE_DIR%\tests %PRODUCT_INSTALL%\tests /E /I /Q
+
+%PYTHON_ROOT_DIR%\python.exe -m pytest %SOURCE_DIR%
+if NOT %ERRORLEVEL% == 0 (
+    echo ERROR on non regression tests
+    exit 4
+)
 echo.
 echo ########## END
