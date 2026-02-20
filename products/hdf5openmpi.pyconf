@@ -1,6 +1,6 @@
 default :
 {
-    name : "hdf5-mpi"
+    name : "hdf5openmpi"
     build_source : "script"
     compil_script : $name + "CMake.sh"
     get_source : "archive"
