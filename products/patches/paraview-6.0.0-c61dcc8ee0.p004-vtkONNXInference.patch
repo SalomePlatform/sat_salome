@@ -1,21 +1,21 @@
---- ParaView-6.1.0-c61dcc8ee0_ref/VTK/Filters/ONNX/vtkONNXInference.cxx	2025-10-23 22:57:05.000000000 +0200
-+++ ParaView-6.1.0-c61dcc8ee0_dev/VTK/Filters/ONNX/vtkONNXInference.cxx	2025-11-07 13:25:08.732169800 +0100
+--- ParaView_ref/VTK/Filters/ONNX/vtkONNXInference.cxx	2025-10-23 22:57:05.000000000 +0200
++++ ParaView_dev/VTK/Filters/ONNX/vtkONNXInference.cxx	2025-11-07 13:25:08.732169800 +0100
 @@ -13,6 +13,11 @@
  #include "vtkStreamingDemandDrivenPipeline.h"
- 
+
  #include <onnxruntime_cxx_api.h>
 +#ifdef _WIN32
 +#include <Windows.h>
 +#include <string>
 +#endif
 +
- 
+
  VTK_ABI_NAMESPACE_BEGIN
- 
+
 @@ -47,6 +52,30 @@
    os << indent << "InputSize: " << this->InputSize << endl;
  }
- 
+
 +
 +#if defined(WIN32)
 +  // these two functions are extracted from Basics_Utils.cxx SALOME
@@ -44,7 +44,7 @@
  void vtkONNXInference::InitializeSession()
  {
 @@ -68,8 +97,14 @@
- 
+
    try
    {
 +#if defined(WIN32)

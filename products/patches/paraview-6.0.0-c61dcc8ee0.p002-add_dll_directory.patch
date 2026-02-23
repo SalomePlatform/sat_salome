@@ -1,5 +1,5 @@
---- ParaView-6.1.0-ref/VTK/Utilities/PythonInterpreter/vtkPythonInterpreter.cxx	2025-10-23 22:57:08.000000000 +0200
-+++ ParaView-6.1.0-dev/VTK/Utilities/PythonInterpreter/vtkPythonInterpreter.cxx	2025-11-03 14:39:58.000000000 +0100
+--- ParaView-ref/VTK/Utilities/PythonInterpreter/vtkPythonInterpreter.cxx	2025-10-23 22:57:08.000000000 +0200
++++ ParaView-dev/VTK/Utilities/PythonInterpreter/vtkPythonInterpreter.cxx	2025-11-03 14:39:58.000000000 +0100
 @@ -364,25 +364,6 @@
    // the issue.
    if (!vtkdir.empty())
@@ -33,4 +33,4 @@
 -#endif
    }
  #endif
- 
+

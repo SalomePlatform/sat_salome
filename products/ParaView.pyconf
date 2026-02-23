@@ -46,7 +46,7 @@ version_6_0_0 :
               'Pygments'
               ]
     opt_depend : ['ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst', 'sip', 'PyQt', 'pyside', 'ONNX']
-    patches : []
+    patches : ['paraview-6.0.0-c61dcc8ee0.p005-LATA_V2.1-plugin.patch']
 }
 
 version_6_0_0_win :
@@ -66,10 +66,11 @@ version_6_0_0_win :
               'zlib'
              ]
     opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'rkCommon', 'matplotlib', 'sip', 'PyQt', 'pyside', 'ONNX']
-    patches : ['paraview-6.1.0-c61dcc8ee0.p002-add_dll_directory.patch',
-               'paraview-6.1.0-c61dcc8ee0.p003-vtkModuleWrapPython.patch',
-               'paraview-6.1.0-c61dcc8ee0.p004-vtkONNXInference.patch'
-  ]
+    patches : ['paraview-6.0.0-c61dcc8ee0.p002-add_dll_directory.patch',
+               'paraview-6.0.0-c61dcc8ee0.p003-vtkModuleWrapPython.patch',
+               'paraview-6.0.0-c61dcc8ee0.p004-vtkONNXInference.patch',
+               'paraview-6.0.0-c61dcc8ee0.p005-LATA_V2.1-plugin.patch'
+              ]
 }
 
 version_6_0_0_MPI :
@@ -88,7 +89,9 @@ version_6_0_0_MPI :
               'Pygments'
               ]
     opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst', 'sip', 'PyQt', 'pyside', 'ONNX']
-    patches : ['paraview-6.1.0-c61dcc8ee0.p001-FindCGNS.patch']
+    patches : ['paraview-6.0.0-c61dcc8ee0.p001-FindCGNS.patch',
+               'paraview-6.0.0-c61dcc8ee0.p005-LATA_V2.1-plugin.patch'
+              ]
 }
 
 version_5_13_2 :
