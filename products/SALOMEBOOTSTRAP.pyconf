@@ -25,7 +25,7 @@ default :
         incremental : "yes"
         is_SALOME_product: "yes"
     }
-    patches: ['BOOTSTRAP_extension_remove_test_fix.patch']
+    patches: []
 }
 
 default_win:
