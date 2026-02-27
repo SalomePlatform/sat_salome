@@ -75,5 +75,17 @@ else
     exit 1
 fi
 
+# bos #49114 - numpy2 issue see https://salsa.debian.org/science-team/python-meshio/-/blob/master/debian/patches/numpy2_PR1513.patch
+NUMPY_MAJ_VERSION=$($PYTHONBIN -c "import numpy; print(numpy.__version__)" | cut -d'.' -f1)
+echo ""
+if [[ $NUMPY_MAJ_VERSION -eq 2 ]]; then
+    echo "WARNING: numpy2 found. apply patch for dolfin"
+    fPy=$PRODUCT_INSTALL/lib/python${PYTHON_VERSION}/site-packages/meshio/dolfin/_dolfin.py
+    if [ -f $fPy ]; then
+        line=$(grep -nA0 "ET.SubElement(mesh_function" $fPy| cut -d':' -f1)
+        sed -i "${line}s/repr/str/" $fPy
+    fi
+fi
+
 echo
 echo "########## END"
