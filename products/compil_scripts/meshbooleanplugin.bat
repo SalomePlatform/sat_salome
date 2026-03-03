@@ -71,9 +71,3 @@ if NOT %ERRORLEVEL% == 0 (
     exit 3
 )
 
-cd %PRODUCT_INSTALL%\plugins\meshbooleanplugin
-powershell -Command "(Get-Content MyPlugDialog_ui.py).replace('from qwt_plot import QwtPlot', 'from qwt import QwtPlot') |Set-Content  MyPlugDialog_ui.py"
-if NOT %ERRORLEVEL% == 0 (
-    echo ERROR on patching plugin...
-    exit 4
-)

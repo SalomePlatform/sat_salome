@@ -43,19 +43,5 @@ if [ $? -ne 0 ]; then
     exit 3
 fi
 
-if [ -f ${PRODUCT_INSTALL}/plugins/meshbooleanplugin/MyPlugDialog_ui.py ]; then
-    sed '$d' ${PRODUCT_INSTALL}/plugins/meshbooleanplugin/MyPlugDialog_ui.py > ${BUILD_DIR}/MyPlugDialog_ui.py
-    echo "from qwt import QwtPlot" >> ${BUILD_DIR}/MyPlugDialog_ui.py
-    echo                           >> ${BUILD_DIR}/MyPlugDialog_ui.py
-    mv ${BUILD_DIR}/MyPlugDialog_ui.py ${PRODUCT_INSTALL}/plugins/meshbooleanplugin/MyPlugDialog_ui.py
-    if [ $? -ne 0 ]; then
-	echo "could not overwrite MyPlugDialog_ui.py"
-	exit 1
-    fi
-else
-    echo "ERROR: could not find MyPlugDialog_ui.py"
-    exit 1
-fi
-
 echo
 echo "########## END"
