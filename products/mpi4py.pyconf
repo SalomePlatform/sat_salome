@@ -4,7 +4,7 @@ default :
     build_source : "script"
     compil_script :   'pip_install' + $VARS.scriptExtension
     get_source : "archive"
-    system_info : 
+    system_info :
     {
         rpm : ["python3-mpi4py-openmpi"]
         rpm_dev : []
@@ -30,6 +30,7 @@ version_3_1_0_no_pip :
 {
     compil_script : "mpi4py-3.1.0.sh"
     patches: ["mpi4py_3_1_0_setup_py.patch"]
+    depend : ["Python", "setuptools", "wheel", "packaging", "openmpi"]
     properties:
     {
       incremental : "yes"

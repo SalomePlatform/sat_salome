@@ -16,7 +16,7 @@ export PYTHONPATH=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages:$
 echo
 echo "*** build and install with $PYTHONBIN"
 #$PYTHONBIN setup.py install --prefix=$PRODUCT_INSTALL
-$PYTHONBIN -m pip install --ignore-installed --cache-dir=$BUILD_DIR/cache/pip . --no-deps --prefix=$PRODUCT_INSTALL
+$PYTHONBIN -m pip install --ignore-installed --cache-dir=$BUILD_DIR/cache/pip . --no-deps --no-build-isolation --prefix=$PRODUCT_INSTALL -vvvv
 if [ $? -ne 0 ]; then
     echo "ERROR on build/install"
     exit 3
