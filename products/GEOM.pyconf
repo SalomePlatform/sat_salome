@@ -85,7 +85,7 @@ default_win :
     nb_proc : 2
 }
 
-version_V9_11_0_to_V9_13_0:
+version_V9_7_0_to_V9_13_0:
 {
     depend : ["KERNEL",
               "GUI",
@@ -109,8 +109,85 @@ version_V9_11_0_to_V9_13_0:
              ]
 }
 
-version_V9_10_0:
+version_V9_13_0_win :
 {
+    cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig.exe -DSALOME_GEOM_USE_OPENCV=ON -DOPENCV_ROOT_DIR=%OPENCV_ROOT_DIR% -DOpenCV_INCLUDE_DIRS=%OpenCV_INCLUDE_DIRS% "
+    depend : ["KERNEL",
+              "GUI",
+              "boost",
+              "CAS",
+              "Python",
+              "hdf5",
+              "omniORB",
+              "qt",
+              "ParaView",
+              "docutils",
+              "Sphinx",
+              "Jinja2",
+              "setuptools",
+              "Pygments",
+              "opencv",
+              "six",
+              "pytz",
+              "psutil",
+              "sphinxintl",
+              "eigen"
+             ]
+    nb_proc : 2
+}
+
+version_V9_12_0_win :
+{
+    cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig.exe -DSALOME_GEOM_USE_OPENCV=ON -DOPENCV_ROOT_DIR=%OPENCV_ROOT_DIR% -DOpenCV_INCLUDE_DIRS=%OpenCV_INCLUDE_DIRS% "
+    depend : ["KERNEL",
+              "GUI",
+              "boost",
+              "CAS",
+              "Python",
+              "hdf5",
+              "omniORB",
+              "qt",
+              "ParaView",
+              "docutils",
+              "Sphinx",
+              "Jinja2",
+              "setuptools",
+              "Pygments",
+              "opencv",
+              "six",
+              "pytz",
+              "psutil",
+              "sphinxintl",
+              "eigen"
+             ]
+    nb_proc : 2
+}
+
+version_V9_11_0_win :
+{
+    cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig.exe -DSALOME_GEOM_USE_OPENCV=ON -DOPENCV_ROOT_DIR=%OPENCV_ROOT_DIR% -DOpenCV_INCLUDE_DIRS=%OpenCV_INCLUDE_DIRS% "
+    depend : ["KERNEL",
+              "GUI",
+              "boost",
+              "CAS",
+              "Python",
+              "hdf5",
+              "omniORB",
+              "qt",
+              "ParaView",
+              "docutils",
+              "Sphinx",
+              "Jinja2",
+              "setuptools",
+              "Pygments",
+              "opencv",
+              "six",
+              "pytz",
+              "psutil",
+              "sphinxintl",
+              "eigen"
+             ]
+    nb_proc : 2
 }
 
 version_V9_10_0_win :
@@ -139,6 +216,87 @@ version_V9_10_0_win :
              ]
     patches : ['GEOM-9.10.0-visual-2019.patch']
     nb_proc : 1
+}
+
+version_V9_9_0_win :
+{
+    cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig.exe -DSALOME_GEOM_USE_OPENCV=ON -DOPENCV_ROOT_DIR=%OPENCV_ROOT_DIR% -DOpenCV_INCLUDE_DIRS=%OpenCV_INCLUDE_DIRS% "
+    depend : ["KERNEL",
+              "GUI",
+              "boost",
+              "CAS",
+              "Python",
+              "hdf5",
+              "omniORB",
+              "qt",
+              "ParaView",
+              "docutils",
+              "Sphinx",
+              "Jinja2",
+              "setuptools",
+              "Pygments",
+              "opencv",
+              "six",
+              "pytz",
+              "psutil",
+              "sphinxintl",
+              "eigen"
+             ]
+    nb_proc : 2
+}
+
+version_V9_8_0_win :
+{
+    cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig.exe -DSALOME_GEOM_USE_OPENCV=ON -DOPENCV_ROOT_DIR=%OPENCV_ROOT_DIR% -DOpenCV_INCLUDE_DIRS=%OpenCV_INCLUDE_DIRS% "
+    depend : ["KERNEL",
+              "GUI",
+              "boost",
+              "CAS",
+              "Python",
+              "hdf5",
+              "omniORB",
+              "qt",
+              "ParaView",
+              "docutils",
+              "Sphinx",
+              "Jinja2",
+              "setuptools",
+              "Pygments",
+              "opencv",
+              "six",
+              "pytz",
+              "psutil",
+              "sphinxintl",
+              "eigen"
+             ]
+    nb_proc : 2
+}
+
+version_V9_7_0_win :
+{
+    cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig.exe -DSALOME_GEOM_USE_OPENCV=ON -DOPENCV_ROOT_DIR=%OPENCV_ROOT_DIR% -DOpenCV_INCLUDE_DIRS=%OpenCV_INCLUDE_DIRS% "
+    depend : ["KERNEL",
+              "GUI",
+              "boost",
+              "CAS",
+              "Python",
+              "hdf5",
+              "omniORB",
+              "qt",
+              "ParaView",
+              "docutils",
+              "Sphinx",
+              "Jinja2",
+              "setuptools",
+              "Pygments",
+              "opencv",
+              "six",
+              "pytz",
+              "psutil",
+              "sphinxintl",
+              "eigen"
+             ]
+    nb_proc : 2
 }
 
 version_V9_4_0_to_V9_6_0 :
