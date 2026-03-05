@@ -52,8 +52,9 @@ if [ $? -ne 0 ]; then
     exit 2
 fi
 
-echo "INFO: python3 -m pip install meson_python ninja setuptools-scm pybind11 cppy"
-python3 -m pip install meson_python ninja setuptools-scm pybind11 cppy
+#FIXME
+echo "INFO: python3 -m pip install meson_python ninja setuptools-scm pybind11 cppy flit-core"
+python3 -m pip install meson_python ninja setuptools-scm pybind11 cppy flit-core
 if [ $? -ne 0 ]; then
     echo "ERROR: fail to create a venv"
     exit 3
@@ -61,8 +62,17 @@ fi
 
 # install
 echo "INFO: running installation command"
-echo "python3 -m pip install $SOURCE_DIR --no-binary :all: --no-build-isolation --cache-dir=$BUILD_DIR/cache/pip --prefix=$PRODUCT_INSTALL -vvv"
-python3 -m pip install $SOURCE_DIR --no-binary :all: --no-build-isolation --cache-dir=$BUILD_DIR/cache/pip --prefix=$PRODUCT_INSTALL -vvv
+echo "${PYTHONBIN} -m pip install $SOURCE_DIR --no-binary :all: --config-settings=setup-args="-Dsystem-freetype=true" --config-settings=setup-args="-Dsystem-qhull=true" --no-build-isolation --ignore-installed --no-deps --cache-dir=$BUILD_DIR/cache/pip --prefix=$PRODUCT_INSTALL -vvv"
+${PYTHONBIN} -m pip install $SOURCE_DIR \
+	--no-binary :all: \
+	--config-settings=setup-args="-Dsystem-freetype=true" \
+	--config-settings=setup-args="-Dsystem-qhull=true" \
+	--no-build-isolation \
+	--ignore-installed \
+	--no-deps \
+	--cache-dir=$BUILD_DIR/cache/pip \
+	--prefix=$PRODUCT_INSTALL \
+	-vvv
 if [ $? -ne 0 ]; then
     echo "ERROR: fail to install ${PRODUCT_NAME} with pip"
     exit 4

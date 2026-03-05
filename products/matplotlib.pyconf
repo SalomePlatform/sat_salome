@@ -4,7 +4,7 @@ default :
     build_source : "script"
     compil_script :  "pip_install" + $VARS.scriptExtension
     get_source : "archive"
-    system_info : 
+    system_info :
     {
         rpm : ["python3-matplotlib"]
         rpm_dev : []
@@ -17,7 +17,7 @@ default :
     }
     # OP distribute is not useful anymore
     depend : ['Python', 'setuptools',  'numpy', 'freetype', 'six', 'pytz', 'pyparsing', 'dateutil', 'cycler']
-    opt_depend : ['contourpy', 'fonttools', 'importlib_resources', 
+    opt_depend : ['contourpy', 'fonttools', 'importlib_resources',
                   'kiwisolver', 'packaging', 'Pillow', 'pyside', 'PyQt'
                  ]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
@@ -36,6 +36,19 @@ default_win :
    archive_info : {archive_name : "matplotlib-" + $APPLICATION.products.matplotlib + "_windows.tar.gz"}
    depend : ['Python', 'numpy', 'freetype', 'six', 'pytz', 'pyparsing', 'dateutil', 'setuptools', 'cycler']
    opt_depend : ['kiwisolver', 'Pillow', 'pyside', 'PyQt']
+   properties:
+   {
+     incremental : "yes"
+     single_install_dir : "yes"
+   }
+}
+
+version_3_10_1 :
+{
+   compil_script : 'matplotlib-3.10.1' + $VARS.scriptExtension
+   archive_info : {archive_name : "matplotlib-" + $APPLICATION.products.matplotlib + ".tar.gz"}
+   depend : ['Python', 'numpy', 'freetype', 'six', 'pytz', 'pyparsing', 'dateutil', 'setuptools', 'cycler']
+   opt_depend : ['kiwisolver', 'packaging', 'Pillow', 'pyside', 'PyQt']
    properties:
    {
      incremental : "yes"

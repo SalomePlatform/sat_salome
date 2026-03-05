@@ -4,7 +4,7 @@ default :
     build_source : "script"
     compil_script :  $name + $VARS.scriptExtension
     get_source : "archive"
-    system_info : 
+    system_info :
     {
         rpm : ["python3-qt5"]
         rpm_dev : ["python3-qt5-devel"] # contains qtsvg
@@ -43,6 +43,12 @@ version_5_15_3 :
 {
     compil_script :  "PyQt-5.15" + $VARS.scriptExtension
     patches : ['pyqt-5.15.3-qpycore-init-pyqtparaview.patch'] # see bos #33259
+}
+
+version_5_15_3_DB13 :
+{
+    compil_script :  "PyQt-5.15" + $VARS.scriptExtension
+    patches : ['PyQt-5.15.3_sip5_py313.patch'] # see bos #49171
 }
 
 version_5_15_3_win :

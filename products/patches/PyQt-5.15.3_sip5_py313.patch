@@ -1,0 +1,27 @@
+diff -Naur PyQt/qpy/QtCore/qpycore_types.cpp PyQt.dev/qpy/QtCore/qpycore_types.cpp
+--- PyQt/qpy/QtCore/qpycore_types.cpp	2021-02-23 17:15:21.571374893 +0100
++++ PyQt.dev/qpy/QtCore/qpycore_types.cpp	2026-02-27 15:16:21.047125281 +0100
+@@ -385,9 +385,21 @@
+         QMap<uint, PropertyData> &pprops)
+ {
+     Py_ssize_t pos = 0;
+-    PyObject *key, *value, *dict;
++    PyObject *key, *value;
+ 
+-    dict = sipPyTypeDict(pytype);
++    unsigned long flags = PyType_GetFlags(pytype);
++
++    if (!(flags & Py_TPFLAGS_READY)) {
++        if (PyType_Ready(pytype) < 0)
++            return 0;
++    }
++
++    PyObject *dict = sipPyTypeDict(pytype);
++
++    if (dict == NULL || !PyDict_Check(dict))
++    {
++        return 0; 
++    }
+ 
+     while (PyDict_Next(dict, &pos, &key, &value))
+     {

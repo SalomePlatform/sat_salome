@@ -339,17 +339,18 @@ __overwrite__ :
         'APPLICATION.products.rapidjson'        : 'native'
         'APPLICATION.products.rich'             : 'native'
         'APPLICATION.products.assimulo'         : '3.5.2'
+        'APPLICATION.products.matplotlib'       : '3.10.1'
         'APPLICATION.products.opencv'           : '3.2.0'
         'APPLICATION.products.petsc'            : '3.22.3'
         'APPLICATION.products.PyFMI'            : '2.13.1'
-        'APPLICATION.products.PyQt'             : '5.15.3'
         'APPLICATION.products.swig'             : '4.0.2'
-        'APPLICATION.products.sip'              : {tag: '5.5.0',           base: 'no', section: 'version_5_5_0_DB13'                    }
-        'APPLICATION.products.FMILibrary'       : {tag: '2.4.1',           base: 'no', section: 'version_2_4_1_DB13'                    }
-        'APPLICATION.products.meshio'           : {tag: '5.3.5',           base: 'no', section: 'version_5_3_5_no_pip'                  }
-        'APPLICATION.products.omniORBpy'        : {tag: '4.2.5',           base: 'no', section: 'version_4_2_5_DB13'                    }
-        'APPLICATION.products.nose_py3'         : {tag: '1.6.9',           base: 'no', section: 'version_1_6_9_no_pip'                  }
-        'APPLICATION.products.KERNEL'           : {tag: 'master',          base: 'no', section: 'default_DB13'                          }
+        'APPLICATION.products.PyQt'             : {tag: '5.15.3', base: 'no', section: 'version_5_15_3_DB13' }
+        'APPLICATION.products.sip'              : {tag: '5.5.0',  base: 'no', section: 'version_5_5_0_DB13'  }
+        'APPLICATION.products.FMILibrary'       : {tag: '2.4.1',  base: 'no', section: 'version_2_4_1_DB13'  }
+        'APPLICATION.products.meshio'           : {tag: '5.3.5',  base: 'no', section: 'version_5_3_5_no_pip'}
+        'APPLICATION.products.omniORBpy'        : {tag: '4.2.5',  base: 'no', section: 'version_4_2_5_DB13'  }
+        'APPLICATION.products.nose_py3'         : {tag: '1.6.9',  base: 'no', section: 'version_1_6_9_no_pip'}
+        'APPLICATION.products.KERNEL'           : {tag: 'master', base: 'no', section: 'default_DB13'        }
     }
     #
     {
