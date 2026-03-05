@@ -1,0 +1,13 @@
+diff --git a/bin/module_version.py b/bin/module_version.py
+index 57591134..fb2656f4 100644
+--- a/bin/module_version.py
++++ b/bin/module_version.py
+@@ -29,7 +29,7 @@ __author__ = "Jean-Philippe ARGAUD"
+ __all__ = []
+ 
+ name = "ADAO"
+-version = "9.16.0"
++version = "9.15.0"
+ year = "2026"
+ date = "jeudi 22 janvier 2026, 22:22:22 (UTC+0100)"
+ 

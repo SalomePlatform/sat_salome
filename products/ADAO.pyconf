@@ -34,6 +34,7 @@ default :
         ]
     opt_depend : ["scipy"]
     build_depend : ["cmake", "swig", "cppunit"]
+    patches: ["ADAO_version_to_9_15_0.patch"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     properties:
