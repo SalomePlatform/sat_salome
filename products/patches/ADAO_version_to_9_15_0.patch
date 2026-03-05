@@ -11,3 +11,393 @@ index 57591134..fb2656f4 100644
  year = "2026"
  date = "jeudi 22 janvier 2026, 22:22:22 (UTC+0100)"
  
+diff --git a/resources/SalomeApp.xml.in b/resources/SalomeApp.xml.in
+index c746505c..cd0d1c2a 100644
+--- a/resources/SalomeApp.xml.in
++++ b/resources/SalomeApp.xml.in
+@@ -28,7 +28,7 @@
+     <parameter name="icon"          value="ADAO.png"/>
+     <parameter name="library"       value="SalomePyQtGUI"/>
+     <parameter name="documentation" value="adao_help"/>
+-    <parameter name="version"       value="9.16.0"/>
++    <parameter name="version"       value="9.15.0"/>
+     <!-- parameter name="description"   value="Calibrate numerical simulations, interpolate measurements, combine data and calculations, optimize trajectories, verify and validate models"/ -->
+     <!-- parameter name="description"   value="Recaler les simulations numériques, interpoler des mesures, combiner des données et des calculs, optimiser des trajectoires, vérifier et valider des modèles"/ -->
+   </section>
+diff --git a/src/daComposant/daCore/version.py b/src/daComposant/daCore/version.py
+index 7cef8d85..71659434 100644
+--- a/src/daComposant/daCore/version.py
++++ b/src/daComposant/daCore/version.py
+@@ -27,7 +27,7 @@ __author__ = "Jean-Philippe ARGAUD"
+ __all__ = []
+ 
+ name = "ADAO"
+-version = "9.16.0"
++version = "9.15.0"
+ year = "2026"
+ date = "jeudi 22 janvier 2026, 22:22:22 (UTC+0100)"
+ 
+diff --git a/src/daComposant/daNumerics/pst4mod/modelica_calibration/case.py b/src/daComposant/daNumerics/pst4mod/modelica_calibration/case.py
+index e7b12af3..ad770a32 100644
+--- a/src/daComposant/daNumerics/pst4mod/modelica_calibration/case.py
++++ b/src/daComposant/daNumerics/pst4mod/modelica_calibration/case.py
+@@ -24,7 +24,7 @@ __all__ = ["Calibration", "name", "version", "year"]
+ # ==============================================================================
+ 
+ name     = "Modelica and Dymola Calibration Tools"
+-version  = "1.0.9.16.0"  # "x.x"+"adao version"
++version  = "1.0.9.15.0"  # "x.x"+"adao version"
+ year     = "2026"
+ 
+ # ==============================================================================
+diff --git a/src/daEficas/traduitADAOV7_4_0ToV9_16_0.py b/src/daEficas/traduitADAOV7_4_0ToV9_16_0.py
+index 9d7524e4..29eb0402 100644
+--- a/src/daEficas/traduitADAOV7_4_0ToV9_16_0.py
++++ b/src/daEficas/traduitADAOV7_4_0ToV9_16_0.py
+@@ -32,7 +32,7 @@ from Traducteur.inseremocle  import *
+ from Traducteur.movemocle    import *
+ from Traducteur.renamemocle  import *
+ 
+-version_out = "V9_16_0"
++version_out = "V9_15_0"
+ 
+ usage="""Usage: python %(prog)s [args]
+ 
+diff --git a/src/daEficas/traduitADAOV7_5_0ToV9_16_0.py b/src/daEficas/traduitADAOV7_5_0ToV9_16_0.py
+index 9d7524e4..29eb0402 100644
+--- a/src/daEficas/traduitADAOV7_5_0ToV9_16_0.py
++++ b/src/daEficas/traduitADAOV7_5_0ToV9_16_0.py
+@@ -32,7 +32,7 @@ from Traducteur.inseremocle  import *
+ from Traducteur.movemocle    import *
+ from Traducteur.renamemocle  import *
+ 
+-version_out = "V9_16_0"
++version_out = "V9_15_0"
+ 
+ usage="""Usage: python %(prog)s [args]
+ 
+diff --git a/src/daEficas/traduitADAOV7_5_1ToV9_16_0.py b/src/daEficas/traduitADAOV7_5_1ToV9_16_0.py
+index 9d7524e4..29eb0402 100644
+--- a/src/daEficas/traduitADAOV7_5_1ToV9_16_0.py
++++ b/src/daEficas/traduitADAOV7_5_1ToV9_16_0.py
+@@ -32,7 +32,7 @@ from Traducteur.inseremocle  import *
+ from Traducteur.movemocle    import *
+ from Traducteur.renamemocle  import *
+ 
+-version_out = "V9_16_0"
++version_out = "V9_15_0"
+ 
+ usage="""Usage: python %(prog)s [args]
+ 
+diff --git a/src/daEficas/traduitADAOV7_6_0ToV9_16_0.py b/src/daEficas/traduitADAOV7_6_0ToV9_16_0.py
+index 0a8ec478..1c654d2c 100644
+--- a/src/daEficas/traduitADAOV7_6_0ToV9_16_0.py
++++ b/src/daEficas/traduitADAOV7_6_0ToV9_16_0.py
+@@ -32,7 +32,7 @@ from Traducteur.inseremocle  import *
+ from Traducteur.movemocle    import *
+ from Traducteur.renamemocle  import *
+ 
+-version_out = "V9_16_0"
++version_out = "V9_15_0"
+ 
+ usage="""Usage: python %(prog)s [args]
+ 
+diff --git a/src/daEficas/traduitADAOV7_7_0ToV9_16_0.py b/src/daEficas/traduitADAOV7_7_0ToV9_16_0.py
+index 0a8ec478..1c654d2c 100644
+--- a/src/daEficas/traduitADAOV7_7_0ToV9_16_0.py
++++ b/src/daEficas/traduitADAOV7_7_0ToV9_16_0.py
+@@ -32,7 +32,7 @@ from Traducteur.inseremocle  import *
+ from Traducteur.movemocle    import *
+ from Traducteur.renamemocle  import *
+ 
+-version_out = "V9_16_0"
++version_out = "V9_15_0"
+ 
+ usage="""Usage: python %(prog)s [args]
+ 
+diff --git a/src/daEficas/traduitADAOV7_8_0ToV9_16_0.py b/src/daEficas/traduitADAOV7_8_0ToV9_16_0.py
+index 0a8ec478..1c654d2c 100644
+--- a/src/daEficas/traduitADAOV7_8_0ToV9_16_0.py
++++ b/src/daEficas/traduitADAOV7_8_0ToV9_16_0.py
+@@ -32,7 +32,7 @@ from Traducteur.inseremocle  import *
+ from Traducteur.movemocle    import *
+ from Traducteur.renamemocle  import *
+ 
+-version_out = "V9_16_0"
++version_out = "V9_15_0"
+ 
+ usage="""Usage: python %(prog)s [args]
+ 
+diff --git a/src/daEficas/traduitADAOV8_1_0ToV9_16_0.py b/src/daEficas/traduitADAOV8_1_0ToV9_16_0.py
+index 0a8ec478..1c654d2c 100644
+--- a/src/daEficas/traduitADAOV8_1_0ToV9_16_0.py
++++ b/src/daEficas/traduitADAOV8_1_0ToV9_16_0.py
+@@ -32,7 +32,7 @@ from Traducteur.inseremocle  import *
+ from Traducteur.movemocle    import *
+ from Traducteur.renamemocle  import *
+ 
+-version_out = "V9_16_0"
++version_out = "V9_15_0"
+ 
+ usage="""Usage: python %(prog)s [args]
+ 
+diff --git a/src/daEficas/traduitADAOV8_2_0ToV9_16_0.py b/src/daEficas/traduitADAOV8_2_0ToV9_16_0.py
+index 0a8ec478..1c654d2c 100644
+--- a/src/daEficas/traduitADAOV8_2_0ToV9_16_0.py
++++ b/src/daEficas/traduitADAOV8_2_0ToV9_16_0.py
+@@ -32,7 +32,7 @@ from Traducteur.inseremocle  import *
+ from Traducteur.movemocle    import *
+ from Traducteur.renamemocle  import *
+ 
+-version_out = "V9_16_0"
++version_out = "V9_15_0"
+ 
+ usage="""Usage: python %(prog)s [args]
+ 
+diff --git a/src/daEficas/traduitADAOV8_3_0ToV9_16_0.py b/src/daEficas/traduitADAOV8_3_0ToV9_16_0.py
+index 0a8ec478..1c654d2c 100644
+--- a/src/daEficas/traduitADAOV8_3_0ToV9_16_0.py
++++ b/src/daEficas/traduitADAOV8_3_0ToV9_16_0.py
+@@ -32,7 +32,7 @@ from Traducteur.inseremocle  import *
+ from Traducteur.movemocle    import *
+ from Traducteur.renamemocle  import *
+ 
+-version_out = "V9_16_0"
++version_out = "V9_15_0"
+ 
+ usage="""Usage: python %(prog)s [args]
+ 
+diff --git a/src/daEficas/traduitADAOV8_4_0ToV9_16_0.py b/src/daEficas/traduitADAOV8_4_0ToV9_16_0.py
+index 0a8ec478..1c654d2c 100644
+--- a/src/daEficas/traduitADAOV8_4_0ToV9_16_0.py
++++ b/src/daEficas/traduitADAOV8_4_0ToV9_16_0.py
+@@ -32,7 +32,7 @@ from Traducteur.inseremocle  import *
+ from Traducteur.movemocle    import *
+ from Traducteur.renamemocle  import *
+ 
+-version_out = "V9_16_0"
++version_out = "V9_15_0"
+ 
+ usage="""Usage: python %(prog)s [args]
+ 
+diff --git a/src/daEficas/traduitADAOV8_5_0ToV9_16_0.py b/src/daEficas/traduitADAOV8_5_0ToV9_16_0.py
+index 0a8ec478..1c654d2c 100644
+--- a/src/daEficas/traduitADAOV8_5_0ToV9_16_0.py
++++ b/src/daEficas/traduitADAOV8_5_0ToV9_16_0.py
+@@ -32,7 +32,7 @@ from Traducteur.inseremocle  import *
+ from Traducteur.movemocle    import *
+ from Traducteur.renamemocle  import *
+ 
+-version_out = "V9_16_0"
++version_out = "V9_15_0"
+ 
+ usage="""Usage: python %(prog)s [args]
+ 
+diff --git a/src/daEficas/traduitADAOV8_6_0ToV9_16_0.py b/src/daEficas/traduitADAOV8_6_0ToV9_16_0.py
+index 0a8ec478..1c654d2c 100644
+--- a/src/daEficas/traduitADAOV8_6_0ToV9_16_0.py
++++ b/src/daEficas/traduitADAOV8_6_0ToV9_16_0.py
+@@ -32,7 +32,7 @@ from Traducteur.inseremocle  import *
+ from Traducteur.movemocle    import *
+ from Traducteur.renamemocle  import *
+ 
+-version_out = "V9_16_0"
++version_out = "V9_15_0"
+ 
+ usage="""Usage: python %(prog)s [args]
+ 
+diff --git a/src/daEficas/traduitADAOV9_10_0ToV9_16_0.py b/src/daEficas/traduitADAOV9_10_0ToV9_16_0.py
+index 0a8ec478..1c654d2c 100644
+--- a/src/daEficas/traduitADAOV9_10_0ToV9_16_0.py
++++ b/src/daEficas/traduitADAOV9_10_0ToV9_16_0.py
+@@ -32,7 +32,7 @@ from Traducteur.inseremocle  import *
+ from Traducteur.movemocle    import *
+ from Traducteur.renamemocle  import *
+ 
+-version_out = "V9_16_0"
++version_out = "V9_15_0"
+ 
+ usage="""Usage: python %(prog)s [args]
+ 
+diff --git a/src/daEficas/traduitADAOV9_11_0ToV9_16_0.py b/src/daEficas/traduitADAOV9_11_0ToV9_16_0.py
+index 0a8ec478..1c654d2c 100644
+--- a/src/daEficas/traduitADAOV9_11_0ToV9_16_0.py
++++ b/src/daEficas/traduitADAOV9_11_0ToV9_16_0.py
+@@ -32,7 +32,7 @@ from Traducteur.inseremocle  import *
+ from Traducteur.movemocle    import *
+ from Traducteur.renamemocle  import *
+ 
+-version_out = "V9_16_0"
++version_out = "V9_15_0"
+ 
+ usage="""Usage: python %(prog)s [args]
+ 
+diff --git a/src/daEficas/traduitADAOV9_12_0ToV9_16_0.py b/src/daEficas/traduitADAOV9_12_0ToV9_16_0.py
+index 0a8ec478..1c654d2c 100644
+--- a/src/daEficas/traduitADAOV9_12_0ToV9_16_0.py
++++ b/src/daEficas/traduitADAOV9_12_0ToV9_16_0.py
+@@ -32,7 +32,7 @@ from Traducteur.inseremocle  import *
+ from Traducteur.movemocle    import *
+ from Traducteur.renamemocle  import *
+ 
+-version_out = "V9_16_0"
++version_out = "V9_15_0"
+ 
+ usage="""Usage: python %(prog)s [args]
+ 
+diff --git a/src/daEficas/traduitADAOV9_13_0ToV9_16_0.py b/src/daEficas/traduitADAOV9_13_0ToV9_16_0.py
+index 0a8ec478..1c654d2c 100644
+--- a/src/daEficas/traduitADAOV9_13_0ToV9_16_0.py
++++ b/src/daEficas/traduitADAOV9_13_0ToV9_16_0.py
+@@ -32,7 +32,7 @@ from Traducteur.inseremocle  import *
+ from Traducteur.movemocle    import *
+ from Traducteur.renamemocle  import *
+ 
+-version_out = "V9_16_0"
++version_out = "V9_15_0"
+ 
+ usage="""Usage: python %(prog)s [args]
+ 
+diff --git a/src/daEficas/traduitADAOV9_14_0ToV9_16_0.py b/src/daEficas/traduitADAOV9_14_0ToV9_16_0.py
+index 0a8ec478..1c654d2c 100644
+--- a/src/daEficas/traduitADAOV9_14_0ToV9_16_0.py
++++ b/src/daEficas/traduitADAOV9_14_0ToV9_16_0.py
+@@ -32,7 +32,7 @@ from Traducteur.inseremocle  import *
+ from Traducteur.movemocle    import *
+ from Traducteur.renamemocle  import *
+ 
+-version_out = "V9_16_0"
++version_out = "V9_15_0"
+ 
+ usage="""Usage: python %(prog)s [args]
+ 
+diff --git a/src/daEficas/traduitADAOV9_15_0ToV9_16_0.py b/src/daEficas/traduitADAOV9_15_0ToV9_16_0.py
+index 0a8ec478..1c654d2c 100644
+--- a/src/daEficas/traduitADAOV9_15_0ToV9_16_0.py
++++ b/src/daEficas/traduitADAOV9_15_0ToV9_16_0.py
+@@ -32,7 +32,7 @@ from Traducteur.inseremocle  import *
+ from Traducteur.movemocle    import *
+ from Traducteur.renamemocle  import *
+ 
+-version_out = "V9_16_0"
++version_out = "V9_15_0"
+ 
+ usage="""Usage: python %(prog)s [args]
+ 
+diff --git a/src/daEficas/traduitADAOV9_2_0ToV9_16_0.py b/src/daEficas/traduitADAOV9_2_0ToV9_16_0.py
+index 0a8ec478..1c654d2c 100644
+--- a/src/daEficas/traduitADAOV9_2_0ToV9_16_0.py
++++ b/src/daEficas/traduitADAOV9_2_0ToV9_16_0.py
+@@ -32,7 +32,7 @@ from Traducteur.inseremocle  import *
+ from Traducteur.movemocle    import *
+ from Traducteur.renamemocle  import *
+ 
+-version_out = "V9_16_0"
++version_out = "V9_15_0"
+ 
+ usage="""Usage: python %(prog)s [args]
+ 
+diff --git a/src/daEficas/traduitADAOV9_3_0ToV9_16_0.py b/src/daEficas/traduitADAOV9_3_0ToV9_16_0.py
+index 0a8ec478..1c654d2c 100644
+--- a/src/daEficas/traduitADAOV9_3_0ToV9_16_0.py
++++ b/src/daEficas/traduitADAOV9_3_0ToV9_16_0.py
+@@ -32,7 +32,7 @@ from Traducteur.inseremocle  import *
+ from Traducteur.movemocle    import *
+ from Traducteur.renamemocle  import *
+ 
+-version_out = "V9_16_0"
++version_out = "V9_15_0"
+ 
+ usage="""Usage: python %(prog)s [args]
+ 
+diff --git a/src/daEficas/traduitADAOV9_4_0ToV9_16_0.py b/src/daEficas/traduitADAOV9_4_0ToV9_16_0.py
+index 0a8ec478..1c654d2c 100644
+--- a/src/daEficas/traduitADAOV9_4_0ToV9_16_0.py
++++ b/src/daEficas/traduitADAOV9_4_0ToV9_16_0.py
+@@ -32,7 +32,7 @@ from Traducteur.inseremocle  import *
+ from Traducteur.movemocle    import *
+ from Traducteur.renamemocle  import *
+ 
+-version_out = "V9_16_0"
++version_out = "V9_15_0"
+ 
+ usage="""Usage: python %(prog)s [args]
+ 
+diff --git a/src/daEficas/traduitADAOV9_5_0ToV9_16_0.py b/src/daEficas/traduitADAOV9_5_0ToV9_16_0.py
+index 0a8ec478..1c654d2c 100644
+--- a/src/daEficas/traduitADAOV9_5_0ToV9_16_0.py
++++ b/src/daEficas/traduitADAOV9_5_0ToV9_16_0.py
+@@ -32,7 +32,7 @@ from Traducteur.inseremocle  import *
+ from Traducteur.movemocle    import *
+ from Traducteur.renamemocle  import *
+ 
+-version_out = "V9_16_0"
++version_out = "V9_15_0"
+ 
+ usage="""Usage: python %(prog)s [args]
+ 
+diff --git a/src/daEficas/traduitADAOV9_6_0ToV9_16_0.py b/src/daEficas/traduitADAOV9_6_0ToV9_16_0.py
+index 0a8ec478..1c654d2c 100644
+--- a/src/daEficas/traduitADAOV9_6_0ToV9_16_0.py
++++ b/src/daEficas/traduitADAOV9_6_0ToV9_16_0.py
+@@ -32,7 +32,7 @@ from Traducteur.inseremocle  import *
+ from Traducteur.movemocle    import *
+ from Traducteur.renamemocle  import *
+ 
+-version_out = "V9_16_0"
++version_out = "V9_15_0"
+ 
+ usage="""Usage: python %(prog)s [args]
+ 
+diff --git a/src/daEficas/traduitADAOV9_7_0ToV9_16_0.py b/src/daEficas/traduitADAOV9_7_0ToV9_16_0.py
+index 0a8ec478..1c654d2c 100644
+--- a/src/daEficas/traduitADAOV9_7_0ToV9_16_0.py
++++ b/src/daEficas/traduitADAOV9_7_0ToV9_16_0.py
+@@ -32,7 +32,7 @@ from Traducteur.inseremocle  import *
+ from Traducteur.movemocle    import *
+ from Traducteur.renamemocle  import *
+ 
+-version_out = "V9_16_0"
++version_out = "V9_15_0"
+ 
+ usage="""Usage: python %(prog)s [args]
+ 
+diff --git a/src/daEficas/traduitADAOV9_8_0ToV9_16_0.py b/src/daEficas/traduitADAOV9_8_0ToV9_16_0.py
+index 0a8ec478..1c654d2c 100644
+--- a/src/daEficas/traduitADAOV9_8_0ToV9_16_0.py
++++ b/src/daEficas/traduitADAOV9_8_0ToV9_16_0.py
+@@ -32,7 +32,7 @@ from Traducteur.inseremocle  import *
+ from Traducteur.movemocle    import *
+ from Traducteur.renamemocle  import *
+ 
+-version_out = "V9_16_0"
++version_out = "V9_15_0"
+ 
+ usage="""Usage: python %(prog)s [args]
+ 
+diff --git a/src/daEficas/traduitADAOV9_9_0ToV9_16_0.py b/src/daEficas/traduitADAOV9_9_0ToV9_16_0.py
+index 0a8ec478..1c654d2c 100644
+--- a/src/daEficas/traduitADAOV9_9_0ToV9_16_0.py
++++ b/src/daEficas/traduitADAOV9_9_0ToV9_16_0.py
+@@ -32,7 +32,7 @@ from Traducteur.inseremocle  import *
+ from Traducteur.movemocle    import *
+ from Traducteur.renamemocle  import *
+ 
+-version_out = "V9_16_0"
++version_out = "V9_15_0"
+ 
+ usage="""Usage: python %(prog)s [args]
+ 
+diff --git a/src/daEficas/traduitADAOsansToV9_16_0.py b/src/daEficas/traduitADAOsansToV9_16_0.py
+index 9d7524e4..29eb0402 100644
+--- a/src/daEficas/traduitADAOsansToV9_16_0.py
++++ b/src/daEficas/traduitADAOsansToV9_16_0.py
+@@ -32,7 +32,7 @@ from Traducteur.inseremocle  import *
+ from Traducteur.movemocle    import *
+ from Traducteur.renamemocle  import *
+ 
+-version_out = "V9_16_0"
++version_out = "V9_15_0"
+ 
+ usage="""Usage: python %(prog)s [args]
+ 
