@@ -13,9 +13,9 @@ default :
     }
     environ :
     {
-
+       env_script : "hdf5_openmpi.py"
     }
-    patches : [] 
+    patches : []
     depend : []
     opt_depend : [ 'openmpi']
     build_depend : ["cmake"]
