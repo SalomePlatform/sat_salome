@@ -1,8 +1,8 @@
---- ParaView_ref/VTK/CMake/vtkModuleWrapPython.cmake	2025-10-23 22:57:04.000000000 +0200
-+++ ParaView_dev/VTK/CMake/vtkModuleWrapPython.cmake	2025-11-07 13:34:03.347210233 +0100
+--- ParaView-6.0.0-c61dcc8ee0-ref/VTK/CMake/vtkModuleWrapPython.cmake	2026-03-12 13:04:46.994076900 +0100
++++ ParaView-6.0.0-c61dcc8ee0-dev/VTK/CMake/vtkModuleWrapPython.cmake	2026-03-12 13:05:31.211102400 +0100
 @@ -63,11 +63,7 @@
    endif ()
-
+ 
    if (MSVC)
 -    if (CMAKE_INSTALL_LIBDIR STREQUAL "lib")
 -      set(destination "lib/site-packages")
@@ -13,3 +13,12 @@
    else ()
      if (NOT DEFINED "Python3_VERSION_MAJOR" OR
          NOT DEFINED "Python3_VERSION_MINOR")
+@@ -567,7 +563,7 @@
+       PROPERTIES
+         PREFIX ""
+         OUTPUT_NAME "${_vtk_python_library_name}"
+-        ARCHIVE_OUTPUT_NAME "${name}")
++        ARCHIVE_OUTPUT_NAME "${name}Lib")
+   endif ()
+ 
+   vtk_module_autoinit(
