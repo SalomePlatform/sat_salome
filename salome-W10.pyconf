@@ -13,7 +13,7 @@ PRODUCTPATH : $project_path + "\\products"
 # Where to search the pyconf of the jobs of the project
 JOBPATH : $project_path + r"\\jobs\\"
 # Where to search for licences
-LICENCEPATH : "fake_path" #"\\\\store-dm2s\\partages_projet_08\\salome-public\\prerequis\\LICENCE"
+LICENCEPATH : "\\\\store-dm2s\\partages_projet_08\\salome-public\\prerequis\\LICENCE"
 
 git_info :
 {
