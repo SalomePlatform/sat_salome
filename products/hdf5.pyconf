@@ -9,7 +9,7 @@ default :
         rpm : []
         rpm_dev : ["hdf5-devel"]
         apt : []
-        apt_dev : ["libhdf5-dev"]
+        apt_dev : ["libhdf5-dev", "hdf5-tools"]
     }
     environ :
     {
