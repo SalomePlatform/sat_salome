@@ -1,8 +1,6 @@
 default :
 {
     name : "scp"
-    build_source : "script"
-    compil_script :  $name + ".sh"
     get_source : "archive"
     system_info :
     {

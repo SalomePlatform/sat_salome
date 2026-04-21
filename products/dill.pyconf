@@ -1,8 +1,6 @@
 default :
 {
     name : "dill"
-    build_source : "script"
-    compil_script :  $name + $VARS.scriptExtension
     system_info :
     {
         rpm : ["python3-dill"]
@@ -31,6 +29,7 @@ default :
 
 default_win :
 {
+    build_source : "script"
     compil_script :  'pip_install' + $VARS.scriptExtension
     properties :
     {
