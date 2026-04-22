@@ -835,6 +835,7 @@ version_V9_15_0_MPI :
               "openmpi"
               ]
     opt_depend : ["ParMetis", "metis", "BasicIterativeStatistics"]
+    patches : ['medcoupling-Threads.patch']
 }
 
 version_V9_15_0_MPI_FD42 :
