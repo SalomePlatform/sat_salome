@@ -16,14 +16,6 @@ export PATH=$(pwd)/bin:$PATH
 export PYTHONPATH=$(pwd):$PYTHONPATH
 
 case $LINUX_DISTRIBUTION in
-    FD42)
-        echo
-        echo "*** ${PYTHONBIN} -m pip install PyFMI-2.13.0-cp313-cp313-linux_x86_64.whl --prefix=${PRODUCT_INSTALL}"
-        ${PYTHONBIN} -m pip install PyFMI-2.13.0-cp313-cp313-linux_x86_64.whl --prefix=${PRODUCT_INSTALL}
-        if [ $? -ne 0 ]; then
-            echo "Error on pip install"
-        fi
-        ;;
     FD40)
         echo
         echo "*** ${PYTHONBIN} -m pip install PyFMI-2.13.0-cp312-cp312-linux_x86_64.whl --prefix=${PRODUCT_INSTALL}"
