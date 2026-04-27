@@ -58,6 +58,18 @@ version_b5b0ec6:
             ]
 }
 
+version_b5b0ec6_UB26_04:
+{
+  build_source: "script"
+  compil_script: "mcut" + $VARS.scriptExtension
+  patches : [
+             'mcut-b5b0ec6-p01_cgsboolean.patch',
+             'mcut-b5b0ec6-p02_cgsboolean.patch',
+             'mcut-b5b0ec6-p03_stdint.patch',
+             'mcut-b5b0ec6-p04_mio-tag.patch'
+            ]
+}
+
 version_b5b0ec6_FD42:
 {
   build_source: "script"

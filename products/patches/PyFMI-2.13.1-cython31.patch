@@ -1,0 +1,12 @@
+diff -Naur PyFMI/src/pyfmi/fmi_coupled.pyx PyFMI.dev/src/pyfmi/fmi_coupled.pyx
+--- PyFMI/src/pyfmi/fmi_coupled.pyx	2024-06-25 20:54:39.000000000 +0200
++++ PyFMI.dev/src/pyfmi/fmi_coupled.pyx	2026-04-23 16:43:14.390773100 +0200
+@@ -724,7 +724,7 @@
+         return valueref & 0x00000000FFFFFFFF
+     
+     cdef _get_model_index_from_vr(self, valueref):
+-        return long(valueref) >> 32
++        return valueref >> 32
+     
+     cdef _get_global_name(self, model_ind, name):
+         return self.index[model_ind] + "." + name

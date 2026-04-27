@@ -36,7 +36,7 @@ version_4_3_2 :
     system_info :
     {
         rpm : ["omniORB"]
-        rpm_dev : ["omniORB-devel"] 
+        rpm_dev : ["omniORB-devel"]
         apt : []
         apt_dev : []
     }
@@ -46,7 +46,7 @@ version_4_2_3 :
 {
   patches: []
 }
-  
+
 version_4_2_3_win:
 {
   patches: ['omniORB-4.2.3-windows-visual-2019.patch']
@@ -55,6 +55,11 @@ version_4_2_3_win:
 version_4_2_5:
 {
   patches: ['omniORB-4.2.5.p1.patch']
+}
+
+version_4_2_5_UB26_04:
+{
+  patches: ['omniORB-4.2.5.p1.patch','omniORB-4.2.5.p2.patch']
 }
 
 version_4_2_5_FD42:

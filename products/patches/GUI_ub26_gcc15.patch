@@ -1,0 +1,31 @@
+diff --git a/src/LightApp/LightApp_ExtInfoDlg.cxx b/src/LightApp/LightApp_ExtInfoDlg.cxx
+index 844ff4704..6db48a0ca 100644
+--- a/src/LightApp/LightApp_ExtInfoDlg.cxx
++++ b/src/LightApp/LightApp_ExtInfoDlg.cxx
+@@ -162,7 +162,7 @@ bool LightApp_ExtInfoDlg::fillExtListWidget(QTableWidget* extListWidget) const
+     // ---- Name column ----
+     auto nameItem = makeTableWidgetItem(keyName);
+ 
+-    // keyNamePos is already 1 on the first iteration, so we need to decrease it 
++    // keyNamePos is already 1 on the first iteration, so we need to decrease it
+     extListWidget->setItem(keyNamePos - 1, 0, nameItem);
+ 
+     // Tooltip = Description (assume infoList[0] = Description)
+@@ -295,7 +295,7 @@ QByteArray LightApp_ExtInfoDlg::renderExtTreeGraph(const GraphWrapper& graph) co
+ 
+   MESSAGE("Render dependency tree...\n");
+   char* buffer = nullptr;
+-  unsigned int bufferLength = 0;
++  long unsigned int bufferLength = 0;
+   res = gvRenderData(gvc, extTreeGraph, "svg", &buffer, &bufferLength);
+   if (res)
+   {
+@@ -304,7 +304,7 @@ QByteArray LightApp_ExtInfoDlg::renderExtTreeGraph(const GraphWrapper& graph) co
+   }
+ 
+   QByteArray renderedGraph(buffer, bufferLength);
+-  
++
+   // Clean up layout and buffer
+   gvFreeLayout(gvc, extTreeGraph);
+   gvFreeRenderData(buffer);

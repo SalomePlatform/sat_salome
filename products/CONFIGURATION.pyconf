@@ -26,6 +26,11 @@ default :
     patches : []
 }
 
+default_UB26_04:
+{
+  patches: ['CONFIGURATION_scotch_7.patch', 'CONFIGURATION_boost_1_89.patch']
+}
+
 version_V9_15_0_FD42 :
 {
   patches: ['CONFIGURATION-FD42-V9_15_0.patch']

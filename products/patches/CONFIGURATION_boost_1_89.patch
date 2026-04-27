@@ -1,0 +1,13 @@
+diff --git a/cmake/FindSalomeBoost.cmake b/cmake/FindSalomeBoost.cmake
+index 94cd070..5e42dcb 100644
+--- a/cmake/FindSalomeBoost.cmake
++++ b/cmake/FindSalomeBoost.cmake
+@@ -27,7 +27,7 @@ SET(Boost_USE_STATIC_LIBS        OFF)
+ SET(Boost_USE_MULTITHREADED      ON)
+ SET(Boost_USE_STATIC_RUNTIME     OFF)
+ SET(Boost_NO_BOOST_CMAKE         ON)
+-SET(SalomeBoost_COMPONENTS       filesystem regex system thread date_time chrono serialization)
++SET(SalomeBoost_COMPONENTS       filesystem regex thread date_time chrono serialization)
+ SET(SalomeBoost_FIND_COMPONENTS ${SalomeBoost_COMPONENTS})
+ 
+ IF(WIN32)

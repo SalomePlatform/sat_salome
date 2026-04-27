@@ -91,6 +91,9 @@ case $LINUX_DISTRIBUTION in
     DB13)
         PYQT5_SIP_VERSION=12.17.0
         ;;
+    UB26.04)
+        PYQT5_SIP_VERSION=12.17.0
+        ;;
     *)
         PYQT5_SIP_VERSION=12.8.1
         ;;

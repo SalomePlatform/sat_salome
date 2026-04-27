@@ -1,0 +1,15 @@
+diff -Naur libigl.ref/cmake/recipes/external/gmp.cmake libigl/cmake/recipes/external/gmp.cmake
+--- libigl.ref/cmake/recipes/external/gmp.cmake	2024-12-17 15:55:31.000000000 +0100
++++ libigl/cmake/recipes/external/gmp.cmake	2026-04-24 09:40:36.915715428 +0200
+@@ -1,3 +1,11 @@
++find_package(PkgConfig REQUIRED)
++
++pkg_check_modules(GMP REQUIRED IMPORTED_TARGET gmp)
++
++if(TARGET PkgConfig::GMP)
++    add_library(gmp::gmp ALIAS PkgConfig::GMP)
++endif()
++
+ if(TARGET gmp::gmp)
+     return()
+ endif()

@@ -1,0 +1,13 @@
+diff -Naur libigl.ref/cmake/recipes/external/boost.cmake libigl/cmake/recipes/external/boost.cmake
+--- libigl.ref/cmake/recipes/external/boost.cmake	2024-12-17 15:55:31.000000000 +0100
++++ libigl/cmake/recipes/external/boost.cmake	2026-04-24 09:23:53.098041633 +0200
+@@ -1,3 +1,4 @@
++find_package (Boost REQUIRED)
+ if(TARGET Boost::boost)
+     return()
+ endif()
+@@ -61,4 +62,3 @@
+         set_target_properties(Boost_${module} PROPERTIES FOLDER ThirdParty/Boost)
+     endif()
+ endforeach()
+-

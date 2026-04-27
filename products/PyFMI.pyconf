@@ -51,6 +51,18 @@ version_2_13_1 :
   }
 }
 
+version_2_13_1_UB26_04 :
+{
+  compil_script : "PyFMI-2.13.1.sh"
+  depend : ["Python", "setuptools", "Cython", "FMILibrary", "matplotlib", "nose_py3", "assimulo"]
+  patches: ["PyFMI-2.13.1-cython31.patch"]
+  properties:
+  {
+    incremental : "yes"
+    pip : "no"
+  }
+}
+
 version_2_6_no_pip :
 {
     compil_script : "PyFMI-2.6.sh"

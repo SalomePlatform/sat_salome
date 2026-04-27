@@ -44,6 +44,11 @@ version_3_13_5 :
     depend : []
 }
 
+version_3_13_1_UB26_04 :
+{
+  patches : ['embree-3.13.1-gcc15.patch']
+}
+
 version_3_13_1_FD42 :
 {
   patches : ['embree-3.13.1-gcc15.patch']

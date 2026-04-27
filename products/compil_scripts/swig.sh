@@ -4,19 +4,35 @@ echo "##########################################################################
 echo "swig" $VERSION
 echo "##########################################################################"
 
+LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
+
 # since we are using docker rootless, one has to ensure that some scripts are executable
 if [ -f /.dockerenv ]; then
     find $SOURCE_DIR -type f -exec chmod u+rwx {} \;
 fi
 
-echo
-echo "*** configure --without-pcre --without-octave"
-$SOURCE_DIR/configure --prefix=${PRODUCT_INSTALL} --without-pcre --without-octave
-if [ $? -ne 0 ]
-then
-    echo "ERROR on configure"
-    exit 1
-fi
+case $LINUX_DISTRIBUTION in
+    UB26.04)
+        echo
+        echo "*** configure --without-pcre --without-octave --without-scilab"
+        $SOURCE_DIR/configure --prefix=${PRODUCT_INSTALL} --without-pcre --without-octave --without-scilab
+        if [ $? -ne 0 ]
+        then
+            echo "ERROR on configure"
+            exit 1
+        fi
+        ;;
+    *)
+        echo
+        echo "*** configure --without-pcre --without-octave"
+        $SOURCE_DIR/configure --prefix=${PRODUCT_INSTALL} --without-pcre --without-octave
+        if [ $? -ne 0 ]
+        then
+            echo "ERROR on configure"
+            exit 1
+        fi
+        ;;
+esac
 
 echo
 echo "*** make" $MAKE_OPTIONS
@@ -36,8 +52,7 @@ then
     exit 3
 fi
 
-echo 
+echo
 
 echo
 echo "########## END"
-

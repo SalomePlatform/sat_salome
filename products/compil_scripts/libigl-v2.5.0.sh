@@ -4,8 +4,8 @@ echo "##########################################################################
 echo "libigl" $VERSION
 echo "##########################################################################"
 
-rm -rf $BUILD_DIR
-mkdir $BUILD_DIR
+#rm -rf $BUILD_DIR
+mkdir -p $BUILD_DIR
 cd $BUILD_DIR
 
 CMAKE_OPTIONS=

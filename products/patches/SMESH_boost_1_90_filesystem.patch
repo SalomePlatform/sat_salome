@@ -1,0 +1,43 @@
+diff --git a/src/DriverGMF/DriverGMF.cxx b/src/DriverGMF/DriverGMF.cxx
+index bec234d1f..2dc0e26aa 100644
+--- a/src/DriverGMF/DriverGMF.cxx
++++ b/src/DriverGMF/DriverGMF.cxx
+@@ -55,7 +55,7 @@ namespace DriverGMF
+ 
+   bool isExtensionCorrect( const std::string& fileName )
+   {
+-    std::string ext  = boost::filesystem::extension(fileName);
++    std::string ext  = boost::filesystem::path(fileName).extension().string();
+     switch ( ext.size() ) {
+     case 5: return ( ext == ".mesh" || ext == ".solb" );
+     case 6: return ( ext == ".meshb" );
+diff --git a/src/SMESHUtils/SMESH_MGLicenseKeyGen.cxx b/src/SMESHUtils/SMESH_MGLicenseKeyGen.cxx
+index 5b0fec433..8b7903f73 100644
+--- a/src/SMESHUtils/SMESH_MGLicenseKeyGen.cxx
++++ b/src/SMESHUtils/SMESH_MGLicenseKeyGen.cxx
+@@ -212,9 +212,9 @@ namespace
+ 
+       libraryFile._isURL = false;
+       if ( boost::regex_match( libraryFile._name, matchResult, urlRegex ))
+-        libraryFile._isURL = ( !matchResult.str( SCHEME    ).empty() &&
+-                              !matchResult.str( AUTHORITY ).empty() &&
+-                              !matchResult.str( PATH      ).empty() );
++        libraryFile._isURL = ( !matchResult.str( static_cast<int>(SCHEME)    ).empty() &&
++                              !matchResult.str( static_cast<int>(AUTHORITY) ).empty() &&
++                              !matchResult.str( static_cast<int>(PATH)      ).empty() );
+     }
+     if(libraryFile._isURL)
+       return true;
+@@ -226,9 +226,9 @@ namespace
+ 
+       libraryFile._isURL = false;
+       if ( boost::regex_match( libraryFile._name, matchResult, urlRegex ))
+-        libraryFile._isURL = ( !matchResult.str( HOST ).empty() &&
+-                              !matchResult.str( PORT ).empty() &&
+-                              !matchResult.str( PATH ).empty() );
++        libraryFile._isURL = ( !matchResult.str( static_cast<int>(HOST) ).empty() &&
++                              !matchResult.str( static_cast<int>(PORT) ).empty() &&
++                              !matchResult.str( static_cast<int>(PATH) ).empty() );
+     }
+     return libraryFile._isURL;
+   }

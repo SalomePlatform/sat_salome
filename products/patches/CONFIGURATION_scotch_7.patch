@@ -1,0 +1,14 @@
+diff --git a/cmake/FindPTScotch.cmake b/cmake/FindPTScotch.cmake
+index 5df33ea..a83486e 100644
+--- a/cmake/FindPTScotch.cmake
++++ b/cmake/FindPTScotch.cmake
+@@ -37,7 +37,8 @@ ELSEIF(PTSCOTCH_USE_INT64)
+ ELSEIF(PTSCOTCH_USE_INT32)
+   SET(PTSCOTCH_SUFFIXES scotch-int32)
+ ENDIF()
+-FIND_PATH(PTSCOTCH_INCLUDE_DIRS ${SCOTCH_HEADER} PATH_SUFFIXES ${PTSCOTCH_SUFFIXES} scotch)
++UNSET(PTSCOTCH_INCLUDE_DIRS CACHE)
++FIND_PATH(PTSCOTCH_INCLUDE_DIRS NAMES ${SCOTCH_HEADER} PATH_SUFFIXES ${PTSCOTCH_SUFFIXES} scotch)
+ 
+ # Detect version of scotch/ptscotch
+ 

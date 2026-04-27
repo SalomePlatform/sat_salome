@@ -207,6 +207,15 @@ default :
                        "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev", "libgdal-dev", "dvipng", "libxml++2.6-dev", "libfreetype-dev",
                        "libgmp-dev","libmpfr-dev", "libxinerama-dev","pypy3-lib"]
         }
+        "UB26.04" :
+        {
+            apt : ["libdc1394-25", "libopenexr-3-1-30", "libwebp7", "gfortran-13", "libevent-2.1-7", "libpng16-16", "libgcc-15-dev", "libncurses6",
+                   "libffi8", "libtinfo6", "libgphoto2-port12", "libglx0", "libopengl0", "libzstd1", "libglvnd0", "openmpi-bin", "libgdal38", "libopenblas0-serial", "libtbb12",
+                   "libxml++2.6-2v5", "libfreetype6", "libncurses6"]
+            apt_dev : ["libtbb-dev", "cython3", "libfftw3-dev", "libopenblas-dev", "libpcre2-dev",
+                       "qttools5-dev", "libqt5svg5-dev", "libqt5x11extras5-dev", "qtxmlpatterns5-dev-tools", "libopenmpi-dev",
+                       "libpng-dev", "libtiff5-dev", "libgeotiff-dev", "libjpeg-dev", "libgif-dev", "libgeos-dev", "libsqlite3-dev", "libgdal-dev", "dvipng", "libxml++2.6-dev", "libfreetype-dev", "libgmp-dev","libmpfr-dev", "libxinerama-dev","pypy3-lib"]
+        }
     }
     depend : []
     properties :

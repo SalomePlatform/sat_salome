@@ -44,6 +44,14 @@ version_5_5_0 :
     opt_depend: ['toml', 'packaging']
 }
 
+version_5_5_0_UB26_04 :
+{
+    compil_script :  'sip-5.5.0' + $VARS.scriptExtension
+    archive_info : {archive_name : "sip-5.5.0-PyQt5_sip-12.17.0.tar.gz"}
+    depend : ['Python', 'qt']
+    opt_depend: ['toml', 'packaging']
+}
+
 version_5_5_0_CO10 :
 {
     compil_script :  'sip-5.5.0' + $VARS.scriptExtension

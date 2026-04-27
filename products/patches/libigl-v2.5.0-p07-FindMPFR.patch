@@ -1,0 +1,19 @@
+diff -Naur libigl.ref/cmake/recipes/external/mpfr.cmake libigl/cmake/recipes/external/mpfr.cmake
+--- libigl.ref/cmake/recipes/external/mpfr.cmake	2024-12-17 15:55:31.000000000 +0100
++++ libigl/cmake/recipes/external/mpfr.cmake	2026-04-24 09:43:18.725724284 +0200
+@@ -2,6 +2,15 @@
+ #   gmp_INCLUDE_DIR
+ #   gmp_LIB_DIR
+ #   gmp_LIBRARIES
++
++find_package(PkgConfig REQUIRED)
++
++pkg_check_modules(MPFR REQUIRED IMPORTED_TARGET mpfr)
++
++if(TARGET PkgConfig::MPFR)
++    add_library(mpfr::mpfr ALIAS PkgConfig::MPFR)
++endif()
++
+ if(TARGET mpfr::mpfr)
+     return()
+ endif()

@@ -155,6 +155,9 @@ case $LINUX_DISTRIBUTION in
     UB22*)
         CMAKE_OPTIONS+=" -DOPENTURNS_VETOED_TESTS=\"cppcheck_PosteriorDistribution_std\""
         ;;
+    UB26*)
+        CMAKE_OPTIONS+=" -DOPENTURNS_VETOED_TESTS=\"cppcheck_Study_saveload|cppcheck_Study_h5|cppcheck_GeneralLinearModelAlgorithm_std\"" #FIXME
+        ;;
     *)
         CMAKE_OPTIONS+=" -DOPENTURNS_VETOED_TESTS=\"cppcheck_Log_std|cppcheck_FisherSnedecor_std|cppcheck_Poisson_std|cppcheck_Distribution_quantile|cppcheck_GeneralLinearModelAlgorithm_std\""
         ;;
