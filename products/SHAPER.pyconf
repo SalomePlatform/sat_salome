@@ -69,10 +69,6 @@ version_V9_10_0_FD37:
   patches : ['SPNS-32377-SHAPER-V9_10_0-FD37.patch']
 }
 
-version_V9_10_0:
-{
-}
-
 version_V9_10_0_win:
 {
   patches: ['SHAPER-9.10.0-visual-2019.patch']
@@ -86,6 +82,11 @@ version_V9_9_0_UB22_04:
 version_V9_9_0_FD36:
 {
   patches : ['SPNS-29988-SHAPER-V9_9_0.patch']
+}
+
+version_9_9_0_to_9_15_0 :
+{ 
+    patches : []   
 }
 
 version_9_5_0_to_9_8_0 :
