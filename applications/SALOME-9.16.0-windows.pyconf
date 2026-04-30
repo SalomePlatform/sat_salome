@@ -234,7 +234,7 @@ APPLICATION :
         'EFICAS': 'mbs/V9_16_BR'
         'EFICAS_TOOLS': 'mbs/V9_16_BR' 
         'PY2CPP'
-        'ADAO': 'V9_16_BR'
+        'ADAO'
         'PARAVISADDONS'
         'OPENTURNS_SALOME'
         'YDEFX'
