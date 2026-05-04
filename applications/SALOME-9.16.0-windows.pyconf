@@ -231,7 +231,7 @@ APPLICATION :
         'CALCULATOR'
         'HELLO'
         'PYHELLO'
-        'EFICAS'
+        'EFICAS': 'V9_16_BR'
         'EFICAS_TOOLS'
         'PY2CPP'
         'ADAO'
