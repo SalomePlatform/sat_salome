@@ -22,7 +22,7 @@ def set_env(env, prereq_dir, version):
         env.append(LD_LIBRARY_PATH, os.path.join(prereq_dir, d))
     # bos #38877
     pyver = 'python' + env.get('PYTHON_VERSION')
-    if re.match(r'(.*/)?V9_[1][0-6]_([a-zA-Z0-9]+)$', version) : #FIXME
+    if re.match(r'^V9_[1][0-6]_([a-zA-Z0-9]+)$', version) : 
         env.append('PYTHONPATH', os.path.join(prereq_dir, 'lib', pyver,'site-packages', 'salome'))
     else:
         env.append('PYTHONPATH', os.path.join(prereq_dir, 'lib', pyver,'site-packages'))
