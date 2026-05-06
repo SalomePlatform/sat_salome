@@ -223,7 +223,7 @@ APPLICATION :
         'HELLO'
         'PYHELLO'
         'EFICAS'
-        'EFICAS_TOOLS': 'V9_16_BR'
+        'EFICAS_TOOLS'
         'PY2CPP'
         'ADAO'
         'ADAO_INTERFACE'
