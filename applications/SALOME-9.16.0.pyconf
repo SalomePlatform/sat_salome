@@ -5,7 +5,7 @@ APPLICATION :
 {
     name       : 'SALOME-9.16.0'
     workdir    : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag        : 'V9_16_0b1'
+    tag        : 'V9_16_BR'
     dev        : 'no'
     verbose    : 'no'
     debug      : 'no'
@@ -219,7 +219,7 @@ APPLICATION :
         'RESTRICTED'
         'LIBBATCH' : 'V2_6_1'
         'KERNEL'
-        'MEDCOUPLING' : {tag:'V9_16_0b1', base: 'no', section: 'version_V9_16_0_MPI', hpc: 'yes'}
+        'MEDCOUPLING' : {tag:'V9_16_BR', base: 'no', section: 'version_V9_16_0_MPI', hpc: 'yes'}
         'GUI'
         'CommonGeomLib'
         'GEOM'
@@ -236,7 +236,7 @@ APPLICATION :
         'mmgplugin'
         'HOMARD'
         'FIELDS'
-        'PARAVIS': {tag:'V9_16_0b1', base: 'no', section: 'version_V9_16_0_MPI', hpc: 'yes'} #FIXME
+        'PARAVIS': {tag:'V9_16_BR', base: 'no', section: 'version_V9_16_0_MPI', hpc: 'yes'} #FIXME
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
@@ -312,7 +312,7 @@ __overwrite__ :
         'APPLICATION.products.PERSALYS'   : {tag: 'v19.0',   base: 'no', section: 'version_v19_0_CO7'          }
         'APPLICATION.products.pyside'     : {tag: 'v5.15.17',base: 'no', section: 'version_v5_15_17_CO7'       }
         'APPLICATION.products.URANIE'     : {tag: '4.8.0',   base: 'no', section: 'version_4_8_0_CO7'          }
-        'APPLICATION.products.MEDCOUPLING': {tag: 'V9_16_0b1', base: 'no', section: 'version_V9_16_0_MPI_CO7', hpc: 'yes'}
+        'APPLICATION.products.MEDCOUPLING': {tag: 'V9_16_BR', base: 'no', section: 'version_V9_16_0_MPI_CO7', hpc: 'yes'}
     }
     #
     {
@@ -339,7 +339,7 @@ __overwrite__ :
         'APPLICATION.products.PERSALYS'   : {tag: 'v19.0',  base: 'no', section: 'version_v19_0_CO8'          }
         'APPLICATION.products.pyside'     : {tag: 'v5.15.17', base: 'no', section: 'version_v5_15_17_CO8'     }
         'APPLICATION.products.URANIE'     : {tag: '4.8.0',  base: 'no', section: 'version_4_8_0_CO8'          }
-        'APPLICATION.products.MEDCOUPLING': {tag: 'V9_16_0b1', base: 'no', section: 'version_V9_16_0_MPI_CO8', hpc: 'yes'}
+        'APPLICATION.products.MEDCOUPLING': {tag: 'V9_16_BR', base: 'no', section: 'version_V9_16_0_MPI_CO8', hpc: 'yes'}
     }
     #
     {
@@ -361,6 +361,6 @@ __overwrite__ :
         'APPLICATION.products.zeromq'     : {tag: '4.3.1',    base: 'no', section: 'version_4_3_1_CO9'           }
         'APPLICATION.products.URANIE'     : {tag: '4.8.0',    base: 'no', section: 'version_4_8_0_CO9'           }
         'APPLICATION.products.boost'      : {tag: '1.71.0',   base: 'no', section: 'version_1_71_0_CO9'          } # spns #29324
-        'APPLICATION.products.MEDCOUPLING': {tag: 'V9_16_0b1', base: 'no', section: 'version_V9_16_0_MPI_CO9', hpc: 'yes' }
+        'APPLICATION.products.MEDCOUPLING': {tag: 'V9_16_BR', base: 'no', section: 'version_V9_16_0_MPI_CO9', hpc: 'yes' }
     }
 ]

@@ -7,7 +7,7 @@ APPLICATION :
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name
     cmake_generator : 'Visual Studio 16 2019'
     cmake_build_type: 'Release' # Debug, RelWithDebInfo, Release, MinSizeRel
-    tag       : 'V9_16_0b1'
+    tag       : 'V9_16_BR'
     dev       : 'no'
     verbose   : 'no'
     debug     : 'no'
@@ -220,7 +220,7 @@ APPLICATION :
         'mmgplugin'
         #'HOMARD'
         'FIELDS'
-        'PARAVIS' : {tag:'V9_16_0b1', base: 'no', section: 'version_V9_16_0'}
+        'PARAVIS' : {tag:'V9_16_BR', base: 'no', section: 'version_V9_16_0'}
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
