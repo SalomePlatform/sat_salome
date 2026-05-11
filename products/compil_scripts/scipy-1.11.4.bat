@@ -4,6 +4,9 @@ echo ##########################################################################
 echo scipy %VERSION%
 echo ##########################################################################
 
+SET INSTALL_CENTRALLY=1
+SET PIP_DISABLE_PIP_VERSION_CHECK=1
+
 if NOT exist "%PRODUCT_INSTALL%" mkdir %PRODUCT_INSTALL%
 REM clean BUILD directory
 if exist "%BUILD_DIR%" rmdir /Q /S "%BUILD_DIR%"
@@ -18,11 +21,17 @@ if NOT %ERRORLEVEL% == 0 (
 cd "%BUILD_DIR%"
 
 echo.
-echo *** %PYTHON_ROOT_DIR:\=/%\python.exe -m pip install --cache-dir=%BUILD_DIR:\=/%/cache/pip ./scipy-1.11.4-cp39-cp39-win_amd64.whl --no-deps --prefix=%PRODUCT_INSTALL%
-echo.
 mkdir %BUILD_DIR%\cache\pip
-set PIP_DISABLE_PIP_VERSION_CHECK=1
-%PYTHON_ROOT_DIR:\=/%\python.exe -m pip install --cache-dir=%BUILD_DIR:\=/%/cache/pip ./scipy-1.11.4-cp39-cp39-win_amd64.whl --no-deps --prefix=%PRODUCT_INSTALL% -vvv
+
+if %INSTALL_CENTRALLY% == 1 (
+    echo *** %PYTHON_ROOT_DIR:\=/%\python.exe -m pip install --cache-dir=%BUILD_DIR:\=/%/cache/pip ./scipy-1.11.4-cp39-cp39-win_amd64.whl --no-deps
+    echo.
+    %PYTHON_ROOT_DIR:\=/%\python.exe -m pip install --cache-dir=%BUILD_DIR:\=/%/cache/pip ./scipy-1.11.4-cp39-cp39-win_amd64.whl --no-deps -vvv
+) else (
+    echo *** %PYTHON_ROOT_DIR:\=/%\python.exe -m pip install --cache-dir=%BUILD_DIR:\=/%/cache/pip ./scipy-1.11.4-cp39-cp39-win_amd64.whl --no-deps --prefix=%PRODUCT_INSTALL%
+    echo.
+    %PYTHON_ROOT_DIR:\=/%\python.exe -m pip install --cache-dir=%BUILD_DIR:\=/%/cache/pip ./scipy-1.11.4-cp39-cp39-win_amd64.whl --no-deps --prefix=%PRODUCT_INSTALL% -vvv
+)
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on pip install 
     exit 3

@@ -11,6 +11,8 @@ def set_env(env, prereq_dir, version):
     env.append('PYTHONPATH', prereq_dir)
     env.append('LD_LIBRARY_PATH', prereq_dir)
     ld = ['Accas','Aide','convert','Doc','Editeur','Efi2Xsd','Extensions','generator','Ihm','InterfaceQT4','Noyau','Telemac','Traducteur','UiQT5']
+    if not re.match(r'^V9_[1][0-5]_([a-zA-Z0-9]+)$', version) :
+        ld = ['InterfaceQT' if x == 'InterfaceQT4' else x for x in ld]
     if platform.system() == "Windows" :
         LD_LIBRARY_PATH='PATH'
     else:

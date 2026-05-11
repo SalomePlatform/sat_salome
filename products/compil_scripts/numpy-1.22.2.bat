@@ -5,7 +5,7 @@ echo numpy %VERSION%
 echo ##########################################################################
 
 REM install in python directly
-SET INSTALL_CENTRALLY=0
+SET INSTALL_CENTRALLY=1
 
 IF NOT DEFINED SAT_DEBUG (
   SET SAT_DEBUG=0
