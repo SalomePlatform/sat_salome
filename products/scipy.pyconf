@@ -52,13 +52,13 @@ version_1_11_4:
 version_1_11_4_win:
 {
     compil_script : "scipy-1.11.4.bat"
-    archive_info : {archive_name : "scipy-1.11.4.tar.gz"}
+    archive_info : {archive_name : "scipy-1.11.4-cp39-windows.tar.gz"}
     depend : ['numpy']
     opt_depend : ['Python', 'setuptools', 'wheel', 'Cython', 'numpy', 'openblas', 'meson_python', 'pythran', 'pybind11']
     properties :
     {
       incremental : "yes"
-      pip : "yes" # TODO: for now on, we use the pip wheel. in order to compile scipy, we need to compile flang which requires a bump in the llvm version
+      pip : "no" # TODO: for now on, we use the pip wheel. in order to compile scipy, we need to compile flang which requires a bump in the llvm version
     }
 }
 

@@ -18,29 +18,11 @@ if NOT %ERRORLEVEL% == 0 (
 cd "%BUILD_DIR%"
 
 echo.
-echo Lapack is embedded. Expose it to Scipy
-
-echo [DEFAULT] > site.cfg
-echo library_dirs = %OPENBLASHOME:\=/%/lib>> site.cfg
-echo include_dirs = %OPENBLASHOME:\=/%/include>> site.cfg
-echo. >> site.cfg
-echo [blas]>> site.cfg
-echo libraries = openblas>>site.cfg
-echo. >> site.cfg
-echo [lapack]>> site.cfg
-echo libraries = openblas>>site.cfg
-echo. >> site.cfg
-echo [numpy]>> site.cfg
-echo include_dirs = %NUMPY_INCLUDE_DIR2:\=/%>> site.cfg
-
-set PATH=%PATH%;%MINGW_ROOT_DIR%\bin
-set FC=%MINGW_ROOT_DIR%\bin\gfortran.exe
-
-echo.
-echo *** %PYTHON_ROOT_DIR:\=/%\python.exe -m pip install --cache-dir=%BUILD_DIR:\=/%/cache/pip . --no-binary :all: --no-build-isolation --prefix=%PRODUCT_INSTALL:\=/%
+echo *** %PYTHON_ROOT_DIR:\=/%\python.exe -m pip install --cache-dir=%BUILD_DIR:\=/%/cache/pip ./scipy-1.11.4-cp39-cp39-win_amd64.whl --no-deps --prefix=%PRODUCT_INSTALL%
 echo.
 mkdir %BUILD_DIR%\cache\pip
-%PYTHON_ROOT_DIR:\=/%\python.exe -m pip install --cache-dir=%BUILD_DIR:\=/%/cache/pip . --no-binary :all: --no-build-isolation --prefix=%PRODUCT_INSTALL:\=/% -vvv
+set PIP_DISABLE_PIP_VERSION_CHECK=1
+%PYTHON_ROOT_DIR:\=/%\python.exe -m pip install --cache-dir=%BUILD_DIR:\=/%/cache/pip ./scipy-1.11.4-cp39-cp39-win_amd64.whl --no-deps --prefix=%PRODUCT_INSTALL% -vvv
 if NOT %ERRORLEVEL% == 0 (
     echo ERROR on pip install 
     exit 3
