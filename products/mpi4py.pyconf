@@ -30,7 +30,8 @@ version_3_1_0_no_pip :
 {
     compil_script : "mpi4py-3.1.0.sh"
     patches: ["mpi4py_3_1_0_setup_py.patch"]
-    depend : ["Python", "setuptools", "wheel", "packaging", "openmpi"]
+    depend : ["Python", "setuptools", "packaging", "openmpi"]
+    opt_depend : ["wheel"]
     properties:
     {
       incremental : "yes"
