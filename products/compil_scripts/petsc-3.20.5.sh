@@ -19,6 +19,10 @@ case $LINUX_DISTRIBUTION in
         ;;
 esac
 
+if [[ $LINUX_DISTRIBUTION == "UB22.04" ]] && [[ $SAT_setuptools_IS_NATIVE != "1" ]]; then
+    export SETUPTOOLS_USE_DISTUTILS=stdlib
+fi
+
 mkdir -p $PRODUCT_INSTALL
 
 rm -rf $BUILD_DIR

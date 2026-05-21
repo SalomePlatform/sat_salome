@@ -1,8 +1,10 @@
-#!/bin/bash                                                                                                                                                                              
+#!/bin/bash
 
 echo "##########################################################################"
 echo "PyFMI " $VERSION
 echo "##########################################################################"
+
+LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
 
 rm -rf $BUILD_DIR
 mkdir -p $BUILD_DIR
@@ -12,6 +14,10 @@ cp -R $SOURCE_DIR/* .
 rm -f $BUILD_DIR/src/pyfmi/*.c
 export PATH=$(pwd)/bin:$PATH
 export PYTHONPATH=$(pwd):$PYTHONPATH
+
+if [[ $LINUX_DISTRIBUTION == "UB22.04" ]] && [[ $SAT_setuptools_IS_NATIVE != "1" ]]; then
+    export SETUPTOOLS_USE_DISTUTILS=stdlib
+fi
 
 echo
 echo "*** build with $PYTHONBIN"

@@ -1,13 +1,19 @@
-#!/bin/bash                                                                                                                                                                              
+#!/bin/bash
 
 echo "##########################################################################"
 echo "h5py" $VERSION
 echo "##########################################################################"
 
+LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
+
 rm -rf ${BUILD_DIR}
 mkdir ${BUILD_DIR}
 cd $BUILD_DIR
 cp -r $SOURCE_DIR/* .
+
+if [[ $LINUX_DISTRIBUTION == "UB22.04" ]] && [[ $SAT_setuptools_IS_NATIVE != "1" ]]; then
+    export SETUPTOOLS_USE_DISTUTILS=stdlib
+fi
 
 H5PY_SETUP_REQUIRES=0
 ${PYTHONBIN} ./setup.py build
@@ -35,4 +41,3 @@ fi
 
 echo
 echo "########## END"
-
