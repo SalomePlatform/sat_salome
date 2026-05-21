@@ -1,0 +1,20 @@
+diff -Naur proj/data/generate_proj_db.cmake proj.dev/data/generate_proj_db.cmake
+--- proj/data/generate_proj_db.cmake	2023-06-01 09:01:21.000000000 +0200
++++ proj.dev/data/generate_proj_db.cmake	2026-05-20 14:19:06.744458681 +0200
+@@ -14,10 +14,12 @@
+ string(REPLACE "\${PROJ_VERSION}" "${PROJ_VERSION}" CONTENTS_MOD "${CONTENTS}")
+ file(WRITE "${ALL_SQL_IN}" "${CONTENTS_MOD}")
+ 
+-execute_process(COMMAND "${EXE_SQLITE3}" "${PROJ_DB}"
+-                INPUT_FILE "${ALL_SQL_IN}"
+-                RESULT_VARIABLE STATUS)
+-
++execute_process(
++    COMMAND ${CMAKE_COMMAND} -E env SQLITE_TMPDIR=${CMAKE_CURRENT_BINARY_DIR} 
++            "${EXE_SQLITE3}" "${PROJ_DB}"
++    INPUT_FILE "${ALL_SQL_IN}"
++    RESULT_VARIABLE STATUS
++)
+ if(STATUS AND NOT STATUS EQUAL 0)
+   message(FATAL_ERROR "SQLite3 failed")
+ endif()

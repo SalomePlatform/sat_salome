@@ -94,6 +94,28 @@ version_6_0_0_MPI :
               ]
 }
 
+version_6_0_0_MPI_CO9 :
+{
+    compil_script :  'ParaView-6.0.0.sh'
+    archive_info : {archive_name : "ParaView-6.0.0-c61dcc8ee0.tar.gz"}
+    depend : [
+              'Python',
+              'hdf5',
+              'qt',
+              'boost',
+              'libxml2',
+              'freetype',
+              'matplotlib',
+              'cgns',
+              'Pygments'
+              ]
+    opt_depend : ['openmpi', 'ospray','tbb', 'openturns', 'gdal', 'netcdf', 'catalyst', 'sip', 'PyQt', 'pyside', 'ONNX']
+    patches : ['paraview-6.0.0-c61dcc8ee0.p001-FindCGNS.patch',
+               'paraview-6.0.0-c61dcc8ee0.p005-LATA_V2.1-plugin.patch'
+               'paraview-6.0.0-c61dcc8ee0.p006-force_sqlite_tmpdir.patch'
+              ]
+}
+
 version_5_13_2 :
 {
     compil_script :  'ParaView-5.13.2.sh'

@@ -1,0 +1,13 @@
+diff -Naur ParaView/VTK/ThirdParty/libproj/vtklibproj/data/generate_proj_db.cmake ParaView.dev/VTK/ThirdParty/libproj/vtklibproj/data/generate_proj_db.cmake
+--- ParaView/VTK/ThirdParty/libproj/vtklibproj/data/generate_proj_db.cmake	2026-02-16 20:39:14.000000000 +0100
++++ ParaView.dev/VTK/ThirdParty/libproj/vtklibproj/data/generate_proj_db.cmake	2026-05-19 21:22:18.623898220 +0200
+@@ -14,7 +14,8 @@
+ string(REPLACE "\${PROJ_VERSION}" "${PROJ_VERSION}" CONTENTS_MOD "${CONTENTS}")
+ file(WRITE "${ALL_SQL_IN}" "${CONTENTS_MOD}")
+ 
+-execute_process(COMMAND ${CMAKE_CROSSCOMPILING_EMULATOR} "${EXE_SQLITE3}" "${PROJ_DB}"
++execute_process(COMMAND ${CMAKE_COMMAND} -E env SQLITE_TMPDIR=${CMAKE_CURRENT_BINARY_DIR}
++	        ${CMAKE_CROSSCOMPILING_EMULATOR} "${EXE_SQLITE3}" "${PROJ_DB}"
+                 INPUT_FILE "${ALL_SQL_IN}"
+                 RESULT_VARIABLE STATUS)
+ 

@@ -28,3 +28,8 @@ default :
       incremental : "yes"
     }
 }
+
+version_9_2_1_CO9 :
+{
+    patches : ["proj-9.2.1_force_sqlite_tmpdir.patch"]
+}
