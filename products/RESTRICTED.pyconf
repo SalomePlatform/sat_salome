@@ -9,15 +9,13 @@ default :
         tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/restricted.git"
       }
     }
-    environ :
-    {
-        launch : {RESTRICTED_ROOT_DIR : $source_dir}
-    }
-    depend : [ ]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    depend : [ ]
     properties :
     {
+        is_SALOME_module : "yes"
         is_SALOME_product: "yes"
+        configure_dependency : "yes"  # this module is used only at runtime to run tests.hdfs
         compilation : "no"
         not_in_package : "yes"
         is_opensource  : "no"
