@@ -53,7 +53,8 @@ version_b5b0ec6:
   patches : [
              'mcut-b5b0ec6-p01_cgsboolean.patch',
              'mcut-b5b0ec6-p02_cgsboolean.patch',
-             'mcut-b5b0ec6-p04_mio-tag.patch'
+             'mcut-b5b0ec6-p04_mio-tag.patch',
+             'mcut-b5b0ec6-p05_utest-tag.patch'
             ]
 }
 
@@ -65,6 +66,7 @@ version_b5b0ec6_FD42:
              'mcut-b5b0ec6-p01_cgsboolean.patch',
              'mcut-b5b0ec6-p02_cgsboolean.patch',
              'mcut-b5b0ec6-p03_stdint.patch',
-             'mcut-b5b0ec6-p04_mio-tag.patch'
+             'mcut-b5b0ec6-p04_mio-tag.patch',
+             'mcut-b5b0ec6-p05_utest-tag.patch'
             ]
 }
