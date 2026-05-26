@@ -11,11 +11,13 @@ default :
     }
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     depend : [ ]
+    environ :
+    {
+        env_script : $name + ".py"
+    }
     properties :
     {
-        is_SALOME_module : "yes"
         is_SALOME_product: "yes"
-        configure_dependency : "yes"  # this module is used only at runtime to run tests.hdfs
         compilation : "no"
         not_in_package : "yes"
         is_opensource  : "no"
