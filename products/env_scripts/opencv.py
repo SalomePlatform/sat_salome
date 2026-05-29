@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #-*- coding:utf-8 -*-
 
-import os.path
+import os
 import platform
 
 def set_env(env, prereq_dir, version):
@@ -15,10 +15,11 @@ def set_env(env, prereq_dir, version):
     pyver = 'python' + env.get('PYTHON_VERSION')
     env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'lib', pyver, 'site-packages'))
   else:
-    if os.path.exists(os.path.join(prereq_dir, 'x64','vc15','bin')):
+    opencv_root_dir= env.environ.environ.get_value('OPENCV_ROOT_DIR').replace('out_dir_Path', os.environ['OUT_DIR_PATH'])
+    if os.path.exists(os.path.join(opencv_root_dir, 'x64','vc15','bin')):
         env.prepend('PATH', os.path.join(prereq_dir, 'x64','vc15','bin'))
         env.prepend('PATH', os.path.join(prereq_dir, 'x64','vc15','lib'))
-    elif os.path.exists(os.path.join(prereq_dir, 'x64','vc16','bin')):
+    elif os.path.exists(os.path.join(opencv_root_dir, 'x64','vc16','bin')):
         env.prepend('PATH', os.path.join(prereq_dir, 'x64','vc16','bin'))
         env.prepend('PATH', os.path.join(prereq_dir, 'x64','vc16','lib'))
     env.set('OpenCV_INCLUDE_DIRS', os.path.join(prereq_dir, 'include'))
