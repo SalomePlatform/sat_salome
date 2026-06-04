@@ -4,8 +4,11 @@ import platform
 import re
 
 def set_env(env, prereq_dir, version):
-    v = env.environ.environ.get_value("PARAVIEW_VERSION")
-    if not re.match("^(?:6\.[0-9]|[7-9]\d*|\d{2,})(?:\.\d+)*$", v):
+    try:
+        v = env.environ.environ.get_value("PARAVIEW_VERSION")
+    except:
+        v = env.environ.environ["PARAVIEW_VERSION"]
+    if not re.match(r"^(?:6\.[0-9]|[7-9]\d*|\d{2,})(?:\.\d+)*$", v):
         pvversion = "paraview-" + env.get("PARAVIEW_VERSION")
     else:
         pvversion = "paraview"
