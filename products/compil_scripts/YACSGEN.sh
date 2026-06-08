@@ -17,7 +17,7 @@ echo
 echo "*** build and install with $PYTHONBIN"
 echo "*** $LINUX_DISTRIBUTION *"
 case $LINUX_DISTRIBUTION in
-    DB12|UB24*)
+    DB13|DB12|UB24*)
         $PYTHONBIN -m pip install . --prefix=$PRODUCT_INSTALL
         ;;
     *)
