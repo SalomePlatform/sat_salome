@@ -179,6 +179,14 @@ version_V10_0_0_MPI :
         is_SALOME_product: "yes"
         incremental : "yes"
     }
+    git_info:
+    {
+      repositories :
+      {
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/paravis.git"
+        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "paravis.git"
+        gitpub : $PROJECTS.projects.salome.git_info.git_server.gitpub.url + "modules/paravis.git"
+      }
       git_commands: [
                      'git config -f .gitmodules submodule.src/Plugins/MEDReader.url ../medreader',
                      'git config -f .git/config submodule.src/Plugins/MEDReader.url ../medreader',
@@ -187,6 +195,7 @@ version_V10_0_0_MPI :
                      'cd src/Plugins/MEDReader',
                      'git checkout V10_0_0a2' #FIXME
                     ]
+    }
 }
 
 version_V9_16_0 :
@@ -248,6 +257,14 @@ version_V9_16_0_MPI :
         is_SALOME_product: "yes"
         incremental : "yes"
     }
+    git_info:
+    {
+      repositories :
+      {
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/paravis.git"
+        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "paravis.git"
+        gitpub : $PROJECTS.projects.salome.git_info.git_server.gitpub.url + "modules/paravis.git"
+      }
       git_commands: [
                      'git config -f .gitmodules submodule.src/Plugins/MEDReader.url ../medreader',
                      'git config -f .git/config submodule.src/Plugins/MEDReader.url ../medreader',
@@ -256,6 +273,7 @@ version_V9_16_0_MPI :
                      'cd src/Plugins/MEDReader',
                      'git checkout V9_16_0rc1' #FIXME
                     ]
+    }
 }
 
 version_V9_15_0 :
