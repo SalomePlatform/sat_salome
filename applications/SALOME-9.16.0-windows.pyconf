@@ -7,7 +7,7 @@ APPLICATION :
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name
     cmake_generator : 'Visual Studio 16 2019'
     cmake_build_type: 'Release' # Debug, RelWithDebInfo, Release, MinSizeRel
-    tag       : 'V9_16_BR'
+    tag       : 'V9_16_0rc1'
     dev       : 'no'
     verbose   : 'no'
     debug     : 'no'
@@ -48,7 +48,7 @@ APPLICATION :
         bcrypt : '5.0.0'
         beniget : '0.4.0'
         boost : '1.79.0'
-        CAS : {tag: 'CR790-SALOME-PATCH', section:'version_CR790_SALOME_PATCH_win', base: 'no'}
+        CAS : {tag: 'SALOME_9_16_V7_9_0b2', section:'version_SALOME_9_16_V7_9_0b2_win', base: 'no'}
         certifi : '2019.6.16'
         cffi : '2.0.0'
         cftime : '1.6.3'
@@ -220,7 +220,7 @@ APPLICATION :
         'mmgplugin'
         #'HOMARD'
         'FIELDS'
-        'PARAVIS' : {tag:'V9_16_BR', base: 'no', section: 'version_V9_16_0'}
+        'PARAVIS' : {tag:'V9_16_0rc1', base: 'no', section: 'version_V9_16_0'}
         'JOBMANAGER'
         'YACS'
         'YACSGEN'
