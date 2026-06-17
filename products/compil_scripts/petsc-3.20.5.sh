@@ -42,6 +42,8 @@ if [ -f "${NATIVE_PATH}/liblapack.a" ] && [ "${SAT_lapack_IS_NATIVE}" == "1" ]; 
    CONFIGURE_FLAGS+=" --with-blaslapack=1"
 elif [ -n "${LAPACK_ROOT_DIR}" ] && [ "${SAT_lapack_IS_NATIVE}" != "1" ]; then
    CONFIGURE_FLAGS+=" --with-blaslapack-dir=${LAPACK_ROOT_DIR}"
+elif [ -n "${BLAS_ROOT_DIR}" ] && [ "${SAT_openblas_IS_NATIVE}" != "1" ]; then
+   CONFIGURE_FLAGS+=" --with-blaslapack-dir=${BLAS_ROOT_DIR}"
 else
    CONFIGURE_FLAGS+=" --download-f2cblaslapack=ext/f2cblaslapack-3.8.0.q2.tar.gz"
 fi
@@ -61,23 +63,29 @@ fi
 
 if [ -f "${NATIVE_PATH}/libfftw3.a" ] && [ "${SAT_fftw_IS_NATIVE}" == "1" ]; then
    CONFIGURE_FLAGS+=" --with-fftw=1"
-elif [ -n "${FFTW_ROOT_DIR}" ] && [ "${SAT_fftw_IS_NATIVE}" != "1" ]; then
-   CONFIGURE_FLAGS+=" --with-fftw-dir=${FFTW_ROOT_DIR}"
+elif [ -n "${FFTW3_ROOT_DIR}" ] && [ "${SAT_fftw_IS_NATIVE}" != "1" ]; then
+   CONFIGURE_FLAGS+=" --with-fftw-dir=${FFTW3_ROOT_DIR}"
 else
    CONFIGURE_FLAGS+=" --download-fftw=ext/fftw-3.3.10.tar.gz"
 fi
 
 CONFIGURE_FLAGS+=" --with-cuda=0" #
-CONFIGURE_FLAGS+=" --with-debugging=0" # by default Petsc is build in debug mode
+
+if [ -n ${SAT_DEBUG} ]; then
+   CONFIGURE_FLAGS+=" --with-debugging=1"
+else
+   CONFIGURE_FLAGS+=" --with-debugging=0"
+fi
+
 CONFIGURE_FLAGS+=" --with-petsc4py=yes"
 CONFIGURE_FLAGS+=" --download-slepc-configure-arguments=--with-slepc4py=yes"
 
 if [ -f "${NATIVE_PATH}/libmetis.so" ] && [ "${SAT_metis_IS_NATIVE}" == "1" ]; then
-    CONFIGURE_FLAGS+=" --with-metis=1"
+  CONFIGURE_FLAGS+=" --with-metis=1"
 elif [ -n "${METIS_ROOT_DIR}" ] && [ "${SAT_metis_IS_NATIVE}" != "1" ]; then
-    CONFIGURE_FLAGS+=" --with-metis-dir=${METIS_ROOT_DIR}"
+  CONFIGURE_FLAGS+=" --with-metis-dir=${METIS_ROOT_DIR}"
 else
-    CONFIGURE_FLAGS+=" --download-metis=ext/metis-5.1.0-p11.tar.gz"
+  CONFIGURE_FLAGS+=" --download-metis=ext/metis-5.1.0-p11.tar.gz"
 fi
 
 echo
@@ -88,6 +96,10 @@ if [ -n "${SAT_HPC}" ]; then
       CONFIGURE_FLAGS+=" --with-hypre=1"
   else
       CONFIGURE_FLAGS+=" --download-hypre=ext/hypre-2.29.0.tar.gz"
+  fi
+  
+  if [ -n "${PARMETIS_ROOT_DIR}" ] && [ "${SAT_parmetis_IS_NATIVE}" != "1" ]; then
+    CONFIGURE_FLAGS+=" --with-parmetis-dir=${PARMETIS_ROOT_DIR}"
   fi
 
   if [ -f "${NATIVE_PATH}/libptscotch.so" ] && [ "${SAT_ptscotch_IS_NATIVE}" == "1" ]; then

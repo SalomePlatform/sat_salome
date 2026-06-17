@@ -34,6 +34,12 @@ version_5_1_0  :
     patches : [ "metis-use_cat_not_more.patch" ]
 }
 
+version_5_1_0_p10  :
+{
+    compil_script :  "metis-5.1.0-p10" + $VARS.scriptExtension
+    patches : [ "metis-use_cat_not_more.patch" ]
+}
+
 version_5_1_0_win  :
 {
     patches: [ 'metis-use_cat_not_more.patch','metis-5.1.0_windows.patch']

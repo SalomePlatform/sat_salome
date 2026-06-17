@@ -27,9 +27,16 @@ if [ -f autogen.pl ] && [ ! -f configure ]; then
     fi
 fi
 
+CONFIG_OPTIONS=
+CONFIG_OPTIONS+=" --prefix=$PRODUCT_INSTALL"
+
+if [ -n ${SAT_DEBUG} ]; then
+    CONFIG_OPTIONS+=" --enable-debug"
+fi
+
 echo
 echo "*** configure"
-$BUILD_DIR/configure --prefix=$PRODUCT_INSTALL
+$BUILD_DIR/configure $CONFIG_OPTIONS
 if [ $? -ne 0 ]; then
     echo "ERROR on configure"
     exit 2

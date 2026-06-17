@@ -17,7 +17,7 @@ default :
        env_script : "netCDF4.py"
     }
     depend : ['Python', 'setuptools', 'netcdf', 'cftime', 'certifi', 'hdf5']
-    opt_depend: ['wheel']
+    opt_depend: ['wheel', 'openmpi', 'mpi4py']
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     install_dir : 'base'

@@ -54,7 +54,8 @@ version_4_9_2_CO7:
       archive_name  : "netcdf-c-4.9.2.tar.gz"
     }
     compil_script :  "netcdf-4.9.2" + $VARS.scriptExtension
-    depend : ['Python', 'openblas', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen']
+    depend : ['Python', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen']
+    opt_depend : ['openmpi', 'openblas', 'lapack']
     patches : []
 }
 
@@ -65,7 +66,8 @@ version_4_9_2_CO8:
       archive_name  : "netcdf-c-4.9.2.tar.gz"
     }
     compil_script :  "netcdf-4.9.2" + $VARS.scriptExtension
-    depend : ['Python', 'openblas', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen']
+    depend : ['Python', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen']
+    opt_depend : ['openmpi', 'openblas', 'lapack']
     patches : []
 }
 
@@ -76,7 +78,8 @@ version_4_9_2_CO9:
       archive_name  : "netcdf-c-4.9.2.tar.gz"
     }
     compil_script :  "netcdf-4.9.2" + $VARS.scriptExtension
-    depend : ['Python', 'openblas', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen']
+    depend : ['Python', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen']
+    opt_depend : ['openmpi', 'openblas', 'lapack']
     patches : []
 }
 

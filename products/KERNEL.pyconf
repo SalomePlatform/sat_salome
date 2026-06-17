@@ -208,7 +208,7 @@ version_V9_16_0_MPI :
     depend : ["Python",
               "boost",
               "numpy",
-              "lapack",
+              
               "hdf5",
               "omniORB",
               "omniORBpy",
@@ -225,7 +225,7 @@ version_V9_16_0_MPI :
               "LIBBATCH",
               "psutil"
               ]
-    opt_depend : ["SALOMEBOOTSTRAP"]
+    opt_depend : ["SALOMEBOOTSTRAP", "lapack", "openblas"]
 }
 
 version_V9_15_0_MPI :

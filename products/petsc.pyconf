@@ -46,22 +46,25 @@ version_3_20_5 :
 version_3_20_5_CO7 :
 {
     compil_script :  "petsc-3.20.5.sh"
-    depend : ["hdf5", "Python", "openblas","fftw", "llvm", "metis", "medfile", "numpy", "mpi4py", "scotch" ]
-    patches: ['petsc-3.20.5-mpi4py.patch', 'petsc-3.20.5-limit-cython-version.patch']
+    depend : ["hdf5", "Python", "openblas","fftw", "llvm", "medfile", "numpy", "mpi4py", "scotch" ]
+    opt_depend :["ParMetis", "metis"]
+    patches: ['petsc-3.20.5-mpi4py.patch', 'petsc-3.20.5-limit-cython-version.patch', 'petsc-3.20.5-fix_pythonpath_for_mpi.patch']
 }
 
 version_3_20_5_CO8 :
 {
     compil_script :  "petsc-3.20.5.sh"
-    depend : ["hdf5", "Python", "openblas","fftw", "llvm", "metis", "medfile", "numpy", "mpi4py", "scotch" ]
-    patches: ['petsc-3.20.5-mpi4py.patch', 'petsc-3.20.5-limit-cython-version.patch']
+    depend : ["hdf5", "Python", "openblas","fftw", "llvm", "medfile", "numpy", "mpi4py", "scotch" ]
+    opt_depend :["ParMetis", "metis"]
+    patches: ['petsc-3.20.5-mpi4py.patch', 'petsc-3.20.5-limit-cython-version.patch', 'petsc-3.20.5-fix_pythonpath_for_mpi.patch']
 }
 
 version_3_20_5_CO9 :
 {
     compil_script :  "petsc-3.20.5.sh"
-    depend : ["hdf5", "Python", "openblas","fftw", "llvm", "metis", "medfile", "numpy", "mpi4py", "scotch" ]
-    patches: ['petsc-3.20.5-mpi4py.patch', 'petsc-3.20.5-limit-cython-version.patch']
+    depend : ["hdf5", "Python", "openblas","fftw", "llvm", "medfile", "numpy", "mpi4py", "scotch" ]
+    opt_depend :["ParMetis", "metis"]
+    patches: ['petsc-3.20.5-mpi4py.patch', 'petsc-3.20.5-limit-cython-version.patch', 'petsc-3.20.5-fix_pythonpath_for_mpi.patch']
 }
 
 version_3_20_5_CO10 :

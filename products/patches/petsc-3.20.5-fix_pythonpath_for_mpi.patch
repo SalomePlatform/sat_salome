@@ -1,0 +1,14 @@
+diff -Naur '--exclude=*.pyc' '--exclude=*.log' '--exclude=*.swp' '--exclude=*.bkp' petsc/src/sys/tests/makefile petsc.dev/src/sys/tests/makefile
+--- petsc/src/sys/tests/makefile	2024-02-27 04:09:18.000000000 +0100
++++ petsc.dev/src/sys/tests/makefile	2026-06-11 15:38:59.383023853 +0200
+@@ -6,9 +6,7 @@
+ include ${PETSC_DIR}/lib/petsc/conf/rules
+ 
+ testex55:
+-	-@export PYTHONPATH=${PYTHONPATH:+$PYTHONPATH:}${PETSC_MPI4PY_PYTHONPATH}; \
+-         echo "Using PYTHONPATH=$${PYTHONPATH} to locate mpi4py for test"; \
+-         ${MPIEXEC} -n 2 ${MPIEXEC_TAIL} ${PYTHON_EXE} ./ex55.py > ex55_1.tmp  2>&1;\
++	-@${MPIEXEC} -n 2 ${MPIEXEC_TAIL} ${PYTHON_EXE} ./ex55.py > ex55_1.tmp  2>&1;\
+          if (${DIFF} output/ex55_1.testout ex55_1.tmp > /dev/null 2>&1) then \
+              echo "C/C++ mpi4py python example src/sys/tests/ex55.py run successfully with 2 MPI processes"; \
+          else \

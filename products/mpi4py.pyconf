@@ -26,6 +26,19 @@ default :
     }
 }
 
+version_4_0_1_no_pip :
+{
+    compil_script : "mpi4py-4.0.1.sh"
+    depend : ["Python", "setuptools", "packaging", "openmpi"]
+    opt_depend : ["wheel"]
+    patches: []
+    properties:
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+}
+
 version_3_1_0_no_pip :
 {
     compil_script : "mpi4py-3.1.0.sh"

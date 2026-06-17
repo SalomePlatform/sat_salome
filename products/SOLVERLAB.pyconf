@@ -84,6 +84,27 @@ version_V10_0_0_MPI :
     opt_depend : ['mpi4py']
 }
 
+version_V9_16_0_MPI :
+{
+    depend :
+    [
+        'hdf5',
+        'matplotlib',
+        'medfile',
+        'numpy',
+        'ParaView',
+        'petsc',
+        'Python',
+        'KERNEL',
+        'GUI',
+        'MEDCOUPLING',
+        'openmpi'
+    ]
+    patches: ["SOLVERLAB-V9_16_0-fix_mpi.patch"]
+    opt_depend : ['mpi4py']
+}
+
+
 version_V9_15_0_MPI :
 {
     depend :

@@ -3,7 +3,7 @@
 
 APPLICATION :
 {
-    name       : 'SALOME-9.16.0'
+    name       : 'SALOME-9.16.0-MPI'
     workdir    : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
     tag        : 'V9_16_BR'
     dev        : 'no'
@@ -70,7 +70,7 @@ APPLICATION :
         eigen : '3.3.4'
         embree : '3.13.1'
         FMILibrary : '2.0.3'
-        fftw : '3.3.10'
+        fftw :  {tag : '3.3.10', hpc : 'yes', base : 'no'}
         fonttools : '4.48.1'
         freeimage : '3.16.0'
         freetype : '2.9.1'
@@ -82,11 +82,11 @@ APPLICATION :
         gmp : 'native'
         mmg : '5.6.0'
         mpfr : 'native'
-        gdal : '3.7.1'
-        gmsh : '4.14.1'
+        gdal :  {tag : '3.7.1',  hpc : 'yes'}
+        gmsh :  {tag : '4.14.1', hpc : 'yes', base : 'no'}
         graphviz : '2.38.0'
         h5py : {tag: '3.9.0', base: 'no', section: 'version_3_9_0_no_pip'}
-        hdf5 : '1.14.6'
+        hdf5 : {tag : '1.14.6', hpc : 'yes'}
         idna : '2.7'
         imagesize : '1.4.1'
         importlib_metadata : '7.0.1'
@@ -104,16 +104,16 @@ APPLICATION :
         matplotlib : '3.8.2'
         mcut : 'b5b0ec6'
         mdurl: '0.1.2'
-        medfile : '6.0.1'
+        medfile : {tag : '6.0.1', hpc : 'yes'}
         mesa : '19.0.8'
-        MeshGems : '2.15-1'
+        MeshGems : {tag : '2.15-1', hpc : 'yes'}
         meshio : {tag: '5.3.5' , base: 'no', section : 'version_5_3_5_no_pip'}
         meson: '1.9.1'
         meson_python: '0.14.0'
-        mpi4py : {tag: '3.1.0',  base: 'no', section : 'version_3_1_0_no_pip'}
-        metis  : '5.1.0'
+        metis  : {tag: '5.1.0-p10' , base: 'no', section : 'version_5_1_0_p10'}
+        mpi4py : {tag: '4.0.1',  base: 'no', section : 'version_4_0_1_no_pip'}
         netgen : '5.3.1_with_CAS_7.8'
-        netcdf : '4.9.2'
+        netcdf : {tag : '4.9.2', hpc : 'yes'}
         netCDF4 : '1.6.5'
         ninja : '1.12.1'
         nlopt : '2.7.0'
@@ -127,7 +127,7 @@ APPLICATION :
         openblas: '0.3.29'
         opencv : '3.2.0'
         openmpi : '4.0.3'
-        openturns: '1.25.1'
+        openturns:  {tag : '1.25.1', hpc : 'yes'}
         openVKL: '1.0.1'
         ospray : '2.7.1'
         packaging : '24.2' #'23.2'
@@ -135,8 +135,9 @@ APPLICATION :
         patsy : '0.5.4'
         ParaView : {tag:'6.0.0.c61dcc8ee0', base: 'no',  section: 'version_6_0_0_MPI', hpc: 'yes'}
         paramiko : '4.0.0'
+        ParMetis : '4.0.3-p6'
         PERSALYS: 'v19.0'
-        petsc : '3.20.5'
+        petsc : {tag : '3.20.5', base: 'no', section: 'version_3_20_5_MPI', hpc: 'yes'}
         Pillow : '8.4.0'
         planegcs : '0.18-3cb6890'
         ply : '3.8'
@@ -218,8 +219,8 @@ APPLICATION :
         'SHAPERSTUDY'
         'RESTRICTED'
         'LIBBATCH' : 'V2_6_1'
-        'KERNEL'
-        'MEDCOUPLING' : {tag:'V9_16_BR', base: 'no', section: 'version_V9_16_0_MPI', hpc: 'yes'}
+        'KERNEL' : {tag:'V9_16_BR', base: 'no', section: 'version_V9_16_0_MPI',     hpc: 'yes', verbose: 'yes'}
+        'MEDCOUPLING' : {tag:'V9_16_BR', base: 'no', section: 'version_V9_16_0_MPI_STD', hpc: 'yes', verbose: 'yes'}
         'GUI'
         'CommonGeomLib'
         'GEOM'
@@ -230,14 +231,14 @@ APPLICATION :
         'HYBRIDPLUGIN'
         'HexoticPLUGIN'
         'GMSHPLUGIN'
-        'HEXABLOCK'
+        'HEXABLOCK' : {tag:'V9_16_BR', base: 'no', section: 'version_V9_16_0_MPI', hpc: 'yes', verbose: 'yes'}
         'HEXABLOCKPLUGIN'
         'meshbooleanplugin'
         'mmgplugin'
-        'HOMARD'
-        'FIELDS'
+        'HOMARD' : {tag:'V9_16_BR', base: 'no', section: 'version_V9_16_0_MPI', hpc: 'yes'}
+        'FIELDS' : {tag:'V9_16_BR', base: 'no', section: 'version_V9_16_0_MPI', hpc: 'yes'}
         'PARAVIS': {tag:'V9_16_BR', base: 'no', section: 'version_V9_16_0_MPI', hpc: 'yes'} #FIXME
-        'JOBMANAGER'
+        'JOBMANAGER': {tag:'V9_16_BR', base: 'no', section: 'version_V9_16_0_MPI', hpc: 'yes'}
         'YACS'
         'YACSGEN'
         'DOCUMENTATION'
@@ -258,7 +259,7 @@ APPLICATION :
         'pmml'
         'pybatch' : '65f6e083'
         'SALOMEBOOTSTRAP'
-        'SOLVERLAB'
+        'SOLVERLAB' : {tag: 'V9_16_BR', base: 'no', section: 'version_V9_16_0_MPI', hpc: 'yes'}
         'TopIIVolMesh'
         #'TESTBASE'
         'CEATESTBASE'
@@ -300,19 +301,19 @@ __overwrite__ :
         'APPLICATION.rm_products'         : ['gcc', 'gmp', 'mpc', 'mpfr', 'mcut', 'ONNX']
         'APPLICATION.products.cminpack'   : {tag: '1.3.10',  base: 'no', section: 'version_1_3_10_CO7'         }
         'APPLICATION.products.FMILibrary' : {tag: '2.0.3',   base: 'no', section: 'version_2_0_3_CO7'          }
-        'APPLICATION.products.gdal'       : {tag: '3.7.1',   base: 'no', section: 'version_3_7_1_CO7'          }
-        'APPLICATION.products.gmsh'       : {tag: '4.14.1',  base: 'no', section: 'version_4_14_1_CO7'         }
+        'APPLICATION.products.gdal'       : {tag: '3.7.1',   base: 'no', section: 'version_3_7_1_CO7', hpc: 'yes'}
+        'APPLICATION.products.gmsh'       : {tag: '4.14.1',  base: 'no', section: 'version_4_14_1_CO7', hpc: 'yes'}
         'APPLICATION.products.libigl'     : {tag: 'v2.5.0',  base: 'no', section: 'version_v2_5_0_CO7'         }
-        'APPLICATION.products.netcdf'     : {tag: '4.9.2',   base: 'no', section: 'version_4_9_2_CO7'          }
+        'APPLICATION.products.netcdf'     : {tag: '4.9.2',   base: 'no', section: 'version_4_9_2_CO7', hpc: 'yes'}
         'APPLICATION.products.numpy'      : {tag: '1.22.2',  base: 'no', section: 'version_1_22_2_CO7'         }
-        'APPLICATION.products.openturns'  : {tag: '1.25.1',  base: 'no', section: 'version_1_25_1_CO7'         }
-        'APPLICATION.products.petsc'      : {tag: '3.20.5',  base: 'no', section: 'version_3_20_5_CO7'         }
+        'APPLICATION.products.openturns'  : {tag: '1.25.1',  base: 'no', section: 'version_1_25_1_CO7', hpc: 'yes'}
+        'APPLICATION.products.petsc'      : {tag: '3.20.5',  base: 'no', section: 'version_3_20_5_CO7', hpc: 'yes'}
         'APPLICATION.products.TTK'        : {tag: '1.3.0',   base: 'no', section: 'version_1_3_0_CO7'          }
         'APPLICATION.products.zeromq'     : {tag: '4.3.1',   base: 'no', section: 'version_4_3_1_CO7'          }
         'APPLICATION.products.PERSALYS'   : {tag: 'v19.0',   base: 'no', section: 'version_v19_0_CO7'          }
         'APPLICATION.products.pyside'     : {tag: 'v5.15.17',base: 'no', section: 'version_v5_15_17_CO7'       }
         'APPLICATION.products.URANIE'     : {tag: '4.8.0',   base: 'no', section: 'version_4_8_0_CO7'          }
-        'APPLICATION.products.MEDCOUPLING': {tag: 'V9_16_BR', base: 'no', section: 'version_V9_16_0_MPI_CO7', hpc: 'yes'}
+        'APPLICATION.products.MEDCOUPLING': {tag: 'V9_16_BR', base: 'no', section: 'version_V9_16_0_MPI_STD_CO7', hpc: 'yes'}
     }
     #
     {
@@ -326,20 +327,20 @@ __overwrite__ :
         'APPLICATION.products.cminpack'   : {tag: '1.3.10', base: 'no', section: 'version_1_3_10_CO8'         }
         'APPLICATION.products.FMILibrary' : {tag: '2.0.3',  base: 'no', section: 'version_2_0_3_CO8'          }
         'APPLICATION.products.PyFMI'      : {tag: '2.6',    base: 'no', section: 'version_2_6_CO8'            }
-        'APPLICATION.products.gdal'       : {tag: '3.7.1',  base: 'no', section: 'version_3_7_1_CO8'          }
-        'APPLICATION.products.gmsh'       : {tag: '4.14.1', base: 'no', section: 'version_4_14_1_CO8'         }
+        'APPLICATION.products.gdal'       : {tag: '3.7.1',  base: 'no', section: 'version_3_7_1_CO8', hpc: 'yes'          }
+        'APPLICATION.products.gmsh'       : {tag: '4.14.1', base: 'no', section: 'version_4_14_1_CO8', hpc: 'yes'         }
         'APPLICATION.products.libigl'     : {tag: 'v2.5.0', base: 'no', section: 'version_v2_5_0_CO8'         }
-        'APPLICATION.products.netcdf'     : {tag: '4.9.2',  base: 'no', section: 'version_4_9_2_CO8'          }
+        'APPLICATION.products.netcdf'     : {tag: '4.9.2',  base: 'no', section: 'version_4_9_2_CO8', hpc: 'yes'}
         'APPLICATION.products.numpy'      : {tag: '1.22.2', base: 'no', section: 'version_1_22_2_CO8'         }
-        'APPLICATION.products.openturns'  : {tag: '1.25.1', base: 'no', section: 'version_1_25_1_CO8'         }
-        'APPLICATION.products.petsc'      : {tag: '3.20.5', base: 'no', section: 'version_3_20_5_CO8'         }
+        'APPLICATION.products.openturns'  : {tag: '1.25.1', base: 'no', section: 'version_1_25_1_CO8', hpc: 'yes'         }
+        'APPLICATION.products.petsc'      : {tag: '3.20.5', base: 'no', section: 'version_3_20_5_CO8', hpc: 'yes'}
         'APPLICATION.products.pyyaml'     : {tag: '6.0',    base: 'no', section: 'version_6_0_CO8'            }
         'APPLICATION.products.TTK'        : {tag: '1.3.0',  base: 'no', section: 'version_1_3_0_CO8'          }
         'APPLICATION.products.zeromq'     : {tag: '4.3.1',  base: 'no', section: 'version_4_3_1_CO8'          }
         'APPLICATION.products.PERSALYS'   : {tag: 'v19.0',  base: 'no', section: 'version_v19_0_CO8'          }
         'APPLICATION.products.pyside'     : {tag: 'v5.15.17', base: 'no', section: 'version_v5_15_17_CO8'     }
         'APPLICATION.products.URANIE'     : {tag: '4.8.0',  base: 'no', section: 'version_4_8_0_CO8'          }
-        'APPLICATION.products.MEDCOUPLING': {tag: 'V9_16_BR', base: 'no', section: 'version_V9_16_0_MPI_CO8', hpc: 'yes'}
+        'APPLICATION.products.MEDCOUPLING': {tag: 'V9_16_BR', base: 'no', section: 'version_V9_16_0_MPI_STD_CO8', hpc: 'yes'}
     }
     #
     {
@@ -349,20 +350,20 @@ __overwrite__ :
         'APPLICATION.products.cminpack'   : {tag: '1.3.10',          base: 'no', section: 'version_1_3_10_CO9'                 }
         'APPLICATION.products.FMILibrary' : {tag: '2.0.3',           base: 'no', section: 'version_2_0_3_CO9'                  }
         'APPLICATION.products.libigl'     : {tag: 'v2.5.0',          base: 'no', section: 'version_v2_5_0_CO9'                 }
-        'APPLICATION.products.gdal'       : {tag: '3.7.1',           base: 'no', section: 'version_3_7_1_CO9'                  }
-        'APPLICATION.products.gmsh'       : {tag: '4.14.1',          base: 'no', section: 'version_4_14_1_CO9'                 }
-        'APPLICATION.products.netcdf'     : {tag: '4.9.2',           base: 'no', section: 'version_4_9_2_CO9'                  }
+        'APPLICATION.products.gdal'       : {tag: '3.7.1',           base: 'no', section: 'version_3_7_1_CO9', hpc: 'yes'                  }
+        'APPLICATION.products.gmsh'       : {tag: '4.14.1',          base: 'no', section: 'version_4_14_1_CO9', hpc: 'yes'                 }
+        'APPLICATION.products.netcdf'     : {tag: '4.9.2',           base: 'no', section: 'version_4_9_2_CO9', hpc: 'yes'      }
         'APPLICATION.products.numpy'      : {tag: '1.22.2',          base: 'no', section: 'version_1_22_2_CO9'                 }
-        'APPLICATION.products.openturns'  : {tag: '1.25.1',          base: 'no', section: 'version_1_25_1_CO9'                 }
+        'APPLICATION.products.openturns'  : {tag: '1.25.1',          base: 'no', section: 'version_1_25_1_CO9', hpc: 'yes'                 }
         'APPLICATION.products.proj'       : {tag: '9.2.1',           base: 'no', section: 'version_9_2_1_CO9'                  }
         'APPLICATION.products.ParaView'   : {tag:'6.0.0.c61dcc8ee0', base: 'no', section: 'version_6_0_0_MPI_CO9', hpc: 'yes'  }
         'APPLICATION.products.PERSALYS'   : {tag: 'v19.0',           base: 'no', section: 'version_v19_0_CO9'                  }
-        'APPLICATION.products.petsc'      : {tag: '3.20.5',          base: 'no', section: 'version_3_20_5_CO9'                 }
+        'APPLICATION.products.petsc'      : {tag: '3.20.5',          base: 'no', section: 'version_3_20_5_CO9', hpc: 'yes'     }
         'APPLICATION.products.pyside'     : {tag: 'v5.15.17',        base: 'no', section: 'version_v5_15_17_CO9'               }
         'APPLICATION.products.TTK'        : {tag: '1.3.0',           base: 'no', section: 'version_1_3_0_CO9'                  }
         'APPLICATION.products.zeromq'     : {tag: '4.3.1',           base: 'no', section: 'version_4_3_1_CO9'                  }
         'APPLICATION.products.URANIE'     : {tag: '4.8.0',           base: 'no', section: 'version_4_8_0_CO9'                  }
         'APPLICATION.products.boost'      : {tag: '1.71.0',          base: 'no', section: 'version_1_71_0_CO9'                 } # spns #29324
-        'APPLICATION.products.MEDCOUPLING': {tag: 'V9_16_BR',        base: 'no', section: 'version_V9_16_0_MPI_CO9', hpc: 'yes'}
+        'APPLICATION.products.MEDCOUPLING': {tag: 'V9_16_BR',        base: 'no', section: 'version_V9_16_0_MPI_STD_CO9', hpc: 'yes'}
     }
 ]

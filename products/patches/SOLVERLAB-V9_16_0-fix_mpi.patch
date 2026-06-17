@@ -1,0 +1,52 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index d6b5ea9..74d3457 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -182,6 +182,9 @@ endif( DEFINED ENV{HDF5_ROOT_DIR} OR DEFINED HDF5_ROOT_DIR )
+     endif( NOT HDF5_ROOT )
+ 
+     find_package(HDF5 COMPONENTS CXX HL)
++    if(   ${MPI_LIBRARY} STREQUAL "MPI_LIBRARY-NOTFOUND")
++      set ( MPI_LIBRARY ${MPI_HOME}/lib/libmpi.so )
++    endif(${MPI_LIBRARY} STREQUAL "MPI_LIBRARY-NOTFOUND")
+     if ( NOT HDF5_FOUND)
+       set(HDF5_LIBRARY_DIR  ${HDF5_ROOT}/lib)
+       set(HDF5_INCLUDE_DIRS ${HDF5_ROOT}/include)
+diff --git a/CoreFlows/Models/src/StationaryDiffusionEquation.cxx b/CoreFlows/Models/src/StationaryDiffusionEquation.cxx
+index 85416d8..7582523 100755
+--- a/CoreFlows/Models/src/StationaryDiffusionEquation.cxx
++++ b/CoreFlows/Models/src/StationaryDiffusionEquation.cxx
+@@ -1070,15 +1070,19 @@ void StationaryDiffusionEquation::terminate()
+     VecDestroy(&_Tkm1);
+     VecDestroy(&_deltaT);
+     VecDestroy(&_b);
+-    MatDestroy(&_A);
++    //MatDestroy(&_A);
+     if(_mpi_size>1 && _mpi_rank == 0)
+         VecDestroy(&_Tk_seq);
+ 
++    // CRITICAL: Do not finalize PETSc here if other C++ objects 
++    // still need to run their destructors!
++    /*
+     PetscBool petscInitialized;
+     PetscInitialized(&petscInitialized);
+     if(petscInitialized)
+         PetscFinalize();
+-
++    */
++    
+     delete _runLogFile;
+ }
+ void 
+diff --git a/test/notebooks/getting_started.py b/test/notebooks/getting_started.py
+index 6181ac9..54747da 100644
+--- a/test/notebooks/getting_started.py
++++ b/test/notebooks/getting_started.py
+@@ -82,6 +82,7 @@
+ 
+ # In[ ]:
+ 
++from mpi4py import MPI
+ 
+ from math import sin, pi
+ import matplotlib.pyplot as plt
