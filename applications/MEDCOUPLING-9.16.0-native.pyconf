@@ -3,9 +3,9 @@
 
 APPLICATION :
 {
-    name    : 'MEDCOUPLING-master-native'
+    name    : 'MEDCOUPLING-9.16.0-native'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag     : 'master'
+    tag     : 'V9_16_BR'
     base    : 'no'
     debug   : 'no'
     python3 : 'yes'
@@ -69,7 +69,7 @@ APPLICATION :
 
         # SALOME MODULES :
         'CONFIGURATION'
-        'MEDCOUPLING' : {tag:'master', base:'no', section:'default_MPI', hpc:'yes'}
+        'MEDCOUPLING' : {tag:'V9_16_BR', base: 'no', section: 'version_V9_16_0_MPI', hpc: 'yes'}
     }
     test_base :
     {
@@ -88,22 +88,9 @@ __overwrite__ :
 [
     {
         #
-        __condition__ : "VARS.dist in ['DB10']"
-        'APPLICATION.products.swig'             : '4.0.2'
-
-    }
-    {
-        #
-        __condition__ : "VARS.dist in ['DB12']"
-        'APPLICATION.products.swig'             : '4.0.2'
-
-    }
-    #
-    {
-        __condition__ : "VARS.dist in ['DB13']"
-        'APPLICATION.products.cmake'            : 'native'
-        'APPLICATION.products.swig'             : '4.0.2'
-        'APPLICATION.products.medfile'          : {tag: '4.2.0',           base: 'no', section: 'version_4_2_0_DB13'                    }
+        __condition__ : "VARS.dist in ['UB22.04']"
+        'APPLICATION.products.setuptools'       : {tag: '80.9.0', base: 'no', section: 'version_80_9_0_no_pip' }
+        'APPLICATION.products.packaging'        : {tag: '24.2',   base: 'no', section: 'version_24_2_no_pip'   }
     }
     {
         #
@@ -111,35 +98,57 @@ __overwrite__ :
         'APPLICATION.products.swig'             : '4.0.2'
     }
     {
-        __condition__ : "VARS.dist in ['CO8']"
-        'APPLICATION.products.lapack'                : '3.8.0'
-        'APPLICATION.products.sphinxintl'            : {tag: '0.9.10', base: 'no', section: 'version_0_9_10_no_pip'   }
+        #
+        __condition__ : "VARS.dist in ['DB10']"
+        'APPLICATION.products.swig'             : '4.0.2'
     }
     {
-        __condition__ : "VARS.dist in ['CO9']"
+        #
+        __condition__ : "VARS.dist in ['DB12']"
+        'APPLICATION.products.swig'             : '4.0.2'
+    }
+    #
+    {
+        __condition__ : "VARS.dist in ['DB13']"
+        'APPLICATION.products.cmake'            : 'native'
+        'APPLICATION.products.hdf5'             : 'native'
+        'APPLICATION.products.swig'             : '4.0.2'
+    }
+    {
+        __condition__ : "VARS.dist in ['CO8']"
+        'APPLICATION.products.swig'             : '4.0.2'
+        'APPLICATION.products.sphinxintl'       : {tag: '0.9.10', base: 'no', section: 'version_0_9_10_no_pip'   }
+    }
+    {
+         __condition__ : "VARS.dist in ['CO9']"
         'APPLICATION.products.lapack'           : '3.8.0'
+        'APPLICATION.products.swig'             : '4.0.2'
         'APPLICATION.products.openmpi'          : '4.1.5'
-        'APPLICATION.products.sphinxintl'       : {tag: '0.9.10',  base: 'no', section: 'version_0_9_10_no_pip' }
+        'APPLICATION.products.sphinxintl'       : {tag: '0.9.10',  base: 'no', section: 'version_0_9_10_no_pip'}
     }
     {
          __condition__ : "VARS.dist in ['CO10']"
         'APPLICATION.rm_products' : ['sphinxcontrib_websupport']
-        'APPLICATION.products.cmake'                    : 'native'
-        'APPLICATION.products.swig'                     : '4.0.2'
-        'APPLICATION.products.Cython'                   : {tag: 'native',          base: 'no', section: 'default_CO10'          }
-        'APPLICATION.products.sphinxintl'               : {tag: '0.9.10',          base: 'no', section: 'version_0_9_10_no_pip' }
+        'APPLICATION.products.cmake'          : 'native'
+        'APPLICATION.products.hdf5'           : 'native'
+        'APPLICATION.products.openmpi'        : '4.1.5'
+        'APPLICATION.products.swig'           : '4.0.2'
+        'APPLICATION.products.Cython'         : {tag: 'native',   base: 'no', section: 'default_CO10'          }
+        'APPLICATION.products.sphinxintl'     : {tag: '0.9.10',   base: 'no', section: 'version_0_9_10_no_pip' }
     }
     {
         __condition__ : "VARS.dist in ['FD40']"
-        'APPLICATION.products.openmpi'          : '4.1.5'
         'APPLICATION.products.swig'             : '4.0.2'
-        'APPLICATION.products.Cython'           : {tag: 'native',     base: 'no', section: 'default_FD40'}
+        'APPLICATION.products.Cython'           : {tag: 'native',   base: 'no', section: 'default_FD40'}
+        'APPLICATION.products.openmpi'          : '4.1.5'
     }
     {
         __condition__ : "VARS.dist in ['FD42']"
         'APPLICATION.products.cmake'            : 'native'
+        'APPLICATION.products.hdf5'             : 'native'
         'APPLICATION.products.swig'             : '4.0.2'
-        'APPLICATION.products.Cython'           : {tag: 'native',         base: 'no', section: 'default_FD42' }
-        'APPLICATION.products.medfile'          : {tag: '4.2.0',          base: 'no', section: 'version_4_2_0_FD42'}
+        'APPLICATION.products.Cython'           : {tag: 'native',   base: 'no', section: 'default_FD42'                        }
+        'APPLICATION.products.scotch'           : {tag: 'native',   base: 'no', section: 'version_7_0_6_MPI', hpc: 'yes'       }
+        'APPLICATION.products.MEDCOUPLING'      : {tag: 'V9_16_BR', base: 'no', section: 'version_V9_16_0_MPI_FD42', hpc: 'yes'}
     }
 ]
