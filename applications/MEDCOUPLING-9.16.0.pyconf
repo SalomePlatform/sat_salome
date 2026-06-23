@@ -5,7 +5,7 @@ APPLICATION :
 {
     name    : 'MEDCOUPLING-9.16.0'
     workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
-    tag     : 'V9_16_BR'
+    tag     : 'V9_16_0'
     base    : 'no'
     debug   : 'no'
     python3 : 'yes'
@@ -95,7 +95,7 @@ APPLICATION :
 
         # SALOME MODULES :
         'CONFIGURATION'
-        'MEDCOUPLING': {tag:'V9_16_BR', base: 'no', section: 'version_V9_16_0_MPI', hpc: 'yes'}
+        'MEDCOUPLING': {tag:'V9_16_0', base: 'no', section: 'version_V9_16_0_MPI', hpc: 'yes'}
     }
     test_base :
     {
@@ -118,7 +118,7 @@ __overwrite__ :
         'APPLICATION.products.Python'     : '3.10.16'
         'APPLICATION.products.pytz'       : '2021.1'
         'APPLICATION.products.numpy'      : {tag: '1.22.2', base: 'no', section: 'version_1_22_2_CO8'                   }
-        'APPLICATION.products.MEDCOUPLING': {tag: 'V9_16_BR', base: 'no', section: 'version_V9_16_0_MPI_CO8', hpc: 'yes'}   
+        'APPLICATION.products.MEDCOUPLING': {tag: 'V9_16_0', base: 'no', section: 'version_V9_16_0_MPI_CO8', hpc: 'yes'}   
     }
     #
     {
@@ -127,6 +127,6 @@ __overwrite__ :
         'APPLICATION.products.numpy'      : {tag: '1.22.2',          base: 'no', section: 'version_1_22_2_CO9'               }
         'APPLICATION.products.openmpi'    : '4.1.6'
         'APPLICATION.products.boost'      : {tag: '1.71.0',          base: 'no', section: 'version_1_71_0_CO9'                 } # spns #29324
-        'APPLICATION.products.MEDCOUPLING': {tag: 'V9_16_BR',         base: 'no', section: 'version_V9_16_0_MPI_CO9', hpc: 'yes'      }
+        'APPLICATION.products.MEDCOUPLING': {tag: 'V9_16_0',         base: 'no', section: 'version_V9_16_0_MPI_CO9', hpc: 'yes'      }
     }
 ]

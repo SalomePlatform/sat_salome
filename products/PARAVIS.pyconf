@@ -215,7 +215,7 @@ version_V9_16_0 :
                      'git submodule sync',
                      'git submodule update --init --remote',
                      'cd src/Plugins/MEDReader',
-                     'git checkout V9_16_BR' #FIXME
+                     'git checkout V9_16_0' #FIXME
                     ]
     }
 }
@@ -271,7 +271,7 @@ version_V9_16_0_MPI :
                      'git submodule sync',
                      'git submodule update --init --remote',
                      'cd src/Plugins/MEDReader',
-                     'git checkout V9_16_BR' #FIXME
+                    'git checkout V9_16_0' #FIXME
                     ]
     }
 }
