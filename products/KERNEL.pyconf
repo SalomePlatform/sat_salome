@@ -187,6 +187,12 @@ version_V9_16_0 :
     cmake_options : "-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_CMAKE_DEBUG=ON -DSALOME_USE_64BIT_IDS=ON"
 }
 
+version_V9_16_0_UB26_04 :
+{
+    cmake_options : "-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_CMAKE_DEBUG=ON -DSALOME_USE_64BIT_IDS=ON -DCMAKE_C_FLAGS=\"-Wno-error=implicit-function-declaration\""
+    patches : ['KERNEL-FD42-V9_15_0-calcium.patch']
+}
+
 version_V9_16_0_DB13 :
 {
     cmake_options : "-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_CMAKE_DEBUG=ON -DSALOME_USE_64BIT_IDS=ON -DCMAKE_C_FLAGS=\"-Wno-error=implicit-function-declaration\""
