@@ -104,6 +104,11 @@ __overwrite__ :
     }
     {
         #
+        __condition__ : "VARS.dist in ['DB11']"
+        'APPLICATION.products.numpy'            : {tag: '1.20.3', base: 'no', section: 'version_1_20_3'}
+    }
+    {
+        #
         __condition__ : "VARS.dist in ['DB12']"
         'APPLICATION.products.swig'             : '4.0.2'
     }
