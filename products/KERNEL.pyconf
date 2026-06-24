@@ -240,6 +240,32 @@ version_V9_16_0_MPI :
     opt_depend : ["SALOMEBOOTSTRAP", "lapack", "openblas"]
 }
 
+version_V9_16_0_win :
+{
+    cmake_options : "-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig.exe -DCMAKE_CXX_COMPILER_ARCHITECTURE_ID=x64 -DBOOST_ROOT=%BOOST_ROOT_DIR% -DBOOST_DEBUG=ON -DBoost_ADDITIONAL_VERSIONS=\"%BOOST_VERSION% %BOOST_VERSION_MajorMinor%\" -DBOOST_INCLUDEDIR=%Boost_INCLUDE_DIR% -DBOOST_LIBRARYDIR=%BOOST_LIBRARY_DIR%b -DSALOME_USE_64BIT_IDS=ON "
+    depend : ["Python",
+              "boost",
+              "numpy",
+              "hdf5",
+              "omniORB",
+              "omniORBpy",
+              "docutils",
+              "libxml2",
+              "Sphinx",
+              "sphinxintl",
+              "Jinja2",
+              "setuptools",
+              "Pygments",
+              "pytz",
+              "LIBBATCH",
+              "graphviz",
+              "psutil",
+              "CAS"
+              ]
+    opt_depend : ["SALOMEBOOTSTRAP", "lapack", "openblas"]
+    build_depend : ["cmake", "swig", "doxygen", "cppunit"]
+}
+
 version_V9_15_0_MPI :
 {
     cmake_options : "-DSALOME_USE_MPI=ON -DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_USE_64BIT_IDS=ON "

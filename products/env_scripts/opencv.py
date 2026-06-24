@@ -1,31 +1,44 @@
 #!/usr/bin/env python
-#-*- coding:utf-8 -*-
+# -*- coding:utf-8 -*-
 
 import os
 import platform
 
+
 def set_env(env, prereq_dir, version):
-  env.set('OPENCV_ROOT_DIR', prereq_dir)
-  env.set('OPENCV_HOME', prereq_dir)
-  env.set('OPENCV_DIR', prereq_dir)
-  env.set('OpenCV_DIR', prereq_dir)
-  env.prepend('PATH', os.path.join(prereq_dir, 'bin'))
-  if not platform.system() == "Windows" :
-    env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib'))
-    pyver = 'python' + env.get('PYTHON_VERSION')
-    env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'lib', pyver, 'site-packages'))
-  else:
-    opencv_root_dir= env.environ.environ.get_value('OPENCV_ROOT_DIR').replace('out_dir_Path', os.environ['OUT_DIR_PATH'])
-    if os.path.exists(os.path.join(opencv_root_dir, 'x64','vc15','bin')):
-        env.prepend('PATH', os.path.join(prereq_dir, 'x64','vc15','bin'))
-        env.prepend('PATH', os.path.join(prereq_dir, 'x64','vc15','lib'))
-    elif os.path.exists(os.path.join(opencv_root_dir, 'x64','vc16','bin')):
-        env.prepend('PATH', os.path.join(prereq_dir, 'x64','vc16','bin'))
-        env.prepend('PATH', os.path.join(prereq_dir, 'x64','vc16','lib'))
-    env.set('OpenCV_INCLUDE_DIRS', os.path.join(prereq_dir, 'include'))
-    env.append('OpenCV_INCLUDE_DIRS',os.path.join(prereq_dir, 'include','opencv'))
-    env.append('OpenCV_INCLUDE_DIRS',os.path.join(prereq_dir, 'include','opencv2'))
+    env.set("OPENCV_ROOT_DIR", prereq_dir)
+    env.set("OPENCV_HOME", prereq_dir)
+    env.set("OPENCV_DIR", prereq_dir)
+    env.set("OpenCV_DIR", prereq_dir)
+    env.prepend("PATH", os.path.join(prereq_dir, "bin"))
+    if not platform.system() == "Windows":
+        env.prepend("LD_LIBRARY_PATH", os.path.join(prereq_dir, "lib"))
+        pyver = "python" + env.get("PYTHON_VERSION")
+        env.prepend(
+            "PYTHONPATH", os.path.join(prereq_dir, "lib", pyver, "site-packages")
+        )
+    else:
+        try:
+            opencv_root_dir = env.environ.environ.get_value("OPENCV_ROOT_DIR").replace(
+                "out_dir_Path", os.environ["OUT_DIR_PATH"]
+            )
+        except:
+            opencv_root_dir = env.environ.environ["OPENCV_ROOT_DIR"].replace(
+                "out_dir_Path", os.environ["OUT_DIR_PATH"]
+            )
+        if os.path.exists(os.path.join(opencv_root_dir, "x64", "vc15", "bin")):
+            env.prepend("PATH", os.path.join(prereq_dir, "x64", "vc15", "bin"))
+            env.prepend("PATH", os.path.join(prereq_dir, "x64", "vc15", "lib"))
+        elif os.path.exists(os.path.join(opencv_root_dir, "x64", "vc16", "bin")):
+            env.prepend("PATH", os.path.join(prereq_dir, "x64", "vc16", "bin"))
+            env.prepend("PATH", os.path.join(prereq_dir, "x64", "vc16", "lib"))
+        env.set("OpenCV_INCLUDE_DIRS", os.path.join(prereq_dir, "include"))
+        env.append("OpenCV_INCLUDE_DIRS", os.path.join(prereq_dir, "include", "opencv"))
+        env.append(
+            "OpenCV_INCLUDE_DIRS", os.path.join(prereq_dir, "include", "opencv2")
+        )
+
 
 def set_nativ_env(env):
-  env.set('OPENCV_ROOT_DIR', '/usr')
-  env.set('OPENCV_HOME', '/usr')
+    env.set("OPENCV_ROOT_DIR", "/usr")
+    env.set("OPENCV_HOME", "/usr")
