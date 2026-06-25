@@ -43,17 +43,3 @@ default_win :
     }
     patches : []
 }
-
-version_V9_16_0 : {}
-
-version_V9_16_0_win :
-{
-    cmake_options : " -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=ON "
-    properties:
-    {
-      incremental : "yes"
-      single_install_dir : "no" # aimed to solve sat #18914
-      is_SALOME_product: "yes"
-    }
-    patches : ['PY2CPP_SHARED_LIB.patch']
-}
