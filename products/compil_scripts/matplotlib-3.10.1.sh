@@ -52,9 +52,11 @@ if [ $? -ne 0 ]; then
     exit 2
 fi
 
+PYTHONBIN=$(which python)
+
 #FIXME
 echo "INFO: python3 -m pip install meson_python ninja setuptools-scm pybind11 cppy flit-core"
-python3 -m pip install meson_python ninja setuptools-scm pybind11 cppy flit-core
+${PYTHONBIN} -m pip install meson_python ninja setuptools-scm pybind11 cppy flit-core
 if [ $? -ne 0 ]; then
     echo "ERROR: fail to create a venv"
     exit 3
