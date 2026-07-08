@@ -1,0 +1,14 @@
+See https://stackoverflow.com/questions/41473187/makefile-issue-with-calling-another-shell-file-for-make
+and https://github.com/KarypisLab/METIS/issues/66
+
+--- metis/Makefile.orig	2026-07-08 16:09:50.000000000 +0200
++++ metis/Makefile	2026-07-08 16:10:19.000000000 +0200
+@@ -76,7 +76,7 @@
+ 	@if [ ! -f $(BUILDDIR)/Makefile ]; then \
+ 		cat BUILD.txt; \
+ 	else \
+-	  	make -C $(BUILDDIR) $@ $(MAKEFLAGS); \
++	  	make -C $(BUILDDIR) $@ MAKEFLAGS=$(MAKEFLAGS); \
+ 	fi
+ 
+ uninstall:
