@@ -71,8 +71,9 @@ fi
 
 CONFIGURE_FLAGS+=" --with-cuda=0" #
 
-if [ -n ${SAT_DEBUG} ]; then
-   CONFIGURE_FLAGS+=" --with-debugging=1"
+if [ -n "${SAT_DEBUG}" ]; then
+   CONFIGURE_FLAGS+=" --PETSC_ARCH=installed-arch-linux2-c-debug"
+   CONFIGURE_FLAGS+=" --with-debugging=1" # default
 else
    CONFIGURE_FLAGS+=" --with-debugging=0"
 fi
