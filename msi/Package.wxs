@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
+     xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui">
+
+  <Package Name="SALOME 9.15.0"
+           Version="9.15.0.0"
+           Manufacturer="Simvia"
+           UpgradeCode="B3D71A4E-8C29-4F56-A1E7-6D30F5B8C912"
+           Scope="perUser">
+
+    <SummaryInformation Description="SALOME Platform 9.15.0 Setup" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of SALOME is already installed." />
+
+    <!-- Split into ~600 MB embedded CABs for the multi-GB payload -->
+    <MediaTemplate EmbedCab="yes" MaximumUncompressedMediaSize="600" />
+
+    <!-- Install root directly under the drive root (NOT ProgramFiles).
+         Rooting INSTALL_ROOT under a SetDirectory-redirected system folder
+         (ProgramFiles6432Folder -> WindowsVolume) made the "Change destination
+         folder" Browse dialog fail with internal error 2872, because the dialog
+         re-targets INSTALL_ROOT while its parent is being redirected. Placing
+         INSTALL_ROOT directly under TARGETDIR removes that conflict, lets Browse
+         work, and keeps the install per-user / no-admin (no ProgramFiles flag). -->
+    <StandardDirectory Id="TARGETDIR">
+      <Directory Id="INSTALL_ROOT" />
+    </StandardDirectory>
+
+    <!-- Default path C:\SALOME\9.15.0 (user can change it via Browse).
+         Only applied when INSTALL_ROOT is not already set (UI Browse / command
+         line), so it never overrides a user-chosen folder. -->
+    <SetProperty Id="INSTALL_ROOT" Value="[WindowsVolume]SALOME\9.15.0"
+                 Before="CostFinalize" Sequence="both"
+                 Condition="NOT INSTALL_ROOT" />
+
+    <!-- Browse dialog edits INSTALL_ROOT -->
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALL_ROOT" />
+
+    <!-- ======== Custom Actions ======== -->
+
+    <!-- Block install if path contains spaces -->
+    <CustomAction Id="BlockSpaceInPath"
+        Error="The installation path contains spaces. SALOME requires a path without spaces to function correctly. Please choose a different path (e.g. C:\SALOME\9.15.0)." />
+
+    <!-- Post-install: run fix_paths.py via silent_setup.vbs -->
+    <CustomAction Id="RunSetup"
+        Execute="deferred"
+        Return="ignore"
+        Impersonate="yes"
+        Directory="INSTALL_ROOT"
+        ExeCommand="wscript.exe &quot;[INSTALL_ROOT]scripts\silent_setup.vbs&quot;" />
+
+    <!-- Uninstall cleanup: remove leftover files and folders -->
+    <CustomAction Id="CleanupOnUninstall"
+        Execute="deferred"
+        Return="ignore"
+        Impersonate="yes"
+        Directory="INSTALL_ROOT"
+        ExeCommand="cmd.exe /c &quot;cd /d C:\ &amp; rd /s /q &quot;[INSTALL_ROOT].&quot; &amp; rd &quot;[INSTALL_ROOT]..&quot; 2&gt;nul&quot;" />
+
+    <InstallExecuteSequence>
+      <Custom Action="BlockSpaceInPath" Before="InstallFiles"
+              Condition="(NOT Installed) AND (INSTALL_ROOT &gt;&lt; &quot; &quot;)" />
+      <Custom Action="RunSetup" After="InstallFiles"
+              Condition="NOT Installed" />
+      <Custom Action="CleanupOnUninstall" After="RemoveFiles"
+              Condition="REMOVE=&quot;ALL&quot;" />
+    </InstallExecuteSequence>
+
+    <!-- ======== Branding ======== -->
+    <Property Id="ARPPRODUCTICON" Value="SalomeIcon" />
+    <WixVariable Id="WixUIBannerBmp" Value="ui_banner.bmp" />
+    <WixVariable Id="WixUIDialogBmp" Value="ui_dialog.bmp" />
+
+    <!-- ======== UI ======== -->
+    <WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
+    <ui:WixUI Id="WixUI_Mondo" />
+    <UIRef Id="WixUI_ErrorProgressText" />
+
+    <!-- ======== Feature Tree ======== -->
+    <Feature Id="Complete" Title="SALOME 9.15.0" Level="1" Display="expand"
+             ConfigurableDirectory="INSTALL_ROOT">
+
+      <Feature Id="Core" Title="Core Platform" AllowAbsent="no" Level="1"
+               Description="KERNEL, GUI, Python, and essential dependencies (required)">
+        <ComponentGroupRef Id="CG_root" />
+        <ComponentGroupRef Id="CG_scripts" />
+        <ComponentGroupRef Id="CG_KERNEL" />
+        <ComponentGroupRef Id="CG_GUI" />
+        <ComponentGroupRef Id="CG_SALOME" />
+        <ComponentGroupRef Id="CG_SALOMEBOOTSTRAP" />
+        <ComponentGroupRef Id="CG_EXT" />
+        <ComponentGroupRef Id="CG_Python" />
+        <ComponentGroupRef Id="CG_CAS" />
+        <ComponentGroupRef Id="CG_COMPONENT" />
+        <ComponentGroupRef Id="CG_MEDCOUPLING" />
+        <ComponentGroupRef Id="CG_omniORB" />
+        <ComponentGroupRef Id="CG_omniORBpy" />
+        <ComponentGroupRef Id="CG_qt" />
+        <ComponentGroupRef Id="CG_PyQt" />
+        <ComponentGroupRef Id="CG_pthreads" />
+        <ComponentGroupRef Id="CG_pyqwt" />
+        <ComponentGroupRef Id="CG_qwt" />
+        <ComponentGroupRef Id="CG_qtpy" />
+        <ComponentGroupRef Id="CG_mesa" />
+        <ComponentGroupRef Id="CG_openssl" />
+        <ComponentGroupRef Id="CG_mpir" />
+        <ComponentGroupRef Id="CG_HELLO" />
+        <ComponentGroupRef Id="CG_PYHELLO" />
+        <ComponentGroupRef Id="CG_DOCUMENTATION" />
+        <ComponentGroupRef Id="CG_ruby" />
+        <ComponentGroupRef Id="CG_pandas" />
+        <ComponentGroupRef Id="CG_cftime" />
+        <ComponentGroupRef Id="CG_netCDF4" />
+        <ComponentGroupRef Id="DesktopShortcuts" />
+        <ComponentGroupRef Id="StartMenuShortcuts" />
+      </Feature>
+
+      <Feature Id="Geometry" Title="Geometry" Level="1" Display="expand"
+               Description="CAD modeling modules">
+        <Feature Id="GEOM" Title="GEOM" Level="1"
+                 Description="Geometry module — CAD import/export, boolean operations, transformations">
+          <ComponentGroupRef Id="CG_GEOM" />
+          <ComponentGroupRef Id="CG_CommonGeomLib" />
+        </Feature>
+        <Feature Id="SHAPER" Title="SHAPER" Level="1"
+                 Description="Parametric CAD modeler with sketcher, extrusion, revolution, etc.">
+          <ComponentGroupRef Id="CG_SHAPER" />
+          <ComponentGroupRef Id="CG_SHAPERSTUDY" />
+          <ComponentGroupRef Id="CG_cgal" />
+          <ComponentGroupRef Id="CG_cork" />
+          <ComponentGroupRef Id="CG_eigen" />
+          <ComponentGroupRef Id="CG_libigl" />
+          <ComponentGroupRef Id="CG_planegcs" />
+          <ComponentGroupRef Id="CG_meshbooleanplugin" />
+        </Feature>
+      </Feature>
+
+      <Feature Id="Meshing" Title="Meshing" Level="1" Display="expand"
+               Description="Mesh generation modules and plugins">
+        <Feature Id="SMESH" Title="SMESH" Level="1"
+                 Description="Core mesh module — mesh generation, editing, quality controls">
+          <ComponentGroupRef Id="CG_SMESH" />
+          <ComponentGroupRef Id="CG_meshio" />
+        </Feature>
+        <Feature Id="NETGENPLUGIN" Title="Netgen Plugin" Level="1"
+                 Description="Netgen mesher plugin for SMESH">
+          <ComponentGroupRef Id="CG_NETGENPLUGIN" />
+        </Feature>
+        <Feature Id="GMSHPLUGIN" Title="Gmsh Plugin" Level="1"
+                 Description="Gmsh mesher plugin for SMESH">
+          <ComponentGroupRef Id="CG_GMSHPLUGIN" />
+        </Feature>
+        <Feature Id="BLSURFPLUGIN" Title="BLSurf Plugin" Level="1"
+                 Description="MeshGems surface mesher plugin">
+          <ComponentGroupRef Id="CG_BLSURFPLUGIN" />
+        </Feature>
+        <Feature Id="GHS3DPLUGIN" Title="GHS3D Plugin" Level="1"
+                 Description="MeshGems volume mesher plugin">
+          <ComponentGroupRef Id="CG_GHS3DPLUGIN" />
+        </Feature>
+        <Feature Id="HYBRIDPLUGIN" Title="Hybrid Plugin" Level="1"
+                 Description="MeshGems hybrid mesher plugin">
+          <ComponentGroupRef Id="CG_HYBRIDPLUGIN" />
+        </Feature>
+        <Feature Id="HexoticPLUGIN" Title="Hexotic Plugin" Level="1"
+                 Description="MeshGems hexahedral mesher plugin">
+          <ComponentGroupRef Id="CG_HexoticPLUGIN" />
+        </Feature>
+        <Feature Id="HEXABLOCK" Title="HexaBlock" Level="1"
+                 Description="Hexahedral block meshing">
+          <ComponentGroupRef Id="CG_HEXABLOCK" />
+          <ComponentGroupRef Id="CG_HEXABLOCKPLUGIN" />
+        </Feature>
+        <Feature Id="MMGPLUGIN" Title="MMG Plugin" Level="1"
+                 Description="MMG remeshing plugin">
+          <ComponentGroupRef Id="CG_mmgplugin" />
+        </Feature>
+      </Feature>
+
+      <Feature Id="PostProcessing" Title="Post-Processing" Level="1" Display="expand"
+               Description="Visualization and post-processing modules">
+        <Feature Id="PARAVIS" Title="PARAVIS" Level="1"
+                 Description="ParaView integration for visualization in SALOME">
+          <ComponentGroupRef Id="CG_PARAVIS" />
+          <ComponentGroupRef Id="CG_ParaView" />
+          <ComponentGroupRef Id="CG_PARAVISADDONS" />
+          <ComponentGroupRef Id="CG_OT" />
+        </Feature>
+        <Feature Id="FIELDS" Title="FIELDS" Level="1"
+                 Description="Field manipulation and interpolation (MEDCoupling-based)">
+          <ComponentGroupRef Id="CG_FIELDS" />
+        </Feature>
+      </Feature>
+
+      <Feature Id="Solvers" Title="Solver Integration" Level="1" Display="expand"
+               Description="Workflow and solver coupling modules">
+        <Feature Id="YACS" Title="YACS" Level="1"
+                 Description="Workflow engine — computation schemes, dataflow graphs">
+          <ComponentGroupRef Id="CG_YACS" />
+          <ComponentGroupRef Id="CG_YACSGEN" />
+          <ComponentGroupRef Id="CG_YDEFX" />
+        </Feature>
+        <Feature Id="ADAO" Title="ADAO" Level="1"
+                 Description="Data assimilation and optimization">
+          <ComponentGroupRef Id="CG_ADAO" />
+        </Feature>
+        <Feature Id="CALCULATOR" Title="CALCULATOR" Level="1"
+                 Description="Field calculator for MED fields">
+          <ComponentGroupRef Id="CG_CALCULATOR" />
+          <ComponentGroupRef Id="CG_PYCALCULATOR" />
+        </Feature>
+        <Feature Id="EFICAS" Title="EFICAS" Level="1"
+                 Description="Code_Aster command file editor">
+          <ComponentGroupRef Id="CG_EFICAS" />
+          <ComponentGroupRef Id="CG_EFICAS_TOOLS" />
+        </Feature>
+        <Feature Id="JOBMANAGER" Title="Job Manager" Level="1"
+                 Description="Remote job submission and monitoring">
+          <ComponentGroupRef Id="CG_JOBMANAGER" />
+          <ComponentGroupRef Id="CG_f2c" />
+        </Feature>
+      </Feature>
+
+      <Feature Id="Uncertainty" Title="Uncertainty Analysis" Level="1" Display="expand"
+               Description="Probabilistic analysis modules">
+        <Feature Id="PERSALYS" Title="PERSALYS" Level="1"
+                 Description="Uncertainty quantification GUI (based on OpenTURNS)">
+          <ComponentGroupRef Id="CG_PERSALYS" />
+        </Feature>
+        <Feature Id="OpenTURNS" Title="OpenTURNS" Level="1"
+                 Description="Uncertainty treatment library">
+          <ComponentGroupRef Id="CG_OPENTURNS" />
+          <ComponentGroupRef Id="CG_PY2CPP" />
+          <ComponentGroupRef Id="CG_BasicIterativeStatistics" />
+        </Feature>
+        <Feature Id="PyFMI" Title="PyFMI" Level="1"
+                 Description="FMI standard support for model exchange">
+          <ComponentGroupRef Id="CG_PyFMI" />
+        </Feature>
+      </Feature>
+
+      <Feature Id="ShellCompletion" Title="Shell tab-completion (clink)" Level="1"
+               Description="Optional command-line tab-completion and history for the SALOME shell. The shell works normally without it.">
+        <ComponentGroupRef Id="CG_clink" />
+      </Feature>
+
+    </Feature>
+
+  </Package>
+</Wix>
