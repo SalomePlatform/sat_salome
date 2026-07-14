@@ -3,7 +3,14 @@ default :
     name : "vtk"
     build_source : "script"
     compil_script :  $name + ".sh"
-    get_source : "archive"
+    get_source : "git"
+    git_info:
+    {
+      repositories :
+      {
+        github : "https://gitlab.kitware.com/vtk/vtk.git"
+      }
+    }
     environ :
     {
        env_script : $name + ".py"
@@ -14,4 +21,5 @@ default :
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     install_dir : 'base'
 }
+
 
