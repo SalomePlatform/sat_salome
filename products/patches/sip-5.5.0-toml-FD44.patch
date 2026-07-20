@@ -1,0 +1,43 @@
+diff -ruN sip/sip-5.5.0/setup.py sip-dev/sip-5.5.0/setup.py
+--- sip/sip-5.5.0/setup.py	2025-07-18 15:14:34.000000000 +0100
++++ sip-dev/sip-5.5.0/setup.py	2026-07-07 12:31:15.078121624 +0100
+@@ -51,7 +51,7 @@
+         version=version,
+         license='SIP',
+         python_requires='>=3.5.1',
+-        install_requires=['packaging', 'toml'],
++        install_requires=['packaging', 'tomli'], # MBS: changed toml to tomli
+         packages=find_packages(),
+         package_data={
+             'sipbuild.module': ['source/*/*'],
+diff -ruN sip/sip-5.5.0/sipbuild/helpers.py sip-dev/sip-5.5.0/sipbuild/helpers.py
+--- sip/sip-5.5.0/sipbuild/helpers.py	2025-07-18 15:14:34.000000000 +0100
++++ sip-dev/sip-5.5.0/sipbuild/helpers.py	2026-07-07 12:35:51.330640722 +0100
+@@ -22,7 +22,7 @@
+ 
+ 
+ import os
+-import toml
++import tomli as toml  # MBS: changed from    import toml
+ 
+ from .exceptions import UserFileException, UserParseException
+ 
+diff -ruN sip/sip-5.5.0/sipbuild/pyproject.py sip-dev/sip-5.5.0/sipbuild/pyproject.py
+--- sip/sip-5.5.0/sipbuild/pyproject.py	2025-07-18 15:14:34.000000000 +0100
++++ sip-dev/sip-5.5.0/sipbuild/pyproject.py	2026-07-07 13:04:14.452825886 +0100
+@@ -22,7 +22,7 @@
+ 
+ 
+ from collections import OrderedDict
+-import toml
++import tomli as toml # MBS: changed from    import toml
+ 
+ from .exceptions import UserFileException, UserParseException
+ from .py_versions import FIRST_SUPPORTED_MINOR
+diff -ruN sip/sip-5.5.0/sip.egg-info/requires.txt sip-dev/sip-5.5.0/sip.egg-info/requires.txt
+--- sip/sip-5.5.0/sip.egg-info/requires.txt	2025-07-18 15:14:34.000000000 +0100
++++ sip-dev/sip-5.5.0/sip.egg-info/requires.txt	2026-07-07 12:32:57.314074002 +0100
+@@ -1,2 +1,2 @@
+ packaging
+-toml
++tomli

@@ -94,6 +94,9 @@ case $LINUX_DISTRIBUTION in
     UB26.04)
         PYQT5_SIP_VERSION=12.17.0
         ;;
+    FD44)
+        PYQT5_SIP_VERSION=12.17.0
+        ;;
     *)
         PYQT5_SIP_VERSION=12.8.1
         ;;

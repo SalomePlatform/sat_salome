@@ -52,6 +52,13 @@ version_6_2_2101_win :
    }
 }
 
+version_5_3_1_with_CAS_7_8_FD44 :
+{
+    archive_info : {archive_name : "netgen-5.3.1.tar.gz"}
+    compil_script :  'netgen_5_3_1' + $VARS.scriptExtension
+    patches : ["netgen-5.3.1-for-SALOME-OCCT-7.2.0.patch","netgen5.3_withOCCT780_linux.patch","netgen-5.3.1-tk90-FD44.patch"]
+}
+
 version_5_3_1_with_CAS_7_8 :
 {
     archive_info : {archive_name : "netgen-5.3.1.tar.gz"}

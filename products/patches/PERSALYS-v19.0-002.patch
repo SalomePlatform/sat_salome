@@ -1,0 +1,103 @@
+diff -ruN PERSALYS/lib/src/view/plot/pv/PVPlotSettingWidget.cxx PERSALYS-dev/lib/src/view/plot/pv/PVPlotSettingWidget.cxx
+--- PERSALYS/lib/src/view/plot/pv/PVPlotSettingWidget.cxx	2025-10-10 15:46:34.000000000 +0100
++++ PERSALYS-dev/lib/src/view/plot/pv/PVPlotSettingWidget.cxx	2026-07-08 15:12:26.896185294 +0100
+@@ -114,7 +114,7 @@
+   QCheckBox * rankCheckBox = new QCheckBox(tr("Ranks"));
+   rankCheckBox->setChecked(checkState);
+   frameLayout_->addWidget(rankCheckBox, frameLayout_->rowCount(), 0, 1, 2);
+-  connect(rankCheckBox, &QCheckBox::clicked, [ = ](bool isRank)
++  connect(rankCheckBox, &QCheckBox::clicked, [ this ](bool isRank)
+   {
+     for (UnsignedInteger i = 0; i < samples_.getSize(); ++i)
+       pvViewWidget_->updateTable(isRank ? rankSamples_[i] : samples_[i], i);
+diff -ruN PERSALYS/lib/src/view/plot/pv/PVXYChartSettingWidget.cxx PERSALYS-dev/lib/src/view/plot/pv/PVXYChartSettingWidget.cxx
+--- PERSALYS/lib/src/view/plot/pv/PVXYChartSettingWidget.cxx	2025-10-10 15:46:34.000000000 +0100
++++ PERSALYS-dev/lib/src/view/plot/pv/PVXYChartSettingWidget.cxx	2026-07-08 15:08:41.204218631 +0100
+@@ -56,7 +56,8 @@
+   frameLayout_->addWidget(label, rowGrid, 0, 1, 1);
+ 
+   titleLineEdit_ = new QLineEdit;
+-  connect(titleLineEdit_, &QLineEdit::textChanged, [ = ](const QString & newValue)
++  // explicitly capture `this` in the lambda to avoid dangling pointer if the widget is destroyed before the lambda is called
++  connect(titleLineEdit_, &QLineEdit::textChanged, [ this ](const QString & newValue)
+   {
+     pvXYViewWidget_->setChartTitle(newValue, xAxisComboBox_->currentText(), yAxisComboBox_->currentText());
+   });
+@@ -88,12 +89,12 @@
+ 
+     axisLabelLineEdit_[i] = new QLineEdit;
+     if (!yAxisComboBox_->currentText().isEmpty() || plotNames_.size() == 0)
+-      connect(axisLabelLineEdit_[i], &QLineEdit::editingFinished, [ = ]()
++      connect(axisLabelLineEdit_[i], &QLineEdit::editingFinished, [ this, i ]()
+     {
+       pvXYViewWidget_->setAxisTitle(Axes[i], axisLabelLineEdit_[i]->text(), xAxisComboBox_->currentText(), yAxisComboBox_->currentText());
+     });
+     else
+-      connect(axisLabelLineEdit_[i], &QLineEdit::editingFinished, [ = ]()
++      connect(axisLabelLineEdit_[i], &QLineEdit::editingFinished, [ this, i ]()
+     {
+       pvXYViewWidget_->setAxisTitle(Axes[i], axisLabelLineEdit_[i]->text(), xAxisComboBox_->currentText(), plotNames_[0]);
+     });
+@@ -104,7 +105,7 @@
+     gridLayoutTab->addWidget(label, 1, 0, 1, 1);
+ 
+     axisMinValueLineEdit_[i] = new ValueLineEdit;
+-    connect(axisMinValueLineEdit_[i], &ValueLineEdit::editingFinished, [ = ]()
++    connect(axisMinValueLineEdit_[i], &ValueLineEdit::editingFinished, [ this, i ]()
+     {
+       pvXYViewWidget_->setAxisRange(Axes[i], axisMinValueLineEdit_[i]->value(), axisMaxValueLineEdit_[i]->value());
+     });
+@@ -115,7 +116,7 @@
+     gridLayoutTab->addWidget(label, 2, 0, 1, 1);
+ 
+     axisMaxValueLineEdit_[i] = new ValueLineEdit;
+-    connect(axisMaxValueLineEdit_[i], &ValueLineEdit::editingFinished, [ = ]()
++    connect(axisMaxValueLineEdit_[i], &ValueLineEdit::editingFinished, [ this, i ]()
+     {
+       pvXYViewWidget_->setAxisRange(Axes[i], axisMinValueLineEdit_[i]->value(), axisMaxValueLineEdit_[i]->value());
+     });
+@@ -124,7 +125,7 @@
+     QHBoxLayout * hLayout = new QHBoxLayout;
+     // log scale
+     axisLogScaleCheckBox_[i] = new QCheckBox(tr("Log scale"));
+-    connect(axisLogScaleCheckBox_[i], &QCheckBox::clicked, [ = ](bool checked)
++    connect(axisLogScaleCheckBox_[i], &QCheckBox::clicked, [ this, i ](bool checked)
+     {
+       pvXYViewWidget_->setLogScale(Axes[i], checked);
+     });
+@@ -175,7 +176,7 @@
+   markerStyles->addItem(tr("Circle"), vtkPlotPoints::CIRCLE);
+   markerStyles->addItem(tr("Diamond"), vtkPlotPoints::DIAMOND);
+   markerStyles->setCurrentIndex(pvXYViewWidget_->getMarkerStyle());
+-  connect(markerStyles, &QComboBox::currentTextChanged, [ = ]()
++  connect(markerStyles, &QComboBox::currentTextChanged, [ this, markerStyles ]()
+   {
+     pvXYViewWidget_->setMarkerStyle(markerStyles->currentData().toInt());
+   });
+@@ -295,7 +296,7 @@
+     frameLayout_->addWidget(label, rowGrid, 0, 1, 1);
+     xAxisComboBox_->setVisible(true);
+     xAxisComboBox_->addItems(xAxisNames);
+-    connect(xAxisComboBox_, &QComboBox::currentTextChanged, [ = ]()
++    connect(xAxisComboBox_, &QComboBox::currentTextChanged, [ this ]()
+     {
+       pvXYViewWidget_->setXAxisData(xAxisComboBox_->currentText());
+     });
+@@ -357,7 +358,7 @@
+ 
+   connect(xAxisComboBox_, SIGNAL(currentIndexChanged(int)), this, SLOT(updateYComboBox()));
+   frameLayout_->addWidget(yAxisComboBox_, rowGrid, 1, 1, 1);
+-  connect(yAxisComboBox_, &QComboBox::currentTextChanged, [ = ]()
++  connect(yAxisComboBox_, &QComboBox::currentTextChanged, [ this ]()
+   {
+     pvXYViewWidget_->showChart(xAxisComboBox_->currentText(), yAxisComboBox_->currentText());
+   });
+@@ -458,7 +459,7 @@
+   frameLayout_->addWidget(xAxisComboBox_, rowGrid, 1, 1, 1);
+ 
+   connect(xAxisComboBox_, SIGNAL(currentIndexChanged(int)), yAxisComboBox_, SLOT(setCurrentIndex(int)));
+-  connect(yAxisComboBox_, &QComboBox::currentTextChanged, [ = ]()
++  connect(yAxisComboBox_, &QComboBox::currentTextChanged, [ this ]()
+   {
+     pvXYViewWidget_->showChart(xAxisComboBox_->currentText(), yAxisComboBox_->currentText());
+   });

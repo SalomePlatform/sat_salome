@@ -235,6 +235,7 @@ case $LINUX_DISTRIBUTION in
 
         echo
         echo "*** cmake " $CMAKE_OPTIONS ${CMAKE_EXTRA_OPTIONS} $SOURCE_DIR/mixmod-2.1.11
+        #sed -i "s/Eigen3 3.3/Eigen3/" $SOURCE_DIR/mixmod-2.1.11/CMakeLists.txt
         cmake $CMAKE_OPTIONS ${CMAKE_EXTRA_OPTIONS} $SOURCE_DIR/mixmod-2.1.11
         if [ $? -ne 0 ]; then
             echo "ERROR on cmake"

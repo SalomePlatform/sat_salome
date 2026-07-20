@@ -1,0 +1,32 @@
+diff -ruN openturns/mixmod-2.1.11/CMakeLists.txt openturns-dev/mixmod-2.1.11/CMakeLists.txt
+--- openturns/mixmod-2.1.11/CMakeLists.txt	2025-10-01 13:52:55.000000000 +0100
++++ openturns-dev/mixmod-2.1.11/CMakeLists.txt	2026-07-08 08:59:32.669587122 +0100
+@@ -9,9 +9,12 @@
+ option (BUILD_SHARED_LIBS "shared/static libs" ON)
+ 
+ #Eigen stuff
+-find_package(Eigen3 3.3 REQUIRED NO_MODULE)
+-include_directories(${EIGEN3_INCLUDE_DIRS})
+-message(STATUS "libeigen found here : "  ${EIGEN3_INCLUDE_DIRS})
++find_package(Eigen3 REQUIRED NO_MODULE)
++# Modern Eigen3Config.cmake only exports the Eigen3::Eigen target and does not
++# set EIGEN3_INCLUDE_DIR; extract it from the target for legacy CMakeLists usage.
++get_target_property(EIGEN3_INCLUDE_DIR Eigen3::Eigen INTERFACE_INCLUDE_DIRECTORIES) ## MBS: added
++include_directories(${EIGEN3_INCLUDE_DIR})
++message(STATUS "libeigen found here : "  ${EIGEN3_INCLUDE_DIR})
+ 
+ include (GNUInstallDirs)
+ 
+diff -ruN openturns/openturns-1.25.1/lib/src/Base/Stat/openturns/CovarianceMatrix.hxx openturns-dev/openturns-1.25.1/lib/src/Base/Stat/openturns/CovarianceMatrix.hxx
+--- openturns/openturns-1.25.1/lib/src/Base/Stat/openturns/CovarianceMatrix.hxx	2025-09-29 09:14:28.000000000 +0100
++++ openturns-dev/openturns-1.25.1/lib/src/Base/Stat/openturns/CovarianceMatrix.hxx	2026-07-15 09:50:29.650334494 +0100
+@@ -76,6 +76,9 @@
+   /** Check if the matrix is SPD */
+   virtual Bool isPositiveDefinite() const;
+ 
++  /** Comparison operators */ // MBS: added
++  Bool operator == (const CovarianceMatrix & rhs) const { return SymmetricMatrix::operator==(rhs); }
++
+   /** Build the Cholesky factorization of the matrix */
+   virtual TriangularMatrix computeCholesky() const;
+   virtual TriangularMatrix computeCholeskyInPlace();

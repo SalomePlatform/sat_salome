@@ -20,6 +20,11 @@ default :
   patches: []
 }
 
+version_0_18_3cb6890_FD44 :
+{
+  patches: ['planegcs-FD44.patch']
+}
+
 version_0_20 :
 {
   patches: ['planegcs-0.20.p01.patch', 'planegcs-0.20.p02.patch']

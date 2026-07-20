@@ -1,0 +1,49 @@
+diff --git a/cmake/FindPyQt5.cmake b/cmake/FindPyQt5.cmake
+index 783953d..9dc9826 100644
+--- a/cmake/FindPyQt5.cmake
++++ b/cmake/FindPyQt5.cmake
+@@ -30,7 +30,7 @@
+ #  The executables
+ #      pyuic5 (pyuic5.bat)
+ #  are searched.
+-#  The Python command 
++#  The Python command
+ #      pyqtconfig.Configuration().pyqt_sip_flags
+ #  is called to get the compilation flags.
+ #  Headers are located by looking for the header file
+@@ -52,11 +52,24 @@ GET_FILENAME_COMPONENT(_tmp_ROOT_DIR "${PYQT_PYUIC_EXECUTABLE}" PATH)
+ GET_FILENAME_COMPONENT(_tmp_ROOT_DIR "${_tmp_ROOT_DIR}" PATH)
+ 
+ 
+-# Typical locations of qobject.sip are: 
++# Typical locations of qobject.sip are:
+ #   - /usr/share/sip/PyQt5/QtCore, for a system install
+ #   - or <xyz>/sip/QtCore, for a custom install
+ #   - or <xyz>/share/sip/QtCore, for a custom install
+-FIND_FILE(PYQT_SIP_MAIN_FILE qobject.sip PATH_SUFFIXES share/sip/QtCore sip/QtCore share/sip/PyQt5/QtCore lib/python3/dist-packages/PyQt5/bindings/QtCore lib64/python3.10/site-packages/PyQt5/bindings/QtCore lib64/python3.11/site-packages/PyQt5/bindings/QtCore lib64/python3.12/site-packages/PyQt5/bindings/QtCore lib64/python3.13/site-packages/PyQt5/bindings/QtCore)
++SET(PYQT_SIP_SEARCH_SUFFIXES
++  share/sip/QtCore
++  sip/QtCore
++  share/sip/PyQt5/QtCore
++  lib/python3/dist-packages/PyQt5/bindings/QtCore
++)
++
++foreach(ver RANGE 10 17)
++  list(APPEND PYQT_SIP_SEARCH_SUFFIXES "lib64/python3.${ver}/site-packages/PyQt5/bindings/QtCore")
++endforeach()
++
++FIND_FILE(PYQT_SIP_MAIN_FILE qobject.sip
++  PATH_SUFFIXES ${PYQT_SIP_SEARCH_SUFFIXES}
++)
+ 
+ IF(PYQT_SIP_MAIN_FILE)
+   GET_FILENAME_COMPONENT(PYQT_SIPS_DIR "${PYQT_SIP_MAIN_FILE}" PATH)
+@@ -68,7 +81,7 @@ MARK_AS_ADVANCED(PYQT_SIP_MAIN_FILE)
+ SET(PYQT_PYTHONPATH "${_tmp_ROOT_DIR};${_tmp_ROOT_DIR}/PyQt5;${_tmp_ROOT_DIR}/lib/python${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}/site-packages/PyQt5")
+ SET(PYQT_SIPFLAGS)
+ 
+-EXECUTE_PROCESS(COMMAND ${PYTHON_EXECUTABLE} -c "import sys; 
++EXECUTE_PROCESS(COMMAND ${PYTHON_EXECUTABLE} -c "import sys;
+ sys.path[:0] = '${PYQT_PYTHONPATH}'.split(';');
+ sys.path[:0] = '${SIP_PYTHONPATH}'.split(';');
+ from PyQt5.QtCore import PYQT_CONFIGURATION;

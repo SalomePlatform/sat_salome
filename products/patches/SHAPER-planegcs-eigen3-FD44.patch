@@ -1,0 +1,31 @@
+diff --git a/CMakeCommon/FindPlaneGCS.cmake b/CMakeCommon/FindPlaneGCS.cmake
+index 5986feaef..551ad571f 100644
+--- a/CMakeCommon/FindPlaneGCS.cmake
++++ b/CMakeCommon/FindPlaneGCS.cmake
+@@ -21,11 +21,11 @@
+ # Once done this will define
+ #
+ #  PLANEGCS_FOUND - system has PlaneGCS
+-#  PLANEGCS_INCLUDE_DIRS - the Plaine include directory
++#  PLANEGCS_INCLUDE_DIRS - the PlaneGCS include directory
+ #  PLANEGCS_LIBRARIES - Link these to use PlaneGCS
+ 
+ IF(NOT PLANEGCS_FIND_QUIETLY)
+-  MESSAGE(STATUS "Try to find PlainGCS at $ENV{PLANEGCS_ROOT_DIR}...")
++  MESSAGE(STATUS "Try to find PlaneGCS at $ENV{PLANEGCS_ROOT_DIR}...")
+ ENDIF()
+ 
+ FIND_PATH(PLANEGCS_INCLUDE_DIR NAMES GCS.h
+@@ -47,7 +47,11 @@ FIND_LIBRARY(PLANEGCS_LIBRARY NAMES PlaneGCS
+ FILE(TO_CMAKE_PATH "$ENV{EIGEN_ROOT_DIR}/include/eigen3" EIGEN3_INCLUDE_DIR)
+ FILE(TO_CMAKE_PATH "$ENV{BOOST_ROOT_DIR}" BOOST_ROOT)
+ SET(CMAKE_MODULE_PATH "${PLANEGCS_CMAKE_DIR}" ${CMAKE_MODULE_PATH})
+-FIND_PACKAGE(Eigen3 3.2.5 REQUIRED)
++FIND_PACKAGE(Eigen3 REQUIRED)
++# The EIGEN3_FOUND variable is not set
++IF(NOT EIGEN3_FOUND)
++  STRING(COMPARE NOTEQUAL ${EIGEN3_INCLUDE_DIR} "" EIGEN3_FOUND)
++ENDIF()
+ FIND_PACKAGE(Boost COMPONENTS graph REQUIRED)
+ 
+ IF(Boost_FOUND AND EIGEN3_FOUND)

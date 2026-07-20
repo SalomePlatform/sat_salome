@@ -32,4 +32,79 @@ default :
         is_SALOME_module : "yes"
         is_SALOME_product: "yes"
     }
+    patches : []
+}
+
+default_FD44 :
+{
+    name : "ADAO_INTERFACE"
+    build_source : "cmake"
+    cmake_options : "-DPY2CPP_ROOT_DIR=${PY2CPP_ROOT_DIR}"
+    get_source : "git"
+    git_info:
+    {
+      repositories :
+      {
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/adao_interface.git"
+        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "adao_interface.git"
+        gitpub : $PROJECTS.projects.salome.git_info.git_server.gitpub.url + "modules/adao_interface.git"
+      }
+    }
+    environ :
+    {
+      env_script : $name + ".py"
+    }
+    depend : [
+        "Python",
+        "PY2CPP",
+        "CONFIGURATION",
+        "ADAO"
+       ]
+    build_depend : ["cmake", "cppunit"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        has_salome_gui : "yes"
+        is_SALOME_module : "yes"
+        is_SALOME_product: "yes"
+    }
+    patches : ['ADAO_INTERFACE-PyObjectRAII-FD44.patch']
+}
+
+version_V9_16_0_FD44 :
+{
+    name : "ADAO_INTERFACE"
+    build_source : "cmake"
+    cmake_options : "-DPY2CPP_ROOT_DIR=${PY2CPP_ROOT_DIR}"
+    get_source : "git"
+    git_info:
+    {
+      repositories :
+      {
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/adao_interface.git"
+        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "adao_interface.git"
+        gitpub : $PROJECTS.projects.salome.git_info.git_server.gitpub.url + "modules/adao_interface.git"
+      }
+    }
+    environ :
+    {
+      env_script : $name + ".py"
+    }
+    depend : [
+        "Python",
+        "PY2CPP",
+        "CONFIGURATION",
+        "ADAO"
+       ]
+    build_depend : ["cmake", "cppunit"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+        has_salome_gui : "yes"
+        is_SALOME_module : "yes"
+        is_SALOME_product: "yes"
+    }
+    patches : ['ADAO_INTERFACE-PyObjectRAII-FD44.patch']
 }

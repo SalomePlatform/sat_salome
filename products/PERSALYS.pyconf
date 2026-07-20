@@ -71,6 +71,17 @@ version_v19_0 :
    post_script: "add_persalys-v19.0_doc.sh"
 }
 
+version_v19_0_FD44 :
+{
+   compil_script : 'PERSALYS-v19.0.sh'
+   archive_info :
+   {
+       archive_name : "persalys_v19.0.tar.gz"
+   }
+   patches : ['PERSALYS-v19.0-001.patch','PERSALYS-v19.0-002.patch']
+   post_script: "add_persalys-v19.0_doc.sh"
+}
+
 version_v19_0_CO7 :
 {
    compil_script : 'PERSALYS-v19.0.sh'

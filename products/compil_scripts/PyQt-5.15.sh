@@ -35,7 +35,7 @@ CONFIGURE_OPTIONS+=" --disable=QtNetwork"
 CONFIGURE_OPTIONS+=" --disable=QtWebSockets"
 
 case $LINUX_DISTRIBUTION in
-    CO10)
+    CO10|FD44)
         CONFIGURE_OPTIONS+=" --qmake=$(which qmake-qt5)"
         ;;
 esac

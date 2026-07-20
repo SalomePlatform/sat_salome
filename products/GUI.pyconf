@@ -73,6 +73,12 @@ default_win :
 
 }
 
+default_FD44:
+{
+    cmake_options : "-DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_USE_PLOT2DVIEWER:BOOL=OFF" # FIXME
+    patches: ['GUI_ub26_gcc15.patch']
+}
+
 default_UB26_04:
 {
     patches: ['GUI_ub26_gcc15.patch']
@@ -80,6 +86,12 @@ default_UB26_04:
 
 version_V9_16_0_UB26_04:
 {
+    patches: ['GUI_ub26_gcc15.patch']
+}
+
+version_V9_16_0_FD44:
+{
+    cmake_options : "-DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_USE_PLOT2DVIEWER:BOOL=OFF" # FIXME
     patches: ['GUI_ub26_gcc15.patch']
 }
 

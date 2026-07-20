@@ -1,0 +1,13 @@
+diff --git a/PyObjectRAII.hxx b/PyObjectRAII.hxx
+index 6136719..e581340 100644
+--- a/PyObjectRAII.hxx
++++ b/PyObjectRAII.hxx
+@@ -30,7 +30,7 @@ public:
+   PyObjectRAII():_obj(nullptr) { }
+   PyObjectRAII(PyObjectRAII&& other):_obj(other._obj) { other._obj=nullptr; }
+   PyObjectRAII(const PyObjectRAII& other):_obj(other._obj) { incRef(); }
+-  PyObjectRAII& operator=(PyObjectRAII&& other) { unRef(); _obj=other._obj; other._obj=nullptr; }
++  PyObjectRAII& operator=(PyObjectRAII&& other) { unRef(); _obj=other._obj; other._obj=nullptr; return *this;} // MBS: added return
+   PyObjectRAII& operator=(const PyObjectRAII& other) { if(_obj==other._obj) return *this; unRef(); _obj=other._obj; incRef(); return *this; }
+   ~PyObjectRAII() { unRef(); }
+   PyObject *retn() { incRef(); return _obj; }

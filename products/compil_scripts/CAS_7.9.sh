@@ -4,6 +4,8 @@ echo "##########################################################################
 echo "OCCT " $VERSION
 echo "##########################################################################"
 
+LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
+
 CMAKE_OPTIONS=
 CMAKE_OPTIONS+=" -DUSE_TCL=OFF"
 CMAKE_OPTIONS+=" -DBUILD_MODULE_Draw=OFF"
@@ -16,6 +18,10 @@ if [ -n "$SAT_DEBUG" ]; then
     CMAKE_OPTIONS+=" -DCMAKE_BUILD_TYPE:STRING=Debug"
 else
     CMAKE_OPTIONS+=" -DCMAKE_BUILD_TYPE:STRING=Release"
+    if [[ $LINUX_DISTRIBUTION == "FD44" ]]; then
+        CMAKE_OPTIONS+=" -DCMAKE_CXX_COMPILER:STRING=$(which clang++)"
+        CMAKE_OPTIONS+=" -DCMAKE_C_COMPILER:STRING=$(which clang)"
+    fi
 fi
 
 echo

@@ -1,0 +1,52 @@
+diff -Naur ParaView/Qt/ApplicationComponents/pqSelectionQueryPropertyWidget.cxx ParaView.dev/Qt/ApplicationComponents/pqSelectionQueryPropertyWidget.cxx
+--- ParaView/Qt/ApplicationComponents/pqSelectionQueryPropertyWidget.cxx	2026-02-16 20:38:20.000000000 +0100
++++ ParaView.dev/Qt/ApplicationComponents/pqSelectionQueryPropertyWidget.cxx	2026-07-21 20:17:41.265080162 +0200
+@@ -549,7 +549,7 @@
+       this->addOperator(
+         "is in range", ValueWidget::RANGE_PAIR, "({term} > {value_min}) & ({term} < {value_max})");
+       this->addOperator(
+-        "is one of", ValueWidget::COMMA_SEPARATED_VALUES, "in1d({term}, [{value}])");
++        "is one of", ValueWidget::COMMA_SEPARATED_VALUES, "isin({term}, [{value}])");
+       this->addOperator("is >=", ValueWidget::SINGLE_VALUE, "{term} >= {value}");
+       this->addOperator("is <=", ValueWidget::SINGLE_VALUE, "{term} <= {value}");
+       this->addOperator("is min", ValueWidget::NO_VALUE, "{term} == min({term})");
+diff -Naur ParaView/VTK/Common/Core/Testing/Python/TestNumpyInterface.py ParaView.dev/VTK/Common/Core/Testing/Python/TestNumpyInterface.py
+--- ParaView/VTK/Common/Core/Testing/Python/TestNumpyInterface.py	2026-02-16 20:39:12.000000000 +0100
++++ ParaView.dev/VTK/Common/Core/Testing/Python/TestNumpyInterface.py	2026-07-21 20:16:59.994033373 +0200
+@@ -119,7 +119,7 @@
+ # Test ufunc
+ compare(algs.cos(randomVec) - numpy.cos(npa), 1E-7)
+ assert algs.cos(randomVec).DataSet is randomVec.DataSet
+-assert numpy.all(numpy.asarray(numpy.in1d(elev, [0,1])) == [item in [0, 1] for item in elev])
++assert numpy.all(numpy.asarray(numpy.isin(elev, [0,1])) == [item in [0, 1] for item in elev])
+ 
+ # Various numerical ops implemented in VTK
+ g = algs.gradient(elev)
+diff -Naur ParaView/VTK/Wrapping/Python/vtkmodules/numpy_interface/algorithms.py ParaView.dev/VTK/Wrapping/Python/vtkmodules/numpy_interface/algorithms.py
+--- ParaView/VTK/Wrapping/Python/vtkmodules/numpy_interface/algorithms.py	2026-02-16 20:39:14.000000000 +0100
++++ ParaView.dev/VTK/Wrapping/Python/vtkmodules/numpy_interface/algorithms.py	2026-07-21 20:16:07.467521852 +0200
+@@ -775,8 +775,8 @@
+     """
+     return npalgs.where(*args)
+ 
+-in1d = deprecated(version="9.6", message="Use np.in1d() instead of algs.in1d().")(npalgs.in1d)
+-in1d.__doc__ = "Test whether each element of a 1-D array is also present in a second array."
++# in1d = deprecated(version="9.6", message="Use np.in1d() instead of algs.in1d().")(npalgs.in1d)
++# in1d.__doc__ = "Test whether each element of a 1-D array is also present in a second array."
+ 
+ isin = deprecated(version="9.6", message="Use np.isin() instead of algs.isin().")(npalgs.isin)
+ isin.__doc__ = "Test whether each element of a 1-D array is also present in a second array."
+diff -Naur ParaView/VTK/Wrapping/Python/vtkmodules/numpy_interface/numpy_algorithms.py ParaView.dev/VTK/Wrapping/Python/vtkmodules/numpy_interface/numpy_algorithms.py
+--- ParaView/VTK/Wrapping/Python/vtkmodules/numpy_interface/numpy_algorithms.py	2026-02-16 20:39:14.000000000 +0100
++++ ParaView.dev/VTK/Wrapping/Python/vtkmodules/numpy_interface/numpy_algorithms.py	2026-07-21 20:15:45.219418485 +0200
+@@ -481,8 +481,8 @@
+ """
+ 
+ 
+-in1d = (dsa._override_numpy(numpy.in1d)(_make_ufunc(numpy.in1d)))
+-in1d.__doc__ = "Test whether each element of a 1-D array is also present in a second array."
++# in1d = (dsa._override_numpy(numpy.in1d)(_make_ufunc(numpy.in1d)))
++# in1d.__doc__ = "Test whether each element of a 1-D array is also present in a second array."
+ 
+ isin = (dsa._override_numpy(numpy.isin)(_make_ufunc(numpy.isin)))
+ isin.__doc__ = "Test whether each element of a 1-D array is also present in a second array."

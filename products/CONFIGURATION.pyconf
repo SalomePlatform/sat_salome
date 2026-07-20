@@ -26,6 +26,11 @@ default :
     patches : []
 }
 
+default_FD44:
+{
+  patches: ['CONFIGURATION_boost_1_89.patch', 'CONFIGURATION-FD44-V9_16_0.patch']
+}
+
 default_UB26_04:
 {
   patches: ['CONFIGURATION_scotch_7.patch', 'CONFIGURATION_boost_1_89.patch']
@@ -34,6 +39,11 @@ default_UB26_04:
 version_V9_16_0_UB26_04:
 {
   patches: ['CONFIGURATION_scotch_7.patch', 'CONFIGURATION_boost_1_89.patch']
+}
+
+version_V9_16_0_FD44:
+{
+  patches: ['CONFIGURATION_boost_1_89.patch', 'CONFIGURATION-FD44-V9_16_0.patch']
 }
 
 version_V9_15_0_FD42 :

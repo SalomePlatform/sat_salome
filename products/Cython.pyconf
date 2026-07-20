@@ -32,6 +32,15 @@ default_win :
    archive_info : {archive_name : "Cython-" + $APPLICATION.products.Cython + "_windows.tar.gz"}
 }
 
+default_FD44:
+{
+    system_info :
+    {
+        rpm : ["python3-cython"]
+        rpm_dev : []
+    }
+}
+
 default_FD42:
 {
     system_info :

@@ -26,6 +26,15 @@ default :
     }
 }
 
+default_FD44 :
+{
+    system_info :
+    {
+        rpm : ["python3-tomli"]
+        rpm_dev : []
+    }
+}
+
 version_0_10_2_no_pip :
 {
     compil_script : 'toml-0.10.2' + $VARS.scriptExtension

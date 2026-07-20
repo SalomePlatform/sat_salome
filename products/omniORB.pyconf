@@ -57,6 +57,11 @@ version_4_2_5:
   patches: ['omniORB-4.2.5.p1.patch']
 }
 
+version_4_2_5_FD44:
+{
+  patches: ['omniORB-4.2.5.p1.patch','omniORB-4.2.5.p2.patch']
+}
+
 version_4_2_5_UB26_04:
 {
   patches: ['omniORB-4.2.5.p1.patch','omniORB-4.2.5.p2.patch']

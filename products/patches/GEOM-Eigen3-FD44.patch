@@ -1,0 +1,20 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index bd670f295..b35674010 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -107,7 +107,14 @@ FIND_PACKAGE(SalomeOmniORB REQUIRED)
+ FIND_PACKAGE(SalomeOmniORBPy REQUIRED)
+ FIND_PACKAGE(SalomeLibXml2 REQUIRED)
+ FIND_PACKAGE(SalomeHDF5 REQUIRED COMPONENTS C)
+-FIND_PACKAGE(Eigen3 3.2.5 REQUIRED)
++
++FIND_PACKAGE(Eigen3 REQUIRED) ## MBS: stripped version; was: FIND_PACKAGE(Eigen3 3.2.5 REQUIRED)
++# Modern Eigen3Config.cmake only exports the Eigen3::Eigen target and does not
++# set EIGEN3_INCLUDE_DIR; extract it from the target for legacy CMakeLists usage.
++IF(NOT EIGEN3_INCLUDE_DIR AND TARGET Eigen3::Eigen)
++  GET_TARGET_PROPERTY(EIGEN3_INCLUDE_DIR Eigen3::Eigen INTERFACE_INCLUDE_DIRECTORIES)
++  MESSAGE(STATUS "libeigen found here : "  ${EIGEN3_INCLUDE_DIR})
++ENDIF()
+ 
+ # Other KERNEL optionals:
+ IF(SALOME_BUILD_TESTS)

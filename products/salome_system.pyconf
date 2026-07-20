@@ -96,6 +96,11 @@ default :
            rpm : ["lz4-libs", "gsl", "openmpi", "netcdf", "gdal", "libxml++", "freetype", "zlib-ng-compat", "zlib-ng-compat", "zlib-ng-compat-static"]
            rpm_dev : ["lz4-devel", "qt5-qtcharts-devel", "qt5-qtbase-devel", "qt5-qtbase-private-devel", "gsl-devel", "openmpi-devel", "netcdf-devel", "gdal-devel", "libxml++-devel", "freetype-devel"]
         }
+        "FD44" :
+        {
+           rpm : ["lz4-libs", "gsl", "openmpi", "netcdf", "libxml++", "freetype", "gdal-libs", "protobuf", "zlib-ng-compat", "zlib-ng-compat", "zlib-ng-compat-static"]
+           rpm_dev : ["patch", "chrpath", "libtirpc-devel", "blas-static", "libxml++-devel", "qt5-qtx11extras-devel", "mpfr-devel", "gdal-devel", "protobuf-devel"]
+        }
         "DB08" :
         {
             apt : ["libopenexr6", "libwebp5", "libgfortran3", "libilmbase6", "libevent-2.0-5", "libpng12-0", "libgcc-4.9-dev",

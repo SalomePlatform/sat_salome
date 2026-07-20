@@ -30,6 +30,15 @@ default :
     }
 }
 
+default_FD44:
+{
+    system_info :
+    {
+        rpm : ["python3-nose2"]
+        rpm_dev : []
+    }
+}
+
 version_1_3_7_no_pip :
 {
     compil_script : "nose-1.3.7.sh"

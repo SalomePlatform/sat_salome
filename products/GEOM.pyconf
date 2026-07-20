@@ -57,6 +57,11 @@ default :
 }
 
 
+default_FD44:
+{
+    patches : ['GEOM-Eigen3-FD44.patch']
+}
+
 default_win :
 {
     cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig.exe -DSALOME_GEOM_USE_OPENCV=ON -DOPENCV_ROOT_DIR=%OPENCV_ROOT_DIR% -DOpenCV_INCLUDE_DIRS=%OpenCV_INCLUDE_DIRS% "
@@ -83,6 +88,11 @@ default_win :
               "sphinxintl"
              ]
     nb_proc : 2
+}
+
+version_V9_16_0_FD44:
+{
+    patches : ['GEOM-Eigen3-FD44.patch']
 }
 
 version_V9_7_0_to_V9_13_0:

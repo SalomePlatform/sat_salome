@@ -122,6 +122,11 @@ default_MPI :
              ]
 }
 
+default_FD44:
+{
+    patches: ['SMESH_boost_1_90_filesystem.patch','SMESH-qt-FD44.patch']
+}
+
 default_UB26_04:
 {
     patches: ['SMESH_boost_1_90_filesystem.patch']
@@ -130,6 +135,11 @@ default_UB26_04:
 version_V9_16_0_UB26_04:
 {
     patches: ['SMESH_boost_1_90_filesystem.patch']
+}
+
+version_V9_16_0_FD44:
+{
+    patches: ['SMESH_boost_1_90_filesystem.patch','SMESH-qt-FD44.patch']
 }
 
 version_V9_9_0_FD36:

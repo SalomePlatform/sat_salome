@@ -1,0 +1,12 @@
+diff -ruN netgen/libsrc/include/incvis.hpp netgen-dev/libsrc/include/incvis.hpp
+--- netgen/libsrc/include/incvis.hpp	2014-08-29 10:54:03.000000000 +0100
++++ netgen-dev/libsrc/include/incvis.hpp	2026-07-08 13:54:00.184672007 +0100
+@@ -3,7 +3,7 @@
+ #include <tcl.h>
+ #include <tk.h>
+ 
+-#if TK_MAJOR_VERSION==8 && TK_MINOR_VERSION>=4
++#if (TK_MAJOR_VERSION==8 && TK_MINOR_VERSION>=4) || (TK_MAJOR_VERSION>8)  // MBS: added compatibility for Tk 9.0
+ #define tcl_const const
+ #else
+ #define tcl_const

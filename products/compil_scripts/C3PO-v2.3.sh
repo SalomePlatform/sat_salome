@@ -14,9 +14,19 @@ if [ -f /.dockerenv ]; then
     find $BUILD_DIR -type f -exec chmod u+rwx {} \;
 fi
 
+LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
+NO_BUILD_ISOLATION=""
+case $LINUX_DISTRIBUTION in
+    FD44)
+        echo
+        echo "*** No build isolation for FEDORA 44 ***"
+        NO_BUILD_ISOLATION="--no-build-isolation"
+        ;;
+esac
+
 echo
-echo "*** install with ${PYTHONBIN} -m pip install . --prefix=${PRODUCT_INSTALL} --cache-dir=${BUILD_DIR}/cache/pip"
-${PYTHONBIN} -m pip install . --prefix="${PRODUCT_INSTALL}" --cache-dir="${BUILD_DIR}/cache/pip"
+echo "*** install with ${PYTHONBIN} -m pip install . --prefix=${PRODUCT_INSTALL} --cache-dir=${BUILD_DIR}/cache/pip ${NO_BUILD_ISOLATION}"
+${PYTHONBIN} -m pip install . --prefix="${PRODUCT_INSTALL}" --cache-dir="${BUILD_DIR}/cache/pip" ${NO_BUILD_ISOLATION}
 if [ $? -ne 0 ]; then
     echo "pip install C3PO fails"
     exit 2

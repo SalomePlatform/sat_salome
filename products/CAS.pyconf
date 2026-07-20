@@ -59,6 +59,7 @@ version_CR790_SALOME_PATCH :
         env_script                : $name + ".py"
     }
     depend : ['freetype', 'freeimage', 'rapidjson']
+    opt_depend : ['llvm']
     build_depend : ["cmake", "doxygen"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
@@ -147,6 +148,7 @@ version_SALOME_9_16_V7_9_0b2 :
         env_script                : $name + ".py"
     }
     depend : ['freetype', 'freeimage', 'rapidjson']
+    opt_depend : ['llvm']
     build_depend : ["cmake", "doxygen"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name

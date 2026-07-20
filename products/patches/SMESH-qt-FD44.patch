@@ -1,0 +1,12 @@
+diff --git a/src/SMESHGUI/SMESHGUI_MeshInfo.h b/src/SMESHGUI/SMESHGUI_MeshInfo.h
+index d43ca1dd0..ac5622940 100644
+--- a/src/SMESHGUI/SMESHGUI_MeshInfo.h
++++ b/src/SMESHGUI/SMESHGUI_MeshInfo.h
+@@ -52,6 +52,7 @@ class QLabel;
+ class QLineEdit;
+ class QTabWidget;
+ class QTextBrowser;
++class QTextStream;
+ class QTreeWidget;
+ class QTreeWidgetItem;
+ class SMDS_MeshElement;
