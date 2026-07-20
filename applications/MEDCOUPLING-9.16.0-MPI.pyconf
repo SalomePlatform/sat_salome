@@ -1,0 +1,134 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+APPLICATION :
+{
+    name    : 'MEDCOUPLING-9.16.0'
+    workdir : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
+    tag     : 'V9_16_0'
+    base    : 'no'
+    debug   : 'no'
+    python3 : 'yes'
+    environ :
+    {
+        build :
+        {
+           CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
+           SALOME_USE_64BIT_IDS : '1'
+        }
+        launch :
+        {
+           PYTHONIOENCODING:"UTF_8"
+        }
+    }
+    products :
+    {
+        # PREREQUISITES :
+        alabaster : '0.7.6'
+        Babel : '2.14.0'
+        beniget : '0.4.0'
+        boost : '1.71.0'
+        certifi : '2018.8.24'
+        click : '6.7'
+        chardet : '3.0.4'
+        charset_normalizer : '3.3.2'
+        cmake : '3.31.6'
+        cppunit : '1.13.2'
+        Cython : '0.29.37'
+        decorator : '5.1.0'
+        docutils : '0.20.1'
+        doxygen : '1.8.14'
+        gast : '0.5.0'
+        gcc  :  '8.5.0'
+        gmp : 'native'
+        graphviz : '2.38.0'
+        hdf5 : {tag : '1.14.6', hpc : 'yes'}
+        idna : '2.7'
+        imagesize : '1.4.1'
+        importlib_metadata : '7.0.1'
+        Jinja2 : '3.1.3'
+        libxml2 : '2.9.12'
+        markupsafe : '2.1.5'
+        medfile : {tag : '6.0.1', hpc : 'yes'}
+        meson: '1.9.1'
+        meson_python: '0.14.0'
+        metis  : {tag: '5.1.0-p10' , base: 'no', section : 'version_5_1_0_p10'}
+        mpi4py : {tag: '4.0.1',  base: 'no', section : 'version_4_0_1_no_pip'}
+        mpc : 'native'
+        mpfr : 'native'
+        ninja : '1.12.1'
+        networkx : '2.5'
+        numpy : '1.22.2'
+        openblas: '0.3.29'
+        openmpi : '4.0.3'
+        packaging : '24.2'
+        ParMetis : '4.0.3-p6'
+        ply : '3.8'
+        pockets : '0.6.2'
+        pybind11 : '2.11.0'
+        pythran : '0.14.0'
+        Pygments : '2.17.2'
+        pyparsing : '3.1.1'
+        pyproject_metadata: '0.8.0'
+        Python : '3.9.14'
+        pytz : '2017.2'
+        requests : '2.31.0'
+        scipy : '1.11.4'
+        scotch : {tag: '6.1.2', section: 'version_6_1_2_MPI', hpc: 'yes', base: 'no'}
+        setuptools : '69.0.3'
+        six : '1.10.0'
+        snowballstemmer : '2.2.0'
+        Sphinx : '7.2.6'
+        sphinxcontrib_applehelp : '1.0.8'
+        sphinxcontrib_devhelp : '1.0.6'
+        sphinxcontrib_jsmath : '1.0.1'
+        sphinxcontrib_qthelp : '1.0.7'
+        sphinxcontrib_htmlhelp : '2.0.5'
+        sphinxcontrib_serializinghtml : '1.1.10'
+        sphinxcontrib_napoleon : '0.6.1'
+        sphinxcontrib_websupport : '1.2.7'
+        sphinxintl: '2.1.0'
+        swig : '4.0.2'
+        tomli : '2.0.1'
+        urllib3 : '1.23'
+        wheel : '0.36.2'
+        zipp : '3.17.0'
+
+        # SALOME MODULES :
+        'CONFIGURATION'
+        'MEDCOUPLING' : {tag:'V9_16_0', base: 'no', section: 'version_V9_16_0_MPI_STD', hpc: 'yes', verbose: 'yes'}
+    }
+    test_base :
+    {
+        name : "SALOME"
+        tag : "SalomeV9"
+    }
+    properties :
+    {
+        git_server : 'tuleap'
+        pip : 'yes'
+        pip_install_dir : 'python'
+        single_install_dir : "no"
+    }
+}
+__overwrite__ :
+[
+    {
+        __condition__ : "VARS.dist in ['CO8']"
+        'APPLICATION.rm_products'         : ['gcc', 'gmp', 'mpc', 'mpfr']
+        'APPLICATION.products.boost'      : '1.75.0'
+        'APPLICATION.products.Python'     : '3.10.16'
+        'APPLICATION.products.pytz'       : '2021.1'
+        'APPLICATION.products.numpy'      : {tag: '1.22.2', base: 'no', section: 'version_1_22_2_CO8'                   }
+        'APPLICATION.products.MEDCOUPLING': {tag: 'V9_16_0', base: 'no', section: 'version_V9_16_0_MPI_STD_CO8', hpc: 'yes'}   
+    }
+    #
+    {
+        __condition__ : "VARS.dist in ['CO9']"
+        'APPLICATION.products.gcc'        : '11.4.0'
+        'APPLICATION.products.openmpi'    : '4.1.6'
+        'APPLICATION.products.numpy'      : {tag: '1.22.2',          base: 'no', section: 'version_1_22_2_CO9'               }
+        'APPLICATION.products.boost'      : {tag: '1.71.0',          base: 'no', section: 'version_1_71_0_CO9'                 } # spns #29324
+        'APPLICATION.products.MEDCOUPLING': {tag: 'V9_16_0',         base: 'no', section: 'version_V9_16_0_MPI_STD_CO9', hpc: 'yes'      }
+    }
+]
