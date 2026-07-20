@@ -114,19 +114,20 @@ __overwrite__ :
 [
     {
         __condition__ : "VARS.dist in ['CO8']"
+        'APPLICATION.rm_products'         : ['gcc', 'gmp', 'mpc', 'mpfr']
         'APPLICATION.products.boost'      : '1.75.0'
         'APPLICATION.products.Python'     : '3.10.16'
         'APPLICATION.products.pytz'       : '2021.1'
-        'APPLICATION.products.numpy'      : {tag: '1.22.2', base: 'no', section: 'version_1_22_2_CO8'                   }
-        'APPLICATION.products.MEDCOUPLING': {tag: 'V9_16_0', base: 'no', section: 'version_V9_16_0_MPI_CO8', hpc: 'yes'}   
+        'APPLICATION.products.numpy'      : {tag: '1.22.2', base: 'no', section: 'version_1_22_2_CO8'                  }
+        'APPLICATION.products.MEDCOUPLING': {tag: 'V9_16_0', base: 'no', section: 'version_V9_16_0_MPI_CO8', hpc: 'yes'}
     }
     #
     {
         __condition__ : "VARS.dist in ['CO9']"
         'APPLICATION.products.gcc'        : '11.4.0'
-        'APPLICATION.products.numpy'      : {tag: '1.22.2',          base: 'no', section: 'version_1_22_2_CO9'               }
         'APPLICATION.products.openmpi'    : '4.1.6'
+        'APPLICATION.products.numpy'      : {tag: '1.22.2',          base: 'no', section: 'version_1_22_2_CO9'                 }
         'APPLICATION.products.boost'      : {tag: '1.71.0',          base: 'no', section: 'version_1_71_0_CO9'                 } # spns #29324
-        'APPLICATION.products.MEDCOUPLING': {tag: 'V9_16_0',         base: 'no', section: 'version_V9_16_0_MPI_CO9', hpc: 'yes'      }
+        'APPLICATION.products.MEDCOUPLING': {tag: 'V9_16_0',         base: 'no', section: 'version_V9_16_0_MPI_CO9', hpc: 'yes'}
     }
 ]
