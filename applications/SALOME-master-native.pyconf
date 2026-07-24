@@ -554,6 +554,7 @@ __overwrite__ :
         'APPLICATION.products.rapidjson'        : 'native'
         'APPLICATION.products.rich'             : 'native'
         'APPLICATION.products.swig'             : '4.0.2'
+        'APPLICATION.products.CAS '             : {tag :'CR790-SALOME-PATCH', base: 'no', section: 'version_CR790_SALOME_PATCH_FD44' }
         'APPLICATION.products.cgal'             : {tag: 'v5.6.1',         base: 'no', section: 'version_v5_6_1_FD44'                 }
         'APPLICATION.products.Cython'           : {tag: 'native',         base: 'no', section: 'default_FD44'                        }
         'APPLICATION.products.embree'           : {tag: '3.13.1',         base: 'no', section: 'version_3_13_1_FD44'                 }

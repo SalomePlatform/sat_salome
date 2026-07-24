@@ -59,7 +59,6 @@ version_CR790_SALOME_PATCH :
         env_script                : $name + ".py"
     }
     depend : ['freetype', 'freeimage', 'rapidjson']
-    opt_depend : ['llvm']
     build_depend : ["cmake", "doxygen"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
@@ -117,6 +116,42 @@ version_CR790_SALOME_PATCH_win :
     build_depend : ["cmake", "doxygen"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+      incremental : "no"
+    }
+}
+
+version_CR790_SALOME_PATCH_FD44 :
+{
+    name : "CAS"
+    build_source : "script"
+    compil_script :  "CAS_7.9.sh"
+    get_source : "git"
+    git_info:
+    {
+        repo : "https://github.com/Open-Cascade-SAS/OCCT-Archive.git"
+        repo_dev : $repo
+    }
+    environ :
+    {
+        CSF_ShadersDirectory      : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Shaders"
+        CSF_UnitsLexicon          : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
+        CSF_UnitsDefinition       : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
+        CSF_SHMessage             : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "SHMessage"
+        CSF_XSMessage             : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "XSMessage"
+        CSF_MDTVTexturesDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Textures"
+        MMGT_REENTRANT            : "1"
+        CSF_StandardDefaults      : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        CSF_PluginDefaults        : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        env_script                : $name + ".py"
+    }
+    depend : ['freetype', 'freeimage', 'rapidjson','llvm']
+    build_depend : ["cmake", "doxygen"]
+    patches : ["CAS-7.9-remove_clang_flag.patch"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
     properties:
     {
       incremental : "no"
@@ -206,6 +241,42 @@ version_SALOME_9_16_V7_9_0b2_win :
     build_depend : ["cmake", "doxygen"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    properties:
+    {
+      incremental : "no"
+    }
+}
+
+version_SALOME_9_16_V7_9_0b2_FD44 :
+{
+    name : "CAS"
+    build_source : "script"
+    compil_script :  "CAS_7.9.sh"
+    get_source : "git"
+    git_info:
+    {
+        repo : "https://github.com/Open-Cascade-SAS/OCCT-Archive.git"
+        repo_dev : $repo
+    }
+    environ :
+    {
+        CSF_ShadersDirectory      : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Shaders"
+        CSF_UnitsLexicon          : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Lexi_Expr.dat"
+        CSF_UnitsDefinition       : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "UnitsAPI" + $VARS.sep + "Units.dat"
+        CSF_SHMessage             : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "SHMessage"
+        CSF_XSMessage             : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "XSMessage"
+        CSF_MDTVTexturesDirectory : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "Textures"
+        MMGT_REENTRANT            : "1"
+        CSF_StandardDefaults      : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        CSF_PluginDefaults        : $install_dir + $VARS.sep + "share" + $VARS.sep + "opencascade" + $VARS.sep + "resources" + $VARS.sep + "StdResource"
+        env_script                : $name + ".py"
+    }
+    depend : ['freetype', 'freeimage', 'rapidjson','llvm']
+    build_depend : ["cmake", "doxygen"]
+    patches : ["CAS-7.9-remove_clang_flag.patch"]
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
     properties:
     {
       incremental : "no"
