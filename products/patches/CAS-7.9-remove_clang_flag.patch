@@ -1,0 +1,13 @@
+diff -Naur '--exclude=*.git' CAS/adm/cmake/occt_defs_flags.cmake CAS.dev/adm/cmake/occt_defs_flags.cmake
+--- CAS/adm/cmake/occt_defs_flags.cmake	2026-07-24 13:12:46.996426878 +0200
++++ CAS.dev/adm/cmake/occt_defs_flags.cmake	2026-07-24 10:09:26.109760257 +0200
+@@ -165,9 +165,6 @@
+       set(CMAKE_MODULE_LINKER_FLAGS_RELEASE "${CMAKE_MODULE_LINKER_FLAGS_RELEASE} -Wl,--gc-sections")
+     endif()
+   endif()
+-  if (CMAKE_CXX_COMPILER_ID MATCHES "[Cc][Ll][Aa][Nn][Gg]")
+-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wshorten-64-to-32")
+-  endif()
+   if (BUILD_SHARED_LIBS)
+     if (APPLE)
+       set (CMAKE_SHARED_LINKER_FLAGS "-lm ${CMAKE_SHARED_LINKER_FLAGS}")
