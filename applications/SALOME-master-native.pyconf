@@ -234,7 +234,7 @@ APPLICATION :
         'SALOMEBOOTSTRAP'
         'SOLVERLAB'
         'TopIIVolMesh'
-        'TESTBASE'
+        #'TESTBASE'
         'CEATESTBASE'
     }
     profile :
