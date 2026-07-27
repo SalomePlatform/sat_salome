@@ -39,7 +39,7 @@ default :
               'eigen'
              ]
     build_depend : ["cmake", "swig", "doxygen"]
-    opt_depend : ["CommonGeomLib","sphinxcontrib_napoleon", "RESTRICTED"]
+    opt_depend : ["CommonGeomLib","sphinxcontrib_napoleon"]
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     properties:
