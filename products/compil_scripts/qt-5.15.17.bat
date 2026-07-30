@@ -18,7 +18,7 @@ REM clean BUILD directory
 if exist "%BUILD_DIR%" rmdir /Q /S "%BUILD_DIR%"
 mkdir "%BUILD_DIR%"
 
-cd "%SOURCE_DIR%"
+cd "%BUILD_DIR%"
 
 set VISUAL_STUDIO_VERSION=%VisualStudioVersion:.=&REM.%
 if "%VISUAL_STUDIO_VERSION%" =="15" (

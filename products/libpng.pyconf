@@ -28,3 +28,9 @@ default_win :
      single_install_dir : "yes"
    }
 }
+
+version_1_5_10:
+{
+   archive_info : {archive_name : "libpng-1.5.10.tar.gz"}
+   compil_script : "libpng-1.5.10" + $VARS.scriptExtension
+}
