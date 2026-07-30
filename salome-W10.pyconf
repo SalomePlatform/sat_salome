@@ -30,6 +30,79 @@ git_info :
     default_git_server_dev : "https://codev-tuleap.cea.fr/plugins/git/salome/"
 }
 
+# Windows MSI installer definition, consumed by "sat package <app> --build_msi".
+# The generic MSI machinery lives in SAT (src/msi.py); this section provides the
+# SALOME-specific data and points at the resources in msi/.
+installer :
+{
+    type : "msi"
+    resources_dir : $project_path + "\\msi"
+    wxs_sources : [ "Package.wxs", "shortcuts.wxs" ]
+    generated_wxs : "w64_files.wxs"
+    pre_build_script : "pre_build.py"
+    python_in_tree : "W64\\Python\\python.exe"
+    wix_arch : "x64"
+    wix_extensions : [ "WixToolset.UI.wixext" ]
+    guid_namespace : "salome-msi"
+    tree :
+    {
+        product_root : "W64"
+        root_install_files : [ "env_salome.bat", "salome.cmd", "salome_shell.cmd",
+                               "env_launch.bat", "env_build.bat", "salome", "salome.ico" ]
+        install_dirs : [ "scripts", "clink", "W64" ]
+        skip_dirs : [ ".git", ".github", "__pycache__", ".vs" ]
+        # build-only products, not needed at runtime -> excluded from the MSI
+        skip_products : [ "cmake", "swig", "sip", "ispc", "llvm", "perl",
+                          "wheel", "cppunit", "doxygen", "graphviz" ]
+        # W64 product directory -> WiX ComponentGroup (drives the feature tree in
+        # Package.wxs). Products not listed default to CG_<dirname> (Core feature).
+        product_groups :
+        {
+            GEOM : "CG_GEOM"
+            SHAPER : "CG_SHAPER"
+            SHAPERSTUDY : "CG_SHAPERSTUDY"
+            CommonGeomLib : "CG_CommonGeomLib"
+            cgal : "CG_cgal"
+            cork : "CG_cork"
+            eigen : "CG_eigen"
+            libigl : "CG_libigl"
+            planegcs : "CG_planegcs"
+            meshbooleanplugin : "CG_meshbooleanplugin"
+            SMESH : "CG_SMESH"
+            NETGENPLUGIN : "CG_NETGENPLUGIN"
+            GMSHPLUGIN : "CG_GMSHPLUGIN"
+            BLSURFPLUGIN : "CG_BLSURFPLUGIN"
+            GHS3DPLUGIN : "CG_GHS3DPLUGIN"
+            HYBRIDPLUGIN : "CG_HYBRIDPLUGIN"
+            HexoticPLUGIN : "CG_HexoticPLUGIN"
+            HEXABLOCK : "CG_HEXABLOCK"
+            HEXABLOCKPLUGIN : "CG_HEXABLOCKPLUGIN"
+            mmgplugin : "CG_mmgplugin"
+            meshio : "CG_meshio"
+            PARAVIS : "CG_PARAVIS"
+            ParaView : "CG_ParaView"
+            PARAVISADDONS : "CG_PARAVISADDONS"
+            FIELDS : "CG_FIELDS"
+            YACS : "CG_YACS"
+            YACSGEN : "CG_YACSGEN"
+            YDEFX : "CG_YDEFX"
+            CALCULATOR : "CG_CALCULATOR"
+            PYCALCULATOR : "CG_PYCALCULATOR"
+            ADAO : "CG_ADAO"
+            EFICAS : "CG_EFICAS"
+            EFICAS_TOOLS : "CG_EFICAS_TOOLS"
+            JOBMANAGER : "CG_JOBMANAGER"
+            f2c : "CG_f2c"
+            PERSALYS : "CG_PERSALYS"
+            OPENTURNS : "CG_OPENTURNS"
+            OT : "CG_OT"
+            PY2CPP : "CG_PY2CPP"
+            BasicIterativeStatistics : "CG_BasicIterativeStatistics"
+            PyFMI : "CG_PyFMI"
+        }
+    }
+}
+
 test_bases :
 [
       {
