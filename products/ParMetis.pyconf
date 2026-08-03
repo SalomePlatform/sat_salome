@@ -24,6 +24,7 @@ default :
     {
       incremental : "yes"
     }
+    patches :  ["ParMetis-MAKEFLAGS.patch"]
 }
 
 version_4_0_3_p6 :
