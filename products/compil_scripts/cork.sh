@@ -10,7 +10,7 @@ cd $BUILD_DIR
 cp -r $SOURCE_DIR/* .
 echo
 echo "*** make" $MAKE_OPTIONS
-make $MAKE_OPTIONS
+make SHELL=/bin/bash $MAKE_OPTIONS
 if [ $? -ne 0 ]; then
     echo "ERROR on make"
     exit 1
