@@ -1,0 +1,16 @@
+Every CMake project that uses this HDF5 target (via find_package(HDF5)) will require the Threads::Threads target to exist before the try-compile / try-run tests run.
+
+INTERFACE_LINK_LIBRARIES "$<$<C_COMPILER_ID:MSVC>:>;$<$<CXX_COMPILER_ID:MSVC>:>;$<$<NOT:$<PLATFORM_ID:Windows>>:dl>;$<$<BOOL:ON>:Threads::Threads>
+--- MEDCOUPLING/CMakeLists.txt.orig	2026-04-20 10:10:59.000000000 +0200
++++ MEDCOUPLING/CMakeLists.txt	2026-04-20 10:24:57.000000000 +0200
+@@ -59,6 +59,10 @@
+     "Building ${PROJECT_NAME_UC} ${${PROJECT_NAME_UC}_VERSION} from \"${${PROJECT_NAME_UC}_GIT_SHA1}\""
+ )
+ 
++if(NOT TARGET Threads::Threads)
++  find_package(Threads REQUIRED)
++endif()
++
+ # Platform setup
+ # ==============
+ include(SalomeSetupPlatform)

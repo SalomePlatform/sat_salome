@@ -1,0 +1,13 @@
+--- gmsh/CMakeLists.txt.orig	2026-04-21 13:15:47.000000000 +0200
++++ gmsh/CMakeLists.txt	2026-04-21 13:16:47.000000000 +0200
+@@ -144,6 +144,10 @@
+ 
+ set(GMSH_API api/gmsh.h api/gmshc.h api/gmsh.h_cwrap api/gmshf.h)
+ 
++if(NOT TARGET Threads::Threads)
++  find_package(Threads REQUIRED)
++endif()
++
+ if(ENABLE_PRIVATE_API)
+   message(WARNING "The private API is unsupported and undocumented. It is meant "
+           "for expert Gmsh developers, not for regular Gmsh users, who should rely "
