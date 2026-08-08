@@ -14,11 +14,11 @@ fix_lib_path(){
 
   if [ -d "$PRODUCT_INSTALL/lib64" ]; then
     echo "WARNING: renaming lib64 directory to lib"
-    mv $PRODUCT_INSTALL/lib64/* $PRODUCT_INSTALL/lib/
+    cp -r $PRODUCT_INSTALL/lib64/* $PRODUCT_INSTALL/lib/
     rm -rf $PRODUCT_INSTALL/lib64
   elif [ -d "$PRODUCT_INSTALL/local/lib64" ]; then
     echo "WARNING: renaming local/lib64 directory to lib"
-    mv $PRODUCT_INSTALL/local/lib64/* $PRODUCT_INSTALL/lib
+    cp -r $PRODUCT_INSTALL/local/lib64/* $PRODUCT_INSTALL/lib
     rm -rf $PRODUCT_INSTALL/local
   else
     echo "WARNING: unhandled case! Please ensure that script is consistent!"
