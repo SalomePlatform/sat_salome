@@ -375,7 +375,8 @@ do
             if ! ${PYTHONBIN} -c "import sklearn"; then
                 if [ "${LINUX_DISTRIBUTION}" != "DB10" ]; then
                     echo "INFO: install scikit-learn-1.2.2"
-                    if [ "${PYTHON_VERSION}" == "3.12" ]; then
+                    REAL_PY_VER=$(${PYTHONBIN} -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")
+                    if [ "${REAL_PY_VER}" == "3.12" ]; then
                         ${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/scikit-learn-1.2.2/scikit-learn-1.2.2.tar.gz --no-deps --prefix=$PRODUCT_INSTALL --no-build-isolation --no-use-pep517
                         if [ $? -ne 0 ]
                         then
@@ -383,7 +384,7 @@ do
                             exit 6
                         fi
                     else
-                        ${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/scikit-learn-1.2.2/scikit_learn-1.2.2-cp${PYTHON_VERSION//./}-cp${PYTHON_VERSION//./}-manylinux_2_17_x86_64.manylinux2014_x86_64.whl --no-deps --prefix=$PRODUCT_INSTALL
+                        ${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/scikit-learn-1.2.2/scikit_learn-1.2.2-cp${REAL_PY_VER//./}-cp${REAL_PY_VER//./}-manylinux_2_17_x86_64.manylinux2014_x86_64.whl --no-deps --prefix=$PRODUCT_INSTALL
                     fi
                     if [ $? -ne 0 ]
                     then
@@ -511,9 +512,14 @@ do
                     exit 6
                 fi
             else
-                VERSION_PYTHON=${PYTHON_VERSION//./}
+                REAL_PY_VER=$(${PYTHONBIN} -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")
                 echo "INFO: install scikit-learn-1.2.2"
-                ${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip  $SOURCE_DIR/scikit-learn-1.2.2/scikit_learn-1.2.2-cp${VERSION_PYTHON}-cp${VERSION_PYTHON}-manylinux_2_17_x86_64.manylinux2014_x86_64.whl --no-deps
+                if [ "${REAL_PY_VER}" == "3.12" ]; then
+                    ${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip $SOURCE_DIR/scikit-learn-1.2.2/scikit-learn-1.2.2.tar.gz --no-deps --no-build-isolation --no-use-pep517
+                else
+                    VERSION_PYTHON=${REAL_PY_VER//./}
+                    ${PYTHONBIN} -m pip install --cache-dir=$BUILD_DIR/cache/pip  $SOURCE_DIR/scikit-learn-1.2.2/scikit_learn-1.2.2-cp${VERSION_PYTHON}-cp${VERSION_PYTHON}-manylinux_2_17_x86_64.manylinux2014_x86_64.whl --no-deps
+                fi
                 if [ $? -ne 0 ]
                 then
                     echo "FATAL: could not install scikit-1.2.2"
