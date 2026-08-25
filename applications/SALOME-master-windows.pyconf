@@ -197,7 +197,7 @@ APPLICATION :
         zlib : '1.3.1'
 
         # SALOME MODULES :
-        'CONFIGURATION'
+        'CONFIGURATION': "spns/56763"
         'SALOME'
         'SHAPER'
         #'dxf_shaper_plugin'

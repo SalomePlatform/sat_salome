@@ -213,7 +213,7 @@ APPLICATION :
         #xarray: '2023.12.0'
 
         # SALOME MODULES :
-        'CONFIGURATION'
+        'CONFIGURATION': "spns/56763"
         'SALOME'
         'SHAPER'
         'SHAPERSTUDY'
