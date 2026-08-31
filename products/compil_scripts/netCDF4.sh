@@ -9,7 +9,7 @@ mkdir $BUILD_DIR
 cd $BUILD_DIR
 cp -R $SOURCE_DIR/* .
 
-USE_OLD_SETUPTOOLS=false
+USE_OLD_SETUPTOOLS=true
 
 if [[ "$DIST_NAME" == "CO" && "$SAT_Python_IS_NATIVE" == "1" ]]; then
     PRODUCT_LIB=lib64
@@ -62,6 +62,11 @@ elif [ -d "${PRODUCT_INSTALL}/local/lib64" ]; then
     echo "WARNING: moving local/lib64 to lib"
     mv $PRODUCT_INSTALL/local/lib64 $PRODUCT_INSTALL/lib
     rm -rf ${PRODUCT_INSTALL}/local/lib64
+fi
+
+if [ ! -d "${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages/netCDF4" ] && [ -d "${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages/netCDF4-1.6.5-py${PYTHON_VERSION}-linux-x86_64.egg/netCDF4" ]; then
+    echo "WARNING: rearrange site-packages/netCDF4"
+    mv ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages/netCDF4-1.6.5-py${PYTHON_VERSION}-linux-x86_64.egg/netCDF4 ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages
 fi
 
 echo
