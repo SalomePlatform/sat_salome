@@ -236,6 +236,18 @@ IF DEFINED ONNX_ROOT_DIR (
   set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DPARAVIEW_PLUGIN_ENABLE_ONNXPlugin:BOOL=OFF
 )
 
+REM ALAMOS build vtkPythonContext2D module.
+IF /I "%SALOME_APPLICATION_NAME%" == "ALAMOS" (
+    echo WARNING: Assumming application is ALAMOS, switching vtkPythonContext2D module ON
+	set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DVTK_MODULE_ENABLE_VTK_PythonContext2D:INTERNAL=YES
+)
+
+REM ALAMOS build uses PDF export feature.
+IF /I "%SALOME_APPLICATION_NAME%" == "ALAMOS" (
+    echo WARNING: Assumming application is ALAMOS, switching on PDF export
+	set CMAKE_OPTIONS=%CMAKE_OPTIONS% -DVTK_MODULE_ENABLE_VTK_IOExportPDF:INTERNAL=YES
+)
+
 set CMAKE_OPTIONS=%CMAKE_OPTIONS% -G %CMAKE_GENERATOR% -A x64
 cd %BUILD_DIR%
 
