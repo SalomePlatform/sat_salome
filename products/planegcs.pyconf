@@ -20,9 +20,14 @@ default :
   patches: []
 }
 
+version_0_18_3cb6890 :
+{
+  patches: ['planegcs-0.18.tangency.patch']
+}
+
 version_0_18_3cb6890_FD44 :
 {
-  patches: ['planegcs-FD44.patch']
+  patches: ['planegcs-FD44.patch', 'planegcs-0.18.tangency.patch']
 }
 
 version_0_20 :
