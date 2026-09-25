@@ -273,6 +273,11 @@ do
             echo "WARNING: libmixmod.so is not installed where it is expected to be. Skipping..."
             continue
         fi
+    elif [[ $k == "otfftw" ]]; then
+        if [ -n "$FFTW3_ROOT_DIR" ] && [ "FFTW3_IS_NATIVE" != "1" ]; then
+            CMAKE_EXTRA_OPTIONS+=" -DFFTW_LIBRARIES=${FFTW3_ROOT_DIR}/lib"
+            CMAKE_EXTRA_OPTIONS+=" -DFFTW_INCLUDE_DIRS=${FFTW3_ROOT_DIR}/include"
+        fi        
     elif [[ $k == "otsubsetinverse" ]]; then #FIXME:
         CMAKE_EXTRA_OPTIONS+=" -DOPENTURNS_HOME=$PRODUCT_INSTALL"
         CMAKE_EXTRA_OPTIONS+=" -DCMAKE_SKIP_INSTALL_RPATH:BOOL=ON"
