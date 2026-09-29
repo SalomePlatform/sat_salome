@@ -1,0 +1,42 @@
+diff --git a/cmake/FindSalomeVTK.cmake b/cmake/FindSalomeVTK.cmake
+index d056bec..645cc09 100644
+--- a/cmake/FindSalomeVTK.cmake
++++ b/cmake/FindSalomeVTK.cmake
+@@ -26,8 +26,8 @@
+ 
+ # List the required components:
+ SET(SalomeVTK_COMPONENTS
+-  RenderingLOD 
+-  RenderingAnnotation 
++  RenderingLOD
++  RenderingAnnotation
+   FiltersParallel
+   IOExport
+   WrappingPythonCore  ## ParaView 4.0.1
+@@ -48,13 +48,13 @@ SET(SalomeVTK_FIND_COMPONENTS ${SalomeVTK_COMPONENTS})
+ SET(PARAVIEW_ROOT_DIR "$ENV{PARAVIEW_ROOT_DIR}" CACHE PATH "Path to the ParaView installation")
+ IF(EXISTS "${PARAVIEW_ROOT_DIR}" AND (NOT VTK_ROOT_DIR))
+   MESSAGE(STATUS "Looking for VTK in the ParaView installation (PARAVIEW_ROOT_DIR exists and VTK_ROOT_DIR is not defined) ...")
+-  
++
+   # Extract VTK configuration directory from Paraview:
+-  FILE(GLOB VTK_DIR "${PARAVIEW_ROOT_DIR}/lib/cmake/paraview-[1-9].[0-9]*/vtk")
++  FILE(GLOB VTK_DIR "${PARAVIEW_ROOT_DIR}/lib/cmake/paraview*/vtk")
+   IF(NOT VTK_DIR)
+-    FILE(GLOB VTK_DIR "${PARAVIEW_ROOT_DIR}/lib64/cmake/paraview-[1-9].[0-9]*/vtk")
++    FILE(GLOB VTK_DIR "${PARAVIEW_ROOT_DIR}/lib64/cmake/paraview*/vtk")
+   ENDIF()
+-  MESSAGE(STATUS "Setting VTK_DIR to: ${VTK_DIR}") 
++  MESSAGE(STATUS "Setting VTK_DIR to: ${VTK_DIR}")
+ ENDIF()
+ 
+ SALOME_FIND_PACKAGE_AND_DETECT_CONFLICTS(VTK VTK_PREFIX_PATH 0)
+@@ -64,7 +64,7 @@ IF(VTK_FOUND)
+   MESSAGE(STATUS "VTK version is ${VTK_MAJOR_VERSION}.${VTK_MINOR_VERSION}")
+ ENDIF()
+ 
+-IF(VTK_FOUND) 
++IF(VTK_FOUND)
+   SALOME_ACCUMULATE_ENVIRONMENT(LD_LIBRARY_PATH ${VTK_LIBRARIES})
+   SALOME_ACCUMULATE_ENVIRONMENT(PYTHONPATH ${VTK_LIBRARIES})
+   SALOME_ACCUMULATE_ENVIRONMENT(PV_PLUGIN_PATH ${VTK_LIBRARIES})
