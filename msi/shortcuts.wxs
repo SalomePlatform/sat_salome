@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Fragment>
+    <Icon Id="SalomeIcon" SourceFile="salome.ico" />
+  </Fragment>
+
+  <Fragment>
+    <StandardDirectory Id="DesktopFolder" />
+    <StandardDirectory Id="ProgramMenuFolder">
+      <Directory Id="SalomeMenuFolder" Name="SALOME" />
+    </StandardDirectory>
+  </Fragment>
+
+  <!-- Desktop shortcuts -->
+  <Fragment>
+    <ComponentGroup Id="DesktopShortcuts" Directory="DesktopFolder">
+      <Component Id="DesktopShortcutGUI" Guid="C4A91E5B-7D32-4F18-B6C3-8E21D4F09A71">
+        <Shortcut Id="DesktopGUI"
+                  Name="SALOME 9.15.0"
+                  Description="SALOME 9.15.0 Platform"
+                  Target="[INSTALL_ROOT]salome.cmd"
+                  WorkingDirectory="INSTALL_ROOT"
+                  Icon="SalomeIcon" />
+        <RegistryValue Root="HKCU" Key="Software\SALOME\9.15" Name="desktop_gui" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+
+      <Component Id="DesktopShortcutShell" Guid="C4A91E5B-7D32-4F18-B6C3-8E21D4F09A73">
+        <Shortcut Id="DesktopShell"
+                  Name="SALOME 9.15.0 Shell"
+                  Description="SALOME 9.15.0 Command Prompt"
+                  Target="[INSTALL_ROOT]salome_shell.cmd"
+                  WorkingDirectory="INSTALL_ROOT"
+                  Icon="SalomeIcon" />
+        <RegistryValue Root="HKCU" Key="Software\SALOME\9.15" Name="desktop_shell" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+
+  <!-- Start Menu shortcuts -->
+  <Fragment>
+    <ComponentGroup Id="StartMenuShortcuts" Directory="SalomeMenuFolder">
+      <Component Id="StartMenuGUI" Guid="C4A91E5B-7D32-4F18-B6C3-8E21D4F09A74">
+        <Shortcut Id="StartGUI"
+                  Name="SALOME 9.15.0"
+                  Description="SALOME 9.15.0 Platform"
+                  Target="[INSTALL_ROOT]salome.cmd"
+                  WorkingDirectory="INSTALL_ROOT"
+                  Icon="SalomeIcon" />
+        <RegistryValue Root="HKCU" Key="Software\SALOME\9.15" Name="startmenu_gui" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+
+      <Component Id="StartMenuShell" Guid="C4A91E5B-7D32-4F18-B6C3-8E21D4F09A76">
+        <Shortcut Id="StartShell"
+                  Name="SALOME 9.15.0 Shell"
+                  Description="SALOME 9.15.0 Command Prompt"
+                  Target="[INSTALL_ROOT]salome_shell.cmd"
+                  WorkingDirectory="INSTALL_ROOT"
+                  Icon="SalomeIcon" />
+        <RemoveFolder Id="CleanSalomeMenu" On="uninstall" />
+        <RegistryValue Root="HKCU" Key="Software\SALOME\9.15" Name="startmenu_shell" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>
