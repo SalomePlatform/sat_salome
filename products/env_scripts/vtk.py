@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 #-*- coding:utf-8 -*-
+import os.path
+import os
 
 def set_env(env, prereq_dir, version):
     env.set('VTK_ROOT_DIR', prereq_dir) # update for cmake

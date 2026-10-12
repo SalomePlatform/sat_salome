@@ -44,8 +44,9 @@ VTK_CMAKE_OPTIONS=$VTK_CMAKE_OPTIONS" -DVTK_WRAP_TCL:BOOL=OFF"
 VTK_CMAKE_OPTIONS=$VTK_CMAKE_OPTIONS" -DVTK_USE_TK:BOOL=OFF"
 
 echo
-echo "*** cmake" ${VTK_CMAKE_OPTIONS} 
-cmake ${VTK_CMAKE_OPTIONS} .
+echo "*** cmake" ${VTK_CMAKE_OPTIONS}
+cd ${BUILD_DIR}
+cmake ${VTK_CMAKE_OPTIONS} $SOURCE_DIR
 if [ $? -ne 0 ]
 then
     echo "ERROR on cmake"
