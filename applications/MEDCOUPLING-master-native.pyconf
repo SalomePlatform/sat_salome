@@ -63,7 +63,7 @@ APPLICATION :
         sphinxcontrib_napoleon : 'native'
         sphinxcontrib_websupport : 'native'
         sphinxintl: 'native'
-        swig : 'native'
+        swig : '4.0.2'
         packaging : 'native'
         urllib3 : 'native'
 
@@ -86,35 +86,7 @@ APPLICATION :
 }
 __overwrite__ :
 [
-    {
-        #
-        __condition__ : "VARS.dist in ['DB10']"
-        'APPLICATION.products.swig'             : '4.0.2'
-
-    }
-    {
-        #
-        __condition__ : "VARS.dist in ['DB12']"
-        'APPLICATION.products.swig'             : '4.0.2'
-
-    }
     #
-    {
-        __condition__ : "VARS.dist in ['DB13']"
-        'APPLICATION.products.cmake'            : 'native'
-        'APPLICATION.products.swig'             : '4.0.2'
-        'APPLICATION.products.medfile'          : {tag: '4.2.0',           base: 'no', section: 'version_4_2_0_DB13'                    }
-    }
-    {
-        #
-        __condition__ : "VARS.dist in ['UB24.04']"
-        'APPLICATION.products.swig'             : '4.0.2'
-    }
-    {
-        __condition__ : "VARS.dist in ['CO8']"
-        'APPLICATION.products.lapack'                : '3.8.0'
-        'APPLICATION.products.sphinxintl'            : {tag: '0.9.10', base: 'no', section: 'version_0_9_10_no_pip'   }
-    }
     {
         __condition__ : "VARS.dist in ['CO9']"
         'APPLICATION.products.lapack'           : '3.8.0'
@@ -125,21 +97,17 @@ __overwrite__ :
          __condition__ : "VARS.dist in ['CO10']"
         'APPLICATION.rm_products' : ['sphinxcontrib_websupport']
         'APPLICATION.products.cmake'                    : 'native'
-        'APPLICATION.products.swig'                     : '4.0.2'
         'APPLICATION.products.Cython'                   : {tag: 'native',          base: 'no', section: 'default_CO10'          }
         'APPLICATION.products.sphinxintl'               : {tag: '0.9.10',          base: 'no', section: 'version_0_9_10_no_pip' }
     }
     {
         __condition__ : "VARS.dist in ['FD40']"
         'APPLICATION.products.openmpi'          : '4.1.5'
-        'APPLICATION.products.swig'             : '4.0.2'
         'APPLICATION.products.Cython'           : {tag: 'native',     base: 'no', section: 'default_FD40'}
     }
     {
         __condition__ : "VARS.dist in ['FD42']"
         'APPLICATION.products.cmake'            : 'native'
-        'APPLICATION.products.swig'             : '4.0.2'
         'APPLICATION.products.Cython'           : {tag: 'native',         base: 'no', section: 'default_FD42' }
-        'APPLICATION.products.medfile'          : {tag: '4.2.0',          base: 'no', section: 'version_4_2_0_FD42'}
     }
 ]
