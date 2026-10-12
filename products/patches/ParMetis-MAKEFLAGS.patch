@@ -1,0 +1,14 @@
+Calling make from another make can cause problems
+See https://github.com/KarypisLab/METIS/issues/66 
+and https://stackoverflow.com/questions/41473187/makefile-issue-with-calling-another-shell-file-for-make
+--- ParMetis/Makefile.orig	2026-07-08 17:18:45.000000000 +0200
++++ ParMetis/Makefile	2026-07-08 17:19:26.000000000 +0200
+@@ -71,7 +71,7 @@
+ 	@if [ ! -f $(BUILDDIR)/Makefile ]; then \
+ 		more BUILD.txt; \
+ 	else \
+-	  	make -C $(BUILDDIR) $@ $(MAKEFLAGS); \
++	  	make -C $(BUILDDIR) $@ MAKEFLAGS=$(MAKEFLAGS); \
+ 	fi
+ 
+ uninstall:
