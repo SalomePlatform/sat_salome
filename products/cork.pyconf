@@ -28,7 +28,7 @@ default :
               "Python",
               "numpy"
              ]
-    build_depend : ["cmake", "cppunit"]
+    build_depend : ["cmake", "cppunit", "llvm"]
     opt_depend : [
                   "cgal",
                   "libigl",
