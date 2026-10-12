@@ -1,0 +1,13 @@
+--- cgns/CMakeLists.txt.orig	2026-04-20 10:03:07.000000000 +0200
++++ cgns/CMakeLists.txt	2026-04-20 10:02:02.000000000 +0200
+@@ -40,6 +40,10 @@
+   set(WIN32 "NO")
+ endif (CYGWIN)
+ 
++if(NOT TARGET Threads::Threads)
++  find_package(Threads REQUIRED)
++endif()
++
+ ##############
+ # build mode #
+ ##############
