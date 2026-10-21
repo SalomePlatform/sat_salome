@@ -288,7 +288,6 @@ __overwrite__ :
     {
         #
         __condition__ : "VARS.dist in ['UB24.04']"
-        'APPLICATION.rm_products'               : []
         'APPLICATION.products.cftime'           : 'native'
         'APPLICATION.products.markdown_it_py'   : 'native'
         'APPLICATION.products.netCDF4'          : 'native'
@@ -307,7 +306,6 @@ __overwrite__ :
     {
         #
         __condition__ : "VARS.dist in ['UB26.04']"
-        'APPLICATION.rm_products' : []
         'APPLICATION.products.gdal'             : 'native'
         'APPLICATION.products.hdf5'             : 'native'
         'APPLICATION.products.markdown_it_py'   : 'native'
@@ -510,7 +508,6 @@ __overwrite__ :
     }
     {
         __condition__ : "VARS.dist in ['FD42']"
-        'APPLICATION.rm_products'               : []
         'APPLICATION.products.cmake'            : 'native'
         'APPLICATION.products.gdal'             : 'native'
         'APPLICATION.products.hdf5'             : 'native'
