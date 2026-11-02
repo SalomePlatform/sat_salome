@@ -71,7 +71,7 @@ fi
 
 echo
 echo "*** configure ${CONFIGURE_OPTIONS}"
-$SOURCE_DIR/configure ${CONFIGURE_OPTIONS} "${opts[@]}"
+$SOURCE_DIR/configure ${CONFIGURE_OPTIONS}
 if [ $? -ne 0 ]; then
 
     echo "ERROR on configure"
