@@ -42,7 +42,7 @@ def set_nativ_env(env):
     if prereq_bin != "/usr/bin":
         env.prepend('PATH', prereq_bin)
 
-    if platform.system() == "Darwin" :
+    if isDarwin :
         env.prepend('DYLD_LIBRARY_PATH', os.path.join(prereq_dir,'lib'))
     else:
         env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir,'lib'))
