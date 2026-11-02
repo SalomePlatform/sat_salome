@@ -24,7 +24,9 @@ def set_env(env, prereq_dir, version):
 
     for d in ld:
         env.append('PYTHONPATH', os.path.join(prereq_dir, d))
-        if platform.system() == "Darwin" :
+        if platform.system() == "Windows" :
+            env.append('PATH', os.path.join(prereq_dir, d))
+        elif platform.system() == "Darwin" :
             env.append('DYLD_LIBRARY_PATH', os.path.join(prereq_dir, d))
         else :
             env.append('LD_LIBRARY_PATH', os.path.join(prereq_dir, d))
