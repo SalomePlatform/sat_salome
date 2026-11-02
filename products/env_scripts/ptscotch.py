@@ -54,9 +54,7 @@ def set_nativ_env(env):
         env.set('PTSCOTCHDIR', prereq_dir)
         env.set('PTSCOTCH_INCLUDE_DIR', prereq_inc)
         if prereq_lib is not None:
-            if platform.system() == "Windows" :
-                pass
-            elif platform.system() == "Darwin" :
+            if isDarwin :
                 env.prepend('DYLD_LIBRARY_PATH', prereq_lib)
             else :
                 env.prepend('LD_LIBRARY_PATH', prereq_lib)
