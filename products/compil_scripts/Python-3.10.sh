@@ -37,7 +37,6 @@ if [ "$DIST_NAME" = "macOS" ]; then
 fi
 
 echo
-echo toto > /tmp/python.log
 echo   "*** configure --prefix=$PRODUCT_INSTALL $CONFIGURE_ARGUMENTS"
 $SOURCE_DIR/configure --prefix=$PRODUCT_INSTALL $CONFIGURE_ARGUMENTS "${opts[@]}"
 if [ $? -ne 0 ] ; then
