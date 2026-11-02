@@ -43,8 +43,14 @@ else
 fi
 
 echo
+
 echo "** $QMAKE_BIN"
-$QMAKE_BIN QMAKE_LFLAGS_SONAME="-Wl,-install_name,@rpath/"
+if  [ "$DIST_NAME" =  "macOS" ]; then
+    $QMAKE_BIN QMAKE_LFLAGS_SONAME="-Wl,-install_name,@rpath/"
+else
+    $QMAKE_BIN
+fi
+
 if [ $? -ne 0 ]
 then
     echo "ERROR on $QMAKE_BIN"
