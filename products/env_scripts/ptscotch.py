@@ -24,6 +24,7 @@ def set_nativ_env(env):
         prereq_dir='/usr'
         prereq_inc='/usr/include'
         prereq_lib= None
+        isDarwin = platform.system() == "Darwin"
         try:
             import distro
             if any(distribution in distro.name().lower() for distribution in ["rocky", "centos", "fedora"]) :
