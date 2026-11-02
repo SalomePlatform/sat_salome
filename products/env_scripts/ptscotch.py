@@ -3,6 +3,12 @@
 
 import os.path, platform
 
+def _is_darwin():
+    # Defined at module level: inside set_nativ_env(), "platform" is a local
+    # name (because of the "import platform" in the except clause) and cannot
+    # be used before that import is executed.
+    return platform.system() == "Darwin"
+
 def set_env(env, prereq_dir, version):
     SCOTCH_HPC=True
     #SCOTCH_HPC=env.get('SCOTCH_HPC') == '1'
@@ -24,7 +30,7 @@ def set_nativ_env(env):
         prereq_dir='/usr'
         prereq_inc='/usr/include'
         prereq_lib= None
-        isDarwin = platform.system() == "Darwin"
+        isDarwin = _is_darwin()
         try:
             import distro
             if any(distribution in distro.name().lower() for distribution in ["rocky", "centos", "fedora"]) :

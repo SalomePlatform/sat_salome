@@ -2,6 +2,7 @@
 #-*- coding:utf-8 -*-
 
 import os.path
+import platform
 
 def set_env(env, prereq_dir, version):
     if platform.system() == "Darwin" :
