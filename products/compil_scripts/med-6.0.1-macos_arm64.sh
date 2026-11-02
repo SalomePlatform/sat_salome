@@ -8,9 +8,6 @@ rm -rf ${BUILD_DIR}
 mkdir ${BUILD_DIR}
 cd $BUILD_DIR
 
-export SDKROOT="$(xcrun --show-sdk-path)"
-export CFLAGS="-isysroot $(xcrun --show-sdk-path)"
-export CPPFLAGS="-isysroot $(xcrun --show-sdk-path)"
 
 # fPIC is not there by default in MED autotools ...
 Wno="-Wno-error -Wno-implicit-function-declaration"
