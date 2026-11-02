@@ -14,6 +14,13 @@ else
 fi
 
 CMAKE_OPTIONS=
+
+if [ "$DIST_NAME" == "macOS" ]; then
+    CMAKE_OPTIONS+=" $SAT_CMAKE_OPTIONS"
+    libExtension="dylib"
+else
+    libExtension="so"
+fi
 if [ -n "$SAT_HPC" ]  && [ -n "$MPI_ROOT_DIR" ]; then
     echo "WARNING: setting CC and CXX environment variables and target MPI wrapper"
     CMAKE_OPTIONS+=" -DCMAKE_CXX_COMPILER:STRING=${MPI_CXX_COMPILER}"
