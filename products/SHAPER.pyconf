@@ -57,6 +57,14 @@ default :
 default_macOS :
 {
     cmake_options :   '-DCMAKE_CXX_FLAGS=-fpermissive -DNO_SolveSpace=TRUE -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DADD_COMPATIBILITY_TESTS=ON -DADD_MODELS_TESTS=ON -DADD_HDF_TESTS=ON -DFREETYPE_LIBRARY=${FREETYPE_ROOT_DIR}/lib/libfreetype.dylib -DFREETYPE_INCLUDE_DIRS=${FREETYPE_ROOT_DIR}/include'
+    git_info:
+    {
+      repositories :
+      {
+            github : "https://github.com/raphael-nabet/shaper.git"
+      }
+      git_commands: [ 'git switch support-for-macos-platform' ]
+    }
 }
 
 default_win :
