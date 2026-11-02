@@ -44,12 +44,10 @@ CONFIGURE_OPTIONS+=" -pkg-config"
 
 #CONFIGURE_OPTIONS+=" -sysroot $(xcrun --show-sdk-path)"
 
-opts=()
 if [ "$DIST_NAME" = "macOS" ]; then
     CONFIGURE_OPTIONS+=" -no-assimp"
     CONFIGURE_OPTIONS+=" QMAKE_APPLE_DEVICE_ARCHS=arm64"
     CONFIGURE_OPTIONS+=" QMAKE_CXXFLAGS+=-Wno-enum-constexpr-conversion"
-    #eval "opts=($SAT_CONFIGURE_OPTIONS)"
 else
     CONFIGURE_OPTIONS+=" -no-rpath"
 fi
