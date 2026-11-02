@@ -18,10 +18,9 @@ CONFIGURE_OPTIONS+=" --prefix=$PRODUCT_INSTALL"
 CONFIGURE_OPTIONS+=" --enable-shared"
 CONFIGURE_OPTIONS+=" --enable-threads"
 
-if [ "$DIST_NAME" = macOS ]; then
-    export CFLAGS="-arch arm64 -isysroot $(xcrun --show-sdk-path) \
-        -mmacosx-version-min=${MACOSX_DEPLOYMENT_TARGET}"
-    export LDFLAGS="-arch arm64 -isysroot $(xcrun --show-sdk-path)"
+opts=()
+if [ "$DIST_NAME" = "macOS" ]; then
+    eval "opts=($SAT_CONFIGURE_OPTIONS)"
 fi
 
 error_recovery() {
