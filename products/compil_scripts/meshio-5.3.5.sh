@@ -81,11 +81,11 @@ if [ -f $fPy ]; then
         sed -i "" -e 's/(legal: {legal_keys})/(legal: {legal_keys}). Cell will be skipped!/g' $fPy
         statusCode=$(($statusCode+$?))
     else
-        sed -i "" -e 's/raise KeyError(/warn(/g' $fPy
+        sed -i 's/raise KeyError(/warn(/g' $fPy
         statusCode=$(($statusCode+$?))
-        sed -i "" -e "${L}s/)/)\n                continue/g"  $fPy
+        sed -i "${L}s/)/)\n                continue/g"  $fPy
         statusCode=$(($statusCode+$?))
-        sed -i "" -e 's/(legal: {legal_keys})/(legal: {legal_keys}). Cell will be skipped!/g' $fPy
+        sed -i 's/(legal: {legal_keys})/(legal: {legal_keys}). Cell will be skipped!/g' $fPy
         statusCode=$(($statusCode+$?))
     fi
     if [ $statusCode -ne 0 ]; then
