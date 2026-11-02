@@ -103,7 +103,7 @@ fi
 if [ -n "$LIBXML2_ROOT_DIR" ] && [ "$SAT_libxml2_IS_NATIVE" != "1" ]; then
     CMAKE_OPTIONS+=" -DLIBXML2_INCLUDE_DIR:STRING=${LIBXML2_ROOT_DIR}/include/libxml2"
     CMAKE_OPTIONS+=" -DLIBXML2_LIBRARIES:STRING=${LIBXML2_ROOT_DIR}/lib/libxml2$lib_extension"
-    CMAKE_OPTIONS+=" -DLIBXML2_LIBRARY=${LIBXML2_ROOT_DIR}/lib/libxml2$libextension"
+    CMAKE_OPTIONS+=" -DLIBXML2_LIBRARY=${LIBXML2_ROOT_DIR}/lib/libxml2$lib_extension"
     CMAKE_OPTIONS+=" -DLIBXML2_XMLLINT_EXECUTABLE=${LIBXML2_ROOT_DIR}/bin/xmllint"
 fi
 
