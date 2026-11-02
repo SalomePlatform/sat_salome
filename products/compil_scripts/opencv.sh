@@ -4,9 +4,9 @@ echo "##########################################################################
 echo "opencv" $VERSION
 echo "##########################################################################"
 
-lib_extension=.so
+lib_extension=so
 if [ "$DIST_NAME" = "macOS" ]; then
-    lib_extension=.dylib
+    lib_extension=dylib
 fi
 
 function version_ge() { test "$(echo "$@" | tr " " "\n" | sort -rV | head -n 1)" == "$1"; }
