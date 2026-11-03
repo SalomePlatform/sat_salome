@@ -20,6 +20,9 @@ CONFIGURE_OPTIONS+=" --enable-threads"
 
 opts=()
 if [ "$DIST_NAME" = "macOS" ]; then
+    export CFLAGS="-arch arm64 -isysroot $(xcrun --show-sdk-path) \
+        -mmacosx-version-min=${MACOSX_DEPLOYMENT_TARGET}"
+    export LDFLAGS="-arch arm64 -isysroot $(xcrun --show-sdk-path)"
     eval "opts=($SAT_CONFIGURE_OPTIONS)"
 fi
 
@@ -35,7 +38,7 @@ build() {
 
     echo
     echo "*** $1 configure $CONFIGURE_OPTIONS"
-    $SOURCE_DIR/$1/unix/configure $CONFIGURE_OPTIONS
+    $SOURCE_DIR/$1/unix/configure $CONFIGURE_OPTIONS  "${opts[@]}"
     error_recovery "$1 configure" 2
 
     echo
