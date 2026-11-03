@@ -360,6 +360,19 @@ done
 #
 # O P E N T U R N S
 #
+# - a plain site.py would only shadow the interpreter's one (site.__file__ in OT)
+# - the site-patch relies on imp/find_module, removed in Python 3.12 (where site is frozen anyway)
+function install_site_patch(){
+    local src=$1
+    if ! grep -q "def __boot" "$src"; then
+        echo "INFO: $src is not a site-patch, the site.py of the Python interpreter will be used"
+    elif version_ge "$PYTHON_VERSION" "3.12"; then
+        echo "INFO: site-patch not supported by Python $PYTHON_VERSION, the site.py of the Python interpreter will be used"
+    else
+        cp $src ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages/site.py
+    fi
+}
+
 if [ -f ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages/site.py ]; then
     echo "INFO: site.py already installed"
 elif [ "$SAT_Python_IS_NATIVE" == "1" ]; then
@@ -419,14 +432,14 @@ elif [ "$SAT_Python_IS_NATIVE" == "1" ]; then
     esac
     # check whether this file exists
     if [ "${SITE_PATCH}" == "" ]; then
-        cp $SOURCE_DIR/addons/site-patch.py ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages/site.py
+        install_site_patch $SOURCE_DIR/addons/site-patch.py
     elif [ -f $SITE_PATCH ]; then
-        cp $SITE_PATCH ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages/site.py
+        install_site_patch $SITE_PATCH
     fi
 elif [ -f ${PYTHON_ROOT_DIR}/lib/python${PYTHON_VERSION}/site-packages/setuptools/site-patch.py ]; then
-    cp ${PYTHON_ROOT_DIR}/lib/python${PYTHON_VERSION}/site-packages/setuptools/site-patch.py ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages/site.py
+    install_site_patch ${PYTHON_ROOT_DIR}/lib/python${PYTHON_VERSION}/site-packages/setuptools/site-patch.py
 elif [ -f ${PYTHON_ROOT_DIR}/lib/python${PYTHON_VERSION}/site.py ]; then
-    cp ${PYTHON_ROOT_DIR}/lib/python${PYTHON_VERSION}/site.py ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages/site.py
+    install_site_patch ${PYTHON_ROOT_DIR}/lib/python${PYTHON_VERSION}/site.py
 else
     echo "ERROR: could not find site-patch.py"
     exit 7
