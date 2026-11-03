@@ -95,7 +95,7 @@ if [ -n "$FREETYPE_ROOT_DIR" ] && [ "$SAT_freetype_IS_NATIVE" != "1" ]; then
     if [ "$DIST_NAME" = "macOS" ]; then
         CMAKE_OPTIONS+=" -DFREETYPE_LIBRARY:STRING=${FREETYPE_ROOT_DIR}/lib/libfreetype$lib_extension"
     else
-        CMAKE_OPTIONS+=" -DFREETYPE_LIBRARY:STRING=${FREETYPE_ROOT_DIR}/lib/libfreetype4$lib_extension"
+        CMAKE_OPTIONS+=" -DFREETYPE_LIBRARY:STRING=${FREETYPE_ROOT_DIR}/lib/libfreetype$lib_extension"
     fi
 fi
 
