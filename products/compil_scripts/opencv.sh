@@ -39,7 +39,11 @@ if version_ge $VERSION "3."; then
     CMAKE_OPTIONS+=" -DCMAKE_CXX_FLAGS=-fPIC"
     CMAKE_OPTIONS+=" -DCMAKE_C_FLAGS=-fPIC"
     LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
-    CMAKE_OPTIONS+=" -DCMAKE_CXX_FLAGS=\"-std=gnu++14\""
+    if [ "$DIST_NAME" = "macOS" ]; then
+        CMAKE_OPTIONS+=" -DCMAKE_CXX_FLAGS=\"-std=gnu++14\""
+    else
+        CMAKE_OPTIONS+=" -DCMAKE_CXX_FLAGS=\"-std=c++14\""
+    fi
     CMAKE_OPTIONS+=" -DCMAKE_CXX_STANDARD=14"
     CMAKE_OPTIONS+=" -DCMAKE_C_FLAGS=-fPIC"
     # 

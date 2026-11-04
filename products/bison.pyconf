@@ -10,7 +10,8 @@ default :
         rpm_dev : ["bison-devel"]
         apt : ["bison"]
         apt_dev : ["libbison-dev"]
-#	brew : ["bison"]
+        brew : ["bison"]
+        brew_dev : []
     }
     environ :
     {

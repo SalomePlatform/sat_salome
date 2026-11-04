@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 #-*- coding:utf-8 -*-
 
-import os.path, platform
-
 def set_env(env, prereq_dir, version):
     env.set('VTK_ROOT_DIR', prereq_dir) # update for cmake
     env.set('VTKHOME', prereq_dir)
@@ -10,12 +8,7 @@ def set_env(env, prereq_dir, version):
     pyver = 'python' + env.get('PYTHON_VERSION')
 
     env.prepend('PATH', os.path.join(root, 'bin'))
-
-    if platform.system() == "Darwin":
-        env.prepend('DYLD_LIBRARY_PATH', os.path.join(root, 'lib'))
-    else:
-        env.prepend('LD_LIBRARY_PATH', os.path.join(root, 'lib'))
-
+    env.prepend('LD_LIBRARY_PATH', os.path.join(root, 'lib'))
     env.prepend('PYTHONPATH', os.path.join(root, 'lib', pyver, 'site-packages'))
     #http://computer-programming-forum.com/57-tcl/1dfddc136afccb94.htm
     #Tcl treats the contents of that variable as a list. Be happy, for you can now use drive letters on windows.

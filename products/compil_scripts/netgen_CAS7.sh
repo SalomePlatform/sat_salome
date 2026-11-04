@@ -48,7 +48,7 @@ echo ./configure --prefix=${PRODUCT_INSTALL} \
     --with-tcl=${TCLHOME}/lib \
     --with-tk=${TCLHOME}/lib \
     --with-tclinclude=${TCLHOME}/include \
-    CXXFLAGS="${OLEVEL} ${BFLAG} -std=c++14 -std=c++0x" #-std=gnu++11" #-std=c++11 -std=c++0x"
+    CXXFLAGS="${OLEVEL} ${BFLAG} -std=c++11 -std=c++0x" #-std=gnu++11" #-std=c++11 -std=c++0x"
     #--with-togl=${TCLHOME} \
     #LDFLAGS="-L${TCLHOME}/lib" \
     #CPPFLAGS="-I${TCLHOME}/include" \

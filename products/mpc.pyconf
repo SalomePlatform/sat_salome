@@ -10,5 +10,7 @@ default :
        rpm_dev : ["libmpc-devel"]
        apt : []
        apt_dev : ["libmpc-dev"]
+       brew : []
+       brew_dev : ["libmpc"]
     }
 }

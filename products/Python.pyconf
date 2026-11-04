@@ -33,6 +33,7 @@ default :
 default_macOS:
 {
     post_script : "setup-rpath-macOS.sh"
+    depend: ["openssl"]
 }
 
 version_2_6_6 :
@@ -171,6 +172,5 @@ version_3_9_14_win :
 version_3_10_16 :
 {
  compil_script : "Python-3.10.sh"
- opt_depend: ["openssl"]
  patches : []
 }

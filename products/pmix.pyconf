@@ -8,7 +8,8 @@ default :
     {
        env_script : $name + ".py"
     }
-    build_depend : [ "libevent" "hwloc" ]
+    build_depend : [ "libevent",
+                     "hwloc" ]
     depend : [ ]
     opt_depend : [ ]
     patches : [ ]

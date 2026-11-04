@@ -10,5 +10,7 @@ default :
        rpm_dev : ["gmp-devel"]
        apt : []
        apt_dev : ["libgmp-dev"]
+       brew : []
+       brew_dev : ["gmp"]
     }
 }

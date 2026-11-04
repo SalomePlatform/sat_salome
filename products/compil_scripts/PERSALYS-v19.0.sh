@@ -92,11 +92,7 @@ fi
 CMAKE_OPTIONS+=" -DVTK_MODULE_USE_EXTERNAL_VTK_freetype:BOOL=ON"
 if [ -n "$FREETYPE_ROOT_DIR" ] && [ "$SAT_freetype_IS_NATIVE" != "1" ]; then
     CMAKE_OPTIONS+=" -DFREETYPE_INCLUDE_DIRS:STRING=${FREETYPE_ROOT_DIR}/include/freetype2"
-    if [ "$DIST_NAME" = "macOS" ]; then
-        CMAKE_OPTIONS+=" -DFREETYPE_LIBRARY:STRING=${FREETYPE_ROOT_DIR}/lib/libfreetype$lib_extension"
-    else
-        CMAKE_OPTIONS+=" -DFREETYPE_LIBRARY:STRING=${FREETYPE_ROOT_DIR}/lib/libfreetype$lib_extension"
-    fi
+    CMAKE_OPTIONS+=" -DFREETYPE_LIBRARY:STRING=${FREETYPE_ROOT_DIR}/lib/libfreetype$lib_extension"
 fi
 
 ### libxml2 settings
