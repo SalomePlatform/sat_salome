@@ -1,0 +1,324 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 43e94144..847a41e1 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -63,6 +63,16 @@ message(
+ # ==============
+ include(SalomeSetupPlatform)
+ 
++if(APPLE)
++  # cmake_minimum_required(2.8) leaves CMP0042 OLD: installed dylibs would get a
++  # bare install name (e.g. "libmedpartitionercpp.dylib") that dyld cannot resolve.
++  # Use @rpath install names and embed the install lib dir plus the dirs of all
++  # linked prerequisites (hdf5, medfile, scotch...) so no DYLD_LIBRARY_PATH is needed.
++  set(CMAKE_MACOSX_RPATH ON)
++  set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
++  set(CMAKE_INSTALL_RPATH_USE_LINK_PATH ON)
++endif()
++
+ # [ABN]: use the below for aggressive code quality check: if( EXISTS "aaaa")
+ # add_definitions(-Weverything)
+ # add_definitions(-Wno-inconsistent-missing-override)
+@@ -240,15 +250,15 @@ endif(MEDCOUPLING_ENABLE_RENUMBER)
+ 
+ if(MEDCOUPLING_ENABLE_SHAPERECOGN)
+   if(UNIX)
+-    set(CBLAS_ROOT_DIR
+-        $ENV{CBLAS_ROOT_DIR}
+-        CACHE PATH "Path to the LAPACK/CBLAS.")
+-    if(CBLAS_ROOT_DIR)
+-      list(APPEND CMAKE_PREFIX_PATH "${CBLAS_ROOT_DIR}")
+-      find_package(CBLAS REQUIRED)
+-    else(CBLAS_ROOT_DIR)
+-      find_package(BLAS REQUIRED)
+-    endif(CBLAS_ROOT_DIR)
++    set(OPENBLAS_ROOT_DIR
++        $ENV{OPENBLAS_ROOT_DIR}
++        CACHE PATH "Path to the OpenBLAS.")
++    if(OPENBLAS_ROOT_DIR)
++      list(APPEND CMAKE_PREFIX_PATH "${OPENBLAS_ROOT_DIR}")
++      find_package(OpenBLAS REQUIRED)
++    else(OPENBLAS_ROOT_DIR)
++      message(FATAL "Could not find OpenBLAS")
++    endif(OPENBLAS_ROOT_DIR)
+     set(LAPACK_ROOT_DIR
+         $ENV{LAPACK_ROOT_DIR}
+         CACHE PATH "Path to the LAPACKE")
+@@ -259,13 +269,13 @@ if(MEDCOUPLING_ENABLE_SHAPERECOGN)
+       list(APPEND CMAKE_PREFIX_PATH "${LAPACK_ROOT_DIR}")
+     endif(LAPACK_ROOT_DIR)
+     find_package(LAPACK REQUIRED)
+-    find_library(LAPACKE_LIB NAMES lapacke REQUIRED)
++    find_library(LAPACKE_LIB NAMES openblas REQUIRED)
+     set(LAPACK_LIBRARIES ${LAPACKE_LIB} ${LAPACK_LIBRARIES} ${BLAS_LIBRARIES}
+                          ${CBLAS_LIBRARIES})
+     find_path(
+       LAPACKE_INCLUDE_DIRS
+       NAMES lapacke.h
+-      HINTS ${LAPACK_LIBRARIES})
++      HINTS ${OpenBLAS_INCLUDE_DIRS})
+     if(LAPACK_FOUND)
+       message(STATUS "Lapacke libraries: ${LAPACK_LIBRARIES}")
+       message(STATUS "Lapacke include dirs: ${LAPACKE_INCLUDE_DIRS}")
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 8dd0b9c4..450e595e 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -22,6 +22,16 @@ if(MED_INT_IS_LONG)
+   add_definitions(-DMED_INT_IS_LONG)
+ endif(MED_INT_IS_LONG)
+ 
++# Build-tree Python tests: medcoupling.py imports MEDLoaderFinalize and
++# ParaMEDMEMFinalize, which are only installed, never copied to the build tree.
++# Accumulated here so that every test directory inherits it.
++if(MEDCOUPLING_ENABLE_PYTHON)
++  salome_accumulate_environment(
++    PYTHONPATH NOCHECK ${CMAKE_CURRENT_BINARY_DIR}/PyWrapping
++    ${CMAKE_CURRENT_SOURCE_DIR}/MEDLoader/Swig
++    ${CMAKE_CURRENT_SOURCE_DIR}/ParaMEDMEM_Swig)
++endif()
++
+ # InterpKERNEL
+ add_subdirectory(INTERP_KERNEL)
+ if(MEDCOUPLING_BUILD_TESTS)
+diff --git a/src/INTERP_KERNEL/MCIdType.hxx b/src/INTERP_KERNEL/MCIdType.hxx
+index 1fddbac2..9709f508 100644
+--- a/src/INTERP_KERNEL/MCIdType.hxx
++++ b/src/INTERP_KERNEL/MCIdType.hxx
+@@ -36,7 +36,7 @@ typedef std::int64_t mcIdType;
+ 
+ #endif
+ 
+-#ifdef WIN32
++#if defined(WIN32) || defined (__APPLE__)
+ typedef long long mcPyPtrType;
+ #else
+ typedef long mcPyPtrType;
+diff --git a/src/INTERP_KERNELTest/BasicMainTest.hxx b/src/INTERP_KERNELTest/BasicMainTest.hxx
+index 8446f9e1..a45c14b6 100644
+--- a/src/INTERP_KERNELTest/BasicMainTest.hxx
++++ b/src/INTERP_KERNELTest/BasicMainTest.hxx
+@@ -32,7 +32,7 @@
+ #include <iostream>
+ #include <fstream>
+ 
+-#if !defined WIN32 && !defined __APPLE__
++#if !defined(WIN32) && !defined(__APPLE__)
+ #include <fpu_control.h>
+ #endif
+ 
+diff --git a/src/MEDCoupling_Swig/CMakeLists.txt b/src/MEDCoupling_Swig/CMakeLists.txt
+index 042d8004..986d63b2 100644
+--- a/src/MEDCoupling_Swig/CMakeLists.txt
++++ b/src/MEDCoupling_Swig/CMakeLists.txt
+@@ -100,11 +100,11 @@ if(MEDCOUPLING_BUILD_DOC)
+        ${PROJECT_BINARY_DIR}/doc/MEDCoupling_doc.i swig_ready)
+ endif()
+ 
+-if(WIN32)
++IF(WIN32 OR APPLE)
+   # Under Windows MEDCoupling conflicts wiht medcoupling from PyWrapping
+   set(MEDCouling_target_name MEDCouplingCompat)
+   set_property(SOURCE MEDCoupling.i PROPERTY SWIG_MODULE_NAME MEDCouplingCompat)
+-  set_property(SOURCE MEDCoupling.i PROPERTY COMPILE_DEFINITIONS WIN32)
++  set_property(SOURCE MEDCoupling.i PROPERTY COMPILE_DEFINITIONS WIN32 APPLE)
+   set(SWIG_MODULE_MEDCouplingCompat_EXTRA_FLAGS
+       "${NUMPY_DEFINITIONS};${SCIPY_DEFINITIONS}")
+   if(MEDCOUPLING_USE_64BIT_IDS)
+@@ -125,7 +125,7 @@ else()
+ endif()
+ 
+ swig_link_libraries(${MEDCouling_target_name} ${PLATFORM_LIBS} medcouplingcpp)
+-if(WIN32 OR CYGWIN)
++if(WIN32 OR CYGWIN OR APPLE)
+   # PYTHON_LIBRARIES only needed on win32 see
+   # https://www.python.org/dev/peps/pep-0513/#libpythonx-y-so-1
+   swig_link_libraries(${MEDCouling_target_name} ${PYTHON_LIBRARIES})
+@@ -133,8 +133,8 @@ endif()
+ 
+ swig_check_generation(${MEDCouling_target_name})
+ set_source_files_properties(MEDCouplingRemapper.i PROPERTIES CPLUSPLUS ON)
+-if(WIN32)
+-  set_property(SOURCE MEDCouplingRemapper.i PROPERTY COMPILE_DEFINITIONS WIN32)
++IF(WIN32 OR APPLE)
++  set_property(SOURCE MEDCouplingRemapper.i PROPERTY COMPILE_DEFINITIONS WIN32 APPLE)
+ endif()
+ if("${PYTHON_VERSION_MAJOR}" STREQUAL "3")
+   set_source_files_properties(MEDCouplingRemapper.i PROPERTIES SWIG_FLAGS
+@@ -166,7 +166,7 @@ else()
+ endif()
+ 
+ swig_link_libraries(MEDCouplingRemapper medcouplingremapper)
+-if(WIN32 OR CYGWIN)
++if(WIN32 OR CYGWIN OR APPLE)
+   # PYTHON_LIBRARIES only needed on win32 see
+   # https://www.python.org/dev/peps/pep-0513/#libpythonx-y-so-1
+   swig_link_libraries(MEDCouplingRemapper ${PYTHON_LIBRARIES})
+@@ -184,7 +184,7 @@ install(TARGETS ${SWIG_MODULE_${MEDCouling_target_name}_REAL_NAME}
+         DESTINATION ${MEDCOUPLING_INSTALL_PYTHON})
+ 
+ set(PYFILES_TO_INSTALL ${CMAKE_CURRENT_BINARY_DIR}/MEDCouplingRemapper.py)
+-if(WIN32)
++IF(WIN32 OR APPLE)
+   set(PYFILES_TO_INSTALL ${PYFILES_TO_INSTALL}
+                          ${CMAKE_CURRENT_BINARY_DIR}/MEDCouplingCompat.py)
+ else()
+diff --git a/src/MEDLoader/Swig/CMakeLists.txt b/src/MEDLoader/Swig/CMakeLists.txt
+index 1718da46..be18367a 100644
+--- a/src/MEDLoader/Swig/CMakeLists.txt
++++ b/src/MEDLoader/Swig/CMakeLists.txt
+@@ -72,7 +72,7 @@ if(MEDCOUPLING_BUILD_DOC)
+        ${PROJECT_BINARY_DIR}/doc/MEDLoader_doc.i swig_ready)
+ endif()
+ 
+-if(WIN32)
++IF(WIN32 OR APPLE)
+   set_property(SOURCE MEDLoader.i PROPERTY COMPILE_DEFINITIONS WIN32)
+ endif()
+ 
+@@ -86,7 +86,7 @@ else()
+ endif()
+ 
+ swig_link_libraries(MEDLoader ${PLATFORM_LIBS} medloader medcouplingcpp)
+-if(WIN32 OR CYGWIN)
++if(WIN32 OR CYGWIN OR APPLE)
+   # PYTHON_LIBRARIES only needed on win32 see
+   # https://www.python.org/dev/peps/pep-0513/#libpythonx-y-so-1
+   swig_link_libraries(MEDLoader ${PYTHON_LIBRARIES})
+diff --git a/src/MEDPartitioner_Swig/CMakeLists.txt b/src/MEDPartitioner_Swig/CMakeLists.txt
+index f7f2d19b..73806168 100644
+--- a/src/MEDPartitioner_Swig/CMakeLists.txt
++++ b/src/MEDPartitioner_Swig/CMakeLists.txt
+@@ -69,7 +69,7 @@ else()
+ endif()
+ 
+ swig_link_libraries(MEDPartitioner ${PLATFORM_LIBS} medpartitionercpp)
+-if(WIN32)
++if(WIN32 OR APPLE)
+   # PYTHON_LIBRARIES only needed on win32 see
+   # https://www.python.org/dev/peps/pep-0513/#libpythonx-y-so-1
+   swig_link_libraries(MEDPartitioner ${PYTHON_LIBRARIES})
+diff --git a/src/ParaMEDMEMTest/MPIMainTest.hxx b/src/ParaMEDMEMTest/MPIMainTest.hxx
+index 243d1d44..d281c34b 100644
+--- a/src/ParaMEDMEMTest/MPIMainTest.hxx
++++ b/src/ParaMEDMEMTest/MPIMainTest.hxx
+@@ -33,7 +33,7 @@
+ 
+ #include <iostream>
+ #include <fstream>
+-#ifndef WIN32
++#if !defined(WIN32) && !defined(__APPLE__)
+ #include <fpu_control.h>
+ #endif
+ 
+@@ -47,7 +47,7 @@
+ int
+ main(int argc, char *argv[])
+ {
+-#ifndef WIN32
++#if !defined(WIN32) && !defined(__APPLE__)
+     fpu_control_t cw = _FPU_DEFAULT & ~(_FPU_MASK_IM | _FPU_MASK_ZM | _FPU_MASK_OM);
+     _FPU_SETCW(cw);
+ #endif
+diff --git a/src/ParaMEDMEM_Swig/CMakeLists.txt b/src/ParaMEDMEM_Swig/CMakeLists.txt
+index aa6c2f47..0f2f5aef 100644
+--- a/src/ParaMEDMEM_Swig/CMakeLists.txt
++++ b/src/ParaMEDMEM_Swig/CMakeLists.txt
+@@ -60,6 +60,10 @@ set(SWIG_MODULE_ParaMEDMEM_EXTRA_DEPS
+     ${medcoupling_HEADERS_HXX} ${medcoupling_HEADERS_TXX}
+     ${interpkernel_HEADERS_HXX} ${interpkernel_HEADERS_TXX})
+ 
++IF(APPLE)
++  SET_PROPERTY(SOURCE ParaMEDMEM.i PROPERTY COMPILE_DEFINITIONS WIN32)
++ENDIF()
++
+ if(${CMAKE_VERSION} VERSION_LESS "3.8.0")
+   swig_add_module(ParaMEDMEM python ParaMEDMEM.i)
+ else()
+@@ -70,7 +74,7 @@ else()
+ endif()
+ 
+ swig_link_libraries(ParaMEDMEM paramedmem)
+-if(WIN32)
++if(WIN32 OR APPLE)
+   # PYTHON_LIBRARIES only needed on win32 see
+   # https://www.python.org/dev/peps/pep-0513/#libpythonx-y-so-1
+   swig_link_libraries(ParaMEDMEM ${PYTHON_LIBRARIES})
+diff --git a/src/ParaMEDMEM_Swig/CTestTestfileInstall.cmake.in b/src/ParaMEDMEM_Swig/CTestTestfileInstall.cmake.in
+index c4505461..6793c3c1 100644
+--- a/src/ParaMEDMEM_Swig/CTestTestfileInstall.cmake.in
++++ b/src/ParaMEDMEM_Swig/CTestTestfileInstall.cmake.in
+@@ -27,10 +27,15 @@ set(_oversub_opt @_oversub_opt@)
+ SET(TEST_NAMES ParaMEDMEMTest)
+ 
+ # Find the path to the Python3 executable
+-find_package(Python3 COMPONENTS Interpreter)
++if (DEFINED ENV{PYTHON_VERSION})
++  find_package(Python3 EXACT $ENV{PYTHON_VERSION} COMPONENTS Interpreter)
++else()
++  find_package(Python3 COMPONENTS Interpreter)
++endif()
++
+ 
+ # force mpiexec to use PATH env var to detect right python into mpiexec command line
+-if(!Python3_FOUND)
++if(NOT Python3_FOUND)
+   message(STATUS "Python3 not found")
+   set(Python3_EXECUTABLE "python3")
+ endif()
+diff --git a/src/PyWrapping/CMakeLists.txt b/src/PyWrapping/CMakeLists.txt
+index d75e23f6..0979490c 100644
+--- a/src/PyWrapping/CMakeLists.txt
++++ b/src/PyWrapping/CMakeLists.txt
+@@ -28,7 +28,7 @@ add_definitions(
+   -DMEDCOUPLING_CONFIG_DT=\"${MEDCOUPLING_CONFIG_TIME}\")
+ 
+ set_source_files_properties(medcoupling.i PROPERTIES CPLUSPLUS ON)
+-if(WIN32)
++IF(WIN32 OR APPLE)
+   set_property(SOURCE medcoupling.i PROPERTY COMPILE_DEFINITIONS WIN32)
+ endif()
+ if("${PYTHON_VERSION_MAJOR}" STREQUAL "3")
+@@ -75,7 +75,7 @@ include_directories(
+   ${PROJECT_BINARY_DIR}/doc)
+ 
+ set(medcoupling_LIB_dependancies ${PLATFORM_LIBS} medcouplingremapper medicoco)
+-if(WIN32 OR CYGWIN)
++if(WIN32 OR CYGWIN OR APPLE)
+   # PYTHON_LIBRARIES only needed on win32 see
+   # https://www.python.org/dev/peps/pep-0513/#libpythonx-y-so-1
+   list(APPEND medcoupling_LIB_dependancies ${PYTHON_LIBRARIES})
+diff --git a/src/RENUMBER_Swig/CMakeLists.txt b/src/RENUMBER_Swig/CMakeLists.txt
+index 798e4351..1eec2737 100644
+--- a/src/RENUMBER_Swig/CMakeLists.txt
++++ b/src/RENUMBER_Swig/CMakeLists.txt
+@@ -57,7 +57,7 @@ include_directories(
+   ${CMAKE_CURRENT_SOURCE_DIR}/../INTERP_KERNEL/ExprEval
+   ${CMAKE_CURRENT_SOURCE_DIR}/../INTERP_KERNEL/GaussPoints)
+ 
+-if(WIN32)
++IF(WIN32 OR APPLE)
+   set_property(SOURCE MEDRenumber.i PROPERTY COMPILE_DEFINITIONS WIN32)
+ endif()
+ if(${CMAKE_VERSION} VERSION_LESS "3.8.0")
+@@ -70,7 +70,7 @@ else()
+ endif()
+ 
+ swig_link_libraries(MEDRenumber ${PLATFORM_LIBS} renumbercpp)
+-if(WIN32)
++if(WIN32 OR APPLE)
+   # PYTHON_LIBRARIES only needed on win32 see
+   # https://www.python.org/dev/peps/pep-0513/#libpythonx-y-so-1
+   swig_link_libraries(MEDRenumber ${PYTHON_LIBRARIES})
+diff --git a/src/ShapeRecogn/Test/CMakeLists.txt b/src/ShapeRecogn/Test/CMakeLists.txt
+index 62f2111b..2545def0 100644
+--- a/src/ShapeRecogn/Test/CMakeLists.txt
++++ b/src/ShapeRecogn/Test/CMakeLists.txt
+@@ -20,6 +20,7 @@
+ 
+ include_directories(
+   ${CPPUNIT_INCLUDE_DIRS}
++  ${LAPACKE_INCLUDE_DIRS}
+   ${HDF5_INCLUDE_DIRS}
+   ${MEDFILE_INCLUDE_DIRS}
+   ${LAPACKE_INCLUDE_DIRS}

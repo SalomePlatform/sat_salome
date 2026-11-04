@@ -39,7 +39,11 @@ fi
 
 echo INFO: Python version major: ${pyVersionMajor}
 if [ -f $PRODUCT_INSTALL/lib/python${PYTHON_VERSION}/site-packages/bin/meshio ]; then
-    sed -i "s%#\!.*python[0-9]*%#\!/usr/bin/env ${pyVersionMajor}%#g" $PRODUCT_INSTALL/lib/python${PYTHON_VERSION}/site-packages/bin/meshio
+    if [ "$DIST_NAME" = "macOS" ]; then
+        sed -i "" -e "s%#\!.*python[0-9]*%#\!/usr/bin/env ${pyVersionMajor}%#g" $PRODUCT_INSTALL/lib/python${PYTHON_VERSION}/site-packages/bin/meshio
+    else
+        sed -i "s%#\!.*python[0-9]*%#\!/usr/bin/env ${pyVersionMajor}%#g" $PRODUCT_INSTALL/lib/python${PYTHON_VERSION}/site-packages/bin/meshio
+    fi
 else
     echo "FATAL: could not find meshio runner!"
     exit  1
@@ -48,7 +52,11 @@ fi
 # bos #42618 - https://github.com/nschloe/meshio/issues/1484
 fPy=$PRODUCT_INSTALL/lib/python${PYTHON_VERSION}/site-packages/meshio/gmsh/main.py
 if [ -f $fPy ]; then
-    sed -i 's/"gmsh": lambda f, m, \*\*kwargs: write(f, m, "4.1", \*\*kwargs)/"gmsh40": lambda f, m, \*\*kwargs: write(f, m, "4.0", \*\*kwargs)/g' $fPy
+    if [ "$DIST_NAME" = "macOS" ]; then
+        sed -i "" -e 's/"gmsh": lambda f, m, \*\*kwargs: write(f, m, "4.1", \*\*kwargs)/"gmsh40": lambda f, m, \*\*kwargs: write(f, m, "4.0", \*\*kwargs)/g' $fPy
+    else
+        sed -i 's/"gmsh": lambda f, m, \*\*kwargs: write(f, m, "4.1", \*\*kwargs)/"gmsh40": lambda f, m, \*\*kwargs: write(f, m, "4.0", \*\*kwargs)/g' $fPy
+    fi
     if [ $? -ne 0 ]; then
         echo "FATAL: could not apply fixes to GMSH MeshIO driver"
         exit 1
@@ -65,12 +73,21 @@ if [ -f $fPy ]; then
     # retrieve line number
     l=$(grep -nA0 "raise KeyError" $fPy|cut -d':' -f1)
     L=$(($l+2))
-    sed -i 's/raise KeyError(/warn(/g' $fPy
-    statusCode=$(($statusCode+$?))
-    sed -i "${L}s/)/)\n                continue/g"  $fPy
-    statusCode=$(($statusCode+$?))
-    sed -i 's/(legal: {legal_keys})/(legal: {legal_keys}). Cell will be skipped!/g' $fPy
-    statusCode=$(($statusCode+$?))
+    if [ "$DIST_NAME" = "macOS" ]; then
+        sed -i  "" -e 's/raise KeyError(/warn(/g' $fPy
+        statusCode=$(($statusCode+$?))
+        sed -i "" -e "${L}s/)/)\n                continue/g"  $fPy
+        statusCode=$(($statusCode+$?))
+        sed -i "" -e 's/(legal: {legal_keys})/(legal: {legal_keys}). Cell will be skipped!/g' $fPy
+        statusCode=$(($statusCode+$?))
+    else
+        sed -i 's/raise KeyError(/warn(/g' $fPy
+        statusCode=$(($statusCode+$?))
+        sed -i "${L}s/)/)\n                continue/g"  $fPy
+        statusCode=$(($statusCode+$?))
+        sed -i 's/(legal: {legal_keys})/(legal: {legal_keys}). Cell will be skipped!/g' $fPy
+        statusCode=$(($statusCode+$?))
+    fi
     if [ $statusCode -ne 0 ]; then
         echo "FATAL: could not apply fixes to ANSYS MeshIO driver"
         exit 1
@@ -88,7 +105,11 @@ if [[ $NUMPY_MAJ_VERSION -eq 2 ]]; then
     fPy=$PRODUCT_INSTALL/lib/python${PYTHON_VERSION}/site-packages/meshio/dolfin/_dolfin.py
     if [ -f $fPy ]; then
         line=$(grep -nA0 "ET.SubElement(mesh_function" $fPy| cut -d':' -f1)
-        sed -i "${line}s/repr/str/" $fPy
+        if [ "$DIST_NAME" = "macOS" ]; then
+            sed -i "" -e "${line}s/repr/str/" $fPy
+        else
+            sed -i "${line}s/repr/str/" $fPy
+        fi
     fi
 fi
 

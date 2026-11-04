@@ -13,7 +13,6 @@ default :
        env_script : $name + ".py"
     }
     depend : ['Python',
-              'lapack',
               'hdf5',
               'cgns',
               'tbb',
@@ -39,7 +38,7 @@ default :
               'CONFIGURATION'
            ]
     build_depend : ["cmake", "swig"]
-    opt_depend : ['openmpi']
+    opt_depend : ['openmpi', 'lapack']
     patches : []
     source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
@@ -49,6 +48,34 @@ default :
       single_install_dir : "no"
       incremental : "yes"
     }
+}
+
+default_macOS :
+{
+    depend : ['Python',
+              'hdf5',
+              'cgns',
+              'tbb',
+              'nlopt',
+              'libxml2',
+              'eigen',
+              'netcdf',
+              'boost',
+              'ADAO',
+              'ADAO_INTERFACE',
+              'KERNEL',
+              'GUI',
+              'Sphinx',
+              'qwt',
+              'qt',
+              'ParaView',
+              'openturns',
+              'numpydoc',
+              'YACS',
+              'YDEFX',
+              'CAS',
+              'CONFIGURATION'
+           ]
 }
 
 default_win :

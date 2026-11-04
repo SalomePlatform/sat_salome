@@ -1,0 +1,33 @@
+diff --git a/cmake/FindSalomePythonLibs.cmake b/cmake/FindSalomePythonLibs.cmake
+index 2fd1772..258c901 100644
+--- a/cmake/FindSalomePythonLibs.cmake
++++ b/cmake/FindSalomePythonLibs.cmake
+@@ -40,9 +40,9 @@ IF(WIN32 AND NOT MINGW)
+   SET(PYTHON_INCLUDE_DIR "${PYTHON_ROOT_DIR}/include")
+ ENDIF()
+ IF(APPLE)
+-  FIND_PROGRAM(PYTHON_CONFIG_EXECUTABLE python-config)
++  FIND_PROGRAM(PYTHON_CONFIG_EXECUTABLE python${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}-config)
+   IF(NOT PYTHON_CONFIG_EXECUTABLE)
+-    MESSAGE(SEND_ERROR "python-config executable not found, but python is required.")
++    MESSAGE(SEND_ERROR "python${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}-config executable not found, but python is required.")
+   ENDIF()
+   EXECUTE_PROCESS(COMMAND ${PYTHON_CONFIG_EXECUTABLE} --prefix OUTPUT_VARIABLE python_prefix OUTPUT_STRIP_TRAILING_WHITESPACE)
+   SET(PYTHON_INCLUDE_DIR ${python_prefix}/include/python${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR})
+diff --git a/cmake/FindSalomeScotch.cmake b/cmake/FindSalomeScotch.cmake
+index a8f77ce..ade9d9a 100644
+--- a/cmake/FindSalomeScotch.cmake
++++ b/cmake/FindSalomeScotch.cmake
+@@ -24,6 +24,12 @@
+ #  !! Please read the generic detection procedure in SalomeMacros.cmake !!
+ #
+ 
++# Scotch >= 7 installs lib/cmake/scotch/SCOTCHConfig.cmake, which only exports
++# imported targets (no SCOTCH_INCLUDE_DIRS / SCOTCH_LIBRARIES). On a case-insensitive
++# file system (macOS) the CONFIG-mode lookup for "Scotch" matches it, so force
++# MODULE mode (FindScotch.cmake) first; the macro below then skips its own lookup.
++FIND_PACKAGE(Scotch MODULE QUIET)
++
+ SALOME_FIND_PACKAGE_AND_DETECT_CONFLICTS(Scotch SCOTCH_INCLUDE_DIRS 1)
+ #MARK_AS_ADVANCED()
+ 

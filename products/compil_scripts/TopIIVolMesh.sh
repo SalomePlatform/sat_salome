@@ -12,6 +12,11 @@ LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
 CONFIGURE_FLAGS=
 CONFIGURE_FLAGS+=" --with-MPICXX=${MPICXX}"
 
+opts=()
+if [ "$DIST_NAME" = "macOS" ]; then
+    eval "opts=($SAT_CONFIGURE_OPTIONS)"
+fi
+
 rm -rf $BUILD_DIR
 mkdir $BUILD_DIR
 cd $BUILD_DIR
@@ -32,8 +37,8 @@ if [ $? -ne 0 ]; then
 fi
 
 echo
-echo "*** configure --prefix=$PRODUCT_INSTALL $CONFIGURE_FLAGS" 
-$BUILD_DIR/configure --prefix=$PRODUCT_INSTALL $CONFIGURE_FLAGS
+echo "*** configure --prefix=$PRODUCT_INSTALL $CONFIGURE_FLAGS ${opts[@]}"
+$BUILD_DIR/configure --prefix=$PRODUCT_INSTALL $CONFIGURE_FLAGS "${opts[@]}"
 if [ $? -ne 0 ]; then
     echo "ERROR on configure"
     exit 2

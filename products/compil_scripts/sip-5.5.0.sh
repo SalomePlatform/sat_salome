@@ -33,6 +33,12 @@ fix_lib_path(){
 
 LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
 
+if [ "$DIST_NAME" == "macOS" ]; then
+    export SDKROOT="$(xcrun --show-sdk-path)"
+    export CFLAGS="-isysroot $(xcrun --show-sdk-path)"
+    export CPPFLAGS="-isysroot $(xcrun --show-sdk-path)"
+fi
+
 rm -rf $BUILD_DIR
 mkdir $BUILD_DIR
 cd $BUILD_DIR

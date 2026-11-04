@@ -9,9 +9,14 @@ if [ -f /.dockerenv ]; then
     find $SOURCE_DIR -type f -exec chmod u+rwx {} \;
 fi
 
+opts=()
+if [ "$DIST_NAME" = "macOS" ]; then
+    eval "opts=($SAT_CONFIGURE_OPTIONS)"
+fi
+
 echo
-echo "*** configure  --prefix=${OMNIORB_ROOT_DIR}"
-PYTHON=$PYTHONBIN $SOURCE_DIR/configure --prefix=${OMNIORB_ROOT_DIR}
+echo "*** configure  --prefix=${OMNIORB_ROOT_DIR} ${opts[@]}"
+PYTHON=$PYTHONBIN $SOURCE_DIR/configure --prefix=${OMNIORB_ROOT_DIR} "${opts[@]}"
 if [ $? -ne 0 ]
 then
     echo "ERROR on configure"
@@ -50,7 +55,12 @@ if [ -d $OMNIORB_ROOT_DIR/lib/python${PYTHON_VERSION}/dist-packages ]; then
 fi
 
 cd $OMNIORB_ROOT_DIR/lib
-find . -name "*.so*" |xargs chmod u+rwx 
+
+if [ $DIST_NAME = "macOS" ]; then
+    find . -name "*.dylib*" |xargs chmod u+rwx 
+else
+    find . -name "*.so*" |xargs chmod u+rwx 
+fi
 
 if [ "${OMNIORBPY_REMOVE_INIT}" == "1" ]; then
     sed -i '2491,2496 d' $OMNIORB_ROOT_DIR/lib/python${PYTHON_VERSION}/site-packages/omniidl_be/python.py

@@ -12,9 +12,14 @@ echo
 echo "*** autogen"
 $SOURCE_DIR/autogen.sh
 
+opts=()
+if [ "$DIST_NAME" = "macOS" ]; then
+    eval "opts=($SAT_CONFIGURE_OPTIONS)"
+fi
+
 echo
 echo "*** configure"
-$SOURCE_DIR/configure --with-python=${PYTHON_ROOT_DIR} --prefix=$PRODUCT_INSTALL
+$SOURCE_DIR/configure --with-python=${PYTHON_ROOT_DIR} --prefix=$PRODUCT_INSTALL "${opts[@]}"
 if [ $? -ne 0 ]
 then
     echo "ERROR on configure"

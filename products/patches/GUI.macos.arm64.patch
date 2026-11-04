@@ -1,0 +1,47 @@
+diff --git a/bin/runLightSalome.sh b/bin/runLightSalome.sh
+index 4caad1db..af913073 100755
+--- a/bin/runLightSalome.sh
++++ b/bin/runLightSalome.sh
+@@ -242,7 +242,7 @@ run_light_salome()
+     export LD_LIBRARY_PATH
+     if [ "$(uname -s)" = "Darwin" ]; then
+         DYLD_LIBRARY_PATH=${my_ld_library_path}:${DYLD_LIBRARY_PATH}
+-        DYLD_LIBRARY_PATH=$(echo ${DYLD_LIBRARY_PATH} | sed -i "" -e "s,^:,,;s,:$,,;s,::\+,:,g")
++        DYLD_LIBRARY_PATH=$(echo ${DYLD_LIBRARY_PATH} | sed -e "s,^:,,;s,:$,,;s,::\+,:,g")
+         export DYLD_LIBRARY_PATH
+     fi
+     PYTHONPATH=${my_pythonpath}:${PYTHONPATH}
+diff --git a/src/Qtx/Qtx.h b/src/Qtx/Qtx.h
+index 6917bd2c..166a0329 100644
+--- a/src/Qtx/Qtx.h
++++ b/src/Qtx/Qtx.h
+@@ -288,7 +288,7 @@ public:
+ 
+   static QString     getenv( const QString& envVar );
+ 
+-#ifndef WIN32 && !defined(__APPLE__)
++#if !defined(WIN32) && !defined(__APPLE__)
+   static void*       getDisplay();
+   static Qt::HANDLE  getVisual();
+ #endif
+diff --git a/src/LightApp/LightApp_Application.cxx b/src/LightApp/LightApp_Application.cxx
+index 37ea80b..b0e6be5 100644
+--- a/src/LightApp/LightApp_Application.cxx
++++ b/src/LightApp/LightApp_Application.cxx
+@@ -399,6 +399,16 @@ LightApp_Application::LightApp_Application()
+   QPixmap aLogo = aResMgr->loadPixmap( "LightApp", tr( "APP_DEFAULT_ICO" ), false );
+ 
+   desktop()->setWindowIcon( aLogo );
++#ifdef __APPLE__
++  // On macOS the Dock icon is the application icon, not the window icon.
++  // SALOME_APP_ICON (set by the launcher of the SALOME.app bundle) gives the
++  // icon of the bundle; default: the SALOME logo.
++  QString aDockIcon = QString::fromLocal8Bit( qgetenv( "SALOME_APP_ICON" ) );
++  if ( !aDockIcon.isEmpty() && QFile::exists( aDockIcon ) )
++    QApplication::setWindowIcon( QIcon( aDockIcon ) );
++  else
++    QApplication::setWindowIcon( QIcon( aLogo ) );
++#endif
+   desktop()->setDockableMenuBar( false );
+   desktop()->setDockableStatusBar( false );
+

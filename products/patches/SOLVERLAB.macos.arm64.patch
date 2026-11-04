@@ -1,0 +1,214 @@
+diff --git a/CDMATH/swig/CMakeLists.txt b/CDMATH/swig/CMakeLists.txt
+index 71fc96f..3c1db56 100755
+--- a/CDMATH/swig/CMakeLists.txt
++++ b/CDMATH/swig/CMakeLists.txt
+@@ -61,6 +61,11 @@ else (CDMATH_WITH_PETSC)
+   SWIG_LINK_LIBRARIES(cdmath ${Python_LIBRARIES} base mesh ${medloader} ${medcoupling} )
+ endif (CDMATH_WITH_PETSC)
+ 
++IF(APPLE)
++  # Python only imports extension modules named *.so on macOS (not *.dylib)
++  SET_TARGET_PROPERTIES(${SWIG_MODULE_cdmath_REAL_NAME} PROPERTIES SUFFIX ".so")
++ENDIF(APPLE)
++
+ INSTALL(TARGETS _cdmath DESTINATION lib/cdmath)
+ INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/cdmath.py DESTINATION bin/cdmath)
+ 
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index d6b5ea9..9f72f64 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -92,7 +92,7 @@ if(    DEFINED ENV{MPI_HOME} OR MPI_HOME )
+   set(SOLVERLAB_WITH_MPI ON)
+   find_package(MPI)
+   if(   ${MPI_LIBRARY} STREQUAL "MPI_LIBRARY-NOTFOUND")
+-    set ( MPI_LIBRARY ${MPI_HOME}/lib/libmpi.so )
++    set ( MPI_LIBRARY ${MPI_HOME}/lib/libmpi${CMAKE_SHARED_LIBRARY_SUFFIX} )
+   endif(${MPI_LIBRARY} STREQUAL "MPI_LIBRARY-NOTFOUND")
+   message ( STATUS "MPI executable is ${MPIEXEC}" )
+   if   (NOT DEFINED CMAKE_CXX_COMPILER)
+@@ -163,9 +163,9 @@ endif( DEFINED ENV{HDF5_ROOT_DIR} OR DEFINED HDF5_ROOT_DIR )
+     endif( NOT SLEPC_DIR)
+ 
+     message ( STATUS "Checking variable SLEPC_DIR" )
+-    if ( IS_DIRECTORY ${SLEPC_DIR}/include AND EXISTS ${SLEPC_DIR}/lib/libslepc.so)
++    if ( IS_DIRECTORY ${SLEPC_DIR}/include AND EXISTS ${SLEPC_DIR}/lib/libslepc${CMAKE_SHARED_LIBRARY_SUFFIX})
+       set(SLEPC_INCLUDES  ${SLEPC_DIR}/include)
+-      set(SLEPC_LIBRARIES ${SLEPC_DIR}/lib/libslepc.so)
++      set(SLEPC_LIBRARIES ${SLEPC_DIR}/lib/libslepc${CMAKE_SHARED_LIBRARY_SUFFIX})
+       message( STATUS "SLEPc found at ${SLEPC_DIR}" )
+     else()
+       message( FATAL_ERROR "SLEPc not found at ${SLEPC_DIR}" )
+@@ -233,7 +233,7 @@ endif( DEFINED ENV{HDF5_ROOT_DIR} OR DEFINED HDF5_ROOT_DIR )
+         message( STATUS "SLEPc library  found in /usr/lib64/slepc/" )
+         set(SLEPC_DIR /usr/)
+         set(SLEPC_INCLUDES  ${SLEPC_DIR}/include)
+-        set(SLEPC_LIBRARIES ${SLEPC_DIR}/lib/libslepc.so)
++        set(SLEPC_LIBRARIES ${SLEPC_DIR}/lib/libslepc${CMAKE_SHARED_LIBRARY_SUFFIX})
+         file(STRINGS /usr/include/slepc/slepcversion.h slepcversion_file)
+         FOREACH(line ${slepcversion_file})
+           string(FIND "${line}" "#define SLEPC_VERSION_MAJOR      " pos)
+@@ -341,7 +341,7 @@ endif( DEFINED ENV{HDF5_ROOT_DIR} OR DEFINED HDF5_ROOT_DIR )
+       message( STATUS "PETSc version ${PETSC_VERSION}  will be installed" )
+ 
+       set(PETSC_INCLUDES  ${PETSC_DIR}/${PETSC_ARCH}/include ${PETSC_DIR}/include)
+-      set(PETSC_LIBRARIES ${PETSC_DIR}/${PETSC_ARCH}/lib/libpetsc.so)
++      set(PETSC_LIBRARIES ${PETSC_DIR}/${PETSC_ARCH}/lib/libpetsc${CMAKE_SHARED_LIBRARY_SUFFIX})
+ 
+       #extract slepc tarball name
+       string(LENGTH "${DOWNLOAD_SLEPC}" tarball_url_length)#length of the tarball
+@@ -442,9 +442,9 @@ else( MEDFILE_ROOT_DIR OR DEFINED ENV{MEDFILE_ROOT_DIR})
+ endif( MEDFILE_ROOT_DIR OR DEFINED ENV{MEDFILE_ROOT_DIR})
+ 
+ add_library(med   SHARED IMPORTED)
+-set_property(TARGET med  PROPERTY IMPORTED_LOCATION ${MEDFILE_ROOT_DIR}/lib/libmed.so)
++set_property(TARGET med  PROPERTY IMPORTED_LOCATION ${MEDFILE_ROOT_DIR}/lib/libmed${CMAKE_SHARED_LIBRARY_SUFFIX})
+ add_library(medC   SHARED IMPORTED)
+-set_property(TARGET medC PROPERTY IMPORTED_LOCATION ${MEDFILE_ROOT_DIR}/lib/libmedC.so)
++set_property(TARGET medC PROPERTY IMPORTED_LOCATION ${MEDFILE_ROOT_DIR}/lib/libmedC${CMAKE_SHARED_LIBRARY_SUFFIX})
+ 
+ string(REPLACE ";" ":"  MEDFILE_LIBRARIES_INSTALL "${MEDFILE_LIBRARIES}")# use colon instead of semicolon in environment file env_SOLVERLAB.sh
+ 
+@@ -496,7 +496,7 @@ else( MEDCOUPLING_ROOT_DIR OR DEFINED ENV{MEDCOUPLING_ROOT_DIR})
+   )
+ 
+   add_library(medloader   SHARED IMPORTED )
+-  set_property(TARGET medloader   PROPERTY IMPORTED_LOCATION ${MEDCOUPLING_ROOT_DIR}/lib/libmedloader.so)
++  set_property(TARGET medloader   PROPERTY IMPORTED_LOCATION ${MEDCOUPLING_ROOT_DIR}/lib/libmedloader${CMAKE_SHARED_LIBRARY_SUFFIX})
+ 
+   SET(MEDCOUPLING_USE_64BIT_IDS  ON)
+ 
+@@ -506,7 +506,7 @@ set(MEDCOUPLING_INCLUDE_DIR ${MEDCOUPLING_ROOT_DIR}/include)
+ set(MEDCOUPLING_LIBRARIES   ${MEDCOUPLING_ROOT_DIR}/lib    )#for environment file env_SOLVERLAB.sh
+ 
+ add_library(medcoupling SHARED IMPORTED )
+-set_property(TARGET medcoupling PROPERTY IMPORTED_LOCATION ${MEDCOUPLING_ROOT_DIR}/lib/libmedcoupling.so)
++set_property(TARGET medcoupling PROPERTY IMPORTED_LOCATION ${MEDCOUPLING_ROOT_DIR}/lib/libmedcoupling${CMAKE_SHARED_LIBRARY_SUFFIX})
+ 
+ if   ( ${MEDCoupling_VERSION} VERSION_GREATER 9.4 )
+   add_definitions(-DMEDCoupling_VERSION_VERSION_GREATER_9_4)
+@@ -527,6 +527,11 @@ endif(TARGET PETSc AND TARGET MEDCoupling)
+ IF(MEDCOUPLING_USE_64BIT_IDS)
+   SET(CMAKE_SWIG_FLAGS ${CMAKE_SWIG_FLAGS} -DMEDCOUPLING_USE_64BIT_IDS)
+ ENDIF(MEDCOUPLING_USE_64BIT_IDS)
++IF(APPLE)
++  # mcIdType (std::int64_t) is "long long" on macOS as on Windows:
++  # let SWIG see the WIN32 typedefs of MEDCouplingCommon.i
++  SET(CMAKE_SWIG_FLAGS ${CMAKE_SWIG_FLAGS} -DWIN32)
++ENDIF(APPLE)
+ 
+ ####################
+ # Final operations #
+diff --git a/CoreFlows/swig/CMakeLists.txt b/CoreFlows/swig/CMakeLists.txt
+index 6f9abb0..2e46187 100755
+--- a/CoreFlows/swig/CMakeLists.txt
++++ b/CoreFlows/swig/CMakeLists.txt
+@@ -43,6 +43,11 @@ ENDIF(${CMAKE_VERSION} VERSION_LESS "3.8.0")
+ 
+ SWIG_LINK_LIBRARIES(CoreFlows ${Python_LIBRARIES} ${CDMATH_LIBRARIES} CoreFlowsLibs ${PETSC_LIBRARIES} ${SLEPC_LIBRARIES})
+ 
++IF(APPLE)
++  # Python only imports extension modules named *.so on macOS (not *.dylib)
++  SET_TARGET_PROPERTIES(${SWIG_MODULE_CoreFlows_REAL_NAME} PROPERTIES SUFFIX ".so")
++ENDIF(APPLE)
++
+ INSTALL(TARGETS _CoreFlows DESTINATION lib/coreflows)
+ INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/CoreFlows.py DESTINATION bin/coreflows)
+ INSTALL(FILES ${CoreFlows_SOURCE_DIR}/mainCoreFlows.py DESTINATION bin/)
+@@ -63,6 +68,9 @@ if(    SOLVERLAB_WITH_PYTHON )
+   SWIG_ADD_LIBRARY(solverlab TYPE SHARED LANGUAGE python SOURCES ${CMAKE_CURRENT_BINARY_DIR}/solverlab.i )
+   SWIG_LINK_LIBRARIES(solverlab ${Python_LIBRARIES} ${CDMATH_LIBRARIES} CoreFlowsLibs ${PETSC_LIBRARIES} ${SLEPC_LIBRARIES})
+ 
++  IF(APPLE)
++    SET_TARGET_PROPERTIES(${SWIG_MODULE_solverlab_REAL_NAME} PROPERTIES SUFFIX ".so")
++  ENDIF(APPLE)
+   INSTALL(TARGETS _solverlab DESTINATION lib)
+   INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/solverlab.py DESTINATION bin)
+ endif( SOLVERLAB_WITH_PYTHON )
+diff --git a/CDMATH/tests/CMakeLists.txt b/CDMATH/tests/CMakeLists.txt
+index 63b2145..ec7250d 100755
+--- a/CDMATH/tests/CMakeLists.txt
++++ b/CDMATH/tests/CMakeLists.txt
+@@ -65,7 +65,7 @@ if (CDMATH_WITH_PYTHON AND CDMATH_WITH_PETSC AND CDMATH_WITH_POSTPRO)
+ 
+   add_custom_target (CDMATH COMMAND ctest -O testsCDMATH.log)
+ 
+-  add_custom_target (cdmath COMMAND ctest -R TestsCDMATH)
++  add_custom_target (cdmathtests COMMAND ctest -R TestsCDMATH)
+   add_custom_target (medcouplingtests COMMAND ctest -R MEDCoupling)
+   add_custom_target (check COMMAND ctest -E 'validation|Example')# may be replace ctest -E with ctest -LE
+   add_custom_target (vtk COMMAND ctest -R VTK)
+diff --git a/CDMATH/tests/cdmath/CMakeLists.txt b/CDMATH/tests/cdmath/CMakeLists.txt
+index 7f58f86..c0e0731 100755
+--- a/CDMATH/tests/cdmath/CMakeLists.txt
++++ b/CDMATH/tests/cdmath/CMakeLists.txt
+@@ -27,11 +27,11 @@ file(COPY ${MESH_MED} DESTINATION ${CMAKE_BINARY_DIR}/CDMATH/tests)
+ if (CDMATH_WITH_PETSC)
+     FILE(GLOB TestMesh_SOURCES . *.cxx)
+     ADD_LIBRARY(TestMesh SHARED ${TestMesh_SOURCES})
+-    TARGET_LINK_LIBRARIES(TestMesh base mesh linearsolver medloader medcoupling med ${PETSC_LIBRARIES} ${SLEPC_LIBRARIES})
++    TARGET_LINK_LIBRARIES(TestMesh base mesh linearsolver medloader medcoupling med ${PETSC_LIBRARIES} ${SLEPC_LIBRARIES} ${CPPUNIT_LIBS})
+ else (CDMATH_WITH_PETSC)  
+     FILE(GLOB TestMesh_SOURCES . CellTests.cxx FaceTests.cxx FieldTests.cxx MatrixTests.cxx MeshTests.cxx NodeTests.cxx PointTests.cxx VectorTests.cxx)
+     ADD_LIBRARY(TestMesh SHARED ${TestMesh_SOURCES})
+-    TARGET_LINK_LIBRARIES(TestMesh base mesh medloader medcoupling med)
++    TARGET_LINK_LIBRARIES(TestMesh base mesh medloader medcoupling med ${CPPUNIT_LIBS})
+ endif (CDMATH_WITH_PETSC) 
+ 
+ INSTALL(TARGETS TestMesh DESTINATION bin/unit_tests)
+diff --git a/CoreFlows/Models/src/IsothermalSinglePhase.cxx b/CoreFlows/Models/src/IsothermalSinglePhase.cxx
+index c4d6420..ac0dc01 100755
+--- a/CoreFlows/Models/src/IsothermalSinglePhase.cxx
++++ b/CoreFlows/Models/src/IsothermalSinglePhase.cxx
+@@ -4,7 +4,14 @@
+  *  Created on: July 7 2022
+  */
+ 
+-#include<bits/stdc++.h>
++#include <algorithm>
++#include <cassert>
++#include <cmath>
++#include <cstdlib>
++#include <iostream>
++#include <map>
++#include <string>
++#include <vector>
+ #include "IsothermalSinglePhase.hxx"
+ 
+ using namespace std;
+diff --git a/CoreFlows/Models/src/StationaryDiffusionEquation.cxx b/CoreFlows/Models/src/StationaryDiffusionEquation.cxx
+index 85416d8..e470638 100755
+--- a/CoreFlows/Models/src/StationaryDiffusionEquation.cxx
++++ b/CoreFlows/Models/src/StationaryDiffusionEquation.cxx
+@@ -1296,7 +1296,7 @@ void StationaryDiffusionEquation::setDirichletBoundaryCondition(string groupName
+ 
+     int nBoundaryCells = dirichletBoundaryUMesh->getNumberOfCells();//Boundary cells that support the boundary field (subpart of the total boundary)
+     std::map<int,double>::iterator it;
+-    long int iCell_global;
++    mcIdType iCell_global;
+     if(!_FECalculation)//Finite volume simulation
+         for(int i=0; i<nBoundaryCells ; i++)
+         {
+@@ -1305,7 +1305,7 @@ void StationaryDiffusionEquation::setDirichletBoundaryCondition(string groupName
+             if( it == _dirichletBoundaryValues.end() )//Aucune valeur limite n'est associée au noeud
+                 it->second = bc_field[i];
+         }
+-    long int inode_global, length;
++    mcIdType inode_global;
+     if(_FECalculation)
+     {
+         const MEDCoupling::DataArrayIdType *globalNodeId  = dirichletBoundaryUMesh->computeFetchedNodeIds();
+diff --git a/CoreFlows/examples/CMakeLists.txt b/CoreFlows/examples/CMakeLists.txt
+index 8c1c87b..286d4f5 100755
+--- a/CoreFlows/examples/CMakeLists.txt
++++ b/CoreFlows/examples/CMakeLists.txt
+@@ -35,9 +35,7 @@ add_custom_target (StationaryDiffusionEquation COMMAND ctest -R StationaryDiffus
+ add_custom_target (convergence COMMAND ctest -R convergence)# may be replace ctest -R with ctest -L
+ 
+ add_custom_target (fv_tests         COMMAND ctest -R FV)# may be replace ctest -R with ctest -L
+-add_custom_target (FV_tests         COMMAND ctest -R FV)# may be replace ctest -R with ctest -L
+ add_custom_target (fe_tests         COMMAND ctest -R FE)# may be replace ctest -R with ctest -L
+-add_custom_target (FE_tests         COMMAND ctest -R FE)# may be replace ctest -R with ctest -L
+ add_custom_target (1D_tests         COMMAND ctest -R 1D)# may be replace ctest -R with ctest -L
+ add_custom_target (2D_tests         COMMAND ctest -R 2D)# may be replace ctest -R with ctest -L
+ add_custom_target (3D_tests         COMMAND ctest -R 3D)# may be replace ctest -R with ctest -L

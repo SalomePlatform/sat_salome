@@ -29,6 +29,17 @@ default :
     patches : []
 }
 
+version_19_1_7 :
+{
+    build_source : "script"
+    compil_script: "llvm-19.1.7" + $VARS.scriptExtension
+    archive_info:
+    {
+      archive_name : "llvm-project-19.1.7.src.tar.gz"
+    }
+    patches : [ 'llvm-19.1.7-incorrect-std-template-specializations.patch' ]
+}
+
 version_16_0_6 :
 {
     build_source : "script"

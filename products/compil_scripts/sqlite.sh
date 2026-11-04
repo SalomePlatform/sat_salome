@@ -20,9 +20,14 @@ CONFIGURE_OPTIONS+=" --enable-all"
 CONFIGURE_OPTIONS+=" --enable-rtree"
 CONFIGURE_OPTIONS+=" $BUILD_TYPE"
 
+opts=()
+if [ "$DIST_NAME" = "macOS" ]; then
+    eval "opts=($SAT_CONFIGURE_OPTIONS)"
+fi
+
 echo
-echo "*** configure ${CONFIGURE_OPTIONS}"
-$SOURCE_DIR/configure ${CONFIGURE_OPTIONS}
+echo "*** configure ${CONFIGURE_OPTIONS} ${opts[@]}"
+$SOURCE_DIR/configure ${CONFIGURE_OPTIONS} "${opts[@]}"
 if [ $? -ne 0 ]; then
     echo "ERROR on configure"
     exit 2

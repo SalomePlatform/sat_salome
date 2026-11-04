@@ -1,0 +1,42 @@
+diff --git a/src/MEDCalculator/Swig/CMakeLists.txt b/src/MEDCalculator/Swig/CMakeLists.txt
+index 0b6c4542..44939d0f 100644
+--- a/src/MEDCalculator/Swig/CMakeLists.txt
++++ b/src/MEDCalculator/Swig/CMakeLists.txt
+@@ -44,7 +44,8 @@ INSTALL(TARGETS medcalculatorspython DESTINATION ${SALOME_INSTALL_LIBS})
+ 
+ SET_SOURCE_FILES_PROPERTIES(MEDCalculator.i PROPERTIES CPLUSPLUS ON)
+ SET_SOURCE_FILES_PROPERTIES(MEDCalculator.i PROPERTIES SWIG_FLAGS "-py3")
+-IF(WIN32)
++# mcIdType is "long long" on Windows and macOS: let SWIG see the WIN32 typedefs of MEDCouplingCommon.i
++IF(WIN32 OR APPLE)
+   SET_PROPERTY(SOURCE MEDCalculator.i PROPERTY COMPILE_DEFINITIONS WIN32)
+ ENDIF()
+ SET(SWIG_MODULE_MEDCalculator_EXTRA_FLAGS "${NUMPY_DEFINITIONS};${SCIPY_DEFINITIONS}")
+diff --git a/src/MEDCouplingCorba_Swig/CMakeLists.txt b/src/MEDCouplingCorba_Swig/CMakeLists.txt
+index bd6e8b19..f182e2f2 100644
+--- a/src/MEDCouplingCorba_Swig/CMakeLists.txt
++++ b/src/MEDCouplingCorba_Swig/CMakeLists.txt
+@@ -27,7 +27,8 @@ INCLUDE(${SWIG_USE_FILE})
+ 
+ SET_SOURCE_FILES_PROPERTIES(MEDCouplingCorba.i PROPERTIES CPLUSPLUS ON)
+ SET_SOURCE_FILES_PROPERTIES(MEDCouplingCorba.i PROPERTIES SWIG_FLAGS "-py3")
+-IF(WIN32)
++# mcIdType is "long long" on Windows and macOS: let SWIG see the WIN32 typedefs of MEDCouplingCommon.i
++IF(WIN32 OR APPLE)
+   SET_PROPERTY(SOURCE MEDCouplingCorba.i PROPERTY COMPILE_DEFINITIONS WIN32)
+ ENDIF()
+ SET(SWIG_MODULE_MEDCouplingCorba_EXTRA_FLAGS "${NUMPY_DEFINITIONS};${SCIPY_DEFINITIONS}")
+diff --git a/src/MEDCouplingCorba_Swig/Client/CMakeLists.txt b/src/MEDCouplingCorba_Swig/Client/CMakeLists.txt
+index 0b0979a6..6fb3cd87 100644
+--- a/src/MEDCouplingCorba_Swig/Client/CMakeLists.txt
++++ b/src/MEDCouplingCorba_Swig/Client/CMakeLists.txt
+@@ -25,7 +25,8 @@ INCLUDE(${SWIG_USE_FILE})
+ 
+ SET_SOURCE_FILES_PROPERTIES(MEDCouplingClient.i PROPERTIES CPLUSPLUS ON)
+ SET_SOURCE_FILES_PROPERTIES(MEDCouplingClient.i PROPERTIES SWIG_FLAGS "-py3")
+-IF(WIN32)
++# mcIdType is "long long" on Windows and macOS: let SWIG see the WIN32 typedefs of MEDCouplingCommon.i
++IF(WIN32 OR APPLE)
+   SET_PROPERTY(SOURCE MEDCouplingClient.i PROPERTY COMPILE_DEFINITIONS WIN32)
+ ENDIF()
+ SET(SWIG_MODULE_MEDCouplingClient_EXTRA_FLAGS "${NUMPY_DEFINITIONS};${SCIPY_DEFINITIONS}")

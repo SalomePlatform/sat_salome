@@ -2,7 +2,7 @@ default :
 {
     name : "Cython"
     build_source : "script"
-    compil_script : 'pip_install' + $VARS.scriptExtension
+    compil_script : 'pip_install.sh'
     get_source : "archive"
     system_info : 
     {
@@ -28,7 +28,7 @@ default :
 
 default_win :
 {
-   compil_script :  'pip_install_whl' + $VARS.scriptExtension
+   compil_script :  'pip_install_whl.bat'
    archive_info : {archive_name : "Cython-" + $APPLICATION.products.Cython + "_windows.tar.gz"}
 }
 

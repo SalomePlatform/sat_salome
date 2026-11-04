@@ -30,8 +30,15 @@ default :
     build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
     properties:
     {
+        incremental : "yes"
         has_salome_gui : "yes"
         is_SALOME_module : "yes"
         is_SALOME_product: "yes"
     }
+}
+
+default_macOS:
+{
+    cmake_options : ' -DFREETYPE_LIBRARY=${FREETYPE_ROOT_DIR}/lib/libfreetype.dylib -DFREETYPE_INCLUDE_DIRS=${FREETYPE_ROOT_DIR}/include -DCMAKE_CXX_FLAGS=" -w -Wno-narrowing -Wno-sign-conversion"'
+
 }

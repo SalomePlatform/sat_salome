@@ -8,8 +8,13 @@ echo
 echo "INFO: building tcl..."
 echo "INFO: running command: configure --enable-shared --enable-threads"
 
+opts=()
+if [ "$DIST_NAME" = "macOS" ]; then
+    eval "opts=($SAT_CONFIGURE_OPTIONS)"
+fi
+
 mkdir -p $BUILD_DIR/tcl && cd $BUILD_DIR/tcl
-$SOURCE_DIR/tcl/unix/configure --prefix=$PRODUCT_INSTALL --enable-shared --enable-threads
+$SOURCE_DIR/tcl/unix/configure --prefix=$PRODUCT_INSTALL --enable-shared --enable-threads "${opts[@]}"
 if [ $? -ne 0 ]
 then
     echo "ERROR on configure (tcl)"

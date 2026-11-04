@@ -30,6 +30,12 @@ default :
     }
 }
 
+default_macOS:
+{
+    post_script : "setup-rpath-macOS.sh"
+    depend: ["openssl"]
+}
+
 version_2_6_6 :
 {
     patches : ["Python_zlib_detection.patch", "Python_SSL.patch"]

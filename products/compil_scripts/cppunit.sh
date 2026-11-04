@@ -12,9 +12,14 @@ fi
 # compilation
 echo "cppunit compilation"
 
+opts=()
+if [ "$DIST_NAME" = "macOS" ]; then
+    eval "opts=($SAT_CONFIGURE_OPTIONS)"
+fi
+
 echo
 echo '*** configure --enable-static LDFLAGS="-ldl"'
-$SOURCE_DIR/configure --prefix=$PRODUCT_INSTALL --enable-static LDFLAGS="-ldl"
+$SOURCE_DIR/configure --prefix=$PRODUCT_INSTALL --enable-static LDFLAGS="-ldl" "${opts[@]}"
 if [ $? -ne 0 ]
 then
     echo "ERROR on configure"

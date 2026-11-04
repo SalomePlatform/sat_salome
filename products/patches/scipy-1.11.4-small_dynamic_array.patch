@@ -1,0 +1,11 @@
+--- scipy-1.11.4-ref/scipy/_lib/_uarray/small_dynamic_array.h	2023-11-18 19:28:52
++++ scipy-1.11.4-new/scipy/_lib/_uarray/small_dynamic_array.h	2026-09-24 00:49:46
+@@ -142,7 +142,7 @@
+ 
+     clear();
+ 
+-    size_ = copy.size;
++    size_ = copy.size_;
+     try {
+       allocate();
+     } catch (...) {

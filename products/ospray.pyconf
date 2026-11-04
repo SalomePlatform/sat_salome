@@ -29,6 +29,17 @@ default_win :
     }
 }
 
+version_2_12_0_macOS :
+{
+  build_source : "script"
+  compil_script : "ospray-2.12.0.sh"
+  archive_info:
+  {
+    archive_name : "ospray-2.12.0.tar.gz"
+  }
+  depend : ['embree','openVKL', 'rkCommon', 'ispc']
+}
+
 version_2_12_0 :
 {
   archive_info:

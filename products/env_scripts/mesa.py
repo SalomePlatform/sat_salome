@@ -12,6 +12,13 @@ def set_env(env, prereq_dir, version):
   if platform.system() == "Windows" :
     env.prepend('PATH', os.path.join(prereq_dir, 'x64'))
     env.prepend('PATH', os.path.join(prereq_dir, 'x64','osmesa-gallium'))
+
+  elif platform.system() == "Darwin" :
+    env.prepend('PATH', os.path.join(prereq_dir, 'include', 'GL'))
+    env.prepend('DYLD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib'))
+    if version.startswith('19'):
+      env.set('MESA_GL_VERSION_OVERRIDE','4.5')
+
   else:
     env.prepend('PATH', os.path.join(prereq_dir, 'include', 'GL'))
     env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib'))

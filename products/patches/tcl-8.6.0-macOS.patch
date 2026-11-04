@@ -1,0 +1,16 @@
+diff --color=auto -Naur tcl_old/generic/tclInt.h tcl_new/generic/tclInt.h
+--- tcl_old/generic/tclInt.h	2026-10-06 09:16:42
++++ tcl_new/generic/tclInt.h	2026-10-06 09:14:59
+@@ -50,11 +50,8 @@
+ #else
+ #include <string.h>
+ #endif
+-#ifdef STDC_HEADERS
++
+ #include <stddef.h>
+-#else
+-typedef int ptrdiff_t;
+-#endif
+ 
+ /*
+  * Ensure WORDS_BIGENDIAN is defined correctly:

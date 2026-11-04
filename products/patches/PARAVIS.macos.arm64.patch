@@ -1,0 +1,146 @@
+diff --git a/src/Plugins/DevelopedSurface/plugin/DevelopedSurfaceModule/VTKMEDTraits.hxx b/src/Plugins/DevelopedSurface/plugin/DevelopedSurfaceModule/VTKMEDTraits.hxx
+index 2d79f185..40eb64ca 100644
+--- a/src/Plugins/DevelopedSurface/plugin/DevelopedSurfaceModule/VTKMEDTraits.hxx
++++ b/src/Plugins/DevelopedSurface/plugin/DevelopedSurfaceModule/VTKMEDTraits.hxx
+@@ -23,7 +23,8 @@
+ 
+ class vtkIntArray;
+ class vtkLongArray;
+-#ifdef WIN32
++// mcIdType (std::int64_t) is "long long" on Windows and macOS, "long" on Linux
++#if defined(WIN32) || defined(__APPLE__)
+ class vtkLongLongArray;
+ #endif
+ class vtkFloatArray;
+@@ -46,7 +47,7 @@ public:
+ };
+ 
+ template<>
+-#ifdef WIN32
++#if defined(WIN32) || defined(__APPLE__)
+ class MEDFileVTKTraits<long long>
+ #else 
+ class MEDFileVTKTraits<long>
+@@ -54,7 +55,7 @@ class MEDFileVTKTraits<long>
+ #
+ {
+ public:
+-#ifdef WIN32
++#if defined(WIN32) || defined(__APPLE__)
+   typedef vtkLongLongArray VtkType;
+ #else
+   typedef vtkLongArray VtkType;
+Submodule src/Plugins/MEDReader contains modified content
+diff --git a/src/Plugins/MEDReader/plugin/MEDLoaderForPV/MEDFileFieldRepresentationTree.cxx b/src/Plugins/MEDReader/plugin/MEDLoaderForPV/MEDFileFieldRepresentationTree.cxx
+index 8afcb14..3b3c461 100644
+--- a/src/Plugins/MEDReader/plugin/MEDLoaderForPV/MEDFileFieldRepresentationTree.cxx
++++ b/src/Plugins/MEDReader/plugin/MEDLoaderForPV/MEDFileFieldRepresentationTree.cxx
+@@ -224,14 +224,14 @@ public:
+ };
+ 
+ template<>
+-#ifdef WIN32
++#if defined(WIN32) || defined(__APPLE__)
+ class MEDFileVTKTraits<long long>
+ #else
+ class MEDFileVTKTraits<long>
+ #endif
+ {
+ public:
+-#ifdef WIN32
++#if defined(WIN32) || defined(__APPLE__)
+   typedef vtkLongLongArray VtkType;
+ #else
+   typedef vtkLongArray VtkType;
+diff --git a/src/Plugins/MEDReader/plugin/MEDReaderIO/VTKMEDTraits.hxx b/src/Plugins/MEDReader/plugin/MEDReaderIO/VTKMEDTraits.hxx
+index 2d79f18..40eb64c 100644
+--- a/src/Plugins/MEDReader/plugin/MEDReaderIO/VTKMEDTraits.hxx
++++ b/src/Plugins/MEDReader/plugin/MEDReaderIO/VTKMEDTraits.hxx
+@@ -23,7 +23,8 @@
+ 
+ class vtkIntArray;
+ class vtkLongArray;
+-#ifdef WIN32
++// mcIdType (std::int64_t) is "long long" on Windows and macOS, "long" on Linux
++#if defined(WIN32) || defined(__APPLE__)
+ class vtkLongLongArray;
+ #endif
+ class vtkFloatArray;
+@@ -46,7 +47,7 @@ public:
+ };
+ 
+ template<>
+-#ifdef WIN32
++#if defined(WIN32) || defined(__APPLE__)
+ class MEDFileVTKTraits<long long>
+ #else 
+ class MEDFileVTKTraits<long>
+@@ -54,7 +55,7 @@ class MEDFileVTKTraits<long>
+ #
+ {
+ public:
+-#ifdef WIN32
++#if defined(WIN32) || defined(__APPLE__)
+   typedef vtkLongLongArray VtkType;
+ #else
+   typedef vtkLongArray VtkType;
+diff --git a/src/Plugins/MEDReader/plugin/MEDReaderIO/vtkGroupAsMultiBlock.cxx b/src/Plugins/MEDReader/plugin/MEDReaderIO/vtkGroupAsMultiBlock.cxx
+index 85ae4b0..27d39ff 100644
+--- a/src/Plugins/MEDReader/plugin/MEDReaderIO/vtkGroupAsMultiBlock.cxx
++++ b/src/Plugins/MEDReader/plugin/MEDReaderIO/vtkGroupAsMultiBlock.cxx
+@@ -24,6 +24,9 @@
+ #include "vtkUgSelectCellIds.h"
+ #include "MEDFileFieldRepresentationTree.hxx"
+ #include "vtkLongArray.h"
++#if defined(__APPLE__)
++#include "vtkLongLongArray.h" // MEDFileVTKTraits<mcIdType>::VtkType
++#endif
+ #include "VTKMEDTraits.hxx"
+ 
+ #include <vtkCellArray.h>
+diff --git a/src/Plugins/MEDReader/plugin/MEDReaderIO/vtkGroupsNames.cxx b/src/Plugins/MEDReader/plugin/MEDReaderIO/vtkGroupsNames.cxx
+index 6a7c079..4f9025e 100644
+--- a/src/Plugins/MEDReader/plugin/MEDReaderIO/vtkGroupsNames.cxx
++++ b/src/Plugins/MEDReader/plugin/MEDReaderIO/vtkGroupsNames.cxx
+@@ -24,6 +24,9 @@
+ #include "vtkUgSelectCellIds.h"
+ #include "MEDFileFieldRepresentationTree.hxx"
+ #include "vtkLongArray.h"
++#if defined(__APPLE__)
++#include "vtkLongLongArray.h" // MEDFileVTKTraits<mcIdType>::VtkType
++#endif
+ #include "VTKMEDTraits.hxx"
+ 
+ #include <vtkCellArray.h>
+diff --git a/src/Plugins/MEDWriter/plugin/MEDWriterIO/VTKMEDTraits.hxx b/src/Plugins/MEDWriter/plugin/MEDWriterIO/VTKMEDTraits.hxx
+index 2d79f185..40eb64ca 100644
+--- a/src/Plugins/MEDWriter/plugin/MEDWriterIO/VTKMEDTraits.hxx
++++ b/src/Plugins/MEDWriter/plugin/MEDWriterIO/VTKMEDTraits.hxx
+@@ -23,7 +23,8 @@
+ 
+ class vtkIntArray;
+ class vtkLongArray;
+-#ifdef WIN32
++// mcIdType (std::int64_t) is "long long" on Windows and macOS, "long" on Linux
++#if defined(WIN32) || defined(__APPLE__)
+ class vtkLongLongArray;
+ #endif
+ class vtkFloatArray;
+@@ -46,7 +47,7 @@ public:
+ };
+ 
+ template<>
+-#ifdef WIN32
++#if defined(WIN32) || defined(__APPLE__)
+ class MEDFileVTKTraits<long long>
+ #else 
+ class MEDFileVTKTraits<long>
+@@ -54,7 +55,7 @@ class MEDFileVTKTraits<long>
+ #
+ {
+ public:
+-#ifdef WIN32
++#if defined(WIN32) || defined(__APPLE__)
+   typedef vtkLongLongArray VtkType;
+ #else
+   typedef vtkLongArray VtkType;

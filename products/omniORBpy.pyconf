@@ -19,6 +19,10 @@ default :
     patches : []
 }
 
+default_macOS:
+{
+}
+
 version_4_2_6:
 {
   patches : []

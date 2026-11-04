@@ -1,0 +1,44 @@
+--- a/configure
++++ b/configure
+@@ -7574,6 +7574,10 @@
+   alpha*)   proc_name="AlphaProcessor";   proc_def="__alpha__";;
+   m68k-*)   proc_name="m68kProcessor";    proc_def="__m68k__";;
+   mips*)    proc_name="IndigoProcessor";  proc_def="__mips__";;
++  aarch64-*|arm64-*|arm-apple-darwin*)
++            # 64-bit ARM. The old config.guess reports Apple Silicon Macs as
++            # arm-apple-darwin: __arm__ (32-bit ARM, mixed-endian doubles) is wrong there.
++            proc_name="Arm64Processor";   proc_def="__aarch64__";;
+   arm-*)    proc_name="ArmProcessor";     proc_def="__arm__";;
+   s390-*)   proc_name="s390Processor";    proc_def="__s390__";;
+   ia64-*)   proc_name="ia64Processor";    proc_def="__ia64__";;
+--- a/configure.ac
++++ b/configure.ac
+@@ -247,6 +247,10 @@
+   alpha*)   proc_name="AlphaProcessor";   proc_def="__alpha__";;
+   m68k-*)   proc_name="m68kProcessor";    proc_def="__m68k__";;
+   mips*)    proc_name="IndigoProcessor";  proc_def="__mips__";;
++  aarch64-*|arm64-*|arm-apple-darwin*)
++            # 64-bit ARM. The old config.guess reports Apple Silicon Macs as
++            # arm-apple-darwin: __arm__ (32-bit ARM, mixed-endian doubles) is wrong there.
++            proc_name="Arm64Processor";   proc_def="__aarch64__";;
+   arm-*)    proc_name="ArmProcessor";     proc_def="__arm__";;
+   s390-*)   proc_name="s390Processor";    proc_def="__s390__";;
+   ia64-*)   proc_name="ia64Processor";    proc_def="__ia64__";;
+--- a/bin/scripts/config.sub
++++ b/bin/scripts/config.sub
+@@ -226,6 +226,7 @@
+ 	1750a | 580 \
+ 	| a29k \
+ 	| alpha | alphaev[4-8] | alphaev56 | alphaev6[78] | alphapca5[67] \
++	| aarch64 | arm64 \
+ 	| arc | arm | arm[bl]e | arme[lb] | armv[2345] | armv[345][lb] | avr \
+ 	| c4x | clipper \
+ 	| d10v | d30v | dsp16xx \
+@@ -278,6 +279,7 @@
+ 	| a29k-* \
+ 	| alpha-* | alphaev[4-8]-* | alphaev56-* | alphaev6[78]-* \
+ 	| alphapca5[67]-* | arc-* \
++	| aarch64-* | arm64-* \
+ 	| arm-*  | armbe-* | armle-* | armv*-* \
+ 	| bs2000-* \
+ 	| c[123]* | c30-* | [cjt]90-* | c54x-* \

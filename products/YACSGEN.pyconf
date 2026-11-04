@@ -29,8 +29,25 @@ default :
        incremental : "yes"
        is_SALOME_product: "yes"
     }
-} 
- 
+}
+
+default_macOS :
+{
+    git_info:
+    {
+      repositories :
+      {
+            github : "https://github.com/raphael-nabet/yacsgen.git"
+      }
+      git_commands: [ 'git switch support-for-macos-platform' ]
+    }
+}
+
+version_V9_16_0_macOS :
+{
+    patches : ["YACSGEN.macos.arm64.patch"]
+}
+
 version_V7_8_BR :
 {
     compil_script : "YACSGEN.py"
@@ -41,5 +58,4 @@ version_V7_8_BR :
        is_SALOME_module : "yes"
        is_SALOME_product: "yes"
     }
-} 
- 
+}

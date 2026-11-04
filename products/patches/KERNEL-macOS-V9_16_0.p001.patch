@@ -1,0 +1,384 @@
+diff --git a/src/Container/Component_i.cxx b/src/Container/Component_i.cxx
+index 5b741a2d..f3b97988 100644
+--- a/src/Container/Component_i.cxx
++++ b/src/Container/Component_i.cxx
+@@ -401,7 +401,12 @@ bool Engines_Component_i::Kill_impl()
+ 
+   bool RetVal = false ;
+ #ifndef WIN32
++#if defined(__APPLE__)
++  // macOS: pthread_t is a pointer type, ordered comparison with 0 is not allowed
++  if ( _ThreadId && !pthread_equal( pthread_self() , _ThreadId ) )
++#else
+   if ( _ThreadId > 0 && pthread_self() != _ThreadId )
++#endif
+     {
+       RetVal = Killer( _ThreadId , SIGUSR2 ) ;
+       _ThreadId = (pthread_t ) -1 ;
+@@ -443,7 +448,12 @@ bool Engines_Component_i::Stop_impl()
+ 
+   bool RetVal = false ;
+ #ifndef WIN32
++#if defined(__APPLE__)
++  // macOS: pthread_t is a pointer type, ordered comparison with 0 is not allowed
++  if ( _ThreadId && !pthread_equal( pthread_self() , _ThreadId ) )
++#else
+   if ( _ThreadId > 0 && pthread_self() != _ThreadId )
++#endif
+     {
+       RetVal = Killer( _ThreadId , 0 ) ;
+       _ThreadId = (pthread_t ) -1 ;
+@@ -482,7 +492,12 @@ bool Engines_Component_i::Suspend_impl()
+ 
+   bool RetVal = false ;
+ #ifndef WIN32
++#if defined(__APPLE__)
++  // macOS: pthread_t is a pointer type, ordered comparison with 0 is not allowed
++  if ( _ThreadId && !pthread_equal( pthread_self() , _ThreadId ) )
++#else
+   if ( _ThreadId > 0 && pthread_self() != _ThreadId )
++#endif
+ #else
+   if ( _ThreadId > 0 && pthread_self().p != _ThreadId->p )
+ #endif
+@@ -528,7 +543,12 @@ bool Engines_Component_i::Resume_impl()
+ #endif
+   bool RetVal = false ;
+ #ifndef WIN32
++#if defined(__APPLE__)
++  // macOS: pthread_t is a pointer type, ordered comparison with 0 is not allowed
++  if ( _ThreadId && !pthread_equal( pthread_self() , _ThreadId ) )
++#else
+   if ( _ThreadId > 0 && pthread_self() != _ThreadId )
++#endif
+ #else
+   if ( _ThreadId > 0 && pthread_self().p != _ThreadId->p )
+ #endif
+@@ -557,10 +577,18 @@ CORBA::Long Engines_Component_i::CpuUsed_impl()
+   long cpu = 0 ;
+   if ( _ThreadId || _Executed )
+     {
++#if defined(__APPLE__)
++    if ( _ThreadId )
++#else
+     if ( _ThreadId > 0 )
++#endif
+       {
+ #ifndef WIN32
++#if defined(__APPLE__)
++      if ( !pthread_equal( pthread_self() , _ThreadId ) )
++#else
+       if ( pthread_self() != _ThreadId )
++#endif
+ #else
+       if ( pthread_self().p != _ThreadId->p )
+ #endif
+diff --git a/src/Container/Container_i.cxx b/src/Container/Container_i.cxx
+index a58ca1d3..8f99bcfa 100644
+--- a/src/Container/Container_i.cxx
++++ b/src/Container/Container_i.cxx
+@@ -1112,6 +1112,11 @@ void EffectiveOverrideEnvironment( const Engines::FieldsDict& env )
+   }
+ }
+ 
++#if defined(__APPLE__)
++#include <crt_externs.h>
++#define environ (*_NSGetEnviron())
++#endif
++
+ std::vector< std::pair<std::string,std::string> > GetOSEnvironment()
+ {
+   std::vector< std::pair<std::string,std::string> > ret;
+diff --git a/src/DSC/DSC_Python/calcium.i b/src/DSC/DSC_Python/calcium.i
+index b3e6a428..4f4b23c7 100644
+--- a/src/DSC/DSC_Python/calcium.i
++++ b/src/DSC/DSC_Python/calcium.i
+@@ -120,7 +120,11 @@ typedef PyArrayObject ArrayObject;
+ /* Macros to extract array attributes.
+  */
+ #define is_array(a)            ((a) && PyArray_Check((PyArrayObject *)a))
++#if defined(__APPLE__)
++#define array_type(a)          (int)(PyArray_TYPE((PyArrayObject *)(a)))
++#else
+ #define array_type(a)          (int)(PyArray_TYPE(a))
++#endif
+ #define array_dimensions(a)    (((PyArrayObject *)a)->nd)
+ #define array_size(a,i)        (((PyArrayObject *)a)->dimensions[i])
+ #define array_is_contiguous(a) (PyArray_ISCONTIGUOUS(a))
+diff --git a/src/DSC/DSC_User/Datastream/Calcium/CalciumC.c b/src/DSC/DSC_User/Datastream/Calcium/CalciumC.c
+index 51325bf5..b8e93f22 100644
+--- a/src/DSC/DSC_User/Datastream/Calcium/CalciumC.c
++++ b/src/DSC/DSC_User/Datastream/Calcium/CalciumC.c
+@@ -43,6 +43,37 @@ InfoType ecp_fini_ (void * component, char* nomVar, int i);
+ InfoType ecp_efft_ (void * component, char* nomVar, float t);
+ InfoType ecp_effi_ (void * component, char* nomVar, int i);
+ 
++#if defined(__APPLE__)
++/* macOS: clang rejects implicit function declarations (C99 and later).
++   Prototypes of the C++ functions defined by CALCIUM_C2CPP_INTERFACE_CXX_
++   (see CalciumMacroCInterface.hxx and CalciumCInterface.hxx) */
++InfoType ecp_cd_  (void * component, char* instanceName);
++InfoType ecp_fin_ (void * component, int code);
++
++#define CALCIUM_C2CPP_INTERFACE_C_DECL_(_name,_timeType,_type)                          \
++  InfoType ecp_lecture_##_name (void * component, int dependencyType,                  \
++                                _timeType * ti, _timeType * tf, long * i,              \
++                                const char * const nomvar, size_t bufferLength,        \
++                                size_t * nRead, _type ** data );                       \
++  void ecp_lecture_##_name##_free ( _type * data);                                     \
++  InfoType ecp_ecriture_##_name (void * component, int dependencyType,                 \
++                                 _timeType * t, long i,                                \
++                                 const char * const nomvar, size_t bufferLength,       \
++                                 _type * data );
++
++CALCIUM_C2CPP_INTERFACE_C_DECL_(intc,float,int)
++CALCIUM_C2CPP_INTERFACE_C_DECL_(long,float,long)
++CALCIUM_C2CPP_INTERFACE_C_DECL_(integer,float,cal_int)
++CALCIUM_C2CPP_INTERFACE_C_DECL_(int2integer,float,int)
++CALCIUM_C2CPP_INTERFACE_C_DECL_(long2integer,float,long)
++CALCIUM_C2CPP_INTERFACE_C_DECL_(float,float,float)
++CALCIUM_C2CPP_INTERFACE_C_DECL_(double,double,double)
++CALCIUM_C2CPP_INTERFACE_C_DECL_(float2double,float,float)
++CALCIUM_C2CPP_INTERFACE_C_DECL_(bool,float,int)
++CALCIUM_C2CPP_INTERFACE_C_DECL_(cplx,float,float)
++CALCIUM_C2CPP_INTERFACE_C_DECL_(str,float,char*)
++#endif
++
+ /************************************/
+ /* INTERFACES DE LECTURE EN 0 COPIE */
+ /************************************/
+diff --git a/src/Launcher/SALOME_ExternalServerLauncher.cxx b/src/Launcher/SALOME_ExternalServerLauncher.cxx
+index 4813170e..08d5b8b5 100644
+--- a/src/Launcher/SALOME_ExternalServerLauncher.cxx
++++ b/src/Launcher/SALOME_ExternalServerLauncher.cxx
+@@ -62,7 +62,12 @@ class ChdirRAII
+ {
+ public:
+ #ifndef WIN32
++#if defined(__APPLE__)
++  // macOS: get_current_dir_name() is glibc only, getcwd(nullptr,0) also returns a malloc'ed buffer
++  ChdirRAII(const std::string& wd):_wd(wd) { if(_wd.empty()) return ; char *pwd(getcwd(nullptr,0)); _od = pwd; free(pwd); chdir(_wd.c_str()); }
++#else
+   ChdirRAII(const std::string& wd):_wd(wd) { if(_wd.empty()) return ; char *pwd(get_current_dir_name()); _od = pwd; free(pwd); chdir(_wd.c_str()); }
++#endif
+   ~ChdirRAII() { if(_od.empty()) return ; chdir(_od.c_str()); }
+ #else
+ 	ChdirRAII(const std::string& wd) : _wd(wd) { 
+diff --git a/src/ParallelContainer/SALOME_ParallelComponent_i.cxx b/src/ParallelContainer/SALOME_ParallelComponent_i.cxx
+index 2785614a..a58ba085 100644
+--- a/src/ParallelContainer/SALOME_ParallelComponent_i.cxx
++++ b/src/ParallelContainer/SALOME_ParallelComponent_i.cxx
+@@ -287,7 +287,12 @@ bool Engines_Parallel_Component_i::Kill_impl()
+ 
+   bool RetVal = false ;
+ #ifndef WIN32
++#if defined(__APPLE__)
++  // macOS: pthread_t is a pointer type, ordered comparison with 0 is not allowed
++  if ( _ThreadId && !pthread_equal( pthread_self() , _ThreadId ) )
++#else
+   if ( _ThreadId > 0 && pthread_self() != _ThreadId )
++#endif
+     {
+       RetVal = Killer( _ThreadId , SIGUSR2 ) ;
+       _ThreadId = (pthread_t ) -1 ;
+@@ -329,7 +334,12 @@ bool Engines_Parallel_Component_i::Stop_impl()
+ 
+   bool RetVal = false ;
+ #ifndef WIN32
++#if defined(__APPLE__)
++  // macOS: pthread_t is a pointer type, ordered comparison with 0 is not allowed
++  if ( _ThreadId && !pthread_equal( pthread_self() , _ThreadId ) )
++#else
+   if ( _ThreadId > 0 && pthread_self() != _ThreadId )
++#endif
+     {
+       RetVal = Killer( _ThreadId , 0 ) ;
+       _ThreadId = (pthread_t ) -1 ;
+@@ -368,7 +378,12 @@ bool Engines_Parallel_Component_i::Suspend_impl()
+ 
+   bool RetVal = false ;
+ #ifndef WIN32
++#if defined(__APPLE__)
++  // macOS: pthread_t is a pointer type, ordered comparison with 0 is not allowed
++  if ( _ThreadId && !pthread_equal( pthread_self() , _ThreadId ) )
++#else
+   if ( _ThreadId > 0 && pthread_self() != _ThreadId )
++#endif
+ #else
+   if ( _ThreadId > 0 && pthread_self().p != _ThreadId->p )
+ #endif
+@@ -414,7 +429,12 @@ bool Engines_Parallel_Component_i::Resume_impl()
+ #endif
+   bool RetVal = false ;
+ #ifndef WIN32
++#if defined(__APPLE__)
++  // macOS: pthread_t is a pointer type, ordered comparison with 0 is not allowed
++  if ( _ThreadId && !pthread_equal( pthread_self() , _ThreadId ) )
++#else
+   if ( _ThreadId > 0 && pthread_self() != _ThreadId )
++#endif
+ #else
+   if ( _ThreadId > 0 && pthread_self().p != _ThreadId->p )
+ #endif
+@@ -443,10 +463,18 @@ CORBA::Long Engines_Parallel_Component_i::CpuUsed_impl()
+   long cpu = 0 ;
+   if ( _ThreadId || _Executed )
+     {
++#if defined(__APPLE__)
++    if ( _ThreadId )
++#else
+     if ( _ThreadId > 0 )
++#endif
+       {
+ #ifndef WIN32
++#if defined(__APPLE__)
++      if ( !pthread_equal( pthread_self() , _ThreadId ) )
++#else
+       if ( pthread_self() != _ThreadId )
++#endif
+ #else
+       if ( pthread_self().p != _ThreadId->p )
+ #endif
+diff --git a/src/SALOMESDS/SALOMESDS_KeyWaiter.cxx b/src/SALOMESDS/SALOMESDS_KeyWaiter.cxx
+index a0c5210e..05dd8301 100644
+--- a/src/SALOMESDS/SALOMESDS_KeyWaiter.cxx
++++ b/src/SALOMESDS/SALOMESDS_KeyWaiter.cxx
+@@ -29,7 +29,12 @@ using namespace SALOMESDS;
+ 
+ KeyWaiter::KeyWaiter(PickelizedPyObjServer *var, const SALOME::ByteVec& keyVal):_var(var),_ze_key(0),_ze_value(0)
+ {
++#if defined(__APPLE__)
++  _sem=dispatch_semaphore_create(0);// put value to 0 to lock by default
++  if(!_sem)
++#else
+   if(sem_init(&_sem,0,0)!=0)// put value to 0 to lock by default
++#endif
+     throw Exception("KeyWaiter constructor : Error on initialization of semaphore !");
+   if(!var)
+     throw Exception("KeyWaiter constructor : Invalid glob var is NULL !");
+@@ -72,6 +77,9 @@ KeyWaiter::~KeyWaiter()
+   Py_XDECREF(_ze_key);
+   if(_ze_value)
+     Py_XDECREF(_ze_value);
++#if defined(__APPLE__)
++  dispatch_release(_sem);
++#endif
+ }
+ 
+ PortableServer::POA_var KeyWaiter::getPOA() const
+@@ -85,7 +93,11 @@ PortableServer::POA_var KeyWaiter::getPOA() const
+  */
+ void KeyWaiter::waitFor()
+ {
++#if defined(__APPLE__)
++  dispatch_semaphore_wait(_sem,DISPATCH_TIME_FOREVER);
++#else
+   sem_wait(&_sem);
++#endif
+   if(!_ze_value)
+     throw Exception("KeyWaiter::waitFor : internal error 1 !");
+ }
+@@ -133,9 +145,13 @@ void KeyWaiter::valueJustCome(PyObject *val)
+ 
+ void KeyWaiter::go()
+ {
++#if defined(__APPLE__)
++  dispatch_semaphore_signal(_sem);// cannot fail
++#else
+   if(sem_post(&_sem)!=0)
+     {
+       std::ostringstream oss; oss << "KeyWaiter::go : error on post of semaphore ! ";
+       throw Exception(oss.str());
+     }
++#endif
+ }
+diff --git a/src/SALOMESDS/SALOMESDS_KeyWaiter.hxx b/src/SALOMESDS/SALOMESDS_KeyWaiter.hxx
+index a4fe67a7..affe2d50 100644
+--- a/src/SALOMESDS/SALOMESDS_KeyWaiter.hxx
++++ b/src/SALOMESDS/SALOMESDS_KeyWaiter.hxx
+@@ -31,7 +31,12 @@
+ 
+ #include <Python.h>
+ 
++#if defined(__APPLE__)
++// macOS: unnamed POSIX semaphores (sem_init) are not implemented
++#include <dispatch/dispatch.h>
++#else
+ #include <semaphore.h>
++#endif
+ 
+ namespace SALOMESDS
+ {
+@@ -56,7 +61,11 @@ namespace SALOMESDS
+     PickelizedPyObjServer *_var;
+     PyObject *_ze_key;
+     PyObject *_ze_value;
++#if defined(__APPLE__)
++    dispatch_semaphore_t _sem;
++#else
+     sem_t _sem;
++#endif
+   };
+ }
+
+diff --git a/src/SALOMETraceCollector/SALOMETraceCollector.cxx b/src/SALOMETraceCollector/SALOMETraceCollector.cxx
+index 656a063f..ab4a85fb 100644
+--- a/src/SALOMETraceCollector/SALOMETraceCollector.cxx
++++ b/src/SALOMETraceCollector/SALOMETraceCollector.cxx
+@@ -57,13 +57,20 @@ BaseTraceCollector* SALOMETraceCollector::instance()
+       if (_singleton == 0)                     // another thread may have got
+         {                                      // the lock after the first test
+           BaseTraceCollector* myInstance = new SALOMETraceCollector();
+-
++#if defined(__APPLE__)
++          _sem = dispatch_semaphore_create(0); // to wait until run thread is initialize
++#else
+           sem_init(&_sem,0,0); // to wait until run thread is initialized
++#endif
+           pthread_t traceThread;
+           int bid = 0;
+           pthread_create(&traceThread, NULL,
+                                    SALOMETraceCollector::run, &bid);
++#if defined(__APPLE__)
++          dispatch_semaphore_wait(_sem, DISPATCH_TIME_FOREVER);
++#else
+           sem_wait(&_sem);
++#endif
+           _singleton = myInstance; // _singleton known only when init done
+         }
+       pthread_mutex_unlock(&_singletonMutex); // release lock
+@@ -86,7 +93,11 @@ void* SALOMETraceCollector::run(void* /*bid*/)
+ {
+   _threadId = new pthread_t;
+   *_threadId = pthread_self();
++#if defined(__APPLE__)
++  dispatch_semaphore_signal(_sem);
++#else
+   sem_post(&_sem); // unlock instance
++#endif
+ 
+   LocalTraceBufferPool* myTraceBuffer = LocalTraceBufferPool::instance();
+   LocalTrace_TraceInfo myTrace;
+
+diff --git a/src/TestContainer/CMakeLists.txt b/src/TestContainer/CMakeLists.txt
+index ba395a8c..b796e500 100755
+--- a/src/TestContainer/CMakeLists.txt
++++ b/src/TestContainer/CMakeLists.txt
+@@ -45,7 +45,7 @@ SET(COMMON_LIBS
+   SalomeIDLKernel
+ )
+ 
+-IF(WIN32)
++IF(WIN32 OR APPLE)
+   LIST (APPEND COMMON_LIBS
+      ArgvKeeper
+      SalomeContainer
+@@ -57,7 +57,7 @@ IF(WIN32)
+      SalomeGenericObj
+      SalomeIDLKernel
+   )
+-ENDIF(WIN32)
++ENDIF(WIN32 OR APPLE)
+ ADD_DEFINITIONS(${OMNIORB_DEFINITIONS})
+ 
+ ADD_LIBRARY(SalomeTestComponentEngine ${SalomeTestComponentEngine_SOURCES})

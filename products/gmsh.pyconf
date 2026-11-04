@@ -35,8 +35,8 @@ version_4_14_1:
 {
   archive_info : {archive_name : "gmsh-4.14.1-source.tgz"}
   compil_script : "gmsh-4.14.1" + $VARS.scriptExtension
-  depend : ["CAS","lapack","hdf5","medfile", "cgns", "swig"]
-  opt_depend : ["openmpi"]
+  depend : ["CAS","hdf5","medfile", "cgns", "swig"]
+  opt_depend : ["openmpi","lapack"]
 }
 
 version_4_14_1_win:

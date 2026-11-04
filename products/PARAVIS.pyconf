@@ -60,6 +60,51 @@ default :
     patches : []
 }
 
+default_macOS:
+{
+    cmake_options : '-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON -DBUILD_TESTING=ON -DCMAKE_INSTALL_LIBDIR=lib -DFREETYPE_LIBRARY=${FREETYPE_ROOT_DIR}/lib/libfreetype.dylib -DFREETYPE_INCLUDE_DIRS=${FREETYPE_ROOT_DIR}/include -DCMAKE_SHARED_LINKER_FLAGS="-L${FREEIMAGE_ROOT_DIR}/lib" -DCMAKE_MODULE_LINKER_FLAGS="-L${FREEIMAGE_ROOT_DIR}/lib" -DCMAKE_EXE_LINKER_FLAGS="-L${FREEIMAGE_ROOT_DIR}/lib" -DDOXYGEN_DOT_EXECUTABLE="${GRAPHVIZ_ROOT_DIR}/bin/dot"'
+    git_info:
+    {
+      repositories :
+      {
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/paravis.git"
+        github : "https://github.com/raphael-nabet/paravis.git"
+        gitpub : $PROJECTS.projects.salome.git_info.git_server.gitpub.url + "modules/paravis.git"
+      }
+      git_commands: [
+                     'git config -f .gitmodules submodule.src/Plugins/MEDReader.url ../medreader',
+                     'git config -f .gitmodules submodule.src/Plugins/MEDReader.branch support-for-macos-platform',
+                     'git submodule sync',
+                     'git submodule update --init --remote',
+                     'git -C src/Plugins/MEDReader fetch origin support-for-macos-platform:refs/remotes/origin/support-for-macos-platform',
+                     'git -C src/Plugins/MEDReader checkout -B support-for-macos-platform --track origin/support-for-macos-platform',
+                     'git switch support-for-macos-platform'
+                    ]
+    }
+    depend : [
+       "KERNEL",
+       "GUI",
+       "MEDCOUPLING",
+       "FIELDS",
+       "GEOM",
+       "SMESH",
+       "Python",
+       "qt",
+       "boost",
+       "hdf5",
+       "medfile",
+       "ParaView",
+       "CAS",
+       "omniORB",
+       "docutils",
+       "libxml2",
+       "six",
+       "pytz",
+       "graphviz",
+       "freeimage"
+    ]
+}
+
 default_win:
 {
     cmake_options : "-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON -DBUILD_TESTING=ON"
@@ -194,6 +239,29 @@ version_V10_0_0_MPI :
                      'git submodule update --init --remote',
                      'cd src/Plugins/MEDReader',
                      'git checkout V10_0_0a2' #FIXME
+                    ]
+    }
+}
+
+version_V9_16_0_macOS :
+{
+    patches : ["PARAVIS.macos.arm64.patch", "PARAVIS-macOS-cmake-doc.patch"]
+    cmake_options : '-DSALOME_PARAVIS_USE_GEOM_SOURCE=ON -DSALOME_PARAVIS_USE_SMESH_SOURCE=ON -DBUILD_TESTING=ON -DCMAKE_INSTALL_LIBDIR=lib -DFREETYPE_LIBRARY=${FREETYPE_ROOT_DIR}/lib/libfreetype.dylib -DFREETYPE_INCLUDE_DIRS=${FREETYPE_ROOT_DIR}/include -DCMAKE_SHARED_LINKER_FLAGS="-L${FREEIMAGE_ROOT_DIR}/lib" -DCMAKE_MODULE_LINKER_FLAGS="-L${FREEIMAGE_ROOT_DIR}/lib" -DCMAKE_EXE_LINKER_FLAGS="-L${FREEIMAGE_ROOT_DIR}/lib" -DDOXYGEN_DOT_EXECUTABLE="${GRAPHVIZ_ROOT_DIR}/bin/dot"'
+    git_info:
+    {
+      repositories :
+      {
+        tuleap : $PROJECTS.projects.salome.git_info.git_server.tuleap.url + "salome/paravis.git"
+        github : $PROJECTS.projects.salome.git_info.git_server.github.url + "paravis.git"
+        gitpub : $PROJECTS.projects.salome.git_info.git_server.gitpub.url + "modules/paravis.git"
+      }
+      git_commands: [
+                     'git config -f .gitmodules submodule.src/Plugins/MEDReader.url ../medreader',
+                     'git config -f .git/config submodule.src/Plugins/MEDReader.url ../medreader',
+                     'git submodule sync',
+                     'git submodule update --init --remote',
+                     'cd src/Plugins/MEDReader',
+                     'git checkout V9_16_0' #FIXME
                     ]
     }
 }

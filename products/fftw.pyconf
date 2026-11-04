@@ -48,6 +48,12 @@ default_win :
    }
 }
 
+default_macOS:
+{
+    post_script : "setup-rpath-macOS.sh"
+}
+
+
 version_3_3_10 :
 {
   depend : ['Python', 'cmake']

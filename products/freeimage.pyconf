@@ -44,6 +44,12 @@ version_3_16_0 :
               ]
 }
 
+version_3_19_14:
+{
+    build_depend : ["cmake"]
+    compil_script :  "freeimage-3.19.14.sh"
+}
+
 version_3_18_0:
 {
     compil_script :  "freeimage-3.18.0.sh"

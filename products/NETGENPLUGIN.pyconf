@@ -49,6 +49,21 @@ default :
     }
 }
 
+default_macOS :
+{
+    cmake_options : " -DFREETYPE_LIBRARY=${FREETYPE_ROOT_DIR}/lib/libfreetype.dylib -DFREETYPE_INCLUDE_DIRS=${FREETYPE_ROOT_DIR}/include"
+    git_info:
+    {
+      repositories :
+      {
+        github : "https://github.com/raphael-nabet/netgenplugin.git"
+      }
+      git_commands: [
+                     'git switch support-for-macos-platform'
+                    ]
+    }
+}
+
 default_win :
 {
     cmake_options : " -DZLIB_LIBRARY=%ZLIB_BIN%  -DZLIB_INCLUDE_DIR=%ZLIB_INCLUDE_DIR% -DSALOME_CXX_STANDARD=17 "
@@ -72,6 +87,11 @@ default_win :
              "pytz",
              "zlib"
               ]
+}
+
+version_V9_16_0_macOS :
+{
+    patches : [ "NETGENPlugin-V9.16.0-macOS.patch", "NETGENPLUGIN.macos.arm64.patch" ]
 }
 
 version_V9_3_0 :

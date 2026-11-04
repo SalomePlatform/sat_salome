@@ -41,7 +41,8 @@ version_3_8_5:
 version_3_7_1:
 {
     compil_script :  'gdal-3.7.1' + $VARS.scriptExtension
-    depend : ['Python', 'lapack', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'netcdf', 'proj']
+    depend : ['Python', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen', 'netcdf', 'proj']
+    opt_depend : ['lapack']
 }
 
 version_3_7_1_CO7:

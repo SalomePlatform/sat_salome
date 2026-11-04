@@ -29,9 +29,16 @@ default_win :
    }
 }
 
+version_4_4_0_macOS :
+{
+    build_source : "script"
+    archive_info : {archive_name : "embree-4.4.0.tar.gz"}
+    compil_script :  "embree-4.4.0" + $VARS.scriptExtension
+}
+
 version_4_4_0 :
 {
-  archive_info : {archive_name : "embree-4.4.0.tar.gz"}
+    archive_info : {archive_name : "embree-4.4.0.tar.gz"}
 }
 
 

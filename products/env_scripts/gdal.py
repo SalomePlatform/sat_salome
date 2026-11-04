@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-import os.path
+
+import os.path, platform
 
 def set_env(env, prereq_dir, version):
     pyver = 'python' + env.get('PYTHON_VERSION')
@@ -10,7 +11,13 @@ def set_env(env, prereq_dir, version):
     env.set('GDAL_VERSION',version)
     env.set('GDAL_DATA', os.path.join(prereq_dir, 'share', 'gdal'))
     env.prepend('PATH', os.path.join(prereq_dir,'bin'))
-    env.prepend('LD_LIBRARY_PATH',os.path.join(prereq_dir, 'lib'))
+
+    if platform.system() == "Darwin" :
+        env.prepend('DYLD_LIBRARY_PATH',os.path.join(prereq_dir, 'lib'))
+    else :
+        env.prepend('LD_LIBRARY_PATH',os.path.join(prereq_dir, 'lib'))
+
+
     env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'lib', pyver, 'site-packages'))
 
 def set_nativ_env(env):

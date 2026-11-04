@@ -4,6 +4,15 @@ echo "##########################################################################
 echo "gmsh" $VERSION
 echo "##########################################################################"
 
+if [ "$DIST_NAME" == "macOS" ]; then
+    libExtension="dylib"
+    export SDKROOT="$(xcrun --show-sdk-path)"
+    export CFLAGS="-isysroot $(xcrun --show-sdk-path)"
+    export CPPFLAGS="-isysroot $(xcrun --show-sdk-path)"
+else
+    libExtension="so"
+fi
+
 rm -rf $BUILD_DIR
 mkdir $BUILD_DIR
 cd $BUILD_DIR
@@ -30,13 +39,13 @@ CMAKE_OPTIONS+=" -DCMAKE_PREFIX_PATH=${LAPACK_ROOT_DIR};${HDF5_ROOT_DIR};${MEDFI
 
 CMAKE_OPTIONS+=" -DENABLE_MED=ON"
 if [ "${SAT_medfile_IS_NATIVE}" != "1" ]; then
-    CMAKE_OPTIONS+=" -DMED_LIB=${MEDFILE_ROOT_DIR}/lib/libmedC.so"
+    CMAKE_OPTIONS+=" -DMED_LIB=${MEDFILE_ROOT_DIR}/lib/libmedC.${libExtension}"
     CMAKE_OPTIONS+=" -DMED_INC=${MEDFILE_ROOT_DIR}/include"
 fi
 
 CMAKE_OPTIONS+=" -DENABLE_CGNS=ON"
 if [ "${SAT_cgns_IS_NATIVE}" != "1" ]; then
-    CMAKE_OPTIONS+=" -DCGNS_LIB=${CGNS_ROOT_DIR}/lib/libcgns.so"
+    CMAKE_OPTIONS+=" -DCGNS_LIB=${CGNS_ROOT_DIR}/lib/libcgns.${libExtension}"
     CMAKE_OPTIONS+=" -DCGNS_INC=${CGNS_ROOT_DIR}/include"
 fi
 
@@ -53,6 +62,10 @@ then
 	CMAKE_OPTIONS+=" -DCMAKE_CXX_COMPILER:STRING=$(which mpic++)"
 	CMAKE_OPTIONS+=" -DCMAKE_C_COMPILER:STRING=$(which mpicc)"
     fi
+fi
+
+if [ "$DIST_NAME" = "macOS" ]; then
+    CMAKE_OPTIONS+=" $SAT_CMAKE_OPTIONS"
 fi
 
 echo "*** cmake" $CMAKE_OPTIONS

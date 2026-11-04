@@ -11,6 +11,11 @@ if [ -n "$SAT_HPC" ]  && [ -n "$MPI_ROOT_DIR" ]; then
     CMAKE_OPTIONS+=" -DMPI_C_FOUND=$MPI_C_FOUND"
 fi
 
+lib_extension=".so"
+if [ "$DIST_NAME" = "macOS" ]; then
+    lib_extension=".dylib"
+fi
+
 CMAKE_OPTIONS=""
 CMAKE_OPTIONS+=" -DCMAKE_INSTALL_PREFIX:STRING=$PRODUCT_INSTALL"
 CMAKE_OPTIONS+=" -DCMAKE_INSTALL_LIBDIR:STRING=lib"
@@ -34,6 +39,10 @@ if [[ $DIST_NAME == "CO" && $DIST_VERSION == "8" && "$SAT_qwt_IS_NATIVE" == "1" 
 elif [[ $DIST_NAME == "UB" && $DIST_VERSION == "20.04" && "$SAT_qwt_IS_NATIVE" == "1" ]]; then
     CMAKE_OPTIONS+=" -DQWT_LIBRARY=/usr/lib/libqwt-qt5.so"
     CMAKE_OPTIONS+=" -DQWT_INCLUDE_DIR=/usr/include/qwt"
+elif [ "$DIST_NAME" == "macOS" ]; then
+    CMAKE_OPTIONS+=" -DQWT_LIBRARY=${QWT_ROOT_DIR}/lib/qwt.framework/qwt"
+    CMAKE_OPTIONS+=" -DQWT_INCLUDE_DIR=${QWT_ROOT_DIR}/lib/qwt.framework/Versions/6/Headers"
+    CMAKE_OPTIONS+=" -DCMAKE_OSX_DEPLOYMENT_TARGET=${MACOSX_DEPLOYMENT_TARGET}"
 elif [ "$SAT_qwt_IS_NATIVE" != "1" ]; then
     CMAKE_OPTIONS+=" -DQWT_LIBRARY=$QWT_ROOT_DIR/lib/libqwt.so"
     CMAKE_OPTIONS+=" -DQWT_INCLUDE_DIR=$QWT_ROOT_DIR/include"
@@ -63,7 +72,7 @@ CMAKE_OPTIONS+=" -DPYTHON_EXECUTABLE=$PYTHONBIN"
 
 CMAKE_OPTIONS+=" -DPYTHON_INCLUDE_DIR=$PYTHON_INCLUDE"
 if [ "$SAT_Python_IS_NATIVE" != "1" ]; then
-    CMAKE_OPTIONS+=" -DPYTHON_LIBRARY=$PYTHON_ROOT_DIR/lib/libpython$PYTHON_VERSION.so"
+    CMAKE_OPTIONS+=" -DPYTHON_LIBRARY=$PYTHON_ROOT_DIR/lib/libpython$PYTHON_VERSION$lib_extension"
 fi
 
 if [ "$SAT_Sphinx_IS_NATIVE" != "1" ]; then
@@ -76,21 +85,21 @@ CMAKE_OPTIONS+=" -DSWIG_EXECUTABLE:PATH=$(which swig)"
 
 if [ -n "$CGNS_ROOT_DIR" ] && [ "${SAT_cgns_IS_NATIVE}" != "1" ]; then
     CMAKE_OPTIONS+=" -DCGNS_INCLUDE_DIR:PATH=${CGNS_ROOT_DIR}/include"
-    CMAKE_OPTIONS+=" -DCGNS_LIBRARY:PATH=${CGNS_ROOT_DIR}/lib/libcgns.so"
+    CMAKE_OPTIONS+=" -DCGNS_LIBRARY:PATH=${CGNS_ROOT_DIR}/lib/libcgns$lib_extension"
 fi
 
 ### freetype settings
 CMAKE_OPTIONS+=" -DVTK_MODULE_USE_EXTERNAL_VTK_freetype:BOOL=ON"
 if [ -n "$FREETYPE_ROOT_DIR" ] && [ "$SAT_freetype_IS_NATIVE" != "1" ]; then
     CMAKE_OPTIONS+=" -DFREETYPE_INCLUDE_DIRS:STRING=${FREETYPE_ROOT_DIR}/include/freetype2"
-    CMAKE_OPTIONS+=" -DFREETYPE_LIBRARY:STRING=${FREETYPE_ROOT_DIR}/lib/libfreetype.so"
+    CMAKE_OPTIONS+=" -DFREETYPE_LIBRARY:STRING=${FREETYPE_ROOT_DIR}/lib/libfreetype$lib_extension"
 fi
 
 ### libxml2 settings
 if [ -n "$LIBXML2_ROOT_DIR" ] && [ "$SAT_libxml2_IS_NATIVE" != "1" ]; then
     CMAKE_OPTIONS+=" -DLIBXML2_INCLUDE_DIR:STRING=${LIBXML2_ROOT_DIR}/include/libxml2"
-    CMAKE_OPTIONS+=" -DLIBXML2_LIBRARIES:STRING=${LIBXML2_ROOT_DIR}/lib/libxml2.so"
-    CMAKE_OPTIONS+=" -DLIBXML2_LIBRARY=${LIBXML2_ROOT_DIR}/lib/libxml2.so"
+    CMAKE_OPTIONS+=" -DLIBXML2_LIBRARIES:STRING=${LIBXML2_ROOT_DIR}/lib/libxml2$lib_extension"
+    CMAKE_OPTIONS+=" -DLIBXML2_LIBRARY=${LIBXML2_ROOT_DIR}/lib/libxml2$lib_extension"
     CMAKE_OPTIONS+=" -DLIBXML2_XMLLINT_EXECUTABLE=${LIBXML2_ROOT_DIR}/bin/xmllint"
 fi
 
@@ -98,6 +107,10 @@ if [ -n "$SAT_DEBUG" ]; then
     CMAKE_OPTIONS+=" -DCMAKE_BUILD_TYPE:STRING=Debug"
 else
     CMAKE_OPTIONS+=" -DCMAKE_BUILD_TYPE:STRING=Release"
+fi
+
+if [ "$DIST_NAME" = "macOS" ]; then
+    CMAKE_OPTIONS+=" $SAT_CMAKE_OPTIONS"
 fi
 
 echo

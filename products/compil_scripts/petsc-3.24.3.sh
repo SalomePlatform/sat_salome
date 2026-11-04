@@ -18,6 +18,11 @@ case $LINUX_DISTRIBUTION in
         ;;
 esac
 
+LIB_EXTENSION="so"
+if [ $DIST_NAME = "macOS" ]; then
+    LIB_EXTENSION="dylib"
+fi
+
 mkdir -p $PRODUCT_INSTALL
 
 rm -rf $BUILD_DIR
@@ -71,7 +76,7 @@ CONFIGURE_FLAGS+=" --with-debugging=0" # by default Petsc is build in debug mode
 CONFIGURE_FLAGS+=" --with-petsc4py=yes"
 CONFIGURE_FLAGS+=" --download-slepc-configure-arguments=--with-slepc4py=yes"
 
-if [ -f "${NATIVE_PATH}/libmetis.so" ] && [ "${SAT_metis_IS_NATIVE}" == "1" ]; then
+if [ -f "${NATIVE_PATH}/libmetis.${LIB_EXTENSION}" ] && [ "${SAT_metis_IS_NATIVE}" == "1" ]; then
     CONFIGURE_FLAGS+=" --with-metis=1"
 elif [ -n "${METIS_ROOT_DIR}" ] && [ "${SAT_metis_IS_NATIVE}" != "1" ]; then
     CONFIGURE_FLAGS+=" --with-metis-dir=${METIS_ROOT_DIR}"
@@ -83,13 +88,13 @@ echo
 if [ -n "${SAT_HPC}" ]; then
   CONFIUGRE_FLAGS+=" --with-med-dir=${MEDFILE_ROOT_DIR}"
 
-  if [ -f "${NATIVE_PATH}/libHYPRE_core.so" ]; then
+  if [ -f "${NATIVE_PATH}/libHYPRE_core.${LIB_EXTENSION}" ]; then
       CONFIGURE_FLAGS+=" --with-hypre=1"
   else
       CONFIGURE_FLAGS+=" --download-hypre=ext/hypre-3.0.0.tar.gz"
   fi
 
-  if [ -f "${NATIVE_PATH}/libptscotch.so" ] && [ "${SAT_ptscotch_IS_NATIVE}" == "1" ]; then
+  if [ -f "${NATIVE_PATH}/libptscotch.${LIB_EXTENSION}" ] && [ "${SAT_ptscotch_IS_NATIVE}" == "1" ]; then
       CONFIGURE_FLAGS+=" --with-ptscotch=1"
   elif [ -n "${PTSCOTCH_ROOT_DIR}" ] && [ "${SAT_ptscotch_IS_NATIVE}" != "1" ]; then
       CONFIGURE_FLAGS+=" --with-ptscoth=${PTSCOTCH_ROOT_DIR}"
@@ -113,11 +118,35 @@ else
    CONFIGURE_FLAGS+=" --with-mpi=0"
 fi
 
-CONFIGURE_FLAGS+=" --PETSC_ARCH=installed-arch-linux2-c-opt"
+if [ $DIST_NAME = "macOS" ]; then
+    CONFIGURE_FLAGS+=" --PETSC_ARCH=arch-darwin-c-opt"
+else
+    CONFIGURE_FLAGS+=" --PETSC_ARCH=installed-arch-linux2-c-opt"
+fi
 CONFIGURE_FLAGS+=" --PETSC_DIR=${BUILD_DIR}"
 
-echo "*** configure --prefix=${PRODUCT_INSTALL} ${CONFIGURE_FLAGS}"
-./configure --prefix=${PRODUCT_INSTALL} ${CONFIGURE_FLAGS}
+opts=()
+if [ "$DIST_NAME" = "macOS" ]; then
+    args=()
+    eval "args=($SAT_CONFIGURE_OPTIONS)"
+
+    # In this case, we are removing the specific compilation
+    # options from autotools because it is a python configure
+    # that builds petsc.
+    for a in "${args[@]}"; do
+        case "$a" in
+            ac_cv_*=*|--build=*|--host=*)
+                ;;
+            *)
+                opts+=("$a")
+                ;;
+        esac
+    done
+    eval "$opts"
+fi
+
+echo "*** configure --prefix=${PRODUCT_INSTALL} ${CONFIGURE_FLAGS} ${opts[@]}"
+./configure --prefix=${PRODUCT_INSTALL} ${CONFIGURE_FLAGS} "${opts[@]}"
 if [ $? -ne 0 ]; then
     echo "ERROR on configure"
     exit 1
@@ -142,12 +171,15 @@ if [ $? -ne 0 ]; then
     exit 3
 fi
 
-echo
-echo "*** make check"
-make check
-if [ $? -ne 0 ]; then
-    echo "ERROR on make check"
-    exit 4
+if [ $DIST_NAME != "macOS" ]; then
+    # Skip test in macOS because make check use gcc instead of clang
+    echo
+    echo "*** make check"
+    make check
+    if [ $? -ne 0 ]; then
+        echo "ERROR on make check"
+        exit 4
+    fi
 fi
 
 echo

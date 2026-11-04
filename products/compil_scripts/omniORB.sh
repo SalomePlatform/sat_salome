@@ -11,9 +11,14 @@ if [ -f /.dockerenv ]; then
     find $SOURCE_DIR -type f -exec chmod u+rwx {} \;
 fi
 
+opts=()
+if [ "$DIST_NAME" = "macOS" ]; then
+    eval "opts=($SAT_CONFIGURE_OPTIONS)"
+fi
+
 echo
-echo "*** configure --prefix=$PRODUCT_INSTALL --disable-ipv6"
-PYTHON=$PYTHONBIN $SOURCE_DIR/configure --prefix=$PRODUCT_INSTALL --disable-ipv6
+echo "*** configure --prefix=$PRODUCT_INSTALL --disable-ipv6 ${opts[@]}"
+PYTHON=$PYTHONBIN $SOURCE_DIR/configure --prefix=$PRODUCT_INSTALL --disable-ipv6 "${opts[@]}"
 if [ $? -ne 0 ]
 then
     echo "ERROR on configure"
@@ -62,7 +67,11 @@ if version_ge $VERSION "4.1" ; then
 fi
 
 cd $PRODUCT_INSTALL/lib
-find . -name "*.so*" |xargs chmod u+rwx 
+if [ $DIST_NAME = "macOS" ]; then
+    find . -name "*.dylib*" |xargs chmod u+rwx 
+else
+    find . -name "*.so*" |xargs chmod u+rwx 
+fi
 
 echo
 echo "########## END"

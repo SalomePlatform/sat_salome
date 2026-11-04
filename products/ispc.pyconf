@@ -33,6 +33,21 @@ default_win :
     build_depend : ["cmake", "llvm"]
 }
 
+default_macOS:
+{
+    post_script : "setup-rpath-macOS.sh"
+}
+
+
+version_1_31_0_macOS :
+{
+    build_source : "script"
+    compil_script :  "ispc-1.31.0" + $VARS.scriptExtension
+    archive_info : {archive_name : "ispc-v1.31.0-macOS.arm64.tar.gz"}
+    depend : ['Python','llvm', 'tbb', 'cmake']
+
+}
+
 version_1_21_1 :
 {
     build_source : "script"

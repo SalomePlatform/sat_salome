@@ -54,6 +54,19 @@ default :
     patches : []
 }
 
+default_macOS :
+{
+    cmake_options :   '-DCMAKE_CXX_FLAGS=-fpermissive -DNO_SolveSpace=TRUE -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DADD_COMPATIBILITY_TESTS=ON -DADD_MODELS_TESTS=ON -DADD_HDF_TESTS=ON -DFREETYPE_LIBRARY=${FREETYPE_ROOT_DIR}/lib/libfreetype.dylib -DFREETYPE_INCLUDE_DIRS=${FREETYPE_ROOT_DIR}/include'
+    git_info:
+    {
+      repositories :
+      {
+            github : "https://github.com/raphael-nabet/shaper.git"
+      }
+      git_commands: [ 'git switch support-for-macos-platform' ]
+    }
+}
+
 default_win :
 {
     cmake_options : " -DNO_SolveSpace=TRUE -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig.exe -DADD_COMPATIBILITY_TESTS=ON -DADD_MODELS_TESTS=ON -DADD_HDF_TESTS=ON"
@@ -62,6 +75,11 @@ default_win :
 default_FD44 :
 {
     patches : ['SHAPER-planegcs-eigen3-FD44.patch']
+}
+
+version_V9_16_0_macOS :
+{
+    patches : ['SHAPER-V9.16.0-cmake-macOS.patch', 'SHAPER-V9.16.0-shared-lib-macOS.patch', 'SHAPER.macos.arm64.patch']
 }
 
 version_V9_16_0_FD44 :

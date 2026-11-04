@@ -1,0 +1,85 @@
+diff --color=auto -Naur shaper_old/src/Config/Config_Common.cpp shaper_new/src/Config/Config_Common.cpp
+--- shaper_old/src/Config/Config_Common.cpp	2026-10-07 16:18:18
++++ shaper_new/src/Config/Config_Common.cpp	2026-10-07 16:15:10
+@@ -220,13 +220,18 @@
+   if(theLibName.empty())
+     return std::string();
+   std::string aLibName = theLibName;
+-#ifndef WIN32
+-  static std::string aLibExt( ".so" );
++#if defined(WIN32)
++  static std::string aLibExt(".dll");
++#elif defined(__APPLE__)
++  static std::string aLibExt( ".dylib" );
+   if (aLibName.size() < 3 || aLibName.substr(0, 3) !="lib") {
+     aLibName = "lib" + aLibName;
+   }
+ #else
+-  static std::string aLibExt(".dll");
++  static std::string aLibExt( ".so" );
++  if (aLibName.size() < 3 || aLibName.substr(0, 3) !="lib") {
++    aLibName = "lib" + aLibName;
++  }
+ #endif
+   std::string anExt = aLibName.substr(aLibName.size() - 4);
+   if (anExt != aLibExt)
+diff --color=auto -Naur shaper_old/src/Config/Config_Common.h shaper_new/src/Config/Config_Common.h
+--- shaper_old/src/Config/Config_Common.h	2026-10-07 16:18:18
++++ shaper_new/src/Config/Config_Common.h	2026-10-07 16:15:10
+@@ -106,10 +106,10 @@
+ /*!
+  \brief Convert the given parameter to the platform-specific library name.
+ 
+- The function appends platform-specific prefix (lib) and suffix (.dll/.so)
++ The function appends platform-specific prefix (lib) and suffix (.dll/.so/.dylib)
+  to the library file name.
+- For example, if \a str = "mylib", "libmylib.so" is returned for Linux and
+- mylib.dll for Windows.
++ For example, if \a str = "mylib", "libmylib.so" is returned for Linux,
++ mylib.dll for Windows and libmylib.dylib for MacOS.
+ 
+  \param str short library name
+  \return full library name
+diff --color=auto -Naur shaper_old/src/Config/Config_ModuleReader.cpp shaper_new/src/Config/Config_ModuleReader.cpp
+--- shaper_old/src/Config/Config_ModuleReader.cpp	2026-10-07 16:18:18
++++ shaper_new/src/Config/Config_ModuleReader.cpp	2026-10-07 16:15:10
+@@ -390,7 +390,7 @@
+ 
+ void Config_ModuleReader::loadLibrary(const std::string& theLibName)
+ {
+-  std::string aFileName = library(theLibName);
++  std::string aFileName(library(theLibName));
+   if (aFileName.empty())
+     return;
+ 
+@@ -398,6 +398,13 @@
+   HINSTANCE aModLib = ::LoadLibraryA(aFileName.c_str());
+   #else
+   void* aModLib = dlopen( aFileName.c_str(), RTLD_LAZY | RTLD_GLOBAL );
++    #if defined(__APPLE__)
++    if (!aModLib)
++    {
++        std::string aDylibName = aFileName.substr(0, aFileName.size() - 6) + ".so";
++        aModLib = dlopen( aDylibName.c_str(), RTLD_LAZY | RTLD_GLOBAL );
++    }
++    #endif
+   #endif
+   if(!aModLib && theLibName != "DFBrowser") { // don't show error for internal debugging tool
+ // LCOV_EXCL_START
+diff --color=auto -Naur shaper_old/src/XGUI/XGUI_Workshop.cpp shaper_new/src/XGUI/XGUI_Workshop.cpp
+--- shaper_old/src/XGUI/XGUI_Workshop.cpp	2026-10-07 16:18:19
++++ shaper_new/src/XGUI/XGUI_Workshop.cpp	2026-10-07 16:15:11
+@@ -1505,6 +1505,13 @@
+   }
+ #else
+   void* modLib = dlopen( libName.toLatin1(), RTLD_LAZY | RTLD_GLOBAL );
++  #ifdef __APPLE__
++  if ( !modLib ) {
++    libName.chop(6);
++    libName += ".so";
++    modLib = dlopen( libName.toLatin1(), RTLD_LAZY | RTLD_GLOBAL );
++  }
++  #endif
+   if ( !modLib ) {
+     err = QString( "Can not load library %1. %2" ).arg( libName ).arg( dlerror() );
+   } else {

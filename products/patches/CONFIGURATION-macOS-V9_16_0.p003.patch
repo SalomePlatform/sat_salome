@@ -1,0 +1,336 @@
+diff --git a/cmake/FindSalomePythonLibs.cmake b/cmake/FindSalomePythonLibs.cmake
+index 2fd1772..258c901 100644
+--- a/cmake/FindSalomePythonLibs.cmake
++++ b/cmake/FindSalomePythonLibs.cmake
+@@ -40,9 +40,9 @@ IF(WIN32 AND NOT MINGW)
+   SET(PYTHON_INCLUDE_DIR "${PYTHON_ROOT_DIR}/include")
+ ENDIF()
+ IF(APPLE)
+-  FIND_PROGRAM(PYTHON_CONFIG_EXECUTABLE python-config)
++  FIND_PROGRAM(PYTHON_CONFIG_EXECUTABLE python${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}-config)
+   IF(NOT PYTHON_CONFIG_EXECUTABLE)
+-    MESSAGE(SEND_ERROR "python-config executable not found, but python is required.")
++    MESSAGE(SEND_ERROR "python${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}-config executable not found, but python is required.")
+   ENDIF()
+   EXECUTE_PROCESS(COMMAND ${PYTHON_CONFIG_EXECUTABLE} --prefix OUTPUT_VARIABLE python_prefix OUTPUT_STRIP_TRAILING_WHITESPACE)
+   SET(PYTHON_INCLUDE_DIR ${python_prefix}/include/python${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR})
+diff --git a/cmake/FindSalomeScotch.cmake b/cmake/FindSalomeScotch.cmake
+index a8f77ce..ade9d9a 100644
+--- a/cmake/FindSalomeScotch.cmake
++++ b/cmake/FindSalomeScotch.cmake
+@@ -24,6 +24,12 @@
+ #  !! Please read the generic detection procedure in SalomeMacros.cmake !!
+ #
+ 
++# Scotch >= 7 installs lib/cmake/scotch/SCOTCHConfig.cmake, which only exports
++# imported targets (no SCOTCH_INCLUDE_DIRS / SCOTCH_LIBRARIES). On a case-insensitive
++# file system (macOS) the CONFIG-mode lookup for "Scotch" matches it, so force
++# MODULE mode (FindScotch.cmake) first; the macro below then skips its own lookup.
++FIND_PACKAGE(Scotch MODULE QUIET)
++
+ SALOME_FIND_PACKAGE_AND_DETECT_CONFLICTS(Scotch SCOTCH_INCLUDE_DIRS 1)
+ #MARK_AS_ADVANCED()
+ 
+diff --color=auto -Naur CONFIGURATION_old/cmake/FindSalomeBoost.cmake CONFIGURATION_new/cmake/FindSalomeBoost.cmake
+--- CONFIGURATION_old/cmake/FindSalomeBoost.cmake	2026-09-29 15:18:19
++++ CONFIGURATION_new/cmake/FindSalomeBoost.cmake	2026-09-29 15:17:55
+@@ -27,7 +27,7 @@
+ SET(Boost_USE_MULTITHREADED      ON)
+ SET(Boost_USE_STATIC_RUNTIME     OFF)
+ SET(Boost_NO_BOOST_CMAKE         ON)
+-SET(SalomeBoost_COMPONENTS       filesystem regex system thread date_time chrono serialization)
++SET(SalomeBoost_COMPONENTS       filesystem regex thread date_time chrono serialization)
+ SET(SalomeBoost_FIND_COMPONENTS ${SalomeBoost_COMPONENTS})
+ 
+ IF(WIN32)
+
+diff --color=auto -Naur CONFIGURATION_old/cmake/FindSalomeQt5.cmake CONFIGURATION_new/cmake/FindSalomeQt5.cmake
+--- CONFIGURATION_old/cmake/FindSalomeQt5.cmake	2026-09-30 11:03:09
++++ CONFIGURATION_new/cmake/FindSalomeQt5.cmake	2026-09-30 10:59:55
+@@ -55,7 +55,7 @@
+   LIST(APPEND Qt5_OPTIONAL_COMPONENTS WebEngineCore WebEngine WebEngineWidgets)
+ ENDIF()
+ 
+-IF(NOT WIN32)
++IF(NOT WIN32 AND NOT APPLE)
+   ## QtX11Extras package is used on Linux only
+   LIST(APPEND Qt5_FIND_COMPONENTS X11Extras)
+ ENDIF()
+diff --color=auto -Naur CONFIGURATION_old/cmake/SalomeMacros.cmake CONFIGURATION_new/cmake/SalomeMacros.cmake
+--- CONFIGURATION_old/cmake/SalomeMacros.cmake	2026-10-07 13:14:05
++++ CONFIGURATION_new/cmake/SalomeMacros.cmake	2026-10-07 13:40:35
+@@ -957,6 +957,9 @@
+      IF(NOT ${_item} STREQUAL "LD_LIBRARY_PATH")
+        SET(_env "${_item}=$ENV{${_item}};${_env_${_item}}${sep}${_env}")
+      ENDIF()
++   ELSEIF(APPLE AND ${_item} STREQUAL "LD_LIBRARY_PATH")
++       STRING(REPLACE ";" ":" _iii "$ENV{DYLD_LIBRARY_PATH}")
++        SET(_env "DYLD_LIBRARY_PATH=${_iii}:${_env_${_item}}${sep}${_env}")
+    ELSE()
+      STRING(REPLACE ";" ":" _iii "$ENV{${_item}}")
+      SET(_env "${_item}=${_iii}:${_env_${_item}}${sep}${_env}")
+diff --color=auto -Naur CONFIGURATION_old/cmake/SalomeSetupPlatform.cmake CONFIGURATION_new/cmake/SalomeSetupPlatform.cmake
+--- CONFIGURATION_old/cmake/SalomeSetupPlatform.cmake	2026-10-07 13:14:05
++++ CONFIGURATION_new/cmake/SalomeSetupPlatform.cmake	2026-10-07 13:40:35
+@@ -33,6 +33,28 @@
+   SET(MACHINE_IS_64 FALSE)
+ ENDIF()
+ 
++## Detect target processor family (x86 or ARM)
++## On Apple, CMAKE_OSX_ARCHITECTURES (when set) overrides the host processor
++IF(APPLE AND CMAKE_OSX_ARCHITECTURES)
++  LIST(LENGTH CMAKE_OSX_ARCHITECTURES _nb_osx_archs)
++  IF(_nb_osx_archs GREATER 1)
++    MESSAGE(WARNING "Universal builds (CMAKE_OSX_ARCHITECTURES=${CMAKE_OSX_ARCHITECTURES}) are not supported: "
++                    "SALOME prerequisites are single-architecture. Set CMAKE_OSX_ARCHITECTURES to arm64 or x86_64.")
++  ENDIF()
++  LIST(GET CMAKE_OSX_ARCHITECTURES 0 SALOME_TARGET_PROCESSOR)
++  UNSET(_nb_osx_archs)
++ELSE()
++  SET(SALOME_TARGET_PROCESSOR ${CMAKE_SYSTEM_PROCESSOR})
++ENDIF()
++STRING(TOLOWER "${SALOME_TARGET_PROCESSOR}" _target_proc_lc)
++IF(_target_proc_lc MATCHES "^(arm64|aarch64)")
++  SET(MACHINE_IS_ARM64 TRUE)
++ELSE()
++  SET(MACHINE_IS_ARM64 FALSE)
++ENDIF()
++UNSET(_target_proc_lc)
++
++
+ ## Force CMAKE_BUILD_TYPE to Release if not set
+ IF(NOT CMAKE_BUILD_TYPE)
+   SET(CMAKE_BUILD_TYPE $ENV{CMAKE_BUILD_TYPE})
+@@ -68,8 +90,8 @@
+   ADD_DEFINITIONS(-D_UNICODE)
+   ADD_DEFINITIONS(-DPPRO_NT)                  # For medfile
+ ELSE()
+-  ## Linux specific:
+-  SET(PLATFORM_LIBS dl)                       # Dynamic loading (dlopen, dlsym)
++  ## Linux / macOS specific:
++  SET(PLATFORM_LIBS ${CMAKE_DL_LIBS})         # Dynamic loading (dlopen, dlsym)
+   IF(MACHINE_IS_64) 
+     ADD_DEFINITIONS(-DPCLINUX64)
+   ENDIF(MACHINE_IS_64)
+diff --color=auto -Naur CONFIGURATION_old/cmake/configure_rpath_relative.py CONFIGURATION_new/cmake/configure_rpath_relative.py
+--- CONFIGURATION_old/cmake/configure_rpath_relative.py	2026-10-07 13:14:05
++++ CONFIGURATION_new/cmake/configure_rpath_relative.py	2026-10-07 13:40:35
+@@ -44,9 +44,13 @@
+ from typing import List, Set
+ from abc import ABC, abstractmethod
+ 
++IS_MACOS = sys.platform == 'darwin'
++
+ SYSTEM_PATH_REGEX = re.compile(
+     r'^(/lib|/usr|/lib64|/bin|/sbin|/usr/sbin|/usr/local/lib|/usr/local/bin)')
+ 
++ORIGIN_KEYWORD = '@loader_path' if IS_MACOS else '$ORIGIN'
++
+ class PathConversionStrategy(ABC):
+     """
+     Abstract base class for path conversion strategies.
+@@ -66,9 +70,9 @@
+ 
+     def relative_path_to_origin(self, path: str) -> str:
+         """
+-        Make the given relative path using the $ORIGIN keyword.
++        Make the given relative path using the $ORIGIN (ELF) or @loader_path (Mach-O) keyword.
+         """
+-        return os.path.join('$ORIGIN', path)
++        return os.path.join(ORIGIN_KEYWORD, path)
+ 
+ class SystemPathConversionStrategy(PathConversionStrategy):
+     """
+@@ -80,7 +84,7 @@
+ 
+ class OriginPathConversionStrategy(PathConversionStrategy):
+     """
+-    Strategy for paths starting with $ORIGIN.
++    Strategy for paths starting with $ORIGIN, or with @loader_path, @executable_path or @rpath on macOS.
+     """
+     def convert(self, path: str, binary_dir: str) -> str:
+         logging.debug("Returning origin path %s as is", path)
+@@ -129,7 +133,7 @@
+         """
+         if self.is_system_path(path):
+             return self.strategies['system']
+-        elif path.startswith('$ORIGIN'):
++        elif path.startswith('$ORIGIN') or path.startswith('@'):
+             return self.strategies['origin']
+         elif os.path.isabs(path):
+             return self.strategies['absolute']
+@@ -180,7 +184,7 @@
+         shared_libs = []
+         for root, _, files in os.walk(directory):
+             for file in files:
+-                if file.endswith('.so') or '.so.' in file:
++                if file.endswith('.so') or '.so.' in file or (IS_MACOS and file.endswith('.dylib'))
+                     shared_libs.append(os.path.join(root, file))
+         return shared_libs
+     
+@@ -190,8 +194,10 @@
+             out,_ = p.communicate()
+             if p.returncode != 0:
+                 return False
+-            return "ELF" == out.decode()[:3] and "executable" in out.decode().lower()
++            out = out.decode()
++            return (out.startswith("ELF") or out.startswith("Mach-O")) and "executable" in out.lower()
+ 
++
+         ret = []
+         for root, _, files in os.walk(directory):
+             for file in files:
+@@ -202,14 +208,18 @@
+ 
+     def read_rpath(self, lib_path: str) -> str:
+         """
+-        Read RPATH or RUNPATH from the ELF header using the readelf command.
++        Read RPATH or RUNPATH from the ELF header using the readelf command, or
++        the LC_RPATH load commands of a Mach-O binary using the otool command.
+ 
++
+         Args:
+             lib_path (str): The path to the shared library.
+ 
+         Returns:
+             str: The RPATH or RUNPATH value, or an empty string if not found.
+         """
++        if IS_MACOS:
++            return self.read_rpath_macho(lib_path)
+         try:
+             result = subprocess.run(
+                 ['readelf', '-d', lib_path], capture_output=True, text=True, check=True)
+@@ -221,6 +231,56 @@
+             logging.error("Error reading %s: %s", lib_path, e)
+         return ""
+ 
++    def read_rpath_macho(self, lib_path: str) -> str:
++        """
++        Read the LC_RPATH entries of a Mach-O binary using the otool command.
++
++        Args:
++            lib_path (str): The path to the binary.
++
++        Returns:
++            str: The colon-separated LC_RPATH entries, or an empty string if not found.
++        """
++        try:
++            result = subprocess.run(
++                ['otool', '-l', lib_path], capture_output=True, text=True, check=True)
++        except subprocess.CalledProcessError as e:
++            logging.error("Error reading %s: %s", lib_path, e)
++            return ""
++
++        rpaths = []
++        in_rpath_cmd = False
++        for line in result.stdout.splitlines():
++            line = line.strip()
++            if line.startswith('cmd '):
++                in_rpath_cmd = line == 'cmd LC_RPATH'
++            elif in_rpath_cmd and line.startswith('path '):
++                # Line format: "path <rpath> (offset <n>)"
++                rpaths.append(line[len('path '):].rsplit(' (offset', 1)[0])
++                in_rpath_cmd = False
++        return ':'.join(rpaths)
++
++    def set_rpath_macho(self, lib: str, rpath_old: str, rpath_new: Set[str]):
++        """
++        Replace the LC_RPATH entries of a Mach-O binary using install_name_tool,
++        then re-sign it: on Apple Silicon a binary with an invalid signature is killed at load time.
++
++        Args:
++            lib (str): The path to the binary.
++            rpath_old (str): The old colon-separated RPATH string.
++            rpath_new (Set[str]): The new RPATH entries.
++        """
++        old_entries = rpath_old.split(':')
++        cmd = ['install_name_tool']
++        for path in old_entries:
++            if path not in rpath_new:
++                cmd += ['-delete_rpath', path]
++        for path in rpath_new:
++            if path not in old_entries:
++                cmd += ['-add_rpath', path]
++        subprocess.run(cmd + [lib], check=True)
++        subprocess.run(['codesign', '--force', '--sign', '-', lib], check=True)
++
+     def check_rpath_size(self, lib: str, rpath_old: str, rpath_new_str: str):
+         """
+         Check the size of the new RPATH and compare it with the old RPATH size.
+@@ -282,6 +342,9 @@
+ 
+         # Set new RPATH
+         try:
++            if IS_MACOS:
++                self.set_rpath_macho(lib, rpath_old, rpath_new)
++                return
+             #subprocess.run(['patchelf', '--set-rpath', rpath_new_str, lib], check=True)
+             subprocess.run(['chrpath', '-r', rpath_new_str, lib], check=True)
+         except subprocess.CalledProcessError as e:
+diff --git a/cmake/FindSalomeMEDFile.cmake b/cmake/FindSalomeMEDFile.cmake
+index bdcf6b0..3ab7e04 100644
+--- a/cmake/FindSalomeMEDFile.cmake
++++ b/cmake/FindSalomeMEDFile.cmake
+@@ -32,28 +32,42 @@ IF(MEDFile_FOUND)
+   SALOME_ACCUMULATE_HEADERS(MEDFILE_INCLUDE_DIRS)
+   SALOME_ACCUMULATE_ENVIRONMENT(LD_LIBRARY_PATH ${MEDFILE_LIBRARIES})
+ 
+-  # Check size of med_int
+-  SET(_med_int_cxx ${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/CMakeTmp/check_med_int_size.cxx)
+-  FILE(WRITE ${_med_int_cxx}
+-       "#include <med.h>\n#include <stdio.h>\nint main(){printf(\"%d\", sizeof(med_int)); return 0;}")
+-  TRY_RUN(_med_int_run_result _med_int_compile_results
+-          ${CMAKE_BINARY_DIR} ${_med_int_cxx}
+-          CMAKE_FLAGS "-DINCLUDE_DIRECTORIES:STRING=${MEDFILE_INCLUDE_DIRS};${HDF5_INCLUDE_DIR}"
+-	  LINK_LIBRARIES ${MEDFILE_C_LIBRARIES} ${HDF5_LIBRARIES}
+-	  RUN_OUTPUT_VARIABLE _med_int_output)
+-  IF(_med_int_compile_results)
+-    SET(MED_INT_SIZE ${_med_int_output})
+-  ELSE()
+-    SET(MED_INT_SIZE UNKNOWN)
+-  ENDIF()
+-  IF(MED_INT_SIZE EQUAL 8)
++  # Check size of med_int.
++  # Compile-only test (no TRY_RUN): running a test executable linked to the
++  # MEDFile/HDF5 shared libraries fails on macOS (dylibs not found at run time,
++  # DYLD_LIBRARY_PATH stripped by SIP), which silently gave MED_INT_IS_LONG=FALSE.
++  # MED_INT_IS_LONG may also be forced with -DMED_INT_IS_LONG_OVERRIDE=ON|OFF.
++  SET(_med_int_size_found UNKNOWN)
++  FOREACH(_med_int_try_size 4 8)
++    SET(_med_int_cxx ${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/CMakeTmp/check_med_int_size_${_med_int_try_size}.cxx)
++    FILE(WRITE ${_med_int_cxx}
++         "#include <med.h>\ntypedef char med_int_size_check[(sizeof(med_int) == ${_med_int_try_size}) ? 1 : -1];\nint main(){ return 0; }\n")
++    TRY_COMPILE(_med_int_compile_result
++                ${CMAKE_BINARY_DIR} ${_med_int_cxx}
++                CMAKE_FLAGS "-DINCLUDE_DIRECTORIES:STRING=${MEDFILE_INCLUDE_DIRS};${HDF5_INCLUDE_DIR}"
++                OUTPUT_VARIABLE _med_int_compile_output)
++    IF(_med_int_compile_result)
++      SET(_med_int_size_found ${_med_int_try_size})
++    ENDIF()
++    UNSET(_med_int_compile_result CACHE)
++    UNSET(_med_int_compile_result)
++  ENDFOREACH()
++  SET(MED_INT_SIZE ${_med_int_size_found})
++  IF(DEFINED MED_INT_IS_LONG_OVERRIDE)
++    SET(MED_INT_IS_LONG ${MED_INT_IS_LONG_OVERRIDE})
++  ELSEIF(MED_INT_SIZE EQUAL 8)
+     SET(MED_INT_IS_LONG TRUE)
+-  ELSE()
++  ELSEIF(MED_INT_SIZE EQUAL 4)
+     SET(MED_INT_IS_LONG FALSE)
++  ELSE()
++    MESSAGE(FATAL_ERROR "MEDFile: could not determine size of med_int "
++                        "(includes: ${MEDFILE_INCLUDE_DIRS};${HDF5_INCLUDE_DIR}). "
++                        "Last compiler output:\n${_med_int_compile_output}\n"
++                        "Set -DMED_INT_IS_LONG_OVERRIDE=ON|OFF to bypass this check.")
+   ENDIF()
+-  MESSAGE(STATUS "MEDFile: size of med_int is ${MED_INT_SIZE}")
++  MESSAGE(STATUS "MEDFile: size of med_int is ${MED_INT_SIZE} (MED_INT_IS_LONG=${MED_INT_IS_LONG})")
+   UNSET(_med_int_cxx)
+-  UNSET(_med_int_run_result)
+-  UNSET(_med_int_compile_results)
+-  UNSET(_med_int_output)
++  UNSET(_med_int_size_found)
++  UNSET(_med_int_try_size)
++  UNSET(_med_int_compile_output)
+ ENDIF()

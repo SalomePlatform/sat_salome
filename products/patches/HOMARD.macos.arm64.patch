@@ -1,0 +1,55 @@
+diff --git a/src/tool/Dependance_Machine/dmalmc.c b/src/tool/Dependance_Machine/dmalmc.c
+index 93fd32e..b6c133b 100644
+--- a/src/tool/Dependance_Machine/dmalmc.c
++++ b/src/tool/Dependance_Machine/dmalmc.c
+@@ -34,7 +34,9 @@
+ #include "FC.h"
+ #include <stdlib.h>
+ #include <stdio.h>
++#if !defined(__APPLE__)
+ #include <malloc.h>
++#endif
+ 
+ /* %%%%%%%%%%%%%%%%% début de zone à préprocesser %%%%%%%%%%%%%%%%%% */
+ #ifdef _POSIX
+diff --git a/src/tool/Dependance_Machine/dmlibc.c b/src/tool/Dependance_Machine/dmlibc.c
+index ad713ff..0ec81aa 100644
+--- a/src/tool/Dependance_Machine/dmlibc.c
++++ b/src/tool/Dependance_Machine/dmlibc.c
+@@ -21,7 +21,9 @@
+ #include "dmport.h"
+ #include "FC.h"
+ #include <stdlib.h>
++#if !defined(__APPLE__)
+ #include <malloc.h>
++#endif
+ 
+ /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+ /*   Libération de la mémoire associée à malloc                      */
+diff --git a/src/tool/Dependance_Machine/dmport.h b/src/tool/Dependance_Machine/dmport.h
+index 2fcb832..c1be5ef 100644
+--- a/src/tool/Dependance_Machine/dmport.h
++++ b/src/tool/Dependance_Machine/dmport.h
+@@ -6,7 +6,7 @@
+ #ifndef dmport_h
+ #define dmport_h
+ 
+-#if defined(__unix__)
++#if defined(__unix__) || defined(__APPLE__)
+ #define _POSIX
+ #warning "-------- definition de _POSIX --------"
+ #endif
+diff --git a/src/tool/Dependance_Machine/dmralc.c b/src/tool/Dependance_Machine/dmralc.c
+index 777e657..9106f75 100644
+--- a/src/tool/Dependance_Machine/dmralc.c
++++ b/src/tool/Dependance_Machine/dmralc.c
+@@ -21,7 +21,9 @@
+ #include "dmport.h"
+ #include "FC.h"
+ #include <stdlib.h>
++#if !defined(__APPLE__)
+ #include <malloc.h>
++#endif
+ 
+ /* %%%%%%%%%%%%%%%%% début de zone à préprocesser %%%%%%%%%%%%%%%%%% */
+ #ifdef _POSIX

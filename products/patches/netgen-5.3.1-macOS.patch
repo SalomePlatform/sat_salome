@@ -1,0 +1,12 @@
+diff --color=auto -Naur netgen_old/libsrc/include/incvis.hpp netgen_new/libsrc/include/incvis.hpp
+--- netgen_old/libsrc/include/incvis.hpp	2026-10-06 12:30:47
++++ netgen_new/libsrc/include/incvis.hpp	2026-10-06 12:30:16
+@@ -12,7 +12,7 @@
+ #define GL_GLEXT_PROTOTYPES
+ 
+ 
+-#  if defined(TOGL_AGL) || defined(TOGL_AGL_CLASSIC)
++#  if defined(TOGL_AGL) || defined(TOGL_AGL_CLASSIC) || defined(__APPLE__)
+ #    include <OpenGL/gl.h>
+ #    include <OpenGL/glu.h>
+ #  else

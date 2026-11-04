@@ -20,13 +20,18 @@ def set_env(env, product_dir, version):
     env.set('COREFLOWS_ROOT_DIR', root_module_rep)
 
     root = env.get('CoreFlows_ROOT_DIR')
-    
-    env.prepend('PATH', os.path.join(root, 'include'))
-    env.prepend('LD_LIBRARY_PATH', os.path.join(root, 'lib'))
+
+    if platform.system() == "Darwin" :
+        env.prepend('PATH', os.path.join(root, 'include'))
+        env.prepend('DYLD_LIBRARY_PATH', os.path.join(root, 'lib'))
+    else :
+        env.prepend('PATH', os.path.join(root, 'include'))
+        env.prepend('LD_LIBRARY_PATH', os.path.join(root, 'lib'))
+
     env.prepend('PYTHONPATH', os.path.join(root, 'lib'))
     env.prepend('PYTHONPATH', os.path.join(root, 'lib', 'CoreFlows_Python'))
     env.prepend('PYTHONPATH', os.path.join(root, 'bin', 'CoreFlows_Python'))
     env.prepend('PYTHONPATH', os.path.join(root, 'lib','python2.7','site-packages','salome'))
- 
+
 def set_nativ_env(env):
     pass

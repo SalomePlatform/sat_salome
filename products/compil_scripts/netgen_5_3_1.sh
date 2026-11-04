@@ -21,7 +21,11 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-libtoolize --force --copy --automake
+if [ "$DIST_NAME" = "macOS" ]; then
+    glibtoolize --force --copy --automake
+else
+    libtoolize --force --copy --automake
+fi
 if [ $? -ne 0 ]; then
     echo "error on manual call to libtoolize"
     exit 1
@@ -73,11 +77,17 @@ CONFIGURE_FLAGS="-std=c++0x"
 if [ "$LINUX_DISTRIBUTION" == "FD42" ]; then
     CONFIGURE_FLAGS+=" -fpermissive"
 fi   
+
+opts=()
+if [ "$DIST_NAME" = "macOS" ]; then
+    eval "opts=($SAT_CONFIGURE_OPTIONS)"
+fi
+
 echo ./configure --prefix=${PRODUCT_INSTALL} \
      --with-occ=${CASROOT} \
      --disable-openmp \
      ${TCL_TK_OPTIONS} \
-     CXXFLAGS="-I${CASROOT}/include/opencascade ${OLEVEL} ${BFLAG} ${CONFIGURE_FLAGS}"
+     CXXFLAGS="-I${CASROOT}/include/opencascade ${OLEVEL} ${BFLAG} ${CONFIGURE_FLAGS}" "${opts[@]}"
 
 ./configure --prefix=${PRODUCT_INSTALL} \
             --with-occ=${CASROOT} \

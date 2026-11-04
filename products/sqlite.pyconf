@@ -28,3 +28,9 @@ default :
       incremental : "yes"
     }
 }
+
+default_macOS:
+{
+    post_script : "setup-rpath-macOS.sh"
+}
+

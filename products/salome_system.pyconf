@@ -34,6 +34,8 @@ default :
                    "cmake", "libicu-dev", "libopenmpi-dev", "libreadline-dev", "libhwloc-dev", "libsqlite3-dev", "libcurl4-openssl-dev",
                    "libxt-dev", "libxcursor-dev", "libtbb-dev", "libxrandr-dev"]
 
+        brew : []
+        brew_dev : ["gcc", "autoconf", "automake", "libtool", "pkgconf"]
         # specific to some platform(s)
         "CO7" :
         {

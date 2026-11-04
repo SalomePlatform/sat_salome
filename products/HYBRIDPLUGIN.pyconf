@@ -39,4 +39,9 @@ default :
         has_unit_tests
         incremental : "yes"
     }
-} 
+}
+
+default_macOS :
+{
+    cmake_options: " -DFREETYPE_LIBRARY=${FREETYPE_ROOT_DIR}/lib/libfreetype.dylib -DFREETYPE_INCLUDE_DIRS=${FREETYPE_ROOT_DIR}/include"
+}

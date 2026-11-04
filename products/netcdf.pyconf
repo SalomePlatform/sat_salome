@@ -44,6 +44,9 @@ version_4_9_2:
       archive_name  : "netcdf-c-4.9.2.tar.gz"
     }
     compil_script :  "netcdf-4.9.2" + $VARS.scriptExtension
+    depend : ['Python', 'hdf5', 'tbb', 'nlopt', 'libxml2', 'eigen']
+    build_depend : ["cmake", "swig"]
+    opt_depend : ['openmpi', 'lapack']
     patches : []
 }
 

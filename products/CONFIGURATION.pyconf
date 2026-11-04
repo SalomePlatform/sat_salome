@@ -26,6 +26,18 @@ default :
     patches : []
 }
 
+default_macOS:
+{
+    git_info:
+    {
+      repositories :
+      {
+            github : "https://github.com/raphael-nabet/configuration.git"
+      }
+      git_commands: [ 'git switch support-for-macos-platform' ]
+    }
+}
+
 default_FD44:
 {
   patches: ['CONFIGURATION_boost_1_89.patch', 'CONFIGURATION-FD44-V9_16_0.patch']
@@ -34,6 +46,12 @@ default_FD44:
 default_UB26_04:
 {
   patches: ['CONFIGURATION_scotch_7.patch', 'CONFIGURATION_boost_1_89.patch']
+}
+
+version_V9_16_0_macOS:
+{
+  #patches: ['CONFIGURATION-macOS-V9_16_0.p001.patch','CONFIGURATION-macOS-V9_16_0.p002.patch']
+  patches: ['CONFIGURATION-macOS-V9_16_0.p003.patch', 'CONFIGURATION.macos.arm64.patch']
 }
 
 version_V9_16_0_UB26_04:

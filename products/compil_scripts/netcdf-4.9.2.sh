@@ -4,7 +4,23 @@ echo "##########################################################################
 echo "netcdf" $VERSION
 echo "##########################################################################"
 
-CMAKE_OPTIONS=""
+if [ "$DIST_NAME" == "macOS" ]; then
+    export SDKROOT="$(xcrun --show-sdk-path)"
+    export CFLAGS="-isysroot $(xcrun --show-sdk-path)"
+    export CPPFLAGS="-isysroot $(xcrun --show-sdk-path)"
+    libExtension="dylib"
+else
+    libExtension="so"
+fi
+
+CMAKE_OPTIONS=
+
+if [ "$DIST_NAME" == "macOS" ]; then
+    CMAKE_OPTIONS+=" $SAT_CMAKE_OPTIONS"
+    libExtension="dylib"
+else
+    libExtension="so"
+fi
 if [ -n "$SAT_HPC" ]  && [ -n "$MPI_ROOT_DIR" ]; then
     echo "WARNING: setting CC and CXX environment variables and target MPI wrapper"
     CMAKE_OPTIONS+=" -DCMAKE_CXX_COMPILER:STRING=${MPI_CXX_COMPILER}"
@@ -23,7 +39,7 @@ CMAKE_OPTIONS+=" -DPYTHON_EXECUTABLE=${PYTHONBIN}"
 ### libxml2 settings
 if [ -n "$LIBXML2_ROOT_DIR" ] && [ "${SAT_libxml2_IS_NATIVE}" != "1" ]; then
     CMAKE_OPTIONS+=" -DLIBXML2_INCLUDE_DIR:STRING=${LIBXML2_ROOT_DIR}/include/libxml2"
-    CMAKE_OPTIONS+=" -DLIBXML2_LIBRARIES:STRING=${LIBXML2_ROOT_DIR}/lib/libxml2.so"
+    CMAKE_OPTIONS+=" -DLIBXML2_LIBRARIES:STRING=${LIBXML2_ROOT_DIR}/lib/libxml2.${libExtension}"
     CMAKE_OPTIONS+=" -DLIBXML2_XMLLINT_EXECUTABLE=${LIBXML2_ROOT_DIR}/bin/xmllint"
 fi
 
@@ -32,15 +48,15 @@ if [ -n "$HDF5_ROOT_DIR" ] && [ "${SAT_hdf5_IS_NATIVE}" != "1" ]; then
     CMAKE_OPTIONS+=" -DHDF5_DIR:PATH=${HDF5_ROOT_DIR}/share/cmake/hdf5"
     CMAKE_OPTIONS+=" -DHDF5_USE_STATIC_LIBRARIES:BOOL=OFF"
     CMAKE_OPTIONS+=" -DHDF5_ROOT:PATH=${HDF5_ROOT_DIR}"
-    CMAKE_OPTIONS+=" -DHDF5_HL_LIBRARY=${HDF5_ROOT_DIR}/lib/libhdf5_hl.so"
-    CMAKE_OPTIONS+=" -DHDF5_C_LIBRARY=${HDF5_ROOT_DIR}/lib/libhdf5.so"
+    CMAKE_OPTIONS+=" -DHDF5_HL_LIBRARY=${HDF5_ROOT_DIR}/lib/libhdf5_hl.${libExtension}"
+    CMAKE_OPTIONS+=" -DHDF5_C_LIBRARY=${HDF5_ROOT_DIR}/lib/libhdf5.${libExtension}"
     CMAKE_OPTIONS+=" -DHDF5_INCLUDE_DIR=${HDF5_ROOT_DIR}/include"
 fi
 
 ### libxml2 settings
 if [ -n "$LIBXML2_ROOT_DIR" ] && [ "${SAT_libxml2_IS_NATIVE}" != "1" ]; then
     CMAKE_OPTIONS+=" -DLIBXML2_INCLUDE_DIR:STRING=${LIBXML2_ROOT_DIR}/include/libxml2"
-    CMAKE_OPTIONS+=" -DLIBXML2_LIBRARIES:STRING=${LIBXML2_ROOT_DIR}/lib/libxml2.so"
+    CMAKE_OPTIONS+=" -DLIBXML2_LIBRARIES:STRING=${LIBXML2_ROOT_DIR}/lib/libxml2.${libExtension}"
     CMAKE_OPTIONS+=" -DLIBXML2_XMLLINT_EXECUTABLE=${LIBXML2_ROOT_DIR}/bin/xmllint"
 fi
 

@@ -1,22 +1,34 @@
 #!/usr/bin/env python
 #-*- coding:utf-8 -*-
 
-import os.path
+import os.path, platform
+
+def _is_darwin():
+    # Defined at module level: inside set_nativ_env(), "platform" is a local
+    # name (because of the "import platform" in the except clause) and cannot
+    # be used before that import is executed.
+    return platform.system() == "Darwin"
 
 def set_env(env, prereq_dir, version):
     env.set('OPENMPIDIR', prereq_dir)
     env.set('OPAL_PREFIX', prereq_dir) # be able to move openmpi install (packages)
-    env.set('MPI_ROOT_DIR', prereq_dir)  # update for cmake  
+    env.set('MPI_ROOT_DIR', prereq_dir)  # update for cmake
     env.set('MPI_ROOT', prereq_dir)
     env.set('MPI_INCLUDE_DIR', os.path.join(prereq_dir, 'include'))
     env.set('MPI_C_COMPILER', os.path.join(prereq_dir, 'bin', 'mpicc'))
     env.set('MPI_CXX_COMPILER', os.path.join(prereq_dir, 'bin', 'mpicxx'))
     env.set('MPI_Fortran_COMPILER', os.path.join(prereq_dir, 'bin', 'mpifort'))
     env.set('MPIEXEC_EXECUTABLE', os.path.join(prereq_dir, 'bin', 'mpiexec'))
-    env.set('MPI_C_FOUND', os.path.join(prereq_dir,'lib','libmpi.so'))
     env.prepend('PATH', os.path.join(prereq_dir, 'bin'))
     env.prepend('PATH', os.path.join(prereq_dir, 'include'))
-    env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib'))
+
+    if platform.system() == "Darwin" :
+        env.set('MPI_C_FOUND', os.path.join(prereq_dir,'lib','libmpi.dylib'))
+        env.prepend('DYLD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib'))
+    else :
+        env.set('MPI_C_FOUND', os.path.join(prereq_dir,'lib','libmpi.so'))
+        env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib'))
+
     env.prepend('C_INCLUDE_PATH', os.path.join(prereq_dir, 'include'))  # needed for parallel h5py
     if version in ['4.1.5'] :
         env.set('PMIX_MCA_gds', 'hash')
@@ -25,6 +37,7 @@ def set_nativ_env(env):
     prereq_dir='/usr'
     prereq_bin='/usr/bin'
     prereq_inc='/usr/include/openmpi'
+    isDarwin = _is_darwin()
     try:
         import distro
         if any(distribution in distro.name().lower() for distribution in ["rocky", "centos", "fedora"]) :
@@ -47,8 +60,13 @@ def set_nativ_env(env):
     env.set('MPI_C_COMPILER', os.path.join(prereq_bin,'mpicc'))
     env.set('MPI_CXX_COMPILER', os.path.join(prereq_bin,'mpicxx'))
     env.set('MPI_FC_COMPILER', os.path.join(prereq_bin,'mpifort'))
-    env.set('MPI_C_FOUND', os.path.join(prereq_dir,'lib','libmpi.so'))
     env.set('MPI_INCLUDE_DIR', prereq_inc)
     if prereq_bin != "/usr/bin":
         env.prepend('PATH', prereq_bin)
-    env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir,'lib'))
+
+    if isDarwin :
+        env.set('MPI_C_FOUND', os.path.join(prereq_dir,'lib','libmpi.dylib'))
+        env.prepend('DYLD_LIBRARY_PATH', os.path.join(prereq_dir,'lib'))
+    else :
+        env.set('MPI_C_FOUND', os.path.join(prereq_dir,'lib','libmpi.so'))
+        env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir,'lib'))

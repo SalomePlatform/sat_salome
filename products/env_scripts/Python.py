@@ -25,6 +25,18 @@ def set_env(env,prereq_dir,version,forBuild=None):
         env.set('PYTHONBIN', os.path.join(prereq_dir, 'python.exe'))  # needed for runSalome.py
         env.prepend('PATH', os.path.join(prereq_dir, 'libs'))
         env.prepend('PATH', os.path.join(prereq_dir, 'Scripts'))
+
+    elif platform.system() == "Darwin" :
+        env.prepend('PATH', os.path.join(prereq_dir, 'bin'))
+        env.prepend('DYLD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib'))
+        env.set('PYTHON_INCLUDE', os.path.join(prereq_dir, 'include', 'python' + version))
+        env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'lib', 'python' + version))
+        env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'lib', 'python' + version, 'site-packages'))
+        if version[0]=='3':
+            env.set('PYTHONBIN', os.path.join(prereq_dir, 'bin','python3'))  # needed for runSalome.py
+        else:
+            env.set('PYTHONBIN', os.path.join(prereq_dir, 'bin','python'))  # needed for runSalome.py
+
     else :
         env.prepend('PATH', os.path.join(prereq_dir, 'bin'))
         env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib'))

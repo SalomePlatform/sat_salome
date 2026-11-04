@@ -25,6 +25,19 @@ default_win:
    check_install : []
 }
 
+default_macOS:
+{
+    post_script : "setup-rpath-macOS.sh"
+}
+
+version_5_15_19_macOS :
+{
+  compil_script : "qt-5.15.19" + $VARS.scriptExtension
+  check_install : []
+  depend : ["freetype", 'llvm', 'openssl', 'boost']
+  patches : ["qt-5.15.19-macOS-remove-AGL.patch"]
+}
+
 version_5_15_17 :
 {
   compil_script : "qt-5.15.17" + $VARS.scriptExtension

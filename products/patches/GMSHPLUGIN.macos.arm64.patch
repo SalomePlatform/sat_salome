@@ -1,0 +1,30 @@
+diff --git a/src/GMSHPlugin/GMSHPlugin_Mesher.cxx b/src/GMSHPlugin/GMSHPlugin_Mesher.cxx
+index a3b8bbf..8a57acf 100644
+--- a/src/GMSHPlugin/GMSHPlugin_Mesher.cxx
++++ b/src/GMSHPlugin/GMSHPlugin_Mesher.cxx
+@@ -74,7 +74,8 @@
+ #include <omp.h>
+ #endif
+ #else
+-#include <tbb/global_control.h>
++// macOS: AppleClang has no OpenMP runtime (omp.h)
++#include <thread>
+ #endif
+ 
+ using namespace std;
+@@ -268,7 +269,14 @@ void GMSHPlugin_Mesher::SetMaxThreadsGmsh()
+     _maxThreads = 1;
+   }
+   else
+-    _maxThreads = tbb::global_control::active_value(tbb::global_control::max_allowed_parallelism);
++  {
++#if defined(__APPLE__)
++    unsigned int nbThreads = std::thread::hardware_concurrency();
++    _maxThreads = nbThreads > 0 ? nbThreads : 1;
++#else
++    _maxThreads = omp_get_max_threads();
++#endif
++  }
+ }
+ #endif
+ 

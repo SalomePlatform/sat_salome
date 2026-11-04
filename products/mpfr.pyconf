@@ -10,5 +10,7 @@ default :
        rpm_dev : ["mpfr-devel"]
        apt : []
        apt_dev : ["libmpfr-dev"]
+       brew : []
+       brew_dev : ["mpfr"]
     }
 }

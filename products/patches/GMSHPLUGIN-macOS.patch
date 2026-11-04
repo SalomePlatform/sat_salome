@@ -1,0 +1,86 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 8dce33f..1c4f71b 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -167,6 +167,13 @@ ENDIF(EXISTS ${SMESH_ROOT_DIR})
+ ##
+ FIND_PACKAGE(SalomeGMSH REQUIRED)
+ 
++# GMSH >= 4.11 ships a CMake config package (gmshConfig.cmake) which takes
++# precedence over FindGMSH.cmake, so GMSH_LIBRARIES ends up empty while the
++# imported target gmsh::shared is defined. Map it so downstream targets link.
++IF(NOT GMSH_LIBRARIES AND TARGET gmsh::shared)
++  SET(GMSH_LIBRARIES gmsh::shared)
++ENDIF()
++
+ # Detection summary:
+ SALOME_PACKAGE_REPORT_AND_CHECK()
+ 
+diff --git a/src/GMSHPlugin/CMakeLists.txt b/src/GMSHPlugin/CMakeLists.txt
+index 4d2c1f5..3821293 100644
+--- a/src/GMSHPlugin/CMakeLists.txt
++++ b/src/GMSHPlugin/CMakeLists.txt
+@@ -125,7 +125,7 @@ SET(_bin_SCRIPTS
+ # --- rules ---
+ 
+ ADD_LIBRARY(GMSHEngine ${GMSHEngine_SOURCES})
+-TARGET_LINK_LIBRARIES(GMSHEngine ${_link_LIBRARIES} )
++TARGET_LINK_LIBRARIES(GMSHEngine ${_link_LIBRARIES} ${GMSH_LIBRARIES})
+ INSTALL(TARGETS GMSHEngine EXPORT ${PROJECT_NAME}TargetGroup DESTINATION ${SALOME_INSTALL_LIBS})
+ 
+ ADD_EXECUTABLE(GMSHPlugin_Runner ${GmshRunner_SOURCES})
+diff --git a/src/GMSHPlugin/GMSHPlugin_Mesher.cxx b/src/GMSHPlugin/GMSHPlugin_Mesher.cxx
+index 051fa95..a3b8bbf 100644
+--- a/src/GMSHPlugin/GMSHPlugin_Mesher.cxx
++++ b/src/GMSHPlugin/GMSHPlugin_Mesher.cxx
+@@ -18,6 +18,11 @@
+ // See http://www.alneos.com/ or email : contact@alneos.fr
+ // See http://www.salome-platform.org/ or email : webmaster.salome@opencascade.com
+ //
++
++#if defined(__APPLE__) && defined(__arm64__)
++#include <mach/arm/thread_status.h>
++#endif
++
+ #include "GMSHPlugin_Mesher.hxx"
+ #include "GMSHPlugin_Hypothesis_2D.hxx"
+ 
+@@ -64,9 +69,13 @@
+ #include <gmsh/Context.h>
+ #endif
+ 
++#if !defined(__APPLE__)
+ #if GMSH_MAJOR_VERSION >=4 && GMSH_MINOR_VERSION >=8
+ #include <omp.h>
+ #endif
++#else
++#include <tbb/global_control.h>
++#endif
+ 
+ using namespace std;
+ 
+@@ -259,7 +268,7 @@ void GMSHPlugin_Mesher::SetMaxThreadsGmsh()
+     _maxThreads = 1;
+   }
+   else
+-    _maxThreads = omp_get_max_threads();
++    _maxThreads = tbb::global_control::active_value(tbb::global_control::max_allowed_parallelism);
+ }
+ #endif
+ 
+diff --git a/src/GMSHPlugin/GMSHPlugin_i.cxx b/src/GMSHPlugin/GMSHPlugin_i.cxx
+index b779b50..6ac6f97 100644
+--- a/src/GMSHPlugin/GMSHPlugin_i.cxx
++++ b/src/GMSHPlugin/GMSHPlugin_i.cxx
+@@ -18,6 +18,11 @@
+ // See http://www.alneos.com/ or email : contact@alneos.fr
+ // See http://www.salome-platform.org/ or email : webmaster.salome@opencascade.com
+ //
++
++#if defined(__APPLE__) && defined(__arm64__)
++#include <mach/arm/thread_status.h>
++#endif
++
+ #include "utilities.h"
+ 
+ #include "GMSHPlugin_Hypothesis_i.hxx"

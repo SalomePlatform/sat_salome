@@ -36,6 +36,19 @@ default_win :
      single_install_dir : "yes"
    }
 }
+
+default_macOS:
+{
+    post_script : "setup-rpath-macOS.sh"
+}
+
+
+version_2_9_12_macOS :
+{
+    build_depend : ["cmake"]
+    compil_script :  "libxml2-2.9.12.sh"
+}
+
 # needed in order to screen with windows version - see below
 version_2_9_1 :
 {

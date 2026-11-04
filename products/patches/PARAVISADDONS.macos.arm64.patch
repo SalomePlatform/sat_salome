@@ -1,0 +1,131 @@
+diff --git a/src/ElectromagnetismRotation/plugin/ElectromagnetismRotationIO/VTKMEDTraits.hxx b/src/ElectromagnetismRotation/plugin/ElectromagnetismRotationIO/VTKMEDTraits.hxx
+index d71988a..440f9bf 100644
+--- a/src/ElectromagnetismRotation/plugin/ElectromagnetismRotationIO/VTKMEDTraits.hxx
++++ b/src/ElectromagnetismRotation/plugin/ElectromagnetismRotationIO/VTKMEDTraits.hxx
+@@ -23,7 +23,8 @@
+ 
+ class vtkIntArray;
+ class vtkLongArray;
+-#ifdef WIN32
++// mcIdType (std::int64_t) is "long long" on Windows and macOS, "long" on Linux
++#if defined(WIN32) || defined(__APPLE__)
+ class vtkLongLongArray;
+ #endif
+ class vtkFloatArray;
+@@ -46,7 +47,7 @@ public:
+ };
+ 
+ template<>
+-#ifdef WIN32
++#if defined(WIN32) || defined(__APPLE__)
+ class MEDFileVTKTraits<long long>
+ #else 
+ class MEDFileVTKTraits<long>
+@@ -54,7 +55,7 @@ class MEDFileVTKTraits<long>
+ #
+ {
+ public:
+-#ifdef WIN32
++#if defined(WIN32) || defined(__APPLE__)
+   typedef vtkLongLongArray VtkType;
+ #else
+   typedef vtkLongArray VtkType;
+diff --git a/src/QuadraticToLinear/plugin/QuadraticToLinearModule/vtkQuadraticToLinear.cxx b/src/QuadraticToLinear/plugin/QuadraticToLinearModule/vtkQuadraticToLinear.cxx
+index a91e77c..7229ee4 100644
+--- a/src/QuadraticToLinear/plugin/QuadraticToLinearModule/vtkQuadraticToLinear.cxx
++++ b/src/QuadraticToLinear/plugin/QuadraticToLinearModule/vtkQuadraticToLinear.cxx
+@@ -33,6 +33,9 @@
+ #include <vtkDemandDrivenPipeline.h>
+ #include <vtkDoubleArray.h>
+ #include <vtkLongArray.h>
++#if defined(__APPLE__)
++#include <vtkLongLongArray.h>
++#endif
+ #include <vtkExecutive.h>
+ #include <vtkFloatArray.h>
+ #include <vtkInEdgeIterator.h>
+@@ -196,6 +199,13 @@ static vtkSmartPointer<vtkDataArray> Reduce(const int *new2Old, int newNbPts, vt
+   {
+     zeRet = ReduceArray<vtkLongArray>( array, newNbPts, new2Old );
+   }
++#if defined(__APPLE__)
++  // macOS: mcIdType (std::int64_t == long long) fields come as vtkLongLongArray
++  else if (vtkLongLongArray::SafeDownCast(array))
++  {
++    zeRet = ReduceArray<vtkLongLongArray>( array, newNbPts, new2Old );
++  }
++#endif
+   else if (vtkIntArray::SafeDownCast(array))
+   {
+     zeRet = ReduceArray<vtkIntArray>( array, newNbPts, new2Old );
+diff --git a/src/RateOfFlowThroughSection/plugin/RateOfFlowThroughSectionModule/VTKMEDTraits.hxx b/src/RateOfFlowThroughSection/plugin/RateOfFlowThroughSectionModule/VTKMEDTraits.hxx
+index d71988a..440f9bf 100644
+--- a/src/RateOfFlowThroughSection/plugin/RateOfFlowThroughSectionModule/VTKMEDTraits.hxx
++++ b/src/RateOfFlowThroughSection/plugin/RateOfFlowThroughSectionModule/VTKMEDTraits.hxx
+@@ -23,7 +23,8 @@
+ 
+ class vtkIntArray;
+ class vtkLongArray;
+-#ifdef WIN32
++// mcIdType (std::int64_t) is "long long" on Windows and macOS, "long" on Linux
++#if defined(WIN32) || defined(__APPLE__)
+ class vtkLongLongArray;
+ #endif
+ class vtkFloatArray;
+@@ -46,7 +47,7 @@ public:
+ };
+ 
+ template<>
+-#ifdef WIN32
++#if defined(WIN32) || defined(__APPLE__)
+ class MEDFileVTKTraits<long long>
+ #else 
+ class MEDFileVTKTraits<long>
+@@ -54,7 +55,7 @@ class MEDFileVTKTraits<long>
+ #
+ {
+ public:
+-#ifdef WIN32
++#if defined(WIN32) || defined(__APPLE__)
+   typedef vtkLongLongArray VtkType;
+ #else
+   typedef vtkLongArray VtkType;
+diff --git a/src/ZJFilter/plugin/ZJFilterModule/vtkZJFilter.cxx b/src/ZJFilter/plugin/ZJFilterModule/vtkZJFilter.cxx
+index 887cb73..7945f5d 100644
+--- a/src/ZJFilter/plugin/ZJFilterModule/vtkZJFilter.cxx
++++ b/src/ZJFilter/plugin/ZJFilterModule/vtkZJFilter.cxx
+@@ -43,6 +43,9 @@
+ #include <vtkInformationStringKey.h>
+ #include <vtkInformationVector.h>
+ #include <vtkLongArray.h>
++#if defined(__APPLE__)
++#include <vtkLongLongArray.h>
++#endif
+ #include <vtkMultiBlockDataSet.h>
+ #include <vtkMutableDirectedGraph.h>
+ #include <vtkObjectFactory.h>
+@@ -382,7 +385,12 @@ static vtkDataSet* FilterFamilies(vtkZJFilter* zeBoss, vtkDataSet* input, const
+   if (!da)
+     return 0;
+   std::string daName(da->GetName());
++#if defined(__APPLE__)
++  // macOS: the MED reader stores mcIdType (std::int64_t == long long) fields in vtkLongLongArray
++  vtkLongLongArray* dai(vtkLongLongArray::SafeDownCast(da));
++#else
+   vtkLongArray* dai(vtkLongArray::SafeDownCast(da));
++#endif
+   if (daName != arrNameOfFamilyField || !dai)
+     return 0;
+   //
+@@ -392,7 +400,11 @@ static vtkDataSet* FilterFamilies(vtkZJFilter* zeBoss, vtkDataSet* input, const
+   zeSelection->SetNumberOfComponents(1);
+   char* pt(new char[nbOfTuples]);
+   zeSelection->SetArray(pt, nbOfTuples, 0, VTK_DATA_ARRAY_DELETE);
++#if defined(__APPLE__)
++  const long long* inPtr(dai->GetPointer(0));
++#else
+   const long* inPtr(dai->GetPointer(0));
++#endif
+   std::fill(pt, pt + nbOfTuples, 0);
+   catchAll = true;
+   catchSmth = false;

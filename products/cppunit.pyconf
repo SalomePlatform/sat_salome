@@ -27,6 +27,12 @@ default :
     }
 }
 
+default_macOS:
+{
+    post_script : "setup-rpath-macOS.sh"
+}
+
+
 # NOTE: do not delete this section, it was added on purpose in order to be able to overload it for Windows in the main application.
 version_1_13_2 :
 {

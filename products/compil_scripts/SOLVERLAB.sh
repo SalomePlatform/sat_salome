@@ -13,6 +13,10 @@ CMAKE_OPTIONS+=" -DPython_ROOT_DIR=${PYTHON_ROOT_DIR}"
 CMAKE_OPTIONS+=" -DPython_EXECUTABLE=${PYTHONBIN}"
 CMAKE_OPTIONS+=" -DCMAKE_INSTALL_PREFIX=${PRODUCT_INSTALL}"
 
+if [ $DIST_NAME = "macOS" ]; then
+    CMAKE_OPTIONS+=" $SAT_CMAKE_OPTIONS"
+fi
+
 if [ ! -d $SOURCE_DIR/solverlabGUI ]; then
     if [ $VERSION == "V9_6_0" ]; then
         # GUI was ported after 9.6.0

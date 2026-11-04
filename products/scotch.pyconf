@@ -26,6 +26,23 @@ default :
     }
 }
 
+version_7_0_15_MPI:
+{
+    compil_script: "scotch-7.0.15.sh"
+    system_info :
+    {
+        rpm : ["ptscotch-openmpi"]
+        rpm_dev : ["ptscotch-openmpi-devel"]
+        apt : ["libptscotch"]
+        apt_dev : ["libptscotch-dev"]
+    }
+    environ :
+    {
+       env_script : "ptscotch.py"
+    }
+    depend: ['openmpi', 'cmake']
+}
+
 version_7_0_6_MPI:
 {
     system_info :
@@ -41,7 +58,6 @@ version_7_0_6_MPI:
     }
     depend: ['openmpi']
 }
-
 
 version_6_1_2 :
 {

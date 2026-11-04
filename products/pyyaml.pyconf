@@ -28,6 +28,16 @@ default :
     }
 }
 
+version_6_0_macOS:
+{
+    archive_info : {archive_name : "pyyaml-6.0.tar.gz"}
+    properties:
+    {
+      incremental : "yes"
+      pip : "yes"
+    }
+}
+
 default_win:
 {
     properties:

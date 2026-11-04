@@ -46,6 +46,11 @@ default :
     }
 }
 
+default_macOS:
+{
+    cmake_options : " -DFREETYPE_LIBRARY=${FREETYPE_ROOT_DIR}/lib/libfreetype.dylib -DFREETYPE_INCLUDE_DIRS=${FREETYPE_ROOT_DIR}/include"
+}
+
 default_MPI :
 {
     cmake_options : "-DSALOME_USE_MPI=ON"

@@ -1,0 +1,134 @@
+diff --git a/doc/doxygen/CMakeLists.txt b/doc/doxygen/CMakeLists.txt
+index d81508e1..e4b2f085 100644
+--- a/doc/doxygen/CMakeLists.txt
++++ b/doc/doxygen/CMakeLists.txt
+@@ -1,36 +1,39 @@
+-# Copyright (C) 2010-2026  CEA, EDF
+-#
+-# This library is free software; you can redistribute it and/or
+-# modify it under the terms of the GNU Lesser General Public
+-# License as published by the Free Software Foundation; either
+-# version 2.1 of the License, or (at your option) any later version.
+-#
+-# This library is distributed in the hope that it will be useful,
+-# but WITHOUT ANY WARRANTY; without even the implied warranty of
+-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-# Lesser General Public License for more details.
+-#
+-# You should have received a copy of the GNU Lesser General Public
+-# License along with this library; if not, write to the Free Software
+-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
+-#
+-# See http://www.salome-platform.org/ or email : webmaster.salome@opencascade.com
+-#
++# Copyright (C) 2010-2026 CEA, EDF
++# ... (en-tête inchangé)
+ 
+ SALOME_CONFIGURE_FILE(doxyfile.in doxyfile)
+ SALOME_CONFIGURE_FILE(static/header.html.in static/header.html)
+ 
++# Sur macOS, les fichiers .dot générés doivent être exécutables
++SET(_doxy_post_commands)
++IF(APPLE)
++  SET(_doxy_post_commands
++      COMMAND ${CMAKE_COMMAND}
++              -DBUILD_DIR=${CMAKE_CURRENT_BINARY_DIR}/doc_api
++              -P ${CMAKE_CURRENT_SOURCE_DIR}/set_dot_permissions.cmake)
++ENDIF()
++
+ ADD_CUSTOM_TARGET(doxy_doc ALL
+     COMMAND ${DOXYGEN_EXECUTABLE}
++    ${_doxy_post_commands}
+     VERBATIM
+     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+ )
+ 
+ INSTALL(CODE "EXECUTE_PROCESS(COMMAND \"${CMAKE_COMMAND}\" --build ${PROJECT_BINARY_DIR} --target doxy_doc)")
++
++# Conserver les permissions des .dot à l'installation sur macOS
++SET(_doxy_install_dot_rule)
++IF(APPLE)
++  SET(_doxy_install_dot_rule
++      PATTERN "*.dot" PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE)
++ENDIF()
++
+ INSTALL(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/doc_api/html/
+         DESTINATION ${SALOME_INSTALL_DOC}/dev/PARAVIS/api
+-    	PATTERN "*.md5" EXCLUDE
+-    	PATTERN "*.map" EXCLUDE)
++        PATTERN "*.md5" EXCLUDE
++        PATTERN "*.map" EXCLUDE
++        ${_doxy_install_dot_rule})
+ 
+ SET(MAKE_CLEAN_FILES doc_api)
+ SET_DIRECTORY_PROPERTIES(PROPERTIES ADDITIONAL_MAKE_CLEAN_FILES "${MAKE_CLEAN_FILES}")
+diff --git a/doc/doxygen/doxyfile.in b/doc/doxygen/doxyfile.in
+index 8120e20b..9cac2bf2 100644
+--- a/doc/doxygen/doxyfile.in
++++ b/doc/doxygen/doxyfile.in
+@@ -2253,7 +2253,7 @@ DIRECTORY_GRAPH        = YES
+ # The default value is: png.
+ # This tag requires that the tag HAVE_DOT is set to YES.
+ 
+-DOT_IMAGE_FORMAT       = jpg
++DOT_IMAGE_FORMAT       = svg
+ 
+ # If DOT_IMAGE_FORMAT is set to svg, then this option can be set to YES to
+ # enable generation of interactive SVG images that allow zooming and panning.
+diff --color=auto -Naur PARAVIS_old/doc/doxygen/set_dot_permissions.cmake PARAVIS_new/doc/doxygen/set_dot_permissions.cmake
+--- PARAVIS_old/doc/doxygen/set_dot_permissions.cmake	1970-01-01 01:00:00
++++ PARAVIS_new/doc/doxygen/set_dot_permissions.cmake	2026-10-20 13:50:22
+@@ -0,0 +1,53 @@
++# Copyright (C) 2010-2026 CEA, EDF
++#
++# This library is free software; you can redistribute it and/or
++# modify it under the terms of the GNU Lesser General Public
++# License as published by the Free Software Foundation; either
++# version 2.1 of the License, or (at your option) any later version.
++#
++# See http://www.salome-platform.org/ or email : webmaster.salome@opencascade.com
++#
++# Usage : cmake -DBUILD_DIR=<dir> -P set_dot_permissions.cmake
++# Positionne OWNER_READ OWNER_WRITE OWNER_EXECUTE sur tous les *.dot sous BUILD_DIR.
++
++cmake_minimum_required(VERSION 3.0)
++
++set(DOT_FILE_PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE)
++
++if(NOT DEFINED BUILD_DIR)
++  message(FATAL_ERROR "BUILD_DIR non défini : cmake -DBUILD_DIR=<dir> -P set_dot_permissions.cmake")
++endif()
++
++if(NOT IS_DIRECTORY "${BUILD_DIR}")
++  message(STATUS "set_dot_permissions : ${BUILD_DIR} absent, rien à faire")
++  return()
++endif()
++
++file(GLOB_RECURSE _dot_files "${BUILD_DIR}/*.dot")
++if(NOT _dot_files)
++  message(STATUS "set_dot_permissions : aucun fichier .dot sous ${BUILD_DIR}")
++  return()
++endif()
++
++if(NOT CMAKE_VERSION VERSION_LESS 3.19)
++  file(CHMOD ${_dot_files} FILE_PERMISSIONS ${DOT_FILE_PERMISSIONS})
++else()
++  # Repli CMake < 3.19 : déplacement puis recopie avec les permissions voulues
++  set(_tmp_dir "${BUILD_DIR}/.dot_perms_tmp")
++  file(REMOVE_RECURSE "${_tmp_dir}")
++  file(MAKE_DIRECTORY "${_tmp_dir}")
++  foreach(_f IN LISTS _dot_files)
++    get_filename_component(_name "${_f}" NAME)
++    get_filename_component(_dir  "${_f}" DIRECTORY)
++    file(RENAME "${_f}" "${_tmp_dir}/${_name}")
++    file(COPY "${_tmp_dir}/${_name}"
++         DESTINATION "${_dir}"
++         FILE_PERMISSIONS ${DOT_FILE_PERMISSIONS})
++    file(REMOVE "${_tmp_dir}/${_name}")
++  endforeach()
++  file(REMOVE_RECURSE "${_tmp_dir}")
++endif()
++
++list(LENGTH _dot_files _n)
++message(STATUS "set_dot_permissions : ${_n} fichier(s) .dot mis en ${DOT_FILE_PERMISSIONS}")
++

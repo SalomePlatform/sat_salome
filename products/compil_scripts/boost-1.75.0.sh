@@ -18,7 +18,7 @@ fi
 
 echo "*** b2 ${MAKE_OPTIONS} install"
 
-./b2  ${MAKE_OPTIONS} install
+./b2 cxxflags="-std=c++17" ${MAKE_OPTIONS} install
 
 if [ $? -ne 0 ]
 then

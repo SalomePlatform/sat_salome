@@ -1,0 +1,410 @@
+diff --git a/AABB_tree/include/CGAL/AABB_tree.h b/AABB_tree/include/CGAL/AABB_tree.h
+index 0016d4ecc09..73670a58998 100644
+--- a/AABB_tree/include/CGAL/AABB_tree.h
++++ b/AABB_tree/include/CGAL/AABB_tree.h
+@@ -553,7 +553,7 @@ public:
+         traits.intersection(query, singleton_data());
+         break;
+       default: // if(size() >= 2)
+-        root_node()->template traversal_with_priority_and_group_traversal(m_primitives, query, traits, m_primitives.size(), 0, group_traversal_bound);
++        root_node()->traversal_with_priority_and_group_traversal(m_primitives, query, traits, m_primitives.size(), 0, group_traversal_bound);
+       }
+     }
+ 
+diff --git a/Algebraic_foundations/include/CGAL/number_utils.h b/Algebraic_foundations/include/CGAL/number_utils.h
+index c17823d72b9..0f52fc805e1 100644
+--- a/Algebraic_foundations/include/CGAL/number_utils.h
++++ b/Algebraic_foundations/include/CGAL/number_utils.h
+@@ -194,7 +194,7 @@ root_of( int k, Input_iterator begin, Input_iterator end ) {
+ template< class Number_type >
+ inline
+ // select a Is_zero functor
+-typename boost::mpl::if_c<
++typename ::std::conditional<
+  ::std::is_same< typename Algebraic_structure_traits< Number_type >::Is_zero,
+  Null_functor  >::value ,
+   typename Real_embeddable_traits< Number_type >::Is_zero,
+@@ -203,7 +203,7 @@ typename boost::mpl::if_c<
+ is_zero( const Number_type& x ) {
+     // We take the Algebraic_structure_traits<>::Is_zero functor by default. If it
+     //  is not available, we take the Real_embeddable_traits functor
+-    typename ::boost::mpl::if_c<
++    typename ::std::conditional<
+         ::std::is_same<
+              typename Algebraic_structure_traits< Number_type >::Is_zero,
+              Null_functor >::value ,
+diff --git a/BGL/include/CGAL/boost/graph/internal/OM_iterator_from_circulator.h b/BGL/include/CGAL/boost/graph/internal/OM_iterator_from_circulator.h
+index e726e161a6b..6277e1fa4a9 100644
+--- a/BGL/include/CGAL/boost/graph/internal/OM_iterator_from_circulator.h
++++ b/BGL/include/CGAL/boost/graph/internal/OM_iterator_from_circulator.h
+@@ -46,19 +46,19 @@ public:
+   typedef typename I__traits::iterator_category iterator_category;
+ 
+   typedef typename
+-  boost::mpl::if_c<  Prevent_deref
++  ::std::conditional<  Prevent_deref
+                    , C
+                    , typename C::value_type
+                   >::type             value_type;
+ 
+   typedef typename C::difference_type difference_type;
+   typedef typename
+-  boost::mpl::if_c<  Prevent_deref
++  ::std::conditional<  Prevent_deref
+                    , C&
+                    , typename C::reference
+                   >::type             reference;
+   typedef typename
+-  boost::mpl::if_c<  Prevent_deref
++  ::std::conditional<  Prevent_deref
+                    , C*
+                    , typename C::reference
+                   >::type             pointer;
+diff --git a/BGL/include/CGAL/boost/graph/internal/initialized_index_maps_helpers.h b/BGL/include/CGAL/boost/graph/internal/initialized_index_maps_helpers.h
+index 2d85e38d35c..ba1c9efe00d 100644
+--- a/BGL/include/CGAL/boost/graph/internal/initialized_index_maps_helpers.h
++++ b/BGL/include/CGAL/boost/graph/internal/initialized_index_maps_helpers.h
+@@ -276,7 +276,7 @@ class GetInitializedIndexMap
+ {
+ public:
+   // Check if there is an internal property map; if not, we must a dynamic property map
+-  typedef typename boost::mpl::if_c<
++  typedef typename ::std::conditional<
+       CGAL::graph_has_property<Graph, Tag>::value, Tag, DynamicTag>::type    Final_tag;
+ 
+   typedef typename internal_np::Lookup_named_param_def<
+diff --git a/BGL/include/CGAL/boost/graph/iterator.h b/BGL/include/CGAL/boost/graph/iterator.h
+index 87ff3383f21..3fe58b725c9 100644
+--- a/BGL/include/CGAL/boost/graph/iterator.h
++++ b/BGL/include/CGAL/boost/graph/iterator.h
+@@ -216,7 +216,7 @@ public:
+ 
+   explicit operator bool() const
+   {
+-    return (! (this->base() == nullptr));
++    return (! (g == nullptr));
+   }
+ 
+   bool operator==( const Self& i) const {
+@@ -310,7 +310,7 @@ public:
+ 
+   explicit operator bool() const
+   {
+-    return (! (this->base() == nullptr));
++    return (! (g == nullptr));
+   }
+ 
+   bool operator==( const Self& i) const {
+@@ -402,7 +402,7 @@ public:
+ 
+   explicit operator bool() const
+   {
+-    return (! (this->base() == nullptr));
++    return (! (g == nullptr));
+   }
+ 
+   bool operator==( const Self& i) const {
+diff --git a/BGL/include/CGAL/boost/graph/named_params_helper.h b/BGL/include/CGAL/boost/graph/named_params_helper.h
+index 1e0efd6faa6..fbba7a8b52f 100644
+--- a/BGL/include/CGAL/boost/graph/named_params_helper.h
++++ b/BGL/include/CGAL/boost/graph/named_params_helper.h
+@@ -43,11 +43,11 @@ class property_map_selector
+ {
+ public:
+   typedef typename graph_has_property<PolygonMesh, PropertyTag>::type Has_internal_pmap;
+-  typedef typename boost::mpl::if_c<Has_internal_pmap::value,
++  typedef typename ::std::conditional<Has_internal_pmap::value,
+                                     typename boost::property_map<PolygonMesh, PropertyTag>::type,
+                                     typename boost::cgal_no_property::type
+                                     >::type type;
+-  typedef typename boost::mpl::if_c<Has_internal_pmap::value,
++  typedef typename ::std::conditional<Has_internal_pmap::value,
+                                     typename boost::property_map<PolygonMesh, PropertyTag>::const_type,
+                                     typename boost::cgal_no_property::const_type
+                                     >::type const_type;
+@@ -209,7 +209,7 @@ struct GetGeomTraits_impl<PolygonMesh, internal_np::Param_not_found, NamedParame
+ 
+   struct Fake_GT {}; // to be used if there is no internal vertex_point_map in PolygonMesh
+ 
+-  typedef typename boost::mpl::if_c<Has_internal_pmap::value ||
++  typedef typename ::std::conditional<Has_internal_pmap::value ||
+                                     !std::is_same<internal_np::Param_not_found, NP_vpm>::value,
+                                     typename GetK<PolygonMesh, NamedParametersVPM>::Kernel,
+                                     Fake_GT>::type type;
+diff --git a/BGL/include/CGAL/boost/graph/properties.h b/BGL/include/CGAL/boost/graph/properties.h
+index fbe1f2e4513..fdafdd81c19 100644
+--- a/BGL/include/CGAL/boost/graph/properties.h
++++ b/BGL/include/CGAL/boost/graph/properties.h
+@@ -172,7 +172,7 @@ struct Is_writable_property_map<PropertyMap, boost::read_write_property_map_tag>
+ // property map must define.
+ template <typename PropertyMap>
+ struct Is_writable_property_map<PropertyMap, boost::lvalue_property_map_tag>
+-  : boost::mpl::if_c<std::is_const<typename std::remove_reference<
++  : ::std::conditional<std::is_const<typename std::remove_reference<
+                        typename boost::property_traits<PropertyMap>::reference>::type>::value,
+                      CGAL::Tag_false, CGAL::Tag_true>::type
+ { };
+diff --git a/Combinatorial_map/include/CGAL/Combinatorial_map_iterators_base.h b/Combinatorial_map/include/CGAL/Combinatorial_map_iterators_base.h
+index 0b2c39bc720..12d64df9699 100644
+--- a/Combinatorial_map/include/CGAL/Combinatorial_map_iterators_base.h
++++ b/Combinatorial_map/include/CGAL/Combinatorial_map_iterators_base.h
+@@ -68,7 +68,7 @@ namespace CGAL {
+   class CMap_dart_iterator;
+ 
+   template < typename Map_,bool Const>
+-  class CMap_dart_iterator<Map_, Const, Tag_false>: public boost::mpl::if_c< Const,
++  class CMap_dart_iterator<Map_, Const, Tag_false>: public ::std::conditional< Const,
+       typename Map_::Dart_container::const_iterator,
+       typename Map_::Dart_container::iterator>::type
+     //public internal::CC_iterator<typename Map_::Dart_container,Const>
+@@ -76,16 +76,16 @@ namespace CGAL {
+   public:
+     typedef CMap_dart_iterator<Map_,Const> Self;
+ 
+-    typedef typename boost::mpl::if_c< Const,
++    typedef typename ::std::conditional< Const,
+           typename Map_::Dart_container::const_iterator,
+           typename Map_::Dart_container::iterator>::type Base;
+     // typedef internal::CC_iterator<typename Map_::Dart_container,Const> Base;
+ 
+-    typedef typename boost::mpl::if_c< Const,
++    typedef typename ::std::conditional< Const,
+                                        typename Map_::Dart_const_descriptor,
+                                        typename Map_::Dart_descriptor>::type
+                                      Dart_descriptor;
+-    typedef typename boost::mpl::if_c< Const, const Map_, Map_>::type Map;
++    typedef typename ::std::conditional< Const, const Map_, Map_>::type Map;
+ 
+     typedef std::input_iterator_tag iterator_category;
+     typedef typename Base::value_type value_type;
+@@ -180,7 +180,7 @@ namespace CGAL {
+ 
+   template < typename Map_,bool Const >
+   class CMap_dart_iterator<Map_, Const, Tag_true>:
+-      /*public boost::mpl::if_c< Const,
++      /*public ::std::conditional< Const,
+       typename Map_::Dart_container::const_iterator,
+       typename Map_::Dart_container::iterator>::type*/
+     public internal::CC_iterator_with_index<typename Map_::Dart_container,Const>
+@@ -188,16 +188,16 @@ namespace CGAL {
+   public:
+     typedef CMap_dart_iterator<Map_,Const> Self;
+ 
+-    /*typedef typename boost::mpl::if_c< Const,
++    /*typedef typename ::std::conditional< Const,
+           typename Map_::Dart_container::const_iterator,
+           typename Map_::Dart_container::iterator>::type Base;*/
+     typedef internal::CC_iterator_with_index<typename Map_::Dart_container,Const> Base;
+ 
+-    typedef typename boost::mpl::if_c< Const,
++    typedef typename ::std::conditional< Const,
+                                        typename Map_::Dart_const_descriptor,
+                                        typename Map_::Dart_descriptor>::type
+                                      Dart_descriptor;
+-    typedef typename boost::mpl::if_c< Const, const Map_,
++    typedef typename ::std::conditional< Const, const Map_,
+                                        Map_>::type Map;
+ 
+     typedef std::input_iterator_tag iterator_category;
+diff --git a/Combinatorial_map/include/CGAL/Compact_container_with_index.h b/Combinatorial_map/include/CGAL/Compact_container_with_index.h
+index 044db27dc87..b9cf265ddd4 100644
+--- a/Combinatorial_map/include/CGAL/Compact_container_with_index.h
++++ b/Combinatorial_map/include/CGAL/Compact_container_with_index.h
+@@ -858,13 +858,13 @@ namespace internal {
+     typedef typename DSC::value_type                  value_type;
+     typedef typename DSC::size_type                   size_type;
+     typedef typename DSC::difference_type             difference_type;
+-    typedef typename boost::mpl::if_c< Const, const value_type*,
++    typedef typename ::std::conditional< Const, const value_type*,
+                                        value_type*>::type pointer;
+-    typedef typename boost::mpl::if_c< Const, const value_type&,
++    typedef typename ::std::conditional< Const, const value_type&,
+                                        value_type&>::type reference;
+     typedef std::bidirectional_iterator_tag           iterator_category;
+ 
+-    typedef typename boost::mpl::if_c< Const, const DSC*, DSC*>::type
++    typedef typename ::std::conditional< Const, const DSC*, DSC*>::type
+     cc_pointer;
+ 
+     CC_iterator_with_index(): m_ptr_to_cc(nullptr),
+diff --git a/Mesh_3/include/CGAL/Mesh_3/Refine_cells_3.h b/Mesh_3/include/CGAL/Mesh_3/Refine_cells_3.h
+index 2abcb9f3241..4b6c1c513a9 100644
+--- a/Mesh_3/include/CGAL/Mesh_3/Refine_cells_3.h
++++ b/Mesh_3/include/CGAL/Mesh_3/Refine_cells_3.h
+@@ -173,7 +173,7 @@ template<class Tr,
+          class Previous_,
+          class Concurrency_tag,
+ #ifdef CGAL_LINKED_WITH_TBB
+-         class Container_ = typename boost::mpl::if_c // (parallel/sequential?)
++         class Container_ = typename ::std::conditional // (parallel/sequential?)
+          <
+           boost::is_convertible<Concurrency_tag, Parallel_tag>::value,
+ 
+diff --git a/Mesh_3/include/CGAL/Mesh_3/Refine_facets_3.h b/Mesh_3/include/CGAL/Mesh_3/Refine_facets_3.h
+index 8374a106b62..c1c4cec8d8c 100644
+--- a/Mesh_3/include/CGAL/Mesh_3/Refine_facets_3.h
++++ b/Mesh_3/include/CGAL/Mesh_3/Refine_facets_3.h
+@@ -641,7 +641,7 @@ template<class Tr,
+          template<class Tr_, class Cr_, class MD_, class C3T3_2, class Ct_, class C_2>
+             class Base_ = Refine_facets_3_base,
+ #ifdef CGAL_LINKED_WITH_TBB
+-         class Container_ = typename boost::mpl::if_c // (parallel/sequential?)
++         class Container_ = typename ::std::conditional // (parallel/sequential?)
+          <
+           boost::is_convertible<Concurrency_tag, Parallel_tag>::value,
+           // Parallel
+diff --git a/NewKernel_d/include/CGAL/NewKernel_d/functor_tags.h b/NewKernel_d/include/CGAL/NewKernel_d/functor_tags.h
+index 99a28ab578f..648abea842b 100644
+--- a/NewKernel_d/include/CGAL/NewKernel_d/functor_tags.h
++++ b/NewKernel_d/include/CGAL/NewKernel_d/functor_tags.h
+@@ -233,7 +233,7 @@ namespace CGAL {
+ #undef CGAL_DECL_ITER_OBJ
+ 
+         template<class A,class T,class B,class C>struct Get_functor_category<A,Construct_ttag<T>,B,C> :
+-          boost::mpl::if_c<iterator_tag_traits<T>::is_iterator,
++          ::std::conditional<iterator_tag_traits<T>::is_iterator,
+                            Construct_iterator_tag,
+                            Construct_tag> {};
+ 
+diff --git a/NewKernel_d/include/CGAL/NewKernel_d/utils.h b/NewKernel_d/include/CGAL/NewKernel_d/utils.h
+index 487eae5bc10..9d9ae9b485b 100644
+--- a/NewKernel_d/include/CGAL/NewKernel_d/utils.h
++++ b/NewKernel_d/include/CGAL/NewKernel_d/utils.h
+@@ -145,7 +145,7 @@ struct Has_type_different_from <T, No, true>
+ #define CGAL_KD_DEFAULT_FUNCTOR(Tg,Name,ReqTyp,ReqFun) \
+     template <class K, class O> \
+     struct Get_functor<K, Tg, O, \
+-      typename boost::mpl::if_c< \
++      typename ::std::conditional< \
+         Provides_functor_i<K, Tg, O>::value \
+         || !Provides_types<K, boost::mpl::vector<CGAL_STRIP_PAREN_ ReqTyp> >::value \
+         || !Provides_functors<K, boost::mpl::vector<CGAL_STRIP_PAREN_ ReqFun> >::value \
+@@ -159,7 +159,7 @@ struct Has_type_different_from <T, No, true>
+ #define CGAL_KD_DEFAULT_TYPE(Tg,Name,ReqTyp,ReqFun) \
+     template <class K> \
+     struct Get_type<K, Tg, \
+-      typename boost::mpl::if_c< \
++      typename ::std::conditional< \
+         Provides_type_i<K, Tg>::value \
+         || !Provides_types<K, boost::mpl::vector<CGAL_STRIP_PAREN_ ReqTyp> >::value \
+         || !Provides_functors<K, boost::mpl::vector<CGAL_STRIP_PAREN_ ReqFun> >::value \
+diff --git a/Number_types/include/CGAL/Lazy_exact_nt.h b/Number_types/include/CGAL/Lazy_exact_nt.h
+index 38c55c62d32..164fd46934a 100644
+--- a/Number_types/include/CGAL/Lazy_exact_nt.h
++++ b/Number_types/include/CGAL/Lazy_exact_nt.h
+@@ -1180,9 +1180,9 @@ struct Coercion_traits< Lazy_exact_nt<ET1>, Lazy_exact_nt<ET2> >
+         static const  bool interoperable                                \
+         =std::is_same< Are_implicit_interoperable, Tag_false>::value; \
+     public:                                                             \
+-        typedef typename boost::mpl::if_c <interoperable,Null_tag,NT>   \
++        typedef typename ::std::conditional <interoperable,Null_tag,NT>   \
+         ::type  Type;                                          \
+-        typedef typename boost::mpl::if_c <interoperable, Null_functor, \
++        typedef typename ::std::conditional <interoperable, Null_functor, \
+     INTERN_CT::Cast_from_to<NTX,NT> >::type Cast;                       \
+     };                                                                  \
+                                                                         \
+diff --git a/Number_types/include/CGAL/Quotient.h b/Number_types/include/CGAL/Quotient.h
+index e91e22208a5..b51f475373c 100644
+--- a/Number_types/include/CGAL/Quotient.h
++++ b/Number_types/include/CGAL/Quotient.h
+@@ -627,7 +627,7 @@ public:
+ 
+     };
+ 
+-    typedef typename boost::mpl::if_c<
++    typedef typename ::std::conditional<
+         !std::is_same< typename Algebraic_structure_traits<NT>::Sqrt,
+                          Null_functor >::value,
+          typename INTERN_QUOTIENT::Sqrt_selector< Type,
+diff --git a/Number_types/include/CGAL/Sqrt_extension/Algebraic_structure_traits.h b/Number_types/include/CGAL/Sqrt_extension/Algebraic_structure_traits.h
+index b0913afb1b6..e0ac27c80de 100644
+--- a/Number_types/include/CGAL/Sqrt_extension/Algebraic_structure_traits.h
++++ b/Number_types/include/CGAL/Sqrt_extension/Algebraic_structure_traits.h
+@@ -204,7 +204,7 @@ public:
+   typedef Sqrt_extension< COEFF_, ROOT_, ACDE_TAG,FP_TAG > Type;
+ 
+     // Tag_true if COEFF and ROOT are exact
+-    typedef typename ::boost::mpl::if_c<
++    typedef typename ::std::conditional<
+        bool( ::std::is_same<typename CGAL::Algebraic_structure_traits<ROOT_ >::Is_exact,::CGAL::Tag_true>::value )&&
+        bool( ::std::is_same<typename CGAL::Algebraic_structure_traits<COEFF_>::Is_exact,::CGAL::Tag_true>::value )
+            ,::CGAL::Tag_true,::CGAL::Tag_false>::type Is_exact;
+diff --git a/Number_types/include/CGAL/Sqrt_extension/Coercion_traits.h b/Number_types/include/CGAL/Sqrt_extension/Coercion_traits.h
+index 6b4344348d4..6c9ec42f40d 100644
+--- a/Number_types/include/CGAL/Sqrt_extension/Coercion_traits.h
++++ b/Number_types/include/CGAL/Sqrt_extension/Coercion_traits.h
+@@ -178,7 +178,7 @@ template <class A, class B> struct CT_ext_not_to_fwsqrt;
+ //<EXT,ANY>
+ template <class COEFF, class ROOT, class ACDE_TAG,class FP_TAG, class B>
+ struct Coercion_traits_for_level<Sqrt_extension<COEFF, ROOT, ACDE_TAG,FP_TAG>, B , CTL_SQRT_EXT>
+-:public ::boost::mpl::if_c<
++:public ::std::conditional<
+              // if B is fwsqrt
+               ::boost::is_base_and_derived<
+                   Field_with_sqrt_tag,
+diff --git a/Polyhedron/demo/Polyhedron/Plugins/Mesh_3/CMakeLists.txt b/Polyhedron/demo/Polyhedron/Plugins/Mesh_3/CMakeLists.txt
+index eb4e9c5b57d..d488f2a7c50 100644
+--- a/Polyhedron/demo/Polyhedron/Plugins/Mesh_3/CMakeLists.txt
++++ b/Polyhedron/demo/Polyhedron/Plugins/Mesh_3/CMakeLists.txt
+@@ -53,7 +53,7 @@ else()
+   message(STATUS "NOTICE: DICOM files (.dcm) require the VTK libraries, and will not be readable.")
+ endif()
+ 
+-find_package(Boost QUIET OPTIONAL_COMPONENTS filesystem system)
++find_package(Boost REQUIRED filesystem)
+ if(Boost_FILESYSTEM_FOUND)
+   qt5_wrap_ui( imgUI_FILES Image_res_dialog.ui raw_image.ui)
+   polyhedron_demo_plugin(io_image_plugin Io_image_plugin
+@@ -67,8 +67,7 @@ if(Boost_FILESYSTEM_FOUND)
+     target_compile_definitions(io_image_plugin PRIVATE -DCGAL_USE_VTK -DNOMINMAX)
+   endif()
+   if(TARGET Boost::filesystem)
+-    target_link_libraries(io_image_plugin PUBLIC Boost::filesystem
+-                                                 Boost::system)
++    target_link_libraries(io_image_plugin PUBLIC Boost::filesystem)
+   else()
+     target_link_libraries(io_image_plugin PUBLIC ${Boost_LIBRARIES})
+   endif()
+diff --git a/Polynomial/include/CGAL/Polynomial/Polynomial_type.h b/Polynomial/include/CGAL/Polynomial/Polynomial_type.h
+index f1055bedbd0..087efda2c86 100644
+--- a/Polynomial/include/CGAL/Polynomial/Polynomial_type.h
++++ b/Polynomial/include/CGAL/Polynomial/Polynomial_type.h
+@@ -486,7 +486,7 @@ public:
+       // and NT would be changed by NTX
+       typedef typename Fraction_traits<NTX>::Is_fraction Is_fraction;
+       typedef typename Coercion_traits<NT,NTX>::Type Type;
+-      typedef typename ::boost::mpl::if_c<
++      typedef typename ::std::conditional<
+       ::std::is_same<Type,NT>::value, Is_fraction, CGAL::Tag_false
+         >::type If_decomposable_AND_Type_equals_NT;
+ 
+diff --git a/STL_Extension/include/CGAL/Compact_container.h b/STL_Extension/include/CGAL/Compact_container.h
+index 24f7ef91c72..efe86c3bb9d 100644
+--- a/STL_Extension/include/CGAL/Compact_container.h
++++ b/STL_Extension/include/CGAL/Compact_container.h
+@@ -866,9 +866,9 @@ namespace internal {
+     typedef typename DSC::value_type                  value_type;
+     typedef typename DSC::size_type                   size_type;
+     typedef typename DSC::difference_type             difference_type;
+-    typedef typename boost::mpl::if_c< Const, const value_type*,
++    typedef typename ::std::conditional< Const, const value_type*,
+                                        value_type*>::type pointer;
+-    typedef typename boost::mpl::if_c< Const, const value_type&,
++    typedef typename ::std::conditional< Const, const value_type&,
+                                        value_type&>::type reference;
+     typedef std::bidirectional_iterator_tag           iterator_category;
+ 
+diff --git a/STL_Extension/include/CGAL/Handle_with_policy.h b/STL_Extension/include/CGAL/Handle_with_policy.h
+index 004c8b4d96f..f8e1cc0ef7d 100644
+--- a/STL_Extension/include/CGAL/Handle_with_policy.h
++++ b/STL_Extension/include/CGAL/Handle_with_policy.h
+@@ -728,7 +728,7 @@ public:
+     static Bind bind;
+ 
+     // Define type that is used for function matching
+-    typedef typename ::boost::mpl::if_c<
++    typedef typename ::std::conditional<
+          is_class_hierarchy,
+            ::CGAL::Tag_true,
+            ::CGAL::Tag_false >::type

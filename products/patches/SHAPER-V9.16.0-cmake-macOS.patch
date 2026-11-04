@@ -1,0 +1,45 @@
+diff --color=auto -Naur shaper_old/CMakeLists.txt shaper_new/CMakeLists.txt
+--- shaper_old/CMakeLists.txt	2026-10-06 13:55:45
++++ shaper_new/CMakeLists.txt	2026-10-06 13:55:13
+@@ -34,6 +34,17 @@
+ # ===========================
+ SET(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeCommon" ${CMAKE_MODULE_PATH})
+ 
++SET(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -undefined dynamic_lookup")
++SET(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} -undefined dynamic_lookup")
++
++find_package(OpenGL REQUIRED)
++
++if(APPLE)
++    link_libraries(${OPENGL_LIBRARIES})
++    set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -framework OpenGL")
++endif()
++
++
+ # Detect SALOME mode; append path to SALOME macros
+ # ================================================
+ SET(HAVE_SALOME NO)
+diff --color=auto -Naur shaper_old/src/SketcherPrs/CMakeLists.txt shaper_new/src/SketcherPrs/CMakeLists.txt
+--- shaper_old/src/SketcherPrs/CMakeLists.txt	2026-10-06 13:55:45
++++ shaper_new/src/SketcherPrs/CMakeLists.txt	2026-10-06 13:55:13
+@@ -87,6 +87,8 @@
+ 
+ IF(WIN32)
+     SET(PROJECT_LIBRARIES ${PROJECT_LIBRARIES} opengl32)
++ELSEIF(APPLE)
++    SET(PROJECT_LIBRARIES ${PROJECT_LIBRARIES} ${OPENGL_LIBRARIES})
+ ELSE()
+     SET(PROJECT_LIBRARIES ${PROJECT_LIBRARIES} GL)
+ ENDIF()
+diff --color=auto -Naur shaper_old/src/XGUI/CMakeLists.txt shaper_new/src/XGUI/CMakeLists.txt
+--- shaper_old/src/XGUI/CMakeLists.txt	2026-10-06 13:55:45
++++ shaper_new/src/XGUI/CMakeLists.txt	2026-10-06 13:55:14
+@@ -171,6 +171,8 @@
+ 
+ IF(WIN32)
+     SET(PROJECT_LIBRARIES ${PROJECT_LIBRARIES} opengl32)
++ELSEIF(APPLE)
++    SET(PROJECT_LIBRARIES ${PROJECT_LIBRARIES} ${OPENGL_LIBRARIES})
+ ELSE()
+     SET(PROJECT_LIBRARIES ${PROJECT_LIBRARIES} GL)
+ ENDIF()

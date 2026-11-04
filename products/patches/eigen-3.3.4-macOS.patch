@@ -1,0 +1,12 @@
+diff --color=auto -Naur eigen_old/Eigen/src/Core/Transpositions.h eigen_new/Eigen/src/Core/Transpositions.h
+--- eigen_old/Eigen/src/Core/Transpositions.h	2026-10-02 14:48:50
++++ eigen_new/Eigen/src/Core/Transpositions.h	2026-10-02 14:49:10
+@@ -384,7 +384,7 @@
+     const Product<OtherDerived, Transpose, AliasFreeProduct>
+     operator*(const MatrixBase<OtherDerived>& matrix, const Transpose& trt)
+     {
+-      return Product<OtherDerived, Transpose, AliasFreeProduct>(matrix.derived(), trt.derived());
++      return Product<OtherDerived, Transpose, AliasFreeProduct>(matrix.derived(), trt);
+     }
+ 
+     /** \returns the \a matrix with the inverse transpositions applied to the rows.

@@ -1,0 +1,106 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 847a41e1..62721ee8 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -249,7 +249,8 @@ if(MEDCOUPLING_ENABLE_RENUMBER)
+ endif(MEDCOUPLING_ENABLE_RENUMBER)
+ 
+ if(MEDCOUPLING_ENABLE_SHAPERECOGN)
+-  if(UNIX)
++  if(APPLE)
++    # macOS: LAPACKE is provided by OpenBLAS (no separate lapacke library)
+     set(OPENBLAS_ROOT_DIR
+         $ENV{OPENBLAS_ROOT_DIR}
+         CACHE PATH "Path to the OpenBLAS.")
+@@ -257,7 +258,7 @@ if(MEDCOUPLING_ENABLE_SHAPERECOGN)
+       list(APPEND CMAKE_PREFIX_PATH "${OPENBLAS_ROOT_DIR}")
+       find_package(OpenBLAS REQUIRED)
+     else(OPENBLAS_ROOT_DIR)
+-      message(FATAL "Could not find OpenBLAS")
++      message(FATAL_ERROR "Could not find OpenBLAS, please define OPENBLAS_ROOT_DIR")
+     endif(OPENBLAS_ROOT_DIR)
+     set(LAPACK_ROOT_DIR
+         $ENV{LAPACK_ROOT_DIR}
+@@ -283,6 +284,40 @@ if(MEDCOUPLING_ENABLE_SHAPERECOGN)
+       message(FATAL_ERROR "Error in Lapacke detection ! lapacke not found !")
+     endif(LAPACK_FOUND)
+     salome_log_optional_package(Lapack MEDCOUPLING_ENABLE_SHAPERECOGN)
++  elseif(UNIX)
++    set(CBLAS_ROOT_DIR
++        $ENV{CBLAS_ROOT_DIR}
++        CACHE PATH "Path to the LAPACK/CBLAS.")
++    if(CBLAS_ROOT_DIR)
++      list(APPEND CMAKE_PREFIX_PATH "${CBLAS_ROOT_DIR}")
++      find_package(CBLAS REQUIRED)
++    else(CBLAS_ROOT_DIR)
++      find_package(BLAS REQUIRED)
++    endif(CBLAS_ROOT_DIR)
++    set(LAPACK_ROOT_DIR
++        $ENV{LAPACK_ROOT_DIR}
++        CACHE PATH "Path to the LAPACKE")
++    if(LAPACK_ROOT_DIR)
++      set(LAPACK_ROOT_DIR
++          $ENV{LAPACK_ROOT_DIR}
++          CACHE PATH "Path to the LAPACK.")
++      list(APPEND CMAKE_PREFIX_PATH "${LAPACK_ROOT_DIR}")
++    endif(LAPACK_ROOT_DIR)
++    find_package(LAPACK REQUIRED)
++    find_library(LAPACKE_LIB NAMES lapacke REQUIRED)
++    set(LAPACK_LIBRARIES ${LAPACKE_LIB} ${LAPACK_LIBRARIES} ${BLAS_LIBRARIES}
++                         ${CBLAS_LIBRARIES})
++    find_path(
++      LAPACKE_INCLUDE_DIRS
++      NAMES lapacke.h
++      HINTS ${LAPACK_LIBRARIES})
++    if(LAPACK_FOUND)
++      message(STATUS "Lapacke libraries: ${LAPACK_LIBRARIES}")
++      message(STATUS "Lapacke include dirs: ${LAPACKE_INCLUDE_DIRS}")
++    else()
++      message(FATAL_ERROR "Error in Lapacke detection ! lapacke not found !")
++    endif(LAPACK_FOUND)
++    salome_log_optional_package(Lapack MEDCOUPLING_ENABLE_SHAPERECOGN)
+   elseif(MSVC)
+     set(OPENBLAS_ROOT_DIR
+         $ENV{OPENBLAS_ROOT_DIR}
+diff --git a/src/MEDPartitioner/Test/MEDPARTITIONERTestPara.cxx b/src/MEDPartitioner/Test/MEDPARTITIONERTestPara.cxx
+index 2eb2e2e7..cd2e00f2 100644
+--- a/src/MEDPartitioner/Test/MEDPARTITIONERTestPara.cxx
++++ b/src/MEDPartitioner/Test/MEDPARTITIONERTestPara.cxx
+@@ -64,7 +64,16 @@ MEDPARTITIONERTest::getPartitionerParaExe() const
+         if (my_file.good())
+             return execName;
+     }
++#if defined(__APPLE__)
++    // macOS: get_current_dir_name() is glibc only, getcwd(nullptr,0) also returns a malloc'ed buffer
++    {
++        char *cwd = getcwd(nullptr, 0);
++        execName = cwd;
++        free(cwd);
++    }
++#else
+     execName = get_current_dir_name();
++#endif
+     execName += "/../../MEDPartitioner/medpartitioner_para";
+     if (!std::ifstream(execName.c_str()))
+         CPPUNIT_FAIL("Can't find medpartitioner_para, please set MEDCOUPLING_ROOT_DIR");
+diff --git a/src/INTERP_KERNEL/Bases/InterpKernelHashTable.hxx b/src/INTERP_KERNEL/Bases/InterpKernelHashTable.hxx
+index 8a09e2b..71bc51d 100644
+--- a/src/INTERP_KERNEL/Bases/InterpKernelHashTable.hxx
++++ b/src/INTERP_KERNEL/Bases/InterpKernelHashTable.hxx
+@@ -371,13 +371,13 @@ class hashtable
+     template <class _InputIterator>
+     void insert_unique(_InputIterator __f, _InputIterator __l)
+     {
+-        insert_unique(__f, __l, __iterator_category(__f));
++        insert_unique(__f, __l, typename std::iterator_traits<_InputIterator>::iterator_category());
+     }
+ 
+     template <class _InputIterator>
+     void insert_equal(_InputIterator __f, _InputIterator __l)
+     {
+-        insert_equal(__f, __l, __iterator_category(__f));
++        insert_equal(__f, __l, typename std::iterator_traits<_InputIterator>::iterator_category());
+     }
+ 
+     template <class _InputIterator>
+ 

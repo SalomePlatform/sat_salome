@@ -28,6 +28,16 @@ default :
     }
 }
 
+version_8_4_0_macOS:
+{
+    properties:
+    {
+      incremental : "yes"
+      pip : "yes"
+    }
+
+}
+
 version_8_4_0:
 {
 

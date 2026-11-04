@@ -1,0 +1,550 @@
+diff --color=auto -Naur GUI_old/bin/runLightSalome.csh GUI_new/bin/runLightSalome.csh
+--- GUI_old/bin/runLightSalome.csh	2026-10-07 13:09:20
++++ GUI_new/bin/runLightSalome.csh	2026-10-07 13:07:47
+@@ -149,6 +149,10 @@
+ 
+ if ( "${MY_PATH}" != "" ) setenv PATH ${MY_PATH}:${PATH}
+ if ( "${MY_LD_LIBRARY_PATH}" != "" ) setenv LD_LIBRARY_PATH ${MY_LD_LIBRARY_PATH}:${LD_LIBRARY_PATH}
++if ( `uname -s` == "Darwin" ) then
++    if (! ($?DYLD_LIBRARY_PATH) ) setenv DYLD_LIBRARY_PATH
++    if ( "${MY_LD_LIBRARY_PATH}" != "" ) setenv DYLD_LIBRARY_PATH ${MY_LD_LIBRARY_PATH}:${DYLD_LIBRARY_PATH}
++endif
+ if ( "${PYTHONPATH}" != "" ) setenv PYTHONPATH ${MY_PYTHONPATH}:${PYTHONPATH}
+ 
+ ###
+diff --color=auto -Naur GUI_old/bin/runLightSalome.sh GUI_new/bin/runLightSalome.sh
+--- GUI_old/bin/runLightSalome.sh	2026-10-07 13:09:20
++++ GUI_new/bin/runLightSalome.sh	2026-10-07 13:07:47
+@@ -240,6 +240,11 @@
+     LD_LIBRARY_PATH=${my_ld_library_path}:${LD_LIBRARY_PATH}
+     LD_LIBRARY_PATH=$(echo ${LD_LIBRARY_PATH} | sed -e "s,^:,,;s,:$,,;s,::\+,:,g")
+     export LD_LIBRARY_PATH
++    if [ "$(uname -s)" = "Darwin" ]; then
++        DYLD_LIBRARY_PATH=${my_ld_library_path}:${DYLD_LIBRARY_PATH}
++        DYLD_LIBRARY_PATH=$(echo ${DYLD_LIBRARY_PATH} | sed -i "" -e "s,^:,,;s,:$,,;s,::\+,:,g")
++        export DYLD_LIBRARY_PATH
++    fi
+     PYTHONPATH=${my_pythonpath}:${PYTHONPATH}
+     PYTHONPATH=$(echo ${PYTHONPATH} | sed -e "s,^:,,;s,:$,,;s,::\+,:,g")
+     export PYTHONPATH
+diff --color=auto -Naur GUI_old/src/Event/SALOME_Event.cxx GUI_new/src/Event/SALOME_Event.cxx
+--- GUI_old/src/Event/SALOME_Event.cxx	2026-10-07 13:09:20
++++ GUI_new/src/Event/SALOME_Event.cxx	2026-10-07 13:07:47
+@@ -194,7 +194,7 @@
+ #ifdef WIN32
+   aResult = myThread == ::GetCurrentThreadId();
+ #else
+-  aResult = myThread == pthread_self();
++  aResult = pthread_equal( myThread, pthread_self() ) != 0;
+ #endif
+   return aResult;
+ }
+diff --color=auto -Naur GUI_old/src/LightApp/LightApp_Application.cxx GUI_new/src/LightApp/LightApp_Application.cxx
+--- GUI_old/src/LightApp/LightApp_Application.cxx	2026-10-07 13:09:20
++++ GUI_new/src/LightApp/LightApp_Application.cxx	2026-10-07 13:23:02
+@@ -1624,7 +1624,11 @@
+       // remove LD_LIBRARY_PATH from the environement before starting launcher to avoid bad interactions.
+       // (especially in the case of universal binaries)
+       env.remove("LD_LIBRARY_PATH");
++#ifdef __APPLE__
++      env.remove("DYLD_LIBRARY_PATH");
++      env.remove("DYLD_FALLBACK_LIBRARY_PATH");
+ #endif
++#endif
+       QProcess* proc = new QProcess();
+       proc->setProcessEnvironment(env);
+       proc->start( cmdLine );
+@@ -1659,6 +1663,8 @@
+   {
+ #ifdef WIN32
+     QString browser = resMgr->stringValue( "ExternalBrowser", "winapplication" ) ;
++#elif defined(__APPLE__)
++    QString browser = resMgr->stringValue( "ExternalBrowser", "macapplication" );
+ #else
+     QString browser = resMgr->stringValue( "ExternalBrowser", "application" );
+ #endif
+@@ -2856,12 +2862,15 @@
+   // ... "Help browser" group <<start>>
+ #ifndef DISABLE_QTXWEBBROWSER
+   int extgroup = pref->addPreference( tr( "PREF_GROUP_EXT_BROWSER" ), genTab, LightApp_Preferences::Auto, "ExternalBrowser", "use_external_browser");
++
+ #else
+   int extgroup = pref->addPreference( tr( "PREF_GROUP_EXT_BROWSER" ), genTab );
+ #endif
+ 
+ #ifdef WIN32
+   QString platform = "winapplication";
++#elif defined(__APPLE__)
++  QString platform = "macapplication";
+ #else
+   QString platform = "application";
+ #endif
+@@ -4669,7 +4678,7 @@
+ #if defined(WIN32)
+   paths = QString( Qtx::getenv( "PATH" ) ).split( ";", QString::SkipEmptyParts );
+ #elif defined(__APPLE__)
+-  paths = QString( Qtx::getenv( "DYLD_LIBRARY_PATH" ) ).split( ":", QString::SkipEmptyParts );
++  paths += QString( Qtx::getenv( "DYLD_LIBRARY_PATH" ) ).split( ":", QString::SkipEmptyParts );
+ #else
+   paths = QString( Qtx::getenv( "LD_LIBRARY_PATH" ) ).split( ":", QString::SkipEmptyParts );
+ #endif
+diff --color=auto -Naur GUI_old/src/LightApp/resources/LightApp.xml GUI_new/src/LightApp/resources/LightApp.xml
+--- GUI_old/src/LightApp/resources/LightApp.xml	2026-10-07 13:09:20
++++ GUI_new/src/LightApp/resources/LightApp.xml	2026-10-07 13:07:47
+@@ -319,6 +319,7 @@
+     <parameter name="winapplication"       value="C:\Program Files\Internet Explorer\iexplore.exe" />
+     <parameter name="use_external_browser" value="false" />
+     <parameter name="application"          value="/usr/bin/firefox" />
++    <parameter name="macapplication"       value="/usr/bin/open" />
+     <parameter name="parameters"           value="" />
+   </section>
+   <section name="add_help">
+diff --color=auto -Naur GUI_old/src/OpenGLUtils/OpenGLUtils_FrameBuffer.cxx GUI_new/src/OpenGLUtils/OpenGLUtils_FrameBuffer.cxx
+--- GUI_old/src/OpenGLUtils/OpenGLUtils_FrameBuffer.cxx	2026-10-07 13:09:20
++++ GUI_new/src/OpenGLUtils/OpenGLUtils_FrameBuffer.cxx	2026-10-07 13:07:47
+@@ -35,25 +35,8 @@
+ # ifndef GLX_GLXEXT_LEGACY
+ #  define GLX_GLXEXT_LEGACY
+ # endif
+-#ifdef __APPLE__
+-#import <mach-o/dyld.h>
+-#import <stdlib.h>
+-#import <string.h>
+-void * glXGetProcAddressARB (const GLubyte *name)
+ 
+-{
+-    NSSymbol symbol;
+-    char *symbolName;
+-    symbolName = (char *)malloc (strlen ((const char *)name) + 2); // 1
+-    strcpy(symbolName + 1, (const char *)name); // 2
+-    symbolName[0] = '_'; // 3
+-    symbol = NULL;
+-    if (NSIsSymbolNameDefined (symbolName)) // 4
+-        symbol = NSLookupAndBindSymbol (symbolName);
+-    free (symbolName); // 5
+-    return symbol ? NSAddressOfSymbol (symbol) : NULL; // 6
+-}
+-#else
++#ifndef __APPLE__
+ # include <GL/glx.h>
+ #endif
+ # include <dlfcn.h>
+@@ -110,10 +93,12 @@
+ static PFNGLFRAMEBUFFERRENDERBUFFEREXTPROC vglFramebufferRenderbufferEXT = NULL;
+ static PFNGLDELETERENDERBUFFERSEXTPROC vglDeleteRenderbuffersEXT = NULL;
+ 
+-#ifndef WIN32
+-#define GL_GetProcAddress( x ) glXGetProcAddressARB( (const GLubyte*)x )
+-#else
++#if defined(WIN32)
+ #define GL_GetProcAddress( x ) wglGetProcAddress( (const LPCSTR)x )
++#elif defined(__APPLE__)
++#define GL_GetProcAddress( x ) dlsym( RTLD_DEFAULT, x )
++#else
++#define GL_GetProcAddress( x ) glXGetProcAddressARB( (const GLubyte*)x )
+ #endif
+ 
+ bool InitializeEXT()
+@@ -153,7 +138,7 @@
+ 
+ bool OpenGLUtils_FrameBuffer::init( const GLsizei& xSize, const GLsizei& ySize )
+ {
+-#if defined(VTK_OPENGL2) && ! defined(WIN32)
++#if defined(VTK_OPENGL2) && ! defined(WIN32) && !defined(__APPLE__)
+   int n = 0;
+   std::ostringstream strm;
+   glGetIntegerv(GL_NUM_EXTENSIONS, &n);
+diff --color=auto -Naur GUI_old/src/Qtx/Qtx.h GUI_new/src/Qtx/Qtx.h
+--- GUI_old/src/Qtx/Qtx.h	2026-10-07 13:09:20
++++ GUI_new/src/Qtx/Qtx.h	2026-10-07 13:07:48
+@@ -288,7 +288,7 @@
+ 
+   static QString     getenv( const QString& envVar );
+ 
+-#ifndef WIN32
++#ifndef WIN32 && !defined(__APPLE__)
+   static void*       getDisplay();
+   static Qt::HANDLE  getVisual();
+ #endif
+diff --color=auto -Naur GUI_old/src/SALOME_PY/CMakeLists.txt GUI_new/src/SALOME_PY/CMakeLists.txt
+--- GUI_old/src/SALOME_PY/CMakeLists.txt	2026-10-07 13:09:20
++++ GUI_new/src/SALOME_PY/CMakeLists.txt	2026-10-07 13:07:47
+@@ -59,7 +59,12 @@
+ # TODO: check on windows
+ IF(WIN32)
+   SET_TARGET_PROPERTIES(SalomePy PROPERTIES PREFIX "lib" SUFFIX ".pyd" DEBUG_OUTPUT_NAME SalomePy_d RELEASE_OUTPUT_NAME SalomePy)
+-ENDIF(WIN32)
++ELSEIF(APPLE)
++  SET_TARGET_PROPERTIES(SalomePy PROPERTIES SUFFIX ".so")
++ENDIF()
++
++
++
+ 
+ # TODO: check if PYTHON_ADD_MODULE() macro can be used to build this target
+ 
+diff --color=auto -Naur GUI_old/src/VTKViewer/VTKViewer_OpenGLHelper.cxx GUI_new/src/VTKViewer/VTKViewer_OpenGLHelper.cxx
+--- GUI_old/src/VTKViewer/VTKViewer_OpenGLHelper.cxx	2026-10-07 13:09:20
++++ GUI_new/src/VTKViewer/VTKViewer_OpenGLHelper.cxx	2026-10-07 13:07:47
+@@ -24,22 +24,33 @@
+ #include "VTKViewer_OpenGLHelper.h"
+ #include <Basics_Utils.hxx>
+ 
+-#ifndef WIN32
+-# ifndef GLX_GLXEXT_LEGACY
+-#  define GLX_GLXEXT_LEGACY
+-# endif
+-# include <GL/glx.h>
++#if defined(WIN32)
++# include <wingdi.h>
++#elif defined(__APPLE__)
+ # include <dlfcn.h>
+ #else
+-# include <wingdi.h>
+-#endif
++ # ifndef GLX_GLXEXT_LEGACY
++ #  define GLX_GLXEXT_LEGACY
++ # endif
++ # include <GL/glx.h>
++ # include <dlfcn.h>
++ #endif
+ 
+-#ifndef WIN32
+-#define GL_GetProcAddress( x )   glXGetProcAddressARB( (const GLubyte*)x )
+-#else
++#if defined(WIN32)
+ #define GL_GetProcAddress( x )   wglGetProcAddress( (const LPCSTR)x )
+-#endif 
++#elif defined(__APPLE__)
++#define GL_GetProcAddress( x )   dlsym( RTLD_DEFAULT, x )
++#else
++ #define GL_GetProcAddress( x )   glXGetProcAddressARB( (const GLubyte*)x )
++#endif
+ 
++#ifdef __APPLE__
++#define GL_ARB_OR_CORE( arb, core )   core
++ #else
++#define GL_ARB_OR_CORE( arb, core )   arb
++#endif
++
++
+ // ============================================================================
+ // function : VTKViewer_OpenGLHelper
+ // purpose  :
+@@ -98,31 +109,32 @@
+   if (mIsInitialized)
+     return;
+ 
+-  vglShaderSourceARB = (PFNGLSHADERSOURCEARBPROC)GL_GetProcAddress( "glShaderSourceARB" );
++#if !defined(__APPLE__)
++  vglShaderSourceARB = (PFNGLSHADERSOURCEARBPROC)GL_GetProcAddress( GL_ARB_OR_CORE( "glShaderSourceARB", "glShaderSource" ) );
+   if( !vglShaderSourceARB )
+     return;
+ 
+-  vglCreateShaderObjectARB = (PFNGLCREATESHADEROBJECTARBPROC)GL_GetProcAddress( "glCreateShaderObjectARB" );
++  vglCreateShaderObjectARB = (PFNGLCREATESHADEROBJECTARBPROC)GL_GetProcAddress( GL_ARB_OR_CORE( "glCreateShaderObjectARB", "glCreateShader" ) );
+   if( !vglCreateShaderObjectARB )
+     return;
+ 
+-  vglCompileShaderARB = (PFNGLCOMPILESHADERARBPROC)GL_GetProcAddress( "glCompileShaderARB" );
++  vglCompileShaderARB = (PFNGLCOMPILESHADERARBPROC)GL_GetProcAddress( GL_ARB_OR_CORE( "glCompileShaderARB", "glCompileShader" ) );
+   if( !vglCompileShaderARB )
+     return;
+ 
+-  vglCreateProgramObjectARB = (PFNGLCREATEPROGRAMOBJECTARBPROC)GL_GetProcAddress( "glCreateProgramObjectARB" );
++  vglCreateProgramObjectARB = (PFNGLCREATEPROGRAMOBJECTARBPROC)GL_GetProcAddress( GL_ARB_OR_CORE( "glCreateProgramObjectARB", "glCreateProgram" ) );
+   if( !vglCreateProgramObjectARB )
+     return;
+ 
+-  vglAttachObjectARB = (PFNGLATTACHOBJECTARBPROC)GL_GetProcAddress( "glAttachObjectARB" );
++  vglAttachObjectARB = (PFNGLATTACHOBJECTARBPROC)GL_GetProcAddress( GL_ARB_OR_CORE( "glAttachObjectARB", "glAttachShader" ) );
+   if( !vglAttachObjectARB )
+     return;
+ 
+-  vglLinkProgramARB = (PFNGLLINKPROGRAMARBPROC)GL_GetProcAddress( "glLinkProgramARB" );
++  vglLinkProgramARB = (PFNGLLINKPROGRAMARBPROC)GL_GetProcAddress( GL_ARB_OR_CORE( "glLinkProgramARB", "glLinkProgram" ) );
+   if( !vglLinkProgramARB )
+     return;
+ 
+-  vglUseProgramObjectARB = (PFNGLUSEPROGRAMOBJECTARBPROC)GL_GetProcAddress( "glUseProgramObjectARB" );
++  vglUseProgramObjectARB = (PFNGLUSEPROGRAMOBJECTARBPROC)GL_GetProcAddress( GL_ARB_OR_CORE( "glUseProgramObjectARB", "glUseProgram" ) );
+   if( !vglUseProgramObjectARB )
+     return;
+ 
+@@ -159,33 +171,33 @@
+     return;
+ 
+ #ifdef VTK_OPENGL2
+-  vglDetachObjectARB = (PFNGLDETACHOBJECTARBPROC)GL_GetProcAddress( "glDetachObjectARB" );
++  vglDetachObjectARB = (PFNGLDETACHOBJECTARBPROC)GL_GetProcAddress( GL_ARB_OR_CORE( "glDetachObjectARB", "glDetachShader" ) );
+   if( !vglDetachObjectARB )
+     return;
+ 
+-  vglDeleteObjectARB = (PFNGLDELETEOBJECTARBPROC)GL_GetProcAddress( "glDeleteObjectARB" );
++  vglDeleteObjectARB = (PFNGLDELETEOBJECTARBPROC)GL_GetProcAddress( GL_ARB_OR_CORE( "glDeleteObjectARB", "glDeleteShader" ) );
+   if( !vglDeleteObjectARB )
+     return;
+ 
+-  vglValidateProgramARB = (PFNGLVALIDATEPROGRAMARBPROC)GL_GetProcAddress( "glValidateProgramARB" );
++  vglValidateProgramARB = (PFNGLVALIDATEPROGRAMARBPROC)GL_GetProcAddress( GL_ARB_OR_CORE( "glValidateProgramARB", "glValidateProgram" ) );
+   if ( !vglValidateProgramARB )
+     return;
+ 
+-  vglGetUniformLocationARB = (PFNGLGETUNIFORMLOCATIONARBPROC)GL_GetProcAddress( "glGetUniformLocationARB" );
++  vglGetUniformLocationARB = (PFNGLGETUNIFORMLOCATIONARBPROC)GL_GetProcAddress( GL_ARB_OR_CORE( "glGetUniformLocationARB", "glGetUniformLocation" ) );
+   if( !vglGetUniformLocationARB )
+     return;
+-                       
++
+   vglGetShaderivARB = (PFNGLGETSHADERIVARBPROC)GL_GetProcAddress( "glGetShaderiv" );
+   if( !vglGetShaderivARB )
+     return;
+ 
+   vglActiveTextureARB = (PFNGLACTIVETEXTUREARBPROC)GL_GetProcAddress( "glActiveTexture" );
+   if (!vglActiveTextureARB)
+-	  return;
++    return;
+ 
+   vglGetStringiARB = (PFNGLGETSTRINGIPROC)GL_GetProcAddress("glGetStringi");
+   if (!vglGetStringiARB)
+-	  return;
++    return;
+ 
+   vglGetProgramivARB = (PFNGLGETPROGRAMIVARBPROC)GL_GetProcAddress( "glGetProgramiv" );
+   if( !vglGetProgramivARB )
+@@ -211,6 +223,7 @@
+   if( !vglUniform1iARB )
+     return;
+ #endif
++#endif
+ 
+   mIsInitialized = true;
+   return;
+@@ -252,9 +265,10 @@
+ // purpose  :
+ // ============================================================================
+ bool VTKViewer_OpenGLHelper::CreateShaderProgram (const std::string& theFilePath,
+-                                                  GLhandleARB&       theProgram,
+-                                                  GLhandleARB&       theVertexShader,
+-                                                  GLhandleARB&       theFragmentShader) const
++                                            VTKViewer_GLhandle&       theProgram,
++                                            VTKViewer_GLhandle&       theVertexShader,
++                                            VTKViewer_GLhandle&       theFragmentShader) const
++
+ {
+ #ifdef VTK_OPENGL2
+   // Create program.
+@@ -347,9 +361,9 @@
+ // function : DestroyShaderProgram
+ // purpose  :
+ // ============================================================================
+-void VTKViewer_OpenGLHelper::DestroyShaderProgram (GLhandleARB theProgram,
+-                                                   GLhandleARB theVertexShader,
+-                                                   GLhandleARB theFragmentShader) const
++void VTKViewer_OpenGLHelper::DestroyShaderProgram (VTKViewer_GLhandle theProgram,
++                                                   VTKViewer_GLhandle theVertexShader,
++                                                   VTKViewer_GLhandle theFragmentShader) const
+ {
+ #ifdef VTK_OPENGL2
+   vglDetachObjectARB (theProgram, theVertexShader);
+diff --color=auto -Naur GUI_old/src/VTKViewer/VTKViewer_OpenGLHelper.h GUI_new/src/VTKViewer/VTKViewer_OpenGLHelper.h
+--- GUI_old/src/VTKViewer/VTKViewer_OpenGLHelper.h	2026-10-07 13:09:20
++++ GUI_new/src/VTKViewer/VTKViewer_OpenGLHelper.h	2026-10-07 13:07:47
+@@ -28,12 +28,20 @@
+ #include <windows.h>
+ #endif
+ 
++#ifdef __APPLE__
++#include <OpenGL/gl.h>
++#else
+ #include <GL/gl.h>
++#endif
+ 
+-
++#ifdef __APPLE__
++typedef GLuint VTKViewer_GLhandle;
++#else
+ #ifndef GL_ARB_shader_objects
+ typedef GLuint GLhandleARB;
+ #endif
++typedef GLhandleARB VTKViewer_GLhandle;
++#endif
+ 
+ #ifndef APIENTRY
+ #define APIENTRY
+@@ -114,41 +122,42 @@
+ 
+ public:
+   bool CreateShaderProgram (const std::string& theFilePath,
+-                            GLhandleARB&       theProgram,
+-                            GLhandleARB&       theVertexShader,
+-                            GLhandleARB&       theFragmentShader) const;
++                            VTKViewer_GLhandle&       theProgram,
++                            VTKViewer_GLhandle&       theVertexShader,
++                            VTKViewer_GLhandle&       theFragmentShader) const;
+ 
+-  void DestroyShaderProgram (GLhandleARB theProgram,
+-                             GLhandleARB theVertexShader,
+-                             GLhandleARB theFragmentShader) const;
++  void DestroyShaderProgram (VTKViewer_GLhandle theProgram,
++                           VTKViewer_GLhandle theVertexShader,
++                           VTKViewer_GLhandle theFragmentShader) const;
++
+ #ifdef VTK_OPENGL2
+   void SetUniformMatrix (const GLint         theLocation,
+                          const vtkMatrix4x4* theMatrix) const;
+ #endif  
+ 
+ protected:
+-  typedef void        (APIENTRYP PFNGLSHADERSOURCEARBPROC)             (GLhandleARB shaderObj, GLsizei count, const GLcharARB* *string, const GLint *length);
+-  typedef GLhandleARB (APIENTRYP PFNGLCREATESHADEROBJECTARBPROC)       (GLenum shaderType);
++  typedef void        (APIENTRYP PFNGLSHADERSOURCEARBPROC)             (VTKViewer_GLhandle shaderObj, GLsizei count, const GLcharARB* *string, const GLint *length);
++  typedef VTKViewer_GLhandle (APIENTRYP PFNGLCREATESHADEROBJECTARBPROC)       (GLenum shaderType);
+   typedef void        (APIENTRYP PFNGLBINDBUFFERARBPROC)               (GLenum target, GLuint buffer);
+   typedef void        (APIENTRYP PFNGLDELETEBUFFERSARBPROC)            (GLsizei n, const GLuint *buffers);
+   typedef void        (APIENTRYP PFNGLGENBUFFERSARBPROC)               (GLsizei n, GLuint *buffers);
+   typedef void        (APIENTRYP PFNGLBUFFERDATAARBPROC)               (GLenum target, GLsizeiptrARB size, const GLvoid *data, GLenum usage);
+-  typedef void        (APIENTRYP PFNGLCOMPILESHADERARBPROC)            (GLhandleARB shaderObj);
+-  typedef GLhandleARB (APIENTRYP PFNGLCREATEPROGRAMOBJECTARBPROC)      (void);
+-  typedef void        (APIENTRYP PFNGLATTACHOBJECTARBPROC)             (GLhandleARB containerObj, GLhandleARB obj);
+-  typedef void        (APIENTRYP PFNGLLINKPROGRAMARBPROC)              (GLhandleARB programObj);
+-  typedef void        (APIENTRYP PFNGLUSEPROGRAMOBJECTARBPROC)         (GLhandleARB programObj);
+-  typedef GLint       (APIENTRYP PFNGLGETATTRIBLOCATIONARBPROC)        (GLhandleARB programObj, const GLcharARB *name);
++  typedef void        (APIENTRYP PFNGLCOMPILESHADERARBPROC)            (VTKViewer_GLhandle shaderObj);
++  typedef VTKViewer_GLhandle (APIENTRYP PFNGLCREATEPROGRAMOBJECTARBPROC)      (void);
++  typedef void        (APIENTRYP PFNGLATTACHOBJECTARBPROC)             (VTKViewer_GLhandle containerObj, VTKViewer_GLhandle obj);
++  typedef void        (APIENTRYP PFNGLLINKPROGRAMARBPROC)              (VTKViewer_GLhandle programObj);
++  typedef void        (APIENTRYP PFNGLUSEPROGRAMOBJECTARBPROC)         (VTKViewer_GLhandle programObj);
++  typedef GLint       (APIENTRYP PFNGLGETATTRIBLOCATIONARBPROC)        (VTKViewer_GLhandle programObj, const GLcharARB *name);
+   typedef void        (APIENTRYP PFNGLVERTEXATTRIBPOINTERARBPROC)      (GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const GLvoid *pointer);
+   typedef void        (APIENTRYP PFNGLENABLEVERTEXATTRIBARRAYARBPROC)  (GLuint index);
+   typedef void        (APIENTRYP PFNGLDISABLEVERTEXATTRIBARRAYARBPROC) (GLuint index);
+ 
+ #ifdef VTK_OPENGL2
+   typedef void        (APIENTRYP PFNGLACTIVETEXTUREARBPROC)            (GLenum texture);
+-  typedef void        (APIENTRYP PFNGLDETACHOBJECTARBPROC)             (GLhandleARB containerObj, GLhandleARB obj);
+-  typedef void        (APIENTRYP PFNGLDELETEOBJECTARBPROC)             (GLhandleARB obj);
+-  typedef void        (APIENTRYP PFNGLVALIDATEPROGRAMARBPROC)          (GLhandleARB program);
+-  typedef GLint       (APIENTRYP PFNGLGETUNIFORMLOCATIONARBPROC)       (GLhandleARB program, const GLcharARB *name );
++  typedef void        (APIENTRYP PFNGLDETACHOBJECTARBPROC)             (VTKViewer_GLhandle containerObj, VTKViewer_GLhandle obj);
++  typedef void        (APIENTRYP PFNGLDELETEOBJECTARBPROC)             (VTKViewer_GLhandle obj);
++  typedef void        (APIENTRYP PFNGLVALIDATEPROGRAMARBPROC)          (VTKViewer_GLhandle program);
++  typedef GLint       (APIENTRYP PFNGLGETUNIFORMLOCATIONARBPROC)       (VTKViewer_GLhandle program, const GLcharARB *name );
+   typedef void        (APIENTRYP PFNGLGETSHADERIVARBPROC)              (GLuint shader, GLenum pname, GLint *params);
+   typedef void        (APIENTRYP PFNGLGETPROGRAMIVARBPROC)             (GLenum target, GLenum pname, GLint *params);
+   typedef void        (APIENTRYP PFNGLGETSHADERINFOLOGARBPROC)         (GLuint shader, GLsizei maxLength, GLsizei *length, GLcharARB *infoLog);
+diff --color=auto -Naur GUI_old/src/VTKViewer/VTKViewer_OpenGLRenderer.h GUI_new/src/VTKViewer/VTKViewer_OpenGLRenderer.h
+--- GUI_old/src/VTKViewer/VTKViewer_OpenGLRenderer.h	2026-10-07 13:09:20
++++ GUI_new/src/VTKViewer/VTKViewer_OpenGLRenderer.h	2026-10-07 13:07:47
+@@ -61,9 +61,9 @@
+ 
+ #ifdef VTK_OPENGL2
+   VTKViewer_OpenGLHelper OpenGLHelper;
+-  GLhandleARB            BackgroundProgram;
+-  GLhandleARB            BackgroundVertexShader;
+-  GLhandleARB            BackgroundFragmentShader;
++  VTKViewer_GLhandle            BackgroundProgram;
++  VTKViewer_GLhandle            BackgroundVertexShader;
++  VTKViewer_GLhandle            BackgroundFragmentShader;
+   GLuint                 VertexArrayObject;
+ 
+   struct Locations
+diff --color=auto -Naur GUI_old/src/VTKViewer/VTKViewer_PolyDataMapper.cxx GUI_new/src/VTKViewer/VTKViewer_PolyDataMapper.cxx
+--- GUI_old/src/VTKViewer/VTKViewer_PolyDataMapper.cxx	2026-10-07 13:09:20
++++ GUI_new/src/VTKViewer/VTKViewer_PolyDataMapper.cxx	2026-10-07 13:07:47
+@@ -50,25 +50,7 @@
+ # ifndef GLX_GLXEXT_LEGACY
+ #  define GLX_GLXEXT_LEGACY
+ # endif
+-#ifdef __APPLE__
+-#import <mach-o/dyld.h>
+-#import <stdlib.h>
+-#import <string.h>
+-void * glXGetProcAddressARB (const GLubyte *name)
+-
+-{
+-    NSSymbol symbol;
+-    char *symbolName;
+-    symbolName = (char *)malloc (strlen ((const char *)name) + 2); // 1
+-    strcpy(symbolName + 1, (const char *)name); // 2
+-    symbolName[0] = '_'; // 3
+-    symbol = NULL;
+-    if (NSIsSymbolNameDefined (symbolName)) // 4
+-        symbol = NSLookupAndBindSymbol (symbolName);
+-    free (symbolName); // 5
+-    return symbol ? NSAddressOfSymbol (symbol) : NULL; // 6
+-}
+-#else
++#ifndef __APPLE__
+ # include <GL/glx.h>
+ #endif
+ # include <dlfcn.h>
+@@ -180,7 +162,7 @@
+   this->myLocations.GeneralPointSize    = this->OpenGLHelper.vglGetUniformLocationARB( this->PointProgram, "uGeneralPointSize" );
+   this->myLocations.PointSprite         = this->OpenGLHelper.vglGetUniformLocationARB( this->PointProgram, "uPointSprite" );
+ 
+-  this->OpenGLHelper.vglUseProgramObjectARB( current_program );
++  this->OpenGLHelper.vglUseProgramObjectARB(current_program);
+ 
+   this->OpenGLHelper.vglGenVertexArraysARB(1, &this->VertexArrayObject);
+ #else
+@@ -194,7 +176,7 @@
+ 
+   char* shader = GUI_OPENGL::readFromFile( fileName );
+ 
+-  GLhandleARB VertexShader = this->OpenGLHelper.vglCreateShaderObjectARB( GL_VERTEX_SHADER_ARB );
++  VTKViewer_GLhandle VertexShader = this->OpenGLHelper.vglCreateShaderObjectARB( GL_VERTEX_SHADER_ARB );
+   this->OpenGLHelper.vglShaderSourceARB( VertexShader, 1, (const GLcharARB**)&shader, NULL );
+   this->OpenGLHelper.vglCompileShaderARB( VertexShader );
+ 
+diff --color=auto -Naur GUI_old/src/VTKViewer/VTKViewer_PolyDataMapper.h GUI_new/src/VTKViewer/VTKViewer_PolyDataMapper.h
+--- GUI_old/src/VTKViewer/VTKViewer_PolyDataMapper.h	2026-10-07 13:09:20
++++ GUI_new/src/VTKViewer/VTKViewer_PolyDataMapper.h	2026-10-07 13:07:47
+@@ -134,10 +134,10 @@
+   vtkSmartPointer<vtkImageData> ImageData;
+ 
+   VTKViewer_OpenGLHelper OpenGLHelper;
+-  GLhandleARB PointProgram;
++  VTKViewer_GLhandle PointProgram;
+ #ifdef VTK_OPENGL2
+-  GLhandleARB VertexShader;
+-  GLhandleARB FragmentShader;
++  VTKViewer_GLhandle VertexShader;
++  VTKViewer_GLhandle FragmentShader;
+   GLuint      VertexArrayObject;
+ #endif
+ 
+diff --color=auto -Naur GUI_old/tools/PyConsole/src/python/CMakeLists.txt GUI_new/tools/PyConsole/src/python/CMakeLists.txt
+--- GUI_old/tools/PyConsole/src/python/CMakeLists.txt	2026-10-07 13:09:20
++++ GUI_new/tools/PyConsole/src/python/CMakeLists.txt	2026-10-07 13:07:47
+@@ -122,9 +122,11 @@
+   ADD_LIBRARY(PyConsolePy ${PyConsolePy_SOURCES})
+   IF(WIN32)
+     SET_TARGET_PROPERTIES(PyConsolePy PROPERTIES SUFFIX ".pyd" DEBUG_OUTPUT_NAME PyConsolePy_d RELEASE_OUTPUT_NAME PyConsolePy)
+-  ELSE(WIN32)
++  ELSEIF(APPLE)
++      SET_TARGET_PROPERTIES(PyConsolePy PROPERTIES PREFIX "" SUFFIX ".so")
++  ELSE()
+     SET_TARGET_PROPERTIES(PyConsolePy PROPERTIES PREFIX "")
+-  ENDIF(WIN32)
++  ENDIF()
+   TARGET_LINK_LIBRARIES(PyConsolePy ${_link_LIBRARIES})
+   INSTALL(TARGETS PyConsolePy EXPORT ${PYCONSOLE_EXPORT_NAME}TargetGroup DESTINATION ${PYCONSOLE_INSTALL_PYTHON})
+ endif(SALOME_USE_PYSIDE)
+diff --color=auto -Naur GUI_old/tools/PyEditor/src/python/CMakeLists.txt GUI_new/tools/PyEditor/src/python/CMakeLists.txt
+--- GUI_old/tools/PyEditor/src/python/CMakeLists.txt	2026-10-07 13:09:20
++++ GUI_new/tools/PyEditor/src/python/CMakeLists.txt	2026-10-07 13:07:47
+@@ -127,9 +127,11 @@
+   ADD_LIBRARY(PyEditorPy ${PyEditorPy_SOURCES})
+   IF(WIN32)
+     SET_TARGET_PROPERTIES(PyEditorPy PROPERTIES SUFFIX ".pyd" DEBUG_OUTPUT_NAME PyEditorPy_d RELEASE_OUTPUT_NAME PyEditorPy)
+-  ELSE(WIN32)
++  ELSEIF(APPLE)
++    SET_TARGET_PROPERTIES(PyEditorPy PROPERTIES PREFIX "" SUFFIX ".so")
++  ELSE()
+     SET_TARGET_PROPERTIES(PyEditorPy PROPERTIES PREFIX "")
+-  ENDIF(WIN32)
++  ENDIF()
+   TARGET_LINK_LIBRARIES(PyEditorPy ${_link_LIBRARIES})
+   INSTALL(TARGETS PyEditorPy EXPORT ${PYEDITOR_EXPORT_NAME}TargetGroup DESTINATION ${PYEDITOR_INSTALL_PYTHON})
+ endif(SALOME_USE_PYSIDE)

@@ -58,6 +58,19 @@ default :
     }
 }
 
+default_macOS :
+{
+    cmake_options : '-DFREETYPE_LIBRARY=${FREETYPE_ROOT_DIR}/lib/libfreetype.dylib -DFREETYPE_INCLUDE_DIRS=${FREETYPE_ROOT_DIR}/include'
+    git_info:
+    {
+      repositories :
+      {
+            github : "https://github.com/raphael-nabet/paravisaddons_common.git"
+      }
+      git_commands: [ 'git switch support-for-macos-platform' ]
+    }
+}
+
 default_win :
 {
     # bos #46196 - make the build directory as short as possible since
@@ -68,4 +81,9 @@ default_win :
     [
         'PARAVIS'
     ]
+}
+
+version_V9_16_0_macOS :
+{
+    patches : ["PARAVISADDONS.macos.arm64.patch"]
 }

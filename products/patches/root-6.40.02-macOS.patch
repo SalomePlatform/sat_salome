@@ -1,0 +1,14 @@
+diff --git a/interpreter/cling/lib/Interpreter/CMakeLists.txt b/interpreter/cling/lib/Interpreter/CMakeLists.txt
+index 416a3b0..410dc90 100644
+--- a/interpreter/cling/lib/Interpreter/CMakeLists.txt
++++ b/interpreter/cling/lib/Interpreter/CMakeLists.txt
+@@ -326,7 +326,7 @@ if (UNIX)
+     # FIXME: That is a horrible hack and we should teach CIFactory to pick up
+     # the SDK directory at runtime, just as we do for the include paths to C++.
+     set (OSX_SYSROOT_DEFAULT_SDK ${CMAKE_OSX_SYSROOT})
+-    if (${OSX_SYSROOT_DEFAULT_SDK} MATCHES "MacOSX[.0-9]+\.sdk")
++    if (FALSE) # SALOME: garder le SDK versionne (cf. Homebrew #135714, cling #457)
+       get_filename_component(OSX_SYSROOT_DEFAULT_SDK ${OSX_SYSROOT_DEFAULT_SDK} DIRECTORY)
+       set (OSX_SYSROOT_DEFAULT_SDK ${OSX_SYSROOT_DEFAULT_SDK}/MacOSX.sdk/)
+     endif()
+

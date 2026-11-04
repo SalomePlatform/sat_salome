@@ -1,0 +1,108 @@
+diff --color=auto -Naur URANIE_old/CMakeLists.txt URANIE_new/CMakeLists.txt
+--- URANIE_old/CMakeLists.txt	2026-10-14 14:06:06
++++ URANIE_new/CMakeLists.txt	2026-10-14 14:05:46
+@@ -83,6 +83,8 @@
+ # python,doxygen,levelE,libssh
+ #-------------------------------------------------------------------------
+ include(UranieFindAllPackages)
++include_directories(SYSTEM ${Boost_INCLUDE_DIRS})
++
+ 
+ #-------------------------------------------------------------------------
+ # Show librairies installed
+diff --color=auto -Naur URANIE_old/CmakePackage/FindROOT.cmake URANIE_new/CmakePackage/FindROOT.cmake
+--- URANIE_old/CmakePackage/FindROOT.cmake	2026-10-14 14:06:06
++++ URANIE_new/CmakePackage/FindROOT.cmake	2026-10-14 14:05:47
+@@ -70,19 +70,19 @@
+     ENDIF (NOT ROOT_MAX_VERSION)
+     
+     # now parse the parts of the user given version string into variables
+-    STRING(REGEX REPLACE "^([0-9]+)\\.[0-9][0-9]+\\/[0-9][0-9]+" "\\1" req_root_major_vers "${ROOT_MIN_VERSION}")
+-    STRING(REGEX REPLACE "^[0-9]+\\.([0-9][0-9])+\\/[0-9][0-9]+.*" "\\1" req_root_minor_vers "${ROOT_MIN_VERSION}")
+-    STRING(REGEX REPLACE "^[0-9]+\\.[0-9][0-9]+\\/([0-9][0-9]+)" "\\1" req_root_patch_vers "${ROOT_MIN_VERSION}")
++    STRING(REGEX REPLACE "^([0-9]+)\\.[0-9][0-9]+[./][0-9][0-9]+" "\\1" req_root_major_vers "${ROOT_MIN_VERSION}")
++    STRING(REGEX REPLACE "^[0-9]+\\.([0-9][0-9])+[./][0-9][0-9]+.*" "\\1" req_root_minor_vers "${ROOT_MIN_VERSION}")
++    STRING(REGEX REPLACE "^[0-9]+\\.[0-9][0-9]+[./]([0-9][0-9]+)" "\\1" req_root_patch_vers "${ROOT_MIN_VERSION}")
+     
+     # now parse the parts of the user given maximum version string into variables
+-    STRING(REGEX REPLACE "^([0-9]+)\\.[0-9][0-9]+\\/[0-9][0-9]+" "\\1" max_req_root_major_vers "${ROOT_MAX_VERSION}")
+-    STRING(REGEX REPLACE "^[0-9]+\\.([0-9][0-9])+\\/[0-9][0-9]+.*" "\\1" max_req_root_minor_vers "${ROOT_MAX_VERSION}")
+-    STRING(REGEX REPLACE "^[0-9]+\\.[0-9][0-9]+\\/([0-9][0-9]+)" "\\1" max_req_root_patch_vers "${ROOT_MAX_VERSION}")
++    STRING(REGEX REPLACE "^([0-9]+)\\.[0-9][0-9]+[./][0-9][0-9]+" "\\1" max_req_root_major_vers "${ROOT_MAX_VERSION}")
++    STRING(REGEX REPLACE "^[0-9]+\\.([0-9][0-9])+[./][0-9][0-9]+.*" "\\1" max_req_root_minor_vers "${ROOT_MAX_VERSION}")
++    STRING(REGEX REPLACE "^[0-9]+\\.[0-9][0-9]+[./]([0-9][0-9]+)" "\\1" max_req_root_patch_vers "${ROOT_MAX_VERSION}")
+     
+     # and now the version string given by qmake
+-    STRING(REGEX REPLACE "^([0-9]+)\\.[0-9][0-9]+\\/[0-9][0-9]+.*" "\\1" found_root_major_vers "${ROOTVERSION}")
+-    STRING(REGEX REPLACE "^[0-9]+\\.([0-9][0-9])+\\/[0-9][0-9]+.*" "\\1" found_root_minor_vers "${ROOTVERSION}")
+-    STRING(REGEX REPLACE "^[0-9]+\\.[0-9][0-9]+\\/([0-9][0-9]+).*" "\\1" found_root_patch_vers "${ROOTVERSION}")
++    STRING(REGEX REPLACE "^([0-9]+)\\.[0-9][0-9]+[./][0-9][0-9]+.*" "\\1" found_root_major_vers "${ROOTVERSION}")
++    STRING(REGEX REPLACE "^[0-9]+\\.([0-9][0-9])+[./][0-9][0-9]+.*" "\\1" found_root_minor_vers "${ROOTVERSION}")
++    STRING(REGEX REPLACE "^[0-9]+\\.[0-9][0-9]+[./]([0-9][0-9]+).*" "\\1" found_root_patch_vers "${ROOTVERSION}")
+     
+     # compute an overall version number which can be compared at once
+     math(EXPR req_vers "${req_root_major_vers}*10000 + ${req_root_minor_vers}*100 + ${req_root_patch_vers}")
+@@ -118,8 +118,11 @@
+     root_get_option(ROOT_PYTHON_INC "^PYTHON_INCLUDE_DIRS=")
+   endif()
+ 
++
+   root_get_configuration(ROOT_PYTHON_VERSION "--python-version")
+-  root_get_configuration(ROOT_PYTHON2_VERSION "--python2-version")
++  if(NOT APPLE)
++    root_get_configuration(ROOT_PYTHON2_VERSION "--python2-version")
++  endif()
+   root_get_configuration(ROOT_PYTHON3_VERSION "--python3-version")
+ 
+   if ("${ROOT_PYTHON_VERSION}" STREQUAL "${ROOT_PYTHON3_VERSION}")
+diff --color=auto -Naur URANIE_old/CmakePackage/SetUpLinux.cmake URANIE_new/CmakePackage/SetUpLinux.cmake
+--- URANIE_old/CmakePackage/SetUpLinux.cmake	2026-10-14 14:06:06
++++ URANIE_new/CmakePackage/SetUpLinux.cmake	2026-10-14 14:05:47
+@@ -49,7 +49,9 @@
+   set(CMAKE_SHARED_LIBRARY_CREATE_C_FLAGS "${CMAKE_SHARED_LIBRARY_CREATE_C_FLAGS} -lssh -g")
+   set(CMAKE_SHARED_LIBRARY_CREATE_CXX_FLAGS "${CMAKE_SHARED_LIBRARY_CREATE_CXX_FLAGS} -lssh -g")
+ 
+-  set(CMAKE_SHARED_LINKER_FLAGS "-Wl,--no-undefined")
++  if (NOT APPLE)
++    set(CMAKE_SHARED_LINKER_FLAGS "-Wl,--no-undefined")
++  endif()
+ 
+   # Select flags.
+   set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O2 -g")
+@@ -110,7 +112,9 @@
+   if(ICC_MAJOR EQUAL 11)  
+     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${BIT_ENVIRONMENT} -wd1572 -wd279")
+     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${BIT_ENVIRONMENT} -wd1572 -wd279")
+-    set(CMAKE_SHARED_LINKER_FLAGS "${BIT_ENVIRONMENT} -Wl,--no-undefined")
++    if (NOT APPLE)
++        set(CMAKE_SHARED_LINKER_FLAGS "${BIT_ENVIRONMENT} -Wl,--no-undefined")
++    endif()
+     #set(CMAKE_C_LINK_FLAGS "${CMAKE_C_LINK_FLAGS} ${BIT_ENVIRONMENT}")
+     #set(CMAKE_CXX_LINK_FLAGS "${CMAKE_CXX_LINK_FLAGS} ${BIT_ENVIRONMENT}")
+     set(ICC_GE_9  11)
+@@ -120,7 +124,9 @@
+   if(ICC_MAJOR EQUAL 12)  
+     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${BIT_ENVIRONMENT} -wd1572 -wd279")
+     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${BIT_ENVIRONMENT} -wd1572 -wd279")
+-    set(CMAKE_SHARED_LINKER_FLAGS "${BIT_ENVIRONMENT} -Wl,--no-undefined")
++    if (NOT APPLE)
++        set(CMAKE_SHARED_LINKER_FLAGS "${BIT_ENVIRONMENT} -Wl,--no-undefined")
++    endif()
+     #set(CMAKE_C_LINK_FLAGS "${CMAKE_C_LINK_FLAGS} ${BIT_ENVIRONMENT}")
+     #set(CMAKE_CXX_LINK_FLAGS "${CMAKE_CXX_LINK_FLAGS} ${BIT_ENVIRONMENT}")
+     set(ICC_GE_9  12)
+diff --color=auto -Naur URANIE_old/CmakePackage/UranieFindAllPackages.cmake URANIE_new/CmakePackage/UranieFindAllPackages.cmake
+--- URANIE_old/CmakePackage/UranieFindAllPackages.cmake	2026-10-14 14:06:06
++++ URANIE_new/CmakePackage/UranieFindAllPackages.cmake	2026-10-14 14:05:47
+@@ -31,9 +31,9 @@
+ #-------------------------------------------------------------------------
+ 
+ # explicit link
+-if(UNIX)
++if(UNIX AND NOT APPLE)
+     set(CMAKE_SHARED_LINKER_FLAGS "-Wl,--no-undefined")
+-endif(UNIX)
++endif()
+ 
+ if(UNIX)
+     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pipe -pthread -W -Wno-deprecated-declarations")

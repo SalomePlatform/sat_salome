@@ -21,6 +21,22 @@ default :
     }
 }
 
+default_macOS:
+{
+    post_script : "setup-rpath-macOS.sh"
+}
+
+version_3_4_7:
+{
+    name : "openssl"
+    get_source : "archive"
+    archive_info : {archive_name: "openssl-3.4.7.tar.gz"}
+    compil_script : "openssl-3.4.7.sh" 
+    build_source : "script"
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+}
+
 default_win :
 {
     name : "openssl"
@@ -39,3 +55,5 @@ version_1_1_1n_win :
   archive_info : {archive_name : "openssl-1.1.1n_windows.tar.gz"}
   compil_script : "openssl-1.1.bat"
 }
+
+

@@ -19,6 +19,13 @@ default :
     }
 }
 
+default_macOS:
+{
+    build_source : "script"
+    post_script : "setup-rpath-macOS.sh"
+    compil_script : "tcltk.sh"
+}
+
 default_win:
 {
     properties :
@@ -26,6 +33,12 @@ default_win:
       incremental : "yes"
       single_install_dir : "yes"
     }
+}
+
+version_8_6_18:
+{
+    compil_script : "tcltk-8.6.18" + $VARS.scriptExtension
+    patches : []
 }
 
 version_8_6_17:

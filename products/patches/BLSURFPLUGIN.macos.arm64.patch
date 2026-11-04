@@ -1,0 +1,28 @@
+diff --git a/src/BLSURFPlugin/BLSURFPlugin_BLSURF.cxx b/src/BLSURFPlugin/BLSURFPlugin_BLSURF.cxx
+index a92a04b..8482ebf 100644
+--- a/src/BLSURFPlugin/BLSURFPlugin_BLSURF.cxx
++++ b/src/BLSURFPlugin/BLSURFPlugin_BLSURF.cxx
+@@ -1985,7 +1985,12 @@ bool BLSURFPlugin_BLSURF::compute(SMESH_Mesh&         aMesh,
+   // Issue 0019864. On DebianSarge, FE signals do not obey to OSD::SetSignal(false)
+ #ifndef WIN32
+   feclearexcept( FE_ALL_EXCEPT );
++#if defined(__APPLE__)
++  // macOS: fedisableexcept() is glibc only; FP exceptions do not trap by default
++  int oldFEFlags = 0;
++#else
+   int oldFEFlags = fedisableexcept( FE_ALL_EXCEPT );
++#endif
+ #endif
+ 
+   context_t *ctx =  context_new();
+@@ -3043,8 +3048,10 @@ bool BLSURFPlugin_BLSURF::compute(SMESH_Mesh&         aMesh,
+ 
+   // Issue 0019864. On DebianSarge, FE signals do not obey to OSD::SetSignal(false)
+ #ifndef WIN32
++#if !defined(__APPLE__)
+   if ( oldFEFlags > 0 )
+     feenableexcept( oldFEFlags );
++#endif
+   feclearexcept( FE_ALL_EXCEPT );
+ #endif
+ 

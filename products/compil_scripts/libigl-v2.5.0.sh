@@ -42,6 +42,10 @@ if [ -n "$OPENBLAS_ROOT_DIR" ] && [ "$SAT_openblas_IS_NATIVE" != "1" ]; then
     CMAKE_OPTIONS+=" -DBLAS_LIBRARIES=$OPENBLAS_ROOT_DIR/lib/libopenblas.so"
 fi
 
+if [ "$DIST_NAME" = "macOS" ]; then
+    CMAKE_OPTIONS+=" $SAT_CMAKE_OPTIONS"
+fi
+
 echo "*** cmake" $CMAKE_OPTIONS
 cmake $CMAKE_OPTIONS $SOURCE_DIR
 

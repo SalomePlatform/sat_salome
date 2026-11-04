@@ -91,23 +91,29 @@ case $LINUX_DISTRIBUTION in
 esac
 
 # Blas/Lapack
+if [ "$DIST_NAME" == "macOS" ]; then
+    libExtension="dylib"
+else
+    libExtension="so"
+fi
+
 if [ -n "$OPENBLAS_ROOT_DIR" ] && [ "$SAT_openblas_IS_NATIVE" != "1" ]; then
     CMAKE_OPTIONS+=" -DOpenBLAS_DIR=${OpenBLAS_DIR}"
-    CMAKE_OPTIONS+=" -DCBLAS_LIBRARIES=$OPENBLAS_ROOT_DIR/lib/libopenblas.so"
-    CMAKE_OPTIONS+=" -DBLAS_LIBRARIES=$OPENBLAS_ROOT_DIR/lib/libopenblas.so"
+    CMAKE_OPTIONS+=" -DCBLAS_LIBRARIES=$OPENBLAS_ROOT_DIR/lib/libopenblas.${libExtension}"
+    CMAKE_OPTIONS+=" -DBLAS_LIBRARIES=$OPENBLAS_ROOT_DIR/lib/libopenblas.${libExtension}"
 fi
 
 if [ -n "$LAPACK_ROOT_DIR" ] && [ "$SAT_lapack_IS_NATIVE" != "1" ]; then
     CMAKE_OPTIONS+=" -DLAPACK_DIR=${LAPACK_DIR}"
     CMAKE_OPTIONS+=" -DCBLAS_DIR=${CBLAS_DIR}"
-    CMAKE_OPTIONS+=" -DCBLAS_LIBRARIES=$LAPACK_ROOT_DIR/lib/libcblas.so"
-    CMAKE_OPTIONS+=" -DBLAS_LIBRARIES=$LAPACK_ROOT_DIR/lib/libblas.so"
+    CMAKE_OPTIONS+=" -DCBLAS_LIBRARIES=$LAPACK_ROOT_DIR/lib/libcblas.${libExtension}"
+    CMAKE_OPTIONS+=" -DBLAS_LIBRARIES=$LAPACK_ROOT_DIR/lib/libblas.${libExtension}"
 fi
 
 ### libxml2 settings
 if [ -n "$LIBXML2_ROOT_DIR" ] && [ "$SAT_libxml2_IS_NATIVE" != "1" ]; then
     CMAKE_OPTIONS+=" -DLIBXML2_INCLUDE_DIR:STRING=${LIBXML2_ROOT_DIR}/include/libxml2"
-    CMAKE_OPTIONS+=" -DLIBXML2_LIBRARIES:STRING=${LIBXML2_ROOT_DIR}/lib/libxml2.so"
+    CMAKE_OPTIONS+=" -DLIBXML2_LIBRARIES:STRING=${LIBXML2_ROOT_DIR}/lib/libxml2.${libExtension}"
     CMAKE_OPTIONS+=" -DLIBXML2_XMLLINT_EXECUTABLE=${LIBXML2_ROOT_DIR}/bin/xmllint"
 fi
 
@@ -117,8 +123,8 @@ if [ -n "$HDF5_ROOT_DIR" ] && [ "$SAT_hdf5_IS_NATIVE" != "1" ]; then
     CMAKE_OPTIONS+=" -DHDF5_USE_STATIC_LIBRARIES:BOOL=OFF"
     CMAKE_OPTIONS+=" -DHDF5_ROOT:PATH=${HDF5_ROOT_DIR}"
     CMAKE_OPTIONS+=" -DHDF5_hdf5_LIBRARY_RELEASE=${HDF5_ROOT_DIR}/lib"
-    CMAKE_OPTIONS+=" -DHDF5_hdf5_hl_LIBRARY_RELEASE=${HDF5_ROOT_DIR}/lib/libhdf5_hl.so"
-    CMAKE_OPTIONS+=" -DHDF5_HL_LIBRARY=${HDF5_ROOT_DIR}/lib/libhdf5_hl.so"
+    CMAKE_OPTIONS+=" -DHDF5_hdf5_hl_LIBRARY_RELEASE=${HDF5_ROOT_DIR}/lib/libhdf5_hl.${libExtension}"
+    CMAKE_OPTIONS+=" -DHDF5_HL_LIBRARY=${HDF5_ROOT_DIR}/lib/libhdf5_hl.${libExtension}"
     CMAKE_OPTIONS+=" -DHDF5_C_INCLUDE_DIR=${HDF5_ROOT_DIR}/include"
 fi
 
@@ -126,7 +132,7 @@ fi
 if [ -n "$CMINPACK_ROOT_DIR" ] && [ "$SAT_cminpack_IS_NATIVE" != "1" ]; then
     CMAKE_OPTIONS+=" -DCMINPACK_ROOT_DIR=${CMINPACK_ROOT_DIR}"
     CMAKE_OPTIONS+=" -DCMINPACK_INCLUDE_DIR=${CMINPACK_ROOT_DIR}/include/cminpack-1"
-    CMAKE_OPTIONS+=" -DCMINPACK_LIBRARY=$CMINPACK_ROOT_DIR/lib/libcminpack.so"
+    CMAKE_OPTIONS+=" -DCMINPACK_LIBRARY=$CMINPACK_ROOT_DIR/lib/libcminpack.${libExtension}"
 else
     CMAKE_OPTIONS+=" -DCMINPACK_ROOT_DIR=${CMINPACK_ROOT_DIR}"
     CMAKE_OPTIONS+=" -DCMINPACK_INCLUDE_DIR=${CMINPACK_ROOT_DIR}/include/cminpack-1"
@@ -137,7 +143,7 @@ fi
 if [ -n "$NLOPT_ROOT_DIR" ] && [ "$SAT_nlopt_IS_NATIVE" != "1" ]; then
     CMAKE_OPTIONS+=" -DNLOPT_ROOT_DIR:PATH=${NLOPT_ROOT_DIR}"
     CMAKE_OPTIONS+=" -DNLOPT_INCLUDE_DIR:PATH=${NLOPT_ROOT_DIR}/include"
-    CMAKE_OPTIONS+=" -DNLOPT_LIBRARY:STRING=${NLOPT_ROOT_DIR}/lib/libnlopt.so"
+    CMAKE_OPTIONS+=" -DNLOPT_LIBRARY:STRING=${NLOPT_ROOT_DIR}/lib/libnlopt.${libExtension}"
     CMAKE_OPTIONS+=" -DNLopt_DIR:PATH=${NLOPT_ROOT_DIR}/lib/cmake/nlopt"
 fi
 
@@ -189,6 +195,10 @@ then
     exit 1
 fi
 
+if [ "$DIST_NAME" = "macOS" ]; then
+    CMAKE_OPTIONS+=" $SAT_CMAKE_OPTIONS"
+fi
+
 echo
 echo "*** make" $MAKE_OPTIONS
 make $MAKE_OPTIONS
@@ -222,60 +232,65 @@ cd  $BUILD_DIR
 mkdir ${BUILD_DIR}/mixmod
 cd ${BUILD_DIR}/mixmod
 
+if [ "$DIST_NAME" != "macOS" ]; then
+    case $LINUX_DISTRIBUTION in
+	CO10)
+            :
+            ;;
+	*)
+            CMAKE_EXTRA_OPTIONS=
+            CMAKE_EXTRA_OPTIONS+=" -DMIXMOD_BUILD_EXAMPLES=ON"
+            CMAKE_EXTRA_OPTIONS+=" -DMIXMOD_BUILD_IOSTREAM=ON"
+            CMAKE_EXTRA_OPTIONS+=" -DMIXMOD_BUILD_CLI=ON"
 
-case $LINUX_DISTRIBUTION in
-    CO10)
-        :
-        ;;
-    *)
-        CMAKE_EXTRA_OPTIONS=
-        CMAKE_EXTRA_OPTIONS+=" -DMIXMOD_BUILD_EXAMPLES=ON"
-        CMAKE_EXTRA_OPTIONS+=" -DMIXMOD_BUILD_IOSTREAM=ON"
-        CMAKE_EXTRA_OPTIONS+=" -DMIXMOD_BUILD_CLI=ON"
+            echo
+            echo "*** cmake " $CMAKE_OPTIONS ${CMAKE_EXTRA_OPTIONS} $SOURCE_DIR/mixmod-2.1.11
+            #sed -i "s/Eigen3 3.3/Eigen3/" $SOURCE_DIR/mixmod-2.1.11/CMakeLists.txt
+            cmake $CMAKE_OPTIONS ${CMAKE_EXTRA_OPTIONS} $SOURCE_DIR/mixmod-2.1.11
+            if [ $? -ne 0 ]; then
+		echo "ERROR on cmake"
+		exit 1
+            fi
+	    
+            echo
+            echo "*** make" $MAKE_OPTIONS
+            make $MAKE_OPTIONS
+            if [ $? -ne 0 ]; then
+		echo "ERROR on make"
+		exit 2
+            fi
+	    
+            echo
+            echo "*** make install"
+            make install
+            if [ $? -ne 0 ]; then
+		echo "ERROR on make install"
+		exit 3
+            fi
+            ;;
+    esac
+else
+    echo "INFO: skipping mixmod: would require either to install libxml++ or use brew" #TODO
+fi
 
-        echo
-        echo "*** cmake " $CMAKE_OPTIONS ${CMAKE_EXTRA_OPTIONS} $SOURCE_DIR/mixmod-2.1.11
-        #sed -i "s/Eigen3 3.3/Eigen3/" $SOURCE_DIR/mixmod-2.1.11/CMakeLists.txt
-        cmake $CMAKE_OPTIONS ${CMAKE_EXTRA_OPTIONS} $SOURCE_DIR/mixmod-2.1.11
-        if [ $? -ne 0 ]; then
-            echo "ERROR on cmake"
-            exit 1
-        fi
+K=("otfftw" "otmixmod" "otmorris" "otrobopt" "otsvm")
+V=("0.17"   "0.19"     "0.18"     "0.16"     "0.16" )
 
-        echo
-        echo "*** make" $MAKE_OPTIONS
-        make $MAKE_OPTIONS
-        if [ $? -ne 0 ]; then
-            echo "ERROR on make"
-            exit 2
-        fi
+for i in "${!K[@]}"; do
+    k=${K[$i]}
+    v=${V[$i]}
 
-        echo
-        echo "*** make install"
-        make install
-        if [ $? -ne 0 ]; then
-            echo "ERROR on make install"
-            exit 3
-        fi
-        ;;
-esac
-
-declare -A OTC
-OTC["otfftw"]="0.17"
-OTC["otmixmod"]="0.19"
-OTC["otmorris"]="0.18"
-OTC["otrobopt"]="0.16"
-OTC["otsvm"]="0.16"
-
-for k in "${!OTC[@]}";
-do
     echo
-    echo "*** C O M P O N E N T : $k-${OTC[$k]} "
+    echo "*** C O M P O N E N T : $k-$v "
     if [[ $k == "otagrum" ]]; then
         echo "WARNING: skipping $k ..."
         continue
     fi
     if [ "$k" == "otmixmod" ] && [ "$LINUX_DISTRIBUTION" == "CO10" ]; then
+        echo "WARNING: skipping $k ..."
+        continue
+    fi
+    if [ "$k" == "otmixmod" ] && [ "$DIST_NAME" == "macOS" ]; then
         echo "WARNING: skipping $k ..."
         continue
     fi
@@ -285,22 +300,30 @@ do
 
     CMAKE_EXTRA_OPTIONS=
     if [[ $k == "otmixmod" ]]; then #FIXME:
-        CMAKE_EXTRA_OPTIONS+=" -DSOURCEFILES=$SOURCE_DIR/$k-${OTC[$k]}"
+        CMAKE_EXTRA_OPTIONS+=" -DSOURCEFILES=$SOURCE_DIR/$k-$v"
         CMAKE_EXTRA_OPTIONS+=" -DMIXMOD_INCLUDE_DIR=$PRODUCT_INSTALL/include"
-        CMAKE_EXTRA_OPTIONS+=" -DMIXMOD_LIBRARIES=$PRODUCT_INSTALL/lib/libmixmod.so"
+        CMAKE_EXTRA_OPTIONS+=" -DMIXMOD_LIBRARIES=$PRODUCT_INSTALL/lib/libmixmod.${libExtension}"
 
-        if [ ! -f $PRODUCT_INSTALL/lib/libmixmod.so ]; then
-            echo "WARNING: libmixmod.so is not installed where it is expected to be. Skipping..."
+        if [ ! -f $PRODUCT_INSTALL/lib/libmixmod.${libExtension} ]; then
+            echo "WARNING: libmixmod.${libExtension} is not installed where it is expected to be. Skipping..."
             continue
         fi
+    elif [[ $k == "otfftw" ]]; then #FIXME:
+	if [ "$DIST_NAME" == "macOS" ]; then	    
+            CMAKE_EXTRA_OPTIONS+=" -DOPENTURNS_HOME=$PRODUCT_INSTALL"
+            CMAKE_EXTRA_OPTIONS+=" -Dfftw_DIR=$FFTW3_DIR"
+	    CMAKE_EXTRA_OPTIONS+=" -DFFTW_LIBRARIES=$FFTW3_ROOT_DIR/lib/libfftw3.dylib"
+	else
+	    :
+	fi
     elif [[ $k == "otsubsetinverse" ]]; then #FIXME:
         CMAKE_EXTRA_OPTIONS+=" -DOPENTURNS_HOME=$PRODUCT_INSTALL"
         CMAKE_EXTRA_OPTIONS+=" -DCMAKE_SKIP_INSTALL_RPATH:BOOL=ON"
     fi
 
     echo
-    echo "*** cmake $CMAKE_OPTIONS ${CMAKE_EXTRA_OPTIONS}  $SOURCE_DIR/$k-${OTC[$k]}"
-    cmake $CMAKE_OPTIONS ${CMAKE_EXTRA_OPTIONS} $SOURCE_DIR/$k-${OTC[$k]}
+    echo "*** cmake $CMAKE_OPTIONS ${CMAKE_EXTRA_OPTIONS}  $SOURCE_DIR/$k-$v"
+    cmake $CMAKE_OPTIONS ${CMAKE_EXTRA_OPTIONS} $SOURCE_DIR/$k-$v
     if [ $? -ne 0 ]
     then
         echo "ERROR on cmake"
@@ -329,20 +352,19 @@ do
     fix_lib_path
 done
 
-declare -A OTP
-OTP["otfmi"]="0.16.6"
-OTP["otpod"]="0.6.12"
-OTP["otwrapy"]="0.12.1"
+K=("otfmi"    "otpod"      "otwrapy")
+V=("0.16.6"   "0.6.12"     "0.12.1" )
 
-for k in ${!OTP[@]};
-do
+for i in "${!K[@]}"; do
+    k=${K[$i]}
+    v=${V[$i]}
     echo
-    echo "*** C O M P O N E N T : $k-${OTP[$k]} "
+    echo "*** C O M P O N E N T : $k-$v "
 
     cd  $BUILD_DIR
     mkdir ${BUILD_DIR}/$k
     cd ${BUILD_DIR}/$k
-    cp -R $SOURCE_DIR/$k-${OTP[$k]}/* .
+    cp -R $SOURCE_DIR/$k-$v/* .
 
     #
     mkdir -p ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages
@@ -447,11 +469,11 @@ fi
 
 cd ${PRODUCT_INSTALL}/lib
 # On some nodes, the link to OT is not done properly.
-if [[ ! -f libOT.so.0 ]]; then
-    echo "INFO: Fixing libOT.so"
-    ln -sf libOT.so.0.26.0 libOT.so.0.26
-    ln -sf libOT.so.0.26 libOT.so.0
-    ln -sf libOT.so.0 libOT.so
+if [[ ! -f libOT.${libExtension}.0 ]]; then
+    echo "INFO: Fixing libOT.${libExtension}"
+    ln -sf libOT.${libExtension}.0.26.0 libOT.${libExtension}.0.26
+    ln -sf libOT.${libExtension}.0.26 libOT.${libExtension}.0
+    ln -sf libOT.${libExtension}.0 libOT.${libExtension}
 fi
 
 echo

@@ -34,6 +34,21 @@ default :
     }
 }
 
+default_macOS :
+{
+    cmake_options : ' -DFREETYPE_LIBRARY=${FREETYPE_ROOT_DIR}/lib/libfreetype.dylib -DFREETYPE_INCLUDE_DIRS=${FREETYPE_ROOT_DIR}/include -DCMAKE_C_FLAGS=" -w -Wno-narrowing -Wno-sign-conversion" -DCMAKE_CXX_FLAGS=" -w -Wno-narrowing -Wno-sign-conversion"'
+    git_info:
+    {
+      repositories :
+      {
+        github : "https://github.com/raphael-nabet/med.git"
+      }
+      git_commands: [
+                     'git switch support-for-macos-platform'
+                    ]
+    }
+}
+
 default_MPI :
 {
     cmake_options : "-DSALOME_USE_MPI=ON -DMEDCOUPLING_USE_64BIT_IDS=ON"
@@ -54,6 +69,11 @@ version_V10_0_0_MPI :
       "MEDCOUPLING",
       "openmpi"
     ]
+}
+
+version_V9_16_0_macOS :
+{
+    patches : ["FIELDS.macos.arm64.patch"]
 }
 
 version_V9_16_0_MPI :

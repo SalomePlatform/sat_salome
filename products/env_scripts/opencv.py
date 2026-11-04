@@ -11,13 +11,8 @@ def set_env(env, prereq_dir, version):
     env.set("OPENCV_DIR", prereq_dir)
     env.set("OpenCV_DIR", prereq_dir)
     env.prepend("PATH", os.path.join(prereq_dir, "bin"))
-    if not platform.system() == "Windows":
-        env.prepend("LD_LIBRARY_PATH", os.path.join(prereq_dir, "lib"))
-        pyver = "python" + env.get("PYTHON_VERSION")
-        env.prepend(
-            "PYTHONPATH", os.path.join(prereq_dir, "lib", pyver, "site-packages")
-        )
-    else:
+
+    if platform.system() == "Windows":
         try:
             opencv_root_dir = env.environ.environ.get_value("OPENCV_ROOT_DIR").replace(
                 "out_dir_Path", os.environ["OUT_DIR_PATH"]
@@ -36,6 +31,20 @@ def set_env(env, prereq_dir, version):
         env.append("OpenCV_INCLUDE_DIRS", os.path.join(prereq_dir, "include", "opencv"))
         env.append(
             "OpenCV_INCLUDE_DIRS", os.path.join(prereq_dir, "include", "opencv2")
+        )
+
+    elif platform.system() == "Darwin":
+        env.prepend("DYLD_LIBRARY_PATH", os.path.join(prereq_dir, "lib"))
+        pyver = "python" + env.get("PYTHON_VERSION")
+        env.prepend(
+            "PYTHONPATH", os.path.join(prereq_dir, "lib", pyver, "site-packages")
+        )
+
+    else :
+        env.prepend("LD_LIBRARY_PATH", os.path.join(prereq_dir, "lib"))
+        pyver = "python" + env.get("PYTHON_VERSION")
+        env.prepend(
+            "PYTHONPATH", os.path.join(prereq_dir, "lib", pyver, "site-packages")
         )
 
 

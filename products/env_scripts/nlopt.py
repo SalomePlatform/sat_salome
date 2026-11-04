@@ -2,20 +2,31 @@
 
 import os.path, platform
 
+def _is_darwin():
+    # Defined at module level: inside set_nativ_env(), "platform" is a local
+    # name (because of the "import platform" in the except clause) and cannot
+    # be used before that import is executed.
+    return platform.system() == "Darwin"
+
 def set_env(env, prereq_dir, version):
-  env.set("NLOPT_ROOT_DIR",prereq_dir)
-  pyver = 'python' + env.get('PYTHON_VERSION')
-  if platform.system() == "Windows" :
-    env.prepend('PATH',os.path.join(prereq_dir, 'bin'))
-    env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'lib', pyver, 'site-packages'))
-  else :
-    env.prepend('LD_LIBRARY_PATH',os.path.join(prereq_dir, 'lib'))
-    env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'lib', pyver, 'site-packages'))
+    env.set("NLOPT_ROOT_DIR",prereq_dir)
+    pyver = 'python' + env.get('PYTHON_VERSION')
+
+    if platform.system() == "Windows" :
+        env.prepend('PATH',os.path.join(prereq_dir, 'bin'))
+        env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'lib', pyver, 'site-packages'))
+    elif platform.system() == "Darwin" :
+        env.prepend('DYLD_LIBRARY_PATH',os.path.join(prereq_dir, 'lib'))
+        env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'lib', pyver, 'site-packages'))
+    else :
+        env.prepend('LD_LIBRARY_PATH',os.path.join(prereq_dir, 'lib'))
+        env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'lib', pyver, 'site-packages'))
 
 def set_nativ_env(env):
     prereq_dir='/usr'
     prereq_bin='/usr/bin'
     prereq_inc='/usr/include'
+    isDarwin = _is_darwin()
     try:
         import distro
         if any(distribution in distro.name().lower() for distribution in ["rocky", "centos", "fedora"]) :
@@ -36,4 +47,8 @@ def set_nativ_env(env):
     env.set('NLOPT_INCLUDE_DIR', prereq_inc)
     if prereq_bin != "/usr/bin":
         env.prepend('PATH', prereq_bin)
-    env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir,'lib'))
+
+    if isDarwin :
+        env.prepend('DYLD_LIBRARY_PATH', os.path.join(prereq_dir,'lib'))
+    else:
+        env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir,'lib'))

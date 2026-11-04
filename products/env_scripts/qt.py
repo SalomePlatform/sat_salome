@@ -20,6 +20,10 @@ def set_env(env, prereq_dir, version):
     if platform.system() == "Windows" :
         env.set('QT_QPA_PLATFORMTHEME', 'void')
         env.prepend('LIB', os.path.join(prereq_dir, 'lib'))
+
+    elif platform.system() == "Darwin" :
+        env.prepend('DYLD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib'))
+
     else :
         env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib'))
 

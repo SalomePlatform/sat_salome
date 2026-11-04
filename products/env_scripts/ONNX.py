@@ -8,6 +8,9 @@ def set_env(env, prereq_dir, version):
     if platform.system() == "Windows" :
         env.prepend('PATH', os.path.join(prereq_dir, 'lib'))
         env.set('onnxruntime_DIR', os.path.join(prereq_dir, 'lib', 'cmake', 'onnxruntime'))
+    elif platform.system() == "Darwin" :
+        env.set('onnxruntime_DIR', os.path.join(prereq_dir, 'lib64', 'cmake', 'onnxruntime'))
+        env.prepend('DYLD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib64'))
     else:
         env.set('onnxruntime_DIR', os.path.join(prereq_dir, 'lib64', 'cmake', 'onnxruntime'))
         env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib64'))

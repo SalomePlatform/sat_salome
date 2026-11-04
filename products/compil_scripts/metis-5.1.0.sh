@@ -11,7 +11,7 @@ cd $SOURCE_DIR
 
 echo
 echo "*** make config"
-make config prefix=${PRODUCT_INSTALL}
+make config prefix=${PRODUCT_INSTALL} ${CMAKE_OPTIONS}
 if [ $? -ne 0 ]
 then
     echo "ERROR on make config"

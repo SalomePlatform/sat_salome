@@ -39,3 +39,20 @@ default :
         has_unit_tests : "yes"
     }
 }
+
+default_macOS :
+{
+    git_info:
+    {
+      repositories :
+      {
+            github : "https://github.com/raphael-nabet/shaper_study.git"
+      }
+      git_commands: [ 'git switch support-for-macos-platform' ]
+    }
+}
+
+version_V9_16_0_macOS:
+{
+    patches : [ 'SHAPERSTUDY-V9.16.0-cmake-macOS.patch' ]
+}

@@ -1,0 +1,13 @@
+diff --git a/src/NETGENPlugin/NETGENPlugin_Mesher.hxx b/src/NETGENPlugin/NETGENPlugin_Mesher.hxx
+index 05644b5..d7f829f 100644
+--- a/src/NETGENPlugin/NETGENPlugin_Mesher.hxx
++++ b/src/NETGENPlugin/NETGENPlugin_Mesher.hxx
+@@ -78,7 +78,7 @@ class ChdirRAII
+ #ifdef __APPLE__
+     ChdirRAII(const std::string& wd):_wd(wd) { if(_wd.empty()) return ; char *pwd = getcwd(NULL, 0); _od = pwd; free(pwd); chdir(_wd.c_str()); }
+     ~ChdirRAII() { if(_od.empty()) return ; chdir(_od.c_str()); }
+-#elifndef WIN32
++#elif !defined(WIN32)
+     ChdirRAII(const std::string& wd):_wd(wd) { if(_wd.empty()) return ; char *pwd(get_current_dir_name()); _od = pwd; free(pwd); chdir(_wd.c_str()); }
+     ~ChdirRAII() { if(_od.empty()) return ; chdir(_od.c_str()); }
+ #else

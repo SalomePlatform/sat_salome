@@ -1,0 +1,34 @@
+diff --git a/module_generator/hxx_para_tmpl.py b/module_generator/hxx_para_tmpl.py
+index 1589534..819a9c8 100644
+--- a/module_generator/hxx_para_tmpl.py
++++ b/module_generator/hxx_para_tmpl.py
+@@ -148,7 +148,12 @@ ${servicesdef}
+ // (re)defined methods of Driver
+ 
+ private:
++#if defined(__APPLE__)
++    // libc++ (macOS) removed std::auto_ptr in C++17
++    std::unique_ptr<${component}> cppCompo_;
++#else
+     std::auto_ptr<${component}> cppCompo_;
++#endif
+ 
+ };
+ 
+diff --git a/module_generator/hxx_tmpl.py b/module_generator/hxx_tmpl.py
+index ac90de6..a44be6f 100644
+--- a/module_generator/hxx_tmpl.py
++++ b/module_generator/hxx_tmpl.py
+@@ -128,7 +128,12 @@ ${servicesdef}
+     char* ComponentDataType();
+ 
+ private:
++#if defined(__APPLE__)
++    // libc++ (macOS) removed std::auto_ptr in C++17
++    std::unique_ptr<${component}> cppCompo_;
++#else
+     std::auto_ptr<${component}> cppCompo_;
++#endif
+ 
+ };
+ 

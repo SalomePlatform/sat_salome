@@ -7,7 +7,12 @@ echo "##########################################################################
 LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
 python_name=python$PYTHON_VERSION
 
-cd $SOURCE_DIR
+rm -rf $BUILD_DIR
+mkdir $BUILD_DIR
+cd $BUILD_DIR
+
+# -p option ensures that the date remain the same.
+cp -p -r $SOURCE_DIR/* .
 
 # If Docker rootless, ensure that user can read them
 if [ -f /.dockerenv ]; then

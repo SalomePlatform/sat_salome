@@ -28,6 +28,12 @@ default :
     }
 }
 
+default_macOS:
+{
+    post_script : "setup-rpath-macOS.sh"
+}
+
+
 version_5_1_0  :
 {
     compil_script :  "metis-5.1.0" + $VARS.scriptExtension

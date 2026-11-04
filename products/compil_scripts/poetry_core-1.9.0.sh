@@ -4,7 +4,6 @@ echo "##########################################################################
 echo "poetry_core " $VERSION
 echo "##########################################################################"
 
-LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
 echo "*** check installation"
 export PYTHONPATH=${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages:$PYTHONPATH
 export PATH=${PRODUCT_INSTALL}/bin:$PATH

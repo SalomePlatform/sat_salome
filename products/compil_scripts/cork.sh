@@ -8,6 +8,17 @@ rm -rf $BUILD_DIR
 mkdir $BUILD_DIR
 cd $BUILD_DIR
 cp -r $SOURCE_DIR/* .
+
+if [ "$DIST_NAME" = macOS ]; then
+    export SDKROOT=$(xcrun --show-sdk-path)
+    GMP_PREFIX=$(brew --prefix gmp 2>/dev/null)
+    [ -f "$GMP_PREFIX/include/gmp.h" ] || GMP_PREFIX=/opt/homebrew
+    cat > makeConstants <<EOF
+GMP_INC_DIR = ${GMP_PREFIX}/include
+GMP_LIB_DIR = ${GMP_PREFIX}/lib
+EOF
+fi
+
 echo
 echo "*** make" $MAKE_OPTIONS
 make $MAKE_OPTIONS

@@ -1,0 +1,69 @@
+diff --git a/src/GHS3DPlugin/GHS3DPlugin_GHS3D.cxx b/src/GHS3DPlugin/GHS3DPlugin_GHS3D.cxx
+index f390dbc..a9990d2 100644
+--- a/src/GHS3DPlugin/GHS3DPlugin_GHS3D.cxx
++++ b/src/GHS3DPlugin/GHS3DPlugin_GHS3D.cxx
+@@ -24,6 +24,11 @@
+ // Project   : SALOME
+ //=============================================================================
+ //
++
++#if defined(__APPLE__) && defined(__arm64__)
++#include <mach/arm/thread_status.h>
++#endif
++
+ #include "GHS3DPlugin_GHS3D.hxx"
+ #include "GHS3DPlugin_Hypothesis.hxx"
+ #include "MG_Tetra_API.hxx"
+diff --git a/src/GHS3DPlugin/GHS3DPlugin_Optimizer.cxx b/src/GHS3DPlugin/GHS3DPlugin_Optimizer.cxx
+index 86dd09a..36f137b 100644
+--- a/src/GHS3DPlugin/GHS3DPlugin_Optimizer.cxx
++++ b/src/GHS3DPlugin/GHS3DPlugin_Optimizer.cxx
+@@ -19,6 +19,10 @@
+ // File      : GHS3DPlugin_Optimizer.cxx
+ // Created   : Mon Oct 31 20:05:28 2016
+ 
++#if defined(__APPLE__) && defined(__arm64__)
++#include <mach/arm/thread_status.h>
++#endif
++
+ #include "GHS3DPlugin_Optimizer.hxx"
+ 
+ #include "GHS3DPlugin_GHS3D.hxx"
+diff --git a/src/GUI/GHS3DPluginGUI_AdvWidget.cxx b/src/GUI/GHS3DPluginGUI_AdvWidget.cxx
+index a788f1c..f1a5597 100644
+--- a/src/GUI/GHS3DPluginGUI_AdvWidget.cxx
++++ b/src/GUI/GHS3DPluginGUI_AdvWidget.cxx
+@@ -23,6 +23,10 @@
+ // ---
+ //
+ 
++#if defined(__APPLE__) && defined(__arm64__)
++#include <mach/arm/thread_status.h>
++#endif
++
+ #include "GHS3DPluginGUI_Dlg.h"
+ 
+ #include <QFileDialog>
+@@ -154,4 +158,4 @@ void GHS3DPluginGUI_AdvWidget::EnableAdvancedOptions( bool isMGTetra )
+       myOptionTable->topLevelItem( iRow )->setDisabled( !isMGTetra );
+   
+   }
+-}
+\ No newline at end of file
++}
+diff --git a/src/GUI/GHS3DPluginGUI_HypothesisCreator.cxx b/src/GUI/GHS3DPluginGUI_HypothesisCreator.cxx
+index c06a517..cadf0e8 100644
+--- a/src/GUI/GHS3DPluginGUI_HypothesisCreator.cxx
++++ b/src/GUI/GHS3DPluginGUI_HypothesisCreator.cxx
+@@ -22,6 +22,11 @@
+ //  Author : Michael Zorin
+ //  Module : GHS3DPlugin
+ //
++
++#if defined(__APPLE__) && defined(__arm64__)
++#include <mach/arm/thread_status.h>
++#endif
++
+ #include "GHS3DPluginGUI_HypothesisCreator.h"
+ #include "GHS3DPluginGUI_Enums.h"
+ #include "GHS3DPluginGUI_Dlg.h"

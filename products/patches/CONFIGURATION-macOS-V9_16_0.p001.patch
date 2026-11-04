@@ -1,0 +1,16 @@
+diff --git a/cmake/FindSalomePythonLibs.cmake b/cmake/FindSalomePythonLibs.cmake
+index 2fd1772..258c901 100644
+--- a/cmake/FindSalomePythonLibs.cmake
++++ b/cmake/FindSalomePythonLibs.cmake
+@@ -40,9 +40,9 @@ IF(WIN32 AND NOT MINGW)
+   SET(PYTHON_INCLUDE_DIR "${PYTHON_ROOT_DIR}/include")
+ ENDIF()
+ IF(APPLE)
+-  FIND_PROGRAM(PYTHON_CONFIG_EXECUTABLE python-config)
++  FIND_PROGRAM(PYTHON_CONFIG_EXECUTABLE python${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}-config)
+   IF(NOT PYTHON_CONFIG_EXECUTABLE)
+-    MESSAGE(SEND_ERROR "python-config executable not found, but python is required.")
++    MESSAGE(SEND_ERROR "python${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}-config executable not found, but python is required.")
+   ENDIF()
+   EXECUTE_PROCESS(COMMAND ${PYTHON_CONFIG_EXECUTABLE} --prefix OUTPUT_VARIABLE python_prefix OUTPUT_STRIP_TRAILING_WHITESPACE)
+   SET(PYTHON_INCLUDE_DIR ${python_prefix}/include/python${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR})

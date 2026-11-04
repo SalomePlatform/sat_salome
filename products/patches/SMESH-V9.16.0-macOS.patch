@@ -1,0 +1,219 @@
+diff --color=auto -Naur smesh_old/bin/smesh_setenv.py smesh_new/bin/smesh_setenv.py
+--- smesh_old/bin/smesh_setenv.py	2026-10-07 10:25:47
++++ smesh_new/bin/smesh_setenv.py	2026-10-07 10:25:03
+@@ -64,8 +64,15 @@
+ 
+                     # setup environment needed for plugin
+                     add_path(osp.join(plugin_root, 'bin', salome_subdir), 'PATH')
+-                    add_path(osp.join(plugin_root, get_lib_dir(), salome_subdir), 'PATH' \
+-                                 if sys.platform == 'win32' else 'LD_LIBRARY_PATH')
++
++                    if sys.platform == 'win32':
++                        lib_path_var = 'PATH'
++                    elif sys.platform == 'darwin':
++                        lib_path_var = 'DYLD_LIBRARY_PATH'
++                    else:
++                        lib_path_var = 'LD_LIBRARY_PATH'
++                    add_path(osp.join(plugin_root, get_lib_dir(), salome_subdir), lib_path_var)
++
+                     add_path(osp.join(plugin_root, 'bin', salome_subdir), 'PYTHONPATH')
+                     add_path(osp.join(plugin_root, get_lib_dir(), salome_subdir), 'PYTHONPATH')
+                     add_path(osp.join(plugin_root, get_lib_dir(), py_version, 'site-packages',
+diff --color=auto -Naur smesh_old/src/DriverGMF/DriverGMF.cxx smesh_new/src/DriverGMF/DriverGMF.cxx
+--- smesh_old/src/DriverGMF/DriverGMF.cxx	2026-10-07 10:25:47
++++ smesh_new/src/DriverGMF/DriverGMF.cxx	2026-10-07 10:25:04
+@@ -23,6 +23,10 @@
+ // Created   : Thu Nov 15 16:45:58 2012
+ // Author    : Edward AGAPOV (eap)
+ 
++#if defined(__APPLE__) && defined(__arm64__)
++#include <mach/arm/thread_status.h>
++#endif
++
+ #include "DriverGMF.hxx"
+ 
+ #include <boost/filesystem.hpp>
+@@ -55,7 +59,8 @@
+ 
+   bool isExtensionCorrect( const std::string& fileName )
+   {
+-    std::string ext  = boost::filesystem::extension(fileName);
++    std::string ext  = boost::filesystem::path(fileName).extension().string();
++
+     switch ( ext.size() ) {
+     case 5: return ( ext == ".mesh" || ext == ".solb" );
+     case 6: return ( ext == ".meshb" );
+diff --color=auto -Naur smesh_old/src/SMESHGUI/SMESHGUI.cxx smesh_new/src/SMESHGUI/SMESHGUI.cxx
+--- smesh_old/src/SMESHGUI/SMESHGUI.cxx	2026-10-07 10:25:47
++++ smesh_new/src/SMESHGUI/SMESHGUI.cxx	2026-10-07 10:25:04
+@@ -22,6 +22,10 @@
+ //  File   : SMESHGUI.cxx
+ //  Author : Nicolas REJNERI, Open CASCADE S.A.S.
+ 
++#if defined(__APPLE__) && defined(__arm64__)
++#include <mach/arm/thread_status.h>
++#endif
++
+ #include <Basics_OCCTVersion.hxx>
+ 
+ #if OCC_VERSION_LARGE < 0x07080000
+diff --color=auto -Naur smesh_old/src/SMESHGUI/SMESHGUI_MeshOp.cxx smesh_new/src/SMESHGUI/SMESHGUI_MeshOp.cxx
+--- smesh_old/src/SMESHGUI/SMESHGUI_MeshOp.cxx	2026-10-07 10:25:47
++++ smesh_new/src/SMESHGUI/SMESHGUI_MeshOp.cxx	2026-10-07 10:25:04
+@@ -22,6 +22,10 @@
+ //  File   : SMESHGUI_MeshOp.cxx
+ //  Author : Sergey LITONIN, Open CASCADE S.A.S.
+ 
++#if defined(__APPLE__) && defined(__arm64__)
++#include <mach/arm/thread_status.h>
++#endif
++
+ // SMESH includes
+ #include "SMESHGUI_MeshOp.h"
+ 
+diff --color=auto -Naur smesh_old/src/SMESHGUI/SMESHGUI_MgAdaptDlg.cxx smesh_new/src/SMESHGUI/SMESHGUI_MgAdaptDlg.cxx
+--- smesh_old/src/SMESHGUI/SMESHGUI_MgAdaptDlg.cxx	2026-10-07 10:25:47
++++ smesh_new/src/SMESHGUI/SMESHGUI_MgAdaptDlg.cxx	2026-10-07 10:25:04
+@@ -17,6 +17,10 @@
+ // See http://www.salome-platform.org/ or email : webmaster.salome@opencascade.com
+ //
+ 
++#if defined(__APPLE__) && defined(__arm64__)
++#include <mach/arm/thread_status.h>
++#endif
++
+ #include "SMESHGUI_MgAdaptDlg.h"
+ 
+ #include "MED_Factory.hxx"
+diff --color=auto -Naur smesh_old/src/SMESHUtils/SMESH_MGLicenseKeyGen.cxx smesh_new/src/SMESHUtils/SMESH_MGLicenseKeyGen.cxx
+--- smesh_old/src/SMESHUtils/SMESH_MGLicenseKeyGen.cxx	2026-10-07 10:25:47
++++ smesh_new/src/SMESHUtils/SMESH_MGLicenseKeyGen.cxx	2026-10-07 10:25:04
+@@ -212,9 +212,9 @@
+ 
+       libraryFile._isURL = false;
+       if ( boost::regex_match( libraryFile._name, matchResult, urlRegex ))
+-        libraryFile._isURL = ( !matchResult.str( SCHEME    ).empty() &&
+-                              !matchResult.str( AUTHORITY ).empty() &&
+-                              !matchResult.str( PATH      ).empty() );
++        libraryFile._isURL = ( !matchResult.str( static_cast<int>(SCHEME) ).empty() &&
++                              !matchResult.str( static_cast<int>(AUTHORITY) ).empty() &&
++                              !matchResult.str( static_cast<int>(PATH) ).empty() );
+     }
+     if(libraryFile._isURL)
+       return true;
+@@ -226,9 +226,9 @@
+ 
+       libraryFile._isURL = false;
+       if ( boost::regex_match( libraryFile._name, matchResult, urlRegex ))
+-        libraryFile._isURL = ( !matchResult.str( HOST ).empty() &&
+-                              !matchResult.str( PORT ).empty() &&
+-                              !matchResult.str( PATH ).empty() );
++        libraryFile._isURL = ( !matchResult.str( static_cast<int>(HOST) ).empty() &&
++                              !matchResult.str( static_cast<int>(PORT) ).empty() &&
++                              !matchResult.str( static_cast<int>(PATH) ).empty() );
+     }
+     return libraryFile._isURL;
+   }
+diff --color=auto -Naur smesh_old/src/SMESH_I/SMESH_2smeshpy.cxx smesh_new/src/SMESH_I/SMESH_2smeshpy.cxx
+--- smesh_old/src/SMESH_I/SMESH_2smeshpy.cxx	2026-10-07 10:25:47
++++ smesh_new/src/SMESH_I/SMESH_2smeshpy.cxx	2026-10-07 10:25:04
+@@ -24,6 +24,11 @@
+ // Created   : Fri Nov 18 13:20:10 2005
+ // Author    : Edward AGAPOV (eap)
+ //
++
++#if defined(__APPLE__) && defined(__arm64__)
++#include <mach/arm/thread_status.h>
++#endif
++
+ #include "SMESH_2smeshpy.hxx"
+ 
+ #include "SMESH_PythonDump.hxx"
+diff --color=auto -Naur smesh_old/src/SMESH_I/SMESH_Gen_i.cxx smesh_new/src/SMESH_I/SMESH_Gen_i.cxx
+--- smesh_old/src/SMESH_I/SMESH_Gen_i.cxx	2026-10-07 10:25:47
++++ smesh_new/src/SMESH_I/SMESH_Gen_i.cxx	2026-10-07 10:25:04
+@@ -23,6 +23,10 @@
+ //  Author : Paul RASCLE, EDF
+ //  Module : SMESH
+ 
++#if defined(__APPLE__) && defined(__arm64__)
++#include <mach/arm/thread_status.h>
++#endif
++
+ #include <BRepPrimAPI_MakeBox.hxx>
+ #include <BRepPrimAPI_MakeCylinder.hxx>
+ #include <BRepPrimAPI_MakeSphere.hxx>
+diff --color=auto -Naur smesh_old/src/SMESH_I/SMESH_NoteBook.cxx smesh_new/src/SMESH_I/SMESH_NoteBook.cxx
+--- smesh_old/src/SMESH_I/SMESH_NoteBook.cxx	2026-10-07 10:25:47
++++ smesh_new/src/SMESH_I/SMESH_NoteBook.cxx	2026-10-07 10:25:04
+@@ -20,6 +20,11 @@
+ // File      : SMESH_NoteBook.cxx
+ // Author    : Roman NIKOLAEV
+ //
++
++#if defined(__APPLE__) && defined(__arm64__)
++#include <mach/arm/thread_status.h>
++#endif
++
+ #include "SMESH_2smeshpy.hxx"
+ #include "SMESH_NoteBook.hxx"
+ #include "SMESH_Gen_i.hxx"
+diff --color=auto -Naur smesh_old/src/SMESH_I/SMESH_PreMeshInfo.cxx smesh_new/src/SMESH_I/SMESH_PreMeshInfo.cxx
+--- smesh_old/src/SMESH_I/SMESH_PreMeshInfo.cxx	2026-10-07 10:25:47
++++ smesh_new/src/SMESH_I/SMESH_PreMeshInfo.cxx	2026-10-07 10:25:04
+@@ -24,6 +24,10 @@
+ // Author    : Edward AGAPOV (eap)
+ //
+ 
++#if defined(__APPLE__) && defined(__arm64__)
++#include <mach/arm/thread_status.h>
++#endif
++
+ #include "SMESH_PreMeshInfo.hxx"
+ 
+ #include "DriverMED.hxx"
+diff --color=auto -Naur smesh_old/src/StdMeshersGUI/StdMeshersGUI_SubShapeSelectorWdg.cxx smesh_new/src/StdMeshersGUI/StdMeshersGUI_SubShapeSelectorWdg.cxx
+--- smesh_old/src/StdMeshersGUI/StdMeshersGUI_SubShapeSelectorWdg.cxx	2026-10-07 10:25:47
++++ smesh_new/src/StdMeshersGUI/StdMeshersGUI_SubShapeSelectorWdg.cxx	2026-10-07 10:25:04
+@@ -21,6 +21,11 @@
+ // Author : Open CASCADE S.A.S. (dmv)
+ // SMESH includes
+ //
++
++#if defined(__APPLE__) && defined(__arm64__)
++#include <mach/arm/thread_status.h>
++#endif
++
+ #include "StdMeshersGUI_SubShapeSelectorWdg.h"
+ 
+ // SMESH Includes
+diff --git a/src/SMDS/SMDS_ElementFactory.cxx b/src/SMDS/SMDS_ElementFactory.cxx
+index 3a03cc5..314968a 100644
+--- a/src/SMDS/SMDS_ElementFactory.cxx
++++ b/src/SMDS/SMDS_ElementFactory.cxx
+@@ -527,6 +527,7 @@ void SMDS_NodeFactory::SetShapeDim( int shapeID, int dim )
+ 
+ SMDS_ElementChunk::SMDS_ElementChunk( SMDS_ElementFactory* factory, smIdType id0 ):
+   myFactory( factory ),
++  myElements( 0 ),
+   my1stID( id0 )//,
+   //mySubIDSet( 0 )
+   // myMinSubID( std::numeric_limits<int>::max() ),
+@@ -553,7 +554,17 @@ SMDS_ElementChunk::SMDS_ElementChunk( SMDS_ElementFactory* factory, smIdType id0
+ 
+ SMDS_ElementChunk::~SMDS_ElementChunk()
+ {
+-  delete [] myElements;
++  // Delete the array with its real element type: deleting an array of
++  // SMDS_MeshNode/SMDS_MeshCell through a SMDS_MeshElement* is undefined
++  // behaviour. As SMDS_MeshElement is abstract, clang concludes that the
++  // destructor loop is unreachable: on Linux it is silently dropped, on macOS
++  // arm64 unreachable code is a trap (brk #1) => crash in SMESH_Mesh::Clear().
++  if ( !myFactory )
++    return;
++  if ( myFactory->myIsNodal )
++    delete [] static_cast< SMDS_MeshNode* >( myElements );
++  else
++    delete [] static_cast< SMDS_MeshCell* >( myElements );
+   myFactory->myChunksWithUnused.erase( this );
+ }

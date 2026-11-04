@@ -44,6 +44,11 @@ version_1_71_0 :
     compil_script : "boost-1.71.0.sh"
 }
 
+version_1_91_0 :
+{
+    compil_script : "boost-1.91.0.sh"
+}
+
 version_1_71_0_DB12 :
 {
     compil_script : "boost-1.71.0.sh"

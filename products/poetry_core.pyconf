@@ -37,6 +37,13 @@ default_win:
     }
 }
 
+
+version_1_9_0_macOS:
+{
+    compil_script: "poetry_core-1.9.0.sh"
+    archive_info : {archive_name : "poetry_core-1.9.0-macosx_arm64.tar.gz"}
+} 
+
 version_1_9_0_x86_64:
 {
       compil_script: "poetry_core-1.9.0.sh"

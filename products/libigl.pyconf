@@ -59,9 +59,34 @@ version_v2_5_0:
             "libxml2",
             "eigen",
             "embree",
-            "cgal",
-            "lapack"
+            "cgal"
            ]
+  opt_depend : ["lapack"]
+}
+
+version_v2_5_0_macOS:
+{
+  get_source : "archive"
+  build_source :  "script"
+  compil_script : "libigl-v2.5.0" + $VARS.scriptExtension
+  patches: [
+    'libigl-v2.5.0-p01_609_Boolean.patch',
+    'libigl-v2.5.0-p02_FindCGAL.patch',
+    'libigl-v2.5.0-p03-FindBLAS.patch',
+    'libigl-v2.5.0-p04-FindEmbree.patch',
+    'libigl-v2.5.0-macOS-p01.patch'
+  ]
+  depend : ["SMESH",
+            "mmg",
+            "Python",
+            "numpy",
+            "boost",
+            "libxml2",
+            "eigen",
+            "embree",
+            "cgal"
+           ]
+  opt_depend : ["lapack"]
 }
 
 version_v2_5_0_FD44:

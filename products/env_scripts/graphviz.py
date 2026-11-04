@@ -13,6 +13,13 @@ def set_env(env, prereq_dir, version):
         env.prepend('PATH', os.path.join(prereq_dir, 'bin'))
         env.prepend('LIB', os.path.join(prereq_dir, 'bin'))
         env.set('DOT_PATH',os.path.join(prereq_dir, 'bin'))
+
+    elif platform.system() == "Darwin" :
+        env.prepend('PATH', os.path.join(prereq_dir, 'bin'))
+        env.prepend('PATH', os.path.join(prereq_dir, 'include', 'graphviz'))
+        env.prepend('DYLD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib'))
+        env.prepend('DYLD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib', 'graphviz'))
+
     else :
         # OP 16/10/2018 Bug with launcher generation during sat package
         #               Do not set several simultaneous directories

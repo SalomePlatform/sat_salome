@@ -45,6 +45,8 @@ version_1_22_2:
       incremental : "yes"
       pip : "no"
     }
+    depend : [ 'Python', 'setuptools', 'Cython']
+    opt_depend : ['lapack']
     compil_script : "numpy-1.22.2.sh"
     patches: ['SPNS-29988-numpy-1.22.patch']
 }

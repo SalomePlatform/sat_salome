@@ -20,11 +20,17 @@ fi
 
 CFLAGS_OPTIONS=
 
+opts=()
+if [ "$DIST_NAME" = "macOS" ]; then
+    eval "opts=($SAT_CONFIGURE_OPTIONS)"
+fi
+
 echo
-echo "*** configure --prefix=${PRODUCT_INSTALL} --enable-shared ${CONFIGURE_OPTIONS} CFLAGS=${CFLAGS_OPTIONS}"
+echo "*** configure --prefix=${PRODUCT_INSTALL} --enable-shared ${CONFIGURE_OPTIONS} CFLAGS=${CFLAGS_OPTIONS} ${opts[@]}"
 ${SOURCE_DIR}/configure --prefix=${PRODUCT_INSTALL} --enable-shared \
     ${CONFIGURE_OPTIONS} \
-    CFLAGS=${CFLAGS_OPTIONS}
+    CFLAGS=${CFLAGS_OPTIONS} \
+    "${opts[@]}"
 
 if [ $? -ne 0 ]; then
     echo "ERROR on configure"

@@ -1,0 +1,17 @@
+diff --color=auto -Naur opencv_old/modules/core/include/opencv2/core/hal/intrin_neon.hpp opencv_new/modules/core/include/opencv2/core/hal/intrin_neon.hpp
+--- opencv_old/modules/core/include/opencv2/core/hal/intrin_neon.hpp	2026-10-02 10:31:16
++++ opencv_new/modules/core/include/opencv2/core/hal/intrin_neon.hpp	2026-10-02 10:27:46
+@@ -276,6 +276,13 @@
+ };
+ #endif
+ 
++#ifdef vld1_f16
++#undef vld1_f16
++#endif
++#ifdef vst1_f16
++#undef vst1_f16
++#endif
++
+ #if defined (HAVE_FP16)
+ // Workaround for old comiplers
+ template <typename T> static inline int16x4_t vreinterpret_s16_f16(T a)

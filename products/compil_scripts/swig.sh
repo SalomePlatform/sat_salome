@@ -23,9 +23,13 @@ case $LINUX_DISTRIBUTION in
         fi
         ;;
     *)
+        opts=()
+        if [ "$DIST_NAME" = "macOS" ]; then
+            eval "opts=($SAT_CONFIGURE_OPTIONS)"
+        fi
         echo
         echo "*** configure --without-pcre --without-octave"
-        $SOURCE_DIR/configure --prefix=${PRODUCT_INSTALL} --without-pcre --without-octave
+        $SOURCE_DIR/configure --prefix=${PRODUCT_INSTALL} --without-pcre --without-octave "${opts[@]}"
         if [ $? -ne 0 ]
         then
             echo "ERROR on configure"

@@ -20,9 +20,7 @@ def set_env(env, product_dir, version):
     env.set('COREFLOWS_ROOT_DIR', root_module_rep)
 
     root = env.get('CoreFlows_ROOT_DIR')
-    
-    env.prepend('PATH', os.path.join(root, 'include'))
-    env.prepend('LD_LIBRARY_PATH', os.path.join(root, 'lib'))
+
     env.prepend('PYTHONPATH', root)
     env.prepend('PYTHONPATH', os.path.join(root, 'lib'))
     env.prepend('PYTHONPATH', os.path.join(root, 'bin'))
@@ -31,6 +29,13 @@ def set_env(env, product_dir, version):
     env.prepend('PYTHONPATH', os.path.join(root, 'lib', 'cdmath'))
     env.prepend('PYTHONPATH', os.path.join(root, 'bin', 'cdmath'))
     env.prepend('PYTHONPATH', os.path.join(root, 'bin', 'cdmath','postprocessing'))
- 
+
+    if platform.system() == "Darwin" :
+        env.prepend('PATH', os.path.join(root, 'include'))
+        env.prepend('DYLD_LIBRARY_PATH', os.path.join(root, 'lib'))
+    else:
+        env.prepend('PATH', os.path.join(root, 'include'))
+        env.prepend('LD_LIBRARY_PATH', os.path.join(root, 'lib'))
+
 def set_nativ_env(env):
     pass

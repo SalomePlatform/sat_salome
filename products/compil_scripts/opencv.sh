@@ -4,6 +4,11 @@ echo "##########################################################################
 echo "opencv" $VERSION
 echo "##########################################################################"
 
+lib_extension=so
+if [ "$DIST_NAME" = "macOS" ]; then
+    lib_extension=dylib
+fi
+
 function version_ge() { test "$(echo "$@" | tr " " "\n" | sort -rV | head -n 1)" == "$1"; }
 CMAKE_OPTIONS=""
 CMAKE_OPTIONS+=" -DCMAKE_INSTALL_PREFIX:STRING=${PRODUCT_INSTALL}"
@@ -22,7 +27,7 @@ if version_ge $VERSION "3."; then
     if [ "${SAT_Python_IS_NATIVE}" != "1" ]
     then
        CMAKE_OPTIONS+=" -DPython3_INCLUDE_DIR:STRING=${PYTHON_ROOT_DIR}/include/python${PYTHON_VERSION}"
-       CMAKE_OPTIONS+=" -DPython3_LIBRARY:STRING=${PYTHON_ROOT_DIR}/lib/libpython${PYTHON_VERSION}.so"
+       CMAKE_OPTIONS+=" -DPython3_LIBRARY:STRING=${PYTHON_ROOT_DIR}/lib/libpython${PYTHON_VERSION}.${lib_extension}"
        CMAKE_OPTIONS+=" -DPython3_EXECUTABLE=${PYTHON_ROOT_DIR}/bin/python${PYTHON_VERSION}"
     fi
     CMAKE_OPTIONS+=" -DWITH_FFMPEG:BOOL=OFF"
@@ -34,7 +39,11 @@ if version_ge $VERSION "3."; then
     CMAKE_OPTIONS+=" -DCMAKE_CXX_FLAGS=-fPIC"
     CMAKE_OPTIONS+=" -DCMAKE_C_FLAGS=-fPIC"
     LINUX_DISTRIBUTION="$DIST_NAME$DIST_VERSION"
-    CMAKE_OPTIONS+=" -DCMAKE_CXX_FLAGS=\"-std=c++14\""
+    if [ "$DIST_NAME" = "macOS" ]; then
+        CMAKE_OPTIONS+=" -DCMAKE_CXX_FLAGS=\"-std=gnu++14\""
+    else
+        CMAKE_OPTIONS+=" -DCMAKE_CXX_FLAGS=\"-std=c++14\""
+    fi
     CMAKE_OPTIONS+=" -DCMAKE_CXX_STANDARD=14"
     CMAKE_OPTIONS+=" -DCMAKE_C_FLAGS=-fPIC"
     # 
@@ -44,8 +53,20 @@ else
     CMAKE_OPTIONS+=" -DWITH_FFMPEG:BOOL=OFF"
     CMAKE_OPTIONS+=" -DPYTHON_EXECUTABLE=${PYTHON_ROOT_DIR}/bin/python"
     CMAKE_OPTIONS+=" -DPYTHON_INCLUDE_DIRS=${PYTHON_ROOT_DIR}/include/python${PYTHON_VERSION}"
-    CMAKE_OPTIONS+=" -DPYTHON_LIBRARY=${PYTHON_ROOT_DIR}/lib/libpython${PYTHON_VERSION}.so"
+    CMAKE_OPTIONS+=" -DPYTHON_LIBRARY=${PYTHON_ROOT_DIR}/lib/libpython${PYTHON_VERSION}.${lib_extension}"
     CMAKE_OPTIONS+=" -DBUILD_opencv_java=OFF"
+fi
+
+if [ "$DIST_NAME" = "macOS" ]; then
+    export CFLAGS="-flax-vector-conversions -Wno-implicit-function-declaration"
+    export CXXFLAGS="-flax-vector-conversions"
+    CMAKE_OPTIONS+=" $SAT_CMAKE_OPTIONS"
+    CMAKE_OPTIONS+=" -DWITH_WEBP=OFF"
+    CMAKE_OPTIONS+=" -DBUILD_ZLIB=OFF"
+    CMAKE_OPTIONS+=" -DBUILD_PNG=OFF -DCV_DISABLE_OPTIMIZATION=ON"
+    CMAKE_OPTIONS+=" -DWITH_PNG=OFF -DENABLE_NEON=OFF"
+    CMAKE_OPTIONS+=" -DCPU_BASELINE=NONE  -DCPU_DISPATCH=NONE"
+    CMAKE_OPTIONS+=" -DCMAKE_CXX_FLAGS=\"-D__ARM_FEATURE_FP16_VECTOR_ARITHMETIC=0\""
 fi
 
 # on our build dockers, for security issues, we remove write rights on ccache

@@ -1,0 +1,34 @@
+diff --git a/CMakeModules/FindLibbatchPython.cmake b/CMakeModules/FindLibbatchPython.cmake
+index 498e179..ea4ec1b 100644
+--- a/CMakeModules/FindLibbatchPython.cmake
++++ b/CMakeModules/FindLibbatchPython.cmake
+@@ -28,16 +28,14 @@
+ IF(DEFINED ENV{PYTHON_ROOT_DIR})
+   FILE(TO_CMAKE_PATH "$ENV{PYTHON_ROOT_DIR}" _PYTHON_ROOT_DIR_ENV)
+   IF(APPLE)
+-  find_package(Python COMPONENTS Interpreter Development)
+-    FIND_PROGRAM(PYTHON_CONFIG_EXECUTABLE python${Python_VERSION_MAJOR}.${Python_VERSION_MINOR}-config PATHS "${PYTHON_ROOT_DIR}/bin")
++    # macOS: python-config is versioned (python3.X-config), use the interpreter version to find it
++    FIND_PACKAGE(Python COMPONENTS Interpreter Development)
+     SET(PYTHON_VERSION_MAJOR "${Python_VERSION_MAJOR}")
+     SET(PYTHON_VERSION_MINOR "${Python_VERSION_MINOR}")
+-    message(STATUS "=====> ${PYTHON_VERSION_MAJOR}")
+-    message(STATUS "=====> ${Python_VERSION_MAJOR}")
+-    message(STATUS "=====> ${PYTHON_VERSION_MAJOR}")
++    FIND_PROGRAM(PYTHON_CONFIG_EXECUTABLE python${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}-config
++                 PATHS "${_PYTHON_ROOT_DIR_ENV}/bin")
+     IF(NOT PYTHON_CONFIG_EXECUTABLE)
+-      MESSAGE(ERROR "python${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}-config executable not found, but python is required.")
+-      message(STATUS "Found: ${PYTHON_CONFIG_EXECUTABLE}")
++      MESSAGE(SEND_ERROR "python${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}-config executable not found, but python is required.")
+     ENDIF()
+     EXECUTE_PROCESS(COMMAND ${PYTHON_CONFIG_EXECUTABLE} --prefix OUTPUT_VARIABLE python_prefix OUTPUT_STRIP_TRAILING_WHITESPACE)
+     SET(PYTHON_INCLUDE_DIR ${python_prefix}/include/python${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR})
+@@ -47,6 +45,7 @@ IF(DEFINED ENV{PYTHON_ROOT_DIR})
+     SET(PYTHON_MINOR_VERSION ${PYTHON_VERSION_MINOR})
+     MESSAGE(STATUS "Python libraries: ${PYTHON_LIBRARY}")
+     MESSAGE(STATUS "Python include dir: ${PYTHON_INCLUDE_DIR}")
++    SET(_dflt_value "${_PYTHON_ROOT_DIR_ENV}")
+   ELSE(APPLE)
+     SET(_dflt_value "${_PYTHON_ROOT_DIR_ENV}")
+   ENDIF(APPLE)

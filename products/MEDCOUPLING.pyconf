@@ -47,6 +47,39 @@ default :
     }
 }
 
+default_macOS :
+{
+    cmake_options : '-DSALOME_USE_MPI=ON -DMPI_ROOT_DIR=$MPI_ROOT_DIR -DMEDCOUPLING_ENABLE_PYTHON=ON -DMEDCOUPLING_ENABLE_PARTITIONER=ON -DMEDCOUPLING_ENABLE_RENUMBER=ON -DMEDCOUPLING_PARTITIONER_METIS=OFF -DMEDCOUPLING_PARTITIONER_PARMETIS=OFF -DMEDCOUPLING_PARTITIONER_SCOTCH=ON -DMEDCOUPLING_PARTITIONER_PTSCOTCH=OFF -DMEDCOUPLING_MICROMED=OFF -DMEDCOUPLING_USE_MPI=ON -DMEDCOUPLING_USE_64BIT_IDS=ON -DCMAKE_CXX_COMPILER:STRING=${MPI_CXX_COMPILER} -DCMAKE_C_COMPILER:STRING=${MPI_C_COMPILER} -DSCOTCH_ROOT_DIR=${SCOTCH_ROOT_DIR} -DMEDCOUPLING_ENABLE_SHAPERECOGN=OFF -DMEDFILE_ROOT_DIR=${MEDFILE_ROOT_DIR} -DHDF5_ROOT_DIR=${HDF5_ROOT_DIR}'
+   depend : [
+              "boost",
+              "cppunit",
+              "Python",
+              "hdf5",
+              "medfile",
+              "scotch",
+              "docutils",
+              "libxml2",
+              "Sphinx",
+              "sphinxintl",
+              "setuptools",
+              "six",
+              "pytz",
+              "numpy",
+              "scipy",
+              "CONFIGURATION",
+              "openmpi"
+              ]
+    opt_depend : ["ParMetis", "metis", "BasicIterativeStatistics", "lapack", "openblas"]
+    git_info:
+    {
+      repositories :
+      {
+            github : "https://github.com/raphael-nabet/medcoupling.git"
+      }
+      git_commands: [ 'git switch support-for-macos-platform' ]
+    }
+}
+
 default_win :
 {
     cmake_options : '  -DMEDCOUPLING_USE_64BIT_IDS=ON -DMEDCOUPLING_ENABLE_PYTHON=ON -DMEDCOUPLING_ENABLE_PARTITIONER=ON -DMEDCOUPLING_ENABLE_RENUMBER=ON -DMEDCOUPLING_PARTITIONER_METIS=ON -DMEDCOUPLING_PARTITIONER_SCOTCH=OFF -DMEDCOUPLING_PARTITIONER_PARMETIS=OFF -DMEDCOUPLING_MICROMED=OFF -DMEDCOUPLING_USE_MPI=OFF -DMEDCOUPLING_ENABLE_SHAPERECOGN=ON '
@@ -482,11 +515,36 @@ version_V9_16_0_MPI :
               "pytz",
               "numpy",
               "scipy",
-              "lapack",
               "CONFIGURATION",
               "openmpi"
               ]
-        opt_depend : ["ParMetis", "metis", "BasicIterativeStatistics"]
+        opt_depend : ["ParMetis", "metis", "BasicIterativeStatistics", "lapack"]
+}
+
+version_V9_16_0_MPI_macOS :
+{
+    cmake_options : '-DSALOME_USE_MPI=ON -DMPI_ROOT_DIR=$MPI_ROOT_DIR -DMEDCOUPLING_ENABLE_PYTHON=ON -DMEDCOUPLING_ENABLE_PARTITIONER=ON -DMEDCOUPLING_ENABLE_RENUMBER=ON -DMEDCOUPLING_PARTITIONER_METIS=OFF -DMEDCOUPLING_PARTITIONER_PARMETIS=OFF -DMEDCOUPLING_PARTITIONER_SCOTCH=ON -DMEDCOUPLING_PARTITIONER_PTSCOTCH=OFF -DMEDCOUPLING_MICROMED=OFF -DMEDCOUPLING_USE_MPI=ON -DMEDCOUPLING_USE_64BIT_IDS=ON -DCMAKE_CXX_COMPILER:STRING=${MPI_CXX_COMPILER} -DCMAKE_C_COMPILER:STRING=${MPI_C_COMPILER} -DSCOTCH_ROOT_DIR=${SCOTCH_ROOT_DIR} -DMEDCOUPLING_ENABLE_SHAPERECOGN=OFF -DMEDFILE_ROOT_DIR=${MEDFILE_ROOT_DIR} -DHDF5_ROOT_DIR=${HDF5_ROOT_DIR}'
+   depend : [
+              "boost",
+              "cppunit",
+              "Python",
+              "hdf5",
+              "medfile",
+              "scotch",
+              "docutils",
+              "libxml2",
+              "Sphinx",
+              "sphinxintl",
+              "setuptools",
+              "six",
+              "pytz",
+              "numpy",
+              "scipy",
+              "CONFIGURATION",
+              "openmpi"
+              ]
+    opt_depend : ["ParMetis", "metis", "BasicIterativeStatistics", "lapack", "openblas"]
+    patches: ['MEDCOUPLING-macOS-V9_16_0.p001.patch', 'MEDCOUPLING.macos.arm64.patch']
 }
 
 version_V9_16_0_MPI_DB11 :

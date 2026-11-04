@@ -12,15 +12,7 @@ def set_env(env, prereq_dir, version):
     env.set('SIPDIR', prereq_dir)
     env.set('SIP_ROOT_DIR', prereq_dir)
 
-    if not platform.system() == "Windows" :
-        # [CMake GUI] Nouveau nom pour SIPDIR = SIP_ROOT_DIR 22/03/2013
-        env.set('SIPDIR', prereq_dir)
-        env.set('SIP_ROOT_DIR', prereq_dir)
-        env.prepend('PATH', os.path.join(prereq_dir, 'bin'))
-        env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'lib', pyver, 'site-packages'))
-        env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib', pyver, 'site-packages'))
-        env.prepend('CPLUS_INCLUDE_PATH', os.path.join(prereq_dir, 'include', pyver))
-    else:
+    if platform.system() == "Windows" :
         env.prepend('CPLUS_INCLUDE_PATH', os.path.join(prereq_dir, 'include', pyver))
         if '5.5.0' in version:
             env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'Lib', 'site-packages'))
@@ -28,7 +20,25 @@ def set_env(env, prereq_dir, version):
         else:
             env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'lib', pyver, 'site-packages'))
             env.prepend('PATH', os.path.join(prereq_dir, 'bin'))
-  
+
+    elif platform.system() == "Darwin" :
+        # [CMake GUI] Nouveau nom pour SIPDIR = SIP_ROOT_DIR 22/03/2013
+        env.set('SIPDIR', prereq_dir)
+        env.set('SIP_ROOT_DIR', prereq_dir)
+        env.prepend('PATH', os.path.join(prereq_dir, 'bin'))
+        env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'lib', pyver, 'site-packages'))
+        env.prepend('DYLD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib', pyver, 'site-packages'))
+        env.prepend('CPLUS_INCLUDE_PATH', os.path.join(prereq_dir, 'include', pyver))
+
+    else:
+        # [CMake GUI] Nouveau nom pour SIPDIR = SIP_ROOT_DIR 22/03/2013
+        env.set('SIPDIR', prereq_dir)
+        env.set('SIP_ROOT_DIR', prereq_dir)
+        env.prepend('PATH', os.path.join(prereq_dir, 'bin'))
+        env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'lib', pyver, 'site-packages'))
+        env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib', pyver, 'site-packages'))
+        env.prepend('CPLUS_INCLUDE_PATH', os.path.join(prereq_dir, 'include', pyver))
+
 def set_nativ_env(env):
     env.set('SIPDIR', '/usr')
     env.set('SIP_ROOT_DIR','/usr')

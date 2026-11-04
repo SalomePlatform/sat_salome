@@ -7,11 +7,20 @@ import platform
 def set_env(env, prereq_dir, version):
     env.set('LIBXML_DIR', prereq_dir)
     env.set('LIBXML2_ROOT_DIR', prereq_dir)
-    
+
     env.prepend('INCLUDE', os.path.join(prereq_dir, 'include'))
     env.prepend('PATH', os.path.join(prereq_dir, 'bin'))
 
-    if not platform.system() == "Windows" :
+    if platform.system() == "Windows" :
+        pass
+
+    elif platform.system() == "Darwin" :
+        pyver = 'python' + env.get('PYTHON_VERSION')
+        env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'lib', pyver, 'site-packages'))
+        env.prepend('DYLD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib'))
+        env.prepend('PKG_CONFIG_PATH', os.path.join(prereq_dir, 'lib', 'pkgconfig'))
+
+    else:
         pyver = 'python' + env.get('PYTHON_VERSION')
         env.prepend('PYTHONPATH', os.path.join(prereq_dir, 'lib', pyver, 'site-packages'))
         env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib'))

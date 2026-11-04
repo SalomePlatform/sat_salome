@@ -20,7 +20,11 @@ def set_env(env, prereq_dir, version):
     env.prepend('TCLLIBPATH', l, sep=" ")
     env.set('TCL_LIBRARY',os.path.join(prereq_dir, 'lib', 'tcl' + env.get('TCL_SHORT_VERSION')))
 
-    if not platform.system() == "Windows" :
+    if platform.system() == "Windows" :
+        pass
+    if platform.system() == "Darwin" :
+        env.prepend('DYLD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib'))
+    else:
         env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib'))
 
 def set_nativ_env(env):

@@ -36,3 +36,12 @@ version_1_12_1 :
     depend : []
 }
 
+version_1_13_2_macOS :
+{
+    build_source : "script"
+    compil_script :  "ninja" + $VARS.scriptExtension
+    archive_info : {archive_name : "ninja-1.13.2-macos_arm64.tar.gz"}
+    patches : []
+    depend : []
+}
+

@@ -62,6 +62,11 @@ default_FD44:
     patches : ['GEOM-Eigen3-FD44.patch']
 }
 
+default_macOS :
+{
+    cmake_options : '-DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_GEOM_USE_OPENCV=OFF -DLIBXML2_LIBRARY=${LIBXML2_ROOT_DIR}/lib/libxml2.dylib -DFREETYPE_LIBRARY=${FREETYPE_ROOT_DIR}/lib/libfreetype.dylib -DFREETYPE_INCLUDE_DIRS=${FREETYPE_ROOT_DIR}/include -DCMAKE_CXX_FLAGS=" -w -Wno-narrowing -Wno-sign-conversion -isysroot $(xcrun --show-sdk-path)"'
+}
+
 default_win :
 {
     cmake_options : " -DSWIG_EXECUTABLE=%SWIG_ROOT_DIR%/bin/swig.exe -DSALOME_GEOM_USE_OPENCV=ON -DOPENCV_ROOT_DIR=%OPENCV_ROOT_DIR% -DOpenCV_INCLUDE_DIRS=%OpenCV_INCLUDE_DIRS% "

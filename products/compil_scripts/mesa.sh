@@ -13,9 +13,29 @@ cd $BUILD_DIR
 
 echo
 
-function version_ge() { test "$(echo "$@" | tr " " "\n" | sort -rV | head -n 1)" == "$1"; }
+CONFIGURE_OPTIONS=" --prefix=$PRODUCT_INSTALL"
 
-if version_ge $VERSION "19"; then
+function version_ge() { test "$(echo "$@" | tr " " "\n" | sort -rV | head -n 1)" == "$1"; }
+opts=()
+if [ "$DIST_NAME" = "macOS" ]; then
+    eval "opts=($SAT_CONFIGURE_OPTIONS)"
+    CONFIGURE_OPTIONS+=" -enable-opengl --disable-gles1 --disable-gles2"
+    CONFIGURE_OPTIONS+=" -disable-va --disable-xvmc --disable-vdpau"
+    CONFIGURE_OPTIONS+=" -enable-shared-glapi"
+    CONFIGURE_OPTIONS+=" -disable-texture-float"
+    CONFIGURE_OPTIONS+=" -without-llvm"
+    CONFIGURE_OPTIONS+=" -with-gallium-drivers="
+    CONFIGURE_OPTIONS+=" -disable-dri --with-dri-drivers="
+    CONFIGURE_OPTIONS+=" -disable-egl --disable-gbm"
+    CONFIGURE_OPTIONS+=" -with-platforms="
+    CONFIGURE_OPTIONS+=" -disable-glx"
+    CONFIGURE_OPTIONS+=" -enable-osmesa --disable-gallium-osmesa"
+    CONFIGURE_OPTIONS+=" -enable-autotools"
+
+    echo "*** configure $CONFIGURE_OPTIONS ${opts[@]}"
+    $SOURCE_DIR/configure $CONFIGURE_OPTIONS "${opts[@]}"
+
+elif version_ge $VERSION "19"; then
     echo "*** configure --prefix=$PRODUCT_INSTALL --enable-opengl --disable-gles1 --disable-gles2 --disable-va --disable-xvmc --disable-vdpau --enable-shared-glapi --disable-texture-float --enable-llvm --disable-llvm-shared-libs --with-llvm-prefix=$LLVM_ROOT_DIR --with-gallium-drivers=swrast --disable-dri --with-dri-drivers= --disable-egl --with-platforms=x11 --disable-gbm --enable-glx=gallium-xlib --disable-osmesa --enable-gallium-osmesa --enable-autotools"
     $SOURCE_DIR/configure                 \
     --prefix=$PRODUCT_INSTALL             \

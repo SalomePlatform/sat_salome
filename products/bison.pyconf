@@ -1,0 +1,37 @@
+default :
+{
+    name : "bison"
+    build_source : "script"
+    compil_script :  $name + $VARS.scriptExtension
+    get_source : "archive"
+    system_info : 
+    {
+        rpm : ["bison"]
+        rpm_dev : ["bison-devel"]
+        apt : ["bison"]
+        apt_dev : ["libbison-dev"]
+        brew : ["bison"]
+        brew_dev : []
+    }
+    environ :
+    {
+       env_script : $name + ".py"
+    }
+    depend : []
+    build_depend : ['cmake']
+    source_dir : $APPLICATION.workdir + $VARS.sep + 'SOURCES' + $VARS.sep + $name
+    build_dir : $APPLICATION.workdir + $VARS.sep + 'BUILD' + $VARS.sep + $name
+    install_dir : 'base'
+    properties :
+    {
+        incremental : "yes"
+        single_install_dir : "yes"
+    }
+}
+
+version_3_8_2 :
+{
+    compil_script : "bison-3.8.2.sh"
+    build_source : "script"
+    archive_info : {archive_name : "bison-3.8.2.tar.gz"}
+}

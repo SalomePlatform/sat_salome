@@ -37,8 +37,12 @@ CMAKE_OPTIONS+=" -DHDF5_ENABLE_THREADSAFE:BOOL=OFF"
 # OP Set to permit HDF5_BUILD_HL_LIB and HDF5_BUILD_CPP_LIB options to ON
 CMAKE_OPTIONS+=" -DALLOW_UNSUPPORTED:BOOL=ON"
 
+if [ "$DIST_NAME" = "macOS" ]; then
+    CMAKE_OPTIONS+=" $SAT_CMAKE_OPTIONS"
+fi
+
 echo
-echo "*** cmake" $CMAKE_OPTIONS
+echo "*** cmake $CMAKE_OPTIONS"
 cmake $CMAKE_OPTIONS $SOURCE_DIR
 if [ $? -ne 0 ]; then
     echo "ERROR on CMake"

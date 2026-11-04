@@ -19,6 +19,15 @@ default :
     }
 }
 
+default_macOS:
+{
+    build_source : "cmake"
+    cmake_build_type : 'Release'
+    cmake_options : ' -DENABLE_SHARED=ON  -DCMAKE_C_FLAGS="-fno-define-target-os-macros"'
+    depend : [ ]
+    patches : ['libpng-macOS.patch']
+}
+
 default_win :
 {
    archive_info : {archive_name : "libpng-" + $APPLICATION.products.libpng + "_windows.tar.gz"}

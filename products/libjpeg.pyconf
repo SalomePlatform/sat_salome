@@ -19,6 +19,13 @@ default :
     }
 }
 
+default_macOS :
+{
+    archive_info : {archive_name : "jpegsrc." + $APPLICATION.products.libjpeg + ".tar.gz"}
+    post_script : "setup-rpath-macOS.sh"
+    depend : [ ]
+}
+
 default_win :
 {
    archive_info : {archive_name : "libjpeg-" + $APPLICATION.products.libjpeg + "_windows.tar.gz"}

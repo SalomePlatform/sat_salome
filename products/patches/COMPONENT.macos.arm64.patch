@@ -1,0 +1,16 @@
+diff --git a/src/UndefinedSymbolComponent/CMakeLists.txt b/src/UndefinedSymbolComponent/CMakeLists.txt
+index 5231630..3afe7e7 100644
+--- a/src/UndefinedSymbolComponent/CMakeLists.txt
++++ b/src/UndefinedSymbolComponent/CMakeLists.txt
+@@ -62,6 +62,11 @@ SET(UndefinedSymbolComponentEngine_SOURCES
+ 
+ ADD_LIBRARY(UndefinedSymbolComponentEngine ${UndefinedSymbolComponentEngine_SOURCES})
+ TARGET_LINK_LIBRARIES(UndefinedSymbolComponentEngine ${_link_LIBRARIES} )
++IF(APPLE)
++  # This component deliberately references an undefined symbol (CallUndefined):
++  # the macOS linker refuses that for a dylib unless lookup is deferred to load time
++  SET_TARGET_PROPERTIES(UndefinedSymbolComponentEngine PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
++ENDIF()
+ INSTALL(TARGETS UndefinedSymbolComponentEngine EXPORT ${PROJECT_NAME}TargetGroup DESTINATION ${SALOME_INSTALL_LIBS})
+ 
+ INSTALL(FILES ${UndefinedSymbolComponentEngine_HEADERS} DESTINATION ${SALOME_INSTALL_HEADERS})

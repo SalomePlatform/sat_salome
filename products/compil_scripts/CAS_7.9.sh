@@ -24,6 +24,10 @@ else
     fi
 fi
 
+if [ "$DIST_NAME" = "macOS" ]; then
+    CMAKE_OPTIONS+=" $SAT_CMAKE_OPTIONS"
+fi
+
 echo
 echo "*** cmake" ${CMAKE_OPTIONS}
 cmake ${CMAKE_OPTIONS} $SOURCE_DIR
@@ -51,18 +55,26 @@ fi
 OCCT_TARGETS_CMAKE_FILE=${PRODUCT_INSTALL}/lib/cmake/opencascade/OpenCASCADEVisualizationTargets.cmake
 
 if [ "$SAT_freetype_IS_NATIVE" != "1" ]; then
-    sed -i "s#libfreetype.so#${FREETYPE_ROOT_DIR}/lib/libfreetype.so#g" $OCCT_TARGETS_CMAKE_FILE
+    if [ $DIST_NAME = "macOS" ]; then
+        sed -i "" -e "s#libfreetype.dylib#${FREETYPE_ROOT_DIR}/lib/libfreetype.dylib#g" $OCCT_TARGETS_CMAKE_FILE
+    else # Linux Case 
+        sed -i "s#libfreetype.so#${FREETYPE_ROOT_DIR}/lib/libfreetype.so#g" $OCCT_TARGETS_CMAKE_FILE
+    fi
     if [ $? -ne 0 ]; then
-	echo "ERROR: could not patch ${OCCT_TARGETS_CMAKE_FILE}"
-	exit 4
+        echo "ERROR: could not patch ${OCCT_TARGETS_CMAKE_FILE}"
+        exit 4
     fi
 fi
 
 if [ "$SAT_freeimage_IS_NATIVE" != "1" ]; then
-    sed -i "s#libfreeimage.so#${FREEIMAGE_ROOT_DIR}/lib/libfreeimage.so#g" $OCCT_TARGETS_CMAKE_FILE
+    if [ $DIST_NAME = "macOS" ]; then
+        sed -i "" -e "s#libfreeimage.dylib#${FREEIMAGE_ROOT_DIR}/lib/libfreeimage.dylib#g" $OCCT_TARGETS_CMAKE_FILE
+    else # Linux Case
+        sed -i "s#libfreeimage.so#${FREEIMAGE_ROOT_DIR}/lib/libfreeimage.so#g" $OCCT_TARGETS_CMAKE_FILE
+    fi
     if [ $? -ne 0 ]; then
-	echo "ERROR: could not patch ${OCCT_TARGETS_CMAKE_FILE}"
-	exit 4
+        echo "ERROR: could not patch ${OCCT_TARGETS_CMAKE_FILE}"
+        exit 4
     fi
 fi
 

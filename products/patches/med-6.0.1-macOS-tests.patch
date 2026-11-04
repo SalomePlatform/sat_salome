@@ -1,0 +1,128 @@
+diff -Naur med-old-6.0.1/tests/c/test10.c med-new-6.0.1/tests/c/test10.c
+--- med-old-6.0.1/tests/c/test10.c	2025-09-24 18:33:52.000000000 +0200
++++ med-new-6.0.1/tests/c/test10.c	2026-09-23 11:21:36.000000000 +0200
+@@ -14,6 +14,14 @@
+  *  You should have received a copy of the GNU Lesser General Public License
+  *  along with MED.  If not, see <http://www.gnu.org/licenses/>.
+  */
++
++// Undefine the conflicting macros before including the system header files
++#ifdef __APPLE__ // Check for not compiling on macOS
++#undef _a
++#undef _b
++#include <med.h>
++#endif
++
+ #define _a 0.446948490915965
+ #define _b 0.091576213509771
+ #define _p1 0.11169079483905
+diff -Naur med-old-6.0.1/tests/c/test10_f32.c med-new-6.0.1/tests/c/test10_f32.c
+--- med-old-6.0.1/tests/c/test10_f32.c	2025-11-06 14:25:51.000000000 +0100
++++ med-new-6.0.1/tests/c/test10_f32.c	2026-09-23 11:22:13.000000000 +0200
+@@ -14,6 +14,14 @@
+  *  You should have received a copy of the GNU Lesser General Public License
+  *  along with MED.  If not, see <http://www.gnu.org/licenses/>.
+  */
++
++// Undefine the conflicting macros before including the system header files
++#ifdef __APPLE__ // Check for not compiling on macOS
++#undef _a
++#undef _b
++#include <med.h>
++#endif
++
+ #define _a 0.446948490915965
+ #define _b 0.091576213509771
+ #define _p1 0.11169079483905
+diff -Naur med-old-6.0.1/tests/c/test10_f32_i32.c med-new-6.0.1/tests/c/test10_f32_i32.c
+--- med-old-6.0.1/tests/c/test10_f32_i32.c	2025-11-06 14:25:51.000000000 +0100
++++ med-new-6.0.1/tests/c/test10_f32_i32.c	2026-09-23 11:21:58.000000000 +0200
+@@ -14,6 +14,14 @@
+  *  You should have received a copy of the GNU Lesser General Public License
+  *  along with MED.  If not, see <http://www.gnu.org/licenses/>.
+  */
++
++// Undefine the conflicting macros before including the system header files
++#ifdef __APPLE__ // Check for not compiling on macOS
++#undef _a
++#undef _b
++#include <med.h>
++#endif
++
+ #define _a 0.446948490915965
+ #define _b 0.091576213509771
+ #define _p1 0.11169079483905
+diff -Naur med-old-6.0.1/tests/c/test10_f32_i64.c med-new-6.0.1/tests/c/test10_f32_i64.c
+--- med-old-6.0.1/tests/c/test10_f32_i64.c	2025-11-06 14:25:51.000000000 +0100
++++ med-new-6.0.1/tests/c/test10_f32_i64.c	2026-09-23 11:22:25.000000000 +0200
+@@ -14,6 +14,14 @@
+  *  You should have received a copy of the GNU Lesser General Public License
+  *  along with MED.  If not, see <http://www.gnu.org/licenses/>.
+  */
++
++// Undefine the conflicting macros before including the system header files
++#ifdef __APPLE__ // Check for not compiling on macOS
++#undef _a
++#undef _b
++#include <med.h>
++#endif
++
+ #define _a 0.446948490915965
+ #define _b 0.091576213509771
+ #define _p1 0.11169079483905
+diff -Naur med-old-6.0.1/tests/c/test10_i32.c med-new-6.0.1/tests/c/test10_i32.c
+--- med-old-6.0.1/tests/c/test10_i32.c	2025-11-06 14:25:51.000000000 +0100
++++ med-new-6.0.1/tests/c/test10_i32.c	2026-09-23 11:22:49.000000000 +0200
+@@ -13,7 +13,15 @@
+  *
+  *  You should have received a copy of the GNU Lesser General Public License
+  *  along with MED.  If not, see <http://www.gnu.org/licenses/>.
+- */
++*/
++
++// Undefine the conflicting macros before including the system header files
++#ifdef __APPLE__ // Check for not compiling on macOS
++#undef _a
++#undef _b
++#include <med.h>
++#endif
++
+ #define _a 0.446948490915965
+ #define _b 0.091576213509771
+ #define _p1 0.11169079483905
+diff -Naur med-old-6.0.1/tests/c/test10_i64.c med-new-6.0.1/tests/c/test10_i64.c
+--- med-old-6.0.1/tests/c/test10_i64.c	2025-11-06 14:25:51.000000000 +0100
++++ med-new-6.0.1/tests/c/test10_i64.c	2026-09-23 11:23:00.000000000 +0200
+@@ -14,6 +14,14 @@
+  *  You should have received a copy of the GNU Lesser General Public License
+  *  along with MED.  If not, see <http://www.gnu.org/licenses/>.
+  */
++
++// Undefine the conflicting macros before including the system header files
++#ifdef __APPLE__ // Check for not compiling on macOS
++#undef _a
++#undef _b
++#include <med.h>
++#endif
++
+ #define _a 0.446948490915965
+ #define _b 0.091576213509771
+ #define _p1 0.11169079483905
+diff -Naur med-old-6.0.1/tests/c/test10_mem.c med-new-6.0.1/tests/c/test10_mem.c
+--- med-old-6.0.1/tests/c/test10_mem.c	2025-09-24 18:33:53.000000000 +0200
++++ med-new-6.0.1/tests/c/test10_mem.c	2026-09-23 11:23:18.000000000 +0200
+@@ -14,6 +14,14 @@
+  *  You should have received a copy of the GNU Lesser General Public License
+  *  along with MED.  If not, see <http://www.gnu.org/licenses/>.
+  */
++
++// Undefine the conflicting macros before including the system header files
++#ifdef __APPLE__ // Check for not compiling on macOS
++#undef _a
++#undef _b
++#include <med.h>
++#endif
++
+ #define _a 0.446948490915965
+ #define _b 0.091576213509771
+ #define _p1 0.11169079483905

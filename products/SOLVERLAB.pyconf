@@ -46,6 +46,11 @@ default :
     patches: []
 }
 
+default_macOS :
+{
+    patches: ['SOLVERLAB.macos.arm64.patch']
+}
+
 default_MPI :
 {
     depend :

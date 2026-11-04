@@ -30,14 +30,27 @@ fi
 
 echo
 echo "*** prepare $QMAKE_BIN"
-sed -i "s|\(QWT_INSTALL_PREFIX[[:space:]]*\)=\([[:space:]]*\)\(.*\)|\1=\2${PRODUCT_INSTALL}|g" qwtconfig.pri
-sed -i "s|#\(CONFIG[[:space:]]*+=[[:space:]]*QwtSVGItem\)|\1|g" qwtconfig.pri
+if [ "$DIST_NAME" = "macOS" ]; then
+    sed -i '' "s|\(QWT_INSTALL_PREFIX[[:space:]]*\)=\([[:space:]]*\)\(.*\)|\1=\2${PRODUCT_INSTALL}|g" qwtconfig.pri
+    sed -i '' "s|#\(CONFIG[[:space:]]*+=[[:space:]]*QwtSVGItem\)|\1|g" qwtconfig.pri
 
-sed -i "s|\(target\.path[[:space:]]*\)=\([[:space:]]*\).*|\1=\2\$\$QWT_INSTALL_PREFIX/plugins/designer|g" designer/designer.pro 
+    sed -i '' "s|\(target\.path[[:space:]]*\)=\([[:space:]]*\).*|\1=\2\$\$QWT_INSTALL_PREFIX/plugins/designer|g" designer/designer.pro 
+else
+    sed -i "s|\(QWT_INSTALL_PREFIX[[:space:]]*\)=\([[:space:]]*\)\(.*\)|\1=\2${PRODUCT_INSTALL}|g" qwtconfig.pri
+    sed -i "s|#\(CONFIG[[:space:]]*+=[[:space:]]*QwtSVGItem\)|\1|g" qwtconfig.pri
+
+    sed -i "s|\(target\.path[[:space:]]*\)=\([[:space:]]*\).*|\1=\2\$\$QWT_INSTALL_PREFIX/plugins/designer|g" designer/designer.pro 
+fi
 
 echo
+
 echo "** $QMAKE_BIN"
-$QMAKE_BIN
+if  [ "$DIST_NAME" =  "macOS" ]; then
+    $QMAKE_BIN QMAKE_LFLAGS_SONAME="-Wl,-install_name,@rpath/"
+else
+    $QMAKE_BIN
+fi
+
 if [ $? -ne 0 ]
 then
     echo "ERROR on $QMAKE_BIN"

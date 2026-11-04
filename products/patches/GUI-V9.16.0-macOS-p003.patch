@@ -1,0 +1,19 @@
+diff --color=auto -Naur GUI_old/src/VTKViewer/VTKViewer_OpenGLHelper.cxx GUI_new/src/VTKViewer/VTKViewer_OpenGLHelper.cxx
+--- GUI_old/src/VTKViewer/VTKViewer_OpenGLHelper.cxx	2026-10-07 13:07:47
++++ GUI_new/src/VTKViewer/VTKViewer_OpenGLHelper.cxx	2026-10-08 10:13:55
+@@ -109,7 +109,6 @@
+   if (mIsInitialized)
+     return;
+ 
+-#if !defined(__APPLE__)
+   vglShaderSourceARB = (PFNGLSHADERSOURCEARBPROC)GL_GetProcAddress( GL_ARB_OR_CORE( "glShaderSourceARB", "glShaderSource" ) );
+   if( !vglShaderSourceARB )
+     return;
+@@ -222,7 +221,6 @@
+   vglUniform1iARB = (PFNGLUNIFORM1IARBPROC)GL_GetProcAddress( "glUniform1i" );
+   if( !vglUniform1iARB )
+     return;
+-#endif
+ #endif
+ 
+   mIsInitialized = true;

@@ -1,0 +1,308 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+APPLICATION :
+{
+    name       : 'SALOME-master'
+    workdir    : $LOCAL.workdir + $VARS.sep + $APPLICATION.name + '-' + $VARS.dist
+    tag        : 'master'
+    dev        : 'no'
+    verbose    : 'no'
+    cmake_build_type: 'Release' # Debug, RelWithDebInfo, Release, MinSizeRel
+    rpath      : 'yes'
+    debug      : 'no'
+    base       : 'no'
+    python3    : 'yes'
+    use_pyside : 'no'
+    platform   : ['macOS25']
+    environ  :
+    {
+        build :
+        {
+           CONFIGURATION_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "CONFIGURATION"
+           RESTRICTED_ROOT_DIR : $workdir + $VARS.sep + "SOURCES" + $VARS.sep + "RESTRICTED"
+           SALOME_USE_64BIT_IDS : '1'
+           VTK_SMP_IMPLEMENTATION_TYPE : 'TBB' # OpenMP # choose among: sequential / OpenMP / TBB switches
+           SALOME_GMSH_HEADERS_STD : '1'
+           OMNIORBPY_REMOVE_INIT : '0'
+           MACOSX_DEPLOYMENT_TARGET :'15.0'
+           MACOSX_BUILD_SDK :'26.5'
+        }
+        launch :
+        {
+            PYTHONIOENCODING:"UTF_8",
+            SALOME_MODULES_ORDER:"SHAPER:SHAPERSTUDY:GEOM:SMESH",
+            ROOT_SALOME_INSTALL: '$PRODUCT_ROOT_DIR',
+            SALOME_ON_DEMAND: "HIDE"
+        }
+        SALOME_trace : "local" # local/file:.../with_logger
+        SALOME_MODULES : "SHAPER,SHAPERSTUDY,GEOM,SMESH,PARAVIS,YACS,JOBMANAGER"  # specify the first modules to display in gui
+    }
+    products :
+    {
+        # PREREQUISITES :
+        alabaster : '0.7.6'
+        assimulo  : '3.5.2'
+        Babel : '2.14.0'
+        BasicIterativeStatistics :  'v0.1.0'
+        bcrypt : '5.0.0'
+        beniget : '0.4.0'
+        bison : 'native'
+        boost : '1.91.0'
+        cairo : '1.16.0'
+        CAS : {tag : 'SALOME_9_16_V7_9_0b2', section: 'version_SALOME_9_16_V7_9_0b2', base:  'no'}
+        catalyst: {tag: '2.0', section: 'version_v2_0_0', base: 'no'}
+        C3PO: 'v2.3'
+        certifi : '2018.8.24'
+        cffi : '2.0.0'
+        cftime: '1.6.3'
+        cgal : {tag:'v5.6.1', base: 'no', section: 'version_v5_6_1_macOS' }
+        cgns : '4.2.0'
+        chardet : '3.0.4'
+        charset_normalizer : '3.3.2'
+        click : '6.7'
+        cmake : '3.31.6'
+        cminpack: '1.3.10'
+        contourpy : '1.2.0'
+        cork : '5987de5'
+        cppunit : '1.13.2'
+        cryptography : '46.0.3'
+        cycler : '0.10.0'
+        Cython : '3.0.12'
+        dateutil : '2.8.1'
+        decorator : '5.1.0'
+        dill : '0.3.4'
+        docutils : '0.20.1'
+        doxygen : '1.8.14'
+        eigen : {tag:'3.3.4', base: 'no', section: 'version_3_3_4_macOS' }
+        embree : {tag:'4.4.0', base: 'no', section: 'version_4_4_0_macOS' }
+        FMILibrary : '3.0.4'
+        fftw : '3.3.10'
+        fonttools : '4.48.1'
+        freeimage : '3.19.14'
+        freetype : '2.9.1'
+        gast : '0.5.0'
+        gssapi :'1.8.3'
+        hwloc : '2.14.0'
+        libevent : '2.1.13'
+        libigl : {tag:'v2.5.0', base: 'no', section: 'version_v2_5_0_macOS' }
+        libjpeg : 'v10'
+        libpng: '1.5.10'
+        mpc : 'native'
+        gmp : 'native'
+        mmg : {tag:'5.6.0', base: 'no', section: 'version_5_6_0_macOS' }
+        mpfr : 'native'
+        gmsh : '4.14.1'
+        graphviz : {tag:'2.49.3', base: 'no', section: 'version_2_49_3_macOS' }
+        h5py : {tag: '3.9.0', base: 'no', section: 'version_3_9_0_no_pip'}
+        hdf5 : '1.14.6'
+        idna : '2.7'
+        imagesize : '1.4.1'
+        importlib_metadata : '7.0.1'
+        importlib_resources: '6.1.1'
+        invoke : '2.2.1'
+        ispc : {tag: '1.31.0', base: 'no', section: 'version_1_31_0_macOS'}
+        Jinja2 : '3.1.3'
+        joblib : '1.2.0'
+        jsoncpp : '1.9.6'
+        kiwisolver : '1.3.1'
+        libxml2 : {tag: '2.9.12', base: 'no', section: 'version_2_9_12_macOS'}
+        llvm : '19.1.7'
+        markupsafe : '2.1.5' 
+        markdown_it_py: '3.0.0'
+        matplotlib : '3.8.2'
+        mcut : 'b5b0ec6'
+        mdurl: '0.1.2'
+        medfile : {tag: '6.0.1' , base: 'no', section : 'version_6_0_1_macOS'}
+        mesa : {tag: '19.0.8' , base: 'no', section : 'version_19_0_8_macOS'}
+        meshio : {tag: '5.3.5' , base: 'no', section : 'version_5_3_5_no_pip'}
+        meson: '1.9.1'
+        meson_python: '0.14.0'
+        mpi4py : {tag: '3.1.0',  base: 'no', section : 'version_3_1_0_no_pip'}
+        metis  : '5.1.0'
+        netgen : {tag: '5.3.1',  base: 'no', section : 'version_5_3_1_macOS'}
+        netcdf : '4.9.2'
+        netCDF4 : '1.6.5'
+        ninja : {tag: '1.13.2',   base: 'no', section: 'version_1_13_2_macOS'}
+        nlopt : '2.7.0'
+        networkx : '2.5'
+        nose: '1.3.7'
+        nose_py3: {tag:'1.6.9', base: 'no', section: 'version_1_6_9_no_pip' }
+        numpy : '1.22.2'
+        numpydoc : '1.6.0'
+        omniORB : {tag:'4.2.5', base: 'no', section: 'version_4_2_5_macOS' }
+        omniORBpy : '4.2.5'
+        openblas: '0.3.29'
+        opencv : {tag:'3.2.0', base: 'no', section: 'version_3_2_0_macOS' }
+        openmpi : '5.0.10'
+        openssl : '3.4.7'
+        openturns: {tag:'1.25.1', base: 'no', section: 'version_1_25_1_macOS' } 
+        openVKL: '1.3.2'
+        ospray : {tag:'2.12.0', base: 'no', section: 'version_2_12_0_macOS' }
+        packaging : '24.2'
+        pandas : '1.4.0'
+        patsy : '0.5.4'
+        ParaView : {tag:'6.0.0.c61dcc8ee0', base: 'no',  section: 'version_6_0_0_MPI', hpc:'yes'}
+        paramiko : '4.0.0'
+        PERSALYS: 'v19.0'
+        petsc : '3.24.3'
+        Pillow : {tag:'8.4.0', base: 'no', section: 'version_8_4_0_macOS' }
+        pixman : '0.42.2'
+        planegcs : '0.18-3cb6890'
+        ply : '3.8'
+        pmix : '5.0.11'
+        poetry : {tag:'1.8.3', base: 'no', section: 'version_1_8_3_macOS' }
+        poetry_core : {tag:'1.9.0', base: 'no', section: 'version_1_9_0_macOS' }
+        proj : '9.2.1'
+        pyasn1 : '0.6.1'
+        pycparser : '2.23'
+        pybind11 : '2.11.0'
+        pynacl : '1.6.2'
+        pythran : '0.14.0'
+        psutil : '5.9.8'
+        PyFMI : {tag: '2.13.1',   base: 'no', section: 'version_2_13_1_macOS'}
+        Pygments : '2.17.2'
+        pyparsing : '3.1.1'
+        pyproject_metadata: '0.8.0'
+        PyQt : '5.15.3'
+        pyqwt: {tag : '0.12.1', base : 'no', section : 'version_0_12_1_no_pip', hpc: 'no'}
+        pyreadline : '2.0'
+        pyside  : {tag: 'v5.15.17', base: 'no', section: 'version_v5_15_17'  }
+        pytest :  '8.1.1'
+        Python : '3.10.16'
+        pythonfmu : '0.6.3'
+        pytz : '2021.1'
+        pyyaml : {tag: '6.0',   base: 'no', section: 'version_6_0_macOS'}
+        qt : {tag: '5.15.19',   base: 'no', section: 'version_5_15_19_macOS'}
+        qtpy : {tag : '2.4.1', base : 'no', section : 'version_2_4_1_no_pip', hpc: 'no'}
+        qwt : '6.1.6'
+        rapidjson : '1.1.0'
+        requests : '2.31.0'
+        rich : '13.7.1'
+        rkCommon : '1.11.0'
+        root: {tag: '6.40.02',   base: 'no', section: 'version_6_40_02_macOS'}
+        salome_system : 'native'
+        scipy : {tag: '1.11.4',   base: 'no', section: 'version_1_11_4_macOS'}
+        scikit_learn : '1.2.2'
+        scotch : {tag: '7.0.15', section: 'version_7_0_15_MPI', hpc: 'yes', base: 'no'}
+        scp : '0.15.0'
+        setuptools : '69.0.3'
+        sip : '5.5.0'
+        six : '1.10.0'
+        snowballstemmer : '2.2.0'
+        Sphinx : '7.2.6'
+        sphinxcontrib_applehelp : '1.0.8'
+        sphinxcontrib_devhelp : '1.0.6'
+        sphinxcontrib_jsmath : '1.0.1'
+        sphinxcontrib_jquery : '4.1'
+        sphinxcontrib_qthelp : '1.0.7'
+        sphinxcontrib_htmlhelp : '2.0.5'
+        sphinxcontrib_serializinghtml : '1.1.10'
+        sphinxcontrib_websupport : '1.2.7'
+        sphinx_rtd_theme : '2.0.0'
+        sphinxintl: '2.1.0'
+        sqlite: '3.26.0'
+        statsmodels: '0.14.1'
+        swig : '4.0.2'
+        tabulate : '0.9.0'
+        tbb : '2023.1.0'
+        tcltk : '8.6.18'
+        threadpoolctl : '3.5.0'
+        toml: '0.10.2'
+        tqdm : '4.66.5'
+        tomli : '2.0.1'
+        typing_extensions : '4.13.2'
+        urllib3 : '1.23'
+        zipp : '3.17.0'
+        URANIE : {tag:'4.8.0', base: 'no', section: 'version_4_8_0_macOS'}
+        wheel : '0.36.2'
+
+        # SALOME MODULES :
+        'CONFIGURATION'
+        'SALOME'
+        'SHAPER'
+        'SHAPERSTUDY'
+        'RESTRICTED'
+        'LIBBATCH' : {tag:'V2_6_1', base: 'no', section: 'version_V2_6_1_macOS'}
+        'KERNEL'
+        'MEDCOUPLING'
+        'GUI'
+        'CommonGeomLib'
+        'GEOM'
+        'SMESH'
+        'NETGENPLUGIN'
+        'GMSHPLUGIN'
+        'HEXABLOCK'
+        'HEXABLOCKPLUGIN'
+        'meshbooleanplugin'
+        'mmgplugin'
+        'HOMARD'
+        'FIELDS'
+        'PARAVIS'
+        'JOBMANAGER'
+        'YACS'
+        'YACSGEN'
+        'DOCUMENTATION'
+        'SAMPLES'
+        'COMPONENT'
+        'PYCALCULATOR'
+        'CALCULATOR'
+        'HELLO'
+        'PYHELLO'
+        'EFICAS'
+        'EFICAS_TOOLS'
+        'PY2CPP'
+        'ADAO'
+        'ADAO_INTERFACE'
+        'PARAVISADDONS'
+        'OPENTURNS_SALOME'
+        'YDEFX'
+        'pmml'
+        'pybatch' : '65f6e083'
+        'SALOMEBOOTSTRAP'
+        'SOLVERLAB'
+        'TopIIVolMesh'
+        'CEATESTBASE'
+    }
+    profile :
+    {
+        launcher_name : "salome"
+    }
+    test_base :
+    {
+        name : "SALOME"
+        tag : "SalomeV9"
+    }
+    properties :
+    {
+        mesa_launcher_in_package : "yes"
+        git_server : 'github'
+        pip : 'yes'
+        pip_install_dir : 'python'
+        single_install_dir : "no"
+        modules_use_pip : "yes"
+    }
+}
+__overwrite__ :
+[
+    {
+        #
+        __condition__ : "APPLICATION.use_pyside == 'yes'"
+        'APPLICATION.rm_products_for_all_distributions'       : ['PyQt','sip']
+    }
+    {
+        #
+        __condition__ : "APPLICATION.use_pyside == 'no'"
+        'APPLICATION.rm_products_for_all_distributions'      : ['pyside']
+    }
+    {
+        #
+        __condition__ : "APPLICATION.rpath == 'yes'"
+        'APPLICATION.environ.build.RPATH_ENABLE' : '1'
+    }
+    {
+        #
+        __condition__ : "APPLICATION.rpath == 'no'"
+        'APPLICATION.environ.build.RPATH_ENABLE' : '0'
+    }
+]

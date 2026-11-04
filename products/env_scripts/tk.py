@@ -13,7 +13,7 @@ def set_env(env, prereq_dir, version):
     root = env.get('TKHOME')
 
     env.prepend('PATH', os.path.join(root, 'bin'))
-    
+
     l = []
     l.append(os.path.join(root, 'lib'))
     l.append(os.path.join(root, 'lib', 'tk' + env.get('TCL_SHORT_VERSION')))
@@ -22,9 +22,13 @@ def set_env(env, prereq_dir, version):
     env.prepend('TKLIBPATH', l, sep=" ")
     env.set('TK_LIBRARY',os.path.join(root, 'lib', 'tk' + env.get('TCL_SHORT_VERSION')))
 
-    if not platform.system() == "Windows" :
+    if platform.system() == "Windows" :
+        pass
+    elif platform.system() == "Darwin" :
+        env.prepend('DYLD_LIBRARY_PATH', os.path.join(root, 'lib'))
+    else:
         env.prepend('LD_LIBRARY_PATH', os.path.join(root, 'lib'))
-    
+
 
 def set_nativ_env(env):
     env.set('TK_ROOT_DIR', '/usr')   # update for cmake

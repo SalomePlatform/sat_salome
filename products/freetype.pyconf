@@ -22,6 +22,12 @@ default :
     }
 }
 
+default_macOS:
+{
+    post_script : "setup-rpath-macOS.sh"
+}
+
+
 default_win :
 {
     build_source : "script"

@@ -40,6 +40,15 @@ default_win :
     }
 }
 
+version_2_49_3_macOS :
+{
+    build_source : "script"
+    compil_script :  "graphviz-2.49.3.sh"
+    depend : ['Python', 'libpng', 'libjpeg', 'cairo']
+    build_depend : ['cmake', 'bison']
+}
+
+
 version_2_44_1 :
 {
     build_source : "cmake"

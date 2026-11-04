@@ -73,6 +73,26 @@ default_win :
 
 }
 
+default_macOS:
+{
+    cmake_build_type : 'RelWithDebInfo'
+    cmake_options : '-DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DCMAKE_PREFIX_PATH=${BOOST_ROOT_DIR} -Dboost_system_DIR=${BOOST_ROOT_DIR} -DFREETYPE_LIBRARY=${FREETYPE_ROOT_DIR}/lib/libfreetype.dylib -DFREETYPE_INCLUDE_DIRS=${FREETYPE_ROOT_DIR}/include -DQWT_INCLUDE_DIR=${QWT_ROOT_DIR}/lib/qwt.framework/Versions/6/Headers -DSALOME_USE_PLOT2DVIEWER=OFF'
+    build_depend : ["cmake", "swig", "doxygen", "cppunit", "boost"]
+    git_info:
+    {
+      repositories :
+      {
+            github : "https://github.com/raphael-nabet/gui.git"
+      }
+      git_commands: [ 'git switch support-for-macos-platform' ]
+    }
+}
+
+version_V9_16_0_macOS:
+{
+   patches : [ "GUI-V9.16.0-macOS-p002.patch", "GUI-V9.16.0-macOS-p003.patch", "GUI.macos.arm64.patch" ]
+}
+
 default_FD44:
 {
     cmake_options : "-DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_USE_PLOT2DVIEWER:BOOL=OFF" # FIXME

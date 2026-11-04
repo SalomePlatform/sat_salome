@@ -25,6 +25,12 @@ default :
     }
 }
 
+default_macOS:
+{
+    post_script : "setup-rpath-macOS.sh"
+}
+
+
 version_6_1_0 :
 {
     compil_script :  "qwt-6.1.0.sh"

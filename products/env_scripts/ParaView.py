@@ -60,6 +60,24 @@ def set_paraview_env(env, version):
             env.prepend("PYTHONPATH", os.path.join(site_packages, "paraview"))
             env.prepend("PYTHONPATH", os.path.join(site_packages, "vtk"))
             env.prepend("PYTHONPATH", os.path.join(site_packages))
+
+    elif platform.system() == "Darwin":
+        # see spns #48124 or bos #47676 - since we use PARAVIEW_VERSIONED_INSTALL=OFF
+        if version >= "6.0":
+            paralib = os.path.join(root, "lib", "paraview")
+        else:
+            paralib = os.path.join(root, "lib", "paraview-%s" % version)
+
+        env.set("PARAVIEW_PLUGINS_DIR", os.path.join(paralib, "plugins"))
+        env.prepend("PV_PLUGIN_PATH", paralib)
+        # bos #26828
+        env.prepend("PV_PLUGIN_PATH", os.path.join(paralib, "plugins"))
+        env.prepend("PYTHONPATH", os.path.join(paralib, "site-packages"))
+        env.prepend("PYTHONPATH", os.path.join(paralib, "site-packages", "vtk"))
+        env.prepend("PATH", os.path.join(root, "include", "paraview"))
+        env.prepend("DYLD_LIBRARY_PATH", paralib)
+        env.prepend("PYTHONPATH", paralib)
+
     else:
         # see spns #48124 or bos #47676 - since we use PARAVIEW_VERSIONED_INSTALL=OFF
         if version >= "6.0":
@@ -88,7 +106,12 @@ def set_vtk_env(env, version):
         cmake_dir = os.path.join(root, "lib", "cmake", "paraview-%s" % version)
     env.set("VTK_DIR", cmake_dir)
 
-    if not platform.system() == "Windows":
+    if platform.system() == "Windows":
+        pass
+    elif platform.system() == "Darwin":
+        env.prepend("DYLD_LIBRARY_PATH", os.path.join(root, "lib"))
+        env.prepend("PYTHONPATH", os.path.join(root, "lib", pyver, "site-packages"))
+    else:
         # http://computer-programming-forum.com/57-tcl/1dfddc136afccb94.htm
         # Tcl treats the contents of that variable as a list. Be happy, for you can now use drive letters on windows.
         env.prepend("LD_LIBRARY_PATH", os.path.join(root, "lib"))

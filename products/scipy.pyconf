@@ -40,7 +40,7 @@ version_1_11_4:
 {
     depend : ['Python', 'setuptools', 'wheel', 'Cython', 'numpy', 'openblas', 'meson_python', 'pythran']
     build_depend : ["cmake", "pybind11"]
-    compil_script : "scipy-1.7.1.sh"
+    compil_script : "scipy-1.11.4.sh"
     archive_info : {archive_name : "scipy-1.11.4.tar.gz"}
     properties :
     {
@@ -60,6 +60,20 @@ version_1_11_4_win:
       incremental : "yes"
       pip : "no" # TODO: for now on, we use the pip wheel. in order to compile scipy, we need to compile flang which requires a bump in the llvm version
     }
+}
+
+version_1_11_4_macOS:
+{
+    depend : ['Python', 'setuptools', 'wheel', 'Cython', 'numpy', 'openblas', 'meson_python', 'pythran']
+    build_depend : ["cmake", "pybind11"]
+    compil_script : "scipy-1.11.4.sh"
+    archive_info : {archive_name : "scipy-1.11.4.tar.gz"}
+    properties :
+    {
+      incremental : "yes"
+      pip : "no"
+    }
+    patches: ['scipy-1.11.4-small_dynamic_array.patch']
 }
 
 version_1_7_1:

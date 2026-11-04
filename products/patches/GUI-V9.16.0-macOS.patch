@@ -1,0 +1,146 @@
+diff --color=auto -Naur GUI_old/src/OpenGLUtils/OpenGLUtils_FrameBuffer.cxx GUI_new/src/OpenGLUtils/OpenGLUtils_FrameBuffer.cxx
+--- GUI_old/src/OpenGLUtils/OpenGLUtils_FrameBuffer.cxx	2026-09-30 10:22:56
++++ GUI_new/src/OpenGLUtils/OpenGLUtils_FrameBuffer.cxx	2026-09-30 10:22:29
+@@ -153,7 +153,7 @@
+ 
+ bool OpenGLUtils_FrameBuffer::init( const GLsizei& xSize, const GLsizei& ySize )
+ {
+-#if defined(VTK_OPENGL2) && ! defined(WIN32)
++#if defined(VTK_OPENGL2) && ! defined(WIN32) && !defined(__APPLE__)
+   int n = 0;
+   std::ostringstream strm;
+   glGetIntegerv(GL_NUM_EXTENSIONS, &n);
+diff --color=auto -Naur GUI_old/src/VTKViewer/VTKViewer_OpenGLHelper.cxx GUI_new/src/VTKViewer/VTKViewer_OpenGLHelper.cxx
+--- GUI_old/src/VTKViewer/VTKViewer_OpenGLHelper.cxx	2026-09-30 10:22:56
++++ GUI_new/src/VTKViewer/VTKViewer_OpenGLHelper.cxx	2026-09-30 10:22:29
+@@ -28,7 +28,13 @@
+ # ifndef GLX_GLXEXT_LEGACY
+ #  define GLX_GLXEXT_LEGACY
+ # endif
+-# include <GL/glx.h>
++
++#ifdef __APPLE__
++  #include <OpenGL/gl.h>
++#else
++  #include <GL/gl.h>
++#endif
++
+ # include <dlfcn.h>
+ #else
+ # include <wingdi.h>
+@@ -98,6 +104,7 @@
+   if (mIsInitialized)
+     return;
+ 
++#if !defined(__APPLE__)
+   vglShaderSourceARB = (PFNGLSHADERSOURCEARBPROC)GL_GetProcAddress( "glShaderSourceARB" );
+   if( !vglShaderSourceARB )
+     return;
+@@ -211,6 +218,7 @@
+   if( !vglUniform1iARB )
+     return;
+ #endif
++#endif
+ 
+   mIsInitialized = true;
+   return;
+@@ -280,13 +288,13 @@
+ 
+   free( shaderContent );
+ 
+-  vglGetShaderivARB (theVertexShader, GL_COMPILE_STATUS, &compileStatus);
++  vglGetShaderivARB (GLcast(theVertexShader), GL_COMPILE_STATUS, &compileStatus);
+   if (compileStatus != GL_TRUE)
+   {
+     GLint size;
+     GLcharARB info[1024];
+ 
+-    vglGetShaderInfoLogARB (theVertexShader, 1024, &size, info);
++    vglGetShaderInfoLogARB (GLcast(theVertexShader), 1024, &size, info);
+     std::cerr << "Can't compile vertex shader." << std::endl;
+     std::cerr << info << std::endl;
+ 
+@@ -304,13 +312,13 @@
+ 
+   free (shaderContent);
+ 
+-  vglGetShaderivARB (theFragmentShader, GL_COMPILE_STATUS, &compileStatus);
++  vglGetShaderivARB (GLcast(theFragmentShader), GL_COMPILE_STATUS, &compileStatus);
+   if (compileStatus != GL_TRUE)
+   {
+     GLint size;
+     GLcharARB info[1024];
+ 
+-    vglGetShaderInfoLogARB (theVertexShader, 1024, &size, info);
++    vglGetShaderInfoLogARB (GLcast(theVertexShader), 1024, &size, info);
+     std::cerr << "Can't compile fragment shader." << std::endl;
+     std::cerr << info << std::endl;
+     return false;
+@@ -321,7 +329,7 @@
+   vglAttachObjectARB (theProgram, theFragmentShader);
+   vglLinkProgramARB  (theProgram);
+ 
+-  vglGetProgramivARB (theProgram, GL_LINK_STATUS, &linked);
++  vglGetProgramivARB (GLcast(theProgram), GL_LINK_STATUS, &linked);
+   if (!linked)
+   {
+     std::cerr << "Can't link program." << std::endl;
+@@ -329,7 +337,7 @@
+   }
+ 
+   vglValidateProgramARB (theProgram);
+-  vglGetProgramivARB (theProgram, GL_VALIDATE_STATUS, &validateStatus);
++  vglGetProgramivARB (GLcast(theProgram), GL_VALIDATE_STATUS, &validateStatus);
+ 
+   if (validateStatus != GL_TRUE)
+   {
+diff --color=auto -Naur GUI_old/src/VTKViewer/VTKViewer_OpenGLHelper.h GUI_new/src/VTKViewer/VTKViewer_OpenGLHelper.h
+--- GUI_old/src/VTKViewer/VTKViewer_OpenGLHelper.h	2026-09-30 10:22:56
++++ GUI_new/src/VTKViewer/VTKViewer_OpenGLHelper.h	2026-09-30 10:22:29
+@@ -28,8 +28,14 @@
+ #include <windows.h>
+ #endif
+ 
+-#include <GL/gl.h>
+-
++#ifdef __APPLE__
++  #include <OpenGL/gl.h>
++  #define GLcast(X) (GLuint)(uintptr_t)X
++  #define GLcastInv(X) (GLhandleARB)(uintptr_t)X
++#else
++  #include <GL/gl.h>
++  #define GLcast(X) X
++#endif
+ 
+ #ifndef GL_ARB_shader_objects
+ typedef GLuint GLhandleARB;
+diff --color=auto -Naur GUI_old/src/VTKViewer/VTKViewer_PolyDataMapper.cxx GUI_new/src/VTKViewer/VTKViewer_PolyDataMapper.cxx
+--- GUI_old/src/VTKViewer/VTKViewer_PolyDataMapper.cxx	2026-09-30 10:22:56
++++ GUI_new/src/VTKViewer/VTKViewer_PolyDataMapper.cxx	2026-09-30 10:22:29
+@@ -180,7 +180,7 @@
+   this->myLocations.GeneralPointSize    = this->OpenGLHelper.vglGetUniformLocationARB( this->PointProgram, "uGeneralPointSize" );
+   this->myLocations.PointSprite         = this->OpenGLHelper.vglGetUniformLocationARB( this->PointProgram, "uPointSprite" );
+ 
+-  this->OpenGLHelper.vglUseProgramObjectARB( current_program );
++  this->OpenGLHelper.vglUseProgramObjectARB( GLcastInv(current_program) );
+ 
+   this->OpenGLHelper.vglGenVertexArraysARB(1, &this->VertexArrayObject);
+ #else
+@@ -620,7 +620,7 @@
+     //    this->RenderEdges(ren,act);
+     //this->RenderPieceFinish(ren, act);
+ #endif    
+-    this->OpenGLHelper.vglUseProgramObjectARB( current_program );
++    this->OpenGLHelper.vglUseProgramObjectARB( GLcastInv(current_program) );
+     this->CleanupPointSprites();
+     glBindTexture( GL_TEXTURE_2D, 0 );
+   }  
+@@ -1000,7 +1000,7 @@
+        this->OpenGLHelper.vglDeleteBuffersARB( 1, &aBufferObjectID );
+        this->OpenGLHelper.vglBindVertexArrayARB( 0 );
+ 
+-       this->OpenGLHelper.vglUseProgramObjectARB( current_program );
++       this->OpenGLHelper.vglUseProgramObjectARB( GLcastInv(current_program) );
+ #else
+        GLuint aBufferObjectID, aDiamsID = 0;
+        GLint attribute_diams = -1;

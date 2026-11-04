@@ -15,6 +15,16 @@ def set_env(env, prereq_dir, version):
         env.set('OMNIORB_LIB_DIR',os.path.join(prereq_dir, 'lib', 'x86_win32'))
         env.set('OMNIORB_BIN_DIR',os.path.join(prereq_dir, 'bin', 'x86_win32'))
         env.set("OMNIORB_USER_PATH", "%APPDATA%")
+
+    elif platform.system() == "Darwin" :
+        env.prepend('PATH', os.path.join(prereq_dir, 'bin'))
+        env.prepend( 'PYTHONPATH', os.path.join(prereq_dir, 'lib'))
+        pyver = 'python' + env.get('PYTHON_VERSION')
+        env.prepend( 'PYTHONPATH', os.path.join(prereq_dir, 'lib', pyver, 'site-packages'))
+        env.prepend( 'PYTHONPATH', os.path.join(prereq_dir, 'lib64', pyver, 'site-packages'))
+        env.prepend('DYLD_LIBRARY_PATH',os.path.join(prereq_dir, 'lib'))
+        env.set("OMNIORB_USER_PATH", "/tmp")
+
     else:
         env.prepend('PATH', os.path.join(prereq_dir, 'bin'))
         env.prepend( 'PYTHONPATH', os.path.join(prereq_dir, 'lib'))

@@ -4,9 +4,14 @@ echo "###############################################"
 echo "freetype" $VERSION
 echo "###############################################"
 
+opts=()
+if [ "$DIST_NAME" = "macOS" ]; then
+    eval "opts=($SAT_CONFIGURE_OPTIONS)"
+fi
+
 echo
-echo "*** configure --prefix=$PRODUCT_INSTALL --with-harfbuzz=no"
-$SOURCE_DIR/configure --prefix=$PRODUCT_INSTALL --with-harfbuzz=no
+echo "*** configure --prefix=$PRODUCT_INSTALL --with-harfbuzz=no ${opts[@]}"
+$SOURCE_DIR/configure --prefix=$PRODUCT_INSTALL --with-harfbuzz=no "${opts[@]}"
 
 if [ $? -ne 0 ]
 then

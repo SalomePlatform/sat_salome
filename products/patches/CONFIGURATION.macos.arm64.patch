@@ -1,0 +1,65 @@
+diff --git a/cmake/SalomeSetupPlatform.cmake b/cmake/SalomeSetupPlatform.cmake
+index a81dde3..587e494 100644
+--- a/cmake/SalomeSetupPlatform.cmake
++++ b/cmake/SalomeSetupPlatform.cmake
+@@ -111,6 +111,37 @@ IF(APPLE)
+     SET(CMAKE_C_COMPILER gcc)
+     SET(CMAKE_CXX_COMPILER g++)
+   ENDIF()
++
++  # Most SALOME projects require CMake 2.8 only, which leaves policy CMP0042 OLD:
++  # installed dylibs would then get a bare install name (e.g. "libSalomeNS.dylib")
++  # that dyld can only resolve through DYLD_LIBRARY_PATH, a variable that macOS
++  # strips when a protected binary (/bin/sh, /usr/bin/env...) is executed.
++  # Use @rpath install names and embed the install lib dirs plus the dirs of all
++  # linked prerequisites and upstream SALOME modules.
++  IF(NOT DEFINED CMAKE_MACOSX_RPATH)
++    SET(CMAKE_MACOSX_RPATH ON)
++  ENDIF()
++  IF(NOT DEFINED CMAKE_INSTALL_RPATH_USE_LINK_PATH)
++    SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH ON)
++  ENDIF()
++  LIST(APPEND CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib/salome" "${CMAKE_INSTALL_PREFIX}/lib")
++  LIST(REMOVE_DUPLICATES CMAKE_INSTALL_RPATH)
++
++  # Python extension modules and plugins are MODULE libraries (Mach-O bundles):
++  # like ELF shared objects on Linux, let them resolve the Python C-API and the
++  # symbols of the host process at load time instead of failing at link time.
++  IF(NOT CMAKE_MODULE_LINKER_FLAGS MATCHES "dynamic_lookup")
++    SET(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} -undefined dynamic_lookup")
++  ENDIF()
++
++  # Unlike ELF shared objects, dylibs must not have undefined symbols. The right fix is
++  # to add the missing libraries to TARGET_LINK_LIBRARIES; this option is a porting aid
++  # that restores the Linux behaviour for every dylib of the project being configured.
++  OPTION(SALOME_APPLE_UNDEFINED_DYNAMIC_LOOKUP "Let dylibs resolve undefined symbols at load time" OFF)
++  MARK_AS_ADVANCED(SALOME_APPLE_UNDEFINED_DYNAMIC_LOOKUP)
++  IF(SALOME_APPLE_UNDEFINED_DYNAMIC_LOOKUP AND NOT CMAKE_SHARED_LINKER_FLAGS MATCHES "dynamic_lookup")
++    SET(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -undefined dynamic_lookup")
++  ENDIF()
+ ENDIF()
+ 
+ # Compiler flags for coverage testing
+diff --git a/cmake/configure_rpath_relative.py b/cmake/configure_rpath_relative.py
+index 994c332..55afb23 100644
+--- a/cmake/configure_rpath_relative.py
++++ b/cmake/configure_rpath_relative.py
+@@ -184,7 +184,7 @@ class RPathManager:
+         shared_libs = []
+         for root, _, files in os.walk(directory):
+             for file in files:
+-                if file.endswith('.so') or '.so.' in file or (IS_MACOS and file.endswith('.dylib'))
++                if file.endswith('.so') or '.so.' in file or (IS_MACOS and file.endswith('.dylib')):
+                     shared_libs.append(os.path.join(root, file))
+         return shared_libs
+     
+@@ -303,7 +303,8 @@ class RPathManager:
+             logging.debug("New RPATH for %s is bigger than the old one.", lib)
+             self.count_bigger_rpath += 1
+ 
+-        if rpath_new_size > self.max_rpath_size:
++        # Mach-O LC_RPATH entries are separate load commands, not a fixed-size ELF string
++        if not IS_MACOS and rpath_new_size > self.max_rpath_size:
+             logging.error(
+                 "New RPATH size for %s (%d bytes) exceeds the maximum allowed size (%d bytes).",
+                 lib, rpath_new_size, self.max_rpath_size

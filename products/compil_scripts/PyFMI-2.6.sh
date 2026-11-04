@@ -12,6 +12,12 @@ cd $BUILD_DIR
 cp -R $SOURCE_DIR/* .
 
 rm -f $BUILD_DIR/src/pyfmi/*.c
+
+if [ "$DIST_NAME" = "macOS" ]; then
+    export SDKROOT="$(xcrun --show-sdk-path)"
+    export CFLAGS="-isysroot $(xcrun --show-sdk-path)"
+    export CPPFLAGS="-isysroot $(xcrun --show-sdk-path)"
+fi
 export PATH=$(pwd)/bin:$PATH
 export PYTHONPATH=$(pwd):$PYTHONPATH
 

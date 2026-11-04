@@ -36,6 +36,16 @@ default_win:
     }
 }
 
+version_3_2_0_macOS :
+{
+    patches : ["opencv-3.2.0-ccache.patch", 
+               "SPNS-29988-opencv-3.2.0-persistence.patch", 
+               "opencv-3.2.0-python2-cmake.patch",
+               "SPNS-29988-opencv-3.2.0-cv2.patch",
+               "opencv-3.2.0-clang_neon.patch"]
+}
+
+
 version_3_2_0 :
 {
     patches : ["opencv-3.2.0-ccache.patch", 

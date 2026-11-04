@@ -33,6 +33,21 @@ default :
     nb_proc : 1
 } 
 
+default_macOS :
+{
+    cmake_options : " -DFREETYPE_LIBRARY=${FREETYPE_ROOT_DIR}/lib/libfreetype.dylib -DFREETYPE_INCLUDE_DIRS=${FREETYPE_ROOT_DIR}/include"
+    git_info:
+    {
+      repositories :
+      {
+        github : "https://github.com/raphael-nabet/homard.git"
+      }
+      git_commands: [
+                     'git switch support-for-macos-platform'
+                    ]
+    }
+}
+
 default_win:
 {
     build_source : "script"
@@ -50,6 +65,11 @@ version_V10_0_0_MPI :
 {
   cmake_options : "-DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DCMAKE_CXX_COMPILER:STRING=${MPI_CXX_COMPILER} -DCMAKE_C_COMPILER:STRING=${MPI_C_COMPILER} -DSALOME_USE_MPI=ON "
   opt_depend : ['openmpi']
+}
+
+version_V9_16_0_macOS :
+{
+    patches : ["HOMARD.macos.arm64.patch"]
 }
 
 version_V9_16_0_MPI :

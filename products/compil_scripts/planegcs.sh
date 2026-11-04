@@ -11,6 +11,10 @@ cd $SOURCE_DIR
 # Install dir
 CMAKE_OPTIONS+=" -DCMAKE_INSTALL_PREFIX=$PRODUCT_INSTALL"
 
+if [ "$DIST_NAME" = "macOS" ]; then
+    CMAKE_OPTIONS+=" $SAT_CMAKE_OPTIONS"
+fi
+
 echo
 echo "*** cmake " ${CMAKE_OPTIONS}
 cmake ${CMAKE_OPTIONS}

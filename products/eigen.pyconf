@@ -26,6 +26,11 @@ default :
     }
 }
 
+version_3_3_4_macOS:
+{
+    patches : ["eigen-3.3.4-macOS.patch"]
+}
+
 version_3_2_7 :
 {
     compil_script :  "eigen-3.2.7.sh"

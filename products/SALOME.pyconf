@@ -33,3 +33,8 @@ default_win :
 {
     depend : ["KERNEL", "GUI", "Python", "Sphinx", "qt", "sphinxintl"]
 }
+
+default_macOS :
+{
+    cmake_options : '-DFREETYPE_LIBRARY=${FREETYPE_ROOT_DIR}/lib/libfreetype.dylib -DFREETYPE_INCLUDE_DIRS=${FREETYPE_ROOT_DIR}/include'
+}

@@ -12,16 +12,29 @@ def set_env(env, prereq_dir, version):
         pvversion = "paraview-" + env.get("PARAVIEW_VERSION")
     else:
         pvversion = "paraview"
+
     env.set("PERSALYS_ROOT_DIR", prereq_dir)
     env.set("PERSALYS_VERSION", version)
     env.set("OTGUI_DIR", prereq_dir)
     env.set("OTGUI_ROOT_DIR", prereq_dir)
     env.prepend("PATH", os.path.join(prereq_dir, "bin"))
+
     if platform.system() == "Windows":
         env.prepend(
             "PV_PLUGIN_PATH", os.path.join(prereq_dir, "bin", pvversion, "plugins")
         )
         env.prepend("PYTHONPATH", os.path.join(prereq_dir, "lib", "site-packages"))
+
+    elif platform.system() == "Darwin":
+        env.prepend(
+            "PV_PLUGIN_PATH", os.path.join(prereq_dir, "lib", pvversion, "plugins")
+        )
+        env.prepend("DYLD_LIBRARY_PATH", os.path.join(prereq_dir, "lib"))
+        pyver = "python" + env.get("PYTHON_VERSION")
+        env.prepend(
+            "PYTHONPATH", os.path.join(prereq_dir, "lib", pyver, "site-packages")
+        )
+
     else:
         env.prepend(
             "PV_PLUGIN_PATH", os.path.join(prereq_dir, "lib", pvversion, "plugins")

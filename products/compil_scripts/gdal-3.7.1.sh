@@ -14,6 +14,15 @@ if [ -f /.dockerenv ]; then
     find $BUILD_DIR -type f -exec chmod u+rwx {} \;
 fi
 
+if [ "$DIST_NAME" == "macOS" ]; then
+    export SDKROOT="$(xcrun --show-sdk-path)"
+    export CFLAGS="-isysroot $(xcrun --show-sdk-path)"
+    export CPPFLAGS="-isysroot $(xcrun --show-sdk-path)"
+    libExtension="dylib"
+else
+    libExtension="so"
+fi
+
 CMAKE_OPTIONS=
 
 if [ -n "$SAT_HPC" ]  && [ -n "$MPI_ROOT_DIR" ]; then

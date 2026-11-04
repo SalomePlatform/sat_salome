@@ -1,0 +1,79 @@
+diff --color=auto -Naur shaperstudy_old/idl/CMakeLists.txt shaperstudy_new/idl/CMakeLists.txt
+--- shaperstudy_old/idl/CMakeLists.txt	2026-10-07 09:32:11
++++ shaperstudy_new/idl/CMakeLists.txt	2026-10-07 09:29:30
+@@ -35,6 +35,7 @@
+ 
+ SET(_idl_link_flags
+   ${KERNEL_SalomeIDLKernel}
++  ${GEOM_SalomeIDLGEOM}
+ )
+ 
+ OMNIORB_ADD_MODULE(SalomeIDLSHAPERSTUDY "${SalomeIDLSHAPERSTUDY_IDLSOURCES}" "${_idl_include_dirs}" "${_idl_link_flags}")
+diff --color=auto -Naur shaperstudy_old/src/SWIG/CMakeLists.txt shaperstudy_new/src/SWIG/CMakeLists.txt
+--- shaperstudy_old/src/SWIG/CMakeLists.txt	2026-10-07 09:32:11
++++ shaperstudy_new/src/SWIG/CMakeLists.txt	2026-10-07 09:29:30
+@@ -38,9 +38,12 @@
+ # libraries to link to
+ SET(_link_LIBRARIES
+   StudyData
+-  ${PYTHON_LIBRARIES}
+ )
+ 
++IF(NOT APPLE)
++  LIST(APPEND _link_LIBRARIES ${PYTHON_LIBRARIES})
++ENDIF(NOT APPLE)
++
+ # --- headers ---
+ 
+ # header files / to be processed by moc
+@@ -85,6 +88,12 @@
+ IF(WIN32)
+   SET_TARGET_PROPERTIES(_StudyData_Swig PROPERTIES DEBUG_OUTPUT_NAME _StudyData_Swig_d)
+ ENDIF(WIN32)
++
++IF(APPLE)
++  SET_TARGET_PROPERTIES(_StudyData_Swig PROPERTIES
++    SUFFIX ".so"
++    LINK_FLAGS "-undefined dynamic_lookup")
++ENDIF(APPLE)
+ 
+ INSTALL(TARGETS _StudyData_Swig DESTINATION ${SALOME_INSTALL_LIBS})
+ 
+diff --color=auto -Naur shaperstudy_old/src/SWIG/StudyData_Swig.i shaperstudy_new/src/SWIG/StudyData_Swig.i
+--- shaperstudy_old/src/SWIG/StudyData_Swig.i	2026-10-07 09:32:11
++++ shaperstudy_new/src/SWIG/StudyData_Swig.i	2026-10-07 09:29:30
+@@ -28,6 +28,10 @@
+ #include <Standard_ErrorHandler.hxx>
+ #include <stdexcept>
+ 
++#if defined(__APPLE__)
++#include <cstring>
++#endif
++
+ static PyObject* setOCCException(Standard_Failure& ex)
+ {
+   std::string msg(ex.DynamicType()->Name());
+diff --color=auto -Naur shaperstudy_old/src/StudyData/CMakeLists.txt shaperstudy_new/src/StudyData/CMakeLists.txt
+--- shaperstudy_old/src/StudyData/CMakeLists.txt	2026-10-07 09:32:11
++++ shaperstudy_new/src/StudyData/CMakeLists.txt	2026-10-07 09:29:30
+@@ -33,6 +33,10 @@
+ # libraries to link to
+ SET(_link_LIBRARIES
+   SalomeIDLGEOM
++  ${KERNEL_SalomeIDLKernel}
++  ${OMNIORB_LIBRARIES}
++  ${OpenCASCADE_FoundationClasses_LIBRARIES}
++  ${OpenCASCADE_ModelingData_LIBRARIES}
+   ${OpenCASCADE_ModelingAlgorithms_LIBRARIES}
+   ${LIB_XAOShaper}
+ )
+@@ -63,7 +67,8 @@
+ #  TARGET_COMPILE_OPTIONS(SudyData PRIVATE /bigobj) 
+ #ENDIF(WIN32)
+ 
+-TARGET_LINK_LIBRARIES(StudyData ${_link_LIBRARIES} )
++TARGET_LINK_LIBRARIES(StudyData ${_link_LIBRARIES})
++
+ INSTALL(TARGETS StudyData EXPORT ${PROJECT_NAME}TargetGroup DESTINATION ${SALOME_INSTALL_LIBS})
+ 
+ INSTALL(FILES ${STUDYDATA_HEADERS} DESTINATION ${SALOME_INSTALL_HEADERS})

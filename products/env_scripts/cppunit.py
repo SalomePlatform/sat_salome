@@ -8,11 +8,16 @@ def set_env(env, prereq_dir, version):
     env.set('CPPUNITHOME', prereq_dir)
     env.set('CPPUNIT_ROOT', prereq_dir)
     env.set('CPPUNIT_ROOT_DIR', prereq_dir) # update for cmake   
-    
+
     env.set('CPPUNITINSTDIR', prereq_dir)
-    
+
     if platform.system() == "Windows" :
         env.prepend('PATH', os.path.join(prereq_dir, 'lib'))
+
+    elif platform.system() == "Darwin" :
+        env.prepend('PATH', os.path.join(prereq_dir, 'bin'))
+        env.prepend('DYLD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib'))
+
     else :
         env.prepend('PATH', os.path.join(prereq_dir, 'bin'))
         env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib'))

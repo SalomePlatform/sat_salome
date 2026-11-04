@@ -1,0 +1,174 @@
+diff --git a/src/bases/SemaphorePT.cxx b/src/bases/SemaphorePT.cxx
+index 161c7690..d21bf066 100644
+--- a/src/bases/SemaphorePT.cxx
++++ b/src/bases/SemaphorePT.cxx
+@@ -21,6 +21,47 @@
+ 
+ using namespace YACS::BASES;
+ 
++#if defined(__APPLE__)
++
++SemaphorePT::SemaphorePT(int initValue):_value(initValue)
++{
++  pthread_mutex_init(&_mutex, NULL);
++  pthread_cond_init(&_cond, NULL);
++}
++
++SemaphorePT::~SemaphorePT()
++{
++  pthread_cond_destroy(&_cond);
++  pthread_mutex_destroy(&_mutex);
++}
++
++void SemaphorePT::post()
++{
++  pthread_mutex_lock(&_mutex);
++  _value++;
++  pthread_cond_signal(&_cond);
++  pthread_mutex_unlock(&_mutex);
++}
++
++void SemaphorePT::wait()
++{
++  pthread_mutex_lock(&_mutex);
++  while(_value <= 0)
++    pthread_cond_wait(&_cond, &_mutex);
++  _value--;
++  pthread_mutex_unlock(&_mutex);
++}
++
++int SemaphorePT::getValue()
++{
++  pthread_mutex_lock(&_mutex);
++  int val = _value;
++  pthread_mutex_unlock(&_mutex);
++  return val;
++}
++
++#else
++
+ SemaphorePT::SemaphorePT(int initValue)
+ {
+   sem_init(&_semDesc, 0, initValue);
+@@ -47,3 +88,5 @@ int SemaphorePT::getValue()
+   sem_getvalue(&_semDesc,&val);
+   return val;
+ }
++
++#endif
+diff --git a/src/bases/SemaphorePT.hxx b/src/bases/SemaphorePT.hxx
+index 5d0273be..13f629a7 100644
+--- a/src/bases/SemaphorePT.hxx
++++ b/src/bases/SemaphorePT.hxx
+@@ -22,7 +22,13 @@
+ 
+ #include "YACSBasesExport.hxx"
+ 
++#if defined(__APPLE__)
++// macOS: unnamed POSIX semaphores (sem_init) are not implemented,
++// use a counting semaphore built on a mutex and a condition variable
++#include <pthread.h>
++#else
+ #include <semaphore.h>
++#endif
+ 
+ namespace YACS
+ {
+@@ -37,7 +43,13 @@ namespace YACS
+       void wait();
+       int getValue();
+     private:
++#if defined(__APPLE__)
++      pthread_mutex_t _mutex;
++      pthread_cond_t _cond;
++      int _value;
++#else
+       sem_t _semDesc;
++#endif
+     };
+   }
+ }
+diff --git a/src/yacsloader/driver.cxx b/src/yacsloader/driver.cxx
+index 8a1e37fe..fb12ecf9 100644
+--- a/src/yacsloader/driver.cxx
++++ b/src/yacsloader/driver.cxx
+@@ -50,6 +50,9 @@
+ #else
+ #include <argp.h>
+ #endif
++#if defined(__APPLE__)
++#include <getopt.h>
++#endif
+ 
+ using YACS::YACSLoader;
+ using namespace YACS::ENGINE;
+@@ -339,9 +342,69 @@ void shutdownServers()
+     }
+ }
+ 
++#if defined(__APPLE__)
++// macOS: glibc argp is not available, parse the same options with getopt_long
++static void parse_args_getopt(int argc, char* argv[], struct arguments& myArgs)
++{
++  static struct option long_options[] =
++    {
++      {"display",         required_argument, nullptr, 'd'},
++      {"verbose",         no_argument,       nullptr, 'v'},
++      {"stop-on-error",   no_argument,       nullptr, 's'},
++      {"dump-on-error",   optional_argument, nullptr, 'e'},
++      {"dump-final",      optional_argument, nullptr, 'f'},
++      {"dump",            optional_argument, nullptr, 'g'},
++      {"load-state",      required_argument, nullptr, 'l'},
++      {"save-xml-schema", optional_argument, nullptr, 'x'},
++      {"shutdown",        required_argument, nullptr, 't'},
++      {"reset",           required_argument, nullptr, 'r'},
++      {"kill-port",       required_argument, nullptr, 'k'},
++      {"init_port",       optional_argument, nullptr, 'i'},
++      {"donotsqueeze",    required_argument, nullptr, 'z'},
++      {nullptr,           0,                 nullptr, 0}
++    };
++  int key;
++  while((key = getopt_long(argc, argv, "d:vse::f::g::l:x::t:r:k:i::z:", long_options, nullptr)) != -1)
++    {
++      char *arg(optarg);
++      switch (key)
++        {
++        case 'd': myArgs.display = atoi(arg); break;
++        case 't': myArgs.shutdown = atoi(arg); break;
++        case 'r': myArgs.reset = atoi(arg); break;
++        case 'v': myArgs.verbose = 1; break;
++        case 's': myArgs.stop = 1; break;
++        case 'e':
++          myArgs.stop = 1;
++          myArgs.dumpErrorFile = arg ? arg : "dumpErrorState.xml";
++          break;
++        case 'f': myArgs.finalDump = arg ? arg : "finalDumpState.xml"; break;
++        case 'g': myArgs.dump = arg ? atoi(arg) : 60; break;
++        case 'l': myArgs.loadState = arg; break;
++        case 'x': myArgs.xmlSchema = arg ? arg : "saveSchema.xml"; break;
++        case 'k': myArgs.killPort = atoi(arg); break;
++        case 'i': if (arg) myArgs.init_ports.push_back(std::string(arg)); break;
++        case 'z': myArgs.squeezeMemory = ! ( bool( atoi(arg) ) ); break;
++        default:
++          std::cerr << "Usage: " << argv[0] << " [OPTION...] " << args_doc << std::endl << doc << std::endl;
++          exit(64);
++        }
++    }
++  if (argc - optind != 1) // exactly one graph expected
++    {
++      std::cerr << "Usage: " << argv[0] << " [OPTION...] " << args_doc << std::endl << doc << std::endl;
++      exit(64);
++    }
++  myArgs.args[0] = argv[optind];
++}
++#endif
++
+ int main (int argc, char* argv[])
+ {
+   // Parse our arguments; every option seen by parse_opt will be reflected in arguments.
++#if defined(__APPLE__)
++  parse_args_getopt(argc, argv, myArgs);
++#endif
+ #if defined WIN32 || defined __APPLE__
+ #else
+   argp_parse (&argp, argc, argv, 0, 0, &myArgs);

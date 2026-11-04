@@ -24,9 +24,15 @@ def set_env(env, prereq_dir, version):
         env.prepend('INCLUDE', os.path.join(prereq_dir, 'include'))
         env.prepend('PATH', os.path.join(prereq_dir, 'lib'))
         env.prepend('PATH', os.path.join(prereq_dir, 'lib', 'glu'))
+
+    elif platform.system() == "Darwin" :
+        env.prepend('DYLD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib'))
+        env.prepend('DYLD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib', 'glu'))
+
     else :
         env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib'))
         env.prepend('LD_LIBRARY_PATH', os.path.join(prereq_dir, 'lib', 'glu'))
+
 
 def set_nativ_env(env):
     env.set('GLUROOT', '/usr')

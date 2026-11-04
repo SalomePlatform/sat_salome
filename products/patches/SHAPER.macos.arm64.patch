@@ -1,0 +1,55 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 9936f8803..9c867bc6c 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -34,15 +34,14 @@ ENDIF(WIN32)
+ # ===========================
+ SET(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeCommon" ${CMAKE_MODULE_PATH})
+ 
+-SET(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -undefined dynamic_lookup")
+-SET(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} -undefined dynamic_lookup")
+-
+-find_package(OpenGL REQUIRED)
+-
+-if(APPLE)
+-    link_libraries(${OPENGL_LIBRARIES})
+-    set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -framework OpenGL")
+-endif()
++IF(APPLE)
++  # macOS: let dylibs and plugin bundles resolve symbols at load time, as ELF
++  # shared objects do on Linux, and link the OpenGL framework everywhere
++  SET(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -undefined dynamic_lookup")
++  SET(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} -undefined dynamic_lookup")
++  FIND_PACKAGE(OpenGL REQUIRED)
++  LINK_LIBRARIES(${OPENGL_LIBRARIES})
++ENDIF()
+ 
+ 
+ # Detect SALOME mode; append path to SALOME macros
+@@ -133,7 +132,7 @@ IF(DEFINED ENV{LIBXML2_ROOT_DIR})
+         FILE(TO_CMAKE_PATH $ENV{LIBXML2_ROOT_DIR}/lib/libxml2.lib LIBXML2_LIBRARIES)
+         FILE(TO_CMAKE_PATH $ENV{LIBXML2_ROOT_DIR}/include LIBXML2_INCLUDE_DIR)
+     ELSEIF(NOT "$ENV{LIBXML2_ROOT_DIR}" STREQUAL "/usr")
+-        FILE(TO_CMAKE_PATH $ENV{LIBXML2_ROOT_DIR}/lib/libxml2.so LIBXML2_LIBRARIES)
++        FILE(TO_CMAKE_PATH $ENV{LIBXML2_ROOT_DIR}/lib/libxml2${CMAKE_SHARED_LIBRARY_SUFFIX} LIBXML2_LIBRARIES)
+         FILE(TO_CMAKE_PATH $ENV{LIBXML2_ROOT_DIR}/include/libxml2 LIBXML2_INCLUDE_DIR)
+     ENDIF()
+ ENDIF()
+diff --git a/src/Config/Config_Common.cpp b/src/Config/Config_Common.cpp
+index 6a81af6c8..9a0452f21 100644
+--- a/src/Config/Config_Common.cpp
++++ b/src/Config/Config_Common.cpp
+@@ -233,7 +233,13 @@ std::string library(const std::string& theLibName)
+     aLibName = "lib" + aLibName;
+   }
+ #endif
++#if defined(__APPLE__)
++  // ".dylib" is longer than 4 characters
++  std::string anExt = aLibName.size() >= aLibExt.size() ?
++    aLibName.substr(aLibName.size() - aLibExt.size()) : std::string();
++#else
+   std::string anExt = aLibName.substr(aLibName.size() - 4);
++#endif
+   if (anExt != aLibExt)
+     aLibName += aLibExt;
+ 
