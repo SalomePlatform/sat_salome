@@ -51,3 +51,129 @@ index 5770597f..994f5512 100644
    std::vector<long> pids(pyh->evalVL(oss.str()));
    std::size_t sz(pids.size());
    ret->length(sz);
+diff --git a/src/Container/SALOME_Container_Common.cxx b/src/Container/SALOME_Container_Common.cxx
+index 8f438e3..5340b61 100644
+--- a/src/Container/SALOME_Container_Common.cxx
++++ b/src/Container/SALOME_Container_Common.cxx
+@@ -143,7 +143,6 @@ int container_common_main(int argc, char* argv[], std::unique_ptr<SALOME_NamingS
+       setsig(SIGSEGV,&Handler);
+       setsig(SIGFPE,&Handler);
+       std::set_terminate(&terminateHandler);
+-      std::set_unexpected(&unexpectedHandler);
+     }
+ #endif
+ 
+diff --git a/src/DSC/DSC_User/Datastream/AdjacentPredicate.hxx b/src/DSC/DSC_User/Datastream/AdjacentPredicate.hxx
+index 876bdba..baf51ae 100644
+--- a/src/DSC/DSC_User/Datastream/AdjacentPredicate.hxx
++++ b/src/DSC/DSC_User/Datastream/AdjacentPredicate.hxx
+@@ -35,7 +35,7 @@
+ #include "DisplayPair.hxx"
+ 
+ template < typename T >
+-struct AdjacentPredicate : public std::binary_function < T, T, bool > 
++struct AdjacentPredicate
+ {
+   T _value;
+   AdjacentPredicate(const T& value):_value(value){}
+@@ -46,9 +46,7 @@ struct AdjacentPredicate : public std::binary_function < T, T, bool >
+ 
+ // Pour les MAPs avec une clef sous forme de pair
+ template <typename T1, typename T2, typename T3>
+-struct AdjacentPredicate<  std::pair<const std::pair<T1,T2>, T3 > > : 
+-  public std::binary_function < std::pair<const std::pair<T1,T2>, T3 >,
+-                                std::pair<const std::pair<T1,T2>, T3 >, bool > 
++struct AdjacentPredicate<  std::pair<const std::pair<T1,T2>, T3 > >
+ {
+   std::pair<T1,T2> _value;
+   AdjacentPredicate(const std::pair<T1,T2> & value):_value(value){
+@@ -62,7 +60,7 @@ struct AdjacentPredicate<  std::pair<const std::pair<T1,T2>, T3 > > :
+ };
+ 
+ template <typename T1, typename T2>
+-struct AdjacentPredicate<  std::pair<T1,T2> > : public std::binary_function < std::pair<T1,T2>, std::pair<T1,T2>, bool > 
++struct AdjacentPredicate<  std::pair<T1,T2> >
+ {
+   T1 _value;
+   AdjacentPredicate(const T1 & value):_value(value){
+diff --git a/src/DSC/DSC_User/Datastream/FindKeyPredicate.hxx b/src/DSC/DSC_User/Datastream/FindKeyPredicate.hxx
+index 9e92ce9..0bf04e4 100644
+--- a/src/DSC/DSC_User/Datastream/FindKeyPredicate.hxx
++++ b/src/DSC/DSC_User/Datastream/FindKeyPredicate.hxx
+@@ -35,7 +35,7 @@
+ #include "DisplayPair.hxx"
+ 
+ template < typename T >
+-struct FindKeyPredicate : public std::unary_function < T, bool > 
++struct FindKeyPredicate
+ {
+   T _value;
+   FindKeyPredicate(const T& value):_value(value){}
+@@ -63,7 +63,7 @@ struct FindKeyPredicate : public std::unary_function < T, bool >
+ // };
+ 
+ template <typename T1, typename T2>
+-struct FindKeyPredicate<  std::pair<T1,T2> > : public std::unary_function < std::pair<T1,T2>, bool > 
++struct FindKeyPredicate<  std::pair<T1,T2> >
+ {
+   T1 _value;
+   FindKeyPredicate(const T1 & value):_value(value){
+diff --git a/src/ParallelContainer/SALOME_ParallelContainerNodeDummy.cxx b/src/ParallelContainer/SALOME_ParallelContainerNodeDummy.cxx
+index ed11a95..4450f45 100644
+--- a/src/ParallelContainer/SALOME_ParallelContainerNodeDummy.cxx
++++ b/src/ParallelContainer/SALOME_ParallelContainerNodeDummy.cxx
+@@ -115,7 +115,6 @@ int main(int argc, char* argv[])
+   {
+     setsig(SIGSEGV,&Handler);
+     set_terminate(&terminateHandler);
+-    set_unexpected(&unexpectedHandler);
+   }
+ 
+   // Initialise the ORB.
+diff --git a/src/ParallelContainer/SALOME_ParallelContainerNodeMpi.cxx b/src/ParallelContainer/SALOME_ParallelContainerNodeMpi.cxx
+index 857fad9..b412299 100644
+--- a/src/ParallelContainer/SALOME_ParallelContainerNodeMpi.cxx
++++ b/src/ParallelContainer/SALOME_ParallelContainerNodeMpi.cxx
+@@ -128,7 +128,6 @@ int main(int argc, char* argv[])
+     setsig(SIGSEGV,&Handler);
+     set_terminate(&terminateHandler);
+     //set_terminate(__gnu_cxx::__verbose_terminate_handler);
+-    set_unexpected(&unexpectedHandler);
+   }
+ #endif
+ 
+diff --git a/src/ParallelContainer/SALOME_ParallelContainerProxyMpi.cxx b/src/ParallelContainer/SALOME_ParallelContainerProxyMpi.cxx
+index 4beff7a..2099886 100644
+--- a/src/ParallelContainer/SALOME_ParallelContainerProxyMpi.cxx
++++ b/src/ParallelContainer/SALOME_ParallelContainerProxyMpi.cxx
+@@ -132,7 +132,6 @@ int main(int argc, char* argv[])
+     setsig(SIGSEGV,&Handler);
+     //set_terminate(&terminateHandler);
+     set_terminate(__gnu_cxx::__verbose_terminate_handler);
+-    set_unexpected(&unexpectedHandler);
+   }
+ #endif
+ 
+diff --git a/src/Utils/Utils_ExceptHandlers.hxx b/src/Utils/Utils_ExceptHandlers.hxx
+index 5776adc..4f12c98 100644
+--- a/src/Utils/Utils_ExceptHandlers.hxx
++++ b/src/Utils/Utils_ExceptHandlers.hxx
+@@ -35,10 +35,16 @@
+ 
+ typedef void (*PVF)();
+ 
++// std::set_unexpected was removed in C++17 (dynamic exception specifications
++// no longer exist, so the unexpected handler can never be called).
++// Unexpect is kept as a no-op for source compatibility.
+ class UTILS_EXPORT Unexpect { //save / retrieve unexpected exceptions treatment
+   PVF old;
+   public :
+-#ifndef WIN32
++#if __cplusplus >= 201703L || (defined(_MSVC_LANG) && _MSVC_LANG >= 201703L)
++    Unexpect( PVF ) : old(nullptr) {}
++  ~Unexpect() {}
++#elif !defined(WIN32)
+     Unexpect( PVF f ) 
+       { old = std::set_unexpected(f); }
+   ~Unexpect() { std::set_unexpected(old); }
+

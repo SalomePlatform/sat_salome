@@ -51,7 +51,7 @@ default :
 
 default_macOS :
 {
-    cmake_options : '-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_CMAKE_DEBUG=ON -DSALOME_USE_64BIT_IDS=ON -DCMAKE_C_FLAGS=" -w -Wno-narrowing -Wno-sign-conversion" -DCMAKE_CXX_FLAGS="-D_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION -D_LIBCPP_ENABLE_CXX17_REMOVED_UNEXPECTED_FUNCTIONS -w -Wno-narrowing -Wno-sign-conversion"'
+    cmake_options : '-DSALOME_USE_LIBBATCH=ON -DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_CMAKE_DEBUG=ON -DSALOME_USE_64BIT_IDS=ON -DCMAKE_C_FLAGS=" -w -Wno-narrowing -Wno-sign-conversion" -DCMAKE_CXX_FLAGS=" -w -Wno-narrowing -Wno-sign-conversion"'
     git_info:
     {
       repositories :

@@ -64,7 +64,7 @@ default_FD44:
 
 default_macOS :
 {
-    cmake_options : '-DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_GEOM_USE_OPENCV=OFF -DLIBXML2_LIBRARY=${LIBXML2_ROOT_DIR}/lib/libxml2.dylib -DFREETYPE_LIBRARY=${FREETYPE_ROOT_DIR}/lib/libfreetype.dylib -DFREETYPE_INCLUDE_DIRS=${FREETYPE_ROOT_DIR}/include -DCMAKE_CXX_FLAGS="-D_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION -D_LIBCPP_ENABLE_CXX17_REMOVED_UNEXPECTED_FUNCTIONS -w -Wno-narrowing -Wno-sign-conversion -isysroot $(xcrun --show-sdk-path)"'
+    cmake_options : '-DSWIG_EXECUTABLE=${SWIG_ROOT_DIR}/bin/swig -DSALOME_GEOM_USE_OPENCV=OFF -DLIBXML2_LIBRARY=${LIBXML2_ROOT_DIR}/lib/libxml2.dylib -DFREETYPE_LIBRARY=${FREETYPE_ROOT_DIR}/lib/libfreetype.dylib -DFREETYPE_INCLUDE_DIRS=${FREETYPE_ROOT_DIR}/include -DCMAKE_CXX_FLAGS=" -w -Wno-narrowing -Wno-sign-conversion -isysroot $(xcrun --show-sdk-path)"'
 }
 
 default_win :
