@@ -44,16 +44,20 @@ case $LINUX_DISTRIBUTION in
 esac
 
 if [ -d ${PRODUCT_INSTALL}/local ];then
-    mv ${PRODUCT_INSTALL}/local/* ${PRODUCT_INSTALL}
+    cp -r ${PRODUCT_INSTALL}/local/* ${PRODUCT_INSTALL}/
     rm -rf ${PRODUCT_INSTALL}/local
 fi
 
 if [ -d ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/dist-packages ]; then
-    mv ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/dist-packages ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages
+    mkdir -p ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages
+    cp -r ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/dist-packages/* ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/site-packages/
+    rm -rf ${PRODUCT_INSTALL}/lib/python${PYTHON_VERSION}/dist-packages
 fi
 
 if [ -d ${PRODUCT_INSTALL}/lib64 ]; then
-    mv ${PRODUCT_INSTALL}/lib64 ${PRODUCT_INSTALL}/lib
+    mkdir -p ${PRODUCT_INSTALL}/lib
+    cp -r ${PRODUCT_INSTALL}/lib64/* ${PRODUCT_INSTALL}/lib/
+    rm -rf ${PRODUCT_INSTALL}/lib64
 fi
 echo
 
